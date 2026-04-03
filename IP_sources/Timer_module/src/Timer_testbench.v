@@ -69,7 +69,7 @@ module Timer_testbench;
         
         // 2. AXI Write İşlemi Başlat
         awaddr = 32'h0000_0000;
-        wdata  = 32'h0000_000A;
+        wdata  = 32'h0000_0003;
         
         awvalid = 1;
         wvalid = 1;
@@ -101,7 +101,7 @@ module Timer_testbench;
         
         
         awaddr = 32'h0000_0010;
-        wdata  = 32'h0000_0001;
+        wdata  = 32'h0000_0000;
         
         awvalid = 1;
         wvalid = 1;
@@ -137,7 +137,7 @@ module Timer_testbench;
         wvalid = 0;
         
         // 4. Simülasyonu hemen bitirme, sonuçları görmek için bekle
-        #1000; 
+        #100000; 
         
         $display("Simülasyon başarıyla tamamlandı!");
         $finish;
