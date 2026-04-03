@@ -3,7 +3,7 @@
   <spirit:vendor>kyber</spirit:vendor>
   <spirit:library>user</spirit:library>
   <spirit:name>cv32e40p_and_obi_to_axi_wrapper</spirit:name>
-  <spirit:version>1.0</spirit:version>
+  <spirit:version>1.1</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
       <spirit:name>axi</spirit:name>
@@ -405,6 +405,10 @@
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
           <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK_I.ASSOCIATED_BUSIF">axi:axi_data</spirit:value>
         </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>FREQ_TOLERANCE_HZ</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK_I.FREQ_TOLERANCE_HZ"/>
+        </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
@@ -426,6 +430,10 @@
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
           <spirit:value spirit:id="BUSIFPARAM_VALUE.RST_NI.POLARITY">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.RST_NI.ASSOCIATED_RESET">rst_n</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -1906,7 +1914,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/cv32e40p_and_obi_to_axi_wrapper_v1_0.tcl</spirit:name>
+        <spirit:name>xgui/cv32e40p_and_obi_to_axi_wrapper_v1_1.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_dfc5abce</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
@@ -1970,18 +1978,19 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>cv32e40p_obi_to_axi_wrapper_v1_0</xilinx:displayName>
+      <xilinx:displayName>cv32e40p_obi_to_axi_wrapper_v1_1</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:vendorDisplayName>KYBER</xilinx:vendorDisplayName>
       <xilinx:coreRevision>1</xilinx:coreRevision>
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>xilinx.com:user:cv32e40p_obi_to_axi_wrapper:1.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>kyber:user:cv32e40p_and_obi_to_axi_wrapper:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2026-03-29T21:37:07Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2026-04-03T12:20:38Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2025.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="69e6186b"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="017a62db"/>
       <xilinx:checksum xilinx:scope="addressSpaces" xilinx:value="3d7cd988"/>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="7759de12"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="7b033541"/>
