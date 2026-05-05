@@ -1,167 +1,71 @@
-# Copyright 2020 Silicon Labs, Inc.
-#
-# This file, and derivatives thereof are licensed under the
-# Solderpad License, Version 2.0 (the "License").
-#
-# Use of this file means you agree to the terms and conditions
-# of the license and are in full compliance with the License.
-#
-# You may obtain a copy of the License at:
-#
-#     https://solderpad.org/licenses/SHL-2.0/
-#
-# Unless required by applicable law or agreed to in writing, software
-# and hardware implementations thereof distributed under the License
-# is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
-# OF ANY KIND, EITHER EXPRESSED OR IMPLIED.
-#
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# -------------------------------------------------------------------------
+# CV32E40P OBI-to-AXI WRAPPER - 50 MHz ZAMANLAMA KISITLAMALARI (SDC)
+# -------------------------------------------------------------------------
 
-#//////////////////////////////////////////////////////////////////////////////
-# Engineer:       Arjan Bink - arjan.bink@silabs.com                         //
-#                                                                            //
-# Project Name:   CV32E40P                                                   //
-#                                                                            //
-# Description:    Example synthesis constraints.                             //
-#                                                                            //
-#                 The clock period and input/output delays are technology    //
-#                 and project dependent and are expected to be adjusted as   //
-#                 needed.                                                    //
-#                                                                            //
-#                 OBI related bus inputs arrive late on purpose and OBI      //
-#                 related outputs are available earlier (as they shall not   //
-#                 combinatorially depend on the OBI inputs)                  //
-#                                                                            //
-#//////////////////////////////////////////////////////////////////////////////
+# -------------------------------------------------------------------------
+# 1. TEMEL ZAMANLAMA DEĞERLERİ
+# -------------------------------------------------------------------------
+# 50 MHz Frekans -> Periyot: 20.0 ns
+set CLK_PERIOD 20.0
 
-# 200MHz
-set clock_period 5.0
+# Giriş ve çıkışlar için %20 güvenlik marjı bırakıyoruz (4.0 ns)
+set I_DELAY 2.0
+set O_DELAY 2.0
 
-# Input delays for interrupts
-set in_delay_irq          [expr $clock_period * 0.50] 
-# Output delays for interrupt related signals
-set out_delay_irq         [expr $clock_period * 0.25] 
+# -------------------------------------------------------------------------
+# 2. SAAT (CLOCK) VE RESET KISITLAMALARI
+# -------------------------------------------------------------------------
+# Sentez aracına saat sinyalinin frekansını tanımlıyoruz
+create_clock -name core_clk -period $CLK_PERIOD [get_ports clk_i]
 
-# Input delays for early signals
-set in_delay_early [expr $clock_period * 0.10] 
+set_property CLOCK_BUFFER_TYPE BUFG [get_ports clk_i]
 
-# OBI inputs delays
-set in_delay_instr_gnt    [expr $clock_period * 0.80]
-set in_delay_instr_rvalid [expr $clock_period * 0.80]
-set in_delay_instr_rdata  [expr $clock_period * 0.80]
+# Gerçek dünyadaki fiziksel sinyal bozulmaları (Jitter) için 0.5 ns belirsizlik ekliyoruz
+set_clock_uncertainty -setup 0.5 [get_clocks core_clk]
+set_clock_uncertainty -hold 0.05 [get_clocks core_clk]
 
-set in_delay_data_gnt     [expr $clock_period * 0.80]
-set in_delay_data_rvalid  [expr $clock_period * 0.80]
-set in_delay_data_rdata   [expr $clock_period * 0.80]
+# Asenkron Reset sinyalinin zamanlama analizine girmesini engelliyoruz (False Path)
+set_false_path -from [get_ports rst_ni]
 
-# OBI outputs delays
-set out_delay_instr_req  [expr $clock_period * 0.60]
-set out_delay_instr_addr [expr $clock_period * 0.60]
+# -------------------------------------------------------------------------
+# 3. GİRİŞ GECİKMELERİ (INPUT DELAYS)
+# AXI Interconnect'ten gelip işlemciye giren sinyaller
+# -------------------------------------------------------------------------
 
-set out_delay_data_req   [expr $clock_period * 0.60]
-set out_delay_data_we    [expr $clock_period * 0.60]
-set out_delay_data_be    [expr $clock_period * 0.60]
-set out_delay_data_addr  [expr $clock_period * 0.60]
-set out_delay_data_wdata [expr $clock_period * 0.60]
+# --- INSTRUCTION AXI GİRİŞLERİ ---
+set_input_delay $I_DELAY -clock core_clk [get_ports axi_instr_arready]
+set_input_delay $I_DELAY -clock core_clk [get_ports {axi_instr_rid[*] axi_instr_rdata[*] axi_instr_rresp[*] axi_instr_rlast axi_instr_rvalid}]
 
-# I/O delays for non RISC-V Bus Interface ports
-set in_delay_other       [expr $clock_period * 0.10]
-set out_delay_other      [expr $clock_period * 0.60]
+# --- DATA AXI GİRİŞLERİ ---
+# Write Kanalları (AW, W, B)
+set_input_delay $I_DELAY -clock core_clk [get_ports axi_data_awready]
+set_input_delay $I_DELAY -clock core_clk [get_ports axi_data_wready]
+set_input_delay $I_DELAY -clock core_clk [get_ports {axi_data_bid[*] axi_data_bresp[*] axi_data_bvalid}]
 
-# core_sleep_o output delay
-set out_delay_core_sleep [expr $clock_period * 0.25]
+# Read Kanalları (AR, R)
+set_input_delay $I_DELAY -clock core_clk [get_ports axi_data_arready]
+set_input_delay $I_DELAY -clock core_clk [get_ports {axi_data_rid[*] axi_data_rdata[*] axi_data_rresp[*] axi_data_rlast axi_data_rvalid}]
 
-# All clocks
-set clock_ports [list \
-    clk_i \
-]
+# -------------------------------------------------------------------------
+# 4. ÇIKIŞ GECİKMELERİ (OUTPUT DELAYS)
+# İşlemciden çıkıp AXI Interconnect'e giden sinyaller
+# -------------------------------------------------------------------------
 
-# IRQ Input ports
-set irq_input_ports [remove_from_collection [get_ports irq_i*] [get_ports irq_id_o*]]
+# --- INSTRUCTION AXI ÇIKIŞLARI ---
+# Instruction tarafı sadece komut okuduğu için AW ve W kanalları kullanılmıyor (Sadece AR ve R)
+set_output_delay $O_DELAY -clock core_clk [get_ports {axi_instr_arid[*] axi_instr_araddr[*] axi_instr_arlen[*] axi_instr_arsize[*] axi_instr_arburst[*] axi_instr_arprot[*] axi_instr_arvalid}]
+set_output_delay $O_DELAY -clock core_clk [get_ports axi_instr_rready]
 
-# IRQ Output ports
-set irq_output_ports [list \
-    irq_ack_o \
-    irq_id_o* \
-]
+# --- DATA AXI ÇIKIŞLARI ---
+# Write Address ve Write Data Kanalları
+set_output_delay $O_DELAY -clock core_clk [get_ports {axi_data_awid[*] axi_data_awaddr[*] axi_data_awlen[*] axi_data_awsize[*] axi_data_awburst[*] axi_data_awprot[*] axi_data_awvalid}]
+set_output_delay $O_DELAY -clock core_clk [get_ports {axi_data_wdata[*] axi_data_wstrb[*] axi_data_wlast axi_data_wvalid}]
+set_output_delay $O_DELAY -clock core_clk [get_ports axi_data_bready]
 
-# Early Input ports (ideally from register)
-set early_input_ports [list \
-    debug_req_i \
-    boot_addr_i* \
-    mtvec_addr_i* \
-    dm_halt_addr_i* \
-    hart_id_i* \
-    dm_exception_addr_i* \
-]
+# Read Address ve Read Response Kanalları
+set_output_delay $O_DELAY -clock core_clk [get_ports {axi_data_arid[*] axi_data_araddr[*] axi_data_arlen[*] axi_data_arsize[*] axi_data_arburst[*] axi_data_arprot[*] axi_data_arvalid}]
+set_output_delay $O_DELAY -clock core_clk [get_ports axi_data_rready]
 
-# RISC-V OBI Input ports
-set obi_input_ports [list \
-    instr_gnt_i \
-    instr_rvalid_i \
-    instr_rdata_i* \
-    data_gnt_i \
-    data_rvalid_i \
-    data_rdata_i* \
-]
-
-# RISC-V OBI Output ports
-set obi_output_ports [list \
-    instr_req_o \
-    instr_addr_o* \
-    data_req_o \
-    data_we_o \
-    data_be_o* \
-    data_addr_o* \
-    data_wdata_o* \
-]
-
-# RISC-V Sleep Output ports
-set sleep_output_ports [list \
-    core_sleep_o \
-]
-
-############## Defining default clock definitions ##############
-
-create_clock \
-      -name clk_i \
-      -period $clock_period \
-      [get_ports clk_i] 
-
-
-########### Defining Default I/O constraints ###################
-
-set all_clock_ports $clock_ports
-
-set all_other_input_ports  [remove_from_collection [all_inputs]  [get_ports [list $all_clock_ports $obi_input_ports $irq_input_ports $early_input_ports]]]
-set all_other_output_ports [remove_from_collection [all_outputs] [get_ports [list $all_clock_ports $obi_output_ports $sleep_output_ports $irq_output_ports]]]
-
-# IRQs
-set_input_delay  $in_delay_irq          [get_ports $irq_input_ports        ] -clock clk_i
-set_output_delay $out_delay_irq         [get_ports $irq_output_ports       ] -clock clk_i
-
-# OBI input/output delays
-set_input_delay  $in_delay_instr_gnt    [ get_ports instr_gnt_i            ] -clock clk_i
-set_input_delay  $in_delay_instr_rvalid [ get_ports instr_rvalid_i         ] -clock clk_i
-set_input_delay  $in_delay_instr_rdata  [ get_ports instr_rdata_i*         ] -clock clk_i
-
-set_input_delay  $in_delay_data_gnt     [ get_ports data_gnt_i             ] -clock clk_i
-set_input_delay  $in_delay_data_rvalid  [ get_ports data_rvalid_i          ] -clock clk_i
-set_input_delay  $in_delay_data_rdata   [ get_ports data_rdata_i*          ] -clock clk_i
-
-set_output_delay $out_delay_instr_req   [ get_ports instr_req_o            ] -clock clk_i
-set_output_delay $out_delay_instr_addr  [ get_ports instr_addr_o*          ] -clock clk_i
-
-set_output_delay $out_delay_data_req    [ get_ports data_req_o             ] -clock clk_i
-set_output_delay $out_delay_data_we     [ get_ports data_we_o              ] -clock clk_i
-set_output_delay $out_delay_data_be     [ get_ports data_be_o*             ] -clock clk_i
-set_output_delay $out_delay_data_addr   [ get_ports data_addr_o*           ] -clock clk_i
-set_output_delay $out_delay_data_wdata  [ get_ports data_wdata_o*          ] -clock clk_i
-
-# Misc
-set_input_delay  $in_delay_early        [get_ports $early_input_ports      ] -clock clk_i
-set_input_delay  $in_delay_other        [get_ports $all_other_input_ports  ] -clock clk_i
-
-set_output_delay $out_delay_other       [get_ports $all_other_output_ports ] -clock clk_i
-set_output_delay $out_delay_core_sleep  [ get_ports core_sleep_o           ] -clock clk_i
+# -------------------------------------------------------------------------
+# SON
+# -------------------------------------------------------------------------

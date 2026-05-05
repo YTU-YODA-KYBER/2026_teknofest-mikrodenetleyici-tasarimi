@@ -5,7 +5,7 @@ import obi_port_pkg::*;
 
 module cv32e40p_obi_to_axi_wrapper#(
 
-    parameter logic [31:0] boot_addr         = 32'h1A00_0000,   //BASLANGIC ADRESI
+    parameter logic [31:0] boot_addr         = 32'h0000_0000,   //BASLANGIC ADRESI
     parameter logic [31:0] mtvec_addr        = 32'h1F00_0000,   //INTERRUPT GELDIGINDE ISLEMCININ ATLAYACAGI ADRES 
     parameter logic [31:0] dm_halt_addr      = 32'h2F0_0000,    //JTAG KULLANILMAK ISTENDIGINDE ISLEMCISNIN ATLAYACAGI ADRES  
     parameter logic [31:0] hart_id           = 32'h0000_0000,   //CEKIRDEGIN NUMARASI(TEK CEKIRDEK OLDUGU ICIN DIREKT 0 YAZDIK)
@@ -17,7 +17,11 @@ module cv32e40p_obi_to_axi_wrapper#(
     input logic clk_i,
     input logic rst_ni,
 
-    
+    // INTERRUPT PORTLARI
+    input  logic [31:0] interrupt_i,
+    output logic        interrupt_ack,
+    output logic [ 4:0] interrupt_id,
+
     //  INSTRUCTION AR PORTLARI
     output logic [ 3:0] axi_instr_arid,
     output logic [31:0] axi_instr_araddr,
@@ -100,13 +104,9 @@ module cv32e40p_obi_to_axi_wrapper#(
     logic [31:0] data_wdata;
     logic [31:0] data_rdata;
     
-    // INTERRUPT PORTLARI
-    logic [31:0] irq = 32'd0;
-    logic        irq_ack;
-    logic [ 4:0] irq_id;
     
     // DEBUG PORTLARI
-    logic debug_req;
+    logic debug_req = 0;
     logic debug_havereset;
     logic debug_running;
     logic debug_halted;
@@ -150,9 +150,9 @@ module cv32e40p_obi_to_axi_wrapper#(
     .data_rdata_i        (data_rdata),   
     
     // Interrupt inputs
-    .irq_i               (irq),   
-    .irq_ack_o           (irq_ack),  
-    .irq_id_o            (irq_id),
+    .irq_i               (interrupt_i),   
+    .irq_ack_o           (interrupt_ack),  
+    .irq_id_o            (interrupt_id),
     
     // Debug Interface
     .debug_req_i         (debug_req),   
