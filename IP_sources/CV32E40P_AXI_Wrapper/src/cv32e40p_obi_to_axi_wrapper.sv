@@ -25,7 +25,7 @@ module cv32e40p_obi_to_axi_wrapper#(
     //  INSTRUCTION AR PORTLARI
     output logic [ 3:0] axi_instr_arid,
     output logic [31:0] axi_instr_araddr,
-    output logic [ 3:0] axi_instr_arlen,
+    output logic [ 7:0] axi_instr_arlen,
     output logic [ 2:0] axi_instr_arsize,
     output logic [ 1:0] axi_instr_arburst,
     output logic [ 2:0] axi_instr_arprot,
@@ -33,20 +33,41 @@ module cv32e40p_obi_to_axi_wrapper#(
     input  logic        axi_instr_arready,
     
     //  INSTRUCTION R PORTLARI
+    output logic        axi_instr_rready,
     input  logic [ 3:0] axi_instr_rid,
     input  logic [31:0] axi_instr_rdata,
     input  logic [ 1:0] axi_instr_rresp,
     input  logic        axi_instr_rlast,
     input  logic        axi_instr_rvalid,
-    output logic        axi_instr_rready,
     
+    //  INSTRUCTION AW PORTLARI
+    output logic [ 3:0] axi_instr_awid,
+    output logic [31:0] axi_instr_awaddr,
+    output logic [ 7:0] axi_instr_awlen,
+    output logic [ 2:0] axi_instr_awsize,
+    output logic [ 1:0] axi_instr_awburst,
+    output logic [ 2:0] axi_instr_awprot,
+    output logic        axi_instr_awvalid,
+    input  logic        axi_instr_awready,
     
+    //  INSTRUCTION W PORTLARI
+    output logic [31:0] axi_instr_wdata,
+    output logic [ 3:0] axi_instr_wstrb,
+    output logic        axi_instr_wlast,
+    output logic        axi_instr_wvalid,
+    input  logic        axi_instr_wready,
+    
+    //  INSTRUCTION B PORTLARI
+    output logic        axi_instr_bready,
+    input  logic [ 3:0] axi_instr_bid,
+    input  logic [ 1:0] axi_instr_bresp,
+    input  logic        axi_instr_bvalid,
     
     
     //  DATA AW PORTLARI
     output logic [ 3:0] axi_data_awid,
     output logic [31:0] axi_data_awaddr,
-    output logic [ 3:0] axi_data_awlen,
+    output logic [ 7:0] axi_data_awlen,
     output logic [ 2:0] axi_data_awsize,
     output logic [ 1:0] axi_data_awburst,
     output logic [ 2:0] axi_data_awprot,
@@ -61,15 +82,15 @@ module cv32e40p_obi_to_axi_wrapper#(
     input  logic        axi_data_wready,
     
     //  DATA B PORTLARI
+    output logic        axi_data_bready,
     input  logic [ 3:0] axi_data_bid,
     input  logic [ 1:0] axi_data_bresp,
     input  logic        axi_data_bvalid,
-    output logic        axi_data_bready,
     
     //  DATA AR PORTLARI
     output logic [ 3:0] axi_data_arid,
     output logic [31:0] axi_data_araddr,
-    output logic [ 3:0] axi_data_arlen,
+    output logic [ 7:0] axi_data_arlen,
     output logic [ 2:0] axi_data_arsize,
     output logic [ 1:0] axi_data_arburst,
     output logic [ 2:0] axi_data_arprot,
@@ -77,12 +98,12 @@ module cv32e40p_obi_to_axi_wrapper#(
     input  logic        axi_data_arready,
     
     //  DATA R PORTLARI
+    output logic        axi_data_rready,
     input  logic [ 3:0] axi_data_rid,
     input  logic [31:0] axi_data_rdata,
     input  logic [ 1:0] axi_data_rresp,
     input  logic        axi_data_rlast,
-    input  logic        axi_data_rvalid,
-    output logic        axi_data_rready
+    input  logic        axi_data_rvalid
     );
     
     
