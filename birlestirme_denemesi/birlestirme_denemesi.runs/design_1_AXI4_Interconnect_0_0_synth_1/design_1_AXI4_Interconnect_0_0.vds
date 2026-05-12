@@ -1,0 +1,418 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun May 10 17:02:48 2026
+# Process ID         : 6416
+# Current directory  : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_AXI4_Interconnect_0_0_synth_1
+# Command line       : vivado.exe -log design_1_AXI4_Interconnect_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_AXI4_Interconnect_0_0.tcl
+# Log file           : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_AXI4_Interconnect_0_0_synth_1/design_1_AXI4_Interconnect_0_0.vds
+# Journal file       : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_AXI4_Interconnect_0_0_synth_1\vivado.jou
+# Running On         : Stradale
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16893 MB
+# Swap memory        : 8594 MB
+# Total Virtual      : 25487 MB
+# Available Virtual  : 14010 MB
+#-----------------------------------------------------------
+source design_1_AXI4_Interconnect_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 641.543 ; gain = 256.211
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/deniz/Documents/IP_sources'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2025.2/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.cache/ip 
+Command: synth_design -top design_1_AXI4_Interconnect_0_0 -part xc7a35tcpg236-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+WARNING: [Common 17-1361] You have specified a new message control rule that is equivalent to an existing rule with attributes ' -id {17-179}  -suppress '. The existing rule will be replaced.
+INFO: [Synth 8-7075] Helper process launched with PID 12312
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1382.188 ; gain = 540.406
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_1_AXI4_Interconnect_0_0' [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ip/design_1_AXI4_Interconnect_0_0/synth/design_1_AXI4_Interconnect_0_0.sv:53]
+INFO: [Synth 8-6157] synthesizing module 'AXI4_Interconnect' [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/3990/src/AXI4_Interconnect.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'AXI4_Interconnect' (0#1) [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/3990/src/AXI4_Interconnect.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_AXI4_Interconnect_0_0' (0#1) [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ip/design_1_AXI4_Interconnect_0_0/synth/design_1_AXI4_Interconnect_0_0.sv:53]
+WARNING: [Synth 8-3848] Net axi_s0_rid in module/entity AXI4_Interconnect does not have driver. [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/3990/src/AXI4_Interconnect.sv:42]
+WARNING: [Synth 8-3848] Net axi_s0_rlast in module/entity AXI4_Interconnect does not have driver. [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/3990/src/AXI4_Interconnect.sv:45]
+INFO: [Synth 8-7129] Port axi_s0_rid[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rid[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rid[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rid[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rlast in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port clk_i in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port rst_ni in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[7] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[6] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[5] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[4] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awsize[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awsize[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awsize[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awburst[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awburst[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awprot[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awprot[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awprot[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wstrb[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wstrb[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wstrb[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wstrb[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wlast in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arid[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arid[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arid[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arid[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[7] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[6] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[5] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[4] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arlen[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arsize[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arsize[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arsize[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arburst[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arburst[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arprot[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arprot[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_arprot[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_bid[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_bid[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_bid[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_bid[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_rlast in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_rid[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_rid[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_rid[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m4_rid[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_bid[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_bid[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_bid[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_bid[0] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_rlast in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_rid[3] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_rid[2] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_rid[1] in module AXI4_Interconnect is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_m5_rid[0] in module AXI4_Interconnect is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1505.168 ; gain = 663.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1505.168 ; gain = 663.387
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1505.168 ; gain = 663.387
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1505.168 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1563.180 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 1563.180 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1563.180 ; gain = 721.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1563.180 ; gain = 721.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1563.180 ; gain = 721.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1563.180 ; gain = 721.398
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_s0_bid[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_s0_bid[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_s0_bid[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_s0_bid[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awid[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awid[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awid[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awid[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[7] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[6] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[5] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[4] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awlen[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awsize[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awsize[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awsize[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awburst[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awburst[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awprot[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awprot[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_awprot[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_wstrb[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_wstrb[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_wstrb[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_wstrb[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_wlast driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arid[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arid[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arid[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arid[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[7] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[6] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[5] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[4] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arlen[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arsize[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arsize[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arsize[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arburst[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arburst[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arprot[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arprot[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m4_arprot[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awid[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awid[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awid[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awid[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[7] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[6] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[5] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[4] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awlen[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awsize[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awsize[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awsize[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awburst[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awburst[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awprot[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awprot[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_awprot[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_wstrb[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_wstrb[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_wstrb[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_wstrb[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_wlast driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arid[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arid[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arid[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arid[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[7] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[6] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[5] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[4] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[3] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arlen[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arsize[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arsize[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arsize[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arburst[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arburst[0] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arprot[2] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arprot[1] driven by constant 0
+INFO: [Synth 8-3917] design design_1_AXI4_Interconnect_0_0 has port axi_m5_arprot[0] driven by constant 0
+INFO: [Synth 8-7129] Port axi_s0_rid[3] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rid[2] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rid[1] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rid[0] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_rlast in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port clk_i in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port rst_ni in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[3] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[2] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[1] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awid[0] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[7] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[6] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[5] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[4] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[3] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[2] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[1] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awlen[0] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awsize[2] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awsize[1] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awsize[0] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awburst[1] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awburst[0] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awprot[2] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awprot[1] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_awprot[0] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wstrb[3] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wstrb[2] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Synth 8-7129] Port axi_s0_wstrb[1] in module design_1_AXI4_Interconnect_0_0 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1563.180 ; gain = 721.398
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1563.180 ; gain = 721.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1563.180 ; gain = 721.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT2 |     3|
+|2     |LUT3 |     7|
+|3     |LUT4 |    12|
+|4     |LUT5 |    42|
+|5     |LUT6 |    87|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:16 . Memory (MB): peak = 1782.117 ; gain = 882.324
+Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1782.117 ; gain = 940.336
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1794.184 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1885.703 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: ebf5fdce
+INFO: [Common 17-83] Releasing license: Synthesis
+215 Infos, 4 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1885.703 ; gain = 1223.391
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1885.703 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_AXI4_Interconnect_0_0_synth_1/design_1_AXI4_Interconnect_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_1_AXI4_Interconnect_0_0, cache-ID = a7963b55f5363450
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1885.703 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_AXI4_Interconnect_0_0_synth_1/design_1_AXI4_Interconnect_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_AXI4_Interconnect_0_0_utilization_synth.rpt -pb design_1_AXI4_Interconnect_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun May 10 17:03:17 2026...

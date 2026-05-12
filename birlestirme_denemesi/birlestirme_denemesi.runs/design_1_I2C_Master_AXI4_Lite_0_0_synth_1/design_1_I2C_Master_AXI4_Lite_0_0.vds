@@ -1,0 +1,357 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat May  9 17:13:28 2026
+# Process ID         : 17504
+# Current directory  : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_I2C_Master_AXI4_Lite_0_0_synth_1
+# Command line       : vivado.exe -log design_1_I2C_Master_AXI4_Lite_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_I2C_Master_AXI4_Lite_0_0.tcl
+# Log file           : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_I2C_Master_AXI4_Lite_0_0_synth_1/design_1_I2C_Master_AXI4_Lite_0_0.vds
+# Journal file       : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_I2C_Master_AXI4_Lite_0_0_synth_1\vivado.jou
+# Running On         : Stradale
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16893 MB
+# Swap memory        : 8594 MB
+# Total Virtual      : 25487 MB
+# Available Virtual  : 12625 MB
+#-----------------------------------------------------------
+source design_1_I2C_Master_AXI4_Lite_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:23 ; elapsed = 00:00:19 . Memory (MB): peak = 644.035 ; gain = 257.086
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/deniz/Documents/IP_sources'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2025.2/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.cache/ip 
+Command: synth_design -top design_1_I2C_Master_AXI4_Lite_0_0 -part xc7a35tcpg236-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+WARNING: [Common 17-1361] You have specified a new message control rule that is equivalent to an existing rule with attributes ' -id {17-179}  -suppress '. The existing rule will be replaced.
+INFO: [Synth 8-7075] Helper process launched with PID 12584
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:30 . Memory (MB): peak = 1382.484 ; gain = 539.637
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_1_I2C_Master_AXI4_Lite_0_0' [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ip/design_1_I2C_Master_AXI4_Lite_0_0/synth/design_1_I2C_Master_AXI4_Lite_0_0.sv:53]
+INFO: [Synth 8-6157] synthesizing module 'I2C_Master_AXI4_Lite' [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:157]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:181]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:243]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:258]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:323]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:228]
+INFO: [Synth 8-6155] done synthesizing module 'I2C_Master_AXI4_Lite' (0#1) [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_I2C_Master_AXI4_Lite_0_0' (0#1) [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ip/design_1_I2C_Master_AXI4_Lite_0_0/synth/design_1_I2C_Master_AXI4_Lite_0_0.sv:53]
+WARNING: [Synth 8-7137] Register I2C_CFG_clr_reg in module I2C_Master_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:164]
+WARNING: [Synth 8-7137] Register nby_cnt_reg in module I2C_Master_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/42a1/src/I2C_Master_AXI4_Lite.sv:202]
+INFO: [Synth 8-7129] Port awaddr[31] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[30] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[29] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[28] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[27] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[26] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[25] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[24] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[23] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[22] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[21] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[20] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[19] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[18] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[17] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[16] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[15] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[14] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[13] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[12] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[11] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[10] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[9] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[8] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[31] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[30] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[29] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[28] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[27] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[26] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[25] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[24] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[23] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[22] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[21] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[20] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[19] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[18] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[17] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[16] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[15] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[14] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[13] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[12] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[11] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[10] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[9] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[8] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:34 . Memory (MB): peak = 1512.590 ; gain = 669.742
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:34 . Memory (MB): peak = 1512.590 ; gain = 669.742
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:34 . Memory (MB): peak = 1512.590 ; gain = 669.742
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1512.590 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1574.262 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.055 . Memory (MB): peak = 1574.262 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:47 . Memory (MB): peak = 1574.262 ; gain = 731.414
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:47 . Memory (MB): peak = 1574.262 ; gain = 731.414
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:47 . Memory (MB): peak = 1574.262 ; gain = 731.414
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:47 . Memory (MB): peak = 1574.262 ; gain = 731.414
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 3     
++---Registers : 
+	               32 Bit    Registers := 6     
+	                8 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                3 Bit    Registers := 4     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 11    
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 16    
+	   8 Input   32 Bit        Muxes := 4     
+	   7 Input   32 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 8     
+	   8 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 41    
+	   8 Input    3 Bit        Muxes := 2     
+	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 2     
+	   3 Input    2 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 114   
+	   6 Input    1 Bit        Muxes := 6     
+	   8 Input    1 Bit        Muxes := 11    
+	   5 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7129] Port awaddr[31] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[30] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[29] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[28] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[27] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[26] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[25] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[24] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[23] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[22] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[21] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[20] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[19] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[18] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[17] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[16] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[15] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[14] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[13] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[12] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[11] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[10] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[9] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[8] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[31] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[30] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[29] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[28] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[27] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[26] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[25] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[24] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[23] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[22] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[21] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[20] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[19] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[18] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[17] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[16] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[15] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[14] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[13] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[12] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[11] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[10] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[9] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[8] in module I2C_Master_AXI4_Lite is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:54 . Memory (MB): peak = 1574.262 ; gain = 731.414
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:54 . Memory (MB): peak = 1574.262 ; gain = 731.414
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:54 . Memory (MB): peak = 1574.262 ; gain = 731.414
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-5799] Converted tricell instance 'insti_0' to logic
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     2|
+|2     |LUT2 |    16|
+|3     |LUT3 |    57|
+|4     |LUT4 |    18|
+|5     |LUT5 |    67|
+|6     |LUT6 |   112|
+|7     |FDCE |   193|
+|8     |FDPE |     5|
+|9     |FDRE |     5|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 1 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:57 . Memory (MB): peak = 1792.301 ; gain = 887.781
+Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1792.301 ; gain = 949.453
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1804.340 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1899.426 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 7956556
+INFO: [Common 17-83] Releasing license: Synthesis
+122 Infos, 4 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:01:09 . Memory (MB): peak = 1899.426 ; gain = 1236.781
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1899.426 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_I2C_Master_AXI4_Lite_0_0_synth_1/design_1_I2C_Master_AXI4_Lite_0_0.dcp' has been generated.
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1899.426 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_I2C_Master_AXI4_Lite_0_0_synth_1/design_1_I2C_Master_AXI4_Lite_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_I2C_Master_AXI4_Lite_0_0_utilization_synth.rpt -pb design_1_I2C_Master_AXI4_Lite_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat May  9 17:15:06 2026...

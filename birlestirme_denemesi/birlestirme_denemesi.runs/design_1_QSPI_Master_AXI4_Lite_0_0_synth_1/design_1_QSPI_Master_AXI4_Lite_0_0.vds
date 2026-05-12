@@ -1,0 +1,406 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat May  9 17:13:28 2026
+# Process ID         : 16812
+# Current directory  : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_QSPI_Master_AXI4_Lite_0_0_synth_1
+# Command line       : vivado.exe -log design_1_QSPI_Master_AXI4_Lite_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_QSPI_Master_AXI4_Lite_0_0.tcl
+# Log file           : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_QSPI_Master_AXI4_Lite_0_0_synth_1/design_1_QSPI_Master_AXI4_Lite_0_0.vds
+# Journal file       : C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_QSPI_Master_AXI4_Lite_0_0_synth_1\vivado.jou
+# Running On         : Stradale
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16893 MB
+# Swap memory        : 8594 MB
+# Total Virtual      : 25487 MB
+# Available Virtual  : 12568 MB
+#-----------------------------------------------------------
+source design_1_QSPI_Master_AXI4_Lite_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:23 ; elapsed = 00:00:19 . Memory (MB): peak = 645.320 ; gain = 260.359
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/deniz/Documents/IP_sources'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/AMDDesignTools/2025.2/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.cache/ip 
+Command: synth_design -top design_1_QSPI_Master_AXI4_Lite_0_0 -part xc7a35tcpg236-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+WARNING: [Common 17-1361] You have specified a new message control rule that is equivalent to an existing rule with attributes ' -id {17-179}  -suppress '. The existing rule will be replaced.
+INFO: [Synth 8-7075] Helper process launched with PID 15920
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:30 . Memory (MB): peak = 1383.660 ; gain = 539.152
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_1_QSPI_Master_AXI4_Lite_0_0' [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ip/design_1_QSPI_Master_AXI4_Lite_0_0/synth/design_1_QSPI_Master_AXI4_Lite_0_0.sv:53]
+INFO: [Synth 8-6157] synthesizing module 'QSPI_Master_AXI4_Lite' [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:311]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:327]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:397]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:416]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:268]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:505]
+INFO: [Synth 8-6155] done synthesizing module 'QSPI_Master_AXI4_Lite' (0#1) [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_QSPI_Master_AXI4_Lite_0_0' (0#1) [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ip/design_1_QSPI_Master_AXI4_Lite_0_0/synth/design_1_QSPI_Master_AXI4_Lite_0_0.sv:53]
+WARNING: [Synth 8-7137] Register fifo_tx_wdata_reg in module QSPI_Master_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:251]
+WARNING: [Synth 8-7137] Register QSPI_DR_read_reg in module QSPI_Master_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:259]
+WARNING: [Synth 8-7137] Register fifo_rx_wdata_reg in module QSPI_Master_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [c:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.gen/sources_1/bd/design_1/ipshared/c798/src/QSPI_Master_AXI4_Lite.sv:434]
+INFO: [Synth 8-7129] Port awaddr[31] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[30] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[29] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[28] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[27] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[26] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[25] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[24] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[23] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[22] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[21] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[20] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[19] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[18] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[17] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[16] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[15] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[14] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[13] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[12] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[11] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[10] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[9] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[8] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[31] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[30] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[29] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[28] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[27] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[26] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[25] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[24] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[23] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[22] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[21] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[20] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[19] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[18] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[17] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[16] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[15] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[14] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[13] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[12] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[11] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[10] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[9] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[8] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:34 . Memory (MB): peak = 1514.688 ; gain = 670.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:34 . Memory (MB): peak = 1514.688 ; gain = 670.180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:34 . Memory (MB): peak = 1514.688 ; gain = 670.180
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1514.688 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1578.055 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.063 . Memory (MB): peak = 1578.055 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:47 . Memory (MB): peak = 1578.055 ; gain = 733.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:47 . Memory (MB): peak = 1578.055 ; gain = 733.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:47 . Memory (MB): peak = 1578.055 ; gain = 733.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:47 . Memory (MB): peak = 1578.055 ; gain = 733.547
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 5     
+	   2 Input    6 Bit       Adders := 5     
+	   3 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 10    
+	                8 Bit    Registers := 2     
+	                7 Bit    Registers := 2     
+	                6 Bit    Registers := 2     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 16    
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 9     
+	   4 Input   32 Bit        Muxes := 6     
+	   2 Input    8 Bit        Muxes := 1     
+	   4 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 4     
+	   4 Input    7 Bit        Muxes := 4     
+	   2 Input    6 Bit        Muxes := 10    
+	   4 Input    6 Bit        Muxes := 5     
+	   2 Input    5 Bit        Muxes := 1     
+	   4 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 9     
+	   4 Input    4 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 3     
+	   4 Input    3 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 80    
+	   6 Input    1 Bit        Muxes := 8     
+	   4 Input    1 Bit        Muxes := 33    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7129] Port awaddr[31] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[30] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[29] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[28] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[27] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[26] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[25] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[24] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[23] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[22] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[21] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[20] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[19] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[18] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[17] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[16] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[15] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[14] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[13] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[12] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[11] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[10] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[9] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port awaddr[8] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[31] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[30] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[29] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[28] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[27] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[26] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[25] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[24] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[23] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[22] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[21] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[20] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[19] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[18] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[17] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[16] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[15] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[14] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[13] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[12] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[11] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[10] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[9] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+INFO: [Synth 8-7129] Port araddr[8] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:53 . Memory (MB): peak = 1585.473 ; gain = 740.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++-----------------------------------+------------------+----------------+----------------------+--------------+
+|Module Name                        | RTL Object       | Inference      | Size (Depth x Width) | Primitives   | 
++-----------------------------------+------------------+----------------+----------------------+--------------+
+|design_1_QSPI_Master_AXI4_Lite_0_0 | inst/FIFO_RX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
+|design_1_QSPI_Master_AXI4_Lite_0_0 | inst/FIFO_TX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
++-----------------------------------+------------------+----------------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:54 . Memory (MB): peak = 1585.473 ; gain = 740.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++-----------------------------------+------------------+----------------+----------------------+--------------+
+|Module Name                        | RTL Object       | Inference      | Size (Depth x Width) | Primitives   | 
++-----------------------------------+------------------+----------------+----------------------+--------------+
+|design_1_QSPI_Master_AXI4_Lite_0_0 | inst/FIFO_RX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
+|design_1_QSPI_Master_AXI4_Lite_0_0 | inst/FIFO_TX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
++-----------------------------------+------------------+----------------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:54 . Memory (MB): peak = 1585.473 ; gain = 740.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-5799] Converted tricell instance 'insti_2' to logic
+CRITICAL WARNING: [Synth 8-5799] Converted tricell instance 'insti_5' to logic
+CRITICAL WARNING: [Synth 8-5799] Converted tricell instance 'insti_8' to logic
+CRITICAL WARNING: [Synth 8-5799] Converted tricell instance 'insti_11' to logic
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |     3|
+|2     |LUT1   |     2|
+|3     |LUT2   |    21|
+|4     |LUT3   |    37|
+|5     |LUT4   |    37|
+|6     |LUT5   |    80|
+|7     |LUT6   |   179|
+|8     |RAM64M |    22|
+|9     |FDCE   |   283|
+|10    |FDPE   |    17|
+|11    |FDRE   |   164|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 4 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:57 . Memory (MB): peak = 1807.258 ; gain = 899.383
+Synthesis Optimization Complete : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1807.258 ; gain = 962.750
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1819.301 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 25 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1910.199 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 22 instances were transformed.
+  RAM64M => RAM64M (RAMD64E(x4)): 22 instances
+
+Synth Design complete | Checksum: 5f7cf84a
+INFO: [Common 17-83] Releasing license: Synthesis
+124 Infos, 5 Warnings, 4 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:44 ; elapsed = 00:01:09 . Memory (MB): peak = 1910.199 ; gain = 1247.898
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1910.199 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_QSPI_Master_AXI4_Lite_0_0_synth_1/design_1_QSPI_Master_AXI4_Lite_0_0.dcp' has been generated.
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1910.199 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/deniz/Documents/TEKNOFEST_Modules/birlestirme_denemesi/birlestirme_denemesi.runs/design_1_QSPI_Master_AXI4_Lite_0_0_synth_1/design_1_QSPI_Master_AXI4_Lite_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_QSPI_Master_AXI4_Lite_0_0_utilization_synth.rpt -pb design_1_QSPI_Master_AXI4_Lite_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat May  9 17:15:06 2026...
