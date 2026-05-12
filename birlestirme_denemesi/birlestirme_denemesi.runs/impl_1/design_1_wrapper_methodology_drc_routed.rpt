@@ -1,0 +1,802 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Sun May 10 17:13:59 2026
+| Host         : Stradale running 64-bit major release  (build 9200)
+| Command      : report_methodology -file design_1_wrapper_methodology_drc_routed.rpt -pb design_1_wrapper_methodology_drc_routed.pb -rpx design_1_wrapper_methodology_drc_routed.rpx
+| Design       : design_1_wrapper
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 152
++-----------+------------------+----------------------------------------------------+--------+
+| Rule      | Severity         | Description                                        | Checks |
++-----------+------------------+----------------------------------------------------+--------+
+| TIMING-4  | Critical Warning | Invalid primary clock redefinition on a clock tree | 1      |
+| TIMING-6  | Critical Warning | No common primary clock between related clocks     | 2      |
+| TIMING-7  | Critical Warning | No common node between related clocks              | 2      |
+| TIMING-27 | Critical Warning | Invalid primary clock on hierarchical pin          | 1      |
+| DPIR-1    | Warning          | Asynchronous driver check                          | 136    |
+| HPDR-1    | Warning          | Port pin direction inconsistency                   | 5      |
+| HPDR-2    | Warning          | Port pin INOUT inconsistency                       | 4      |
+| TIMING-18 | Warning          | Missing input or output delay                      | 1      |
++-----------+------------------+----------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-4#1 Critical Warning
+Invalid primary clock redefinition on a clock tree  
+Invalid clock redefinition on a clock tree. The primary clock core_clk is defined downstream of clock clk_out1_design_1_clk_wiz_0_0 and overrides its insertion delay and/or waveform definition
+Related violations: <none>
+
+TIMING-6#1 Critical Warning
+No common primary clock between related clocks  
+The clocks clk_out1_design_1_clk_wiz_0_0 and core_clk are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_design_1_clk_wiz_0_0] -to [get_clocks core_clk]
+Related violations: <none>
+
+TIMING-6#2 Critical Warning
+No common primary clock between related clocks  
+The clocks core_clk and clk_out1_design_1_clk_wiz_0_0 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks core_clk] -to [get_clocks clk_out1_design_1_clk_wiz_0_0]
+Related violations: <none>
+
+TIMING-7#1 Critical Warning
+No common node between related clocks  
+The clocks clk_out1_design_1_clk_wiz_0_0 and core_clk are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_design_1_clk_wiz_0_0] -to [get_clocks core_clk]
+Related violations: <none>
+
+TIMING-7#2 Critical Warning
+No common node between related clocks  
+The clocks core_clk and clk_out1_design_1_clk_wiz_0_0 are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks core_clk] -to [get_clocks clk_out1_design_1_clk_wiz_0_0]
+Related violations: <none>
+
+TIMING-27#1 Critical Warning
+Invalid primary clock on hierarchical pin  
+A primary clock core_clk is created on an inappropriate internal pin design_1_i/cv32e40p_obi_to_axi_0/inst/clk_i. It is not recommended to create a primary clock on a hierarchical pin when its driver pin has a fanout connected to multiple clock pins
+Related violations: <none>
+
+DPIR-1#1 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#2 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#3 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#4 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#5 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#6 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#7 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#8 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#9 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#10 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#11 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#12 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#13 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#14 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#15 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#16 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#17 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#18 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#19 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#20 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#21 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#22 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#23 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#24 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#25 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#26 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[17] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#27 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#28 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#29 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#30 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#31 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#32 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#33 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#34 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#35 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#36 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#37 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#38 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#39 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#40 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#41 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#42 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#43 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#44 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#45 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#46 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#47 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#48 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#49 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#50 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#51 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#52 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#53 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#54 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#55 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#56 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#57 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#58 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#59 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#60 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#61 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#62 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#63 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#64 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#65 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#66 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#67 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#68 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#69 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#70 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#71 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#72 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#73 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#74 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#75 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#76 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#77 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#78 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#79 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#80 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#81 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#82 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#83 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#84 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#85 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#86 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#87 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#88 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#89 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#90 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#91 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#92 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#93 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#94 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#95 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[17] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#96 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#97 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#98 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#99 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#100 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#101 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#102 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#103 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#104 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#105 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#106 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#107 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#108 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#109 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#110 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#111 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#112 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#113 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[17] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#114 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[18] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#115 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[19] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#116 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#117 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[20] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#118 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[21] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#119 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[22] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#120 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[23] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#121 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[24] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#122 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[25] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#123 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[26] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#124 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[27] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#125 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[28] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#126 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[29] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#127 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#128 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[30] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#129 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[31] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#130 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#131 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#132 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#133 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#134 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#135 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#136 Warning
+Asynchronous driver check  
+DSP design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin design_1_i/cv32e40p_obi_to_axi_0/inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+HPDR-1#1 Warning
+Port pin direction inconsistency  
+Hierarchical port(pin) I2C_SDA_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (I2C_SDA_0) connected to this Port, but both were not found.
+Related violations: <none>
+
+HPDR-1#2 Warning
+Port pin direction inconsistency  
+Hierarchical port(pin) QSPI_IO0_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO0_0) connected to this Port, but both were not found.
+Related violations: <none>
+
+HPDR-1#3 Warning
+Port pin direction inconsistency  
+Hierarchical port(pin) QSPI_IO1_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO1_0) connected to this Port, but both were not found.
+Related violations: <none>
+
+HPDR-1#4 Warning
+Port pin direction inconsistency  
+Hierarchical port(pin) QSPI_IO2_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO2_0) connected to this Port, but both were not found.
+Related violations: <none>
+
+HPDR-1#5 Warning
+Port pin direction inconsistency  
+Hierarchical port(pin) QSPI_IO3_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO3_0) connected to this Port, but both were not found.
+Related violations: <none>
+
+HPDR-2#1 Warning
+Port pin INOUT inconsistency  
+Hierarchical port(pin) design_1_i/QSPI_IO0_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO0_0_OBUF) connected to this hierarchical pin/port, but both were not found.
+Related violations: <none>
+
+HPDR-2#2 Warning
+Port pin INOUT inconsistency  
+Hierarchical port(pin) design_1_i/QSPI_IO1_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO1_0_OBUF) connected to this hierarchical pin/port, but both were not found.
+Related violations: <none>
+
+HPDR-2#3 Warning
+Port pin INOUT inconsistency  
+Hierarchical port(pin) design_1_i/QSPI_IO2_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO2_0_OBUF) connected to this hierarchical pin/port, but both were not found.
+Related violations: <none>
+
+HPDR-2#4 Warning
+Port pin INOUT inconsistency  
+Hierarchical port(pin) design_1_i/QSPI_IO3_0 direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (QSPI_IO3_0_OBUF) connected to this hierarchical pin/port, but both were not found.
+Related violations: <none>
+
+TIMING-18#1 Warning
+Missing input or output delay  
+An input delay is missing on btn_reset[0] relative to the rising and/or falling clock edge(s) of core_clk.
+Related violations: <none>
+
+
