@@ -1,0 +1,92 @@
+
+/home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	20002117          	auipc	sp,0x20002
+   4:	00010113          	mv	sp,sp
+   8:	0f000513          	li	a0,240
+   c:	20000597          	auipc	a1,0x20000
+  10:	ff458593          	addi	a1,a1,-12 # 20000000 <__bss_end>
+  14:	20000617          	auipc	a2,0x20000
+  18:	fec60613          	addi	a2,a2,-20 # 20000000 <__bss_end>
+  1c:	00c5f963          	bgeu	a1,a2,2e <_start+0x2e>
+  20:	00052283          	lw	t0,0(a0)
+  24:	0055a023          	sw	t0,0(a1)
+  28:	0511                	addi	a0,a0,4
+  2a:	0591                	addi	a1,a1,4
+  2c:	bfc5                	j	1c <_start+0x1c>
+  2e:	20000517          	auipc	a0,0x20000
+  32:	fd250513          	addi	a0,a0,-46 # 20000000 <__bss_end>
+  36:	20000597          	auipc	a1,0x20000
+  3a:	fca58593          	addi	a1,a1,-54 # 20000000 <__bss_end>
+  3e:	00b57663          	bgeu	a0,a1,4a <_start+0x4a>
+  42:	00052023          	sw	zero,0(a0)
+  46:	0511                	addi	a0,a0,4
+  48:	bfdd                	j	3e <_start+0x3e>
+  4a:	2011                	jal	4e <main>
+  4c:	a001                	j	4c <_start+0x4c>
+
+0000004e <main>:
+  4e:	6c6c67b7          	lui	a5,0x6c6c6
+  52:	1141                	addi	sp,sp,-16 # 20001ff0 <__bss_end+0x1ff0>
+  54:	54878793          	addi	a5,a5,1352 # 6c6c6548 <__stack_top+0x4c6c4548>
+  58:	c03e                	sw	a5,0(sp)
+  5a:	6f5727b7          	lui	a5,0x6f572
+  5e:	06f78793          	addi	a5,a5,111 # 6f57206f <__stack_top+0x4f57006f>
+  62:	c23e                	sw	a5,4(sp)
+  64:	216477b7          	lui	a5,0x21647
+  68:	c7278793          	addi	a5,a5,-910 # 21646c72 <__stack_top+0x1644c72>
+  6c:	c43e                	sw	a5,8(sp)
+  6e:	00010623          	sb	zero,12(sp)
+  72:	400407b7          	lui	a5,0x40040
+  76:	1b200713          	li	a4,434
+  7a:	c398                	sw	a4,0(a5)
+  7c:	0007a223          	sw	zero,4(a5) # 40040004 <__stack_top+0x2003e004>
+  80:	0007a823          	sw	zero,16(a5)
+  84:	05200713          	li	a4,82
+  88:	c7d8                	sw	a4,12(a5)
+  8a:	4b98                	lw	a4,16(a5)
+  8c:	00176713          	ori	a4,a4,1
+  90:	cb98                	sw	a4,16(a5)
+  92:	4b98                	lw	a4,16(a5)
+  94:	8b11                	andi	a4,a4,4
+  96:	df75                	beqz	a4,92 <main+0x44>
+  98:	4b98                	lw	a4,16(a5)
+  9a:	9b6d                	andi	a4,a4,-5
+  9c:	cb98                	sw	a4,16(a5)
+  9e:	400407b7          	lui	a5,0x40040
+  a2:	4b98                	lw	a4,16(a5)
+  a4:	8b09                	andi	a4,a4,2
+  a6:	df75                	beqz	a4,a2 <main+0x54>
+  a8:	4b98                	lw	a4,16(a5)
+  aa:	4505                	li	a0,1
+  ac:	9b75                	andi	a4,a4,-3
+  ae:	cb98                	sw	a4,16(a5)
+  b0:	4798                	lw	a4,8(a5)
+  b2:	04100793          	li	a5,65
+  b6:	02f71a63          	bne	a4,a5,ea <main+0x9c>
+  ba:	870a                	mv	a4,sp
+  bc:	400407b7          	lui	a5,0x40040
+  c0:	00074683          	lbu	a3,0(a4)
+  c4:	c7d4                	sw	a3,12(a5)
+  c6:	4b94                	lw	a3,16(a5)
+  c8:	0016e693          	ori	a3,a3,1
+  cc:	cb94                	sw	a3,16(a5)
+  ce:	4b94                	lw	a3,16(a5)
+  d0:	8a91                	andi	a3,a3,4
+  d2:	def5                	beqz	a3,ce <main+0x80>
+  d4:	4b94                	lw	a3,16(a5)
+  d6:	9aed                	andi	a3,a3,-5
+  d8:	cb94                	sw	a3,16(a5)
+  da:	00074683          	lbu	a3,0(a4)
+  de:	c689                	beqz	a3,e8 <main+0x9a>
+  e0:	0705                	addi	a4,a4,1
+  e2:	0814                	addi	a3,sp,16
+  e4:	fcd71ee3          	bne	a4,a3,c0 <main+0x72>
+  e8:	4501                	li	a0,0
+  ea:	0141                	addi	sp,sp,16
+  ec:	8082                	ret
+	...
