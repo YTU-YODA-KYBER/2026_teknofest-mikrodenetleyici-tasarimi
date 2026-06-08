@@ -33,9 +33,11 @@ module QSPI_Master_tb;
     logic        rready = 0;
 
 
-    logic [ 3:0] basari = 0;    // Testlerdeki başarılı adımları saymak için kullanılıyor.
-    logic [31:0] read_data;     // AXI okuma işlemlerinde okunan veriyi geçici olarak tutmak için kullanılıyor.
-    logic [31:0] flash_vcc = 0; // Flash model besleme gerilimi
+    logic [ 3:0] basari = 0;           // Testlerdeki başarılı adımları saymak için kullanılıyor.
+    logic [ 3:0] toplam_basari = 0;    // Tüm testlerdeki toplam başarılı adımları saymak için kullanılıyor.
+    logic [ 3:0] toplam_basarisiz = 0; // Tüm testlerdeki toplam başarısız adımları saymak için kullanılıyor.
+    logic [31:0] read_data;            // AXI okuma işlemlerinde okunan veriyi geçici olarak tutmak için kullanılıyor.
+    logic [31:0] flash_vcc = 0;        // Flash model besleme gerilimi
 
     wire QSPI_CS;
     wire QSPI_SCLK;
@@ -493,6 +495,8 @@ module QSPI_Master_tb;
 
 
     $display("TEST 1 TAMAMLANDI   %d basarili, %d basarisiz\n", basari, 8-basari);
+    toplam_basari += basari;
+    toplam_basarisiz += (8 - basari);
 
     basari = 0; // basari sayacini sifirliyoruz.
 
@@ -700,9 +704,27 @@ module QSPI_Master_tb;
     axi_write(QSPI_FCR, 3); // FIFO'ları temizliyoruz
 
 
-    $display("TEST 2 TAMAMLANDI   %d basarili, %d basarisiz\n", basari, 4-basari);
-    $finish;
+    $display("TEST 2 TAMAMLANDI   %d basarili, %d basarisiz\n\n\n", basari, 4-basari);
 
+    toplam_basari += basari;
+    toplam_basarisiz += (4 - basari);
+
+
+    $display("----------------------------------------------------------------------");
+    $display("---------------------- BUTUN TESTLER TAMAMLANDI ----------------------");
+    $display("----------------------------------------------------------------------\n");
+
+    $display("Toplam basarili test sayisi: %d", toplam_basari);
+    $display("Toplam basarisiz test sayisi: %d\n", toplam_basarisiz);
+    if(toplam_basari == 12)begin
+        $display("TUM TESTLER BASARILI!\n");
+    end else begin
+        $display("BAZI TESTLER BASARISIZ OLDU\n");
+    end
+    $display("----------------------------------------------------------------------");
+    $display("----------------------------------------------------------------------");
+
+    $finish;
 end
 
 endmodule

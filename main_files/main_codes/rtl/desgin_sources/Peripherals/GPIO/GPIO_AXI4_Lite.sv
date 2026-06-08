@@ -60,7 +60,7 @@ module GPIO_AXI4_Lite(
             //                      AXI YAZMA İŞLEMİ
             // ---------------------------------------------------------
 
-            if (awvalid && wvalid) begin
+            if (awvalid && wvalid && awready && wready) begin
                 awready <= 0;
                 wready  <= 0;
                 bvalid  <= 1;
