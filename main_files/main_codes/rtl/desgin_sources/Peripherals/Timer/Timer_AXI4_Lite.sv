@@ -75,7 +75,7 @@ module Timer_module
             //                 AXI YAZMA İŞLEMİ
             // --------------------------------------------------
 
-            if (awvalid && wvalid && awready && wready) begin
+            if (awvalid && wvalid) begin
                 bvalid  <= 1'b1;
                 wready  <= 1'b0;
                 awready  <= 1'b0;
