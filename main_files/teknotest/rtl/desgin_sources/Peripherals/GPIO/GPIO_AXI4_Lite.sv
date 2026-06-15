@@ -38,13 +38,13 @@ module GPIO_AXI4_Lite(
 
 
     always @(posedge clk_i or negedge rst_n) begin
-
+        
         // ---------------------------------------------------------
         //                      RESET İŞLEMLERİ
         // ---------------------------------------------------------
         if(!rst_n)begin
             GPIO_ODR <= 0;
-
+        
             bresp   <= 0;
             bvalid  <= 0;
             rdata   <= 0;
@@ -60,15 +60,15 @@ module GPIO_AXI4_Lite(
             //                      AXI YAZMA İŞLEMİ
             // ---------------------------------------------------------
 
-            if (awvalid && wvalid) begin
+            if (awvalid && wvalid && awready && wready) begin
                 awready <= 0;
                 wready  <= 0;
-                bvalid  <= 1;
-
+                bvalid  <= 1; 
+                
                 if (awaddr[3:0] == 4'h4)begin
                     GPIO_ODR <= {16'h0000,wdata[15:0]};
                     end
-            end
+            end 
             else if (bvalid && bready) begin
                 awready <= 1;
                 wready  <= 1;
@@ -79,20 +79,20 @@ module GPIO_AXI4_Lite(
             // ---------------------------------------------------------
             //                  AXI OKUMA İŞLEMİ
             // ---------------------------------------------------------
-            if (arvalid) begin
+            if (arvalid && arready) begin
                 arready <= 0;
                 rvalid  <= 1;
-
+                
                 case (araddr[3:0])
                     4'h0:  rdata[31:0] <= GPIO_IDR;
-                    4'h4:  rdata[31:0] <= GPIO_ODR;
-                endcase
-            end
+                    4'h4:  rdata[31:0] <= GPIO_ODR; 
+                endcase  
+            end 
             else if (rvalid && rready) begin
                 arready <= 1;
                 rvalid  <= 0;
             end
         end
-    end
-
+    end  
+    
 endmodule

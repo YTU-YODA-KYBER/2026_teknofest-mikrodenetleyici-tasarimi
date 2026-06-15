@@ -277,9 +277,9 @@ set proj_dir [get_property directory [current_project]]
 set obj [current_project]
 set_property -name "board_part" -value "digilentinc.com:basys3:part0:1.2" -objects $obj
 set_property -name "compxlib.funcsim" -value "1" -objects $obj
-set_property -name "compxlib.modelsim_compiled_library_dir" -value "/usr/altera/questa_fse/bin" -objects $obj
+set_property -name "compxlib.modelsim_compiled_library_dir" -value "" -objects $obj
 set_property -name "compxlib.overwrite_libs" -value "0" -objects $obj
-set_property -name "compxlib.questa_compiled_library_dir" -value "/home/stradale/Documents/Questa_libs" -objects $obj
+set_property -name "compxlib.questa_compiled_library_dir" -value "" -objects $obj
 set_property -name "compxlib.riviera_compiled_library_dir" -value "$proj_dir/${_xil_proj_name_}.cache/compile_simlib/riviera" -objects $obj
 set_property -name "compxlib.timesim" -value "1" -objects $obj
 set_property -name "compxlib.vcs_compiled_library_dir" -value "$proj_dir/${_xil_proj_name_}.cache/compile_simlib/vcs" -objects $obj
@@ -357,12 +357,35 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 # ================================================================
 set obj [get_filesets sources_1]
 
+# ----------------------------------------------------------------
+# Platform-bagimsiz recursive dosya bulucu (Linux + Windows + macOS)
+# NOT: Eski surum "exec find ..." kullaniyordu; bu bir Unix kabuk
+# komutudur ve Windows'ta YOKTUR (Windows'taki find.exe metin arar,
+# dosya aramaz). Tcl'nin yerlesik 'glob' komutu her OS'ta ayni calisir.
+# ----------------------------------------------------------------
+proc find_files_recursive {base patterns} {
+    set found {}
+    # bu dizindeki eslesen dosyalar
+    foreach pat $patterns {
+        foreach f [glob -nocomplain -type f -directory $base $pat] {
+            lappend found [file normalize $f]
+        }
+    }
+    # alt dizinlere in (recursive)
+    foreach sub [glob -nocomplain -type d -directory $base *] {
+        foreach f [find_files_recursive $sub $patterns] {
+            lappend found $f
+        }
+    }
+    return $found
+}
+
 # Tüm RTL dosyalarını bul ve ekle
 set rtl_base [file normalize "${origin_dir}/../main_codes/rtl"]
 
-set all_sv  [split [exec find $rtl_base -name "*.sv"]  \n]
-set all_v   [split [exec find $rtl_base -name "*.v"]   \n]
-set all_svh [split [exec find $rtl_base -name "*.svh"] \n]
+set all_sv  [find_files_recursive $rtl_base {*.sv}]
+set all_v   [find_files_recursive $rtl_base {*.v}]
+set all_svh [find_files_recursive $rtl_base {*.svh}]
 
 # .sv dosyaları
 foreach f $all_sv {
@@ -387,12 +410,23 @@ foreach f $all_svh {
     }
 }
 
-# firmware.hex — glob bunu bulmaz, elle ekle
-set hex_file [file normalize "${origin_dir}/../firmware/build/firmware.hex"]
-if {[file exists $hex_file]} {
+# firmware.hex — firmware/ altinda herhangi bir derinlikte ara (sabit isim, degisken konum)
+set fw_base [file normalize "${origin_dir}/../firmware"]
+set hex_matches [find_files_recursive $fw_base {*.hex}]
+
+if {[llength $hex_matches] == 0} {
+    puts "UYARI: firmware.hex bulunamadi ($fw_base altinda arandi). Proje olusturulmaya devam ediliyor."
+} else {
+    # Birden fazla eslesme durumunda ilkini al ve uyar
+    if {[llength $hex_matches] > 1} {
+        puts "UYARI: Birden fazla firmware.hex bulundu, ilki kullaniliyor:"
+        foreach m $hex_matches { puts "  $m" }
+    }
+    set hex_file [lindex $hex_matches 0]
+    puts "INFO: firmware.hex ekleniyor -> $hex_file"
     add_files -norecurse -fileset $obj $hex_file
     set_property file_type {Memory Initialization Files} \
-        [get_files -of_objects [get_filesets sources_1] "*firmware.hex"]
+        [get_files -of_objects [get_filesets sources_1] "*.hex"]
 }
 
 # Set 'sources_1' fileset file properties for local files

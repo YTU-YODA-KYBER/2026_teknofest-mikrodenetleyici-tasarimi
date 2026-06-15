@@ -1,8 +1,8 @@
-module Timer_module
+module Timer_AXI4_Lite
 (
     // clock ve reset sinyalleri
     input logic clk_i,
-    input logic rst_n,
+    input logic rst_n,   
 
     // AW Portları
     input  logic [31:0] awaddr,
@@ -30,7 +30,7 @@ module Timer_module
     output logic [ 1:0] rresp,
     output logic        rvalid
 );
-
+    
     // REGISTER TANIMLARI
     reg [31:0] TIM_PRE;
     reg [31:0] TIM_PRE_m;
@@ -45,7 +45,7 @@ module Timer_module
 
 
     always @(posedge clk_i or negedge rst_n) begin
-
+        
         // ---------------------------------------------------------
         //                      RESET İŞLEMLERİ
         // ---------------------------------------------------------
@@ -68,18 +68,18 @@ module Timer_module
             awready   <= 1;
             wready    <= 1;
             arready   <= 1;
-        end
+        end 
         else begin
 
             // --------------------------------------------------
             //                 AXI YAZMA İŞLEMİ
             // --------------------------------------------------
 
-            if (awvalid && wvalid) begin
+            if (awvalid && wvalid && awready && wready) begin
                 bvalid  <= 1'b1;
                 wready  <= 1'b0;
-                awready  <= 1'b0;
-
+                awready  <= 1'b0;  
+                
                 case (awaddr[7:0])
                     8'h00: TIM_PRE_m <= wdata;
                     8'h04: TIM_ARE   <= wdata;
@@ -89,8 +89,8 @@ module Timer_module
                     8'h1C: TIM_EVC   <= wdata;
                     default: ;
                 endcase
-            end
-
+            end 
+ 
             else if (bvalid && bready) begin
                 bvalid  <= 1'b0;
                 awready <= 1'b1;
@@ -100,10 +100,10 @@ module Timer_module
             // --------------------------------------------------
             //                  AXI OKUMA İŞLEMİ
             // --------------------------------------------------
-            if (arvalid) begin
+            if (arvalid && arready) begin
                 rvalid  <= 1'b1;
                 arready <= 0;
-
+                
                 case (araddr[7:0])
                     8'h00: rdata <= TIM_PRE_m;
                     8'h04: rdata <= TIM_ARE;
@@ -115,7 +115,7 @@ module Timer_module
                     8'h1C: rdata <= TIM_EVC;
                   default: rdata <= 0;
                 endcase
-            end
+            end 
             else if (rvalid && rready) begin
                 rvalid  <= 1'b0;
                 arready <= 1;
@@ -124,47 +124,46 @@ module Timer_module
             // ----------------------------------------------------
             //                   TIMER ÇEKİRDEĞİ
             // ----------------------------------------------------
-            if (TIM_CLR[0]) begin
+            if (TIM_CLR[0]) begin 
                 TIM_CNT <= 0;
                 TIM_PRE <= TIM_PRE_m;
                 TIM_CLR <= 0;
-            end
-            else if (TIM_ENA[0]) begin
-
-                if (TIM_EVC[0]) begin
+            end 
+            else if (TIM_EVC[0]) begin                   
                     TIM_EVN <= 0;
                     TIM_EVC <= 0;
                 end
-
+            else if (TIM_ENA[0]) begin
+                
                 // Sayma İşlemleri
-                if (TIM_PRE == 0) begin
+                if (TIM_PRE == 0) begin 
                     TIM_PRE <= TIM_PRE_m;
-
+    
                     case (TIM_MOD[0])
                         1: begin // Yukarı Sayıcı
-                            if (TIM_CNT >= TIM_ARE) begin
+                            if (TIM_CNT >= TIM_ARE) begin 
                                 TIM_EVN <= TIM_EVN + 1;
                                 TIM_CNT <= 0;
-                            end else begin
+                            end else begin 
                                 TIM_CNT <= TIM_CNT + 1;
                             end
                         end
                         0: begin // Aşağı Sayıcı
-                            if (TIM_CNT == 0) begin
+                            if (TIM_CNT == 0) begin 
                                 TIM_CNT <= TIM_ARE;
                                 TIM_EVN <= TIM_EVN + 1;
-                            end else begin
+                            end else begin 
                                 TIM_CNT <= TIM_CNT - 1;
                             end
                         end
                         default: ;
                     endcase
-                end else begin
+                end else begin 
                     TIM_PRE <= TIM_PRE - 1;
                 end
             end
 
         end//else
-    end//always bloğu
+    end//always bloğu            
 
 endmodule

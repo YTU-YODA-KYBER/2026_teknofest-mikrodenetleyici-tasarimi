@@ -41,11 +41,15 @@ module UART_GU_testbench;
 
     integer i = 0;
 
+    // ---- Basari sayaclari ----
+    integer toplam_basari    = 0;
+    integer toplam_basarisiz = 0;
+
     assign rx = rx_val;
     assign tx_val = tx;
 
     // MODÜLÜ ÇAĞIRMA
-    Uart_GU_Module dut(
+    UART_GU_AXI4_Lite dut(
         .clk(clk_i),
         .rst_n(rst_n),
 
@@ -167,12 +171,20 @@ module UART_GU_testbench;
 
         wait(dut.UART_CFG[1] == 1); // Okuma işlemi tamamlanana kadar bekliyoruz
         axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
-        if(read_data[7:0] == 8'b1010_1101) $display("--- Okuma islemi basarili, okunan veri: %b ---\n", read_data[7:0]);
-        else $display("--- Okuma islemi basarisiz, okunan veri: %b ---\n", read_data[7:0]);
+        if(read_data[7:0] == 8'b1010_1101) begin
+            $display("  [GECTI ] Test 1a basarili: RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 1a BASARISIZ: Beklenen: 10101101, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
         dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
     
         wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
-        $display("--- Yazma islemi basarili ---\n\n");
+        begin
+            $display("  [GECTI ] Test 1b basarili: TX tamamlandi (CFG[2]=1)");
+            toplam_basari = toplam_basari + 1;
+        end
         dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
         // Biraz bekle
         #10000; 
@@ -202,12 +214,20 @@ module UART_GU_testbench;
 
         wait(dut.UART_CFG[1] == 1); // Okuma işlemi tamamlanana kadar bekliyoruz
         axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
-        if(read_data[7:0] == 8'b1101_0110) $display("--- Okuma islemi basarili, okunan veri: %b ---\n", read_data[7:0]);
-        else $display("--- Okuma islemi basarisiz, okunan veri: %b ---\n", read_data[7:0]);        
+        if(read_data[7:0] == 8'b1101_0110) begin
+            $display("  [GECTI ] Test 2a basarili: Asenkron RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 2a BASARISIZ: Beklenen: 11010110, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
         dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
 
         wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
-        $display("--- Yazma islemi basarili ---\n\n");
+        begin
+            $display("  [GECTI ] Test 2b basarili: Asenkron TX tamamlandi (CFG[2]=1)");
+            toplam_basari = toplam_basari + 1;
+        end
         dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
         // Biraz bekle
         #10000; 
@@ -218,7 +238,7 @@ module UART_GU_testbench;
         //                        TEST 3
         // Yüksek baudrate ile art arda yazma işlemi yapacağız. Sürekli yazma 
         // koşulunda hatasız veri iletimi sağlanabildiğini göstermek için.
-        //===========================================================     
+        //===========================================================  
         $display("-------------------------------------");
         $display("--- TEST 3: Art arda yazma islemi ---");
         $display("-------------------------------------\n");
@@ -235,7 +255,10 @@ module UART_GU_testbench;
         $display("--- Konfigurasyon tamamlandi. ---\n");
         $display("--- 1. Yazma islemi baslatildi. ---");
         wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
-        $display("--- Yazma islemi basarili ---\n");
+        begin
+            $display("  [GECTI ] Test 3a basarili: 1. TX (0x8B) tamamlandi");
+            toplam_basari = toplam_basari + 1;
+        end
         dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
 
         //============================================================
@@ -245,7 +268,10 @@ module UART_GU_testbench;
         axi_write(32'h0000_0010, 32'b1);                    //UART_CFG => Yazmaya başla
         $display("--- 2. Yazma islemi baslatildi. ---");
         wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
-        $display("--- Yazma islemi basarili ---\n");
+        begin
+            $display("  [GECTI ] Test 3b basarili: 2. TX (0x6D) tamamlandi");
+            toplam_basari = toplam_basari + 1;
+        end
         dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
 
         //============================================================
@@ -255,7 +281,10 @@ module UART_GU_testbench;
         axi_write(32'h0000_0010, 32'b1);                    //UART_CFG => Yazmaya başla
         $display("--- 3. Yazma islemi baslatildi. ---");
         wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
-        $display("--- Yazma islemi basarili ---\n");
+        begin
+            $display("  [GECTI ] Test 3c basarili: 3. TX (0xF0) tamamlandi");
+            toplam_basari = toplam_basari + 1;
+        end
         dut.UART_CFG[2] <= 0;
         $display("--- Yazma islemleri tamamlandi. ---\n\n");
 
@@ -287,8 +316,13 @@ module UART_GU_testbench;
         dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
 
         axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
-        if(read_data[7:0] == 8'b1101_0110) $display("--- 1. Okuma islemi basarili, okunan veri: %b ---\n", read_data[7:0]);
-        else $display("--- 1. Okuma islemi basarisiz, okunan veri: %b ---\n", read_data[7:0]);
+        if(read_data[7:0] == 8'b1101_0110) begin
+            $display("  [GECTI ] Test 4a basarili: 1. RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 4a BASARISIZ: Beklenen: 11010110, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
 
         //============================================================
         //                      2. Okuma işlemi
@@ -300,8 +334,13 @@ module UART_GU_testbench;
         dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
 
         axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
-        if(read_data[7:0] == 8'b1010_1101) $display("--- 2. Okuma islemi basarili, okunan veri: %b ---\n", read_data[7:0]);
-        else $display("--- 2. Okuma islemi basarisiz, okunan veri: %b ---\n", read_data[7:0]);
+        if(read_data[7:0] == 8'b1010_1101) begin
+            $display("  [GECTI ] Test 4b basarili: 2. RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 4b BASARISIZ: Beklenen: 10101101, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
 
         //============================================================
         //                      3. Okuma işlemi
@@ -313,13 +352,32 @@ module UART_GU_testbench;
         dut.UART_CFG[1] <= 0;
 
         axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
-        if(read_data[7:0] == 8'b1111_0000) $display("--- 3. Okuma islemi basarili, okunan veri: %b ---\n", read_data[7:0]);
-        else $display("--- 3. Okuma islemi basarisiz, okunan veri: %b ---\n", read_data[7:0]);
+        if(read_data[7:0] == 8'b1111_0000) begin
+            $display("  [GECTI ] Test 4c basarili: 3. RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 4c BASARISIZ: Beklenen: 11110000, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
 
         $display("--- Okuma islemleri tamamlandi. ---");
 
         // Biraz bekle
-        #10000; 
+        #10000;
+
+        $display("----------------------------------------------------------------------");
+        $display("---------------------- BUTUN TESTLER TAMAMLANDI ----------------------");
+        $display("----------------------------------------------------------------------\n");
+
+        $display("Toplam basarili test sayisi: %d", toplam_basari);
+        $display("Toplam basarisiz test sayisi:%d\n", toplam_basarisiz);
+        if(toplam_basari == 10)begin
+            $display("TUM TESTLER BASARILI!\n");
+        end else begin
+            $display("BAZI TESTLER BASARISIZ OLDU\n");
+        end
+        $display("----------------------------------------------------------------------");
+        $display("----------------------------------------------------------------------");
 
         $finish;
     end

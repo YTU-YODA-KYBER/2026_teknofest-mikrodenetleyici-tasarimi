@@ -103,7 +103,6 @@ module QSPI_Master_AXI4_Lite(
     (* ram_style = "distributed" *) logic [31:0] FIFO_RX [0:63];
 
     logic [31:0] fifo_tx_rdata; // TX FIFO'dan okunan veriyi tutar.
-    logic [31:0] fifo_tx_wdata; // TX FIFO'ya yazılacak veriyi tutar.
     logic [ 6:0] fifo_tx_cnt;   // TX FIFO'nun güncel doluluk sayısını tutar.
     logic [ 5:0] tx_wr_ptr;     // TX FIFO'ya yazacağı yeri gösterir.
     logic [ 5:0] tx_rd_ptr;     // TX FIFO'ya yazılacak yeri gösterir.
@@ -341,7 +340,7 @@ module QSPI_Master_AXI4_Lite(
 
                 IDLE: begin
                     // QSPI_CCR'ye yazma yapıldıysa çekirdeği ayağa kaldır.
-                    if(start && !QSPI_STA[1])begin
+                    if(start && !busy)begin
                         shift_byte[31:25] <= QSPI_CCR[6:0];
                         busy <= 1;
                         to_do_list[0] <= 1;
@@ -585,7 +584,7 @@ module QSPI_Master_AXI4_Lite(
             //                      AXI YAZMA İŞLEMİ
             // ---------------------------------------------------------
 
-            if (awvalid && wvalid) begin
+            if (awvalid && wvalid && awready && wready) begin
                 awready <= 1'b0;
                 wready  <= 1'b0;
                 bvalid  <= 1'b1;
@@ -619,7 +618,7 @@ module QSPI_Master_AXI4_Lite(
             // ---------------------------------------------------------
             //                  AXI OKUMA İŞLEMİ
             // ---------------------------------------------------------
-            if (arvalid) begin
+            if (arvalid && arready) begin
                 arready <= 0;
                 rvalid  <= 1'b1;
 

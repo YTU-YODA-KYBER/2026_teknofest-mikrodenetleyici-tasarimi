@@ -1,4 +1,4 @@
-module UART_YZ_Module (
+module UART_YZ_AXI4_Lite (
     // clock ve reset sinyalleri
     input  logic clk,
     input  logic rst_n,
@@ -32,7 +32,7 @@ module UART_YZ_Module (
     input  logic  rx,
     output logic  tx
 );
-
+    
     localparam [1:0] IDLE   = 0;
     localparam [1:0] WAIT   = 1;
     localparam [1:0] DATA   = 2;
@@ -50,7 +50,7 @@ module UART_YZ_Module (
 
     logic [1:0] tx_state;         // TX FSM'sinin durumu
     logic [1:0] rx_state;         // RX FSM'sinin durumu
-
+    
     logic [ 3:0] tx_shift_cnt;    // Gönderilen bit sayısını saymak için kullanılır
     logic [ 3:0] rx_shift_cnt;    // Alınan bit sayısını saymak için kullanılır
 
@@ -61,10 +61,9 @@ module UART_YZ_Module (
     logic [31:0] cnt_limit_mirror;// Yazma işlemi sırasında baud rate'i değiştirebilmek için kullanılan logicister
 
     logic [ 1:0] stop_bit;        // Stop bit sayısını takip etmek için kullanılır
-
+    
     logic        tx_middle_alert;    // TX işlemi sırasında orta noktaya gelindiğinde uyarı vermek için kullanılır
     logic        rx_middle_alert;    // RX işlemi sırasında orta noktaya gelindiğinde uyarı vermek için kullanılır
-    logic [ 4:0] sixteen_cnt_tx;     // TX için 16 baud tick'ini saymak için kullanılır
     logic [ 4:0] sixteen_cnt_rx;     // RX için 16 baud tick'ini saymak için kullanılır
     logic        rx_zero_alert;      // RX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
     logic        tx_zero_alert;      // TX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
@@ -100,9 +99,9 @@ module UART_YZ_Module (
             rx_tick_cnt    <= 0;
             sixteen_cnt_rx <= 0;
             rx_tick_cnt_limit <= 5;
-        end
+        end 
         else begin
-
+            
             if(rx == 0 && !rx_state) rx_start <= 1;
             if(rx_middle_alert) rx_middle_alert <= ~rx_middle_alert;
             if(rx_zero_alert) rx_zero_alert <= ~rx_zero_alert;
@@ -128,7 +127,7 @@ module UART_YZ_Module (
 
 
     // ---------------------------------------------------------
-    //                  AXI YAZMA/OKUMA IŞLEMLERİ
+    //                  AXI YAZMA/OKUMA IŞLEMLERİ           
     // ---------------------------------------------------------
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
@@ -158,15 +157,15 @@ module UART_YZ_Module (
 
             tx      <= 1;
             cnt_limit_mirror <= 5;
-
+            
         end else begin
 
             // --- AXI YAZMA İŞLEMİ ---
             if (awvalid && wvalid && awready && wready) begin
                 bvalid  <= 1'b1;
-                awready <= 1'b0;
+                awready <= 1'b0; 
                 wready  <= 1'b0;
-
+                
                 case (awaddr[7:0])
                     8'h00: begin
                         UART_CPB <= wdata;
@@ -176,10 +175,10 @@ module UART_YZ_Module (
                     8'h0C: UART_TDR <= wdata;
                     8'h10: UART_CFG <= wdata;
                 endcase
-            end
+            end 
             else if (bvalid && bready) begin
                 bvalid  <= 1'b0;
-                awready <= 1'b1;
+                awready <= 1'b1; 
                 wready  <= 1'b1;
             end
 
@@ -187,20 +186,20 @@ module UART_YZ_Module (
             // --- AXI OKUMA İŞLEMİ ---
             if (arvalid && arready) begin
                 rvalid  <= 1'b1;
-                arready <= 1'b0;
-
+                arready <= 1'b0; 
+                
                 case (araddr[7:0])
                     8'h00: rdata <= UART_CPB;
-                    8'h04: rdata <= {29'h0, UART_STP};
-                    8'h08: rdata <= UART_RDR;
+                    8'h04: rdata <= {29'h0, UART_STP};   
+                    8'h08: rdata <= UART_RDR; 
                     8'h0C: rdata <= UART_TDR;
                     8'h10: rdata <= UART_CFG;
 
                 endcase
-            end
+            end 
             else if (rvalid && rready) begin
                 rvalid  <= 1'b0;
-                arready <= 1'b1;
+                arready <= 1'b1; 
             end
 
 
@@ -263,7 +262,7 @@ module UART_YZ_Module (
                     end
                 end
 
-                REPORT: begin //bunun tam zamandında geçmesini sağlayacaz
+                REPORT: begin
                     UART_CFG[1] <= 1;
                     if(rx)rx_state <= IDLE;
                 end

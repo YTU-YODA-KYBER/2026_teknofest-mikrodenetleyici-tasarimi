@@ -43,7 +43,7 @@ module top_module #(
 
 
 );
-
+    
     //  INSTRUCTION AR PORTLARI
     logic [31:0] cpu_instr_araddr;
     logic        cpu_instr_arvalid;
@@ -322,7 +322,7 @@ boot_rom_axi_ctrl #(
     .axi_boot_rom_rready(axi_boot_rom_rready),
 
     .axi_boot_rom_interconnect_araddr (axi_boot_rom_interconnect_araddr),
-    .axi_boot_rom_interconnect_arvalid(axi_boot_rom_interconnect_arvalid),
+    .axi_boot_rom_interconnect_arvalid(axi_boot_rom_interconnect_arvalid), 
     .axi_boot_rom_interconnect_arready(axi_boot_rom_interconnect_arready),
     .axi_boot_rom_interconnect_rdata  (axi_boot_rom_interconnect_rdata),
     .axi_boot_rom_interconnect_rresp  (axi_boot_rom_interconnect_rresp),
@@ -679,7 +679,7 @@ AXI4_Interconnect interconnect_inst(
 
 );
 
-Timer_module timer_inst(
+Timer_AXI4_Lite timer_inst(
 
     .clk_i(clk_i),
     .rst_n(rst_ni),
@@ -702,7 +702,7 @@ Timer_module timer_inst(
     .rvalid (TIMER_rvalid)
 );
 
-UART_GU_Module uart_gu_inst(
+UART_GU_AXI4_Lite uart_gu_inst(
     .clk(clk_i),
     .rst_n(rst_ni),
 
@@ -728,7 +728,7 @@ UART_GU_Module uart_gu_inst(
     .tx(UART_GU_tx)
 );
 
-UART_YZ_Module uart_yz_inst(
+UART_YZ_AXI4_Lite uart_yz_inst(
     .clk(clk_i),
     .rst_n(rst_ni),
 

@@ -33,9 +33,11 @@ module QSPI_Master_tb;
     logic        rready = 0;
 
 
-    logic [ 3:0] basari = 0;    // Testlerdeki başarılı adımları saymak için kullanılıyor.
-    logic [31:0] read_data;     // AXI okuma işlemlerinde okunan veriyi geçici olarak tutmak için kullanılıyor.
-    logic [31:0] flash_vcc = 0; // Flash model besleme gerilimi
+    logic [ 3:0] basari = 0;           // Testlerdeki başarılı adımları saymak için kullanılıyor.
+    logic [ 3:0] toplam_basari = 0;    // Tüm testlerdeki toplam başarılı adımları saymak için kullanılıyor.
+    logic [ 3:0] toplam_basarisiz = 0; // Tüm testlerdeki toplam başarısız adımları saymak için kullanılıyor.
+    logic [31:0] read_data;            // AXI okuma işlemlerinde okunan veriyi geçici olarak tutmak için kullanılıyor.
+    logic [31:0] flash_vcc = 0;        // Flash model besleme gerilimi
 
     wire QSPI_CS;
     wire QSPI_SCLK;
@@ -87,7 +89,7 @@ module QSPI_Master_tb;
         .rresp(rresp),
         .rvalid(rvalid),
         .rready(rready),
-        
+
         .QSPI_IO0(QSPI_IO0),
         .QSPI_IO1(QSPI_IO1),
         .QSPI_IO2(QSPI_IO2),
@@ -95,11 +97,11 @@ module QSPI_Master_tb;
 
         .QSPI_SCLK(QSPI_SCLK),
         .QSPI_CS(QSPI_CS)
-                
-        );
-    
 
-    
+        );
+
+
+
     // Micron MT25QL256ABA8E0 non-volatile flash modeli
     N25Qxxx u_flash (
         .S         (QSPI_CS),      // CS active low
@@ -117,7 +119,7 @@ module QSPI_Master_tb;
     always begin
         #10.4166 clk_i = ~clk_i;
     end
-    
+
 
     // Active low reset için kullanılır
     task reset;
@@ -127,7 +129,7 @@ module QSPI_Master_tb;
             rst_n = 1;
             #40;
         end
-    endtask 
+    endtask
 
 
     // RX FIFO'ya farklı formatlarda(x1, x2, x4) veri basmak için kullanılır
@@ -159,8 +161,8 @@ module QSPI_Master_tb;
             io3_val = 1'bz;
         end
     endtask
-    
-    
+
+
     // QSPI register'larına AXI4-Lite ile veri YAZMAYI sağlar.
     task axi_write(input [31:0] addr, input [31:0] data);
         begin
@@ -170,7 +172,7 @@ module QSPI_Master_tb;
             awvalid = 1;
             wvalid = 1;
             bready = 1;
-            
+
             wait(!(awready && wready));
 
             awvalid = 0;
@@ -201,7 +203,6 @@ module QSPI_Master_tb;
         // Durum register'ını temizle (Clear Status Register)
         //                     clr | prescaler | address | data_size | dummy | r_w | data_mode | instr_val
         axi_write(QSPI_CCR, 32'b1_____000001________0______00000000____00000____0_______00_______00000000); // Durum register'ını temizle
-        $display("CLSR komutu gönderildi. Durum register'i(QSPI_STA) temizlendi.");
     endtask
 
     // QSPI modülüne WREN komutunu göndererek yazma izni vermek için kullanılır.
@@ -211,7 +212,6 @@ module QSPI_Master_tb;
         //                     clr | prescaler | address | data_size | dummy | r_w | data_mode | instr_val
         axi_write(QSPI_CCR, 32'b0_____000001________0______00000000____00000____0_______00_______00000110); // WREN komutu
         polling_transaction_finish(); // Transaction'ın tamamlanmasını bekle
-        $display("WREN komutu gönderildi. Yazma izni verildi.");
 
         CLSR();
     endtask
@@ -219,10 +219,10 @@ module QSPI_Master_tb;
     // Flash belleğe CLSR komutunu göndererek flag durum register'ını temizlemek için kullanılır.
     task Clear_Flag_Status();
         CLSR();
+
         // Flag Durum Yazmacını Temizle (Clear Flag Status Register)
-        axi_write(QSPI_CCR, 32'b0_____000001________0______00000000____00000____0_______00_______01010000); // Clear Flag Status Register komutu   
+        axi_write(QSPI_CCR, 32'b0_____000001________0______00000000____00000____0_______00_______01010000); // Clear Flag Status Register komutu
         polling_transaction_finish(); // Transaction'ın tamamlanmasını bekle
-        $display("Clear_Flag_Status komutu gönderildi. Flag durum register'i temizlendi.");
 
         CLSR();
     endtask
@@ -245,11 +245,13 @@ module QSPI_Master_tb;
             while(read_data[0] == 1) begin
                 CLSR(); // Durum register'ını temizle
                 axi_write(QSPI_CCR, 32'b0_____000001________0______00000000____00000____0_______01_______00000101); // RDSR1 komutu ile WIP bitini oku
-                polling_transaction_finish(); // Transaction'ın tamamlanmasını bekle     
+                polling_transaction_finish(); // Transaction'ın tamamlanmasını bekle
 
                 axi_read(QSPI_DR, read_data);
-            end 
+            end
             CLSR(); // Durum register'ını temizle
+            $display("Clear_Flag_Status komutu gonderildi. Flag durum register'i temizlendi.");
+
         end
     endtask
 
@@ -266,8 +268,9 @@ module QSPI_Master_tb;
         polling_transaction_finish(); // Transaction'ın tamamlanmasını bekle
 
         // Adım 3: WIP polling (ERNVLB da zaman alır)
+
         polling_RDSR1_WIP_clear();
-        $display("PPB temizlendi, tüm sektörler korumasiz.");
+        $display("PPB temizlendi, tum sektorler korumasiz.");
     end
     endtask
 
@@ -284,7 +287,7 @@ module QSPI_Master_tb;
 
 
     // Bu task, girdiğimiz sayı kadar AXI4-Lite üzerinden RX FIFO'ya veri doldurur.
-    task fill_rx_fifo(input clr, input [5:0] prescaler, input address, input [7:0] data_size, input [4:0] dummy, input r_w, input [1:0] data_mode, input [7:0] instr_val);         
+    task fill_rx_fifo(input clr, input [5:0] prescaler, input address, input [7:0] data_size, input [4:0] dummy, input r_w, input [1:0] data_mode, input [7:0] instr_val);
         begin
             $display("RX FIFO %0d veri ile dolduruluyor...", (data_size +1)/4);
 
@@ -338,10 +341,10 @@ module QSPI_Master_tb;
         end
         if(dut.QSPI_STA[11:8] == 0)begin
             $display("Hata durumu                    => 0000, hata yok.");
-        end 
+        end
         if(dut.QSPI_STA[8] == 1) begin
             $display("Hata durumu                    => %b, RX FIFO bosken okunmaya calisildi.", dut.QSPI_STA[11:8]);
-        end 
+        end
         if(dut.QSPI_STA[9] == 1) begin
             $display("Hata durumu                    => %b, TX FIFO doluyken yazilmaya calisildi.", dut.QSPI_STA[11:8]);
         end
@@ -349,7 +352,7 @@ module QSPI_Master_tb;
         $display("-----------------------------------------------------------------------\n");
     endtask
 
-    
+
     // Bu QSPI modülünün desteklediği bazı komutlar ve açıklamaları:
     // -------------|------------------|-----------------------------------------------
     //  Komut Adı   | Komut Kodu (Hex) | Komut Açıklaması
@@ -374,8 +377,8 @@ module QSPI_Master_tb;
     //  RESET_en    = 0x66 = 01100110   // Reset Enable
     //  RESET_mem   = 0x99 = 10011001   // Reset Memory
 
-    // --- TEST --- 
-    initial begin 
+    // --- TEST ---
+    initial begin
 
 
     //=======================================================================
@@ -383,7 +386,7 @@ module QSPI_Master_tb;
     // QSPI_STA bayraklarının gerekli koşullarda doğru çalışıp
     // çalışmadığını kontrol eder. Test sırasındaki yazma ve okuma
     // işlemleri AXI4-Lite ile QSPI modülünün kendisi tarafından yapılarak
-    // art ardayazma ve okuma durumlarında sorunsuz çalıştığı gösterilmiş olur.
+    // art arda yazma ve okuma durumlarında sorunsuz çalıştığı gösterilmiş olur.
     //========================================================================
 
     $display("\n=====================================================================");
@@ -403,16 +406,16 @@ module QSPI_Master_tb;
     $display("--- TEST 1.1 - Reset sonrasi baslangic durumu ---");
     $display("-------------------------------------------------\n");
 
-    report_QSPI_STA();  // QSPI_STA register'ının degerlerini listele 
+    report_QSPI_STA();  // QSPI_STA register'ının degerlerini listele
     if(dut.QSPI_STA[5] == 1)begin
         $display(" => FIFO RX empty flag'i 1, yani RX FIFO bos. DOGRU CALISIYOR.");
         basari += 1;
     end else $error("FIFO RX empty flag'i 0, yani RX FIFO bos degil. YANLIS CALISIYOR.");
     if(dut.QSPI_STA[7] == 1)begin
-        $display(" => FIFO TX empty flag'i 1, yani TX FIFO bos. DOGRU CALISIYOR.\n\n");
+        $display(" => FIFO TX empty flag'i 1, yani TX FIFO bos. DOGRU CALISIYOR.\n\n\n\n\n\n");
         basari += 1;
-    end else $error(" => FIFO TX empty flag'i 0, yani TX FIFO bos degil. YANLIS CALISIYOR.\n\n");
-    
+    end else $error(" => FIFO TX empty flag'i 0, yani TX FIFO bos degil. YANLIS CALISIYOR.\n\n\n\n\n\n");
+
 
     //-----------------------------------------------------------------------------------------------------------------
     // TEST 1.2: FIFO'ları tamamen dolduruyoruz ve doluluk bayraklarının doğru şekilde set edildiğini kontrol ediyoruz.
@@ -425,7 +428,7 @@ module QSPI_Master_tb;
     //          clr | prescaler | address | data_size | dummy | r_w | data_mode | instr_val
     fill_rx_fifo(0,       1,         1,        255,       1,     0,       3,          0); // RX FIFO'yu tamamen dolduruyoruz.
 
-    report_QSPI_STA();  // QSPI_STA register'ının degerlerini listele 
+    report_QSPI_STA();  // QSPI_STA register'ının degerlerini listele
 
     if(dut.QSPI_STA[6] == 1) begin
         $display(" => FIFO TX full flag'i 1, yani TX FIFO dolu. DOGRU CALISIYOR.");
@@ -433,9 +436,9 @@ module QSPI_Master_tb;
     end else $error(" => FIFO TX full flag'i 0, yani TX FIFO dolu degil. YANLIS CALISIYOR.");
 
     if(dut.QSPI_STA[4] == 1)begin
-        $display(" => FIFO RX full flag'i 1, yani RX FIFO dolu. DOGRU CALISIYOR.\n\n");
+        $display(" => FIFO RX full flag'i 1, yani RX FIFO dolu. DOGRU CALISIYOR.\n\n\n\n\n\n");
         basari += 1;
-    end else $error(" => FIFO RX full flag'i 0, yani RX FIFO dolu degil. YANLIS CALISIYOR.\n\n");
+    end else $error(" => FIFO RX full flag'i 0, yani RX FIFO dolu degil. YANLIS CALISIYOR.\n\n\n\n\n\n");
 
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -462,10 +465,10 @@ module QSPI_Master_tb;
     else $error(" => RX FIFO bosken okunmaya calisildiginda hata flag'i 0001 degil, yani YANLIS CALISIYOR.");
 
     if(dut.QSPI_STA[9] == 1)begin
-        $display(" => TX FIFO doluyken yazilmaya calisildiginda hata flag'i 1, yani DOGRU CALISIYOR.\n\n");
+        $display(" => TX FIFO doluyken yazilmaya calisildiginda hata flag'i 1, yani DOGRU CALISIYOR.\n\n\n\n\n\n");
         basari += 1;
     end
-    else $error(" => TX FIFO doluyken yazilmaya calisildiginda hata flag'i 0010 degil, yani YANLIS CALISIYOR.\n\n");
+    else $error(" => TX FIFO doluyken yazilmaya calisildiginda hata flag'i 0010 degil, yani YANLIS CALISIYOR.\n\n\n\n\n\n");
 
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -486,13 +489,15 @@ module QSPI_Master_tb;
     else $error(" => TX FIFO'nun sayaci ve isaretcileri sifir degil, yani YANLIS CALISIYOR.");
 
     if(!(dut.fifo_rx_cnt && dut.rx_wr_ptr && dut.rx_rd_ptr))begin
-        $display(" => RX FIFO'nun sayaci ve isaretcileri sifirlanmis, yani DOGRU CALISIYOR.\n\n");
+        $display(" => RX FIFO'nun sayaci ve isaretcileri sifirlanmis, yani DOGRU CALISIYOR.\n\n\n\n\n\n");
         basari += 1;
     end
-    else $error(" => RX FIFO'nun sayaci ve isaretcileri sifir degil, yani YANLIS CALISIYOR.\n\n");
+    else $error(" => RX FIFO'nun sayaci ve isaretcileri sifir degil, yani YANLIS CALISIYOR.\n\n\n\n\n\n");
 
 
     $display("TEST 1 TAMAMLANDI   %d basarili, %d basarisiz\n", basari, 8-basari);
+    toplam_basari += basari;
+    toplam_basarisiz += (8 - basari);
 
     basari = 0; // basari sayacini sifirliyoruz.
 
@@ -514,11 +519,11 @@ module QSPI_Master_tb;
     $display("\n==========================================================================");
     $display("=== TEST 2: Flash memory simulasyon modeli ile gercek senaryo testleri ===");
     $display("==========================================================================\n");
-    
+
 
 
     //-----------------------------------------------------------------------------------------------------------------
-    // TEST 2.1: İlk olarak QSPI modülünün flash bellekle başarılı bir şekilde bağlandığını ve temel 
+    // TEST 2.1: İlk olarak QSPI modülünün flash bellekle başarılı bir şekilde bağlandığını ve temel
     // komutları doğru şekilde gerçekleştirebildiğini göstermek için flash belleğin JEDEC bilgisini okuyacağız.
     //-----------------------------------------------------------------------------------------------------------------
     $display("---------------------------------------------------------");
@@ -539,11 +544,11 @@ module QSPI_Master_tb;
 
     $display("JEDEC ID: 0x%06X (beklenen: 0x20BA19)", read_data[23:0]);
     if(read_data[23:0] == 24'h20_BA_19)begin
-        $display("OKUMA BASARILI!");
+        $display("OKUMA BASARILI!\n\n\n\n");
         basari += 1;
     end
     else
-        $error("OKUMA BASARISIZ, FLASH MODEL BAGLANTISINDA SORUN VAR!");
+        $error("OKUMA BASARISIZ, FLASH MODEL BAGLANTISINDA SORUN VAR!\n\n\n\n");
 
 
 
@@ -557,7 +562,7 @@ module QSPI_Master_tb;
     $display("----------------------------------------\n");
 
     ppb_clean(); // PPB'leri temizleyelim, böylece tüm sektörler korumasız olsun.
-    
+
     Clear_Flag_Status(); // Flag durum register'ını temizle 01010000
     WREN(); // Yazma izni ver 00000110
 
@@ -568,7 +573,7 @@ module QSPI_Master_tb;
 
     polling_transaction_finish(); // Transaction'ın tamamlanmasını bekle
     polling_RDSR1_WIP_clear(); // WIP bitinin temizlenmesini bekle
-
+    $display("Sector silme islemi tamamlandi. Silinen bolgedeki veriler artik 0xFF.\n\n\n\n\n\n");
 
 
 
@@ -598,7 +603,7 @@ module QSPI_Master_tb;
     axi_write(QSPI_FCR, 3); // Tekrar kullanabilmek için TX FIFO flush
     polling_RDSR1_WIP_clear(); // WIP bitinin temizlenmesini bekle
 
-    $display("--- Islem tamamlandi, TX FIFO'da kalan veri: %d  \n", dut.fifo_tx_cnt);
+    $display("--- Islem tamamlandi, TX FIFO'da kalan veri: %d  \n\n", dut.fifo_tx_cnt);
 
 
 
@@ -615,12 +620,12 @@ module QSPI_Master_tb;
     // Sayfa Programlama (Page Program - x1)
     //                     clr | prescaler | address | data_size | dummy | r_w | data_mode | instr_val
     axi_write(QSPI_CCR, 32'b0_____001011________1______11111111____00000____1_______01_______00000010);
-  
+
     polling_transaction_finish(); // Transaction'ın tamamlanmasını bekle
     axi_write(QSPI_FCR, 3); // Tekrar kullanabilmek için TX FIFO flush
     polling_RDSR1_WIP_clear(); // WIP bitinin temizlenmesini bekle
 
-    $display("--- Islem tamamlandi, TX FIFO'da kalan veri: %d  \n", dut.fifo_tx_cnt);
+    $display("--- Islem tamamlandi, TX FIFO'da kalan veri: %d  \n\n\n\n\n", dut.fifo_tx_cnt);
 
 
     axi_write(QSPI_FCR, 3);
@@ -700,9 +705,27 @@ module QSPI_Master_tb;
     axi_write(QSPI_FCR, 3); // FIFO'ları temizliyoruz
 
 
-    $display("TEST 2 TAMAMLANDI   %d basarili, %d basarisiz\n", basari, 4-basari);
-    $finish;
+    $display("TEST 2 TAMAMLANDI   %d basarili, %d basarisiz\n\n\n\n\n\n\n", basari, 4-basari);
 
+    toplam_basari += basari;
+    toplam_basarisiz += (4 - basari);
+
+
+    $display("----------------------------------------------------------------------");
+    $display("---------------------- BUTUN TESTLER TAMAMLANDI ----------------------");
+    $display("----------------------------------------------------------------------\n");
+
+    $display("Toplam basarili test sayisi: %d", toplam_basari);
+    $display("Toplam basarisiz test sayisi: %d\n", toplam_basarisiz);
+    if(toplam_basari == 12)begin
+        $display("TUM TESTLER BASARILI!\n");
+    end else begin
+        $display("BAZI TESTLER BASARISIZ OLDU\n");
+    end
+    $display("----------------------------------------------------------------------");
+    $display("----------------------------------------------------------------------");
+
+    $finish;
 end
 
 endmodule
