@@ -92,7 +92,7 @@
 #    "/home/stradale/Documents/YTU_YODA_KYBER/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv"
 #    "/home/stradale/Documents/YTU_YODA_KYBER/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv"
 #    "/home/stradale/Documents/YTU_YODA_KYBER/main_codes/rtl/desgin_sources/fpga_top.sv"
-#    "/home/stradale/Documents/YTU_YODA_KYBER/main_codes/constraint/basys3_soc.xdc"
+#    "/home/stradale/Documents/YTU_YODA_KYBER/main_codes/constraint/nexys_a7_soc.xdc"
 #
 #*****************************************************************************************
 
@@ -175,7 +175,7 @@ proc checkRequiredFiles { origin_dir} {
  "[file normalize "$origin_dir/../main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv"]"\
  "[file normalize "$origin_dir/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv"]"\
  "[file normalize "$origin_dir/../main_codes/rtl/desgin_sources/fpga_top.sv"]"\
- "[file normalize "$origin_dir/../main_codes/constraint/basys3_soc.xdc"]"\
+ "[file normalize "$origin_dir/../main_codes/constraint/nexys_a7_soc.xdc"]"\
   ]
   foreach ifile $files {
     if { ![file isfile $ifile] } {
@@ -265,7 +265,7 @@ if { $validate_required } {
 }
 
 # Create project
-create_project ${_xil_proj_name_} ./${_xil_proj_name_} -part xc7a35tcpg236-1
+create_project ${_xil_proj_name_} ./${_xil_proj_name_} -part xc7a100tcsg324-1
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]
@@ -275,7 +275,7 @@ set proj_dir [get_property directory [current_project]]
 
 # Set project properties
 set obj [current_project]
-set_property -name "board_part" -value "digilentinc.com:basys3:part0:1.2" -objects $obj
+set_property -name "board_part" -value "digilentinc.com:nexys-a7-100t:part0:1.3" -objects $obj
 set_property -name "compxlib.funcsim" -value "1" -objects $obj
 set_property -name "compxlib.modelsim_compiled_library_dir" -value "" -objects $obj
 set_property -name "compxlib.overwrite_libs" -value "0" -objects $obj
@@ -300,7 +300,7 @@ set_property -name "legacy_ip_repo_paths" -value "" -objects $obj
 set_property -name "local_ip_repo_leaf_dir_name" -value "ip_repo" -objects $obj
 set_property -name "mem.enable_memory_map_generation" -value "1" -objects $obj
 set_property -name "noc_phases" -value "" -objects $obj
-set_property -name "platform.board_id" -value "basys3" -objects $obj
+set_property -name "platform.board_id" -value "nexys_a7" -objects $obj
 set_property -name "platform.default_output_type" -value "undefined" -objects $obj
 set_property -name "platform.design_intent.datacenter" -value "undefined" -objects $obj
 set_property -name "platform.design_intent.embedded" -value "undefined" -objects $obj
@@ -492,9 +492,9 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/../main_codes/constraint/basys3_soc.xdc"]"
+set file "[file normalize "$origin_dir/../main_codes/constraint/nexys_a7_soc.xdc"]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
-set file "$origin_dir/../main_codes/constraint/basys3_soc.xdc"
+set file "$origin_dir/../main_codes/constraint/nexys_a7_soc.xdc"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
@@ -609,7 +609,7 @@ catch {
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
-    create_run -name synth_1 -part xc7a35tcpg236-1 -flow {Vivado Synthesis 2025} -strategy "Vivado Synthesis Defaults" -report_strategy {No Reports} -constrset constrs_1
+    create_run -name synth_1 -part xc7a100tcsg324-1 -flow {Vivado Synthesis 2025} -strategy "Vivado Synthesis Defaults" -report_strategy {No Reports} -constrset constrs_1
 } else {
   set_property strategy "Vivado Synthesis Defaults" [get_runs synth_1]
   set_property flow "Vivado Synthesis 2025" [get_runs synth_1]
@@ -684,7 +684,7 @@ current_run -synthesis [get_runs synth_1]
 
 # Create 'impl_1' run (if not found)
 if {[string equal [get_runs -quiet impl_1] ""]} {
-    create_run -name impl_1 -part xc7a35tcpg236-1 -flow {Vivado Implementation 2025} -strategy "Vivado Implementation Defaults" -report_strategy {No Reports} -constrset constrs_1 -parent_run synth_1
+    create_run -name impl_1 -part xc7a100tcsg324-1 -flow {Vivado Implementation 2025} -strategy "Vivado Implementation Defaults" -report_strategy {No Reports} -constrset constrs_1 -parent_run synth_1
 } else {
   set_property strategy "Vivado Implementation Defaults" [get_runs impl_1]
   set_property flow "Vivado Implementation 2025" [get_runs impl_1]

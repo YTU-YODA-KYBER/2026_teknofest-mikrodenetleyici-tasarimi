@@ -32,25 +32,21 @@ clk_wiz_0 clk_wizard_inst (
 );
 
 // ----------------------------------------------------------------
-// 2. RESET: Basys3 butonu active-HIGH → invert + PLL lock koşulu
+// 2. RESET: ACTIVE-LOW CPU_RESETN
 // ----------------------------------------------------------------
-logic sys_rst_n;
-assign sys_rst_n = ~sys_rst_btn;  // buton basılı = 0 (active-low)
-
 logic rst_sync_0, rst_sync_1;
-
-always_ff @(posedge clk_50mhz or negedge sys_rst_n) begin
-    if (!sys_rst_n) begin
+always_ff @(posedge clk_50mhz or negedge sys_rst_btn) begin
+    if (!sys_rst_btn) begin
         rst_sync_0 <= 1'b0;
         rst_sync_1 <= 1'b0;
     end else begin
-        rst_sync_0 <= clk_locked;  // PLL kilitlenmeden reset kalkmasın
+        rst_sync_0 <= clk_locked;
         rst_sync_1 <= rst_sync_0;
     end
 end
 
 logic rst_n;
-assign rst_n = rst_sync_1;  // tasarıma giden temiz reset
+assign rst_n = rst_sync_1;
 
 // ----------------------------------------------------------------
 // 3. GPIO: 32-bit port'u 16-bit Basys3 pinlerine uyarla
