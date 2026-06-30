@@ -433,9 +433,11 @@ module QSPI_Master_AXI4_Lite(
                                 if(to_do_list[0]) to_do_list[0] <= 0;
                                 else if(to_do_list[1]) begin
                                     to_do_list[1] <= 0;
-                                    if(QSPI_CCR[9:8] == 3) data_mode <= 4;
-                                    else data_mode <= QSPI_CCR[9:8];
-                                    r_w <= QSPI_CCR[10];
+                                    if(|QSPI_CCR[9:8]) begin           
+                                        if(QSPI_CCR[9:8] == 3) data_mode <= 4;
+                                        else data_mode <= QSPI_CCR[9:8];
+                                        r_w <= QSPI_CCR[10];
+                                    end
                                 end
                                 else if(to_do_list[2]) to_do_list[2] <= 0;
                                 else to_do_list <= 0;

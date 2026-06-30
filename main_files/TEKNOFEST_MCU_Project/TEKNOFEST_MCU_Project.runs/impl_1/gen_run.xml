@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1782304716">
+  <File Type="NOC_SOLUTION_FILE" Name="fpga_top.ncr"/>
+  <File Type="NOC_TRAFFIC_SPEC_FILE" Name="fpga_top.nts"/>
+  <File Type="PL_UNMASK_RCDO_FILE" Name="fpga_top_pld_unmask.rcdo"/>
+  <File Type="PL_UNMASK_MARKER_RCDO_FILE" Name="fpga_top_pld_unmask_markers.rcdo"/>
+  <File Type="PL_MASK_RCDO_FILE" Name="fpga_top_pld_mask.rcdo"/>
+  <File Type="PL_MARKER_RCDO_FILE" Name="fpga_top_pld_markers.rcdo"/>
+  <File Type="PL-CLEAR-RCDO-FILE" Name="fpga_top_pld_clear.rcdo"/>
+  <File Type="PL_UNMASK_RNPI_FILE" Name="fpga_top_pld_unmask.rnpi"/>
+  <File Type="PL_SHUTDOWN_RNPI_FILE" Name="fpga_top_pld_shutdown.rnpi"/>
+  <File Type="PL_MASK_RNPI_FILE" Name="fpga_top_pld_mask.rnpi"/>
+  <File Type="PL_MARKER_RNPI_FILE" Name="fpga_top_pld_markers.rnpi"/>
+  <File Type="BOOT_MARKER_RNPI_FILE" Name="fpga_top_boot_markers.rnpi"/>
+  <File Type="PL_RNPI_FILE" Name="fpga_top_pld.rnpi"/>
+  <File Type="BOOT_RNPI_FILE" Name="fpga_top_boot.rnpi"/>
+  <File Type="MARKER-RNPI-FILE" Name="fpga_top_markers.rnpi"/>
+  <File Type="PL-RCDO-FILE" Name="fpga_top_pld.rcdo"/>
+  <File Type="MARKER-RCDO-FILE" Name="fpga_top_markers.rcdo"/>
+  <File Type="RCDO-FILE" Name="fpga_top.rcdo"/>
+  <File Type="PL-LTX-FILE" Name="fpga_top_pld.ltx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="fpga_top_timing_summary_postroute_physopted.rpx"/>
+  <File Type="BITSTR-MSK" Name="fpga_top.msk"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="fpga_top_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="fpga_top_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW" Name="fpga_top_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="fpga_top_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="fpga_top_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="fpga_top_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="fpga_top_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="fpga_top_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC" Name="fpga_top_drc_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="fpga_top_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="fpga_top_power_routed.rpx"/>
+  <File Type="ROUTE-PWR" Name="fpga_top_power_routed.rpt"/>
+  <File Type="BG-DRC" Name="fpga_top.drc"/>
+  <File Type="ROUTE-STATUS-PB" Name="fpga_top_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="fpga_top_route_status.rpt"/>
+  <File Type="BITSTR-BMM" Name="fpga_top_bd.bmm"/>
+  <File Type="ROUTE-TIMING-RPX" Name="fpga_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="fpga_top_timing_summary_routed.rpt"/>
+  <File Type="BG-BGN" Name="fpga_top.bgn"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="fpga_top_methodology_drc_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="fpga_top_reports.tcl"/>
+  <File Type="PA-TCL" Name="fpga_top.tcl"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="fpga_top_methodology_drc_routed.rpt"/>
+  <File Type="PLACE-CTRL" Name="fpga_top_control_sets_placed.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="fpga_top_timing_summary_postroute_physopted.rpt"/>
+  <File Type="BITSTR-MMI" Name="fpga_top.mmi"/>
+  <File Type="BITSTR-NKY" Name="fpga_top.nky"/>
+  <File Type="PLACE-UTIL" Name="fpga_top_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="fpga_top_utilization_placed.pb"/>
+  <File Type="OPT-DRC" Name="fpga_top_drc_opted.rpt"/>
+  <File Type="PLACE-IO" Name="fpga_top_io_placed.rpt"/>
+  <File Type="BG-BIN" Name="fpga_top.bin"/>
+  <File Type="BITSTR-RBT" Name="fpga_top.rbt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="fpga_top_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="fpga_top_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="fpga_top_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="fpga_top_bus_skew_postroute_physopted.pb"/>
+  <File Type="RDI-RDI" Name="fpga_top.vdi"/>
+  <File Type="PDI-FILE" Name="fpga_top.pdi"/>
+  <File Type="BG-BIT" Name="fpga_top.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <File Type="BITSTR-SYSDEF" Name="fpga_top.sysdef"/>
+  <File Type="MMI-FILE" Name="fpga_top.mmi"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="fpga_top.ltx"/>
+  <File Type="BIF-FILE" Name="fpga_top.bif"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="BOOT-LTX-FILE" Name="fpga_top_boot.ltx"/>
+  <File Type="OPT-HWDEF" Name="fpga_top.hwdef"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="fpga_top_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-DCP" Name="fpga_top_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="fpga_top_routed_error.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="fpga_top_routed_bb.dcp"/>
+  <File Type="ROUTE-TIMING-PB" Name="fpga_top_timing_summary_routed.pb"/>
+  <File Type="OPT-DCP" Name="fpga_top_opt.dcp"/>
+  <File Type="PLACE-DCP" Name="fpga_top_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="fpga_top_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="fpga_top_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="fpga_top_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="fpga_top_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="fpga_top_postroute_physopt_bb.dcp"/>
+  <File Type="BOOT-PDI-FILE" Name="fpga_top_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="fpga_top_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="fpga_top.rcfi"/>
+  <File Type="CFI_FILE" Name="fpga_top.cfi"/>
+  <File Type="RNPI_FILE" Name="fpga_top.rnpi"/>
+  <File Type="NPI_FILE" Name="fpga_top.npi"/>
+  <File Type="RBD_FILE" Name="fpga_top.rbd"/>
+  <File Type="ROUTE-RQS" Name="fpga_top_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="fpga_top_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="BOOT-BIF-FILE" Name="fpga_top_boot.bif"/>
+  <File Type="PL-BIF-FILE" Name="fpga_top_pld.bif"/>
+  <File Type="LTX-FILE" Name="fpga_top.ltx"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../main_codes/rtl/include/CPU/assertions.svh">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/ip/clk_wiz_0/clk_wiz_0.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Top_Module/Top_module.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/axi_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/include/CPU/axi_typedef.svh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/bizim_kodlar/axi_req_rsp_ports.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Memory/Boot_ROM_def/boot_rom_def.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Memory/RAM_def/bram_def.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/cf_math_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_aligner.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu_div.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_apu_core_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_apu_disp.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_clock_gate.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_core.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_fpu_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ex_stage.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ff_one.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_fifo.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/fpnew/fpnew_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_fp_wrapper.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_hwloop_regs.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_int_controller.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_mult.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_pkg.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/include/CPU/obi_typedef.svh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/bizim_kodlar/obi_req_rsp_ports.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_popcnt.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_buffer.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_controller.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_register_file_ff.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_top.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/fpnew/fpnew_opgroup_block.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/fpnew/fpnew_opgroup_fmt_slice.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/fpnew/fpnew_top.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/Memory/Instrurction_RAM_AXI4-Lite_Wrapper/instr_bram_axi_ctrl.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/lzc.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/include/CPU/registers.svh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../main_codes/rtl/desgin_sources/fpga_top.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="fpga_top"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../main_codes/constraint/basys3_soc.xdc">
+      <FileInfo>
+        <Attr Name="Library" Val="xil_defaultlib"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+    <Step Id="write_device_image"/>
+  </Strategy>
+</GenRun>

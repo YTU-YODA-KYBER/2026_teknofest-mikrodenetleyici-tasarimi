@@ -1,0 +1,220 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Wed Jun 24 15:40:53 2026
+| Host         : deniz-pc running 64-bit Ubuntu 26.04 LTS
+| Command      : report_control_sets -verbose -file fpga_top_control_sets_placed.rpt
+| Design       : fpga_top
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |   142 |
+|    Minimum number of control sets                        |   142 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   241 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |   142 |
+| >= 0 to < 4        |    15 |
+| >= 4 to < 6        |    11 |
+| >= 6 to < 8        |    12 |
+| >= 8 to < 10       |     9 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    94 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               3 |            3 |
+| No           | No                    | Yes                    |             299 |          129 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              32 |            5 |
+| Yes          | No                    | Yes                    |            3081 |         1267 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------------------------+--------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------------+----------------+--------------+
+|          Clock Signal          |                                                 Enable Signal                                                |                             Set/Reset Signal                            | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------+--------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------------+----------------+--------------+
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[6]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/i2c_master_inst/sda_out_val6_out                                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[7]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/tx0_out                                                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[0]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/io1_val_i_1_n_0                                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/io0_val_i_1_n_0                                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[1]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[2]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[3]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[4]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/UART_RDR[5]                                                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              1 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/io2_val_i_1_n_0                                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              2 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 |                                                                                                              | sys_rst_btn_IBUF                                                        |                1 |              2 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 |                                                                                                              |                                                                         |                3 |              3 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/r_w_i_1_n_0                                                                        | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              4 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/tx_shift_cnt[3]_i_1_n_0                                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              4 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/i2c_master_inst/FSM_sequential_current_state[3]_i_1_n_0                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                4 |              4 |         1.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/rx_shift_cnt[0]                                                                        | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              4 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_yz_inst/tx_shift_cnt[3]_i_1__0_n_0                                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              4 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_yz_inst/rx_shift_cnt[0]                                                                        | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              4 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/regfile_we_ex_o_reg_2[0]                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              5 |         5.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/FSM_sequential_mulh_CS_reg[1]_4                              | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              5 |         2.50 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/E[0]                                                         | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              5 |         2.50 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/data_req_ex_o_reg_0[0]                                 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              5 |         5.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/dummy_cycle[4]_i_1_n_0                                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              5 |         2.50 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/data_req_ex_o_reg_1[0]                                              | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                5 |              6 |         1.20 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/alu_i/alu_div_i/Cnt_DP[5]_i_1_n_0                                   | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                5 |              6 |         1.20 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/tx_wr_ptr[5]_i_1_n_0                                                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              6 |         6.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/tx_rd_ptr[5]_i_1_n_0                                                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              6 |         3.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/shift_cnt[5]_i_1_n_0                                                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                3 |              6 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/ctrl_fsm_cs_reg[3]_4[0]                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                3 |              6 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/rx_wr_ptr[5]_i_1_n_0                                                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              6 |         6.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/rx_rd_ptr[5]_i_1_n_0                                                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              6 |         3.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/E[0]                                                   | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                3 |              6 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/shift_byte[31]_i_1_n_0                                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                5 |              7 |         1.40 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/fifo_tx_cnt[6]_i_1_n_0                                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                3 |              7 |         2.33 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/fifo_rx_cnt[6]_i_1_n_0                                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                3 |              7 |         2.33 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/awready_reg_2[0]                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                3 |              8 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/awready_reg_4[0]                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                4 |              8 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/i2c_master_inst/I2C_RDR[15]_i_1_n_0                                                                 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                3 |              8 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/i2c_master_inst/I2C_RDR[7]_i_1_n_0                                                                  | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              8 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/shift_byte[7]_i_1__0_n_0                                                           | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                5 |              8 |         1.60 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/i2c_master_inst/I2C_RDR[23]_i_1_n_0                                                                 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                2 |              8 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/i2c_master_inst/I2C_RDR[31]_i_1_n_0                                                                 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                1 |              8 |         8.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/i2c_master_inst/shift_byte[7]_i_1_n_0                                                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                4 |              8 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/data_byte_size[8]_i_1_n_0                                                          | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                4 |              9 |         2.25 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/data_bridge/i_fifo_rsp_mux/FSM_onehot_rstate_reg[0][0]                                     | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                4 |             11 |         2.75 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/data_misaligned_ex_o_reg_7[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                5 |             16 |         3.20 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_b_ex_o_reg[1]_2[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             16 |         1.78 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_yz_inst/rx_tick_cnt2                                                                           | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                6 |             16 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/shift_byte[24]_i_1_n_0                                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             17 |         2.12 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/read_pointer_q[0]_i_5[0]                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             18 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_b_ex_o_reg[11]_1[0]                                     | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             19 |         2.11 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/uart_gu_inst/rx_tick_cnt1                                                                           | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                7 |             21 |         3.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/csr_access_ex_o_reg_0[0]                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                7 |             24 |         3.43 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/if_stage_i/prefetch_buffer_i/instruction_obi_i/gen_no_trans_stable.obi_addr_q0 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             27 |         1.93 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/data_misaligned_ex_o_reg_3                                          | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               11 |             28 |         2.55 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/if_stage_i/prefetch_buffer_i/fifo_i/E[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               17 |             30 |         1.76 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/csr_op_ex_o_reg[1][0]                                  | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               17 |             31 |         1.82 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/ctrl_fsm_cs_reg[3]_5[0]                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               19 |             31 |         1.63 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/awready_reg_6[0]                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             31 |         3.88 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/if_stage_i/aligner_i/pc_q[0]                                                   | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             31 |         2.38 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_9[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_0[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_1[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_16[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_2[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_8[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_7[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_6[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_5[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_4[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_3[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_2[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_19[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             32 |         3.56 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_18[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_17[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/csr_op_ex_o_reg[0]_32[0]                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/alu_operand_b_ex_o_reg[0][0]                           | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/instr_bram_ctrl_inst/pending_r                                                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/data_bridge/i_fifo_rsp_mux/data_we_q_reg[0]                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               25 |             32 |         1.28 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/data_bridge/i_fifo_rsp_mux/arready_reg_9[0]                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               16 |             32 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/data_bridge/i_fifo_rsp_mux/arready_reg_6[0]                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/data_bridge/i_fifo_rsp_mux/arready_reg_3[0]                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               17 |             32 |         1.88 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/if_stage_i/prefetch_buffer_i/fifo_i/mem_q[0]                                   | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/if_stage_i/prefetch_buffer_i/fifo_i/mem_q[0][31]_i_1_n_0                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/prepost_useincr_ex_o_reg[0]                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               17 |             32 |         1.88 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_3[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/controller_i/FSM_sequential_mulh_CS_reg[2]_1[0]                     | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               23 |             32 |         1.39 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_we_lsu_reg_2[0]                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_we_lsu_reg_1[0]                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_we_lsu_reg_0[0]                                             | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_7[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_6[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_5[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               11 |             32 |         2.91 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[1]_4[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               10 |             32 |         3.20 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_b_ex_o_reg[0]_1[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/data_misaligned_ex_o_reg_4[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             32 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/awready_reg_7[0]                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                6 |             32 |         5.33 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_15[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               16 |             32 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/timer_inst/TIM_PRE[31]_i_1_n_0                                                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             32 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/arready_reg_0[0]                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               10 |             32 |         3.20 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/arready_reg[0]                                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               11 |             32 |         2.91 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_b_ex_o_reg[1]_1[1]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_b_ex_o_reg[1]_1[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               11 |             32 |         2.91 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_b_ex_o_reg[11]_0[0]                                     | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/data_misaligned_ex_o_reg_5[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             32 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_a_ex_o_reg[7]_3[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_a_ex_o_reg[7]_1[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               11 |             32 |         2.91 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/alu_operand_a_ex_o_reg[7]_0[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             32 |         3.56 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/TIM_EVC_reg[0][0]                                                   | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/TIM_CLR_reg[0][0]                                                   | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/QSPI_STA_reg[6]_0[0]                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                7 |             32 |         4.57 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/E[0]                                                                | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             32 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/alu_i/alu_div_i/ARegEn_S                                            | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             32 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/FSM_sequential_mulh_CS_reg[1]_1[0]                           | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               18 |             32 |         1.78 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_14[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_13[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_12[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_11[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             32 |         3.56 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_10[0]                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_1[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               12 |             32 |         2.67 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/regfile_waddr_lsu_reg[0]_0[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             32 |         2.46 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/FSM_sequential_mulh_CS_reg[1]_3[0]                           | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/QSPI_FCR[31]_i_1_n_0                                                               | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             32 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/timer_inst/TIM_CNT[31]_i_1_n_0                                                                      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               10 |             32 |         3.20 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/fifo_rx_wdata__0[0]                                                                |                                                                         |                5 |             32 |         6.40 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/timer_inst/TIM_EVN[0]_i_1_n_0                                                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                8 |             32 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/mhpmevent_minstret_o_reg_0[1]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             32 |         3.56 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/mhpmevent_minstret_o_reg_0[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               15 |             32 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/gen_mcountinhibit[0].gen_implemented.mcountinhibit_q_reg[0][1]      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |                9 |             32 |         3.56 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/gen_mcountinhibit[0].gen_implemented.mcountinhibit_q_reg[0][0]      | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               10 |             32 |         3.20 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/data_misaligned_ex_o_reg_6[0]                                       | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             32 |         2.29 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/awready_reg_5[0]                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               13 |             34 |         2.62 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/awready_reg_3[0]                                                    | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               14 |             34 |         2.43 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/FIFO_RX_reg_0_63_0_2_i_1_n_0                                                       |                                                                         |               11 |             44 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/qspi_master_inst/FIFO_TX_reg_0_63_0_2_i_1_n_0                                                       |                                                                         |               11 |             44 |         4.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/alu_i/alu_div_i/BReg_DP[31]_i_1_n_0                                 | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               32 |             64 |         2.00 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/if_stage_i/prefetch_buffer_i/prefetch_controller_i/E[0]                        | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               40 |             65 |         1.62 |
+|  clk_wizard_inst/inst/clk_out1 | soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/FSM_sequential_mulh_CS_reg[1]_2[0]                           | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |               31 |             66 |         2.13 |
+|  clk_wizard_inst/inst/clk_out1 |                                                                                                              | soc_inst/cpu_inst/CORE/core_i/id_stage_i/register_file_i/rst_sync_1_reg |              128 |            297 |         2.32 |
++--------------------------------+--------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

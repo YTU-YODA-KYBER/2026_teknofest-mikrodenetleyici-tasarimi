@@ -1,0 +1,989 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Wed Jun 24 15:38:38 2026
+# Process ID         : 26308
+# Current directory  : /home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1
+# Command line       : vivado -log fpga_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fpga_top.tcl
+# Log file           : /home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1/fpga_top.vds
+# Journal file       : /home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1/vivado.jou
+# Running On         : deniz-pc
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 26.04 LTS
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 430.334 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 15937 MB
+# Swap memory        : 16165 MB
+# Total Virtual      : 32102 MB
+# Available Virtual  : 27927 MB
+#-----------------------------------------------------------
+source fpga_top.tcl -notrace
+Command: synth_design -top fpga_top -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 26488
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2218.816 ; gain = 482.188 ; free physical = 5668 ; free virtual = 25361
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'fpga_top' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/fpga_top.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [/home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1/.Xil/Vivado-26308-deniz-pc/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [/home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1/.Xil/Vivado-26308-deniz-pc/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'top_module' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'boot_rom_axi_ctrl' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv:1]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter INIT_FILE bound to: firmware.hex - type: string 
+INFO: [Synth 8-6157] synthesizing module 'boot_rom' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Boot_ROM_def/boot_rom_def.sv:1]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter INIT_FILE bound to: firmware.hex - type: string 
+CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'firmware.hex'; please make sure the file is added to project and has read permission, ignoring [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Boot_ROM_def/boot_rom_def.sv:21]
+INFO: [Synth 8-6155] done synthesizing module 'boot_rom' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Boot_ROM_def/boot_rom_def.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'boot_rom_axi_ctrl' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'instr_bram_axi_ctrl' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Instrurction_RAM_AXI4-Lite_Wrapper/instr_bram_axi_ctrl.sv:1]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'bram' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/RAM_def/bram_def.sv:1]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'bram' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/RAM_def/bram_def.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'instr_bram_axi_ctrl' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Instrurction_RAM_AXI4-Lite_Wrapper/instr_bram_axi_ctrl.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'data_bram_axi_ctrl' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv:1]
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter ADDR_WIDTH bound to: 11 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'data_bram_axi_ctrl' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_obi_to_axi_wrapper' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:6]
+	Parameter boot_addr bound to: 0 - type: integer 
+	Parameter mtvec_addr bound to: 520093696 - type: integer 
+	Parameter dm_halt_addr bound to: 788529152 - type: integer 
+	Parameter hart_id bound to: 0 - type: integer 
+	Parameter dm_exception_addr bound to: 1056964608 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_top' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_top.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_core' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_core.sv:31]
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter FPU_ADDMUL_LAT bound to: 0 - type: integer 
+	Parameter FPU_OTHERS_LAT bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter NUM_MHPMCOUNTERS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_sleep_unit' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv:56]
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_clock_gate' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_clock_gate.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_clock_gate' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_clock_gate.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_sleep_unit' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv:56]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_if_stage' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv:28]
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter PULP_OBI bound to: 0 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv:132]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv:138]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv:144]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv:159]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_prefetch_buffer' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_buffer.sv:27]
+	Parameter PULP_OBI bound to: 0 - type: integer 
+	Parameter COREV_PULP bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_prefetch_controller' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_controller.sv:40]
+	Parameter PULP_OBI bound to: 0 - type: integer 
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_prefetch_controller' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_controller.sv:40]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_fifo' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_fifo.sv:15]
+	Parameter FALL_THROUGH bound to: 1'b0 
+	Parameter DATA_WIDTH bound to: 32'b00000000000000000000000000100000 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_fifo.sv:117]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_fifo' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_fifo.sv:15]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_obi_interface' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv:38]
+	Parameter TRANS_STABLE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_obi_interface' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv:38]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_prefetch_buffer' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_buffer.sv:27]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_aligner' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_aligner.sv:23]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_aligner.sv:102]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_aligner' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_aligner.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_compressed_decoder' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:27]
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:52]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:55]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:195]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:272]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:339]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:436]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_compressed_decoder' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv:27]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_if_stage' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_id_stage' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:30]
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter N_HWLP bound to: 2 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter USE_PMP bound to: 0 - type: integer 
+	Parameter A_EXTENSION bound to: 0 - type: integer 
+	Parameter APU bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter FPU_ADDMUL_LAT bound to: 0 - type: integer 
+	Parameter FPU_OTHERS_LAT bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter APU_NARGS_CPU bound to: 3 - type: integer 
+	Parameter APU_WOP_CPU bound to: 6 - type: integer 
+	Parameter APU_NDSFLAGS_CPU bound to: 15 - type: integer 
+	Parameter APU_NUSFLAGS_CPU bound to: 5 - type: integer 
+	Parameter DEBUG_TRIGGER_EN bound to: 1 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:525]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:574]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:610]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:638]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:749]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:755]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:764]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:770]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:785]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_register_file' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_register_file_ff.sv:30]
+	Parameter ADDR_WIDTH bound to: 6 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_register_file' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_register_file_ff.sv:30]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_decoder' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:28]
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter A_EXTENSION bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter FPU_ADDMUL_LAT bound to: 0 - type: integer 
+	Parameter FPU_OTHERS_LAT bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter USE_PMP bound to: 0 - type: integer 
+	Parameter APU_WOP_CPU bound to: 6 - type: integer 
+	Parameter DEBUG_TRIGGER_EN bound to: 1 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:293]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:342]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:376]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:401]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:487]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:925]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:2683]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:2704]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:2775]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_decoder' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_controller' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:31]
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:330]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:541]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:677]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:932]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:1054]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:1122]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_controller' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv:31]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_int_controller' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_int_controller.sv:24]
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_int_controller' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_int_controller.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_id_stage' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv:30]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_ex_stage' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ex_stage.sv:32]
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter APU_NARGS_CPU bound to: 3 - type: integer 
+	Parameter APU_WOP_CPU bound to: 6 - type: integer 
+	Parameter APU_NDSFLAGS_CPU bound to: 15 - type: integer 
+	Parameter APU_NUSFLAGS_CPU bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_alu' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:28]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:139]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:153]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:348]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:416]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:499]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:535]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:554]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:557]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:591]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:593]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:613]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:633]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:653]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_popcnt' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_popcnt.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_popcnt' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_popcnt.sv:25]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:752]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_ff_one' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ff_one.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_ff_one' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ff_one.sv:25]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:863]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_alu_div' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu_div.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_alu_div' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu_div.sv:26]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:931]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_alu' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_mult' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_mult.sv:26]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_mult.sv:140]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_mult.sv:326]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_mult' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_mult.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_ex_stage' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ex_stage.sv:32]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_load_store_unit' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:26]
+	Parameter PULP_OBI bound to: 0 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:332]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_obi_interface__parameterized0' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv:38]
+	Parameter TRANS_STABLE bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_obi_interface__parameterized0' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv:38]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_load_store_unit' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_cs_registers' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:30]
+	Parameter N_HWLP bound to: 2 - type: integer 
+	Parameter APU bound to: 0 - type: integer 
+	Parameter A_EXTENSION bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter USE_PMP bound to: 0 - type: integer 
+	Parameter N_PMP_ENTRIES bound to: 16 - type: integer 
+	Parameter NUM_MHPMCOUNTERS bound to: 1 - type: integer 
+	Parameter COREV_PULP bound to: 0 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter DEBUG_TRIGGER_EN bound to: 1 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:920]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1041]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1044]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_cs_registers' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:30]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_core' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_core.sv:31]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_top' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_top.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'obi_to_axi' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv:9]
+	Parameter ObiCfg[UseRReady] bound to: 1'b0 
+	Parameter ObiCfg[CombGnt] bound to: 1'b0 
+	Parameter ObiCfg[AddrWidth] bound to: 32'b00000000000000000000000000100000 
+	Parameter ObiCfg[DataWidth] bound to: 32'b00000000000000000000000000100000 
+	Parameter ObiCfg[IdWidth] bound to: 32'b00000000000000000000000000000001 
+	Parameter ObiCfg[Integrity] bound to: 1'b0 
+	Parameter ObiCfg[BeFull] bound to: 1'b1 
+	Parameter ObiCfg[OptionalCfg][UseAtop] bound to: 1'b0 
+	Parameter ObiCfg[OptionalCfg][UseMemtype] bound to: 1'b0 
+	Parameter ObiCfg[OptionalCfg][UseProt] bound to: 1'b0 
+	Parameter ObiCfg[OptionalCfg][UseDbg] bound to: 1'b0 
+	Parameter ObiCfg[OptionalCfg][AUserWidth] bound to: 32'b00000000000000000000000000000000 
+	Parameter ObiCfg[OptionalCfg][WUserWidth] bound to: 32'b00000000000000000000000000000000 
+	Parameter ObiCfg[OptionalCfg][RUserWidth] bound to: 32'b00000000000000000000000000000000 
+	Parameter ObiCfg[OptionalCfg][MidWidth] bound to: 32'b00000000000000000000000000000000 
+	Parameter ObiCfg[OptionalCfg][AChkWidth] bound to: 32'b00000000000000000000000000000000 
+	Parameter ObiCfg[OptionalCfg][RChkWidth] bound to: 32'b00000000000000000000000000000000 
+	Parameter MaxRequests bound to: 4 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv:220]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv:225]
+INFO: [Synth 8-6157] synthesizing module 'fifo_v3' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv:13]
+	Parameter FALL_THROUGH bound to: 1'b0 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fifo_v3' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv:13]
+INFO: [Synth 8-6157] synthesizing module 'fifo_v3__parameterized0' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv:13]
+	Parameter FALL_THROUGH bound to: 1'b0 
+	Parameter DEPTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fifo_v3__parameterized0' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv:13]
+INFO: [Synth 8-6155] done synthesizing module 'obi_to_axi' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv:9]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_obi_to_axi_wrapper' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:6]
+WARNING: [Synth 8-7071] port 'axi_instr_arprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:400]
+WARNING: [Synth 8-7071] port 'axi_instr_awprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:400]
+WARNING: [Synth 8-7071] port 'axi_instr_wstrb' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:400]
+WARNING: [Synth 8-7071] port 'axi_data_arprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:400]
+WARNING: [Synth 8-7071] port 'axi_data_awprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:400]
+WARNING: [Synth 8-7023] instance 'cpu_inst' of module 'cv32e40p_obi_to_axi_wrapper' has 43 connections declared, but only 38 given [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:400]
+INFO: [Synth 8-6157] synthesizing module 'AXI4_Interconnect' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'AXI4_Interconnect' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv:1]
+WARNING: [Synth 8-7071] port 'axi_m6_awaddr' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m6_awvalid' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m6_wdata' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m6_wvalid' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m6_bready' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m6_araddr' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m6_arvalid' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m6_rready' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m8_araddr' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m8_arvalid' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7071] port 'axi_m8_rready' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+WARNING: [Synth 8-7023] instance 'interconnect_inst' of module 'AXI4_Interconnect' has 172 connections declared, but only 161 given [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:456]
+INFO: [Synth 8-6157] synthesizing module 'Timer_AXI4_Lite' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv:1]
+INFO: [Synth 8-226] default block is never used [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv:142]
+INFO: [Synth 8-6155] done synthesizing module 'Timer_AXI4_Lite' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'UART_GU_AXI4_Lite' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:169]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:191]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:212]
+INFO: [Synth 8-6155] done synthesizing module 'UART_GU_AXI4_Lite' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'UART_YZ_AXI4_Lite' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:169]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:191]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:212]
+INFO: [Synth 8-6155] done synthesizing module 'UART_YZ_AXI4_Lite' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'I2C_Master_AXI4_Lite' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'IOBUF' [/opt/Vivado/2025.2/Vivado/scripts/rt/data/unisim_comp.v:87566]
+INFO: [Synth 8-6155] done synthesizing module 'IOBUF' (0#1) [/opt/Vivado/2025.2/Vivado/scripts/rt/data/unisim_comp.v:87566]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:166]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:333]
+INFO: [Synth 8-6155] done synthesizing module 'I2C_Master_AXI4_Lite' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'GPIO_AXI4_Lite' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:2]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:86]
+INFO: [Synth 8-6155] done synthesizing module 'GPIO_AXI4_Lite' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'QSPI_Master_AXI4_Lite' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:30]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:383]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:399]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:477]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:502]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:339]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:592]
+INFO: [Synth 8-6155] done synthesizing module 'QSPI_Master_AXI4_Lite' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:30]
+INFO: [Synth 8-6157] synthesizing module 'Instr_Splitter' [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'Instr_Splitter' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'top_module' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'fpga_top' (0#1) [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/fpga_top.sv:1]
+WARNING: [Synth 8-3848] Net rom in module/entity boot_rom does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Memory/Boot_ROM_def/boot_rom_def.sv:18]
+WARNING: [Synth 8-6014] Unused sequential element p_elw_busy_q_reg was removed.  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv:141]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mcountinhibit_n_reg' and it is trimmed from '32' to '4' bits. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1395]
+WARNING: [Synth 8-3936] Found unconnected internal register 'mhpmevent_n_reg[3]' and it is trimmed from '32' to '16' bits. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1396]
+WARNING: [Synth 8-7137] Register gen_mhpmevent[3].gen_implemented.mhpmevent_q_reg[3] in module cv32e40p_cs_registers has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1437]
+WARNING: [Synth 8-7137] Register gen_mcountinhibit[0].gen_implemented.mcountinhibit_q_reg in module cv32e40p_cs_registers has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1425]
+WARNING: [Synth 8-7137] Register gen_mcountinhibit[2].gen_implemented.mcountinhibit_q_reg in module cv32e40p_cs_registers has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1526]
+WARNING: [Synth 8-7137] Register gen_mcountinhibit[3].gen_implemented.mcountinhibit_q_reg in module cv32e40p_cs_registers has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1529]
+WARNING: [Synth 8-3848] Net obi_rsp_o[r][r_optional] in module/entity obi_to_axi does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv:35]
+WARNING: [Synth 8-3848] Net axi_instr_awaddr in module/entity cv32e40p_obi_to_axi_wrapper does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:38]
+WARNING: [Synth 8-3848] Net axi_instr_awvalid in module/entity cv32e40p_obi_to_axi_wrapper does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:40]
+WARNING: [Synth 8-3848] Net axi_instr_wdata in module/entity cv32e40p_obi_to_axi_wrapper does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:44]
+WARNING: [Synth 8-3848] Net axi_instr_wvalid in module/entity cv32e40p_obi_to_axi_wrapper does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:46]
+WARNING: [Synth 8-3848] Net axi_instr_bready in module/entity cv32e40p_obi_to_axi_wrapper does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:50]
+WARNING: [Synth 8-6014] Unused sequential element rx_zero_alert_reg was removed.  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:107]
+WARNING: [Synth 8-7137] Register rx_start_reg in module UART_GU_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:105]
+WARNING: [Synth 8-7137] Register rx_middle_alert_reg in module UART_GU_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:106]
+WARNING: [Synth 8-6014] Unused sequential element rx_zero_alert_reg was removed.  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:107]
+WARNING: [Synth 8-7137] Register rx_start_reg in module UART_YZ_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:105]
+WARNING: [Synth 8-7137] Register rx_middle_alert_reg in module UART_YZ_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv:106]
+WARNING: [Synth 8-6014] Unused sequential element r_w_reg was removed.  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:141]
+WARNING: [Synth 8-7137] Register fifo_rx_wdata_reg in module QSPI_Master_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:519]
+WARNING: [Synth 8-3848] Net cpu_instr_awready in module/entity top_module does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:59]
+WARNING: [Synth 8-3848] Net cpu_instr_wready in module/entity top_module does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:63]
+WARNING: [Synth 8-3848] Net cpu_instr_bresp in module/entity top_module does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:66]
+WARNING: [Synth 8-3848] Net cpu_instr_bvalid in module/entity top_module does not have driver. [/home/stradale/Documents/main_files/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:67]
+WARNING: [Synth 8-7129] Port awaddr[31] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[30] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[29] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[28] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[27] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[26] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[25] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[24] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[23] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[22] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[21] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[20] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[19] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[18] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[17] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[16] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[15] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[14] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[13] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[12] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[11] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[10] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[9] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[8] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[31] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[30] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[29] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[28] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[27] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[26] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[25] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[24] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[23] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[22] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[21] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[20] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[19] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[18] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[17] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[16] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[15] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[14] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[13] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[12] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[11] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[10] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[9] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[8] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[31] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[30] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[29] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[28] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[27] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[26] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[25] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[24] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[23] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[22] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[21] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[20] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[19] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[18] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[17] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[16] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[15] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[14] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[13] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[12] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[11] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[10] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[9] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[8] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[7] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[6] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[5] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port awaddr[4] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[31] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[30] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[29] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[28] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[27] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[26] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[25] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[24] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[23] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[22] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[21] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[20] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[19] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[18] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[17] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wdata[16] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[31] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[30] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[29] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[28] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[27] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[26] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[25] in module GPIO_AXI4_Lite is either unconnected or has no load
+WARNING: [Synth 8-7129] Port araddr[24] in module GPIO_AXI4_Lite is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2393.754 ; gain = 657.125 ; free physical = 5557 ; free virtual = 25245
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2396.723 ; gain = 660.094 ; free physical = 5557 ; free virtual = 25245
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2396.723 ; gain = 660.094 ; free physical = 5557 ; free virtual = 25245
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2399.691 ; gain = 0.000 ; free physical = 5557 ; free virtual = 25244
+INFO: [Netlist 29-17] Analyzing 5 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/stradale/Documents/TEKNOFEST_MCU_Project.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wizard_inst'
+Finished Parsing XDC File [/home/stradale/Documents/TEKNOFEST_MCU_Project.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_wizard_inst'
+Parsing XDC File [/home/stradale/Documents/main_files/main_codes/constraint/basys3_soc.xdc]
+WARNING: [Constraints 18-619] A clock with name 'sys_clk' already exists, overwriting the previous clock with the same name. [/home/stradale/Documents/main_files/main_codes/constraint/basys3_soc.xdc:4]
+Finished Parsing XDC File [/home/stradale/Documents/main_files/main_codes/constraint/basys3_soc.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/stradale/Documents/main_files/main_codes/constraint/basys3_soc.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/fpga_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/fpga_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2498.156 ; gain = 0.000 ; free physical = 5519 ; free virtual = 25227
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 5 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2498.191 ; gain = 0.000 ; free physical = 5519 ; free virtual = 25227
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2498.191 ; gain = 761.562 ; free physical = 5500 ; free virtual = 25218
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2506.160 ; gain = 769.531 ; free physical = 5499 ; free virtual = 25217
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2506.160 ; gain = 769.531 ; free physical = 5499 ; free virtual = 25217
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'rstate_reg' in module 'data_bram_axi_ctrl'
+INFO: [Synth 8-802] inferred FSM for state register 'debug_fsm_cs_reg' in module 'cv32e40p_controller'
+INFO: [Synth 8-802] inferred FSM for state register 'State_SP_reg' in module 'cv32e40p_alu_div'
+INFO: [Synth 8-802] inferred FSM for state register 'mulh_CS_reg' in module 'cv32e40p_mult'
+INFO: [Synth 8-802] inferred FSM for state register 'tx_state_reg' in module 'UART_GU_AXI4_Lite'
+INFO: [Synth 8-802] inferred FSM for state register 'rx_state_reg' in module 'UART_GU_AXI4_Lite'
+INFO: [Synth 8-802] inferred FSM for state register 'tx_state_reg' in module 'UART_YZ_AXI4_Lite'
+INFO: [Synth 8-802] inferred FSM for state register 'rx_state_reg' in module 'UART_YZ_AXI4_Lite'
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'I2C_Master_AXI4_Lite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  R_IDLE |                              001 |                               00
+                  R_WAIT |                              010 |                               01
+                 R_VALID |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rstate_reg' using encoding 'one-hot' in module 'data_bram_axi_ctrl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               HAVERESET |                              001 |                              001
+                 RUNNING |                              010 |                              010
+                  HALTED |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'debug_fsm_cs_reg' using encoding 'one-hot' in module 'cv32e40p_controller'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              001 |                               00
+                  DIVIDE |                              010 |                               01
+                  FINISH |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'State_SP_reg' using encoding 'one-hot' in module 'cv32e40p_alu_div'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               IDLE_MULT |                              000 |                              000
+                   STEP0 |                              001 |                              001
+                   STEP1 |                              010 |                              010
+                   STEP2 |                              011 |                              011
+                  FINISH |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'mulh_CS_reg' using encoding 'sequential' in module 'cv32e40p_mult'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              001 |                               00
+                    DATA |                              010 |                               10
+                    STOP |                              100 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'tx_state_reg' using encoding 'one-hot' in module 'UART_GU_AXI4_Lite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+                    WAIT |                               01 |                               01
+                    DATA |                               10 |                               10
+                  REPORT |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rx_state_reg' using encoding 'sequential' in module 'UART_GU_AXI4_Lite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              001 |                               00
+                    DATA |                              010 |                               10
+                    STOP |                              100 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'tx_state_reg' using encoding 'one-hot' in module 'UART_YZ_AXI4_Lite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+                    WAIT |                               01 |                               01
+                    DATA |                               10 |                               10
+                  REPORT |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rx_state_reg' using encoding 'sequential' in module 'UART_YZ_AXI4_Lite'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                             0000 |                             0000
+                S_TXBYTE |                             0001 |                             0001
+                 S_TXREL |                             0010 |                             0010
+                 S_TXACK |                             0011 |                             0011
+               S_REPSTA1 |                             0100 |                             0100
+               S_REPSTA2 |                             0101 |                             0101
+                S_RXBYTE |                             0110 |                             0110
+                 S_RXACK |                             0111 |                             0111
+                 S_STOP1 |                             1000 |                             1000
+                 S_STOP2 |                             1001 |                             1001
+                 S_ABORT |                             1010 |                             1010
+*
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'I2C_Master_AXI4_Lite'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2506.160 ; gain = 769.531 ; free physical = 5483 ; free virtual = 25192
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 3     
+	   2 Input   37 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 18    
+	   3 Input   32 Bit       Adders := 2     
+	   2 Input    9 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 6     
+	   2 Input    6 Bit       Adders := 9     
+	   3 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 5     
+	   2 Input    4 Bit       Adders := 8     
+	   2 Input    3 Bit       Adders := 20    
+	   2 Input    2 Bit       Adders := 32    
+	   3 Input    2 Bit       Adders := 1     
+	   2 Input    1 Bit       Adders := 2     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   2 Input     17 Bit         XORs := 1     
+	   2 Input      4 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               64 Bit    Registers := 3     
+	               32 Bit    Registers := 99    
+	               24 Bit    Registers := 1     
+	               16 Bit    Registers := 4     
+	               15 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	               11 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 5     
+	                7 Bit    Registers := 4     
+	                6 Bit    Registers := 11    
+	                5 Bit    Registers := 7     
+	                4 Bit    Registers := 8     
+	                3 Bit    Registers := 14    
+	                2 Bit    Registers := 55    
+	                1 Bit    Registers := 158   
++---Multipliers : 
+	              32x32  Multipliers := 1     
++---RAMs : 
+	              64K Bit	(2048 X 32 bit)          RAMs := 2     
++---Muxes : 
+	   2 Input   64 Bit        Muxes := 12    
+	   2 Input   36 Bit        Muxes := 6     
+	   2 Input   33 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 169   
+	   4 Input   32 Bit        Muxes := 28    
+	   3 Input   32 Bit        Muxes := 11    
+	   8 Input   32 Bit        Muxes := 1     
+	  32 Input   32 Bit        Muxes := 1     
+	   6 Input   32 Bit        Muxes := 2     
+	  11 Input   32 Bit        Muxes := 3     
+	   5 Input   32 Bit        Muxes := 3     
+	   2 Input   31 Bit        Muxes := 1     
+	   2 Input   27 Bit        Muxes := 5     
+	   2 Input   24 Bit        Muxes := 4     
+	   2 Input   17 Bit        Muxes := 2     
+	   2 Input   16 Bit        Muxes := 2     
+	   3 Input   16 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 2     
+	   4 Input    9 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 42    
+	   4 Input    8 Bit        Muxes := 4     
+	  11 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 6     
+	   2 Input    6 Bit        Muxes := 22    
+	   4 Input    6 Bit        Muxes := 5     
+	   2 Input    5 Bit        Muxes := 44    
+	   4 Input    5 Bit        Muxes := 4     
+	  16 Input    5 Bit        Muxes := 1     
+	   5 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 39    
+	   7 Input    4 Bit        Muxes := 1     
+	   5 Input    4 Bit        Muxes := 2     
+	   3 Input    4 Bit        Muxes := 4     
+	   6 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 5     
+	  19 Input    4 Bit        Muxes := 1     
+	   4 Input    3 Bit        Muxes := 7     
+	   2 Input    3 Bit        Muxes := 41    
+	   9 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 7     
+	  16 Input    3 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 4     
+	  11 Input    3 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 84    
+	   4 Input    2 Bit        Muxes := 12    
+	   3 Input    2 Bit        Muxes := 3     
+	   9 Input    2 Bit        Muxes := 2     
+	  16 Input    2 Bit        Muxes := 2     
+	   6 Input    2 Bit        Muxes := 1     
+	   7 Input    2 Bit        Muxes := 1     
+	   5 Input    2 Bit        Muxes := 2     
+	  11 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 377   
+	   3 Input    1 Bit        Muxes := 24    
+	   4 Input    1 Bit        Muxes := 80    
+	   6 Input    1 Bit        Muxes := 8     
+	   7 Input    1 Bit        Muxes := 14    
+	   8 Input    1 Bit        Muxes := 1     
+	   5 Input    1 Bit        Muxes := 21    
+	  16 Input    1 Bit        Muxes := 20    
+	   9 Input    1 Bit        Muxes := 6     
+	  11 Input    1 Bit        Muxes := 11    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP mult_i/short_mul, operation Mode is: A*B.
+DSP Report: operator mult_i/short_mul is absorbed into DSP mult_i/short_mul.
+DSP Report: Generating DSP mult_i/short_mac, operation Mode is: PCIN+A:B+C.
+DSP Report: operator mult_i/short_mac is absorbed into DSP mult_i/short_mac.
+DSP Report: Generating DSP mult_i/int_result0, operation Mode is: A*B.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: Generating DSP mult_i/int_result0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: Generating DSP mult_i/int_result0, operation Mode is: A*B.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: Generating DSP mult_i/int_result0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: operator mult_i/int_result0 is absorbed into DSP mult_i/int_result0.
+DSP Report: Generating DSP mult_i/dot_short_mul[1], operation Mode is: A*B.
+DSP Report: operator mult_i/dot_short_mul[1] is absorbed into DSP mult_i/dot_short_mul[1].
+DSP Report: Generating DSP mult_i/dot_short_result, operation Mode is: C+A*B.
+DSP Report: operator mult_i/dot_short_result is absorbed into DSP mult_i/dot_short_result.
+DSP Report: operator mult_i/dot_short_mul[0] is absorbed into DSP mult_i/dot_short_result.
+WARNING: [Synth 8-3332] Sequential element (FSM_onehot_debug_fsm_cs_reg[2]) is unused and will be removed from module cv32e40p_controller.
+WARNING: [Synth 8-3332] Sequential element (FSM_onehot_debug_fsm_cs_reg[1]) is unused and will be removed from module cv32e40p_controller.
+WARNING: [Synth 8-3332] Sequential element (FSM_onehot_debug_fsm_cs_reg[0]) is unused and will be removed from module cv32e40p_controller.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:16 ; elapsed = 00:01:17 . Memory (MB): peak = 2615.707 ; gain = 879.078 ; free physical = 5287 ; free virtual = 25106
+---------------------------------------------------------------------------------
+ Sort Area is  mult_i/int_result0_6 : 0 0 : 3101 5754 : Used 1 time 0
+ Sort Area is  mult_i/int_result0_6 : 0 1 : 2653 5754 : Used 1 time 0
+ Sort Area is  mult_i/int_result0_9 : 0 0 : 2634 5119 : Used 1 time 0
+ Sort Area is  mult_i/int_result0_9 : 0 1 : 2485 5119 : Used 1 time 0
+ Sort Area is  mult_i/short_mul_0 : 0 0 : 2264 2536 : Used 1 time 0
+ Sort Area is  mult_i/short_mul_0 : 0 1 : 272 2536 : Used 1 time 0
+ Sort Area is  mult_i/dot_short_result_4 : 0 0 : 2359 2359 : Used 1 time 0
+ Sort Area is  mult_i/dot_short_mul[1]_3 : 0 0 : 2264 2264 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object                             | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|soc_inst    | instr_bram_ctrl_inst/instr_ram/ram_reg | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
+|soc_inst    | data_bram_ctrl_inst/data_ram/ram_reg   | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
++------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++--------------------------+-------------+----------------+----------------------+--------------+
+|Module Name               | RTL Object  | Inference      | Size (Depth x Width) | Primitives   | 
++--------------------------+-------------+----------------+----------------------+--------------+
+|soc_inst/qspi_master_inst | FIFO_RX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
+|soc_inst/qspi_master_inst | FIFO_TX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
++--------------------------+-------------+----------------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name       | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|cv32e40p_mult     | A*B            | 17     | 17     | -      | -      | 34     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | PCIN+A:B+C     | 14     | 18     | 33     | -      | -1     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_mult     | A*B            | 17     | 17     | -      | -      | 34     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_mult     | C+A*B          | 17     | 17     | 32     | -      | 32     | 0    | 0    | 0    | -    | -     | 0    | 0    | 
++------------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-565] redefining clock 'sys_clk'
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:21 ; elapsed = 00:01:21 . Memory (MB): peak = 2624.707 ; gain = 888.078 ; free physical = 5263 ; free virtual = 25088
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:30 ; elapsed = 00:01:31 . Memory (MB): peak = 2676.754 ; gain = 940.125 ; free physical = 5228 ; free virtual = 25047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object                             | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|soc_inst    | instr_bram_ctrl_inst/instr_ram/ram_reg | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
+|soc_inst    | data_bram_ctrl_inst/data_ram/ram_reg   | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
++------------+----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++--------------------------+-------------+----------------+----------------------+--------------+
+|Module Name               | RTL Object  | Inference      | Size (Depth x Width) | Primitives   | 
++--------------------------+-------------+----------------+----------------------+--------------+
+|soc_inst/qspi_master_inst | FIFO_RX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
+|soc_inst/qspi_master_inst | FIFO_TX_reg | User Attribute | 64 x 32              | RAM64M x 11  | 
++--------------------------+-------------+----------------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:35 ; elapsed = 00:01:36 . Memory (MB): peak = 2824.754 ; gain = 1088.125 ; free physical = 5051 ; free virtual = 24889
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2830.691 ; gain = 1094.062 ; free physical = 5099 ; free virtual = 24896
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2830.691 ; gain = 1094.062 ; free physical = 5099 ; free virtual = 24896
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2830.691 ; gain = 1094.062 ; free physical = 5100 ; free virtual = 24893
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2830.691 ; gain = 1094.062 ; free physical = 5100 ; free virtual = 24893
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2839.598 ; gain = 1102.969 ; free physical = 5100 ; free virtual = 24893
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2839.598 ; gain = 1102.969 ; free physical = 5100 ; free virtual = 24893
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name       | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|cv32e40p_mult     | A*B          | 30     | 18     | -      | -      | 34     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | PCIN+A:B+C   | 0      | 0      | -      | -      | 34     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | A*B          | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | A*B          | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cv32e40p_ex_stage | PCIN>>17+A*B | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |clk_wiz  |     1|
+|2     |CARRY4   |   258|
+|3     |DSP48E1  |     5|
+|5     |LUT1     |   169|
+|6     |LUT2     |   617|
+|7     |LUT3     |  1766|
+|8     |LUT4     |   870|
+|9     |LUT5     |   908|
+|10    |LUT6     |  2966|
+|11    |MUXF7    |   316|
+|12    |RAM64M   |    22|
+|13    |RAMB36E1 |     4|
+|14    |FDCE     |  3322|
+|15    |FDPE     |    42|
+|16    |FDRE     |    35|
+|17    |IBUF     |    18|
+|18    |IOBUF    |     5|
+|19    |OBUF     |    20|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2839.598 ; gain = 1102.969 ; free physical = 5100 ; free virtual = 24893
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1040 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:36 ; elapsed = 00:01:38 . Memory (MB): peak = 2839.598 ; gain = 1001.500 ; free physical = 5099 ; free virtual = 24893
+Synthesis Optimization Complete : Time (s): cpu = 00:01:39 ; elapsed = 00:01:39 . Memory (MB): peak = 2839.605 ; gain = 1102.969 ; free physical = 5099 ; free virtual = 24893
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2839.605 ; gain = 0.000 ; free physical = 5267 ; free virtual = 25061
+INFO: [Netlist 29-17] Analyzing 610 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2895.625 ; gain = 0.000 ; free physical = 5258 ; free virtual = 25053
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 27 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 5 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 22 instances
+
+Synth Design complete | Checksum: 59cf50
+INFO: [Common 17-83] Releasing license: Synthesis
+209 Infos, 149 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:45 ; elapsed = 00:01:44 . Memory (MB): peak = 2895.660 ; gain = 1264.398 ; free physical = 5257 ; free virtual = 25052
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2040.065; main = 1980.839; forked = 279.320
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3698.074; main = 2895.629; forked = 1021.316
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2919.637 ; gain = 0.000 ; free physical = 5256 ; free virtual = 25052
+INFO: [Common 17-1381] The checkpoint '/home/stradale/Documents/main_files/TEKNOFEST_MCU_Project/TEKNOFEST_MCU_Project.runs/synth_1/fpga_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file fpga_top_utilization_synth.rpt -pb fpga_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Jun 24 15:40:25 2026...

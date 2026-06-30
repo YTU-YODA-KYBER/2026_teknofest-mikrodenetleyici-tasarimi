@@ -125,13 +125,14 @@ int main(void)
     ppb_clean();
     qspi_cmd_only(CMD_CLFLAG);
 
-    /* 2) Subsector sil (4KB) - yazmadan once bolge 0xFF olmali */
-    qspi_cmd_only(CMD_WREN);
-    qspi_clr_sta();
-    Qspi->QSPI_ADR = TEST_ADDR;
-    Qspi->QSPI_CCR = CCR(0, 1, 1, 0, 0, 0, M_NONE, CMD_SSE);
-    wait_done();
-    wait_wip_clear();
+    /* 2) Subsector sil — GECICI OLARAK ATLANDI (erase ~100+ ms surer, sim'de cok yavas)
+     q s*pi_cmd_only(CMD_WREN);
+     qspi_clr_sta();
+     Qspi->QSPI_ADR = TEST_ADDR;
+     Qspi->QSPI_CCR = CCR(0, 1, 1, 0, 0, 0, M_NONE, CMD_SSE);
+     wait_done();
+     wait_wip_clear();
+     */
 
     /* 3) PP (x1) ile 32-bit veriyi yaz (4 bayt -> size_m1 = 3) */
     qspi_cmd_only(CMD_WREN);

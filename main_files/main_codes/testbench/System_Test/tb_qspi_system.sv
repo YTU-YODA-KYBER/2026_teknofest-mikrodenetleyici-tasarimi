@@ -50,8 +50,7 @@ module tb_qspi_system;
     wire QSPI_CS;
     wire QSPI_IO0;
     wire QSPI_IO1;
-    wire QSPI_IO2;
-    wire QSPI_IO3;
+
 
     // ---- flash besleme ----
     logic [31:0] flash_vcc = 32'd0;
