@@ -8,8 +8,8 @@ set_property PACKAGE_PIN E3 [get_ports sys_clk]
 set_property IOSTANDARD LVCMOS33 [get_ports sys_clk]
 create_clock -period 10.000 -name sys_clk [get_ports sys_clk]
 
-## ---- Reset: BTNC (N17, active HIGH) ----
-set_property PACKAGE_PIN N17 [get_ports sys_rst_btn]
+## ---- Reset: BTNC (C12, active LOW) ----
+set_property PACKAGE_PIN C12 [get_ports sys_rst_btn]
 set_property IOSTANDARD LVCMOS33 [get_ports sys_rst_btn]
 
 ## ---- USB-UART (FT2232) ----
