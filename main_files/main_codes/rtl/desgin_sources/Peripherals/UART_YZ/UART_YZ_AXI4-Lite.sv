@@ -30,7 +30,11 @@ module UART_YZ_AXI4_Lite (
     output logic        rvalid,
 
     input  logic  rx,
-    output logic  tx
+    output logic  tx,
+
+    input  logic        dma_enable_i,
+    output logic [31:0] dma_data_o,
+    output logic        dma_valid_o
 );
     
     localparam [1:0] IDLE   = 0;
@@ -45,8 +49,6 @@ module UART_YZ_AXI4_Lite (
     logic [31:0] UART_CPB;
     logic [ 1:0] UART_STP;
 
-
-    logic       rx_start;         // RX işlemi başladığında tick sayacını sıfırlamak için kullanılır
 
     logic [1:0] tx_state;         // TX FSM'sinin durumu
     logic [1:0] rx_state;         // RX FSM'sinin durumu
@@ -67,6 +69,9 @@ module UART_YZ_AXI4_Lite (
     logic [ 4:0] sixteen_cnt_rx;     // RX için 16 baud tick'ini saymak için kullanılır
     logic        rx_zero_alert;      // RX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
     logic        tx_zero_alert;      // TX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
+
+    logic        stack_and_send;     // RX işlemi sırasında DMA'ya veri göndermek için kullanılır
+    logic [ 1:0] dma_cnt;
 
     // ---------------------------------------------------------
     //                  TX BAUDRATE GENERATOR
@@ -102,20 +107,18 @@ module UART_YZ_AXI4_Lite (
         end 
         else begin
             
-            if(rx == 0 && !rx_state) rx_start <= 1;
             if(rx_middle_alert) rx_middle_alert <= ~rx_middle_alert;
             if(rx_zero_alert) rx_zero_alert <= ~rx_zero_alert;
 
-            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || rx_start) begin
+            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || (rx == 0 && !rx_state)) begin
                 rx_tick_cnt_limit <= cnt_limit_mirror;
                 rx_tick_cnt <= 0;
 
-                if(rx_start || !sixteen_cnt_rx) begin
+                if((rx == 0 && !rx_state) || !sixteen_cnt_rx) begin
                     sixteen_cnt_rx <= 15;
                     rx_zero_alert <= 1;
                 end
                 else sixteen_cnt_rx <= sixteen_cnt_rx - 1;
-                rx_start <= 0;
 
                 if(sixteen_cnt_rx == 8) rx_middle_alert <= 1;
             end
@@ -157,6 +160,11 @@ module UART_YZ_AXI4_Lite (
 
             tx      <= 1;
             cnt_limit_mirror <= 5;
+
+            stack_and_send <= 0;
+            dma_data_o <= 0;
+            dma_valid_o <= 0;
+            dma_cnt  <= 0;
             
         end else begin
 
@@ -265,8 +273,21 @@ module UART_YZ_AXI4_Lite (
                 REPORT: begin
                     UART_CFG[1] <= 1;
                     if(rx)rx_state <= IDLE;
+                    if(dma_enable_i) stack_and_send <= 1'b1;
                 end
             endcase
+
+        if(stack_and_send) begin
+            if(dma_cnt == 3) begin
+                dma_cnt <= 0;
+                dma_valid_o <= 1;
+            end
+            else dma_cnt <= dma_cnt + 1;
+
+            dma_data_o <= {dma_data_o[23:0], UART_RDR};
+            stack_and_send <= 1'b0;
+        end else dma_valid_o <= 0;
+
         end
     end
 endmodule

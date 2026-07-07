@@ -6,6 +6,8 @@ module top_module #(
     parameter ADDR_WIDTH_instr = 11,                // 2^11 = 2048 kelime, yani 8KB instruction RAM
     parameter DATA_WIDTH_data  = 32,
     parameter ADDR_WIDTH_data  = 11,                 // 2^11 = 2048 kelime, yani 8KB data RAM
+    parameter DATA_WIDTH_yz  = 32,
+    parameter ADDR_WIDTH_yz  = 13,                 // 2^13 = 8196 kelime, yani 32KB data RAM
 
 
     parameter logic [31:0] boot_addr         = 32'h0000_0000,   //BASLANGIC ADRESI
@@ -18,18 +20,17 @@ module top_module #(
     input logic clk_i,
     input logic rst_ni,
 
-    input  logic UART_GU_rx,
-    output logic UART_GU_tx,
-
-    input  logic  UART_YZ_rx,
-    output logic  UART_YZ_tx,
-
     input  logic [31:0] interrupt_i,
     output logic [ 4:0] interrupt_id,
     output logic        interrupt_ack,
 
     input  logic [31:0] GPIO_IDR,
     output logic [31:0] GPIO_ODR,
+    output logic [ 7:0] anode,
+    output logic [ 7:0] catode,
+
+    output logic UART_TX,
+    input  logic UART_RX,
 
     output logic I2C_SCL,
     inout  logic I2C_SDA,
@@ -44,6 +45,12 @@ module top_module #(
 
 );
     
+    logic UART_GU_RX;
+    logic UART_GU_TX;
+
+    logic UART_YZ_RX;
+    logic UART_YZ_TX;
+
     //  INSTRUCTION AR PORTLARI
     logic [31:0] cpu_instr_araddr;
     logic        cpu_instr_arvalid;
@@ -203,7 +210,6 @@ module top_module #(
     logic [ 1:0] QSPI_rresp;
     logic        QSPI_rvalid;
 
-
     // AW Portları
     logic [31:0] I2C_awaddr;
     logic        I2C_awvalid;
@@ -283,6 +289,12 @@ module top_module #(
     logic        axi_instr_bram_bvalid;
     logic        axi_instr_bram_bready;
 
+    logic        boot_dma_valid;
+    logic [31:0] boot_dma_data;
+
+    logic        yz_dma_valid;
+    logic [31:0] yz_dma_data;
+    logic        yz_dma_enable;
 
     logic [31:0] axi_data_bram_awaddr;
     logic        axi_data_bram_awvalid;
@@ -357,8 +369,45 @@ instr_bram_axi_ctrl #(
 
     .axi_instr_bram_bresp  (axi_instr_bram_bresp),
     .axi_instr_bram_bvalid (axi_instr_bram_bvalid),
-    .axi_instr_bram_bready (axi_instr_bram_bready)
+    .axi_instr_bram_bready (axi_instr_bram_bready),
+
+    .dma_valid(boot_dma_valid),
+    .dma_data (boot_dma_data)
 );
+
+yz_acclrtr_bram_axi_ctrl #(
+    .DATA_WIDTH(DATA_WIDTH_yz),
+    .ADDR_WIDTH(ADDR_WIDTH_yz)
+) yz_bram_ctrl_inst(
+    .clk_i(clk_i),
+    .rst_n(rst_ni),
+
+    .axi_yz_bram_araddr (axi_yz_bram_araddr),
+    .axi_yz_bram_arvalid(axi_yz_bram_arvalid),
+    .axi_yz_bram_arready(axi_yz_bram_arready),
+
+    .axi_yz_bram_rdata  (axi_yz_bram_rdata),
+    .axi_yz_bram_rresp  (axi_yz_bram_rresp),
+    .axi_yz_bram_rvalid (axi_yz_bram_rvalid),
+    .axi_yz_bram_rready (axi_yz_bram_rready),
+
+    .axi_yz_bram_awaddr (axi_yz_bram_awaddr),
+    .axi_yz_bram_awvalid(axi_yz_bram_awvalid),
+    .axi_yz_bram_awready(axi_yz_bram_awready),
+
+    .axi_yz_bram_wdata  (axi_yz_bram_wdata),
+    .axi_yz_bram_wstrb  (axi_yz_bram_wstrb),
+    .axi_yz_bram_wvalid (axi_yz_bram_wvalid),
+    .axi_yz_bram_wready (axi_yz_bram_wready),
+
+    .axi_yz_bram_bresp  (axi_yz_bram_bresp),
+    .axi_yz_bram_bvalid (axi_yz_bram_bvalid),
+    .axi_yz_bram_bready (axi_yz_bram_bready),
+
+    .dma_valid_i(boot_dma_valid),
+    .dma_data_i (boot_dma_data)
+);
+
 
 data_bram_axi_ctrl #(
     .DATA_WIDTH(DATA_WIDTH_data),
@@ -702,6 +751,21 @@ Timer_AXI4_Lite timer_inst(
     .rvalid (TIMER_rvalid)
 );
 
+uart_mux uart_mux(
+
+    .GPIO_IDR  (GPIO_IDR),
+
+    .UART_TX   (UART_TX),
+    .UART_RX   (UART_RX),
+
+    .UART_GU_TX(UART_GU_TX),
+    .UART_GU_RX(UART_GU_RX),
+
+    .UART_YZ_TX(UART_YZ_TX),
+    .UART_YZ_RX(UART_YZ_RX)
+);
+
+
 UART_GU_AXI4_Lite uart_gu_inst(
     .clk(clk_i),
     .rst_n(rst_ni),
@@ -751,7 +815,11 @@ UART_YZ_AXI4_Lite uart_yz_inst(
 
     // UART Portları
     .rx(UART_YZ_rx),
-    .tx(UART_YZ_tx)
+    .tx(UART_YZ_tx),
+
+    .dma_enable_i(yz_dma_enable),
+    .dma_data_o  (yz_dma_data),
+    .dma_valid_o (yz_dma_valid)
 );
 
 I2C_Master_AXI4_Lite i2c_master_inst(
@@ -804,7 +872,12 @@ GPIO_AXI4_Lite gpio_inst(
 
     // I/O Portları
     .GPIO_IDR(GPIO_IDR),
-    .GPIO_ODR(GPIO_ODR)
+    .GPIO_ODR(GPIO_ODR),
+
+    .anode (anode),
+    .catode(catode),
+
+    .dma_enable_o(yz_dma_enable)
 );
 
 QSPI_Master_AXI4_Lite qspi_master_inst(
@@ -834,7 +907,10 @@ QSPI_Master_AXI4_Lite qspi_master_inst(
     .QSPI_IO0 (QSPI_IO0),
     .QSPI_IO1 (QSPI_IO1),
     .QSPI_IO2 (QSPI_IO2),
-    .QSPI_IO3 (QSPI_IO3)
+    .QSPI_IO3 (QSPI_IO3),
+
+    .dma_data (boot_dma_data),
+    .dma_valid(boot_dma_valid)
 );
 
 

@@ -120,7 +120,7 @@ typedef struct {
     volatile uint32_t QSPI_DR;   /* 0x08 RW veri (TX/RX FIFO) */
     volatile uint32_t QSPI_STA;  /* 0x0C RO durum */
     volatile uint32_t QSPI_FCR;  /* 0x10 RW FIFO flush */
-    volatile uint32_t QSPI_ADDR; /* 0x14 RW ek register (PC 1/0) */
+    volatile uint32_t dma_start; /* 0x14 RW ek register (PC 1/0) */
 } Qspi_t;
 
 #define Qspi  ((Qspi_t *) 0x40030000UL)

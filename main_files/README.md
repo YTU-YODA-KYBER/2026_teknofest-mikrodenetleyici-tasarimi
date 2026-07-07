@@ -68,7 +68,7 @@ birimleri) içeren projeyi oluşturabilir; kaynak dosyaları elle eklemekle
 uğraşmaz.
 
 İçindekiler:
-- `TEKNOFEST_MCU_Project.tcl` — ana proje kurulum scripti (asıl çalıştırılan bu)
+- `Full_MCU_Project.tcl` — ana proje kurulum scripti (asıl çalıştırılan bu)
 - `CPU/`, `Interconnect/`, `Memory/`, `Peripherals/` — her bloğu tek tek
   oluşturan yardımcı scriptler
 

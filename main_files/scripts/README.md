@@ -36,7 +36,8 @@ Bu kadar — proje otomatik oluşur.
 
 | Script | Oluşturduğu proje |
 |---|---|
-| `TEKNOFEST_MCU_Project.tcl` | **Tüm sistem** (bütün tasarım kodları bir arada) |
+| `Full_MCU_Project.tcl` | **Tüm sistem** (bütün tasarım kodları bir arada) |
+  `System_test/system_test.tcl` | Sistemin boot işlemi ve flash belleğe yazma testi |
 | `CPU/create_CPU.tcl` | CV32E40P çekirdeği |
 | `Interconnect/create_Interconnect.tcl` | AXI4 ara bağlantı |
 | `Interconnect/create_Instruction_Splitter.tcl` | Komut (instruction) ayırıcı |

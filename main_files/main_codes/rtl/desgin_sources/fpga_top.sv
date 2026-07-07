@@ -1,12 +1,14 @@
 module fpga_top (
-    input  logic sys_clk,       // W5 - Basys3 100 MHz osilatörü
-    input  logic sys_rst_btn,   // T18 - BTNC, active HIGH
+    input  logic sys_clk,       // 100 MHz osilatörü
+    input  logic sys_rst_btn,   // active LOW
 
-    input  logic UART_GU_rx,
-    output logic UART_GU_tx,
+    input  logic UART_TX,
+    output logic UART_RX,
 
     input  logic [15:0] GPIO_IDR_pins,  // 16 switch (Basys3'te 32 pin yok)
     output logic [15:0] GPIO_ODR_pins,  // 16 LED
+    output logic [ 7:0] anode,
+    output logic [ 7:0] catode,
 
     output logic I2C_SCL,
     inout  logic I2C_SDA,
@@ -70,18 +72,17 @@ top_module soc_inst (
     .clk_i        (clk_50mhz),   // ← wizard çıkışı, ham kart saati değil!
     .rst_ni       (rst_n),        // ← senkronize + locked reset
 
-    .UART_GU_rx   (UART_GU_rx),
-    .UART_GU_tx   (UART_GU_tx),
-    .UART_YZ_rx   (uart_yz_rx_tie),
-    .UART_YZ_tx   (uart_yz_tx_nc),
-
     .interrupt_i  (interrupt_i_tie),
     .interrupt_id (interrupt_id_nc),
     .interrupt_ack(interrupt_ack_nc),
 
     .GPIO_IDR     (gpio_idr_internal),
     .GPIO_ODR     (gpio_odr_internal),
+    .anode        (anode),
+    .catode       (catode),
 
+    .UART_TX      (UART_TX),
+    .UART_RX      (UART_RX),
     .I2C_SCL      (I2C_SCL),
     .I2C_SDA      (I2C_SDA),
     .QSPI_SCLK    (QSPI_SCLK),

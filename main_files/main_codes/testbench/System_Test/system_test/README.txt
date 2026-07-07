@@ -1,0 +1,1 @@
+Bu test içerisinde tasarladığımız MCU, bilgisayardan usb-uart aracılığı ile gönderilen verileri micron flash simülasyon modeline yazmakta, sonrasında boot moduna geçip oradaki verileri tekrar okuyarak kendisini ayağa kaldırmaktadır. Yani çoğu gömülü kartta bulunan boot mekanizmasının tasarımımız üzerinde sorunsuz çalıştığını göstermektedir.

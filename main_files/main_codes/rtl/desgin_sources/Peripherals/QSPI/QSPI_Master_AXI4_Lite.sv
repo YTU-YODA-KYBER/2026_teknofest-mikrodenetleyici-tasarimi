@@ -66,7 +66,11 @@ module QSPI_Master_AXI4_Lite(
     inout  logic QSPI_IO0,
     inout  logic QSPI_IO1,
     inout  logic QSPI_IO2,
-    inout  logic QSPI_IO3
+    inout  logic QSPI_IO3,
+
+    output logic [31:0] dma_data,
+    output logic        dma_valid
+
     );
 
     // I/O Portları
@@ -155,6 +159,8 @@ module QSPI_Master_AXI4_Lite(
     logic io2_oe;
     logic io3_oe;
 
+    logic dma_start;
+    logic dma_rd_data;
 
     // ---------------------------------------------------------
     //                      CLK DIVIDER
@@ -283,8 +289,15 @@ module QSPI_Master_AXI4_Lite(
             io1_oe  <= 0;
             io2_oe  <= 0;
             io3_oe  <= 0;
+
+            dma_data <= 32'b0;
+            dma_rd_data <= 1'b0;
+            dma_valid <= 1'b0;
         end
         else begin
+
+            if(dma_start) dma_rd_data <= 1;
+            if(!dma_rd_data) dma_valid <= 0;
 
             if(fifo_tx_load_data) fifo_tx_load_data <= 0;
 
@@ -316,10 +329,19 @@ module QSPI_Master_AXI4_Lite(
             end
 
             // RX FIFO'dan data okuma isteği
-            if((fifo_rx_load_data)) begin
+            if((fifo_rx_load_data || dma_rd_data)) begin
                 rx_rd_ptr <= rx_rd_ptr +1;
                 fifo_rx_cnt <= fifo_rx_cnt -1;
                 if(rx_rd_ptr == 63) rx_rd_ptr <= 0;
+
+                if(dma_rd_data)begin
+                    dma_valid <= 1;
+                    dma_data <= fifo_rx_rdata;
+                    if(fifo_rx_cnt == 1) begin 
+                        dma_rd_data <= 0;
+                    end
+                end
+
             end
 
             if(fifo_tx_push_data) begin
@@ -433,11 +455,9 @@ module QSPI_Master_AXI4_Lite(
                                 if(to_do_list[0]) to_do_list[0] <= 0;
                                 else if(to_do_list[1]) begin
                                     to_do_list[1] <= 0;
-                                    if(|QSPI_CCR[9:8]) begin           
-                                        if(QSPI_CCR[9:8] == 3) data_mode <= 4;
-                                        else data_mode <= QSPI_CCR[9:8];
-                                        r_w <= QSPI_CCR[10];
-                                    end
+                                    if(QSPI_CCR[9:8] == 3) data_mode <= 4;
+                                    else data_mode <= QSPI_CCR[9:8];
+                                    r_w <= QSPI_CCR[10];
                                 end
                                 else if(to_do_list[2]) to_do_list[2] <= 0;
                                 else to_do_list <= 0;
@@ -569,6 +589,7 @@ module QSPI_Master_AXI4_Lite(
             fifo_rx_load_data <= 0;
             fifo_error <= 0;
             start <= 0;
+            dma_start <= 0;
         end
         else begin
 
@@ -576,6 +597,8 @@ module QSPI_Master_AXI4_Lite(
                 fifo_error <= 0;
                 QSPI_CCR[31] <= 0;
             end
+
+            if(dma_start) dma_start <= 0;
 
             if(fifo_rx_load_data) fifo_rx_load_data <= 0;
             if(fifo_tx_push_data) fifo_tx_push_data <= 0;
@@ -607,6 +630,7 @@ module QSPI_Master_AXI4_Lite(
                             end
                         end
                     8'h10: QSPI_FCR <= wdata;
+                    8'h14: dma_start <= wdata[0];
                 endcase
             end
 
@@ -639,6 +663,7 @@ module QSPI_Master_AXI4_Lite(
                     end
                     8'h0C: rdata <= QSPI_STA;
                     8'h10: rdata <= QSPI_FCR;
+                    8'h14: rdata <= {31'b0, dma_valid};
 
                   default: rdata <= 32'h00000000;
                 endcase

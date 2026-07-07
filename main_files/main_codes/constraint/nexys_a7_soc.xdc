@@ -8,8 +8,8 @@ set_property PACKAGE_PIN E3 [get_ports sys_clk]
 set_property IOSTANDARD LVCMOS33 [get_ports sys_clk]
 create_clock -period 10.000 -name sys_clk [get_ports sys_clk]
 
-## ---- Reset: BTNC (N17, active HIGH) ----
-set_property PACKAGE_PIN N17 [get_ports sys_rst_btn]
+## ---- Reset: BTNC (C12, active LOW) ----
+set_property PACKAGE_PIN C12 [get_ports sys_rst_btn]
 set_property IOSTANDARD LVCMOS33 [get_ports sys_rst_btn]
 
 ## ---- USB-UART (FT2232) ----
@@ -18,6 +18,30 @@ set_property PACKAGE_PIN C4 [get_ports UART_GU_rx]
 set_property PACKAGE_PIN D4 [get_ports UART_GU_tx]
 set_property IOSTANDARD LVCMOS33 [get_ports UART_GU_rx]
 set_property IOSTANDARD LVCMOS33 [get_ports UART_GU_tx]
+
+## 7 Segment Katotları (CA - CG ve DP)
+set_property -dict { PACKAGE_PIN T10   IOSTANDARD LVCMOS33 } [get_ports { catode[0] }]; # CA
+set_property -dict { PACKAGE_PIN R10   IOSTANDARD LVCMOS33 } [get_ports { catode[1] }]; # CB
+set_property -dict { PACKAGE_PIN K16   IOSTANDARD LVCMOS33 } [get_ports { catode[2] }]; # CC
+set_property -dict { PACKAGE_PIN K13   IOSTANDARD LVCMOS33 } [get_ports { catode[3] }]; # CD
+set_property -dict { PACKAGE_PIN P15   IOSTANDARD LVCMOS33 } [get_ports { catode[4] }]; # CE
+set_property -dict { PACKAGE_PIN T11   IOSTANDARD LVCMOS33 } [get_ports { catode[5] }]; # CF
+set_property -dict { PACKAGE_PIN L18   IOSTANDARD LVCMOS33 } [get_ports { catode[6] }]; # CG
+set_property -dict { PACKAGE_PIN H15   IOSTANDARD LVCMOS33 } [get_ports { catode[7] }]; # DP
+
+## 7 Segment Anotları (AN0 - AN7)
+set_property -dict { PACKAGE_PIN J17   IOSTANDARD LVCMOS33 } [get_ports { anode[0] }];
+set_property -dict { PACKAGE_PIN J18   IOSTANDARD LVCMOS33 } [get_ports { anode[1] }];
+set_property -dict { PACKAGE_PIN T9    IOSTANDARD LVCMOS33 } [get_ports { anode[2] }];
+set_property -dict { PACKAGE_PIN J14   IOSTANDARD LVCMOS33 } [get_ports { anode[3] }];
+set_property -dict { PACKAGE_PIN P14   IOSTANDARD LVCMOS33 } [get_ports { anode[4] }];
+set_property -dict { PACKAGE_PIN T14   IOSTANDARD LVCMOS33 } [get_ports { anode[5] }];
+set_property -dict { PACKAGE_PIN K2    IOSTANDARD LVCMOS33 } [get_ports { anode[6] }];
+set_property -dict { PACKAGE_PIN U13   IOSTANDARD LVCMOS33 } [get_ports { anode[7] }];
+
+## UART Portları
+set_property -dict { PACKAGE_PIN C4  IOSTANDARD LVCMOS33 } [get_ports { UART_TX  }]; # FPGA RX
+set_property -dict { PACKAGE_PIN D4  IOSTANDARD LVCMOS33 } [get_ports { UART_RX  }]; # FPGA TX
 
 ## ---- Switches → GPIO_IDR[15:0] ----
 set_property PACKAGE_PIN J15 [get_ports {GPIO_IDR_pins[0]}]

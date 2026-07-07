@@ -46,7 +46,6 @@ module UART_GU_AXI4_Lite (
     logic [ 1:0] UART_STP;
 
 
-    logic       rx_start;         // RX işlemi başladığında tick sayacını sıfırlamak için kullanılır
 
     logic [1:0] tx_state;         // TX FSM'sinin durumu
     logic [1:0] rx_state;         // RX FSM'sinin durumu
@@ -102,20 +101,18 @@ module UART_GU_AXI4_Lite (
         end 
         else begin
             
-            if(rx == 0 && !rx_state) rx_start <= 1;
             if(rx_middle_alert) rx_middle_alert <= ~rx_middle_alert;
             if(rx_zero_alert) rx_zero_alert <= ~rx_zero_alert;
 
-            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || rx_start) begin
+            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || (rx == 0 && !rx_state)) begin
                 rx_tick_cnt_limit <= cnt_limit_mirror;
                 rx_tick_cnt <= 0;
 
-                if(rx_start || !sixteen_cnt_rx) begin
+                if((rx == 0 && !rx_state) || !sixteen_cnt_rx) begin
                     sixteen_cnt_rx <= 15;
                     rx_zero_alert <= 1;
                 end
                 else sixteen_cnt_rx <= sixteen_cnt_rx - 1;
-                rx_start <= 0;
 
                 if(sixteen_cnt_rx == 8) rx_middle_alert <= 1;
             end
