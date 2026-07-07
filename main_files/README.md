@@ -17,7 +17,7 @@ main_files/
 ├── firmware/      → İşlemci üzerinde koşacak yazılım ile ilgili kodlar (C / asm)
 ├── main_codes/    → Donanım tasarımının tamamı (RTL) + testbench'ler
 ├── scripts/       → Vivado projesini sıfırdan kuran TCL scriptleri
-└── teknotest/     → TEKNOFEST resmi test (DDK) ortamı ve teslim paketi
+└── teknotest/     → Jürinin istediği teknotest klasörü
 ```
 
 ---

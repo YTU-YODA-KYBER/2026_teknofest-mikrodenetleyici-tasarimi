@@ -3,7 +3,8 @@ create_project -force System_Test_sim System_Test_sim -part xc7a35tcpg236-1
 # Bütün RTL kodlarını ekleme
 add_files ./main_codes/rtl/ -fileset sources_1
 
-add_files ./main_codes/testbench/System_Test/system_test/ -fileset sim_1
+add_files ./main_codes/testbench/System_Test/tb_system.sv -fileset sim_1
+add_files ./main_codes/testbench/Peripherals/QSPI/Micron_sim_model.v -fileset sim_1
 
 set_property used_in_simulation false [get_files fpga_top.sv]
 
