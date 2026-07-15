@@ -20,7 +20,7 @@ module uart_mux (
                                                  1'b1;        // idle-high (bos/beklenmedik durum)
 
     // RX: mux DEGIL, fan-out. Tek kaynak, iki hedefe kopyalanir -- cakisma yok.
-    assign UART_GU_RX = (GPIO_IDR[1:0] == 2'd1) ? UART_RX : 1;
+    assign UART_GU_RX = (GPIO_IDR[1:0] == 2'd2) ? 1 : UART_RX;
     assign UART_YZ_RX = (GPIO_IDR[1:0] == 2'd2) ? UART_RX : 1;
 
 endmodule

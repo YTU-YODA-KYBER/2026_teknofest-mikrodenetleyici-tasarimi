@@ -229,14 +229,91 @@ module GPIO_AXI4_Lite(
                         endcase
                     end
                     2: begin
-                        case(anode_select)                      //YZUART
-                            2: catode <= 8'b1000_0111;
-                            3: catode <= 8'b1100_1110;
-                            4: catode <= 8'b1000_1000;
-                            5: catode <= 8'b1100_0001;
-                            6: catode <= 8'b1010_0100;
-                            7: catode <= 8'b1001_0001;
-                       endcase
+
+                        case(GPIO_ODR)
+                            5: begin
+                                case(anode_select)              //SNDING
+                                    2: catode <= 8'b1001_0000;
+                                    3: catode <= 8'b1100_1000;
+                                    4: catode <= 8'b1111_1001;
+                                    5: catode <= 8'b1010_0001;
+                                    6: catode <= 8'b1100_1000;
+                                    7: catode <= 8'b1001_0010;
+                                endcase
+                            end
+
+                            6: begin
+                                case(anode_select)              //INFRNC
+                                    2: catode <= 8'b1100_0110;
+                                    3: catode <= 8'b1100_1000;
+                                    4: catode <= 8'b1100_1110;
+                                    5: catode <= 8'b1000_1110;
+                                    6: catode <= 8'b1100_1000;
+                                    7: catode <= 8'b1111_1001;
+                                endcase
+                            end
+                        
+                            7: begin
+                                case(anode_select)              //EVET
+                                    0: catode <= 8'b1111_1111;
+                                    1: catode <= 8'b1111_1111;
+                                    2: catode <= 8'b1111_1111;
+                                    3: catode <= 8'b1111_1111;
+                                    4: catode <= 8'b1000_0111;
+                                    5: catode <= 8'b1000_0110;
+                                    6: catode <= 8'b1100_0001;
+                                    7: catode <= 8'b1000_0110;
+                                endcase
+                            end
+
+                            8: begin
+                                case(anode_select)              //HAYIR
+                                    0: catode <= 8'b1111_1111;
+                                    1: catode <= 8'b1111_1111;
+                                    2: catode <= 8'b1111_1111;
+                                    3: catode <= 8'b1100_1110;
+                                    4: catode <= 8'b1111_1001;
+                                    5: catode <= 8'b1001_0001;
+                                    6: catode <= 8'b1000_1000;
+                                    7: catode <= 8'b1000_1001;
+                                endcase
+                            end
+                            9: begin
+                                case(anode_select)              //SESSIZLK
+                                    0: catode <= 8'b1000_1010;
+                                    1: catode <= 8'b1100_0111;
+                                    2: catode <= 8'b1010_0100;
+                                    3: catode <= 8'b1111_1001;
+                                    4: catode <= 8'b1001_0010;
+                                    5: catode <= 8'b1001_0010;
+                                    6: catode <= 8'b1000_0110;
+                                    7: catode <= 8'b1001_0010;
+                                endcase
+                            end
+                            10: begin
+                                case(anode_select)              //BILINMYN
+                                    0: catode <= 8'b1100_1000;
+                                    1: catode <= 8'b1001_0001;
+                                    2: catode <= 8'b1110_1010;
+                                    3: catode <= 8'b1100_1000;
+                                    4: catode <= 8'b1111_1001;
+                                    5: catode <= 8'b1100_0111;
+                                    6: catode <= 8'b1111_1001;
+                                    7: catode <= 8'b1000_0011;
+                                endcase
+                            end
+                            default: begin
+                                case(anode_select)                      //YZUART
+                                    2: catode <= 8'b1000_0111;
+                                    3: catode <= 8'b1100_1110;
+                                    4: catode <= 8'b1000_1000;
+                                    5: catode <= 8'b1100_0001;
+                                    6: catode <= 8'b1010_0100;
+                                    7: catode <= 8'b1001_0001;
+                                endcase
+                            end
+                        endcase
+
                     end
                 endcase
             end else catode  <= 8'b1111_1111;

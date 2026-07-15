@@ -34,8 +34,8 @@ module instr_bram_axi_ctrl #(
     output logic                  axi_instr_bram_rvalid,
     input  logic                  axi_instr_bram_rready,
 
-    input  logic                  dma_valid,
-    input  logic [DATA_WIDTH-1:0] dma_data
+    input  logic                  dma_valid_i,
+    input  logic [DATA_WIDTH-1:0] dma_data_i
 );
     logic bram_we;
     
@@ -52,7 +52,7 @@ module instr_bram_axi_ctrl #(
     logic [ADDR_WIDTH-1:0] addr_cnt;
 
 
-bram #(
+bram_instr #(
     .DATA_WIDTH(DATA_WIDTH),
     .ADDR_WIDTH(ADDR_WIDTH)
 )
@@ -69,15 +69,15 @@ instr_ram(
 
 
 
-assign be = dma_valid ? 4'hF : axi_instr_bram_wstrb;
+assign be = dma_valid_i ? 4'hF : axi_instr_bram_wstrb;
 
 assign bram_we = axi_instr_bram_awvalid && axi_instr_bram_wvalid && axi_instr_bram_awready && axi_instr_bram_wready;
 
-assign we = bram_we || dma_valid;
+assign we = bram_we || dma_valid_i;
 
 
 assign waddr = bram_we ? axi_instr_bram_awaddr[ADDR_WIDTH+1:2] : addr_cnt;
-assign wdata = bram_we ? axi_instr_bram_wdata : dma_data;
+assign wdata = bram_we ? axi_instr_bram_wdata : dma_data_i;
 
 assign axi_instr_bram_bresp = 0;
 
@@ -148,14 +148,8 @@ assign axi_instr_bram_rdata = rdata_latch;
 
 
 always_ff @(posedge clk_i or negedge rst_n) begin
-    if (!rst_n) begin
-        addr_cnt <= '0;
-    end
-
-    else if (dma_valid) begin
-        addr_cnt <= addr_cnt + 1;
-
-    end
+    if (!rst_n) addr_cnt <= '0;
+    else if (dma_valid_i) addr_cnt <= addr_cnt + 1;
 end
 
 endmodule

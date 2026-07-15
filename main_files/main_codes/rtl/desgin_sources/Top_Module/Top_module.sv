@@ -5,24 +5,20 @@ module top_module #(
     parameter DATA_WIDTH_instr = 32,
     parameter ADDR_WIDTH_instr = 11,                // 2^11 = 2048 kelime, yani 8KB instruction RAM
     parameter DATA_WIDTH_data  = 32,
-    parameter ADDR_WIDTH_data  = 11,                 // 2^11 = 2048 kelime, yani 8KB data RAM
-    parameter DATA_WIDTH_yz  = 32,
-    parameter ADDR_WIDTH_yz  = 13,                 // 2^13 = 8196 kelime, yani 32KB data RAM
+    parameter ADDR_WIDTH_data  = 11,                // 2^11 = 2048 kelime, yani 8KB data RAM
+    parameter DATA_WIDTH_yz    = 8,
+    parameter ADDR_WIDTH_yz    = 11,                // 2^11=2048 >= 1960, bayt-adresli
 
 
     parameter logic [31:0] boot_addr         = 32'h0000_0000,   //BASLANGIC ADRESI
     parameter logic [31:0] mtvec_addr        = 32'h1F00_0000,   //INTERRUPT GELDIGINDE ISLEMCININ ATLAYACAGI ADRES
-    parameter logic [31:0] dm_halt_addr      = 32'h2F00_0000,    //JTAG KULLANILMAK ISTENDIGINDE ISLEMCISNIN ATLAYACAGI ADRES
+    parameter logic [31:0] dm_halt_addr      = 32'h2F00_0000,   //JTAG KULLANILMAK ISTENDIGINDE ISLEMCISNIN ATLAYACAGI ADRES
     parameter logic [31:0] hart_id           = 32'h0000_0000,   //CEKIRDEGIN NUMARASI(TEK CEKIRDEK OLDUGU ICIN DIREKT 0 YAZDIK)
     parameter logic [31:0] dm_exception_addr = 32'h3F00_0000    //JTAG KULLANILIRKEN HATA OLUSULURSA ISLEMCININ ATLAYACAGI ADRES
 )(
 
     input logic clk_i,
     input logic rst_ni,
-
-    input  logic [31:0] interrupt_i,
-    output logic [ 4:0] interrupt_id,
-    output logic        interrupt_ack,
 
     input  logic [31:0] GPIO_IDR,
     output logic [31:0] GPIO_ODR,
@@ -44,7 +40,7 @@ module top_module #(
 
 
 );
-    
+
     logic UART_GU_RX;
     logic UART_GU_TX;
 
@@ -293,7 +289,7 @@ module top_module #(
     logic [31:0] boot_dma_data;
 
     logic        yz_dma_valid;
-    logic [31:0] yz_dma_data;
+    logic [ 7:0] yz_dma_data;
     logic        yz_dma_enable;
 
     logic [31:0] axi_data_bram_awaddr;
@@ -314,7 +310,64 @@ module top_module #(
     logic        axi_data_bram_rvalid;
     logic        axi_data_bram_rready;
 
+    logic [10:0] yz_bram_raddr;
+    logic [ 7:0] yz_bram_rdata;
+    logic       acc_start;       // Hızlandırıcının çıkarımı başlat pulse sinyali
+    logic       acc_busy;        // Çıkarım işleminin devam ettiğini gösterir
+    logic       acc_done;        // Çıkarım bittiğinde pulse olur
+    logic       acc_out_wen;     // "Çıkarım sonucu geçerli" mesajı için pulse olur. Bu 1 olduğu zaman satır 40 yapılır
+    logic [7:0] acc_out_wdata;   // Güncel çıkarım sonucunu tutar
+    logic       load_done_irq;   // YZ bellleğine yazma işleminin bittiğini CPU'ya bildirmek için kullanılan interrupt sinyali
+    logic       load_clear;      // "cpu_clear_i"ye bağlı, işlemci "load_done_irq" sinyalini gördükten sonra bu sinyal aracılığı ile irq sinyalini temizler
+    logic       infer_irq;       // -> irq_i[17]
 
+    logic [31:0] interrupt_i;
+
+assign interrupt_i = { 14'b0, infer_irq, load_done_irq, 16'b0 };
+//                      [31:18]  [17]        [16]         [15:0]
+
+conv_accelerator conv_accelerator_inst (
+    .clk(clk_i),
+    .rst_n(rst_ni),
+    .start(acc_start),
+    .done (acc_done),
+    .busy (acc_busy),
+    .ram_addr (yz_bram_raddr),
+    .ram_rdata(yz_bram_rdata),
+    .out_ram_wen  (acc_out_wen),
+    .out_ram_wdata(acc_out_wdata)
+);
+
+yz_csr_wrapper yz_csr_wrapper_inst (
+    .clk(clk_i),
+    .rst_n(rst_ni),
+
+    .YZ_awaddr(YZ_awaddr),
+    .YZ_awvalid(YZ_awvalid),
+    .YZ_awready(YZ_awready),
+    .YZ_wdata(YZ_wdata),
+    .YZ_wvalid(YZ_wvalid),
+    .YZ_wready(YZ_wready),
+    .YZ_bresp(YZ_bresp),
+    .YZ_bvalid(YZ_bvalid),
+    .YZ_bready(YZ_bready),
+    .YZ_araddr(YZ_araddr),
+    .YZ_arvalid(YZ_arvalid),
+    .YZ_arready(YZ_arready),
+    .YZ_rready(YZ_rready),
+    .YZ_rdata(YZ_rdata),
+    .YZ_rresp(YZ_rresp),
+    .YZ_rvalid(YZ_rvalid),
+
+    .acc_start(acc_start),
+    .acc_busy(acc_busy),
+    .acc_done(acc_done),
+    .acc_out_wen(acc_out_wen),
+    .acc_out_wdata(acc_out_wdata),
+    .load_done_irq(load_done_irq),
+    .load_clear(load_clear),
+    .infer_irq(infer_irq)
+);
 
 boot_rom_axi_ctrl #(
     .DATA_WIDTH(DATA_WIDTH_boot),
@@ -334,7 +387,7 @@ boot_rom_axi_ctrl #(
     .axi_boot_rom_rready(axi_boot_rom_rready),
 
     .axi_boot_rom_interconnect_araddr (axi_boot_rom_interconnect_araddr),
-    .axi_boot_rom_interconnect_arvalid(axi_boot_rom_interconnect_arvalid), 
+    .axi_boot_rom_interconnect_arvalid(axi_boot_rom_interconnect_arvalid),
     .axi_boot_rom_interconnect_arready(axi_boot_rom_interconnect_arready),
     .axi_boot_rom_interconnect_rdata  (axi_boot_rom_interconnect_rdata),
     .axi_boot_rom_interconnect_rresp  (axi_boot_rom_interconnect_rresp),
@@ -371,8 +424,8 @@ instr_bram_axi_ctrl #(
     .axi_instr_bram_bvalid (axi_instr_bram_bvalid),
     .axi_instr_bram_bready (axi_instr_bram_bready),
 
-    .dma_valid(boot_dma_valid),
-    .dma_data (boot_dma_data)
+    .dma_valid_i(boot_dma_valid),
+    .dma_data_i (boot_dma_data)
 );
 
 yz_acclrtr_bram_axi_ctrl #(
@@ -382,32 +435,15 @@ yz_acclrtr_bram_axi_ctrl #(
     .clk_i(clk_i),
     .rst_n(rst_ni),
 
-    .axi_yz_bram_araddr (axi_yz_bram_araddr),
-    .axi_yz_bram_arvalid(axi_yz_bram_arvalid),
-    .axi_yz_bram_arready(axi_yz_bram_arready),
+    .yz_bram_raddr(yz_bram_raddr),
+    .yz_bram_rdata(yz_bram_rdata),
 
-    .axi_yz_bram_rdata  (axi_yz_bram_rdata),
-    .axi_yz_bram_rresp  (axi_yz_bram_rresp),
-    .axi_yz_bram_rvalid (axi_yz_bram_rvalid),
-    .axi_yz_bram_rready (axi_yz_bram_rready),
+    .dma_valid_i(yz_dma_valid),
+    .dma_data_i (yz_dma_data),
 
-    .axi_yz_bram_awaddr (axi_yz_bram_awaddr),
-    .axi_yz_bram_awvalid(axi_yz_bram_awvalid),
-    .axi_yz_bram_awready(axi_yz_bram_awready),
-
-    .axi_yz_bram_wdata  (axi_yz_bram_wdata),
-    .axi_yz_bram_wstrb  (axi_yz_bram_wstrb),
-    .axi_yz_bram_wvalid (axi_yz_bram_wvalid),
-    .axi_yz_bram_wready (axi_yz_bram_wready),
-
-    .axi_yz_bram_bresp  (axi_yz_bram_bresp),
-    .axi_yz_bram_bvalid (axi_yz_bram_bvalid),
-    .axi_yz_bram_bready (axi_yz_bram_bready),
-
-    .dma_valid_i(boot_dma_valid),
-    .dma_data_i (boot_dma_data)
+    .cpu_clear_i  (load_clear),
+    .load_done_irq(load_done_irq)
 );
-
 
 data_bram_axi_ctrl #(
     .DATA_WIDTH(DATA_WIDTH_data),
@@ -453,8 +489,8 @@ cv32e40p_obi_to_axi_wrapper #(
 
     // INTERRUPT PORTLARI
     .interrupt_i  (interrupt_i),
-    .interrupt_ack(interrupt_ack),
-    .interrupt_id (interrupt_id),
+    .interrupt_ack(),
+    .interrupt_id (),
 
     //  INSTRUCTION AW PORTLARI
     .axi_instr_awaddr (cpu_instr_awaddr),
@@ -651,30 +687,22 @@ AXI4_Interconnect interconnect_inst(
     // ======================================================================
     // MASTER 6: YZ HIZLANDIRICI PORTLARI (AXI4-Lite) - Base: 0x4006_0000
     // ======================================================================
-    //.axi_m6_awaddr (YZ_awaddr),
-    //.axi_m6_awvalid(YZ_awvalid),
-    //.axi_m6_awready(YZ_awready),
-    //.axi_m6_wdata  (YZ_wdata),
-    //.axi_m6_wvalid (YZ_wvalid),
-    //.axi_m6_wready (YZ_wready),
-    //.axi_m6_bresp  (YZ_bresp),
-    //.axi_m6_bvalid (YZ_bvalid),
-    //.axi_m6_bready (YZ_bready),
-    //.axi_m6_araddr (YZ_araddr),
-    //.axi_m6_arvalid(YZ_arvalid),
-    //.axi_m6_arready(YZ_arready),
-    //.axi_m6_rdata  (YZ_rdata),
-    //.axi_m6_rresp  (YZ_rresp),
-    //.axi_m6_rvalid (YZ_rvalid),
-    //.axi_m6_rready (YZ_rready),
-    .axi_m6_awready(0),
-    .axi_m6_wready (0),
-    .axi_m6_bresp  (0),
-    .axi_m6_bvalid (0),
-    .axi_m6_arready(0),
-    .axi_m6_rdata  (0),
-    .axi_m6_rresp  (0),
-    .axi_m6_rvalid (0),
+    .axi_m6_awaddr (YZ_awaddr),
+    .axi_m6_awvalid(YZ_awvalid),
+    .axi_m6_awready(YZ_awready),
+    .axi_m6_wdata  (YZ_wdata),
+    .axi_m6_wvalid (YZ_wvalid),
+    .axi_m6_wready (YZ_wready),
+    .axi_m6_bresp  (YZ_bresp),
+    .axi_m6_bvalid (YZ_bvalid),
+    .axi_m6_bready (YZ_bready),
+    .axi_m6_araddr (YZ_araddr),
+    .axi_m6_arvalid(YZ_arvalid),
+    .axi_m6_arready(YZ_arready),
+    .axi_m6_rdata  (YZ_rdata),
+    .axi_m6_rresp  (YZ_rresp),
+    .axi_m6_rvalid (YZ_rvalid),
+    .axi_m6_rready (YZ_rready),
 
     // ==============================================================
     // MASTER 7: DATA RAM PORTLARI (AXI4-Lite) - Base: 0x2000_0000
@@ -814,8 +842,8 @@ UART_YZ_AXI4_Lite uart_yz_inst(
     .rvalid (UART_YZ_rvalid),
 
     // UART Portları
-    .rx(UART_YZ_rx),
-    .tx(UART_YZ_tx),
+    .rx(UART_YZ_RX),
+    .tx(UART_YZ_TX),
 
     .dma_enable_i(yz_dma_enable),
     .dma_data_o  (yz_dma_data),

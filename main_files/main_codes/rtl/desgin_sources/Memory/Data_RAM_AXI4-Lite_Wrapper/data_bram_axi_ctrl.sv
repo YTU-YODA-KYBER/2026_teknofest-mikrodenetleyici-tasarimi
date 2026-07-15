@@ -39,7 +39,7 @@ module data_bram_axi_ctrl #(
     assign be    = axi_data_bram_wstrb;
     assign wdata = axi_data_bram_wdata;
 
-    bram #(.DATA_WIDTH(DATA_WIDTH), .ADDR_WIDTH(ADDR_WIDTH)) data_ram (
+    bram_data #(.DATA_WIDTH(DATA_WIDTH), .ADDR_WIDTH(ADDR_WIDTH)) data_ram (
         .clk(clk_i), .we(we), .be(be),
         .wdata(wdata), .waddr(waddr),
         .raddr(raddr), .rdata(rdata)

@@ -46,7 +46,6 @@ module UART_GU_AXI4_Lite (
     logic [ 1:0] UART_STP;
 
 
-
     logic [1:0] tx_state;         // TX FSM'sinin durumu
     logic [1:0] rx_state;         // RX FSM'sinin durumu
     
@@ -66,6 +65,7 @@ module UART_GU_AXI4_Lite (
     logic [ 4:0] sixteen_cnt_rx;     // RX için 16 baud tick'ini saymak için kullanılır
     logic        rx_zero_alert;      // RX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
     logic        tx_zero_alert;      // TX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
+    logic rx_meta, rx_sync;
 
     // ---------------------------------------------------------
     //                  TX BAUDRATE GENERATOR
@@ -104,11 +104,11 @@ module UART_GU_AXI4_Lite (
             if(rx_middle_alert) rx_middle_alert <= ~rx_middle_alert;
             if(rx_zero_alert) rx_zero_alert <= ~rx_zero_alert;
 
-            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || (rx == 0 && !rx_state)) begin
+            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || (rx_sync == 0 && !rx_state)) begin
                 rx_tick_cnt_limit <= cnt_limit_mirror;
                 rx_tick_cnt <= 0;
 
-                if((rx == 0 && !rx_state) || !sixteen_cnt_rx) begin
+                if((rx_sync == 0 && !rx_state) || !sixteen_cnt_rx) begin
                     sixteen_cnt_rx <= 15;
                     rx_zero_alert <= 1;
                 end
@@ -122,6 +122,15 @@ module UART_GU_AXI4_Lite (
             end
         end
 
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
+            rx_meta <= 1'b1;      // idle-high ile başla
+            rx_sync <= 1'b1;
+        end else begin
+            rx_meta <= rx;        // 1. kademe (metastable olabilir)
+            rx_sync <= rx_meta;   // 2. kademe (kararlı)
+        end
+    end
 
     // ---------------------------------------------------------
     //                  AXI YAZMA/OKUMA IŞLEMLERİ           
@@ -241,7 +250,7 @@ module UART_GU_AXI4_Lite (
         // ---------------------------------------------------------
             case (rx_state)
                 IDLE : begin
-                    if(rx == 0) rx_state <= WAIT;
+                    if(rx_sync == 0) rx_state <= WAIT;
                 end
 
                 WAIT : begin
@@ -253,17 +262,20 @@ module UART_GU_AXI4_Lite (
 
                 DATA: begin
                     if(rx_middle_alert) begin
-                        UART_RDR[rx_shift_cnt] <= rx;
+                        UART_RDR[rx_shift_cnt] <= rx_sync;
                         if(rx_shift_cnt == 7) rx_state <= REPORT;
                         else rx_shift_cnt <= rx_shift_cnt + 1;
                     end
                 end
 
                 REPORT: begin
-                    UART_CFG[1] <= 1;
-                    if(rx)rx_state <= IDLE;
+                    if(rx_sync)begin
+                        rx_state <= IDLE;
+                        UART_CFG[1] <= 1;
+                    end
                 end
             endcase
+
         end
     end
 endmodule

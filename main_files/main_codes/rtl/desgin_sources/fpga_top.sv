@@ -2,8 +2,8 @@ module fpga_top (
     input  logic sys_clk,       // 100 MHz osilatörü
     input  logic sys_rst_btn,   // active LOW
 
-    input  logic UART_TX,
-    output logic UART_RX,
+    input  logic UART_RX,
+    output logic UART_TX,
 
     input  logic [15:0] GPIO_IDR_pins,  // 16 switch (Basys3'te 32 pin yok)
     output logic [15:0] GPIO_ODR_pins,  // 16 LED
@@ -34,11 +34,23 @@ clk_wiz_0 clk_wizard_inst (
 );
 
 // ----------------------------------------------------------------
-// 2. RESET: ACTIVE-LOW CPU_RESETN
+// 2. RESET: ACTIVE-LOW CPU_RESETN (debounce'lu)
 // ----------------------------------------------------------------
+logic [15:0] btn_debounce_cnt;
+logic        btn_stable;
+
+always_ff @(posedge clk_50mhz) begin
+    if (sys_rst_btn == btn_stable) begin
+        btn_debounce_cnt <= '0;
+    end else begin
+        btn_debounce_cnt <= btn_debounce_cnt + 1'b1;
+        if (btn_debounce_cnt == 16'hFFFF) btn_stable <= sys_rst_btn;
+    end
+end
+
 logic rst_sync_0, rst_sync_1;
-always_ff @(posedge clk_50mhz or negedge sys_rst_btn) begin
-    if (!sys_rst_btn) begin
+always_ff @(posedge clk_50mhz or negedge btn_stable) begin
+    if (!btn_stable) begin
         rst_sync_0 <= 1'b0;
         rst_sync_1 <= 1'b0;
     end else begin
@@ -61,20 +73,11 @@ assign GPIO_ODR_pins     = gpio_odr_internal[15:0]; // alt 16 bit LED'e
 // ----------------------------------------------------------------
 // 4. SOC
 // ----------------------------------------------------------------
-
-logic [31:0] interrupt_i_tie  = 32'h0; // interrupt yok
-logic        uart_yz_rx_tie   = 1'b1;  // UART idle = HIGH
-logic [ 4:0] interrupt_id_nc;          // çıkış, nowhere
-logic        interrupt_ack_nc;         // çıkış, nowhere
 logic        uart_yz_tx_nc;            // çıkış, nowhere
 
 top_module soc_inst (
     .clk_i        (clk_50mhz),   // ← wizard çıkışı, ham kart saati değil!
     .rst_ni       (rst_n),        // ← senkronize + locked reset
-
-    .interrupt_i  (interrupt_i_tie),
-    .interrupt_id (interrupt_id_nc),
-    .interrupt_ack(interrupt_ack_nc),
 
     .GPIO_IDR     (gpio_idr_internal),
     .GPIO_ODR     (gpio_odr_internal),

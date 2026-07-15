@@ -1,6 +1,8 @@
-module bram #(
+module bram_instr #(
     parameter DATA_WIDTH = 32,
-    parameter ADDR_WIDTH = 10 // 2^10 = 1024 derinlik, 1024x32 bit = 4KB BRAM
+    parameter ADDR_WIDTH = 10, // 2^10 = 1024 derinlik, 1024x32 bit = 4KB BRAM
+    parameter INIT_FILE  = "firmware.hex"
+
 )(
     input  logic                  clk,
 
@@ -17,6 +19,10 @@ module bram #(
 
     // Bellek dizisinin tanımlanması
     logic [DATA_WIDTH-1:0] ram [0:(2**ADDR_WIDTH)-1];
+
+    initial begin
+        $readmemh(INIT_FILE, ram);
+    end
 
     // Yazma İşlemi
     always_ff @(posedge clk) begin

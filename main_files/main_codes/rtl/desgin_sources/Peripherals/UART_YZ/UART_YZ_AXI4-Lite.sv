@@ -33,7 +33,7 @@ module UART_YZ_AXI4_Lite (
     output logic  tx,
 
     input  logic        dma_enable_i,
-    output logic [31:0] dma_data_o,
+    output logic [ 7:0] dma_data_o,
     output logic        dma_valid_o
 );
     
@@ -69,9 +69,7 @@ module UART_YZ_AXI4_Lite (
     logic [ 4:0] sixteen_cnt_rx;     // RX için 16 baud tick'ini saymak için kullanılır
     logic        rx_zero_alert;      // RX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
     logic        tx_zero_alert;      // TX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
-
-    logic        stack_and_send;     // RX işlemi sırasında DMA'ya veri göndermek için kullanılır
-    logic [ 1:0] dma_cnt;
+    logic rx_meta, rx_sync;
 
     // ---------------------------------------------------------
     //                  TX BAUDRATE GENERATOR
@@ -110,11 +108,11 @@ module UART_YZ_AXI4_Lite (
             if(rx_middle_alert) rx_middle_alert <= ~rx_middle_alert;
             if(rx_zero_alert) rx_zero_alert <= ~rx_zero_alert;
 
-            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || (rx == 0 && !rx_state)) begin
+            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || (rx_sync == 0 && !rx_state)) begin
                 rx_tick_cnt_limit <= cnt_limit_mirror;
                 rx_tick_cnt <= 0;
 
-                if((rx == 0 && !rx_state) || !sixteen_cnt_rx) begin
+                if((rx_sync == 0 && !rx_state) || !sixteen_cnt_rx) begin
                     sixteen_cnt_rx <= 15;
                     rx_zero_alert <= 1;
                 end
@@ -128,6 +126,16 @@ module UART_YZ_AXI4_Lite (
             end
         end
 
+
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n) begin
+            rx_meta <= 1'b1;      // idle-high ile başla
+            rx_sync <= 1'b1;
+        end else begin
+            rx_meta <= rx;        // 1. kademe (metastable olabilir)
+            rx_sync <= rx_meta;   // 2. kademe (kararlı)
+        end
+    end
 
     // ---------------------------------------------------------
     //                  AXI YAZMA/OKUMA IŞLEMLERİ           
@@ -161,10 +169,8 @@ module UART_YZ_AXI4_Lite (
             tx      <= 1;
             cnt_limit_mirror <= 5;
 
-            stack_and_send <= 0;
             dma_data_o <= 0;
             dma_valid_o <= 0;
-            dma_cnt  <= 0;
             
         end else begin
 
@@ -252,7 +258,8 @@ module UART_YZ_AXI4_Lite (
         // ---------------------------------------------------------
             case (rx_state)
                 IDLE : begin
-                    if(rx == 0) rx_state <= WAIT;
+                    if(rx_sync == 0) rx_state <= WAIT;
+                    dma_valid_o <= 0;
                 end
 
                 WAIT : begin
@@ -264,29 +271,23 @@ module UART_YZ_AXI4_Lite (
 
                 DATA: begin
                     if(rx_middle_alert) begin
-                        UART_RDR[rx_shift_cnt] <= rx;
+                        UART_RDR[rx_shift_cnt] <= rx_sync;
                         if(rx_shift_cnt == 7) rx_state <= REPORT;
                         else rx_shift_cnt <= rx_shift_cnt + 1;
                     end
                 end
 
                 REPORT: begin
-                    UART_CFG[1] <= 1;
-                    if(rx)rx_state <= IDLE;
-                    if(dma_enable_i) stack_and_send <= 1'b1;
+                    if(rx_sync)begin
+                        rx_state <= IDLE;
+                        UART_CFG[1] <= 1;
+                        if(dma_enable_i) begin
+                            dma_data_o <= UART_RDR;
+                            dma_valid_o <= 1;
+                        end
+                    end
                 end
             endcase
-
-        if(stack_and_send) begin
-            if(dma_cnt == 3) begin
-                dma_cnt <= 0;
-                dma_valid_o <= 1;
-            end
-            else dma_cnt <= dma_cnt + 1;
-
-            dma_data_o <= {dma_data_o[23:0], UART_RDR};
-            stack_and_send <= 1'b0;
-        end else dma_valid_o <= 0;
 
         end
     end
