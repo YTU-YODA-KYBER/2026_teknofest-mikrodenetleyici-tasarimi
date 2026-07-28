@@ -11,9 +11,6 @@
 *.bin
 
 # Simülasyon ve Sentez klasörleri (Sadece kodları tut, gerisini boşver)
-sim/
-synth/
-impl/
 .Xil/
 *.sim/
 *.cache/
@@ -23,3 +20,5 @@ impl/
 # İşletim sistemi kalıntıları
 .DS_Store
 Thumbs.db
+
+CLAUDE.md
