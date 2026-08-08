@@ -1,0 +1,74 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+BOOTROM          0x00000000         0x00000400         xr
+RAM              0x20000000         0x00002000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+LOAD /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/crt0.o
+
+.text           0x00000000       0xf0
+                0x00000000                        . = ALIGN (0x4)
+ *(.init)
+ *(.text.start)
+ .text.start    0x00000000       0x4e /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/crt0.o
+                0x00000000                _start
+ *(.text*)
+ .text          0x0000004e        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+ .text.startup  0x0000004e       0xa0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+                0x0000004e                main
+ .text          0x000000ee        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/crt0.o
+ *(.rodata*)
+                0x000000f0                        . = ALIGN (0x4)
+ *fill*         0x000000ee        0x2 
+
+.rela.dyn       0x000000f0        0x0
+ .rela.text.start
+                0x000000f0        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+
+.data           0x20000000        0x0 load address 0x000000f0
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __data_start = .
+ *(.data*)
+ .data          0x20000000        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+ .data          0x20000000        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/crt0.o
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __data_end = .
+                0x000000f0                        __data_load_start = LOADADDR (.data)
+
+.bss            0x20000000        0x0 load address 0x000000f0
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __bss_start = .
+ *(.bss*)
+ .bss           0x20000000        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+ .bss           0x20000000        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/crt0.o
+ *(COMMON)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __bss_end = .
+
+.stack          0x20000000        0x0 load address 0x000000f0
+                0x20000000                        . = ALIGN (0x10)
+                0x20002000                        __stack_top = (ORIGIN (RAM) + LENGTH (RAM))
+OUTPUT(/home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.elf elf32-littleriscv)
+
+.comment        0x00000000       0x1c
+ .comment       0x00000000       0x1c /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+                                 0x1d (size before relaxing)
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+
+.riscv.attributes
+                0x00000000       0x2f
+ .riscv.attributes
+                0x00000000       0x2f /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/helloworld.o
+ .riscv.attributes
+                0x0000002f       0x2d /home/stradale/Documents/teknotest_deneme/teknotest/sw/build/crt0.o

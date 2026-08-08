@@ -1,0 +1,407 @@
+`timescale 1ns / 1ps
+
+`include "axi4lite_bind_uart_yz.svh"
+
+module UART_YZ_testbench;
+
+    // clock ve reset sinyalleri
+    logic clk_i = 0;
+    logic rst_n = 0;
+
+    // AW Portları
+    logic [31:0] awaddr  = 0;
+    logic        awvalid = 0;
+    logic        awready;
+
+    // W Portları
+    logic [31:0] wdata   = 0;
+    logic        wvalid  = 0;
+    logic        wready;
+
+    // AW Portları
+    logic        bready  = 1;   // AXI4-Lite'ta READY'yi surekli assert etmek yasaldir
+    logic [ 1:0] bresp;
+    logic        bvalid;
+    // AR Portları
+    logic [31:0] araddr  = 0;
+    logic        arvalid = 0;
+    logic        arready;
+
+    // R Portları
+    logic        rready  = 1;   // AXI4-Lite'ta READY'yi surekli assert etmek yasaldir
+    logic [31:0] rdata;
+    logic [1 :0] rresp;
+    logic        rvalid; 
+                    
+    logic  rx_val;
+    logic  tx_val;
+        
+    logic rx;
+    logic tx;
+
+    logic [7:0] read_data;
+
+    integer i = 0;
+
+    // ---- Basari sayaclari ----
+    integer toplam_basari    = 0;
+    integer toplam_basarisiz = 0;
+
+    assign rx = rx_val;
+    assign tx_val = tx;
+
+    // MODÜLÜ ÇAĞIRMA
+    UART_YZ_AXI4_Lite dut(
+        .clk(clk_i),
+        .rst_n(rst_n),
+
+        .awaddr(awaddr),
+        .awvalid(awvalid),
+        .awready(awready),
+        .wdata(wdata),
+        .wvalid(wvalid),
+        .wready(wready),
+        .bresp(bresp),
+        .bvalid(bvalid),
+        .bready(bready),
+        .araddr(araddr),
+        .arvalid(arvalid),
+        .arready(arready),
+        .rdata(rdata),
+        .rresp(rresp),
+        .rvalid(rvalid),
+        .rready(rready),
+         
+        .rx(rx),
+        .tx(tx)
+        );
+    
+    // --- CLOCK ÜRETİMİ ---
+    always begin
+        #10.4166 clk_i = ~clk_i;
+    end
+    
+    // Reset işlemi
+    task reset;
+        begin
+            rst_n = 0;
+            #40;
+            rst_n = 1;
+            #40;
+        end
+    endtask    
+    
+
+    // AXI4-Lite YAZMA.
+    //
+    // DIKKAT -- neden her sey negedge'de suruluyor:
+    //   Eski surum wait(awready && wready) ile bekleyip sinyalleri SAAT
+    //   KENARIYLA AYNI ZAMAN ADIMINDA suruyordu. Bu, awvalid/wvalid/arvalid
+    //   uzerinde SIFIR GENISLIKLI darbe (0->1->0, ayni t aninda) uretebiliyordu:
+    //   DUT'un always blogu ayni aktif bolgede darbeyi yakalayip islemi kabul
+    //   ederken, bind edilmis protokol kontrolcusunun sayac mantigi darbeyi
+    //   goremiyor; sayaclar ayrisinca ORD/OUT kurallari sahte ihlal yagdiriyordu
+    //   (QSPI blok testinde 600 binden fazla sahte ihlal bu yuzden olusmustu).
+    //   Cozum: butun stimulus saat kenarindan uzakta (negedge'de) surulur,
+    //   butun ornekleme de negedge'de yapilir -> yaris yok, darbe yok.
+    task axi_write(input [31:0] addr, input [31:0] data);
+        begin
+            @(negedge clk_i);
+            awaddr  = addr;
+            wdata   = data;
+            awvalid = 1;
+            wvalid  = 1;
+
+            // AW/W el sikismasinin gerceklesecegi posedge'i bekle
+            while (!(awready && wready)) @(negedge clk_i);
+            @(negedge clk_i);           // el sikisma posedge'i gecildi
+            awvalid = 0;
+            wvalid  = 0;
+            // B cevabi beklenmez: bready surekli 1, el sikisma kendiliginden olur
+        end
+    endtask
+
+    // AXI4-Lite OKUMA.  (Zamanlama gerekcesi icin axi_write aciklamasina bak.)
+    task axi_read(input [31:0] addr, output [31:0] read);
+        begin
+            @(negedge clk_i);
+            araddr  = addr;
+            arvalid = 1;
+
+            // AR el sikismasinin gerceklesecegi posedge'i bekle
+            while (!arready) @(negedge clk_i);
+            @(negedge clk_i);           // AR el sikisma posedge'i gecildi
+            arvalid = 0;
+
+            while (!rvalid) @(negedge clk_i);
+            read = rdata;               // rdata, rvalid boyunca kararli
+            // R el sikismasi rready surekli 1 oldugu icin bir sonraki posedge'de olur
+        end
+    endtask
+    
+    // UART okuma testi
+    task uart_read(input [7:0] data);
+        begin
+            rx_val = 0; // Start bit
+            i = 0;
+            wait(dut.sixteen_cnt_rx == 15);
+
+            repeat(8)begin
+                wait(dut.sixteen_cnt_rx == 0);
+                rx_val = data[i];
+                i = i + 1;
+                wait(dut.sixteen_cnt_rx == 15);
+            end
+            wait(dut.sixteen_cnt_rx == 15);
+            rx_val = 1;
+        end
+
+    endtask
+
+
+
+    initial begin
+
+        //===========================================================
+        //                        TEST 1
+        // Yazma ve okuma işlemlerini aynı anda ve yüksek baudrate
+        // ile başlatacağız.
+        //===========================================================
+        rx_val = 1; // Idle durumda RX hattı yüksek
+        $display("\n-----------------------------------------------------");
+        $display("--- TEST 1: Ayni anda yazma ve okuma islemi testi ---");
+        $display("-----------------------------------------------------\n");
+        reset();    // Active low reset
+
+        $display("--- Register'lar konfigure ediliyor... ---");
+        //Yazma işlemi için konfigürasyon
+        axi_write(32'h0000_0000, 32'd375);                  //UART_CPB => 48Mhz / (375 + 1) = 128000 baudrate
+        axi_write(32'h0000_0004, 32'd2);                    //UART_STP => 1.5 stop biti
+        axi_write(32'h0000_000C, 32'b0110_1101);            //UART_TDR => 0110_1101 => 0x6D => 109 decimal
+        axi_write(32'h0000_0010, 32'b1);                    //UART_CFG => Yazmaya başla
+        $display("--- Konfigurasyon tamamlandi. ---\n");
+
+        uart_read(8'b1010_1101);
+        $display("--- Yazma ve okuma islemi baslatildi. ---\n");
+
+        wait(dut.UART_CFG[1] == 1); // Okuma işlemi tamamlanana kadar bekliyoruz
+        axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
+        if(read_data[7:0] == 8'b1010_1101) begin
+            $display("  [GECTI ] Test 1a basarili: RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 1a BASARISIZ: Beklenen: 10101101, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
+        dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
+    
+        wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
+        begin
+            $display("  [GECTI ] Test 1b basarili: TX tamamlandi (CFG[2]=1)");
+            toplam_basari = toplam_basari + 1;
+        end
+        dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
+        // Biraz bekle
+        #10000; 
+
+
+
+        //===========================================================
+        //                        TEST 2
+        // Yazma işleminin ortalarında iken okuma işlemini başlatacağız.
+        // Baud rate sayaçlarının birbirinden bağımsız çalıştığını göstermek için.
+        //===========================================================
+        $display("------------------------------------------------------------");
+        $display("--- TEST 2: Yazma ve okuma islemlerini asenkron baslatma ---");
+        $display("------------------------------------------------------------\n");
+        $display("--- Register'lar konfigure ediliyor... ---");
+        //Yazma işlemi için konfigürasyon
+        axi_write(32'h0000_0000, 32'd417);                  //UART_CPB => 48Mhz / (417 + 1) = 115200 baudrate
+        axi_write(32'h0000_0004, 32'd3);                    //UART_STP => 2 stop biti
+        axi_write(32'h0000_000C, 32'b1000_1011);            //UART_TDR => 1000_1011 => 0x8B => 139 decimal
+        axi_write(32'h0000_0010, 32'b1);                    //UART_CFG => Yazmaya başla
+        $display("--- Konfigurasyon tamamlandi. ---\n");
+        $display("--- Yazma islemi baslatildi. ---");
+
+        wait(dut.tx_shift_cnt == 4); // Yazma işlemi ortasına gelindiğinde okuma işlemini başlatıyoruz
+        uart_read(8'b1101_0110);
+        $display("--- Okuma islemi baslatildi. ---\n");
+
+        wait(dut.UART_CFG[1] == 1); // Okuma işlemi tamamlanana kadar bekliyoruz
+        axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
+        if(read_data[7:0] == 8'b1101_0110) begin
+            $display("  [GECTI ] Test 2a basarili: Asenkron RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 2a BASARISIZ: Beklenen: 11010110, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
+        dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
+
+        wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
+        begin
+            $display("  [GECTI ] Test 2b basarili: Asenkron TX tamamlandi (CFG[2]=1)");
+            toplam_basari = toplam_basari + 1;
+        end
+        dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
+        // Biraz bekle
+        #10000; 
+
+
+
+        //===========================================================
+        //                        TEST 3
+        // Yüksek baudrate ile art arda yazma işlemi yapacağız. Sürekli yazma 
+        // koşulunda hatasız veri iletimi sağlanabildiğini göstermek için.
+        //===========================================================  
+        $display("-------------------------------------");
+        $display("--- TEST 3: Art arda yazma islemi ---");
+        $display("-------------------------------------\n");
+        $display("--- Register'lar konfigure ediliyor... ---");
+        //Yazma işlemi için konfigürasyon
+        axi_write(32'h0000_0000, 32'd500);                  //UART_CPB => 48Mhz / (500 + 1) = 96000 baudrate
+        axi_write(32'h0000_0004, 32'd0);                    //UART_STP => 1 stop biti
+
+        //============================================================
+        //                      1. Yazma işlemi
+        //============================================================
+        axi_write(32'h0000_000C, 32'b1000_1011);            //UART_TDR => 1000_1011 => 0x8B => 139 decimal
+        axi_write(32'h0000_0010, 32'b1);                    //UART_CFG => Yazmaya başla
+        $display("--- Konfigurasyon tamamlandi. ---\n");
+        $display("--- 1. Yazma islemi baslatildi. ---");
+        wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
+        begin
+            $display("  [GECTI ] Test 3a basarili: 1. TX (0x8B) tamamlandi");
+            toplam_basari = toplam_basari + 1;
+        end
+        dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
+
+        //============================================================
+        //                      2. Yazma işlemi
+        //============================================================
+        axi_write(32'h0000_000C, 32'b0110_1101);            //UART_TDR => 0110_1101 => 0x6D => 109 decimal
+        axi_write(32'h0000_0010, 32'b1);                    //UART_CFG => Yazmaya başla
+        $display("--- 2. Yazma islemi baslatildi. ---");
+        wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
+        begin
+            $display("  [GECTI ] Test 3b basarili: 2. TX (0x6D) tamamlandi");
+            toplam_basari = toplam_basari + 1;
+        end
+        dut.UART_CFG[2] <= 0; // Data sent bitini temizliyoruz ki sonraki yazma işlemlerinde de görebilelim
+
+        //============================================================
+        //                      3. Yazma işlemi
+        //============================================================
+        axi_write(32'h0000_000C, 32'b1111_0000);            //UART_TDR => 1111_0000 => 0xF0 => 240 decimal
+        axi_write(32'h0000_0010, 32'b1);                    //UART_CFG => Yazmaya başla
+        $display("--- 3. Yazma islemi baslatildi. ---");
+        wait(dut.UART_CFG[2] == 1); // Yazma işlemi tamamlanana kadar bekliyoruz
+        begin
+            $display("  [GECTI ] Test 3c basarili: 3. TX (0xF0) tamamlandi");
+            toplam_basari = toplam_basari + 1;
+        end
+        dut.UART_CFG[2] <= 0;
+        $display("--- Yazma islemleri tamamlandi. ---\n\n");
+
+        // Biraz bekle
+        #10000; 
+
+
+
+        //===========================================================
+        //                        TEST 4
+        // Yüksek baudrate ile art arda okuma işlemi yapacağız. Sürekli okuma 
+        // koşulunda hatasız veri iletimi sağlanabildiğini göstermek için.
+        //===========================================================
+        $display("-------------------------------------");    
+        $display("--- TEST 4: Art arda okuma islemi ---");
+        $display("-------------------------------------\n");
+        $display("--- Register'lar konfigure ediliyor... ---");
+        //Yazma işlemi için konfigürasyon
+        axi_write(32'h0000_0000, 32'd1000);                  //UART_CPB => 48Mhz / (1000 + 1) = 48000 baudrate
+        $display("--- Konfigurasyon tamamlandi. ---\n");
+
+        //============================================================
+        //                      1. Okuma işlemi
+        //============================================================
+        uart_read(8'b1101_0110);
+        $display("--- 1. Okuma islemi baslatildi. ---");
+        wait(dut.UART_CFG[1] == 1); // İlk okuma işlemi tamamlanana kadar bekliyoruz
+        $display("--- Data received bit 1 oldu. ---");
+        dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
+
+        axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
+        if(read_data[7:0] == 8'b1101_0110) begin
+            $display("  [GECTI ] Test 4a basarili: 1. RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 4a BASARISIZ: Beklenen: 11010110, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
+
+        //============================================================
+        //                      2. Okuma işlemi
+        //============================================================
+        uart_read(8'b1010_1101);
+        $display("--- 2. Okuma islemi baslatildi. ---");
+        wait(dut.UART_CFG[1] == 1); // İlk okuma işlemi tamamlanana kadar bekliyoruz
+        $display("--- Data received bit 1 oldu. ---");
+        dut.UART_CFG[1] <= 0; // Data received bitini temizliyoruz ki sonraki okuma işlemlerinde de görebilelim
+
+        axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
+        if(read_data[7:0] == 8'b1010_1101) begin
+            $display("  [GECTI ] Test 4b basarili: 2. RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 4b BASARISIZ: Beklenen: 10101101, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
+
+        //============================================================
+        //                      3. Okuma işlemi
+        //============================================================
+        uart_read(8'b1111_0000);
+        $display("--- 3. Okuma islemi baslatildi. ---");
+        wait(dut.UART_CFG[1] == 1); // İlk okuma işlemi tamamlanana kadar bekliyoruz
+        $display("--- Data received bit 1 oldu. ---");
+        dut.UART_CFG[1] <= 0;
+
+        axi_read(32'h0000_0008, read_data); // UART_RDR'den okuma yapıyoruz
+        if(read_data[7:0] == 8'b1111_0000) begin
+            $display("  [GECTI ] Test 4c basarili: 3. RX verisi dogru, okunan: %b", read_data[7:0]);
+            toplam_basari = toplam_basari + 1;
+        end else begin
+            $display("  [KALDI ] Test 4c BASARISIZ: Beklenen: 11110000, okunan: %b", read_data[7:0]);
+            toplam_basarisiz = toplam_basarisiz + 1;
+        end
+
+        $display("--- Okuma islemleri tamamlandi. ---");
+
+        // Biraz bekle
+        #10000;
+
+        $display("----------------------------------------------------------------------");
+        $display("---------------------- BUTUN TESTLER TAMAMLANDI ----------------------");
+        $display("----------------------------------------------------------------------\n");
+
+        $display("Toplam basarili test sayisi: %d", toplam_basari);
+        $display("Toplam basarisiz test sayisi:%d\n", toplam_basarisiz);
+        if(toplam_basari == 10)begin
+            $display("TUM TESTLER BASARILI!\n");
+        end else begin
+            $display("BAZI TESTLER BASARISIZ OLDU\n");
+        end
+        $display("----------------------------------------------------------------------");
+        $display("----------------------------------------------------------------------");
+
+
+        // AXI4-Lite protokol kontrolcusunun (bind ile baglanan) toplu ozeti.
+        // Sartname madde 5.2-3 -- ihlal varsa test BASARISIZ sayilir.
+        if (axi_chk_pkg::final_report() != 0)
+            $fatal(1, "AXI protokol ihlali tespit edildi.");
+
+
+        $finish;
+    end
+
+endmodule

@@ -6,7 +6,7 @@ ve yapay zekâ hızlandırıcılı** bir Sistem-on-Chip (SoC) tasarımı.
 
 > Tasarım **CV32E40P** RISC-V çekirdeği etrafına kuruldu; çekirdeği AXI4
 > ara bağlantı üzerinden bellekler, çevre birimleri ve bir yapay zekâ
-> hızlandırıcısı ile birleştirip Basys3 FPGA üzerinde çalışır hâle getirdik.
+> hızlandırıcısı ile birleştirip Nexys A7 FPGA üzerinde çalışır hâle getirdik.
 
 `SystemVerilog · Verilog · Tcl` &nbsp;|&nbsp; Hedef: **Nexys A7 (Artix-7)** @ 50 MHz
 
@@ -32,7 +32,7 @@ I2C, QSPI) ve yapay zekâ hızlandırıcısını kullanarak işini yapar.
 - **Çevre birimleri:** GPIO, Timer, I2C Master, QSPI Master, iki UART
   (genel kullanım + YZ veri akışı)
 - **Yapay zekâ hızlandırıcısı:** konvolüsyon + tam bağlı katmanlarla anahtar
-  kelime tanıma (yes / no / sessizlik)
+  kelime tanıma (sessizlik / bilinmeyen / evet / hayır)
 - **İki katmanlı boot:** Boot ROM'daki bootloader → QSPI flash'tan uygulamayı
   Instruction RAM'e yükler → çalıştırır
 - **Kapsamlı doğrulama:** her çevre birimi ve sistem seviyesi için testbench'ler
@@ -76,7 +76,11 @@ Asıl çalışma dosyaları [`main_files/`](main_files/) altında:
 | [`main_files/scripts/`](main_files/scripts/) | Vivado projesini otomatik kuran TCL scriptleri |
 | [`main_files/teknotest/`](main_files/teknotest/) | TEKNOFEST resmi test (DDK) ortamı ve teslim paketi |
 
-Her klasörün kendi `README.md`'si, o klasöre özel detayları anlatır.
+`firmware/` ve `scripts/` klasörlerinin kendi `README.md`'si, o klasöre özel
+detayları (derleme hedefleri, TCL scriptleri, `wav_to_yz.py` kullanımı) anlatır.
+AXI protokol kontrolcüsünün kendi dokümanı ise
+[`main_files/main_codes/testbench/AXI_protocol_check/README.md`](main_files/main_codes/testbench/AXI_protocol_check/README.md)
+içindedir.
 
 ---
 
@@ -85,10 +89,10 @@ Her klasörün kendi `README.md`'si, o klasöre özel detayları anlatır.
 **1. Donanım projesini oluştur (Vivado Tcl Console):**
 ```tcl
 cd .../main_files/
-source .../main_files/scripts/TEKNOFEST_MCU_Project.tcl
+source .../main_files/scripts/project_gen/Main_MCU_Project.tcl
 ```
 Bu, tüm tasarımı içeren Vivado projesini otomatik kurar. Tekil blokları ayrı
-denemek için `scripts/` altındaki diğer scriptler kullanılır
+denemek için `scripts/project_gen/` altındaki diğer scriptler kullanılır
 (bkz. `scripts/README.md`).
 
 **2. Yazılımı derle:**

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YODA KYBER — Code Coverage Raporları</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--line:#ddd;--head:#f2f4f6;--acc:#0b5fff}
+@media(prefers-color-scheme:dark){:root{--bg:#15181c;--fg:#e6e6e6;--mut:#9aa3ad;--line:#2c3138;--head:#1d2126;--acc:#6ea8ff}}
+*{box-sizing:border-box}
+body{margin:0;padding:2rem 1rem;background:var(--bg);color:var(--fg);
+     font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:60rem;margin:0 auto}
+h1{font-size:1.5rem;margin:0 0 .25rem}
+h2{font-size:1.1rem;margin:2rem 0 .5rem}
+p.sub{color:var(--mut);margin:0 0 2rem}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:40rem}
+th,td{padding:.55rem .75rem;text-align:left;border-bottom:1px solid var(--line);
+      white-space:nowrap}
+th{background:var(--head);font-weight:600;font-size:.85rem}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+td.grp{font-weight:600}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+a{color:var(--acc)}
+.note{color:var(--mut);font-size:.9rem;border-left:3px solid var(--line);
+      padding:.25rem 0 .25rem 1rem;margin:1.5rem 0}
+</style></head><body><main>
+<h1>Code Coverage Raporları</h1>
+<p class="sub">YTU YODA KYBER · TEKNOFEST 2026 Çip Tasarım Yarışması<br>
+Vivado XSim 2025.2 · <code>xelab --cc_type sbct</code> (statement + branch + condition + toggle)<br>
+Üretim: 2026-08-07 23:41</p>
+<div class="wrap"><table>
+<tr><th>Blok</th><th>Modül</th><th class="n">Statement</th><th class="n">Branch</th><th class="n">Condition</th><th class="n">Toggle</th><th>Rapor</th></tr>
+<tr><td class="grp" rowspan="5">AI_Accelerator</td><td><code>conv_accelerator</code></td><td class="n">99.32</td><td class="n">98.36</td><td class="n">100.00</td><td class="n">68.53</td><td rowspan="5"><a href="AI_Accelerator/report/codeCoverageReport/dashboard.html">aç →</a></td></tr>
+<tr><td><code>yz_csr_wrapper</code></td><td class="n">95.24</td><td class="n">85.71</td><td class="n">100.00</td><td class="n">33.33</td></tr>
+<tr><td><code>conv_buf_ram</code></td><td class="n">100.00</td><td class="n">100.00</td><td class="n">—</td><td class="n">19.05</td></tr>
+<tr><td><code>weights_rom_p8</code></td><td class="n">100.00</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+<tr><td><code>fc_weights_rom_p4</code></td><td class="n">100.00</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+<tr><td class="grp" rowspan="1">GPIO</td><td><code>GPIO_AXI4_Lite</code></td><td class="n">100.00</td><td class="n">92.31</td><td class="n">100.00</td><td class="n">60.00</td><td rowspan="1"><a href="GPIO/report/codeCoverageReport/dashboard.html">aç →</a></td></tr>
+<tr><td class="grp" rowspan="1">I2C</td><td><code>I2C_Master_AXI4_Lite_default</code></td><td class="n">96.02</td><td class="n">77.78</td><td class="n">92.50</td><td class="n">8.37</td><td rowspan="1"><a href="I2C/report/codeCoverageReport/dashboard.html">aç →</a></td></tr>
+<tr><td class="grp" rowspan="1">QSPI</td><td><code>QSPI_Master_AXI4_Lite</code></td><td class="n">92.86</td><td class="n">80.42</td><td class="n">91.67</td><td class="n">27.57</td><td rowspan="1"><a href="QSPI/report/codeCoverageReport/dashboard.html">aç →</a></td></tr>
+<tr><td class="grp" rowspan="1">Timer</td><td><code>Timer_AXI4_Lite</code></td><td class="n">91.30</td><td class="n">78.12</td><td class="n">87.50</td><td class="n">11.11</td><td rowspan="1"><a href="Timer/report/codeCoverageReport/dashboard.html">aç →</a></td></tr>
+<tr><td class="grp" rowspan="1">UART_GU</td><td><code>UART_GU_AXI4_Lite</code></td><td class="n">96.52</td><td class="n">83.64</td><td class="n">100.00</td><td class="n">10.63</td><td rowspan="1"><a href="UART_GU/report/codeCoverageReport/dashboard.html">aç →</a></td></tr>
+<tr><td class="grp" rowspan="1">UART_YZ</td><td><code>UART_YZ_AXI4_Lite</code></td><td class="n">95.04</td><td class="n">82.14</td><td class="n">100.00</td><td class="n">10.63</td><td rowspan="1"><a href="UART_YZ/report/codeCoverageReport/dashboard.html">aç →</a></td></tr>
+</table></div>
+<p class="note">Yüzdeler <strong>tasarım modülünün kendi skorudur</strong>;
+testbench, AXI protokol kontrolcüsü ve <code>glbl</code> dahil değildir.
+<code>xcrg</code>'nin dashboard'unda görünen toplam skor onları da saydığı için
+tasarımın kapsamını temsil etmez.</p>
+<p class="note"><strong>&mdash; işareti &ldquo;kapsanmadı&rdquo; değil, &ldquo;ölçülecek madde yok&rdquo;
+demektir.</strong> Ağırlık ROM'larında tek bir <code>if</code>/<code>case</code>
+bulunmadığı için dal ve koşul maddesi sıfırdır; anlamlı gösterge statement
+skorudur. Toggle'da da payda ROM dizisinin tamamıdır
+(<code>weights_rom_p8</code> 80&times;64 = 5120 bit,
+<code>fc_weights_rom_p4</code> 4000&times;32 = 128.000 bit) &mdash; bu bitler
+<code>$readmemh</code> ile bir kez yüklenip simülasyon boyunca hiç değişmediği
+için toggle sayacı onları asla saymaz.</p>
+<p class="note">Çevre birimleri <strong>blok testbench'leri</strong> ile,
+YZ hızlandırıcı ise <strong>sistem testi</strong>
+(<code>ai_accel_test.sv</code> &mdash; CPU, UART ve DMA yolu dahil gerçek çıkarım akışı)
+ile ölçülmüştür; iki ölçüm doğrudan kıyaslanmamalıdır.</p>
+<h2>Detaya nasıl inilir</h2>
+<p>Yukarıdaki <em>aç →</em> bağlantısı ilgili bloğun <code>dashboard.html</code>
+sayfasını açar. Oradan <em>Modules</em> ya da <em>Files</em> sekmesine geçip modül
+adına tıklarsanız kaynak kodu satır satır görürsünüz: <strong>yeşil</strong> satırlar
+test tarafından çalıştırılmış, <strong>kırmızı</strong> satırlar çalıştırılmamıştır.
+Bir klasörde çok sayıda HTML olmasının sebebi budur — her modül ve her kaynak
+dosya için ayrı bir detay sayfası üretilir; hepsi tek bir rapordur, bölünmemelidir.</p>
+<h2>Metin özet</h2><p><a href="README.md">README.md</a> — klasör yapısı, sonuç tabloları ve raporların nasıl okunacağı.</p>
+</main></body></html>

@@ -1,0 +1,964 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Sat Aug  8 22:08:48 2026
+| Host         : stradale running 64-bit Ubuntu 26.04 LTS
+| Command      : report_methodology -file fpga_top_methodology_drc_routed.rpt -pb fpga_top_methodology_drc_routed.pb -rpx fpga_top_methodology_drc_routed.rpx
+| Design       : fpga_top
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 183
++----------+----------+--------------------------------------------------------+--------+
+| Rule     | Severity | Description                                            | Checks |
++----------+----------+--------------------------------------------------------+--------+
+| DPIR-1   | Warning  | Asynchronous driver check                              | 136    |
+| SYNTH-6  | Warning  | Timing of a RAM block might be sub-optimal             | 32     |
+| SYNTH-10 | Warning  | Wide multiplier                                        | 3      |
+| SYNTH-15 | Warning  | Byte wide write enable not inferred                    | 8      |
+| XDCC-1   | Warning  | Scoped Clock constraint overwritten with the same name | 1      |
+| XDCC-5   | Warning  | User Non-Timing constraint/property overwritten        | 2      |
+| XDCC-7   | Warning  | Scoped Clock constraint overwritten on the same source | 1      |
++----------+----------+--------------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+DPIR-1#1 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#2 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#3 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#4 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#5 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#6 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#7 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#8 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#9 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#10 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#11 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#12 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#13 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#14 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#15 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#16 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#17 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/A[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#18 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#19 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#20 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#21 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#22 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#23 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#24 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#25 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#26 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[17] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#27 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#28 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#29 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#30 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#31 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#32 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#33 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#34 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#35 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0/B[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#36 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#37 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#38 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#39 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#40 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#41 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#42 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#43 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#44 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#45 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#46 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#47 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#48 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#49 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#50 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#51 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#52 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/A[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#53 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#54 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#55 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#56 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#57 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#58 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#59 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#60 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#61 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#62 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#63 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#64 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#65 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#66 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#67 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#68 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#69 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0/B[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#70 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#71 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#72 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#73 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#74 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#75 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#76 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#77 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#78 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#79 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#80 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#81 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#82 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#83 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#84 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#85 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#86 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/A[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#87 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#88 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#89 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#90 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#91 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#92 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#93 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#94 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#95 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[17] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#96 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#97 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#98 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#99 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#100 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#101 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#102 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#103 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#104 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1/B[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#105 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#106 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[10] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#107 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[11] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#108 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[12] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#109 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[13] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#110 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[14] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#111 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[15] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#112 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[16] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#113 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[17] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#114 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[18] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#115 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[19] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#116 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#117 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[20] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#118 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[21] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#119 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[22] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#120 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[23] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#121 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[24] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#122 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[25] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#123 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[26] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#124 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[27] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#125 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[28] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#126 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[29] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#127 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#128 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[30] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#129 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[31] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#130 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#131 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#132 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#133 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#134 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#135 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#136 Warning
+Asynchronous driver check  
+DSP soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac input pin soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/short_mac/C[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+SYNTH-6#1 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#3 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#4 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#5 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#6 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#7 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#8 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#9 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/conv_accelerator_inst/u_conv_buf_ram/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#10 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/conv_accelerator_inst/u_fc_weights_rom/dout_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#11 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/conv_accelerator_inst/u_fc_weights_rom/dout_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#12 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/conv_accelerator_inst/u_fc_weights_rom/dout_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#13 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/conv_accelerator_inst/u_fc_weights_rom/dout_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#14 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/conv_accelerator_inst/u_weights_rom/dout_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#15 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#16 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#17 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_1_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#18 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_1_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#19 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_2_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#20 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_2_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#21 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_3_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#22 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_3_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#23 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#24 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#25 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#26 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#27 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#28 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#29 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_4, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#30 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_5, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#31 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_6, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#32 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0_7, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-10#1 Warning
+Wide multiplier  
+Detected multiplier at soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0 of size 15x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#2 Warning
+Wide multiplier  
+Detected multiplier at soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__0 of size 18x18, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-10#3 Warning
+Wide multiplier  
+Detected multiplier at soc_inst/cpu_inst/CORE/core_i/ex_stage_i/mult_i/int_result0__1 of size 18x15, it is decomposed from a wide multipler into 4 DSP blocks.
+Related violations: <none>
+
+SYNTH-15#1 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_0_0 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+SYNTH-15#2 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_0_1 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+SYNTH-15#3 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_1_0 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+SYNTH-15#4 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_1_1 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+SYNTH-15#5 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_2_0 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+SYNTH-15#6 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_2_1 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+SYNTH-15#7 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_3_0 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+SYNTH-15#8 Warning
+Byte wide write enable not inferred  
+Byte wide write enable (BWWE) is not inferred for Block RAM soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_3_1 because address width (13) is more than optimal threshold of 12. Implementing using BWWE will require more logic and timing would be suboptimal. Please use attribute ram_decomp = power if BWWE is desired..
+Related violations: <none>
+
+XDCC-1#1 Warning
+Scoped Clock constraint overwritten with the same name  
+A new clock constraint create_clock overrides a previous scoped clock constraint with the same name. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 10.000 -name sys_clk [get_ports sys_clk] (Source: /home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/constraint/nexys_a7_soc.xdc (Line: 9))
+Previous: create_clock -period 10.000 [get_ports sys_clk] (Source: /home/luxyxp/Documents/mainfiles/FPGA/Full_MCU_Project.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc (Line: 53))
+Related violations: <none>
+
+XDCC-5#1 Warning
+User Non-Timing constraint/property overwritten  
+A new XDC property IOSTANDARD on GPIO_IDR_pins[8] overrides a previous user property.
+New Source: /home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/constraint/nexys_a7_soc.xdc (Line: 61)
+Previous Source: /home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/constraint/nexys_a7_soc.xdc (Line: 59)
+Related violations: <none>
+
+XDCC-5#2 Warning
+User Non-Timing constraint/property overwritten  
+A new XDC property IOSTANDARD on GPIO_IDR_pins[9] overrides a previous user property.
+New Source: /home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/constraint/nexys_a7_soc.xdc (Line: 62)
+Previous Source: /home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/constraint/nexys_a7_soc.xdc (Line: 59)
+Related violations: <none>
+
+XDCC-7#1 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 10.000 -name sys_clk [get_ports sys_clk] (Source: /home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/constraint/nexys_a7_soc.xdc (Line: 9))
+Previous: create_clock -period 10.000 [get_ports sys_clk] (Source: /home/luxyxp/Documents/mainfiles/FPGA/Full_MCU_Project.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc (Line: 53))
+Related violations: <none>
+
+
