@@ -341,7 +341,7 @@ typedef struct {
  *  Sira hizlandiricinin fc_weights.hex sirasina baglidir; "yes" gonderince
  *  beklenen sinif cikmiyorsa once bu esleme kontrol edilir.
  *
- *  YZ girisi tam 1960 bayt olmalidir (yz bellegi 2048 >= 1960).
+ *  YZ girisi tam 1960 bayt olmalidir (yz girdi RAM'i 9904 >= 1960).
  * --------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------

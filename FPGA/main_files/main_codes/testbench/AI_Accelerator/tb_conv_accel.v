@@ -16,7 +16,7 @@
 // =====================================================================
 module tb_conv_accel;
 
-    localparam RAM_ADDR_W = 15;
+    localparam RAM_ADDR_W = 14;   // top_module ADDR_WIDTH_yz ile ayni
     localparam N_BYTES    = 1960;
 
     reg clk = 1'b0;

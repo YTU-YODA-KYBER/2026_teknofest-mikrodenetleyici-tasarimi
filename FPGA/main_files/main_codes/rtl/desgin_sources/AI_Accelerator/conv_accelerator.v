@@ -54,7 +54,10 @@ module conv_accelerator #(
     // Girdi her zaman 1960 bayt oldugu icin adres degerleri 11 bite sigar;
     // port genisligi RAM ile ayni tutulur ki ust adres bitleri sabit 0'a
     // baglanip sentezde BRAM'lerin bir kismi optimize edilerek atilmasin.
-    parameter RAM_ADDR_W = 15
+    // RAM derinligi 9.904 bayt: sartnamenin 30 KB'lik TOPLAM hizlandirici
+    // bellek butcesinden bu modulun kendi bellekleri (16.000 + 4.000 + 640 +
+    // 176 = 20.816 B) dusuldukten sonra kalan pay. bkz. bram_yz_def.sv
+    parameter RAM_ADDR_W = 14
 )(
     input wire clk,
     input wire rst_n,

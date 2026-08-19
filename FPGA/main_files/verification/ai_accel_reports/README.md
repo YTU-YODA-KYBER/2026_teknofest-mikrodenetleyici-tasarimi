@@ -17,6 +17,35 @@ sınıfını ve `mcycle` çevrim sayısını raporlar.
 
 ---
 
+## Bellek bütçesi
+
+Şartname hızlandırıcının **toplam** belleğini 30 KB ile sınırlar. Aşağıdaki
+tablo RTL'deki her dizinin bildirilmiş boyutudur (`main_codes/rtl/desgin_sources/`
+altındaki modüllerden birebir okunur):
+
+| Bellek | Derinlik × Genişlik | Bayt |
+|---|---:|---:|
+| YZ girdi RAM (`bram_yz`) | 9904 × 8 | 9.904 |
+| `fc_weights_rom_p4` (FC ağırlıkları) | 4000 × 32 | 16.000 |
+| `conv_buf_ram` (conv→FC aktivasyon tamponu) | 4000 × 8 | 4.000 |
+| `weights_rom_p8` (conv ağırlıkları) | 80 × 64 | 640 |
+| `biases` + `fc_biases` + `fc_scores` | 16 × 32 | 64 |
+| `acc` + `fc_acc` + `wb_prod` + `wb_bytes` | — | 112 |
+| **TOPLAM** | | **30.720 = 30,00 KB** |
+
+Girdi RAM dışındaki her dizi **%100 adreslenir** (FC ağırlıkları 0..3999, conv
+tamponu 0..3999, conv ağırlıkları 0..79) — kırpılacak fazlalık yoktur. Model
+girdisi her zaman 1960 bayt olduğu için girdi RAM'inin ilk 1960 adresi
+kullanılır; derinliği 30 KB bütçesinden **artan pay** olarak belirlenmiştir
+(30.720 − 20.816 = 9.904). Register dizileri (son iki satır) bilerek dahil
+edildi: "bellek" en geniş yorumuyla sayıldığında bile toplam sınırı aşmıyor.
+
+Derinlik beş yerde kilitli tutulur — biri değişirse hepsi değişmeli:
+`Top_module.sv` (`ADDR_WIDTH_yz`/`DEPTH_yz`), `Top_module_for_app_code.sv`,
+`bram_yz_def.sv`, `yz_bram_axi_ctrl.sv`, `conv_accelerator.v` (`RAM_ADDR_W`).
+
+---
+
 ## Dosyalar
 
 | Dosya | Neyi raporlar |

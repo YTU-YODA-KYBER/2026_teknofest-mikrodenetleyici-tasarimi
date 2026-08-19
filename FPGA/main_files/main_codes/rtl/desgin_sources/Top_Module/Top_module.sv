@@ -13,9 +13,14 @@ module top_module #(
     // RTL'e dokunulmaz. Adres bolgeleri interconnect'te zaten 64KB genis
     // oldugu icin adres cozucude degisiklik gerekmez.
     parameter DATA_WIDTH_yz    = 8,
-    parameter ADDR_WIDTH_yz    = 15,                // 2^15=32768 bayt = 32KB YZ RAM (sartname geregi).
-                                                    // Model girdisi 1960 bayt oldugu icin fiilen ilk
-                                                    // 1960 adres kullanilir; gerisi rezervdir.
+    // Sartname YZ hizlandiricisinin TOPLAM bellegini 30 KB (30.720 bayt) ile
+    // sinirlar. Hizlandiricinin kendi bellekleri 20.816 bayt tuttugu icin
+    // (fc_weights_rom_p4 16.000 + conv_buf_ram 4.000 + weights_rom_p8 640 +
+    // bias/skor register dizileri 176) girdi RAM'ine kalan pay 9.904 bayttir.
+    // Butce tablosu: verification/ai_accel_reports/README.md
+    // Model girdisi 1960 bayt oldugu icin fiilen ilk 1960 adres kullanilir.
+    parameter ADDR_WIDTH_yz    = 14,                // 9.904'u adresleyen en kucuk genislik
+    parameter DEPTH_yz         = 9904,              // girdi RAM derinligi [bayt]
 
 
     parameter logic [31:0] boot_addr         = 32'h0000_0000,   //BASLANGIC ADRESI
@@ -445,7 +450,8 @@ instr_bram_axi_ctrl #(
 
 yz_acclrtr_bram_axi_ctrl #(
     .DATA_WIDTH(DATA_WIDTH_yz),
-    .ADDR_WIDTH(ADDR_WIDTH_yz)
+    .ADDR_WIDTH(ADDR_WIDTH_yz),
+    .DEPTH     (DEPTH_yz)
 ) yz_bram_ctrl_inst(
     .clk_i(clk_i),
     .rst_n(rst_ni),

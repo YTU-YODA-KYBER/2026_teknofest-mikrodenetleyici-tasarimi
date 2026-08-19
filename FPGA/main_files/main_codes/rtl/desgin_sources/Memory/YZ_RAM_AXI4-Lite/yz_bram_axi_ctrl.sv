@@ -1,6 +1,10 @@
 module yz_acclrtr_bram_axi_ctrl #(
     parameter DATA_WIDTH = 8,
-    parameter ADDR_WIDTH = 15          // 2^15=32768 bayt = 32KB, bayt-adresli (girdi 1960 bayt)
+    // Sartnamenin 30 KB'lik TOPLAM hizlandirici bellek butcesinden girdi
+    // RAM'ine kalan pay 9.904 bayttir (bkz. bram_yz_def.sv). Girdi her zaman
+    // 1960 bayt oldugu icin fiilen ilk 1960 adres kullanilir.
+    parameter ADDR_WIDTH = 14,
+    parameter DEPTH      = 9904
 )(
     input  logic clk_i,
     input  logic rst_n,
@@ -24,7 +28,8 @@ module yz_acclrtr_bram_axi_ctrl #(
 
     bram_yz #(
         .DATA_WIDTH(DATA_WIDTH),
-        .ADDR_WIDTH(ADDR_WIDTH)
+        .ADDR_WIDTH(ADDR_WIDTH),
+        .DEPTH     (DEPTH)
     ) yz_ram (
         .clk   (clk_i),
         .we    (we),
