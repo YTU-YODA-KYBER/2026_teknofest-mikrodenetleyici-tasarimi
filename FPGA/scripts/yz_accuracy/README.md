@@ -1,6 +1,6 @@
 # scripts/yz_accuracy — YZ Doğruluk Kıyası (kart üzerinde)
 
-Şartmanenin *"yazılım ile gerçeklenen modelin doğruluğunu %10'luk bir pencere
+Şartnamenin *"yazılım ile gerçeklenen modelin doğruluğunu %10'luk bir pencere
 dahilinde yakalama"* maddesinin kanıt paketi. Etiketli bir ses kümesini karta
 gönderip **hızlandırıcının** ve **CPU'da koşan TFLite yazılım gerçeklemesinin**
 doğruluk oranlarını karşılaştırır.
@@ -73,7 +73,7 @@ fark → geçer. Örnek-başı uyum daha güçlü bir metrik olduğu için ayrı
 ## Tek gönderim, iki sonuç
 
 YZ RAM'in CPU portu yok — hızlandırıcı veriyi yalnızca UART_YZ → DMA yolundan
-alır. Yazılımın **aynı** 1960 baytı görebilmesi için `uart_mux.sv`'de genel
+alır. Yazılımın **aynı** 1960 baytı görebilmesi için `UART_mux.sv`'de genel
 UART'ın RX'i her modda açık bırakıldı. Böylece PC tek gönderim yapar:
 
 ```

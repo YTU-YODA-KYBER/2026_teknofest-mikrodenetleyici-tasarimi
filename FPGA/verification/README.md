@@ -32,16 +32,20 @@ bekliyor; BRAM oranı düşecek.
 ### Çıktı Görselleri:
 
 **Code Coverage Sonuçları:**
-![](.images/coverage_results.png)
+
+<img src=".images/coverage_results.png" alt="Kod kapsamı sonuçları" width="820">
 
 **Design Route Status:**
-![](.images/design_route_status.png)
+
+<img src=".images/design_route_status.png" alt="Design route status" width="618">
 
 **Timing Özeti:**
-![](.images/timing_summary.png)
+
+<img src=".images/timing_summary.png" alt="Zamanlama özeti" width="820">
 
 **FPGA Üzerindeki Yerleşim:**
-![](.images/layout.png)
+
+<img src=".images/layout.png" alt="FPGA üzerindeki yerleşim" width="820">
 
 ---
 

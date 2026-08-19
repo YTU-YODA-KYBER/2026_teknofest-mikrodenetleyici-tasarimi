@@ -37,7 +37,7 @@ Temelde kartın 2 aşaması vardır: `main_boot.c` ve `main_app.c`
 
 	Aynı 1960 baytlık ses verisini **hem hızlandırıcıya hem de CPU'da koşan TFLite yazılım gerçeklemesine** verir, ikisinin sınıfını ve çevrim sayısını ölçüp UART'tan geri gönderir. Böylece *hızlanma* ve *doğruluk* tek koşumda çıkar.
 
-	İki tarafın aynı veriyi görmesini `uart_mux.sv` sağlar: RX bir mux değil **fan-out**'tur, genel UART her modda dinler. Yani PC tek gönderim yapar, baytlar hem DMA üzerinden YZ RAM'e hem de genel UART üzerinden CPU'ya ulaşır. (YZ RAM'in CPU portu olmadığı için başka yolu yoktur.)
+	İki tarafın aynı veriyi görmesini `UART_mux.sv` (modül adı `uart_mux`) sağlar: RX bir mux değil **fan-out**'tur, genel UART her modda dinler. Yani PC tek gönderim yapar, baytlar hem DMA üzerinden YZ RAM'e hem de genel UART üzerinden CPU'ya ulaşır. (YZ RAM'in CPU portu olmadığı için başka yolu yoktur.)
 
 	`main_app.c`'nin aksine **tamamen yoklamalıdır (polling), kesme kullanmaz** — ölçülen şey çevrim sayısı olduğu için ölçüm penceresine kesme gecikmesi karışmasın diye.
 
@@ -58,34 +58,34 @@ Temelde kartın 2 aşaması vardır: `main_boot.c` ve `main_app.c`
 - **Sadece boot akışı**
 	**Simülasyonda:**
 		1- `make sim_boot` ile ilgili hex kodunu oluşturun.
-		2-  `project_gen/System_test/boot_test.tcl` scriptini `main_files/scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
+		2-  `project_gen/System_test/boot_test.tcl` scriptini `scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
 		3- Simülasyonu çalıştırabilirsin, güncel durum tcl konsolundan raporlanır.
 	**FPGA üzerinde:**
 		1- `make boot` ile ilgili hex kodunu oluştur.
-		2- `project_gen/Main_MCU_Project.tcl` scriptini `main_files/scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
+		2- `project_gen/Main_MCU_Project.tcl` scriptini `scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
 		3- `Generate bitstream` ile bitstream dosyasını oluştur ve `program device` ile karta yükle. Kart üzerindeki `CPU_Reset` yazan buton active low reset olarak tanımlıdır.
 
 - **Sadece uygulama kodları:**
 	**Simülasyonda:**
 		1- `make sim_app` ile ilgili hex kodunu oluşturun.
-		2-  `project_gen/System_test/ai_accel_test.tcl` scriptini `main_files/scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
+		2-  `project_gen/System_test/ai_accel_test.tcl` scriptini `scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
 		3- Simülasyonu çalıştırabilirsin, güncel durum tcl konsolundan raporlanır.
 	**FPGA üzerinde:**
 		1- `make app_bootrom` ile ilgili hex kodunu oluştur.
-		2- `project_gen/System_test/only_app_test.tcl` scriptini `main_files/scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
+		2- `project_gen/System_test/only_app_test.tcl` scriptini `scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
 		3- `Generate bitstream` ile bitstream dosyasını oluştur ve `program device` ile karta yükle. Kart üzerindeki `CPU_Reset` yazan buton active low reset olarak tanımlıdır.
 		
 - **İkisi birden(bütün tasarım) FPGA üzerinde:**
 	**FPGA üzerinde:**
 		1- `make all` ile ilgili hex kodunu oluştur.
-		2-  `project_gen/Main_MCU_Project.tcl` scriptini `main_files/scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
+		2-  `project_gen/Main_MCU_Project.tcl` scriptini `scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
 		3- `Generate bitstream` ile bitstream dosyasını oluştur ve `program device` ile karta yükle. Kart üzerindeki `CPU_Reset` yazan buton active low reset olarak tanımlıdır.
 
 - **YZ doğrulaması (hızlandırıcı ↔ yazılım kıyası):**
 	Her iki adım da aynı TCL'i kullanır; script bellek parametrelerini kendisi ayarlar, elle hiçbir dosya değiştirmen gerekmez.
 	**Simülasyonda (hızlanma ölçümü):**
 		1- `make sim_bench` ile ilgili hex kodunu oluştur.
-		2- `project_gen/System_test/yz_bench_test.tcl` scriptini `main_files/scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
+		2- `project_gen/System_test/yz_bench_test.tcl` scriptini `scripts/README.md` içindeki açıklamaya göre çalıştır ve Vivado projesini oluşturun. Gerekli bütün dosyalar ilgili projeye eklenir.
 		3- Simülasyonu çalıştır. Testbench ses verisini YZ RAM'e doğrudan DMA'dan yükler (UART'tan göndermek 8,5 M çevrim sürerdi), sonucu ve hızlanma oranını tcl konsoluna basar. Süre ~12 dakikadır.
 	**FPGA üzerinde (doğruluk ölçümü):**
 		1- `make bench` ile ilgili hex kodunu oluştur.

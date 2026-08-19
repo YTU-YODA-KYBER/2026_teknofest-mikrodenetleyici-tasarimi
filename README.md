@@ -28,15 +28,15 @@ I2C, QSPI) ve yapay zekâ hızlandırıcısını kullanarak işini yapar.
 ## Öne çıkanlar
 
 - **CV32E40P RISC-V çekirdeği** (RV32IMC + Zicsr/Zifencei), opsiyonel FPU varyantı
-- **Bellekler:** Boot ROM, Instruction RAM, Data RAM (hepsi AXI4-Lite sarmalı)
+- **Bellekler:** Boot ROM, Instruction RAM, Data RAM, YZ RAM (hepsi AXI4-Lite sarmalı)
 - **Çevre birimleri:** GPIO, Timer, I2C Master, QSPI Master, iki UART
   (genel kullanım + YZ veri akışı)
 - **Yapay zekâ hızlandırıcısı:** konvolüsyon + tam bağlı katmanlarla anahtar
   kelime tanıma (sessizlik / bilinmeyen / evet / hayır)
 - **İki katmanlı boot:** Boot ROM'daki bootloader → QSPI flash'tan uygulamayı
   Instruction RAM'e yükler → çalıştırır
-- **Kapsamlı doğrulama:** her çevre birimi ve sistem seviyesi için testbench'ler
-  (QSPI için Micron flash simülasyon modeli dahil)
+- **Kapsamlı doğrulama:** her çevre birimi ve sistem seviyesi için testbench'ler,
+  15 AXI arayüzüne bağlanan protokol kontrolcüsü, kod kapsamı raporları
 - **Tek tıkla kurulum:** Vivado projesini sıfırdan oluşturan TCL scriptleri
 
 ---
@@ -67,49 +67,71 @@ uygulamayı QSPI flash'tan Instruction RAM'e kopyalar → uygulamaya atlar → �
 
 ## Depo yapısı
 
-Asıl çalışma dosyaları [`main_files/`](main_files/) altında:
+```
+mainfiles/
+├── FPGA/     → Asıl tasarım: RTL, firmware, Vivado scriptleri, doğrulama raporları
+├── ASIC/     → ASIC akışı için ayrılmış klasör (şu an boş)
+└── LICENSE
+```
+
+Bütün çalışma dosyaları [`FPGA/`](FPGA/) altındadır:
 
 | Klasör | İçerik |
 |---|---|
-| [`main_files/main_codes/`](main_files/main_codes/) | Donanım tasarımının tamamı (RTL) + testbench'ler |
-| [`main_files/firmware/`](main_files/firmware/) | İşlemcinin koşturduğu bare-metal yazılım (C / asm) |
-| [`main_files/scripts/`](main_files/scripts/) | Vivado projesini otomatik kuran TCL scriptleri |
-| [`main_files/teknotest/`](main_files/teknotest/) | TEKNOFEST resmi test (DDK) ortamı ve teslim paketi |
+| [`FPGA/main_codes/`](FPGA/main_codes/) | Donanım tasarımının tamamı (RTL) + testbench'ler |
+| [`FPGA/firmware/`](FPGA/firmware/) | İşlemcinin koşturduğu bare-metal yazılım (C / asm) |
+| [`FPGA/scripts/`](FPGA/scripts/) | Vivado proje kurulum scriptleri + YZ araç zinciri |
+| [`FPGA/verification/`](FPGA/verification/) | Doğrulama kanıtları: sentez, zamanlama, kod kapsamı, YZ ölçümleri |
+| [`FPGA/Vivado_projects/`](FPGA/Vivado_projects/) | Scriptlerin ürettiği Vivado projeleri (üretilen çıktı) |
+| [`FPGA/bitstream_files/`](FPGA/bitstream_files/) | Karta yüklenen bitstream (`fpga_top.bit`) |
 
-`firmware/` ve `scripts/` klasörlerinin kendi `README.md`'si, o klasöre özel
-detayları (derleme hedefleri, TCL scriptleri, `wav_to_yz.py` kullanımı) anlatır.
-AXI protokol kontrolcüsünün kendi dokümanı ise
-[`main_files/main_codes/testbench/AXI_protocol_check/README.md`](main_files/main_codes/testbench/AXI_protocol_check/README.md)
-içindedir.
+Klasörlerin ayrıntılı dökümü [`FPGA/README.md`](FPGA/README.md) içinde;
+`firmware/`, `scripts/` ve `verification/` klasörlerinin de kendi README'si vardır.
 
 ---
 
 ## Hızlı başlangıç
 
-**1. Donanım projesini oluştur (Vivado Tcl Console):**
+**1. Yazılımı derle:**
+```bash
+cd FPGA/firmware/
+make all          # bootloader (boot.hex) + uygulama (app.hex)
+```
+Derleme hedeflerinin tamamı [`FPGA/firmware/README.md`](FPGA/firmware/README.md) içinde.
+
+**2. Donanım projesini oluştur (Vivado Tcl Console):**
 ```tcl
-cd .../main_files/
-source .../main_files/scripts/project_gen/Main_MCU_Project.tcl
+cd /.../mainfiles/FPGA/
+source /.../mainfiles/FPGA/scripts/project_gen/Main_MCU_Project.tcl
 ```
 Bu, tüm tasarımı içeren Vivado projesini otomatik kurar. Tekil blokları ayrı
 denemek için `scripts/project_gen/` altındaki diğer scriptler kullanılır
-(bkz. `scripts/README.md`).
+(bkz. [`FPGA/scripts/README.md`](FPGA/scripts/README.md)).
 
-**2. Yazılımı derle:**
-```bash
-cd main_files/firmware/
-make            # bootloader + uygulama
-```
-Derleme hedeflerinin tamamı `firmware/README.md` içinde.
+**3. Karta yükle:** Vivado'da `Generate Bitstream` → `Program Device`.
+Uygulamayı flash'a yazma ve YZ'ye ses gönderme adımları
+[`FPGA/firmware/README.md`](FPGA/firmware/README.md) içinde.
 
 ---
 
 ## Doğrulama
 
-İşlemci çekirdeği Spike ISS ile doğrulandı. Çevre birimleri ve AXI haberleşmelerinin UVM ile 
-doğrulama süreci devam ediyor. Çevre birimlerinin her biri kendi directed testbenchleri ile, sistem ise
-birkaç temel test ile doğrulandı. Sistem, yarışmada bizden istenilen UART-Sistem testini geçmektedir.
+Ölçüm sonuçlarının tamamı ve raporlar: [`FPGA/verification/`](FPGA/verification/)
 
+| Doğrulama | Sonuç |
+|---|---|
+| Sentez + implementasyon | hatasız, 14575/14575 net yollandı |
+| Zamanlama (50 MHz) | WNS **+0,564 ns**, 0 ihlal |
+| Kaynak kullanımı | LUT %15,76 · FF %3,56 · BRAM %14,07 · DSP %2,50 |
+| Kod kapsamı | 6 çevre birimi + YZ hızlandırıcı, statement %91–100 |
+| AXI4-Lite protokol kontrolü | 15 arayüz, **0 ihlal** |
+| YZ hızlanma | **276,9×** (yazılım gerçeklemesine kıyasla) |
+| YZ doğruluk | donanım %91,03 · yazılım %91,03 → fark **0,00 puan** |
+| YZ bellek bütçesi | 30.720 B (sınır 30 KB) |
+
+Çevre birimlerinin her biri kendi directed testbench'i ile, sistem ise boot,
+uygulama ve YZ senaryolarını koşturan sistem testleri ile doğrulandı.
+**UVM** ve **Spike ISS** doğrulamaları planlanmıştır.
 
 ---
 

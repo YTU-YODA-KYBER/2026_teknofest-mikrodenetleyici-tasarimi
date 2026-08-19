@@ -75,14 +75,14 @@ oluşturur**.
 
 Vivado'nun **Tcl Console**'unda iki adım:
 
-**1.** Önce **kendi dosya yoluna göre** `main_files` klasörüne gir:
+**1.** Önce **kendi dosya yoluna göre** `FPGA` klasörüne gir:
 ```tcl
-cd /home/stradale/Documents/main_files/
+cd /home/stradale/Documents/mainfiles/FPGA/
 ```
 
 **2.** İhtiyacına uygun scriptin yolunu(path) kopyalayıp `source` ile çalıştır:
 ```tcl
-source /home/stradale/Documents/main_files/scripts/project_gen/Interconnect/create_Interconnect.tcl
+source /home/stradale/Documents/mainfiles/FPGA/scripts/project_gen/Interconnect/create_Interconnect.tcl
 ```
 
 Bu kadar — proje otomatik oluşur.
@@ -95,7 +95,7 @@ Bu kadar — proje otomatik oluşur.
 ## Hangi script neyi oluşturur?
 
 Scriptlerin tamamı `scripts/project_gen/` altındadır; aşağıdaki yollar o
-klasöre görelidir. Projeler `main_files/Vivado_projects/` altına, hedef kart
+klasöre görelidir. Projeler `FPGA/Vivado_projects/` altına, hedef kart
 **Nexys A7** (`xc7a100tcsg324-1`) olarak oluşturulur.
 
 | Script | Oluşturduğu proje | Gereken firmware hedefi |
