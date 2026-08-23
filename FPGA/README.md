@@ -4,10 +4,10 @@
 
 TEKNOFEST 2026 Çip Tasarım Yarışması (Mikrodenetleyici Kategorisi) için
 geliştirilen, **RISC-V CV32E40P** çekirdekli ve yapay zekâ hızlandırıcılı
-SoC tasarımının bütün çalışma dosyaları.
+SoC tasarımının çalışma dosyaları.
 
 Hedef kart **Nexys A7** (`xc7a100tcsg324-1`), sistem saati **50 MHz**.
-Akış tamamen **Xilinx Vivado** tabanlıdır; Makefile ya da CI ile sentez yapılmaz.
+Bu klasördeki akış tamamen **Xilinx Vivado** tabanlıdır; Makefile ya da CI ile sentez yapılmaz.
 
 ---
 
@@ -15,7 +15,7 @@ Akış tamamen **Xilinx Vivado** tabanlıdır; Makefile ya da CI ile sentez yap�
 
 ```
 FPGA/
-├── main_codes/        → Donanım tasarımının tamamı (RTL) + testbench'ler
+├── main_codes/        → MCU tasarımının tamamı (RTL) + testbench'ler
 ├── firmware/          → İşlemci üzerinde koşan bare-metal yazılım (C / asm)
 ├── scripts/           → Vivado proje kurulum scriptleri + YZ araç zinciri
 ├── verification/      → Doğrulama kanıtları (Vivado raporları, YZ ölçümleri)
@@ -24,13 +24,13 @@ FPGA/
 ```
 
 `firmware/`, `scripts/` ve `verification/` klasörlerinin kendi `README.md`'si
-vardır; o klasöre özel ayrıntılar için oraya bakılır.
+vardır; o klasöre özel ayrıntılar için oraya bakınız.
 
 ---
 
 ## `main_codes/`
 
-Çipin **sentezlenen RTL kodu** ve onu doğrulayan testbench'ler.
+MCU'nun **ana RTL kodları** ve onları doğrulayan testbench'ler.
 
 | Alt klasör | İçerik |
 |---|---|
@@ -46,6 +46,7 @@ vardır; o klasöre özel ayrıntılar için oraya bakılır.
 | `testbench/System_Test/` | Sistem seviyesi testler: `boot_test.sv`, `ai_accel_test.sv`, `yz_bench_test.sv` |
 | `testbench/AI_Accelerator/` | Hızlandırıcının tek başına testi (`tb_conv_accel.v`) |
 | `testbench/AXI_protocol_check/` | AXI4-Lite protokol kontrolcüsü — `bind` ile 15 arayüze bağlanır |
+| `testbench/uvm/` | Yedi AXI4-Lite bloğunun UVM doğrulama ortamı (ortak agent, register modelleri, karşı taraf agent'ları, regresyon ve kapsam betikleri) |
 | `testbench/cv32e40p/` | Çekirdeğin tek başına testi (`tb_soc.sv`) |
 | `constraint/` | `nexys_a7_soc.xdc` (asıl kısıt dosyası), `cv32e40p_core.sdc`, eski `basys3_soc.xdc` |
 | `ip/` | Vivado IP'leri (`clk_wiz_0`: 100 MHz → 50 MHz) |
@@ -54,6 +55,10 @@ vardır; o klasöre özel ayrıntılar için oraya bakılır.
 
 > Protokol kontrolcüsünün ayrıntıları:
 > [`main_codes/testbench/AXI_protocol_check/README.md`](main_codes/testbench/AXI_protocol_check/README.md)
+>
+> UVM ortamının ayrıntıları:
+> [`main_codes/testbench/uvm/README.md`](main_codes/testbench/uvm/README.md) —
+> sonuçlar [`verification/uvm/`](verification/uvm/) altındadır.
 
 ---
 
@@ -74,13 +79,6 @@ vardır; o klasöre özel ayrıntılar için oraya bakılır.
   dosya adı hangi hedeften geldiğini gösterir (`boot.hex`, `app.hex`, `bench.hex`, …)
 - **Yardımcılar:** `scripts/send_data.py` (karta UART ile uygulama/ses gönderimi),
   `sound_samples/` (referans YZ girdileri)
-
-**Kullanım:**
-
-```bash
-cd firmware
-make all          # boot.hex + app.hex
-```
 
 Hangi `make` hedefinin neyi derlediği, kartın boot senaryosu (`SW0`/`SW1`
 anahtarları) ve `send_data.py` komutları [`firmware/README.md`](firmware/README.md)
@@ -104,9 +102,10 @@ Vivado projesini sıfırdan kuran TCL scriptleri ve YZ doğrulama araç zinciri.
 **Kullanım** — Vivado'nun Tcl Console'unda iki adım:
 
 ```tcl
-cd /.../mainfiles/FPGA/
-source /.../mainfiles/FPGA/scripts/project_gen/Main_MCU_Project.tcl
+cd /.../FPGA/
+source /.../FPGA/scripts/project_gen/Main_MCU_Project.tcl
 ```
+>FPGA öncesini kendi dosya yoluna göre doldurmanız gerekmektedir.
 
 Projeler `Vivado_projects/` altına açılır. Sistem testleri firmware hex'lerini
 `firmware/makefile_outputs/` altından okuduğu için scripti çalıştırmadan önce
@@ -126,19 +125,16 @@ içinde; sonuçların ayrıntısı alt klasörlerin kendi README'lerinde.
 | `vivado_reports/implementation/` | Yerleştirme / yollama raporu |
 | `vivado_reports/timing_report/` | 50 MHz kısıtına karşı zamanlama analizi |
 | `vivado_reports/code_coverage/` | 6 çevre birimi + YZ hızlandırıcı için XSim kod kapsamı raporları (HTML) |
+| `vivado_reports/testbench_&_protocol_check/` | Directed testbench koşumlarının ham çıktıları + 15 AXI arayüzünün protokol kontrol sonuçları |
 | `ai_accel_reports/` | YZ hızlandırıcının bellek bütçesi, doğruluk ve hızlanma ölçümleri |
-
+| `uvm/` | Bütün çevre birimleri ve hızlandırıcı için yapılan UVM test sonuçları ve kanıtları |
+| `spike_iss/` Kullanılan cv32e40p çekirdeğinin 193 komutluk bir C kodu ile Spike ISS doğrulaması
 ---
 
 ## `Vivado_projects/` ve `bitstream_files/`
 
 `Vivado_projects/` **üretilen çıktıdır** — TCL scriptleri çalıştırıldığında
-oluşur, elle düzenlenmez. `bitstream_files/fpga_top.bit` karta yüklenen son
-bitstream'dir.
+oluşur, elle düzenlenmez. `bitstream_files/fpga_top.bit` karta yüklenebilir güncel
+bitstream'dir. İsterseniz ana vivado projesi üzerinden kendiniz de oluşturabilirsiniz.
 
 ---
-
-> **Not:** Çevre birimleri, OBI→AXI wrapper ve AXI4 interconnect kodları
-> (testbench'ler dahil) tamamen YODA KYBER takımı tarafından yazılmıştır;
-> hiçbir açık kaynak repo ya da yapay zekâ üretimi kod kullanılmamıştır.
-> Yapay zekâdan yalnızca öğrenme ve hata ayıklama sürecinde destek alınmıştır.

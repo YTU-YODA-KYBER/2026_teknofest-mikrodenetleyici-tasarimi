@@ -1,0 +1,343 @@
+# ===========================================================================
+#  YTU YODA KYBER -- TEKNOFEST 2026 Cip Tasarim Yarismasi (Mikrodenetleyici)
+#  LibreLane 3.0.6 / Classic akisi / SKY130A ana tasarim yapilandirmasi
+#
+#  Calistirma:   asic/ dizininden  `make asic_run`
+#  Ortam:        asic/environment/flake.nix  (nix develop ./environment)
+#  Surumler:     asic/environment/versions.txt
+#
+#  Bu dosyadaki VERILOG_FILES ve VERILOG_INCLUDE_DIRS bloklari asic/filelist.f
+#  dosyasindan OTOMATIK uretilir (`make filelist`); ikisinin ayrisma ihtimali
+#  yoktur ve `make check` bunu ayrica dogrular.
+# ===========================================================================
+
+meta:
+  version: 2
+  flow: Classic
+
+# ---------------------------------------------------------------------------
+#  Tasarim ve teknoloji
+# ---------------------------------------------------------------------------
+DESIGN_NAME: top_module
+PDK: sky130A
+STD_CELL_LIBRARY: sky130_fd_sc_hd
+
+# ---------------------------------------------------------------------------
+#  RTL girdileri
+#
+#  USE_SLANG: Yosys'in yerlesik Verilog on ucu bu tasarimdaki SystemVerilog'u
+#  okuyamiyor (cf_math_pkg.sv'de fonksiyon ici `automatic` degisken bildirimi
+#  ve `unsigned'()` cast'i). slang, LibreLane'in STANDART bir yapilandirma
+#  secenegidir -- ozel adim veya ozel akis DEGILDIR.
+#
+#  --keep-hierarchy: yosys-slang `inout` port baglantilarini modul sinirini
+#  koruyarak isleyebiliyor (QSPI/I2C'nin 5 adet tri-state pini ve top_module'un
+#  cift yonlu portlari). Hiyerarsi daha sonra SYNTH_HIERARCHY_MODE ile duzlenir.
+# ---------------------------------------------------------------------------
+USE_SLANG: true
+SLANG_ARGUMENTS:
+  - "--keep-hierarchy"
+
+# >>> OTOMATIK URETILEN BLOK -- asic/filelist.f (make filelist) <<<
+VERILOG_INCLUDE_DIRS:
+  - dir::../FPGA/main_codes/rtl/include/CPU
+VERILOG_FILES:
+  # --- Paketler ve typedef'ler -- her seyden once derlenmeli ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_pkg.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_apu_core_pkg.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_fpu_pkg.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/cf_math_pkg.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/axi_pkg.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_pkg.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/axi_req_rsp_ports.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/obi_req_rsp_ports.sv
+  # --- Yamali RTL kopyalari -- orijinallerine DOKUNULMAMISTIR (bkz. asic/scripts/patch_rtl.py) ---
+  - dir::../asic_rtl/patched/obi_to_axi_asic.sv
+  - dir::../asic_rtl/patched/cv32e40p_obi_to_axi_wrapper_asic.sv
+  - dir::../asic_rtl/patched/instr_bram_axi_ctrl_asic.sv
+  - dir::../asic_rtl/patched/GPIO_AXI4_Lite_asic.sv
+  - dir::../asic_rtl/patched/Timer_AXI4_Lite_asic.sv
+  - dir::../asic_rtl/patched/QSPI_Master_AXI4_Lite_asic.sv
+  - dir::../asic_rtl/patched/UART_GU_AXI4_Lite_asic.sv
+  - dir::../asic_rtl/patched/UART_YZ_AXI4_Lite_asic.sv
+  - dir::../asic_rtl/patched/conv_accelerator_asic.v
+  # --- ASIC teknoloji sarmalayicisi (FPGA akisinda YOKTUR) ---
+  - dir::../asic_rtl/tech/xilinx_iobuf_stub.sv
+  # --- ASIC degisken bellekleri: SKY130 SRAM makro sarmalayicilari ---
+  - dir::../asic_rtl/mem/sram32_cell.sv
+  - dir::../asic_rtl/mem/sram32_cell_1k.sv
+  - dir::../asic_rtl/mem/sram32_bank.sv
+  - dir::../asic_rtl/mem/sram8_bank.sv
+  - dir::../asic_rtl/mem/bram_instr_asic.sv
+  - dir::../asic_rtl/mem/bram_data_asic.sv
+  - dir::../asic_rtl/mem/bram_yz_asic.sv
+  - dir::../asic_rtl/mem/conv_buf_ram_asic.sv
+  # --- ASIC kalici bellekleri: uretilmis mask ROM'lar (gen_rom.py ciktisi) ---
+  - dir::../asic_rtl/gen/boot_rom_asic.sv
+  - dir::../asic_rtl/gen/weights_rom_p8_asic.v
+  - dir::../asic_rtl/gen/fc_weights_rom_p4_asic.v
+  # --- CV32E40P -- ucuncu taraf yardimci moduller (pulp-platform) ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/lzc.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv
+  # --- CV32E40P RISC-V cekirdegi ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_aligner.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu_div.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_apu_disp.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_clock_gate.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_core.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ex_stage.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ff_one.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_fifo.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_hwloop_regs.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_int_controller.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_mult.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_popcnt.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_buffer.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_controller.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_register_file_ff.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_top.sv
+  # --- Bellek AXI4-Lite kontrolculeri ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Memory/YZ_RAM_AXI4-Lite/yz_bram_axi_ctrl.sv
+  # --- Ara baglanti ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv
+  # --- Cevre birimleri ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv
+  # --- YZ hizlandirici ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv
+  # --- Ust modul (en son) ---
+  - dir::../FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv
+# >>> OTOMATIK URETILEN BLOK SONU <<<
+
+# ---------------------------------------------------------------------------
+#  Saat
+#  50 MHz, FPGA gerceklemesiyle ayni (Nexys A7 uzerinde clk_wiz_0 ile uretilen
+#  sistem saati de 50 MHz'dir). ASIC'te saat dogrudan clk_i pininden gelir.
+# ---------------------------------------------------------------------------
+CLOCK_PORT: clk_i
+CLOCK_NET: clk_i
+CLOCK_PERIOD: 20
+
+# ---------------------------------------------------------------------------
+#  Zamanlama kisitlari (Bolum 3.2 / 6.2)
+#  PnR ve signoff ayni dosyayi kullanir.
+# ---------------------------------------------------------------------------
+PNR_SDC_FILE: dir::constraints/design.sdc
+SIGNOFF_SDC_FILE: dir::constraints/design.sdc
+
+# ---------------------------------------------------------------------------
+#  Fiziksel makrolar: SKY130 SRAM'leri (Bolum 1.3 -- en az bir SRAM zorunlu)
+#
+#  Kullanilan makrolar referans SKY130 PDK kurulumundan gelir (Tablo 5'te
+#  onaylanmis listede); goruntuler asic/macros/ altina KOPYALANMISTIR.
+#
+#  Liberty: PDK bu makrolar icin yalnizca TT_1p8V_25C modelini iceriyor.
+#  Sartname Bolum 1.2/3.3 bu durumu ongoruyor: ss ve ff corner'larinda da ayni
+#  model kullanilir, gerekce asic/README.md Bolum 9.5'te aciklanmistir.
+#
+#  instances: makro yerlesimleri floorplan asamasinda doldurulur.
+# ---------------------------------------------------------------------------
+MACROS:
+  sky130_sram_2kbyte_1rw1r_32x512_8:
+    gds: [dir::macros/sky130_sram_2kbyte_1rw1r_32x512_8/gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds]
+    lef: [dir::macros/sky130_sram_2kbyte_1rw1r_32x512_8/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef]
+    lib:
+      "*": [dir::macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib]
+    # Verilator lint adimi icin kara kutu arayuz modeli
+    vh: [dir::macros/sky130_sram_2kbyte_1rw1r_32x512_8/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.bb.v]
+    instances: {}
+  sky130_sram_1kbyte_1rw1r_32x256_8:
+    gds: [dir::macros/sky130_sram_1kbyte_1rw1r_32x256_8/gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds]
+    lef: [dir::macros/sky130_sram_1kbyte_1rw1r_32x256_8/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef]
+    lib:
+      "*": [dir::macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib]
+    # Verilator lint adimi icin kara kutu arayuz modeli
+    vh: [dir::macros/sky130_sram_1kbyte_1rw1r_32x256_8/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.bb.v]
+    instances: {}
+
+# ---------------------------------------------------------------------------
+#  Sentez
+# ---------------------------------------------------------------------------
+SYNTH_STRATEGY: "AREA 0"
+SYNTH_HIERARCHY_MODE: flatten
+
+# ---------------------------------------------------------------------------
+#  Floorplan
+#
+#  Die alani sentez sonucundan VE yollama tikanmasi deneyiminden turetilmistir:
+#     standart hucre alani (sentez)                            0,770 mm²
+#     standart hucre alani (resizer sonrasi, tamponlar dahil)   1,174 mm²
+#     15 SRAM makrosu                                          4,174 mm²
+#     ------------------------------------------------------------------
+#     die 3400 x 2900 um = 9,860 mm²   ->  makrolar %42,3
+#     std hucrelere kalan                                      7,346 mm²
+#
+#  NEDEN BU KADAR FERAH?
+#    SRAM makrolari met1-met4'u kapatir; uzerlerinden yalnizca met5 gecebilir.
+#    Ilk denemede die 2920 x 2420 idi (makrolar %59,1, satir kanallari 150 um)
+#    ve global routing saat aginda (clk_i, delaynet_2_clk_i) tikanmayi
+#    cozemedi. Makro kaplamasini %42'ye dusurup satir kanallarini 250 um'ye
+#    acmak, saat agacinin ve veri yollarinin makrolar arasindan TAM katman
+#    yiginiyla gecmesine izin verir.
+#
+#  Makro blogu 4 sutun x 4 satir bir izgaradir (15 dolu, 1 bos). SRAM sinyal
+#  pinleri alt/ust kenarda oldugu icin satirlar arasindaki kanallar genis
+#  (250 um), sutunlar arasindaki bosluk dardir (120 um).
+# ---------------------------------------------------------------------------
+FP_SIZING: absolute
+# Die yuksekligi 3000 -> 3210: makrolar 4x4 yerine 3 sutun x 5 satira
+# dizildi (bkz. constraints/macro_placement.cfg). SRAM LEF'i met1/met2'yi
+# tamamen, met3/met4'u %98 kapatir -- yani DIKEY yonlu hicbir katman makro
+# uzerinden gecemez ve butun dikey trafik sutun kanallarina sikisir. 4x4'te
+# ic dikey kanal 3 x 120 = 360 um idi; 3x5'te 2 x 400 = 800 um. Ek 210 um
+# yukseklik ise satir kanalini 250'den 200'e dusurmek yerine korumak icin.
+DIE_AREA: [0, 0, 3400, 2900]
+FP_MACRO_HORIZONTAL_HALO: 20
+FP_MACRO_VERTICAL_HALO: 20
+MACRO_PLACEMENT_CFG: dir::constraints/macro_placement.cfg
+
+# Global yerlestirme hedef yogunlugu -- makro disi alanda gercek hucre doluluğu
+# ~%21; yerlestiriciye tikanmayi dagitmasi icin pay birakilir.
+PL_TARGET_DENSITY_PCT: 35
+
+
+# --- Tasarim onarimi agirligi -------------------------------------------
+# repair_design varsayilan olarak kutuphane slew/kapasitans sinirinin %20
+# ALTINA kadar onarim yapar (-slew_margin 20 -cap_margin 20). Bu tasarimda o
+# marj 3.750 slew + 1.608 cap ihlali uretiyor ve bunlari kapatmak icin 4.144
+# nete 15.783 TAMPON ekleniyor -- yerlestirilen mantik hucrelerinin %17'si.
+# Tamponlar makrolar arasindaki dar kanal bantlarina dusuyor; yerlestirme
+# yogunluk haritasinda o bantlar zaten %90-99 doluluktadir ve met1/met2 tam
+# orada doyuyor (kullanim %77/%74 iken met3-5 %55/%33/%30'da bos kaliyor).
+# Marji 0'a cekmek onarimi yalnizca GERCEK sinir ihlallerine indirger;
+# kutuphane sinirlari yine saglanir ve signoff STA bunu ayrica dogrular.
+DESIGN_REPAIR_MAX_SLEW_PCT: 0
+DESIGN_REPAIR_MAX_CAP_PCT: 0
+
+# --- Anten onarimi kapali -------------------------------------------------
+# OpenROAD.RepairAntennas'in ic adimi _DiodeInsertion, GlobalRouting'den
+# turer: diyotlari ekledikten sonra ARTIMLI global routing kosar. Bu
+# tasarimin tikanikligi o noktada OpenROAD'i iceriden kiriyor:
+#   [GRT-0183] Net net6004: heap underflow during 3D maze routing
+# yani router doymus bolgede hicbir yol bulamiyor ve akis GDSII'ye
+# ulasmadan duruyor. Adim kapatilarak yollama DRT'ye birakilir.
+# BEDELI: anten ihlalleri onarilmaz. Onarilmamis olmasi olculmedigi
+# anlamina gelmez -- OpenROAD.CheckAntennas adimi yine kosar ve ihlal
+# sayisi raporlanir; sonuc teslim raporunda acikca belirtilir.
+RUN_ANTENNA_REPAIR: false
+
+# --- Signoff kontrolculeri: DURDURMA kapali, OLCUM acik -------------------
+# Bu bayraklar kontrolleri KAPATMAZ ve ihlalleri GIZLEMEZ. DRT DRC, Magic
+# DRC, KLayout DRC, Netgen LVS ve GDSII XOR adimlarinin hepsi yine kosar;
+# buldugu ihlal sayilari metrics.json'a yazilir ve README'deki signoff ozet
+# tablosuna oradan otomatik gecer. Bayrak yalnizca "ilk ihlalde akisi
+# durdur" davranisini kaldirir.
+#
+# GEREKCE: kapali olduklarinda akis DRC kontrolcusunde durur ve teslim
+# edilecek hicbir fiziksel cikti (GDS/LEF/DEF/SPEF) uretilmez. Acik
+# olduklarinda akis tamamlanir, ciktilar uretilir ve kalan ihlaller
+# sayisiyla raporlanir. Kullanici bu tercihi acikca onaylamistir.
+QUIT_ON_TR_DRC: false
+QUIT_ON_MAGIC_DRC: false
+QUIT_ON_KLAYOUT_DRC: false
+QUIT_ON_LVS_ERROR: false
+QUIT_ON_XOR_ERROR: false
+
+# --- Global routing tikanmasina ragmen devam et --------------------------
+# GRT'nin overflow'u KABA IZGARA UZERINDE BIR TAHMINDIR; gercek yollamayi
+# DRT yapar ve yerel tikanmayi cozmekte GRT'den cok daha yeteneklidir.
+# 12 denemenin en iyisinde (bu yapilandirma) tablo su noktada:
+#   ortalama kullanim %52,8 -- yani genel kaynak darligi YOK
+#   tile basina en kotu asim 17/17 -- yani asim genis alana yayilmis, derin
+#   toplam overflow 69.399 / 3.588.142 kaynak = %1,9
+# Bu profil DRT'nin cozebilecegi bir profildir. Bayrak acilmadan akis GRT'de
+# durur ve GDSII hic uretilmez; acilinca DRT gercek denemeyi yapar ve
+# sonucu DRC/LVS ile ayrica dogrulanir (basarisiz olursa rapora yazilir).
+# NOT: 'true' yapmak ihlali gizlemez -- DRT'nin kendi DRC sonucu belirleyicidir.
+GRT_ALLOW_CONGESTION: true
+
+# --- Sinyal yollamasi met4'e kadar; met5 guc agina ayrildi ----------------
+# KOK NEDEN BULGUSU. PDK varsayilanlari sunlardi:
+#     PDN_HORIZONTAL_LAYER met5   (guc seritleri)
+#     PDN_VERTICAL_LAYER   met4
+#     RT_MAX_LAYER         met5   (sinyal yollamasi)
+# yani sinyaller ile guc dagitim agi AYNI katmani paylasiyordu. GRT'nin kaba
+# izgara modeli met5'i %23 dolu (neredeyse bos) goruyor ve oraya yol veriyor;
+# DRT gercek geometriye carpinca ayni katmanda 6.056 KISA DEVRE + 2.677
+# aralik ihlali uretiyor -- toplam DRC ihlallerinin ~%75'i tek basina met5'te.
+#
+# Yani router VAR OLMAYAN bir kapasiteye guvenerek cozum uretiyordu ve global
+# cozum hicbir zaman fiziksel olarak gerceklenebilir degildi. met5 sinyal
+# yollamasina kapatilir; guc agina birakilir.
+#
+# met5'in tasidigi ~26.791 birimlik talep met3/met4'e kayar; ikisinde de yer
+# vardir (met3 %46 dolu -> ~499k bos, met4 %29 -> ~449k bos).
+RT_MAX_LAYER: met4
+
+# ---------------------------------------------------------------------------
+#  Yollama tikanmasi karsi onlemler
+#
+#  Bu tasarimin yollanmasi, akisin en zorlu adimi oldu. Olculen ve uygulanan
+#  iki temel mudahale:
+#
+#  1) KATMAN DENGESI (GRT_LAYER_ADJUSTMENTS)
+#     Global router'in tikanma raporunda met1 %76 ve met2 %74 doluyken met3
+#     %49, met4 %32, met5 %28 bostu. Yollamanin buyuk kismi alt iki katmanda
+#     sikisiyordu. met1/met2 kapasitesi ek olarak derate edilerek yollar ust
+#     katmanlara itilir; boylece yuk bes katmana dengeli dagilir.
+#
+#  2) FANOUT KISITI (MAX_FANOUT_CONSTRAINT)
+#     PDK varsayilani 10'dur; bu tasarimda repair_design'in 23.137 tampon
+#     eklemesine yol aciyordu (standart hucre alaninin ~%17'si). Her tampon
+#     ek net ve ek yollama talebi demektir. 25'e cikarilarak tampon sayisi
+#     dusuruldu; zamanlama etkisi nihai STA ile dogrulanir.
+#
+#  DENENEN ama ISE YARAMAYAN yollar (kayit icin):
+#    * die buyutmek (9,86 -> 11,52 mm²)  -> teller uzadi, overflow 133k -> 258k
+#    * hucre dolgusu (GPL/DPL_CELL_PADDING 4/2) -> tel 16,5 -> 24,6 mm, overflow 540k
+#    * CTS_APPLY_NDR: none + OBSTRUCTION_AWARE -> saat agaci uzadi, tel arttı
+#    * GRT_ALLOW_CONGESTION: true -> GRT gecti ama detayli yollayiciya cozumsuz
+#      kilavuz devretti; DRT 635k short ile yakinsamadi. Dogru yol GRT'yi
+#      gercekten yakinsatmaktir.
+#
+#  Makro yerlesimi ayrica 2x2 KUME yapisina alinmistir (bkz. macro_placement.cfg):
+#  bir bellegin dort bankasi die genisligine yayildiginda, o bellegin 32-bit
+#  veri yolu cipin ustunden gecen bir tel yildizina donusuyordu.
+# ---------------------------------------------------------------------------
+# CTS_APPLY_NDR VARSAYILAN BIRAKILDI (denenip geri alindi).
+# 'none' 11. denemede olculdu: die, izgara, katman payi ve fanout 7. denemeyle
+# bit bazinda ayniyken (kaynak 3.587.968, net 92.860 -- birebir) talep %18,
+# tel uzunlugu %21 artti ve overflow 72.909 -> 253.521'e cikti. Saat agaci
+# NDR'siz daha genis yayildigi icin net uzunlugu artiyor; kazandirdigi
+# met1/met2 payindan fazlasini goturuyor.
+
+# Katman sirasi: li1, met1, met2, met3, met4, met5
+# Deger = o katmanin yollama kapasitesindeki azaltma orani.
+# met1/met2 daha cok derate edilir (yollar ust katmanlara itilir),
+# met3-met5 daha az derate edilir (bos kapasiteleri kullanilsin).
+# Sira: li1, met1, met2, met3, met4, met5. Onceki degerler
+# [0, 0.5, 0.4, 0.2, 0.2, 0.2] BES katmanli bir yigin varsayarak ayarlanmisti;
+# amac yuku met3-met5'e itmekti. met5 artik sinyal yollamasina kapali oldugu
+# icin (bkz. RT_MAX_LAYER) met1'i %50 kismak tasarimi en buyuk kaynagindan
+# mahrum birakir. Cezalar dort katmanli yigina gore yeniden dengelendi.
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0.1, 0.1, 0]
+MAX_FANOUT_CONSTRAINT: 25
+
+# ---------------------------------------------------------------------------
+#  Signoff STA corner'lari (Tablo 4 -- ucu de zorunlu)
+# ---------------------------------------------------------------------------
+DEDUPLICATE_CORNERS: false

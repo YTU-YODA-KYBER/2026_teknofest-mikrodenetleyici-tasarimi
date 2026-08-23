@@ -1,16 +1,4 @@
-// ---------------------------------------------------------------------
-//  Parametreler yalnizca TCL'den ezilmek icin buradadir; VARSAYILANLAR
-//  ANA PROJENIN (sartnameye uygun) degerleridir. Hicbiri elle
-//  degistirilmemeli -- ozel bir senaryo icin farkli deger gerekiyorsa
-//  ilgili TCL'de generic olarak verilir:
-//
-//      set_property generic {INIT_FILE_boot="bench.hex" \
-//                            ADDR_WIDTH_boot=13 ADDR_WIDTH_data=13} \
-//                   [get_filesets sources_1]
-//
-//  String generic'te tirnak ZORUNLU; tirnaksiz yazilirsa Vivado degeri
-//  sayi sanar ve Boot ROM bos sentezlenir.
-// ---------------------------------------------------------------------
+
 module fpga_top #(
     parameter INIT_FILE_boot  = "boot.hex",
     parameter ADDR_WIDTH_boot = 8,      // 2^8  kelime x 4 B =  1KB Boot ROM
@@ -83,7 +71,7 @@ logic rst_n;
 assign rst_n = rst_sync_1;
 
 // ----------------------------------------------------------------
-// 3. GPIO: 32-bit port'u 16-bit Basys3 pinlerine uyarla
+// 3. GPIO
 // ----------------------------------------------------------------
 logic [31:0] gpio_idr_internal;
 logic [31:0] gpio_odr_internal;

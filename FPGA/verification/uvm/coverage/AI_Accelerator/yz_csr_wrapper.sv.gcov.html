@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - YODA KYBER -- UVM satir kapsami - AI_Accelerator/yz_csr_wrapper.sv</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory AI_Accelerator">AI_Accelerator</a> - yz_csr_wrapper.sv</td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">YODA KYBER -- UVM satir kapsami</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryHi">100.0&nbsp;%</td>
+            <td class="headerCovTableEntry">45</td>
+            <td class="headerCovTableEntry">45</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2026-08-21 17:23:44</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntryHi">-</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:&nbsp&nbsp&nbsp&nbsp
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+                  <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : module yz_csr_wrapper (</span>
+<span id="L2"><span class="lineNum">       2</span> <span class="tlaGNC">        3458 :     input  logic clk, rst_n,</span></span>
+<span id="L3"><span class="lineNum">       3</span>              : </span>
+<span id="L4"><span class="lineNum">       4</span>              :     // --- AXI4-Lite slave (senin interconnect portuna) ---</span>
+<span id="L5"><span class="lineNum">       5</span> <span class="tlaGNC">         150 :     input  logic [31:0] YZ_awaddr,  input  logic YZ_awvalid, output logic YZ_awready,</span></span>
+<span id="L6"><span class="lineNum">       6</span> <span class="tlaGNC">         150 :     input  logic [31:0] YZ_wdata,   input  logic YZ_wvalid,  output logic YZ_wready,</span></span>
+<span id="L7"><span class="lineNum">       7</span> <span class="tlaGNC">         129 :     output logic [1:0]  YZ_bresp,   output logic YZ_bvalid,  input  logic YZ_bready,</span></span>
+<span id="L8"><span class="lineNum">       8</span> <span class="tlaGNC">         383 :     input  logic [31:0] YZ_araddr,  input  logic YZ_arvalid, output logic YZ_arready,</span></span>
+<span id="L9"><span class="lineNum">       9</span> <span class="tlaGNC">         362 :     output logic [31:0] YZ_rdata,   output logic [1:0] YZ_rresp, output logic YZ_rvalid, input logic YZ_rready,</span></span>
+<span id="L10"><span class="lineNum">      10</span>              : </span>
+<span id="L11"><span class="lineNum">      11</span>              :     // --- hızlandırıcıya/bellek kontrolcüsüne giden basit sinyaller ---</span>
+<span id="L12"><span class="lineNum">      12</span> <span class="tlaGNC">          52 :     output logic       acc_start,       // Hızlandırıcının çıkarımı başlat pulse sinyali</span></span>
+<span id="L13"><span class="lineNum">      13</span> <span class="tlaGNC">           3 :     input  logic       acc_busy,        // Çıkarım işleminin devam ettiğini gösterir</span></span>
+<span id="L14"><span class="lineNum">      14</span> <span class="tlaGNC">           6 :     input  logic       acc_done,        // Çıkarım bittiğinde pulse olur</span></span>
+<span id="L15"><span class="lineNum">      15</span> <span class="tlaGNC">          21 :     input  logic       acc_out_wen,     // &quot;Çıkarım sonucu geçerli&quot; mesajı için pulse olur. Bu 1 olduğu zaman satır 40 yapılır</span></span>
+<span id="L16"><span class="lineNum">      16</span> <span class="tlaGNC">           9 :     input  logic [7:0] acc_out_wdata,   // Güncel çıkarım sonucunu tutar</span></span>
+<span id="L17"><span class="lineNum">      17</span> <span class="tlaGNC">           3 :     input  logic       load_done_irq,   // YZ bellleğine yazma işleminin bittiğini CPU'ya bildirmek için kullanılan interrupt sinyali</span></span>
+<span id="L18"><span class="lineNum">      18</span> <span class="tlaGNC">          43 :     output logic       load_clear,      // &quot;cpu_clear_i&quot;ye bağlı, işlemci &quot;load_done_irq&quot; sinyalini gördükten sonra bu sinyal aracılığı ile irq sinyalini temizler</span></span>
+<span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           6 :     output logic       infer_irq        // -&gt; irq_i[17]</span></span>
+<span id="L20"><span class="lineNum">      20</span>              : );</span>
+<span id="L21"><span class="lineNum">      21</span> <span class="tlaGNC">           9 :     logic [1:0] result_reg;             // &quot;acc_out_wen&quot; olduğu zaman &quot;acc_out_wdata&quot;daki çıkarım sonucunuu tutar.</span></span>
+<span id="L22"><span class="lineNum">      22</span> <span class="tlaGNC">           6 :     logic       infer_pending;          // infer_irq sinyalinin 1 olması için ve CPU tarafından gördükten sonra 0'a çekilmesi olayı için kullanılır</span></span>
+<span id="L23"><span class="lineNum">      23</span>              : </span>
+<span id="L24"><span class="lineNum">      24</span>              :     assign YZ_bresp = 2'b00;</span>
+<span id="L25"><span class="lineNum">      25</span>              :     assign YZ_rresp = 2'b00;</span>
+<span id="L26"><span class="lineNum">      26</span>              :     assign infer_irq = infer_pending;</span>
+<span id="L27"><span class="lineNum">      27</span>              : </span>
+<span id="L28"><span class="lineNum">      28</span> <span class="tlaGNC">        3464 :     always_ff @(posedge clk or negedge rst_n) begin</span></span>
+<span id="L29"><span class="lineNum">      29</span> <span class="tlaGNC">        3317 :         if (!rst_n) begin</span></span>
+<span id="L30"><span class="lineNum">      30</span> <span class="tlaGNC">         147 :             YZ_awready &lt;= 1; YZ_wready &lt;= 1; YZ_bvalid &lt;= 0;</span></span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaGNC">         147 :             YZ_arready &lt;= 1; YZ_rvalid &lt;= 0; YZ_rdata &lt;= 0;</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaGNC">         147 :             acc_start &lt;= 0; load_clear &lt;= 0;</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaGNC">         147 :             result_reg &lt;= 0; infer_pending &lt;= 0;</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaGNC">        3317 :         end else begin</span></span>
+<span id="L35"><span class="lineNum">      35</span>              :             // (1) start ve clear'lar HER cycle 0'a düşer -&gt; otomatik 1-cycle pulse</span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaGNC">        3317 :             acc_start  &lt;= 0;</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaGNC">        3317 :             load_clear &lt;= 0;</span></span>
+<span id="L38"><span class="lineNum">      38</span>              : </span>
+<span id="L39"><span class="lineNum">      39</span>              :             // (2) sonucu yakala: hızlandırıcı yazdığı an</span>
+<span id="L40"><span class="lineNum">      40</span> <span class="tlaGNC">        3296 :             if (acc_out_wen) result_reg &lt;= acc_out_wdata[1:0];</span></span>
+<span id="L41"><span class="lineNum">      41</span>              : </span>
+<span id="L42"><span class="lineNum">      42</span>              :             // (3) done pulse'unu latch'le -&gt; seviye interrupt</span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaGNC">        3311 :             if (acc_done)          infer_pending &lt;= 1;</span></span>
+<span id="L44"><span class="lineNum">      44</span>              : </span>
+<span id="L45"><span class="lineNum">      45</span>              :             // --- AXI YAZMA (senin şablonun) ---</span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaGNC">         129 :             if (YZ_awvalid &amp;&amp; YZ_wvalid &amp;&amp; YZ_awready &amp;&amp; YZ_wready) begin</span></span>
+<span id="L47"><span class="lineNum">      47</span> <span class="tlaGNC">         129 :                 YZ_bvalid  &lt;= 1;</span></span>
+<span id="L48"><span class="lineNum">      48</span> <span class="tlaGNC">         129 :                 YZ_awready &lt;= 0; YZ_wready &lt;= 0;</span></span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaGNC">         129 :                 case (YZ_awaddr[7:0])</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaGNC">          96 :                     8'h00: begin</span></span>
+<span id="L51"><span class="lineNum">      51</span>              :                         // CTRL: her bit bir OLAY -&gt; pulse üret, saklama</span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaGNC">          52 :                         if (YZ_wdata[0]) acc_start  &lt;= 1;</span></span>
+<span id="L53"><span class="lineNum">      53</span> <span class="tlaGNC">          53 :                         if (YZ_wdata[1]) load_clear  &lt;= 1;</span></span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaGNC">          50 :                         if (YZ_wdata[2]) infer_pending &lt;= 0;  // INFER_CLEAR</span></span>
+<span id="L55"><span class="lineNum">      55</span>              :                     end</span>
+<span id="L56"><span class="lineNum">      56</span>              :                     // 0x04 STATUS, 0x08 RESULT read-only -&gt; yazma yok</span>
+<span id="L57"><span class="lineNum">      57</span>              :                 endcase</span>
+<span id="L58"><span class="lineNum">      58</span> <span class="tlaGNC">        3059 :             end else if (YZ_bvalid &amp;&amp; YZ_bready) begin</span></span>
+<span id="L59"><span class="lineNum">      59</span> <span class="tlaGNC">         129 :                 YZ_bvalid &lt;= 0; YZ_awready &lt;= 1; YZ_wready &lt;= 1;</span></span>
+<span id="L60"><span class="lineNum">      60</span>              :             end</span>
+<span id="L61"><span class="lineNum">      61</span>              : </span>
+<span id="L62"><span class="lineNum">      62</span>              :             // --- AXI OKUMA (senin şablonun) ---</span>
+<span id="L63"><span class="lineNum">      63</span> <span class="tlaGNC">         363 :             if (YZ_arvalid &amp;&amp; YZ_arready) begin</span></span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaGNC">         363 :                 YZ_rvalid &lt;= 1; YZ_arready &lt;= 0;</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaGNC">         363 :                 case (YZ_araddr[7:0])</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaGNC">         122 :                     8'h04: YZ_rdata &lt;= {29'h0, infer_pending, load_done_irq, acc_busy};</span></span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaGNC">         133 :                     8'h08: YZ_rdata &lt;= {30'h0, result_reg};</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaGNC">         108 :                     default: YZ_rdata &lt;= 32'h0;</span></span>
+<span id="L69"><span class="lineNum">      69</span>              :                 endcase</span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaGNC">        2592 :             end else if (YZ_rvalid &amp;&amp; YZ_rready) begin</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaGNC">         362 :                 YZ_rvalid &lt;= 0; YZ_arready &lt;= 1;</span></span>
+<span id="L72"><span class="lineNum">      72</span>              :             end</span>
+<span id="L73"><span class="lineNum">      73</span>              :         end</span>
+<span id="L74"><span class="lineNum">      74</span>              :     end</span>
+<span id="L75"><span class="lineNum">      75</span>              : endmodule</span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.0-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

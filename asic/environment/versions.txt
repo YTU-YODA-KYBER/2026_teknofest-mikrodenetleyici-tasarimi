@@ -1,0 +1,75 @@
+===========================================================================
+ YTU YODA KYBER -- TEKNOFEST 2026 Cip Tasarim Yarismasi (Mikrodenetleyici)
+ ASIC fiziksel tasarim akisi -- arac, PDK ve ortam surumleri
+
+ Bu dosya asic/scripts/gen_versions.py tarafindan uretilir; arac surumleri
+ fiilen kurulu ortamdan okunur.
+===========================================================================
+
+--- AKIS ARACI (sartname Bolum 1.1) ---------------------------------------
+LibreLane surumu          : 3.0.6
+LibreLane commit kimligi  : ba7193bff33d68941683b2963b90aa30cea117d1
+LibreLane deposu          : github.com/librelane/librelane  (etiket: 3.0.6)
+Kullanilan LibreLane akisi: Classic
+Ozel akis / ozel adim     : YOK -- yalnizca standart Classic akisi kullanildi
+
+--- PDK (sartname Bolum 1.2) ----------------------------------------------
+PDK ailesi / varyanti     : sky130 / sky130A
+Open PDKs commit kimligi  : 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
+Standart hucre kutuphanesi: sky130_fd_sc_hd
+PDK paket yoneticisi      : ciel
+PDK_ROOT (yerel)          : /usr/asic_flow/pdk
+Kurulum komutu            : ciel enable --pdk-family sky130 \
+                              8afc8346a57fe1ab7934ba5a6056ea8b43078e71
+
+--- SRAM (sartname Bolum 1.3) ---------------------------------------------
+OpenRAM surumu            : OpenRAM kullanilmadi
+                            Kullanilan SRAM makrolari referans SKY130 PDK
+                            kurulumu icinde hazir gelen, onaylanmis
+                            makrolardir (Tablo 5):
+                              sky130_sram_2kbyte_1rw1r_32x512_8   x14
+                              sky130_sram_1kbyte_1rw1r_32x256_8   x1
+
+--- ORTAM (sartname Bolum 1.4) --------------------------------------------
+Ortam yonetimi            : Nix (flake)
+Ortam tanimi              : asic/environment/flake.nix + flake.lock
+  ciel                    : fossi-foundation/ciel @ afcb23d368614ffa1e7e96584ed33f839c71c576
+  devshell                : numtide/devshell @ 255a2b1725a20d060f566e4755dbf571bbbb5f76
+  flake-compat            : / @ ff81ac966bb2cae68946d5ed5fc4994f96d0ffec
+  librelane               : librelane/librelane @ ba7193bff33d68941683b2963b90aa30cea117d1
+  nix-eda                 : fossi-foundation/nix-eda @ 8f990fb77529c09e540e453cd836af9930ec58db
+  nixpkgs                 : nixos/nixpkgs @ b3aad468604d3e488d627c0b43984eb60e75e782
+
+--- ARAC SURUMLERI (ortamdan okundu) --------------------------------------
+LibreLane                 : 3.0.6
+Yosys                     : 0.62
+yosys-slang               : LibreLane 3.0.6 ortamiyla birlikte gelen surum (USE_SLANG=true)
+OpenROAD                  : dcf36133a369abc8f3c5e5738cd4d82e4903c0e0
+OpenSTA                   : 2.7.0
+Magic                     : 8.3.623
+KLayout                   : 0.30.7
+Netgen                    : 1.5.316
+Verilator                 : 5.044
+ciel                      : Ciel v2.4.0 ©2022-2025 Efabless Corporation and Contributors
+Nix                       : nix (Nix) 2.35.1
+
+--- AKISI CALISTIRMA KOMUTLARI --------------------------------------------
+  # 1) Nix ve LibreLane ortamini hazirla (bir kez):
+  curl --proto '=https' --tlsv1.2 -fsSL https://artifacts.nixos.org/nix-installer \
+     | sh -s -- install --no-confirm --extra-conf "
+         extra-substituters = https://nix-cache.fossi-foundation.org
+         extra-trusted-public-keys = nix-cache.fossi-foundation.org:3+K59iFwXqKsL7BNu6Guy0v+uTlwsxYQxjspXzqLYQs=
+         extra-experimental-features = nix-command flakes"
+
+  # 2) PDK'yi kur:
+  export PDK_ROOT=<pdk dizini>
+  nix develop ./environment --command \
+     ciel enable --pdk-family sky130 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
+
+  # 3) Akisi calistir (asic/ dizininden):
+  nix develop ./environment
+  make asic_run
+
+  # Ek hedefler:
+  make asic_verify    # teslim paketini denetle
+  make asic_clean     # asic/run/ altini temizle

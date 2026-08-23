@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YODA KYBER — Directed Test ve AXI Protokol Kontrolü</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--line:#ddd;--head:#f2f4f6;--acc:#0b5fff;
+      --ok:#0a7a3d;--okbg:#e8f6ee}
+@media(prefers-color-scheme:dark){:root{--bg:#15181c;--fg:#e6e6e6;--mut:#9aa3ad;
+      --line:#2c3138;--head:#1d2126;--acc:#6ea8ff;--ok:#5ed08c;--okbg:#12261b}}
+*{box-sizing:border-box}
+body{margin:0;padding:2rem 1rem;background:var(--bg);color:var(--fg);
+     font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:64rem;margin:0 auto}
+h1{font-size:1.5rem;margin:0 0 .25rem}
+h2{font-size:1.1rem;margin:2rem 0 .5rem}
+p.sub{color:var(--mut);margin:0 0 2rem}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:52rem}
+th,td{padding:.55rem .75rem;text-align:left;border-bottom:1px solid var(--line);
+      white-space:nowrap}
+th{background:var(--head);font-weight:600;font-size:.85rem}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+td.grp{font-weight:600}
+tr.tot td{font-weight:700;background:var(--head)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+a{color:var(--acc)}
+.ok{color:var(--ok);font-weight:600}
+.zero{color:var(--ok);font-weight:700}
+.dash{color:var(--mut)}
+.badge{display:inline-block;background:var(--okbg);color:var(--ok);
+       border-radius:5px;padding:.1rem .45rem;font-size:.85em;font-weight:600}
+.note{color:var(--mut);font-size:.9rem;border-left:3px solid var(--line);
+      padding:.25rem 0 .25rem 1rem;margin:1.5rem 0}
+pre{background:var(--head);border:1px solid var(--line);border-radius:8px;
+    padding:.9rem 1rem;overflow-x:auto;font-size:.85rem;line-height:1.45}
+</style></head><body><main>
+
+<h1>Directed Test ve AXI Protokol Kontrolü</h1>
+<p class="sub">YTU YODA KYBER · TEKNOFEST 2026 Çip Tasarım Yarışması<br>
+Vivado XSim 2025.2 · <code>xc7a100tcsg324-1</code> · 50 MHz ·
+şartname madde 5.2-2 / 5.2-3 / 5.2-4<br>
+Ölçüm: 2026-08-23</p>
+
+<p><span class="badge">8 koşum · 0 başarısız kontrol · 0 AXI protokol ihlali</span></p>
+
+<h2>Blok seviyesi testler</h2>
+<div class="wrap"><table>
+<tr><th>Birim</th><th>Modül</th><th class="n">Test</th><th class="n">Kontrol</th>
+    <th class="n">Geçen</th><th class="n">Kalan</th><th class="n">İzlenen arayüz</th>
+    <th class="n">AXI ihlali</th><th class="n">Uyarı</th><th class="n">Sim süresi</th><th>Rapor</th></tr>
+<tr><td class="grp">Timer</td><td><code>Timer_AXI4_Lite</code></td><td class="n">6</td><td class="n">8</td><td class="n ok">8</td><td class="n">0</td><td class="n">1</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">50,14 µs</td><td><a href="Timer/">aç →</a></td></tr>
+<tr><td class="grp">GPIO</td><td><code>GPIO_AXI4_Lite</code></td><td class="n">15</td><td class="n">50</td><td class="n ok">50</td><td class="n">0</td><td class="n">1</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">31,07 µs</td><td><a href="GPIO/">aç →</a></td></tr>
+<tr><td class="grp">I2C Master</td><td><code>I2C_Master_AXI4_Lite</code></td><td class="n">10</td><td class="n">10</td><td class="n ok">10</td><td class="n">0</td><td class="n">1</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">1,080 ms</td><td><a href="I2C/">aç →</a></td></tr>
+<tr><td class="grp">QSPI Master</td><td><code>QSPI_Master_AXI4_Lite</code></td><td class="n">2</td><td class="n">12</td><td class="n ok">12</td><td class="n">0</td><td class="n">1</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">6,339 ms</td><td><a href="QSPI/">aç →</a></td></tr>
+<tr><td class="grp">UART_GU</td><td><code>UART_GU_AXI4_Lite</code></td><td class="n">4</td><td class="n">10</td><td class="n ok">10</td><td class="n">0</td><td class="n">1</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">1,068 ms</td><td><a href="UART_GU/">aç →</a></td></tr>
+<tr><td class="grp">UART_YZ</td><td><code>UART_YZ_AXI4_Lite</code></td><td class="n">4</td><td class="n">10</td><td class="n ok">10</td><td class="n">0</td><td class="n">1</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">1,068 ms</td><td><a href="UART_YZ/">aç →</a></td></tr>
+<tr class="tot"><td>Toplam</td><td class="dash">—</td><td class="n">41</td><td class="n">100</td><td class="n">100</td><td class="n">0</td><td class="dash n">—</td><td class="n">0</td><td class="n">0</td><td class="dash n">—</td><td class="dash">—</td></tr>
+</table></div>
+
+<h2>Sistem seviyesi testler</h2>
+<div class="wrap"><table>
+<tr><th>Test</th><th>Ne sürüyor</th><th class="n">Senaryo</th><th class="n">Kontrol</th>
+    <th class="n">Geçen</th><th class="n">İzlenen arayüz</th><th class="n">AXI ihlali</th>
+    <th class="n">Uyarı</th><th class="n">Sim süresi</th><th>Rapor</th></tr>
+<tr><td class="grp">Boot zinciri</td><td>flasher → QSPI flash → boot → DMA → INSTRRAM → atlama</td><td class="n">2 faz</td><td class="n">5</td><td class="n ok">5</td><td class="n">15</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">10,908 ms</td><td><a href="Boot/">aç →</a></td></tr>
+<tr><td class="grp">YZ hızlandırıcı</td><td>UART → DMA → YZ RAM → çıkarım → kesme → 7-segment</td><td class="n">3</td><td class="n">12</td><td class="n ok">12</td><td class="n">15</td><td class="n zero">0</td><td class="n zero">0</td><td class="n">513,111 ms</td><td><a href="AI_Accelerator/">aç →</a></td></tr>
+</table></div>
+
+<h2>YZ hızlandırıcı — üç senaryo</h2>
+<div class="wrap"><table>
+<tr><th>Senaryo</th><th>Girdi (1960 bayt)</th><th class="n">Sınıf</th><th class="n">GPIO_ODR</th>
+    <th>FC skorları (bit-exact)</th><th class="n">Çevrim</th><th>Sonuç</th></tr>
+<tr><td class="grp">EVET</td><td><code>input_data_yes.hex</code></td><td class="n">2</td><td class="n">7</td><td><code>-58032 · 21583 · 48674 · -4777</code></td><td class="n">45.517</td><td class="ok">GEÇTİ</td></tr>
+<tr><td class="grp">HAYIR</td><td><code>input_data_no.hex</code></td><td class="n">3</td><td class="n">8</td><td><code>-30588 · 7509 · 7419 · 18543</code></td><td class="n">45.517</td><td class="ok">GEÇTİ</td></tr>
+<tr><td class="grp">SESSİZLİK</td><td><code>input_data_sessizlik.hex</code></td><td class="n">0</td><td class="n">9</td><td><code>427 · -518 · -94 · 186</code></td><td class="n">45.517</td><td class="ok">GEÇTİ</td></tr>
+</table></div>
+<p class="note">50 MHz'de <strong>910,3 µs</strong> → <strong>1098,5 çıkarım/s</strong>
+(şartname Tablo 3-1 "Sistem performansı"). Üç senaryoda çevrim sayısının aynı
+olması beklenen sonuçtur: hızlandırıcı veriye bağlı dallanma içermez.</p>
+
+<h2>AXI protokol kontrolü</h2>
+<p>Protokol kontrolü ayrı bir koşum değildir. <code>axi4lite_protocol_checker</code>
+(10 kategori, <strong>40 kural</strong> — 33 <code>assert property</code> +
+7 prosedürel kontrol) her testbench'e <code>bind</code> ile bağlıdır ve testin
+kendi ürettiği gerçek trafiği canlı denetler. İki sistem testinde
+<code>axi4lite_bind.svh</code> ile tasarımdaki <strong>15 AXI4-Lite arayüzünün
+tamamı</strong> izlenir.</p>
+
+<pre>======================================================================
+            AXI4-LITE PROTOKOL KONTROL OZETI
+======================================================================
+  Izlenen AXI arayuzu sayisi : 15
+  Protokol ihlali            : 0
+  Uyari (stall/watchdog)     : 0
+  SONUC                      : GECTI  (0 ihlal)
+======================================================================</pre>
+
+<p class="note"><strong>Kontrolcü trafik görmeyen arayüzü sessizce geçmez.</strong>
+O arayüz için <code>*** TRAFIK YOK -- bu arayuz HIC test edilmedi ***</code>
+satırını basar; böylece &ldquo;0 ihlal&rdquo; ile &ldquo;hiç sürülmedi&rdquo;
+karıştırılamaz. İki sistem senaryosu birleştiğinde 15 arayüzün <strong>14'ü</strong>
+gerçek trafik altında denetlenir; kapsam dışında kalan tek arayüz Boot ROM'un
+interconnect tarafındaki ikinci okuma portudur (<code>BOOTROM_ICN</code>).</p>
+
+<p class="note"><strong>En yoğun koşum <code>AI_Accelerator/</code>'dır:</strong>
+<code>CPU_INSTR_M</code> arayüzünde 8.551.805 okuma el sıkışması denetlendi.
+CV32E40P'nin komut önbelleği yoktur, bu yüzden her komut getirme ayrı bir AXI
+okumasıdır.</p>
+
+<h2>Metin özet</h2>
+<p><a href="README.md">README.md</a> — klasör yapısı, izlenen 15 arayüzün listesi,
+40 kuralın kategorileri, koşumların nasıl tekrar üretileceği ve okuma notları.
+Her birim klasöründe o koşumun kendi <code>README.md</code>'si (hangi test neyi
+doğruluyor) ve <code>xsim_console.log</code> (ham konsol çıktısının tamamı) vardır.</p>
+
+</main></body></html>

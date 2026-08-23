@@ -31,13 +31,13 @@ I2C, QSPI) ve yapay zekâ hızlandırıcısını kullanarak işini yapar.
 - **Bellekler:** Boot ROM, Instruction RAM, Data RAM, YZ RAM (hepsi AXI4-Lite sarmalı)
 - **Çevre birimleri:** GPIO, Timer, I2C Master, QSPI Master, iki UART
   (genel kullanım + YZ veri akışı)
-- **Yapay zekâ hızlandırıcısı:** konvolüsyon + tam bağlı katmanlarla anahtar
+- **Yapay zekâ hızlandırıcısı:** TFlite micro speech modelinin RTL gerçeklemesi. Konvolüsyon + tam bağlı katmanlarla anahtar
   kelime tanıma (sessizlik / bilinmeyen / evet / hayır)
-- **İki katmanlı boot:** Boot ROM'daki bootloader → QSPI flash'tan uygulamayı
-  Instruction RAM'e yükler → çalıştırır
-- **Kapsamlı doğrulama:** her çevre birimi ve sistem seviyesi için testbench'ler,
-  15 AXI arayüzüne bağlanan protokol kontrolcüsü, kod kapsamı raporları
-- **Tek tıkla kurulum:** Vivado projesini sıfırdan oluşturan TCL scriptleri
+- **İki boot modu:** **1.** Boot ROM'daki bootloader → QSPI flash'tan uygulamayı
+  Instruction RAM'e yükler → çalıştırır. **2.** UART üzerinden bilgisayardan aldığı verileri QSPI modülü ile harici flash belleğe yazar.
+- **Kapsamlı doğrulama:** Her çevre birimi, hızlandırıcı ve genel MCU için testbench'ler,
+  15 AXI arayüzüne bağlanan protokol kontrolcüsü, kod kapsamı raporları, UVM ve Spike ISS ile çekirdek doğrulaması.
+- **Kolay kurulum:** Vivado projesini sıfırdan oluşturan TCL scriptleri.
 
 ---
 
@@ -53,8 +53,8 @@ I2C, QSPI) ve yapay zekâ hızlandırıcısını kullanarak işini yapar.
             └────────┬─────────┘
                      │ AXI4
         ┌────────────▼─────────────┐
-        │     AXI4 Interconnect     │
-        └─┬───┬───┬───┬───┬───┬───┬─┘
+        │     AXI4 Interconnect    │
+        └─┬───┬───┬───┬───┬───┬───┬┘
           │   │   │   │   │   │   │
        Boot Instr Data GPIO Tim UART  ... I2C / QSPI / YZ Hızlandırıcı
         ROM  RAM  RAM        er
@@ -68,41 +68,71 @@ uygulamayı QSPI flash'tan Instruction RAM'e kopyalar → uygulamaya atlar → �
 ## Depo yapısı
 
 ```
-mainfiles/
-├── FPGA/     → Asıl tasarım: RTL, firmware, Vivado scriptleri, doğrulama raporları
-├── ASIC/     → ASIC akışı için ayrılmış klasör (şu an boş)
+┌── FPGA/      → Asıl tasarım: RTL, firmware, Vivado scriptleri, doğrulama raporları
+├── asic_rtl/  → Yalnızca ASIC'e özgü RTL (SRAM sarmalayıcıları, mask ROM'lar, yamalar)
+├── asic/      → ASIC fiziksel tasarım akışı: LibreLane + SKY130, raporlar, GDSII
 └── LICENSE
 ```
 
-Bütün çalışma dosyaları [`FPGA/`](FPGA/) altındadır:
+> Her klasördeki dosyaların detaylı açıklamaları ve varsa kullanım şekilleri ilgili klasördeki README metinlerinde bulunmaktadır.
+
+Tasarımın kaynağı [`FPGA/`](FPGA/) altındadır:
 
 | Klasör | İçerik |
 |---|---|
-| [`FPGA/main_codes/`](FPGA/main_codes/) | Donanım tasarımının tamamı (RTL) + testbench'ler |
+| [`FPGA/main_codes/`](FPGA/main_codes/) | MCU tasarımının tamamı (RTL) + testbench'ler |
 | [`FPGA/firmware/`](FPGA/firmware/) | İşlemcinin koşturduğu bare-metal yazılım (C / asm) |
-| [`FPGA/scripts/`](FPGA/scripts/) | Vivado proje kurulum scriptleri + YZ araç zinciri |
-| [`FPGA/verification/`](FPGA/verification/) | Doğrulama kanıtları: sentez, zamanlama, kod kapsamı, YZ ölçümleri |
-| [`FPGA/Vivado_projects/`](FPGA/Vivado_projects/) | Scriptlerin ürettiği Vivado projeleri (üretilen çıktı) |
-| [`FPGA/bitstream_files/`](FPGA/bitstream_files/) | Karta yüklenen bitstream (`fpga_top.bit`) |
+| [`FPGA/scripts/`](FPGA/scripts/) | Vivado proje kurulum scriptleri + Hızlandırıcı ile ilgili test dosyaları |
+| [`FPGA/verification/`](FPGA/verification/) | Yapılan doğrulamaların detaylı açıklamaları ve kanıtları |
+| [`FPGA/Vivado_projects/`](FPGA/Vivado_projects/) | Scriptlerin ürettiği Vivado projeleri burada bulunur |
+| [`FPGA/bitstream_files/`](FPGA/bitstream_files/) | Nexys A7 100T karta yüklenebilen bitstream (`fpga_top.bit`) |
 
 Klasörlerin ayrıntılı dökümü [`FPGA/README.md`](FPGA/README.md) içinde;
 `firmware/`, `scripts/` ve `verification/` klasörlerinin de kendi README'si vardır.
 
+Aynı SoC'nin ASIC'e dönüştürülmüş hâli iki klasördedir. Teknolojiye bağlı farklar
+[`asic_rtl/`](asic_rtl/) altında ayrı dosyalar olarak durur ve akış hangi dosyayı
+kullanacağını `asic/filelist.f` ile seçer.
+
+| Klasör | İçerik |
+|---|---|
+| [`asic_rtl/mem/`](asic_rtl/mem/) | FPGA BRAM'lerinin yerine geçen SKY130 SRAM makro sarmalayıcıları |
+| [`asic_rtl/gen/`](asic_rtl/gen/) | Boot ROM ve YZ ağırlık ROM'ları — üretilmiş mask ROM RTL'i |
+| [`asic_rtl/patched/`](asic_rtl/patched/) | Üretilmiş yamalı kopyalar (sürülmeyen sinyaller, YZ MAC boru hattı) |
+| [`asic_rtl/tech/`](asic_rtl/tech/) | Xilinx `IOBUF` primitifinin teknolojiden bağımsız karşılığı |
+| [`asic_rtl/testbench/`](asic_rtl/testbench/) | ASIC belleklerinin eşdeğerlik testi |
+
+Akışın kendisi [`asic/`](asic/) altındadır:
+
+| Klasör / dosya | İçerik |
+|---|---|
+| [`asic/config.yaml`](asic/config.yaml) · [`asic/filelist.f`](asic/filelist.f) | LibreLane yapılandırması ve ASIC akışında derlenen RTL listesi |
+| [`asic/constraints/`](asic/constraints/) | Zamanlama kısıtları (`design.sdc`) ve SRAM makro yerleşimi |
+| [`asic/macros/`](asic/macros/) | Kullanılan SKY130 SRAM makrolarının GDSII/LEF/Liberty/Verilog/SPICE görünümleri |
+| [`asic/reports/`](asic/reports/) | Lint, sentez, fiziksel tasarım, zamanlama, DRC, LVS, anten, güç ve IR-drop raporları |
+| [`asic/results/`](asic/results/) | Nihai çıktılar: **GDSII**, LEF, DEF, netlistler, SDC, SPEF, SPICE |
+| [`asic/scripts/`](asic/scripts/) · [`asic/Makefile`](asic/Makefile) | Akışı baştan sona çalıştıran otomasyon (`make asic_run`) |
+
+Ayrıntılar, kullanılan araç sürümleri ve signoff sonuçları
+[`asic/README.md`](asic/README.md) içinde.
+
 ---
 
-## Hızlı başlangıç
+## FPGA Üzerinde Hızlı başlangıç
+
+**Detaylı açıklama için:** [`FPGA/firmware/README.md`](FPGA/firmware/README.md)
 
 **1. Yazılımı derle:**
 ```bash
 cd FPGA/firmware/
 make all          # bootloader (boot.hex) + uygulama (app.hex)
 ```
-Derleme hedeflerinin tamamı [`FPGA/firmware/README.md`](FPGA/firmware/README.md) içinde.
+Derleme hedeflerinin tamamı [`FPGA/firmware/README.md`](FPGA/firmware/README.md) içinde anlatılmıştır.
 
 **2. Donanım projesini oluştur (Vivado Tcl Console):**
 ```tcl
-cd /.../mainfiles/FPGA/
-source /.../mainfiles/FPGA/scripts/project_gen/Main_MCU_Project.tcl
+cd /.../FPGA/
+source /.../FPGA/scripts/project_gen/Main_MCU_Project.tcl
 ```
 Bu, tüm tasarımı içeren Vivado projesini otomatik kurar. Tekil blokları ayrı
 denemek için `scripts/project_gen/` altındaki diğer scriptler kullanılır
@@ -128,6 +158,7 @@ Uygulamayı flash'a yazma ve YZ'ye ses gönderme adımları
 | YZ hızlanma | **276,9×** (yazılım gerçeklemesine kıyasla) |
 | YZ doğruluk | donanım %91,03 · yazılım %91,03 → fark **0,00 puan** |
 | YZ bellek bütçesi | 30.720 B (sınır 30 KB) |
+| ASIC fiziksel tasarım | LibreLane 3.0.6 + SKY130A, 15 SRAM makrosu — [`asic/`](asic/) |
 
 Çevre birimlerinin her biri kendi directed testbench'i ile, sistem ise boot,
 uygulama ve YZ senaryolarını koşturan sistem testleri ile doğrulandı.
@@ -137,7 +168,5 @@ uygulama ve YZ senaryolarını koşturan sistem testleri ile doğrulandı.
 
 Bu tasarım **YTU YODA KYBER** takımı tarafından geliştirilmiştir.
 
-> Çevre birimleri, OBI→AXI wrapper ve AXI4 interconnect kodları (testbench'ler
-> dahil) **tamamen takım tarafından yazılmıştır**; hiçbir açık kaynak repo ya da
-> yapay zekâ tarafından üretilmiş kod kullanılmamıştır. Yapay zekâdan yalnızca
-> öğrenme ve hata ayıklama sürecinde destek alınmıştır.
+> Bütün RTL kodları ve doğrulama işlemleri **takım tarafından yapılmıştır**; PULP Platform ve TF lite dışında hiçbir açık kaynak repo ya da
+> kod kullanılmamıştır. Yapay zekâdan yalnızca öğrenme ve hata ayıklama sürecinde destek alınmıştır.

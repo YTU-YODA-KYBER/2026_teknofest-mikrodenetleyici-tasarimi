@@ -1,21 +1,11 @@
 # scripts/wav_to_yz.py — Ses Dosyasından YZ Girdisi Üretme
 
-1 saniyelik bir WAV kaydını, YZ hızlandırıcısının beklediği **49×40 = 1960
-baytlık** özellik haritasına çevirir ve `scripts/sound_outputs/<wav-adı>.hex`
-olarak yazar. Bağımlılığı yoktur (sadece Python 3 standart kütüphanesi).
-
-```bash
-python3 scripts/wav_to_yz.py kayitlar/evet.wav
-# -> scripts/sound_outputs/evet.hex
-
-# karta gönder (SW1=1, YZ-UART modu) — dosya yolunu doğrudan ver
-cd firmware && python3 scripts/send_data.py audio ../scripts/sound_outputs/evet.hex
-```
-
-`firmware/sound_samples/` klasörüne dokunulmaz; `send_data.py yes|no|sessizlik`
-kısayolları eskisi gibi oradaki referans dosyaları gönderir.
+> Daha detaylı açıklama kodun içinde en tepede bulunmaktadır.
 
 ## Ne yapıyor?
+
+1 saniyelik bir konusma kaydini (WAV), YZ hizlandiricisinin bekledigi 49x40 = 1960 baytlik ozellik (feature) haritasina cevirir ve 
+scripts/sound_outputs/<isim>.hex olarak yazar. Cikti dosyasi dogrudan `send_data.py audio <dosya-yolu>` ile karta gonderilebilir.
 
 Modelin eğitildiği **TFLite Micro "micro_speech" ön işleme hattının**
 (microfrontend) birebir Python portu:
@@ -29,14 +19,20 @@ Modelin eğitildiği **TFLite Micro "micro_speech" ön işleme hattının**
   → int8 nicemleme, dosyaya uint8 (= int8 + 128) olarak yazılır
 ```
 
-Son adımdaki +128 kayması (offset-binary) zorunludur: `conv_accelerator.v`
-girdi zero-point'ini −128 kabul edip RAM'den okuduğu baytı doğrudan
-`(q_in + 128)` olarak kullanır, ZP çıkarma yapmaz.
+##  Kullanım
 
-> Hat baştan sona sabit-nokta olduğu için float bir FFT (librosa/numpy) aynı
-> sonucu **vermez**; kissfft'in yuvarlaması da portlanmıştır. Çıktı referans C
-> koduyla bit-exact doğrulandı: sessiz bir WAV, depodaki
-> `input_data_sessizlik.hex` ile birebir aynı çıkıyor.
+```python3 wav_to_yz.py evet.wav```
+  -> scripts/sound_outputs/evet.hex
+```python3 wav_to_yz.py kayit.wav -o /tmp/deneme.hex```
+```python3 wav_to_yz.py *.wav```                    # toplu donusum
+```python3 wav_to_yz.py kayit.wav --preview```     # ASCII spektrogram bas
+```python3 wav_to_yz.py uzun.wav --auto-align```    # en yuksek enerjili 1 s
+```python3 wav_to_yz.py kisik.wav --gain 6```       # +6 dB kazanc
+
+Sonra (dosya yolunu dogrudan vererek):
+  ```cd firmware```
+  ```python3 scripts/send_data.py audio ../scripts/sound_outputs/evet.hex```
+
 
 ## Girdi sesi
 
