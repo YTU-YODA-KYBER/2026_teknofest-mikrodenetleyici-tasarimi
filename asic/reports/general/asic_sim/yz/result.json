@@ -1,0 +1,11 @@
+{
+  "test": "yz",
+  "top": "ai_accel_test",
+  "passed": true,
+  "required_markers": [
+    "YZ HIZLANDIRICI TESTI: BASARILI",
+    "SONUC                      : GECTI"
+  ],
+  "missing_markers": [],
+  "fast_uart": true
+}

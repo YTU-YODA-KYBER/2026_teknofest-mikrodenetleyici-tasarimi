@@ -104,7 +104,7 @@ static uint32_t qor_sum(uint32_t addr, uint32_t n) {
 static void flasher(void) {
     Gpio->GPIO_ODR = 0x0001;         /* Flash hazır hale getiriliyor. */
 
-    Uart->UART_CPB = 434u;            /* 50 MHz / 434 = 115200 baud (diger UART reg'leri reset'te 0) */
+    Uart->UART_CPB = UART_CPB_115200; /* saat frekansindan turetilir: 50 MHz->434, 25 MHz->217 */
     Qspi->QSPI_FCR.all = 0x3u;       /* RX + TX FIFO flush */
 
     /* koruma kaldir (ppb_clean) */

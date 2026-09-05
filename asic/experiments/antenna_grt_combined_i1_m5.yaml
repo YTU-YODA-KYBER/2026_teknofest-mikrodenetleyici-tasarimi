@@ -1,0 +1,16 @@
+meta:
+  version: 2
+
+# Isolate one global-routing antenna-repair pass.  With both mode selectors
+# disabled, OpenROAD may use the combined jumper/diode repair strategy.
+RUN_HEURISTIC_DIODE_INSERTION: false
+DIODE_ON_PORTS: "none"
+GRT_ALLOW_CONGESTION: false
+
+RUN_ANTENNA_REPAIR: true
+GRT_ANTENNA_REPAIR_ITERS: 1
+GRT_ANTENNA_REPAIR_MARGIN: 5
+GRT_ANTENNA_REPAIR_JUMPER_ONLY: false
+GRT_ANTENNA_REPAIR_DIODE_ONLY: false
+
+DRT_ANTENNA_REPAIR_ITERS: 0

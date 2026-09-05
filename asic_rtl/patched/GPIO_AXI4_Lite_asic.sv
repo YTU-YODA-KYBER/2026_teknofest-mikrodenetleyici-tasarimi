@@ -3,6 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv
+//  SHA256 : 95f9e76f6235e44b921070c1a9335a4627ca71916d587048f7d5c3de4d699174
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
@@ -83,7 +84,7 @@ module GPIO_AXI4_Lite(
             //                      AXI YAZMA İŞLEMİ
             // ---------------------------------------------------------
 
-            if (awvalid && wvalid) begin
+            if (awvalid && wvalid && awready && wready) begin
                 awready <= 0;
                 wready  <= 0;
                 bvalid  <= 1; 
@@ -102,7 +103,7 @@ module GPIO_AXI4_Lite(
             // ---------------------------------------------------------
             //                  AXI OKUMA İŞLEMİ
             // ---------------------------------------------------------
-            if (arvalid) begin
+            if (arvalid && arready) begin
                 arready <= 0;
                 rvalid  <= 1;
                 

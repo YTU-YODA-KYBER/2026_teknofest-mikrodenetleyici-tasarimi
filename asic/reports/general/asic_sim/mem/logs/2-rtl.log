@@ -1,0 +1,14 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_cell
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell_1k.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_cell_1k
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_bank.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_bank
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram8_bank.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram8_bank
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/boot_rom_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module boot_rom
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/weights_rom_p8_asic.v" into library work
+INFO: [VRFC 10-311] analyzing module weights_rom_p8
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/fc_weights_rom_p4_asic.v" into library work
+INFO: [VRFC 10-311] analyzing module fc_weights_rom_p4

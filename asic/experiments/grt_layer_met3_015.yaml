@@ -1,0 +1,8 @@
+meta:
+  version: 2
+
+# Tek-degiskenli deney: met3 kaynak cezasini %15 yapar. %20 anteni
+# iyilestirdi fakat post-GRT resizer yeniden yollamasinda 9 asim uretti.
+# Bu ara deger, anten kazancini korurken sifir-asim sinirini arar.
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0.15, 0, 0]
+

@@ -1,0 +1,19 @@
+[INFO GRT-0112] Final usage 3D: 4221727
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
+---------------------------------------------------------------------------------------
+li1                  0             0            0.00%             0 /  0 /  0
+met1           1323599        606380           45.81%             1 /  0 / 10
+met2           1369458        570450           41.66%             0 /  1 /  4
+met3           1063972        362740           34.09%             3 /  0 / 74
+met4            739918        157012           21.22%             1 /  1 /  2
+---------------------------------------------------------------------------------------
+Total          4496947       1696582           37.73%             5 /  2 / 90
+
+[INFO GRT-0018] Total wirelength: 14170019 um
+[INFO GRT-0014] Routed nets: 84566
+[INFO GRT-0022] Global adjustment: 5%
+[INFO GRT-0053] Routing resources analysis:
+[INFO GRT-0018] Total wirelength: 14170019 um
+[INFO GRT-0014] Routed nets: 84566

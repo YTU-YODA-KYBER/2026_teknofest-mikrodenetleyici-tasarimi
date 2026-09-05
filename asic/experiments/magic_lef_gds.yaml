@@ -1,0 +1,4 @@
+# Magic.WriteLEF'in DEF + tum kutuphane hiyerarsisini yeniden kurarken 12 GiB
+# bellekte sonlanip sifir bayt LEF birakmasini onlemek icin, ayni akisin
+# KLayout ile uretilmis nihai GDS gorunumunu dogrudan oku.
+MAGIC_LEF_WRITE_USE_GDS: true

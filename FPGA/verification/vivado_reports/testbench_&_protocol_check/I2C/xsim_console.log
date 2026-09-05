@@ -1,0 +1,161 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Aug 23 19:01:07 2026
+# Process ID         : 503175
+# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/I2C_Module/I2C_Module.sim/sim_1/behav/xsim
+# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/I2C_Master_testbench_behav/xsim_script.tcl}
+# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/I2C_Module/I2C_Module.sim/sim_1/behav/xsim/simulate.log
+# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/I2C_Module/I2C_Module.sim/sim_1/behav/xsim/xsim.jou
+# Running On         : stradale
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 26.04 LTS
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 1697.592 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16473 MB
+# Swap memory        : 9130 MB
+# Total Virtual      : 25604 MB
+# Available Virtual  : 10743 MB
+#-----------------------------------------------------------
+source xsim.dir/I2C_Master_testbench_behav/xsim_script.tcl
+# xsim {I2C_Master_testbench_behav} -autoloadwcfg -tclbatch {I2C_Master_testbench.tcl} -key {Behavioral:sim_1:Functional:I2C_Master_testbench}
+Time resolution is 1 ps
+source I2C_Master_testbench.tcl
+## run all
+====================================================
+  I2C Master AXI4-Lite - Dogrulayici Test Senaryolari
+====================================================
+
+--- TEST 1: Tek Bayt Yazma (1B Write) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0xab  ACK=0
+    [BUS] STOP
+  WR_DONE=1 Timeout=0 | bus: addr=0xcc data=0xab (bekl 0xcc, 0xab)
+  [GECTI ] Test 1 basarili   -> 1B Write - DONE + dogru adres/veri
+
+--- TEST 2: Dort Bayt Yazma (4B Write) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0xcd  ACK=0
+    [BUS] BYTE=0xab  ACK=0
+    [BUS] BYTE=0xcd  ACK=0
+    [BUS] BYTE=0xab  ACK=0
+    [BUS] STOP
+  WR_DONE=1 Timeout=0 | bus: addr=0xcc data=[cd ab cd ab]
+  [GECTI ] Test 2 basarili   -> 4B Write - DONE + dogru adres/veri sirasi
+
+--- TEST 3: Tek Bayt Okuma (1B Read) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] START
+    [BUS] BYTE=0xcd  ACK=0
+    [BUS] BYTE=0x5a  ACK=1
+    [BUS] STOP
+  RD_DONE=1 Timeout=0 | I2C_RDR=0x0000005a (bekl 0x0000005a)
+  [GECTI ] Test 3 basarili   -> 1B Read - DONE + dogru RDR verisi
+
+--- TEST 4: Dort Bayt Okuma (4B Read) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] START
+    [BUS] BYTE=0xcd  ACK=0
+    [BUS] BYTE=0x78  ACK=0
+    [BUS] BYTE=0x56  ACK=0
+    [BUS] BYTE=0x34  ACK=0
+    [BUS] BYTE=0x12  ACK=1
+    [BUS] STOP
+  RD_DONE=1 Timeout=0 | I2C_RDR=0x12345678 (bekl 0x12345678)
+  [GECTI ] Test 4 basarili   -> 4B Read - DONE + dogru RDR verisi
+
+--- TEST 5: NACK @ Adres Frame (timeout beklenir) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=1
+    [BUS] STOP
+  Timeout=1 (1 = beklenen NACK/iptal tespit edildi)
+  [GECTI ] Test 5 basarili   -> NACK @ Adres - timeout tespit edildi
+
+--- TEST 6: NACK @ Veri Frame (timeout beklenir) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0xcd  ACK=1
+    [BUS] STOP
+  Timeout=1 (1 = beklenen NACK/iptal tespit edildi)
+  [GECTI ] Test 6 basarili   -> NACK @ Veri - timeout tespit edildi
+
+--- TEST 7: WR_DONE Temizleme (CFG_CLR) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] STOP
+  Temizlemeden once: WR_DONE=1
+  Temizledikten sonra: WR_DONE=0
+  [GECTI ] Test 7 basarili   -> CFG_CLR ile WR_DONE temizlendi
+
+--- TEST 8: Ardisik Yazma (Back-to-Back) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0xaa  ACK=0
+    [BUS] STOP
+  1. transfer: WR_DONE=0 data=0xaa
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0x55  ACK=0
+    [BUS] STOP
+  2. transfer: WR_DONE=1 data=0x55 (bekl 0x55)
+  [GECTI ] Test 8 basarili   -> Back-to-Back Write - ikisi de tamam + 2. veri dogru
+
+--- TEST 9: Yazma Sonrasi Okuma (Write then Read) ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0x34  ACK=0
+    [BUS] BYTE=0x12  ACK=0
+    [BUS] STOP
+  Yazma: WR_DONE=1 data=[34 12] (bekl 34 12)
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] START
+    [BUS] BYTE=0xcd  ACK=0
+    [BUS] BYTE=0xcd  ACK=0
+    [BUS] BYTE=0xab  ACK=1
+    [BUS] STOP
+  Okuma: RD_DONE=1 I2C_RDR=0x0000abcd (bekl 0x0000ABCD)
+  [GECTI ] Test 9 basarili   -> Write then Read - yazma verisi + okuma RDR dogru
+
+--- TEST 10: CFG Register Tutarliligi ---
+    [BUS] START
+    [BUS] BYTE=0xcc  ACK=0
+    [BUS] BYTE=0xff  ACK=0
+    [BUS] STOP
+  CFG 1. okuma=0x00000002  2. okuma=0x00000002
+  [GECTI ] Test 10 basarili   -> CFG okumalar arasi tutarli
+----------------------------------------------------------------------
+---------------------- BUTUN TESTLER TAMAMLANDI ----------------------
+----------------------------------------------------------------------
+
+Toplam basarili test sayisi:          10
+Toplam basarisiz test sayisi:          0
+
+TUM TESTLER BASARILI!
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+======================================================================
+            AXI4-LITE PROTOKOL KONTROL OZETI
+======================================================================
+  Izlenen AXI arayuzu sayisi : 1
+  Protokol ihlali            : 0
+  Uyari (stall/watchdog)     : 0
+  SONUC                      : GECTI  (0 ihlal)
+======================================================================
+
+[AXI-CHK]            I2C | AW=54 W=54 B=54 AR=12853 R=12853 | ihlal=0 uyari=0
+$finish called at time : 1080107447 ps : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/I2C/I2C_tb.sv" Line 564
+## quit
+INFO: xsimkernel Simulation Memory Usage: 293040 KB (Peak: 341600 KB), Simulation CPU Usage: 1430 ms
+INFO: [Common 17-206] Exiting xsim at Sun Aug 23 19:01:11 2026...

@@ -1,0 +1,48 @@
+
+===========================================================================
+Violator List
+============================================================================
+[hold reg-reg] _127310_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/csb0 : -0.230191
+[hold reg-reg] _124091_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/csb1 : -0.209932
+[hold reg-reg] _127823_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/csb0 : -0.184947
+[hold reg-reg] _127492_/Q -> _127493_/D : -0.167303
+[hold reg-reg] _127488_/Q -> _127489_/D : -0.147497
+[hold reg-reg] _127370_/Q -> _124908_/D : -0.137453
+[hold reg-reg] _127307_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[8] : -0.136886
+[hold reg-reg] _127528_/Q -> _127529_/D : -0.132348
+[hold reg-reg] _127457_/Q -> _127461_/D : -0.115981
+[hold reg-reg] _127370_/Q -> _127368_/D : -0.098501
+[hold reg-reg] _127492_/Q -> _127494_/D : -0.091180
+[hold reg-reg] _127374_/Q -> _127375_/D : -0.074701
+[hold reg-reg] _127456_/Q -> _127458_/D : -0.074659
+[hold reg-reg] _127298_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[0] : -0.068928
+[hold reg-reg] _127457_/Q -> _127460_/D : -0.053290
+[hold reg-reg] _127457_/Q -> _127459_/D : -0.052746
+[hold reg-reg] _127488_/Q -> _127490_/D : -0.051841
+[hold reg-reg] _123815_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[8] : -0.050239
+[hold reg-reg] _127298_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[0] : -0.050071
+[hold reg-reg] _124799_/Q -> _127384_/D : -0.047452
+[hold reg-reg] _125937_/Q -> _128031_/D : -0.047012
+[hold reg-reg] _124702_/Q -> _127383_/D : -0.045097
+[hold reg-reg] _127374_/Q -> _124909_/D : -0.042632
+[hold reg-reg] _127492_/Q -> _127495_/D : -0.039405
+[hold reg-reg] _127374_/Q -> _124910_/D : -0.034440
+[hold reg-reg] _127299_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[0] : -0.030322
+[hold reg-reg] _123814_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[7] : -0.025154
+[hold reg-reg] _127453_/Q -> _119394_/D : -0.023981
+[hold reg-reg] _127305_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[6] : -0.022395
+[hold reg-reg] _127301_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[2] : -0.020426
+[hold reg-reg] _127170_/Q -> _127171_/D : -0.016740
+[hold reg-reg] _123813_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[6] : -0.015213
+[hold reg-reg] _123822_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/din0[5] : -0.013360
+[hold reg-reg] _123822_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/din0[13] : -0.013078
+[hold reg-reg] _123822_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/din0[21] : -0.012817
+[hold reg-reg] _123822_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/din0[29] : -0.012652
+[hold reg-reg] _127528_/Q -> _127530_/D : -0.012460
+[hold reg-reg] _127564_/Q -> _119313_/D : -0.011120
+[hold reg-reg] _127302_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[3] : -0.008845
+[hold reg-reg] _127304_/Q -> yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[5] : -0.008050
+[hold reg-reg] _123811_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[4] : -0.006029
+[hold reg-reg] _123812_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[5] : -0.004495
+[hold reg-reg] _126582_/Q -> _119103_/D : -0.003904
+[hold reg-reg] _123809_/Q -> conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[2] : -0.000174

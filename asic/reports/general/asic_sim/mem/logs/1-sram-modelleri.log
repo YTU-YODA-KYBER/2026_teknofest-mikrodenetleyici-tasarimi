@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v" into library work
+INFO: [VRFC 10-311] analyzing module sky130_sram_2kbyte_1rw1r_32x512_8
+WARNING: [VRFC 10-3380] identifier 'mem' is used before its declaration [/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v:59]
+WARNING: [VRFC 10-3380] identifier 'mem' is used before its declaration [/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v:77]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v" into library work
+INFO: [VRFC 10-311] analyzing module sky130_sram_1kbyte_1rw1r_32x256_8
+WARNING: [VRFC 10-3380] identifier 'mem' is used before its declaration [/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v:59]
+WARNING: [VRFC 10-3380] identifier 'mem' is used before its declaration [/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v:77]

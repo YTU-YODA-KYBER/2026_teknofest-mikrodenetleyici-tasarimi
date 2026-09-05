@@ -49,7 +49,7 @@ module tb_asic_mem_equiv;
     logic [31:0]     w_wdata, w_rdata;
 
     sram32_bank #(.NBANK2K(4), .HAS_1K(0), .WAW(W_AW), .INIT_ZERO(1'b1)) dut32 (
-        .clk(clk), .we(w_we), .be(w_be),
+        .clk(clk), .we(w_we), .re(1'b1), .be(w_be),
         .waddr(w_waddr), .wdata(w_wdata),
         .raddr(w_raddr), .rdata(w_rdata)
     );
@@ -78,7 +78,7 @@ module tb_asic_mem_equiv;
     logic [7:0]      b_wdata, b_rdata;
 
     sram8_bank #(.NBANK2K(4), .HAS_1K(1), .AW(B_AW), .INIT_ZERO(1'b1)) dut8 (
-        .clk(clk), .we(b_we),
+        .clk(clk), .we(b_we), .re(1'b1),
         .waddr(b_waddr), .wdata(b_wdata),
         .raddr(b_raddr), .rdata(b_rdata)
     );

@@ -84,7 +84,7 @@ Tasarımın kaynağı [`FPGA/`](FPGA/) altındadır:
 | [`FPGA/firmware/`](FPGA/firmware/) | İşlemcinin koşturduğu bare-metal yazılım (C / asm) |
 | [`FPGA/scripts/`](FPGA/scripts/) | Vivado proje kurulum scriptleri + Hızlandırıcı ile ilgili test dosyaları |
 | [`FPGA/verification/`](FPGA/verification/) | Yapılan doğrulamaların detaylı açıklamaları ve kanıtları |
-| [`FPGA/Vivado_projects/`](FPGA/Vivado_projects/) | Scriptlerin ürettiği Vivado projeleri burada bulunur |
+| `FPGA/Vivado_projects/` | Scriptlerin çalıştırıldığında oluşturduğu, Git'e alınmayan Vivado projeleri |
 | [`FPGA/bitstream_files/`](FPGA/bitstream_files/) | Nexys A7 100T karta yüklenebilen bitstream (`fpga_top.bit`) |
 
 Klasörlerin ayrıntılı dökümü [`FPGA/README.md`](FPGA/README.md) içinde;
@@ -162,11 +162,12 @@ Uygulamayı flash'a yazma ve YZ'ye ses gönderme adımları
 
 Çevre birimlerinin her biri kendi directed testbench'i ile, sistem ise boot,
 uygulama ve YZ senaryolarını koşturan sistem testleri ile doğrulandı.
-**UVM** ve **Spike ISS** doğrulamaları planlanmıştır.
+**UVM** regresyonu 219/219 koşumla, **Spike ISS** lockstep doğrulaması ise
+193/193 komut eşleşmesiyle tamamlandı; ayrıntılı kanıtlar
+[`FPGA/verification/`](FPGA/verification/) altındadır.
 
 ---
 
 Bu tasarım **YTU YODA KYBER** takımı tarafından geliştirilmiştir.
 
-> Bütün RTL kodları ve doğrulama işlemleri **takım tarafından yapılmıştır**; PULP Platform ve TF lite dışında hiçbir açık kaynak repo ya da
-> kod kullanılmamıştır. Yapay zekâdan yalnızca öğrenme ve hata ayıklama sürecinde destek alınmıştır.
+> Yapay zekâdan yalnızca öğrenme ve hata ayıklama sürecinde destek alınmıştır.

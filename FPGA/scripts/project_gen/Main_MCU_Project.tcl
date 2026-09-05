@@ -36,3 +36,8 @@ set_property used_in_simulation false [get_files fpga_top.sv]
 set_property used_in_simulation false [get_files clk_wiz_0.xci]
 
 update_compile_order -fileset sources_1
+
+# Kaynak dizininde birden fazla olasi ust modul bulundugundan batch akista
+# otomatik top tahminine guvenilmez.
+set_property top fpga_top [get_filesets sources_1]
+update_compile_order -fileset sources_1

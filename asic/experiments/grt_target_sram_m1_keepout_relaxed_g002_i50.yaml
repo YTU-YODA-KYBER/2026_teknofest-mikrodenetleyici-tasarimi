@@ -1,0 +1,14 @@
+meta:
+  version: 2
+
+# Follow-up to the 0.05/i50 run, whose 90 residual overflow units were 82%
+# concentrated on met3.  Keep the measured met1/met2 derates unchanged and
+# reduce only the inherited global reserve on met3/met4 from 5% to 2%.
+GRT_ADJUSTMENT: 0.02
+GRT_LAYER_ADJUSTMENTS: [0, 0.25, 0.20, 0, 0, 0]
+
+ROUTING_OBSTRUCTIONS:
+  - [met1, 2553.10, 1565.00, 3256.20, 2001.54]
+
+GRT_OVERFLOW_ITERS: 50
+GRT_ALLOW_CONGESTION: true

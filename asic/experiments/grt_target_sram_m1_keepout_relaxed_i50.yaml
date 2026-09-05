@@ -1,0 +1,14 @@
+meta:
+  version: 2
+
+# Production-screening variant of the relaxed targeted keep-out experiment.
+# The i30 run reached only 372 total overflow; i50 enables FastRoute's later
+# i=35/i=50 cost phases so the final strict run can require zero overflow.
+GRT_ADJUSTMENT: 0.05
+GRT_LAYER_ADJUSTMENTS: [0, 0.25, 0.20, 0, 0, 0]
+
+ROUTING_OBSTRUCTIONS:
+  - [met1, 2553.10, 1565.00, 3256.20, 2001.54]
+
+GRT_OVERFLOW_ITERS: 50
+GRT_ALLOW_CONGESTION: true

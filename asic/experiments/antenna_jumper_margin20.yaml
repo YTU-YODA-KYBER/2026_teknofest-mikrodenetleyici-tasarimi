@@ -1,0 +1,9 @@
+meta:
+  version: 2
+
+# Tek-degiskenli deney: resmi saf-jumper overlay'indeki onarim emniyet payini
+# %5'ten %20'ye cikarir. OpenROAD bu degeri yalniz onarim adaylarini bulurken
+# anten kural oranini (1 - margin/100) ile carpmak icin kullanir; nihai
+# signoff anten esigi degismez. Once RepairAntennas'ta ek jumper sayisi
+# olculur, yalniz umut verirse DRT sonrasi gercek anten sonucu alinir.
+GRT_ANTENNA_REPAIR_MARGIN: 20

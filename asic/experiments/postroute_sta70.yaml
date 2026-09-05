@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Diagnostic-only overlay: re-analyze the already routed database at 70 ns.
+# This does not alter source/generated RTL or the main delivery configuration.
+CLOCK_PERIOD: 70
+

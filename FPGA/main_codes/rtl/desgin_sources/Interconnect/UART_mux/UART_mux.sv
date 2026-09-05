@@ -14,10 +14,34 @@ module uart_mux (
     output logic UART_YZ_RX
 );
 
-    // TX: gercek 2:1 mux sart (tek fiziksel pin, iki olasi surucu)
-    assign UART_TX = (GPIO_IDR[1:0] == 2'd1) ? UART_GU_TX :
-                      (GPIO_IDR[1:0] == 2'd2) ? UART_YZ_TX :
-                                                 1'b1;        // idle-high (bos/beklenmedik durum)
+    // TX: MUX DEGIL -- her modda GENEL UART surer.
+    //
+    // NEDEN DEGISTI (sartname Bolum 4.2.2 madde 5):
+    //   "CPU kesme servisi (ISR) ile sonucu alip GENEL UART uzerinden
+    //    yazdiracaktir."
+    //   Onceki 2:1 mux, YZ modunda (GPIO_IDR[1:0]==2) fiziksel TX pinini
+    //   UART_YZ_TX'e baglıyordu. Sonuc: genel UART'a yazilan bayt karttan
+    //   hic cikmiyordu ve firmware sonucu UART_YZ'den basmak zorunda
+    //   kaliyordu (FPGA/firmware/main_app.c yz_putc) -- yani sartnamenin
+    //   acikca istedigi yol fiziksel olarak kapaliydi.
+    //
+    // NEDEN GUVENLI:
+    //   YZ arayuzu TEK YONLUDUR. Host 1960 baytlik ses ozniteligini cipe
+    //   GONDERIR; bu baytlar UART_RX'ten gelir ve donanimda DMA ile YZ RAM'e
+    //   yazilir. UART_YZ'nin GONDERECEGI bir sey yoktur -- tasarimda
+    //   UART_YZ_TX'i tuketen tek yer bu mux'ti. Yani TX tarafinda gercekte
+    //   TEK surucu vardir ve mux gereksizdir.
+    //
+    //   Idle davranisi da korunur: UART_GU'nun tx cikisi reset'te 1
+    //   (UART_GU_AXI4-Lite.sv:164) ve cerceve disinda 1'dir (:233), yani
+    //   eski daldaki acik `1'b1` idle degeri kendiliginden saglanir.
+    //
+    //   TX ve RX ayri fiziksel pinlerdir (full-duplex): host veri
+    //   gonderirken cipin sonucu basmasi cakisma yaratmaz.
+    //
+    // UART_YZ_TX portu ARAYUZ KARARLILIGI icin korunmustur (Top_module
+    // baglantisi degismesin diye); bilerek kullanilmamaktadir.
+    assign UART_TX = UART_GU_TX;
 
     // RX: mux DEGIL, fan-out. Tek kaynak, iki hedefe kopyalanir -- cakisma yok.
     //

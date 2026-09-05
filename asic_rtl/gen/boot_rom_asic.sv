@@ -2,8 +2,15 @@
 //  boot_rom -- OTOMATIK URETILMIS DOSYA, ELLE DUZENLEME.
 //
 //  Ureten : asic/scripts/gen_rom.py
-//  Kaynak : boot.hex
+//  Kaynak : asic_boot.hex
+//  Kaynak SHA256 : ded4e8aaf5bd259db1bc12ffe62d12ae3a91ffe07cc88fa78af77208650b7fc9
 //  Icerik : 193 / 256 kelime x 32 bit  (6176 bit)
+//
+//  Kaynak hex'in SHA256'si BILEREK bu basliktadir: `gen_rom.py --all --check`
+//  uretimi bellekte tekrarlayip diskteki dosyayla metin bazinda karsilastirir.
+//  Boylece firmware/agirliklar yeniden uretildiginde ve `make roms`
+//  unutuldugunda BAYAT bir ROM sessizce senteze giremez (patch_rtl.py'nin
+//  yamali kopyalar icin yaptigi kontrolun ROM karsiligi).
 //
 //  Bu modul ASIC akisinda Memory/BRAM_defines/boot_rom_def.sv dosyasinin
 //  yerine gecer (modul adi ve port listesi birebir aynidir). Icerik silikonda
@@ -92,7 +99,7 @@ module boot_rom #(
         rom[58] = 32'h400107B7;
         rom[59] = 32'hC3D84705;
         rom[60] = 32'h400407B7;
-        rom[61] = 32'h1B200713;
+        rom[61] = 32'h0F300713;
         rom[62] = 32'h0437C398;
         rom[63] = 32'h478D4003;
         rom[64] = 32'h4519C81C;

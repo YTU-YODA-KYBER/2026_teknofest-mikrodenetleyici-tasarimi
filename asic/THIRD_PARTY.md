@@ -50,7 +50,7 @@ kullanılır; latch tabanlı varyant ASIC akışına girmez.
 | **Takım değişikliği** | **VAR** — bkz. aşağıda |
 
 `obi_to_axi.sv` için ASIC akışında **yamalı bir kopya** kullanılır
-(`main_codes/rtl/asic_sources/patched/obi_to_axi_asic.sv`,
+(`asic_rtl/patched/obi_to_axi_asic.sv`,
 `asic/scripts/patch_rtl.py` tarafından üretilir). Orijinal dosyaya dokunulmamıştır.
 İki değişiklik yapılmıştır ve **ikisi de üretilen donanımı değiştirmez**:
 

@@ -1,0 +1,6 @@
+meta:
+  version: 2
+
+# Mapped sentez alan taramasi; kritik yol kazanci varsayilmaz.
+SYNTH_STRATEGY: "AREA 0"
+SYNTH_MUL_BOOTH: true

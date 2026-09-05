@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Kontrollu zamanlama karakterizasyonu: 20 ns CTS veritabani uzerinde
+# propagated-clock, multi-corner post-CTS resizer davranisini 40 ns'de olcer.
+# Nihai config'e ancak olculen setup/hold marjlari yeterliyse tasinir.
+CLOCK_PERIOD: 40

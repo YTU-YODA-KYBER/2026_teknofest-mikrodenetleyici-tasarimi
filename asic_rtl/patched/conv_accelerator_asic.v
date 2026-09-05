@@ -3,6 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v
+//  SHA256 : bf803d6ec801137f46f4fd8514e77d4d49b7a8259763c6afefef0f7822287cea
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
@@ -190,8 +191,20 @@ module conv_accelerator #(
         for (i = 0; i < N_CH;    i = i + 1) biases[i]    = 0;
         for (i = 0; i < N_CLASS; i = i + 1) fc_biases[i] = 0;
         for (i = 0; i < N_CLASS; i = i + 1) fc_scores[i] = 0;
-        $readmemh("biases.hex",    biases);
-        $readmemh("fc_biases.hex", fc_biases);
+        // ASIC yamasi: $readmemh yerine literal atama (gerekcesi dosya basinda).
+        // Degerler AI_Accelerator/{biases,fc_biases}.hex'ten uretildi.
+        biases[0]    = 32'hFFFFFE8A;
+        biases[1]    = 32'h000000A9;
+        biases[2]    = 32'hFFFFFFD0;
+        biases[3]    = 32'h000000D0;
+        biases[4]    = 32'h00000052;
+        biases[5]    = 32'h00000006;
+        biases[6]    = 32'hFFFFFB4F;
+        biases[7]    = 32'hFFFFFD4A;
+        fc_biases[0] = 32'h000001AB;
+        fc_biases[1] = 32'hFFFFFDFA;
+        fc_biases[2] = 32'hFFFFFFA2;
+        fc_biases[3] = 32'h000000BA;
     end
 
     // ==================================================================
@@ -243,19 +256,27 @@ module conv_accelerator #(
     // Adres pipeline'inin gecerlilik bayraklari.
     //   v_s1 : bir onceki cevrimde uretilen adres gecerli miydi
     //   v_s2 : su anki cevrimde BRAM cikisindaki veri gecerli mi (MAC gate'i)
-    reg v_s1, v_s2, v_s3;
+    reg v_s1, v_s2, v_s3, v_s2d;
 
     // ASIC yamasi: carpim sonucunu tutan ara evre (bkz. dosya basi)
     reg signed [31:0] prod [0:N_CH-1];
+
+    // ASIC yamasi -- SRAM CIKISI KAYIT KADEMESI (bkz. dosya basi)
+    reg  [7:0]  rd_q;            // ram_rdata'nin kayitli kopyasi
+    reg  [63:0] wd_q;            // ona hizali agirlik kelimesi
 
     // ---- FC ----
     reg  [11:0] fc_idx;
     reg  [1:0]  fc_drain;
     (* use_dsp = "yes" *) reg signed [31:0] fc_acc [0:N_CLASS-1];
-    reg f_v1, f_v2, f_v3;
+    reg f_v1, f_v2, f_v3, f_v2d;
 
     // ASIC yamasi: FC carpim sonucunu tutan ara evre
     reg signed [31:0] f_prod [0:N_CLASS-1];
+
+    // ASIC yamasi -- conv-buf SRAM cikisi kayit kademesi
+    reg  signed [7:0]  cb_q;     // cbuf_rdata'nin kayitli kopyasi
+    reg         [31:0] fcw_q;    // ona hizali FC agirlik kelimesi
 
     // ==================================================================
     //  ADRES URETIMI (kombinasyonel, evre 0)
@@ -329,8 +350,9 @@ module conv_accelerator #(
         if (!rst_n) begin
             state <= S_IDLE; done <= 0; busy <= 0; out_ram_wen <= 0; cbuf_wen <= 0;
             out_y <= 0; out_x <= 0; k_y <= 0; k_x <= 0; drain_cnt <= 0;
-            v_s1 <= 0; v_s2 <= 0; v_s3 <= 0;   // ASIC yamasi: v_s3
-            fc_idx <= 0; fc_drain <= 0; f_v1 <= 0; f_v2 <= 0; f_v3 <= 0;
+            v_s1 <= 0; v_s2 <= 0; v_s3 <= 0; v_s2d <= 0;   // ASIC yamasi
+            rd_q <= 0; wd_q <= 0; cb_q <= 0; fcw_q <= 0;   // ASIC yamasi
+            fc_idx <= 0; fc_drain <= 0; f_v1 <= 0; f_v2 <= 0; f_v3 <= 0; f_v2d <= 0;
             ram_addr <= 0; w_addr <= 0; fcw_addr <= 0;
             cbuf_waddr <= 0; cbuf_wdata <= 0; cbuf_raddr <= 0;
             out_ram_addr <= 0; out_ram_wdata <= 0;
@@ -352,15 +374,25 @@ module conv_accelerator #(
             //  S_CONV_RQ'daki akumulator sifirlama uzerine yazabilsin
             //  (o cevrimde v_s2 zaten 0'dir, bosaltma bunu garanti eder).
             // ==========================================================
-            v_s2 <= v_s1;
-            v_s3 <= v_s2;                      // ASIC yamasi: yeni evre
+            v_s2  <= v_s1;
+            v_s2d <= v_s2;                     // ASIC yamasi: SRAM kayit evresi
+            v_s3  <= v_s2d;                    // ASIC yamasi: birikim evresi
 
-            // ASIC yamasi -- evre A: yalnizca carpim (kayitli)
-            //   (q_in - INPUT_ZP) * w,  INPUT_ZP=0 => ram_rdata dogrudan
+            // ASIC yamasi -- evre A0: SRAM/ROM cikisini SADECE KAYDET.
+            //   SRAM dout'u dusen kenarda gecerli oldugu icin bu yakalama
+            //   penceresi T/2'dir; icinde yalnizca tel ve kurulum suresi
+            //   vardir, carpma YOKTUR.
             if (v_s2) begin
+                rd_q <= ram_rdata;
+                wd_q <= w_dout;
+            end
+
+            // ASIC yamasi -- evre A: carpim (artik TAM cevrim butcesi var)
+            //   (q_in - INPUT_ZP) * w,  INPUT_ZP=0 => rd_q dogrudan
+            if (v_s2d) begin
                 for (ci = 0; ci < N_CH; ci = ci + 1)
                     prod[ci] <=
-                        ($signed({1'b0, ram_rdata}) - INPUT_ZP) * $signed(w_dout[8*ci +: 8]);
+                        ($signed({1'b0, rd_q}) - INPUT_ZP) * $signed(wd_q[8*ci +: 8]);
             end
 
             // ASIC yamasi -- evre B: birikim
@@ -369,15 +401,22 @@ module conv_accelerator #(
                     acc[ci] <= acc[ci] + prod[ci];
             end
 
-            f_v2 <= f_v1;
-            f_v3 <= f_v2;                      // ASIC yamasi: yeni evre
+            f_v2  <= f_v1;
+            f_v2d <= f_v2;                     // ASIC yamasi: SRAM kayit evresi
+            f_v3  <= f_v2d;                    // ASIC yamasi: birikim evresi
 
-            // ASIC yamasi -- evre A: yalnizca carpim (kayitli)
-            //   FC girisi conv cikisi; in_zp = C_OUT_ZP.
+            // ASIC yamasi -- evre A0: conv-buf SRAM cikisini SADECE KAYDET
             if (f_v2) begin
+                cb_q  <= cbuf_rdata;
+                fcw_q <= fcw_dout;
+            end
+
+            // ASIC yamasi -- evre A: carpim (tam cevrim butcesi)
+            //   FC girisi conv cikisi; in_zp = C_OUT_ZP.
+            if (f_v2d) begin
                 for (ci = 0; ci < N_CLASS; ci = ci + 1)
                     f_prod[ci] <=
-                        ($signed(cbuf_rdata) - C_OUT_ZP) * $signed(fcw_dout[8*ci +: 8]);
+                        ($signed(cb_q) - C_OUT_ZP) * $signed(fcw_q[8*ci +: 8]);
             end
 
             // ASIC yamasi -- evre B: birikim
@@ -446,8 +485,8 @@ module conv_accelerator #(
                 // ------ pipeline bosaltma: son 2 tap'in MAC'i insin ------
                 S_CONV_DRAIN: begin
                     v_s1 <= 1'b0;
-                    // ASIC yamasi: MAC bir evre uzadi, bosaltma 3 cevrim
-                    if (drain_cnt == 2'd2) state <= S_CONV_RQ;
+                    // ASIC yamasi: MAC iki evre uzadi, bosaltma 4 cevrim
+                    if (drain_cnt == 2'd3) state <= S_CONV_RQ;
                     else drain_cnt <= drain_cnt + 2'd1;
                 end
 
@@ -504,8 +543,8 @@ module conv_accelerator #(
 
                 S_FC_DRAIN: begin
                     f_v1 <= 1'b0;
-                    // ASIC yamasi: MAC bir evre uzadi, bosaltma 3 cevrim
-                    if (fc_drain == 2'd2) state <= S_FC_STORE;
+                    // ASIC yamasi: MAC iki evre uzadi, bosaltma 4 cevrim
+                    if (fc_drain == 2'd3) state <= S_FC_STORE;
                     else fc_drain <= fc_drain + 2'd1;
                 end
 

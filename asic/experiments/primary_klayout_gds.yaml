@@ -1,0 +1,11 @@
+# Signoff araci uyumluluk overlay'i.
+#
+# Magic stream-out GDS'i, referans SKY130 SRAM hiyerarsisindeki bazi yardimci
+# hucreleri top-level olarak da tasiyor. LibreLane KLayout.DRC komutu
+# `topcell=top_module` gecirse de sky130A_mr.drc `source($input)` cagrisini top
+# secilmeden once yaptigi icin "multiple top cells" ile duruyor.
+#
+# KLayout.StreamOut gorunumu Magic GDS ile XOR=0 olarak dogrulandi. Bu deney
+# sonucunda ayar ana config.yaml'a alinmistir; dosya tarihsel yeniden uretim
+# amaciyla tutulur ve artik ana yapilandirma ustunde no-op'tur.
+PRIMARY_GDSII_STREAMOUT_TOOL: klayout

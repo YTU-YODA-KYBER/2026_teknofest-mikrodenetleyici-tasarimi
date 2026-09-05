@@ -1,0 +1,27 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep  5 23:03:41 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/sim_top/xsim_script.tcl
+# xsim {sim_top} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+
+[1/4] sram32_bank -- 4000 rastgele islem (2048 x 32, bayt-enable)
+[2/4] sram8_bank  -- 4000 rastgele islem (9216 x 8, bayt-seritli)
+[3/4] boot_rom    -- 256 adresin tamami, iki port birden
+[4/4] agirlik ROM'lari -- 80 + 4000 adresin tamami
+
+============================================================
+  SONUC: BASARILI -- 12592 kontrolun tamami gecti
+============================================================
+
+$finish called at time : 246890 ns : File "/home/luxyxp/Documents/mainfiles/asic_rtl/testbench/tb_asic_mem_equiv.sv" Line 205
+exit
+INFO: xsimkernel Simulation Memory Usage: 284140 KB (Peak: 340704 KB), Simulation CPU Usage: 980 ms
+INFO: [Common 17-206] Exiting xsim at Sat Sep  5 23:03:43 2026...

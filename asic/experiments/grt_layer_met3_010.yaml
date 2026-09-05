@@ -1,0 +1,5 @@
+# Tek-değişkenli resmî overlay: taban [0, 0.3, 0.25, 0, 0, 0] değerine göre
+# yalnızca met3 kapasitesinin %10'u rezerve edilir. Güncel UART RTL'sinde %15
+# ayarı 56 aşımla durdu; aynı faz-1 durumundan %10 ayarı post-GRT resizer dahil
+# bütün faz 2 yeniden yollamalarını sıfır aşımla tamamladı.
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0.10, 0, 0]

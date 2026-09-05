@@ -1,0 +1,96 @@
+[
+  {
+    "clean": false,
+    "start_wns": -17.441,
+    "final_wns": -5.667,
+    "start_viol": 1850,
+    "final_viol": 1850,
+    "note": "",
+    "margin_ns": -5.667,
+    "effort": null,
+    "period": 25,
+    "freq": 40.0,
+    "secs": 0.0,
+    "timeout": false
+  },
+  {
+    "clean": true,
+    "start_wns": -7.441,
+    "final_wns": 0.028,
+    "start_viol": 515,
+    "final_viol": 1,
+    "note": "kapaniyor, pay +0.028 ns  (resizer'in 50 ps ic hedefinin altinda)",
+    "margin_ns": 0.028,
+    "effort": {
+      "removed": 89,
+      "resized": 143,
+      "inserted": 30,
+      "cloned": 1,
+      "swaps": 7
+    },
+    "period": 35,
+    "freq": 28.571428571428573,
+    "secs": 0.0,
+    "timeout": false
+  },
+  {
+    "clean": true,
+    "start_wns": -6.441,
+    "final_wns": 0.009,
+    "start_viol": 494,
+    "final_viol": 4,
+    "note": "kapaniyor, pay +0.009 ns  (resizer'in 50 ps ic hedefinin altinda)",
+    "margin_ns": 0.009,
+    "effort": {
+      "removed": 56,
+      "resized": 81,
+      "inserted": 18,
+      "cloned": 0,
+      "swaps": 4
+    },
+    "period": 36,
+    "freq": 27.77777777777778,
+    "secs": 0.0,
+    "timeout": false
+  },
+  {
+    "clean": true,
+    "start_wns": -4.441,
+    "final_wns": 0.058,
+    "start_viol": 297,
+    "final_viol": 0,
+    "note": "kapaniyor, pay +0.058 ns",
+    "margin_ns": 0.058,
+    "effort": {
+      "removed": 13,
+      "resized": 26,
+      "inserted": 9,
+      "cloned": 0,
+      "swaps": 1
+    },
+    "period": 38,
+    "freq": 26.31578947368421,
+    "secs": 0.0,
+    "timeout": false
+  },
+  {
+    "clean": true,
+    "start_wns": -2.441,
+    "final_wns": 0.088,
+    "start_viol": 66,
+    "final_viol": 0,
+    "note": "kapaniyor, pay +0.088 ns",
+    "margin_ns": 0.088,
+    "effort": {
+      "removed": 6,
+      "resized": 6,
+      "inserted": 6,
+      "cloned": 0,
+      "swaps": 0
+    },
+    "period": 40,
+    "freq": 25.0,
+    "secs": 0.0,
+    "timeout": false
+  }
+]

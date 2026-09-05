@@ -1,0 +1,10 @@
+{
+  "test": "mem",
+  "top": "tb_asic_mem_equiv",
+  "passed": true,
+  "required_markers": [
+    "SONUC: BASARILI"
+  ],
+  "missing_markers": [],
+  "fast_uart": false
+}

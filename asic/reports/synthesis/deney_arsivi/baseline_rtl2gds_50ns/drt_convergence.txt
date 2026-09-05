@@ -1,0 +1,40 @@
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 4062983 um.
+Total wire length on LAYER met2 = 3780621 um.
+Total wire length on LAYER met3 = 1870286 um.
+Total wire length on LAYER met4 = 1001223 um.
+Total wire length on LAYER met5 = 0 um.
+[INFO DRT-0195] Start 4th optimization iteration.
+[INFO DRT-0199]   Number of violations = 42.
+Total wire length = 10715068 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 4061761 um.
+Total wire length on LAYER met2 = 3780712 um.
+Total wire length on LAYER met3 = 1871313 um.
+Total wire length on LAYER met4 = 1001281 um.
+Total wire length on LAYER met5 = 0 um.
+[INFO DRT-0195] Start 5th guides tiles iteration.
+[INFO DRT-0199]   Number of violations = 5.
+Total wire length = 10715048 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 4061697 um.
+Total wire length on LAYER met2 = 3780699 um.
+Total wire length on LAYER met3 = 1871367 um.
+Total wire length on LAYER met4 = 1001284 um.
+Total wire length on LAYER met5 = 0 um.
+[INFO DRT-0195] Start 6th guides tiles iteration.
+[INFO DRT-0199]   Number of violations = 0.
+Total wire length = 10715050 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 4061632 um.
+Total wire length on LAYER met2 = 3780703 um.
+Total wire length on LAYER met3 = 1871429 um.
+Total wire length on LAYER met4 = 1001284 um.
+Total wire length on LAYER met5 = 0 um.
+Total wire length = 10715050 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 4061632 um.
+Total wire length on LAYER met2 = 3780703 um.
+Total wire length on LAYER met3 = 1871429 um.
+Total wire length on LAYER met4 = 1001284 um.
+Total wire length on LAYER met5 = 0 um.

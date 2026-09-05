@@ -17,9 +17,13 @@
 #    flip-flop cikisidir (I2C_Master_AXI4_Lite.sv:113, QSPI_Master_AXI4_Lite.sv:172).
 #    Bu yuzden generated clock degil, normal cikis olarak kisitlanirlar.
 #
-#  KULLANILAN TEK ZAMANLAMA ISTISNASI
-#    set_false_path -from rst_ni  (asenkron reset; gerekcesi asagida)
-#    Baska false path / multicycle path YOKTUR.
+#  TEK ZAMANLAMA ISTISNASI: HARICI RESET -> RESET SYNCHRONIZER
+#    ASIC top'unda rst_ni yalniz iki ASYNC_REG flopunun async reset pinlerine
+#    gider. Harici deassert saatle iliskisiz oldugundan bu iki recovery/removal
+#    arc'i yapisal olarak zamanlanamaz; iki-kademeli synchronizer metastabiliteyi
+#    ic reset agacina gecmeden sondurur. False-path yalniz HARICI porta uygulanir.
+#    Synchronizer Q'sundan butun ic async-reset pinlerine giden rst_sys_ni agaci
+#    kesilmez; recovery/removal ve slew/fanout kontrolleri gercek STA'da kalir.
 # ===========================================================================
 
 # ---------------------------------------------------------------------------
@@ -63,8 +67,16 @@ if { [info exists ::env(TIME_DERATING_CONSTRAINT)] } {
 # ---------------------------------------------------------------------------
 set io_delay [expr {$::env(CLOCK_PERIOD) * $::env(IO_DELAY_CONSTRAINT) / 100.0}]
 
-set clk_indx          [lsearch [all_inputs] $clk_input]
-set all_inputs_wo_clk [lreplace [all_inputs] $clk_indx $clk_indx ""]
+# Kurulu OpenSTA, Synopsys'in `remove_from_collection` komutunu desteklemiyor.
+# Bu nedenle koleksiyonun mevcut Tcl-listesi gösterimi kullanilir; ancak saat
+# herhangi bir nedenle bulunamazsa lsearch'in -1 sonucunun son GERCEK girisi
+# sildigi sessiz hata acik bir kabul kapisiyla onlenir.
+set all_inputs_wo_clk [all_inputs]
+set clk_indx [lsearch $all_inputs_wo_clk $clk_input]
+if { $clk_indx < 0 } {
+    error "SDC: saat portu all_inputs koleksiyonunda bulunamadi: $clk_port"
+}
+set all_inputs_wo_clk [lreplace $all_inputs_wo_clk $clk_indx $clk_indx]
 
 set_input_delay  $io_delay -clock $clocks $all_inputs_wo_clk
 set_output_delay $io_delay -clock $clocks [all_outputs]
@@ -114,17 +126,19 @@ if { [info exists ::env(MAX_CAPACITANCE_CONSTRAINT)] } {
 }
 
 # ---------------------------------------------------------------------------
-#  6) Zamanlama istisnasi: asenkron reset
+#  6) Asenkron resetin recovery/removal zamanlamasi
 #
 #  rst_ni butun tasarimda `always_ff @(posedge clk_i or negedge rst_ni)`
-#  bicimindeki asenkron, aktif-dusuk reset girisidir. Asenkron olarak
-#  uygulandigi icin reset ASSERT yolu zamanlanamaz; recovery/removal
-#  kontrolu ise resetin DISARIDA clk_i'ye senkronize edilerek birakildigi
-#  varsayimina dayanir (FPGA gerceklemesinde bu iki asamali senkronizator
-#  fpga_top.sv icindeydi; ASIC blogunun disinda kalir).
+#  bicimindeki asenkron, aktif-dusuk reset girisidir. Assert asenkrondur;
+#  deassert ise ASIC top icindeki iki kademeli synchronizer tarafindan clk_i'ye
+#  senkronize edilir. Ic reset agacindaki dagitim gecikmesi recovery/removal
+#  marjini tuketebilecegi icin bu kontroller gercek STA'da gorunur kalmalidir.
 #
-#  Bu varsayim asic/README.md Bolum 9.6 ve 9.9'da acikca belirtilmistir.
-#  Tasarimda BASKA hicbir false path veya multicycle path yoktur.
+#  Onceki mimaride `set_false_path -from rst_ni` yanlisti, cunku ayni port
+#  4.662 ic flop ve kombinasyonel mantigi dogrudan suruyordu. ASIC'e ozgu top
+#  yamasi artik yapisal bir reset synchronizer ekler; portun tek fanout'u bu
+#  iki flopun async resetidir. Bu nedenle dis asinron sinir icin istisna
+#  dogrudur, ic reset agacinin kontrolleri ise gorunur kalir.
 # ---------------------------------------------------------------------------
 set_false_path -from [get_ports rst_ni]
 

@@ -8,18 +8,19 @@
 #  NEREDE CALISTIRILIR: mainfiles/FPGA/ kokunde
 #      vivado -mode batch -source scripts/project_gen/SpikeISS/spike_test.tcl
 #    veya Vivado Tcl Console'da:
-#      cd /home/luxyxp/Documents/mainfiles/FPGA
+#      cd /deponun/yolu/FPGA
 #      source scripts/project_gen/SpikeISS/spike_test.tcl
 #
 #  Bu proje SENTEZ ICIN DEGILDIR; sadece davranissal simulasyon kosar.
 # =====================================================================
 
 # ---------------------------------------------------------------------
-#  Test programinin hex'i (objcopy -O verilog --verilog-data-width=4 ciktisi)
-#  Spike akisi depo DISINDA yasadigi icin yol burada tek degiskende duruyor.
-#  Baska bir programi kosturmak istersen sadece burayi degistir.
+#  Test programinin hex'i (objcopy -O verilog --verilog-data-width=4 ciktisi).
+#  Teslim edilen, Spike ile karsilastirilan program depo icindedir.
 # ---------------------------------------------------------------------
-set spike_hex /home/luxyxp/Documents/spike_try/verif/build/test.hex
+set script_dir [file dirname [file normalize [info script]]]
+set fpga_dir [file normalize [file join $script_dir .. .. ..]]
+set spike_hex [file join $fpga_dir verification spike_iss test_program test.hex]
 
 create_project -force spike_test ./Vivado_projects/spike_test -part xc7a100tcsg324-1
 

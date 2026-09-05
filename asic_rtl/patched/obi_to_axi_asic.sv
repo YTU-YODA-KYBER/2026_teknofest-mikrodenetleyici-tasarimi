@@ -3,19 +3,22 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv
+//  SHA256 : 8e2e34a101a0e8a64d6e3cae28efc860cd3339f08ce719705b5819e72d30a797
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
 //
-//  YAPILAN DEGISIKLIK: IKI DUZELTME.
+//  YAPILAN DEGISIKLIK: UC DUZELTME.
 //
-//  1) SIFIR GENISLIKLI PARCA-SECIM
+//  1) SIFIR GENISLIKLI PORT/KAYIT VE PARCA-SECIM
 //     AxiDataWidth == ObiCfg.DataWidth (bu tasarimda ikisi de 32) iken
 //     $clog2(AxiDataWidth/ObiCfg.DataWidth) = $clog2(1) = 0 olur; sifir
-//     genislikli parca-secim SystemVerilog'da gecersizdir (LRM 11.5.1).
-//     Vivado hos goruyor, tam bir SV on ucu olan slang hata veriyor.
-//     Ilgili `if` dali bu yapilandirmada HIC alinmadigi icin genislik
-//     ifadesi en az 1 olacak sekilde sarmalanmistir.
+//     genislikli kayit/parca-secim SystemVerilog'da gecersizdir (LRM 11.5.1).
+//     Ayrica AxiUserWidth ve RUserWidth sifirken [WIDTH-1:0], [-1:0]
+//     olur ve iki bitlik ters aralik yaratir. Vivado/Yosys bunu hos gorur,
+//     bazi tam SV on ucleri reddeder. Mantiksal genislik parametreleri
+//     degistirilmeden yalniz fiziksel port/kayit tasiyicilari en az 1 bit
+//     yapilir; ozellikler kapali oldugundan donanim davranisi degismez.
 //
 //  2) SURULMEYEN obi_rsp_o.r.r_optional
 //     Bu alan yalnizca UseAtop / RUserWidth generate dallarinda
@@ -58,16 +61,17 @@ module obi_to_axi #(
 
   input  obi_req_t obi_req_i,
   output obi_rsp_t obi_rsp_o,
-  input  logic [AxiUserWidth-1:0] user_i,
+  input  logic [((AxiUserWidth > 0) ? AxiUserWidth : 1)-1:0] user_i,
 
   output axi_req_t axi_req_o,
   input  axi_rsp_t axi_rsp_i,
 
   // Signals for manual user reassignment of response
   output logic [1:0]              axi_rsp_channel_sel, // [ATOP , WE]
-  output logic [AxiUserWidth-1:0] axi_rsp_b_user_o,
-  output logic [AxiUserWidth-1:0] axi_rsp_r_user_o,
-  input  logic [ObiCfg.OptionalCfg.RUserWidth-1:0] obi_rsp_user_i // If unused tie to '0
+  output logic [((AxiUserWidth > 0) ? AxiUserWidth : 1)-1:0] axi_rsp_b_user_o,
+  output logic [((AxiUserWidth > 0) ? AxiUserWidth : 1)-1:0] axi_rsp_r_user_o,
+  input  logic [((ObiCfg.OptionalCfg.RUserWidth > 0)
+                 ? ObiCfg.OptionalCfg.RUserWidth : 1)-1:0] obi_rsp_user_i // If unused tie to '0
 );
 
   localparam int unsigned AxiSize = $clog2(ObiCfg.DataWidth/8);
@@ -75,7 +79,9 @@ module obi_to_axi #(
 
   typedef logic [AxiAddrWidth-1:0] axi_addr_t;
 
-  logic [$clog2(AxiDataWidth/ObiCfg.DataWidth)-1:0] data_offset, rdata_offset;
+  logic [((AxiDataWidth > ObiCfg.DataWidth)
+          ? $clog2(AxiDataWidth/ObiCfg.DataWidth) : 1)-1:0]
+      data_offset, rdata_offset;
 
   // Response FIFO control signals.
   logic fifo_full, fifo_empty;
@@ -331,7 +337,8 @@ module obi_to_axi #(
   );
 
   localparam int unsigned NumObiChans = AxiDataWidth/ObiCfg.DataWidth;
-  localparam int unsigned NumObiChanWidth = $clog2(NumObiChans);
+  localparam int unsigned NumObiChanWidth =
+      (NumObiChans > 1) ? $clog2(NumObiChans) : 1;
 
   typedef logic[NumObiChanWidth-1:0] obi_chan_sel_t;
 

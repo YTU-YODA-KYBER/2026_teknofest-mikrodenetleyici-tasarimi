@@ -198,16 +198,10 @@ class yz_reset_mid_test extends yz_base_test;
                 repeat (40) @(posedge vif.clk);
                 reset_uygula(6);
             end
-        join_any
-        disable fork;
+        join
 
-        // disable fork diziyi oldurur ama SURUCUDE ucusta kalmis bir islem
-        // reset'ten SONRA tamamlanabilir; o yazma DUT'u yeniden kirletir.
-        // Bu yuzden son kosullara bakmadan once hat bosalir ve TEMIZ bir
-        // reset daha uygulanir. Testin amaci (islem ortasinda reset ve
-        // kontrolcunun RST_01..05 kurallari) yukaridaki fork'ta zaten
-        // gerceklesmistir.
-        repeat (40) @(posedge vif.clk);
+        // Iki kol da tamamlansin; boylece surucude sahipsiz islem kalmadan
+        // son kosul temiz bir resetle denetlenir.
         reset_uygula(6);
 
         yenv.yrm.YZ_RESULT.read(st, d);

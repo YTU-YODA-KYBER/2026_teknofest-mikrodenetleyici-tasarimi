@@ -1,0 +1,8 @@
+meta:
+  version: 2
+
+# Tek-degiskenli deney: teslim akisi overlay'indeki saf-jumper anten onarim
+# turunu 1'den 2'ye cikarir. Diger butun ayarlar antenna_jumper.yaml'dan
+# gelir. Kabul icin yalnız onarim cikisi degil, DetailedRouting sonrasi DRC
+# ve nihai CheckAntennas sayilari birlikte degerlendirilmelidir.
+GRT_ANTENNA_REPAIR_ITERS: 2

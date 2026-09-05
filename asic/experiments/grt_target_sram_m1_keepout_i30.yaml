@@ -1,0 +1,15 @@
+meta:
+  version: 2
+
+# Tani deneyi: onceki DRT kosusunda kalan yedi met1 ihlalinin tamami
+# conv accelerator'in ikinci 2 KiB SRAM makrosunun sol/ust OBS sinirindaydi.
+# Bu 10 um'lik met1-only keep-out, GRT guide'larinin zero-capacity makro
+# kenarina girmesini engeller; SRAM sinyal pinleri met4'te oldugu icin pin
+# erisimini kapatmaz ve 20 um'lik cut-row halo'nun icinde kalir.
+ROUTING_OBSTRUCTIONS:
+  - [met1, 2553.10, 1565.00, 3256.20, 2001.54]
+
+# Once tani icin akis sonuca ulassin. Nihai kabul kosusunda bu bayrak false
+# olacak ve toplam overflow sifir degilse GRT'de durulacak.
+GRT_OVERFLOW_ITERS: 30
+GRT_ALLOW_CONGESTION: true

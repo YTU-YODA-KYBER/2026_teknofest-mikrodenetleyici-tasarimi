@@ -1,0 +1,35 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/AXI_protocol_check/axi_chk_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/AXI_protocol_check/axi4lite_protocol_checker.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi4lite_protocol_checker
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/Micron_sim_model.v" into library work
+INFO: [VRFC 10-311] analyzing module paramConfig
+INFO: [VRFC 10-311] analyzing module N25Qxxx
+INFO: [VRFC 10-311] analyzing module CUIdecoder
+INFO: [VRFC 10-311] analyzing module CUIdecoderEFI_MSE
+INFO: [VRFC 10-311] analyzing module Memory
+INFO: [VRFC 10-311] analyzing module UtilFunctions
+INFO: [VRFC 10-311] analyzing module Program
+INFO: [VRFC 10-311] analyzing module StatusRegister
+INFO: [VRFC 10-311] analyzing module FlagStatusRegister
+INFO: [VRFC 10-311] analyzing module ProtectionManagementRegister
+INFO: [VRFC 10-311] analyzing module NonVolatileConfigurationRegister
+INFO: [VRFC 10-311] analyzing module VolatileConfigurationRegister
+INFO: [VRFC 10-311] analyzing module VolatileEnhancedConfigurationRegister
+INFO: [VRFC 10-311] analyzing module PasswordRegister
+INFO: [VRFC 10-311] analyzing module Read
+INFO: [VRFC 10-311] analyzing module FlashDiscoveryParameter
+INFO: [VRFC 10-311] analyzing module LockManager
+INFO: [VRFC 10-311] analyzing module LockManager4KB
+INFO: [VRFC 10-311] analyzing module DualQuadOps
+INFO: [VRFC 10-311] analyzing module OTP_memory
+INFO: [VRFC 10-311] analyzing module TimingCheck
+INFO: [VRFC 10-311] analyzing module ExtendedAddressRegister
+INFO: [VRFC 10-311] analyzing module PLRSpart1Detect
+INFO: [VRFC 10-311] analyzing module PLRSpart2Detect
+INFO: [VRFC 10-311] analyzing module GeneralPurposeRegister
+INFO: [VRFC 10-311] analyzing module PPBManager
+INFO: [VRFC 10-311] analyzing module PPBLockBitRegister
+INFO: [VRFC 10-311] analyzing module ASPRegister
+INFO: [VRFC 10-311] analyzing module DebugModule
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic/run/sim/boot/boot_test_asic_cpb.sv" into library work
+INFO: [VRFC 10-311] analyzing module boot_test

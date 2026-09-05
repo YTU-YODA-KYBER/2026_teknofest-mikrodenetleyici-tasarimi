@@ -144,15 +144,13 @@ module UART_YZ_testbench;
         begin
             rx_val = 0; // Start bit
             i = 0;
-            wait(dut.sixteen_cnt_rx == 15);
+            repeat(dut.UART_CPB) @(posedge clk_i);
 
             repeat(8)begin
-                wait(dut.sixteen_cnt_rx == 0);
                 rx_val = data[i];
                 i = i + 1;
-                wait(dut.sixteen_cnt_rx == 15);
+                repeat(dut.UART_CPB) @(posedge clk_i);
             end
-            wait(dut.sixteen_cnt_rx == 15);
             rx_val = 1;
         end
 

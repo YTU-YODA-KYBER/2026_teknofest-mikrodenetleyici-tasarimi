@@ -1,0 +1,4 @@
+/usr/asic_flow/run/rtl2gds/42-openroad-repairantennas/2-openroad-checkantennas/openroad-checkantennas.log:[INFO ANT-0002] Found 22 net violations.
+/usr/asic_flow/run/rtl2gds/42-openroad-repairantennas/2-openroad-checkantennas/openroad-checkantennas.log:[INFO ANT-0001] Found 30 pin violations.
+/usr/asic_flow/run/rtl2gds/40-openroad-checkantennas/openroad-checkantennas.log:[INFO ANT-0002] Found 3676 net violations.
+/usr/asic_flow/run/rtl2gds/40-openroad-checkantennas/openroad-checkantennas.log:[INFO ANT-0001] Found 5489 pin violations.

@@ -1,0 +1,8 @@
+meta:
+  version: 2
+
+# SRAM clock sink'leri ile standart-hucre register clock sink'lerinin
+# gecikmesini dengeleyen kontrollu CTS deneyi. RTL/netlist degismez.
+CTS_DELAY_BUFFER_DERATE_PCT: 100
+CTS_BALANCE_LEVELS: true
+

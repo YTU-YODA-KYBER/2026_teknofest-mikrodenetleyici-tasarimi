@@ -3,6 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv
+//  SHA256 : 1960cb1ca2fe5a452f2a0c162b7e9d278ff4e2f804e38c24299dcea6ad529498
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.

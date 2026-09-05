@@ -1,0 +1,33 @@
+{
+  "cleared_net_flag_count": 0,
+  "flagged_net_count": 1871,
+  "flagged_without_jumper_guide_count": 527,
+  "flagged_without_jumper_guide_examples": [
+    "_000024_",
+    "_000051_",
+    "_000077_",
+    "_000093_",
+    "_000374_",
+    "_009168_",
+    "_009191_",
+    "_009241_",
+    "_009342_",
+    "_010207_",
+    "_010360_",
+    "_012131_",
+    "_012361_",
+    "_013449_",
+    "_017880_",
+    "_017912_",
+    "_018165_",
+    "_018205_",
+    "_018221_",
+    "_018400_"
+  ],
+  "input_odb": "/usr/asic_flow/run/ant4_postresizer_jumper_met4_prep/01-openroad-repairantennas/1-openroad-diodeinsertion/top_module.odb",
+  "jumper_guide_count": 1592,
+  "jumper_guide_net_count": 1344,
+  "jumper_guide_without_flag_count": 0,
+  "jumper_guide_without_flag_examples": [],
+  "net_count": 119722
+}

@@ -1,0 +1,25 @@
+# ---------------------------------------------------------------------------
+#  LAYERS_RC devreye girdikten SONRA post-GRT onarim marjini geri al
+#
+#  OLCUM (p_rc_only, 2026-08-30):
+#    Adim 39 global routing TEMIZ bitti -- met1 %25,09 / met2 %22,32 /
+#    met3 %13,04 / met4 %10,23, HER katmanda tasma 0.
+#    Adim 41 RepairDesignPostGRT 5.893 tampon daha ekledi ve artimli GRT
+#    met3'te 6 TILE tasma verdi -> GRT_ALLOW_CONGESTION false oldugu icin
+#    [GRT-0116] akisi oldurdu. Yani sorun genel kaynak degil, 6 tile.
+#
+#  NEDEN MARJ SIFIRLANIYOR
+#    GRT_DESIGN_REPAIR_MAX_SLEW/CAP_PCT: 20, "kutuphane sinirinin %20 ALTINA
+#    kadar onar" demektir. Bu emniyet payi, tel modeli 2,2 kat iyimserken
+#    anlamliydi -- gercek ihlalleri yakalamanin dolayli yoluydu. LAYERS_RC ile
+#    model artik gercege %7 yakin oldugu icin ayni %20 CIFTE SAYIMDIR ve
+#    tamponlari bosa buyutur. Ayni hatanin setup tarafindaki karsiligi
+#    10 ns'lik GRT_RESIZER_SETUP_SLACK_MARGIN'dir (ayri deneyde olculecek).
+#
+#    Post-GPL tarafinda ayni marj ZATEN 0'dir (DESIGN_REPAIR_MAX_SLEW_PCT: 0)
+#    ve olculmus kazanci vardi: tampon 15.783 -> 11.938.
+GRT_DESIGN_REPAIR_MAX_SLEW_PCT: 0
+GRT_DESIGN_REPAIR_MAX_CAP_PCT: 0
+
+# Artimli GRT'ye 6 tile'i cozmesi icin daha fazla tur. 20 -> 30.
+GRT_OVERFLOW_ITERS: 30

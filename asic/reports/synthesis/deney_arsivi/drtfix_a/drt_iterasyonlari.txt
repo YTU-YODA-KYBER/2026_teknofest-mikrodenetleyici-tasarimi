@@ -1,0 +1,175 @@
+[INFO DRT-0195] Start 0th optimization iteration.
+[INFO DRT-0199]   Number of violations = 89218.
+Total wire length = 12327696 um.
+[INFO DRT-0195] Start 1st optimization iteration.
+[INFO DRT-0199]   Number of violations = 41952.
+Total wire length = 12276148 um.
+[INFO DRT-0195] Start 2nd optimization iteration.
+[INFO DRT-0199]   Number of violations = 38028.
+Total wire length = 12249675 um.
+[INFO DRT-0195] Start 3rd optimization iteration.
+[INFO DRT-0199]   Number of violations = 14862.
+Total wire length = 12257304 um.
+[INFO DRT-0195] Start 4th optimization iteration.
+[INFO DRT-0199]   Number of violations = 9126.
+Total wire length = 12258474 um.
+[INFO DRT-0195] Start 5th optimization iteration.
+[INFO DRT-0199]   Number of violations = 6855.
+Total wire length = 12259310 um.
+[INFO DRT-0195] Start 6th optimization iteration.
+[INFO DRT-0199]   Number of violations = 5348.
+Total wire length = 12259508 um.
+[INFO DRT-0195] Start 7th optimization iteration.
+[INFO DRT-0199]   Number of violations = 4728.
+Total wire length = 12259741 um.
+[INFO DRT-0195] Start 8th optimization iteration.
+[INFO DRT-0199]   Number of violations = 4254.
+Total wire length = 12259739 um.
+[INFO DRT-0195] Start 9th optimization iteration.
+[INFO DRT-0199]   Number of violations = 3732.
+Total wire length = 12259598 um.
+[INFO DRT-0195] Start 10th optimization iteration.
+[INFO DRT-0199]   Number of violations = 3002.
+Total wire length = 12259201 um.
+[INFO DRT-0195] Start 11th optimization iteration.
+[INFO DRT-0199]   Number of violations = 2668.
+Total wire length = 12259150 um.
+[INFO DRT-0195] Start 12th optimization iteration.
+[INFO DRT-0199]   Number of violations = 2412.
+Total wire length = 12258987 um.
+[INFO DRT-0195] Start 13th optimization iteration.
+[INFO DRT-0199]   Number of violations = 2181.
+Total wire length = 12258811 um.
+[INFO DRT-0195] Start 14th optimization iteration.
+[INFO DRT-0199]   Number of violations = 2130.
+Total wire length = 12258820 um.
+[INFO DRT-0195] Start 15th optimization iteration.
+[INFO DRT-0199]   Number of violations = 1423.
+Total wire length = 12258931 um.
+[INFO DRT-0195] Start 16th optimization iteration.
+[INFO DRT-0199]   Number of violations = 1006.
+Total wire length = 12258943 um.
+[INFO DRT-0195] Start 17th optimization iteration.
+[INFO DRT-0199]   Number of violations = 1606.
+Total wire length = 12258247 um.
+[INFO DRT-0195] Start 18th optimization iteration.
+[INFO DRT-0199]   Number of violations = 972.
+Total wire length = 12256856 um.
+[INFO DRT-0195] Start 19th optimization iteration.
+[INFO DRT-0199]   Number of violations = 798.
+Total wire length = 12256816 um.
+[INFO DRT-0195] Start 20th optimization iteration.
+[INFO DRT-0199]   Number of violations = 450.
+Total wire length = 12256926 um.
+[INFO DRT-0195] Start 21st optimization iteration.
+[INFO DRT-0199]   Number of violations = 268.
+Total wire length = 12256758 um.
+[INFO DRT-0195] Start 22nd optimization iteration.
+[INFO DRT-0199]   Number of violations = 255.
+Total wire length = 12256729 um.
+[INFO DRT-0195] Start 23rd optimization iteration.
+[INFO DRT-0199]   Number of violations = 249.
+Total wire length = 12256696 um.
+[INFO DRT-0195] Start 24th optimization iteration.
+[INFO DRT-0199]   Number of violations = 226.
+Total wire length = 12256698 um.
+[INFO DRT-0195] Start 25th optimization iteration.
+[INFO DRT-0199]   Number of violations = 694.
+Total wire length = 12256680 um.
+[INFO DRT-0195] Start 26th optimization iteration.
+[INFO DRT-0199]   Number of violations = 384.
+Total wire length = 12256634 um.
+[INFO DRT-0195] Start 27th optimization iteration.
+[INFO DRT-0199]   Number of violations = 336.
+Total wire length = 12256719 um.
+[INFO DRT-0195] Start 28th optimization iteration.
+[INFO DRT-0199]   Number of violations = 262.
+Total wire length = 12256719 um.
+[INFO DRT-0195] Start 29th optimization iteration.
+[INFO DRT-0199]   Number of violations = 235.
+Total wire length = 12256570 um.
+[INFO DRT-0195] Start 30th optimization iteration.
+[INFO DRT-0199]   Number of violations = 204.
+Total wire length = 12256515 um.
+[INFO DRT-0195] Start 31st optimization iteration.
+[INFO DRT-0199]   Number of violations = 157.
+Total wire length = 12256493 um.
+[INFO DRT-0195] Start 32nd optimization iteration.
+[INFO DRT-0199]   Number of violations = 147.
+Total wire length = 12256493 um.
+[INFO DRT-0195] Start 33rd optimization iteration.
+[INFO DRT-0199]   Number of violations = 242.
+Total wire length = 12256496 um.
+[INFO DRT-0195] Start 34th optimization iteration.
+[INFO DRT-0199]   Number of violations = 157.
+Total wire length = 12256501 um.
+[INFO DRT-0195] Start 35th optimization iteration.
+[INFO DRT-0199]   Number of violations = 153.
+Total wire length = 12256501 um.
+[INFO DRT-0195] Start 36th optimization iteration.
+[INFO DRT-0199]   Number of violations = 153.
+Total wire length = 12256501 um.
+[INFO DRT-0195] Start 37th optimization iteration.
+[INFO DRT-0199]   Number of violations = 139.
+Total wire length = 12256505 um.
+[INFO DRT-0195] Start 38th optimization iteration.
+[INFO DRT-0199]   Number of violations = 112.
+Total wire length = 12256499 um.
+[INFO DRT-0195] Start 39th optimization iteration.
+[INFO DRT-0199]   Number of violations = 110.
+Total wire length = 12256504 um.
+[INFO DRT-0195] Start 40th optimization iteration.
+[INFO DRT-0199]   Number of violations = 59.
+Total wire length = 12256498 um.
+[INFO DRT-0195] Start 41st optimization iteration.
+[INFO DRT-0199]   Number of violations = 67.
+Total wire length = 12256501 um.
+[INFO DRT-0199]   Number of violations = 52.
+Total wire length = 12256494 um.
+[INFO DRT-0199]   Number of violations = 51.
+Total wire length = 12256496 um.
+[INFO DRT-0199]   Number of violations = 49.
+Total wire length = 12256503 um.
+[INFO DRT-0199]   Number of violations = 49.
+Total wire length = 12256503 um.
+[INFO DRT-0199]   Number of violations = 37.
+Total wire length = 12256524 um.
+[INFO DRT-0199]   Number of violations = 37.
+Total wire length = 12256524 um.
+[INFO DRT-0199]   Number of violations = 37.
+Total wire length = 12256519 um.
+[INFO DRT-0195] Start 49th optimization iteration.
+[INFO DRT-0199]   Number of violations = 56.
+Total wire length = 12256510 um.
+[INFO DRT-0199]   Number of violations = 56.
+Total wire length = 12256500 um.
+[INFO DRT-0199]   Number of violations = 56.
+Total wire length = 12256504 um.
+[INFO DRT-0199]   Number of violations = 56.
+Total wire length = 12256504 um.
+[INFO DRT-0199]   Number of violations = 30.
+Total wire length = 12256501 um.
+[INFO DRT-0199]   Number of violations = 30.
+Total wire length = 12256501 um.
+[INFO DRT-0199]   Number of violations = 24.
+Total wire length = 12256501 um.
+[INFO DRT-0199]   Number of violations = 24.
+Total wire length = 12256501 um.
+[INFO DRT-0195] Start 57th optimization iteration.
+[INFO DRT-0199]   Number of violations = 44.
+Total wire length = 12256495 um.
+[INFO DRT-0199]   Number of violations = 44.
+Total wire length = 12256495 um.
+[INFO DRT-0199]   Number of violations = 44.
+Total wire length = 12256485 um.
+[INFO DRT-0199]   Number of violations = 36.
+Total wire length = 12256480 um.
+[INFO DRT-0199]   Number of violations = 36.
+Total wire length = 12256479 um.
+[INFO DRT-0199]   Number of violations = 26.
+Total wire length = 12256478 um.
+[INFO DRT-0199]   Number of violations = 26.
+Total wire length = 12256476 um.
+[INFO DRT-0199]   Number of violations = 24.
+Total wire length = 12256482 um.
+Total wire length = 12256482 um.

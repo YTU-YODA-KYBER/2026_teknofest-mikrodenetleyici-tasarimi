@@ -1,0 +1,10 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/tech/axi_read_arbiter2.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_read_arbiter2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_cell
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_bank.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_bank
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_instr_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module bram_instr
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/instr_bram_axi_ctrl_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module instr_bram_axi_ctrl

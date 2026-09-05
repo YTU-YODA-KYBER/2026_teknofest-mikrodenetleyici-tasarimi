@@ -1,0 +1,48 @@
+meta:
+  version: 2
+
+# ===========================================================================
+#  GRT AYARLARINI DRT'DEN GECMIS DEGERLERE GERI AL  (tani deneyi)
+#
+#  NEDEN?
+#    Nihai kosumda GRT toplam asimi 39'a kadar indirildi (192.800'den) ama
+#    DETAYLI YOLLAMA cok daha kotu bir noktadan basladi:
+#
+#      DRT iterasyonu | bu ayarlar (adj 0.05 + keep-out + i50) | referans (adj 0.10)
+#      ---------------+----------------------------------------+---------------------
+#                   0 |                                233.380 |              68.149
+#                   1 |                                204.779 |              28.820
+#                   2 |                                201.277 |              26.123
+#                   3 |                               ~165.000 |               7.210
+#
+#    Yani GRT asimi bir VEKIL METRIKTIR ve bu tasarimda gercek metrik (DRT DRC)
+#    ile TERS korele oldugu olculdu. Global router'a daha fazla gorunur kapasite
+#    verildiginde (dusuk GRT_ADJUSTMENT) daha sikisik guide uretiyor; kaba
+#    izgarada "asim yok" gorunuyor ama detayli yollayici o guide'lari
+#    gerceklestiremiyor.
+#
+#  DRT'DEN GECTIGI KANITLANMIS TEK YAPILANDIRMA (exp_grt_adj010_drt):
+#    GRT_ADJUSTMENT 0.10, katman cezalari [0, 0.3, 0.25, 0, 0, 0],
+#    keep-out YOK, GRT_OVERFLOW_ITERS 20
+#      -> GRT asimi 5.114,  DRT 44 dakikada **7 DRC ihlali** ile bitti.
+#
+#  Bu overlay o yapilandirmayi geri getirir ve karsilastirmayi bozmamak icin
+#  anten adimlarini da referanstaki gibi kapatir (referans kosumda diyot yoktu).
+#  Amac TEK degiskeni izole etmek: GRT ayarlari.
+# ===========================================================================
+
+GRT_ADJUSTMENT: 0.10
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0, 0, 0]
+GRT_OVERFLOW_ITERS: 20
+
+# Makro met1 keep-out'lari kaldirilir: referans kosumda yoktu ve DRT'nin
+# biraktigi 7 ihlal onlarsiz olculmustu.
+ROUTING_OBSTRUCTIONS: null
+
+# Anten zinciri deney suresince kapali -- referansla ayni kosullar.
+RUN_ANTENNA_REPAIR: false
+DIODE_ON_PORTS: "none"
+DRT_ANTENNA_REPAIR_ITERS: 0
+
+# Tani kosusu; bir checker'da durup olcumu kaybetmeyelim.
+ERROR_ON_TR_DRC: false

@@ -1,0 +1,8 @@
+# Post-route periyot tarama adimi: AYNI yollanmis veritabani ve AYNI
+# parazitikler uzerinde yalnizca SDC periyodu degistirilir. Bu bir yeniden
+# sentez veya yeniden yollama DEGILDIR; mevcut fiziksel tasarimin kapanabilecegi
+# alt siniri olcer. Secilen periyot daha sonra temiz TAM akisla dogrulanir.
+#
+# Baglam: SRAM cikisi kayit kademesi eklendikten sonra (patch_rtl.py) 50 ns'de
+# en kotu setup slack +10,7706 ns (max_ss_100C_1v60) olcusmustur.
+CLOCK_PERIOD: 38

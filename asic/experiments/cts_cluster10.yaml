@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Reduce leaf fanout versus the automatic size=20 clustering.
+CTS_SINK_CLUSTERING_SIZE: 10
+CTS_SINK_CLUSTERING_MAX_DIAMETER: 30
+

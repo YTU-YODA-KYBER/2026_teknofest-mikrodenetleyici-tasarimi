@@ -16,13 +16,19 @@ module conv_buf_ram (
     input  wire [11:0]       raddr,
     output wire signed [7:0] rdata
 );
+    // Okuma portu kosulsuz acik: orijinal conv_buf_ram.v:36-38 de kosulsuz
+    // okuyor. Onceki `re(~wen)` bugunku FSM'de tetiklenmiyordu (conv geri-yazma
+    // ile FC okuma fazlari ayrik) ama tek bir FSM degisikliginde sessiz veri
+    // bozulmasi uretecek kirilgan bir sozlesmeydi. Ayrintili gerekce:
+    // asic_rtl/mem/sram32_bank.sv basligi.
     sram8_bank #(
-        .NBANK2K  (2),        // 2 x 2048 B = 4096 B
-        .HAS_1K   (0),
-        .AW       (12),
-        .INIT_ZERO(1'b1)
+        .NBANK2K          (2),        // 2 x 2048 B = 4096 B
+        .HAS_1K           (0),
+        .AW               (12),
+        .INIT_ZERO        (1'b1),
+        .RD_COLLISION_SAFE(1'b1)
     ) u_mem (
-        .clk(clk), .we(wen),
+        .clk(clk), .we(wen), .re(1'b1),
         .waddr(waddr), .wdata(wdata),
         .raddr(raddr), .rdata(rdata)
     );

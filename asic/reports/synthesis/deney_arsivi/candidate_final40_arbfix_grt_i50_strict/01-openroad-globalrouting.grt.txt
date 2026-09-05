@@ -1,0 +1,21 @@
+[INFO GRT-0112] Final usage 3D: 4557371
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
+---------------------------------------------------------------------------------------
+li1                  0             0            0.00%             0 /  0 /  0
+met1           1323945        699928           52.87%            41 /  6 / 37029
+met2           1369458        629737           45.98%             7 / 42 / 49395
+met3           1063972        313988           29.51%            28 /  4 / 17613
+met4            739918        126931           17.15%             3 / 12 / 9488
+---------------------------------------------------------------------------------------
+Total          4497293       1770584           39.37%            79 / 64 / 113525
+
+[INFO GRT-0018] Total wirelength: 15373703 um
+[INFO GRT-0014] Routed nets: 82810
+[INFO GRT-0022] Global adjustment: 5%
+[INFO GRT-0053] Routing resources analysis:
+[INFO GRT-0018] Total wirelength: 15373703 um
+[INFO GRT-0014] Routed nets: 82810
+[ERROR GRT-0116] Global routing finished with congestion. Check the congestion regions in the DRC Viewer.
+Error: grt.tcl, 20 GRT-0116

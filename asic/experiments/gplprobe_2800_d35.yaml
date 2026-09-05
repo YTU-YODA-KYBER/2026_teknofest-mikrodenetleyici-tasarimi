@@ -1,0 +1,7 @@
+# GPL yakinsama probe'u: die 4200x2800, PL_TARGET_DENSITY_PCT 35
+# Amac: tam akis harcamadan global yerlestirmenin GPL-1001 ile SAGLIKLI bitip
+# bitmedigini olcmek. p_rc_die2600 (H=2600, D=50) iterasyon 13.610'da
+# HPWL 3,5e7 / ceza 5,2e+09 ile IRAKSAMISTI.
+DIE_AREA: [0, 0, 4200, 2800]
+MACRO_PLACEMENT_CFG: dir::experiments/macro_placement_4200x2800.cfg
+PL_TARGET_DENSITY_PCT: 35

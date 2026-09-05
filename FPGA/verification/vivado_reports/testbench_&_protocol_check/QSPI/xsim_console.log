@@ -1,0 +1,291 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Aug 23 19:01:49 2026
+# Process ID         : 504109
+# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/QSPI_Module/QSPI_Module.sim/sim_1/behav/xsim
+# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/QSPI_Master_tb_behav/xsim_script.tcl}
+# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/QSPI_Module/QSPI_Module.sim/sim_1/behav/xsim/simulate.log
+# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/QSPI_Module/QSPI_Module.sim/sim_1/behav/xsim/xsim.jou
+# Running On         : stradale
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 26.04 LTS
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 1301.866 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16473 MB
+# Swap memory        : 9130 MB
+# Total Virtual      : 25604 MB
+# Available Virtual  : 10222 MB
+#-----------------------------------------------------------
+source xsim.dir/QSPI_Master_tb_behav/xsim_script.tcl
+# xsim {QSPI_Master_tb_behav} -autoloadwcfg -tclbatch {QSPI_Master_tb.tcl} -key {Behavioral:sim_1:Functional:QSPI_Master_tb}
+Time resolution is 1 ps
+source QSPI_Master_tb.tcl
+## run all
+==============================================
+===INFO=== Model Configuration Info
+===INFO=== Device Name: MT25QL256ABA8E0
+===INFO=== DQ3 = HOLD pin
+===INFO=== XIP type = Numonyx
+===INFO=== VCC 3V
+==============================================
+
+=====================================================================
+=== TEST 1: FIFO bayraklari ve QSPI cekirdegi dogru calisiyor mu? ===
+=====================================================================
+
+[0 ns] ==INFO== 3-byte address mode selected
+[0 ns] ==INFO== Bottom 128M selected
+[0 ns] ==INFO== VCC has been driven below threshold : internal logic will be reset.
+[0 ns] ==INFO== Protocol selected is extended
+[0 ps] ==INFO== Single Transfer Rate selected
+WARNING: File mem_Q512.vmf referenced from process on /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/Micron_sim_model.v at line 38478 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+[1000 ns] ==INFO== 1. Load memory content from file: "mem_Q512.vmf".
+WARNING: File sfdp.vmf referenced from process on /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/Micron_sim_model.v at line 102192 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+[1000 ns] ==INFO== Load flash discovery paramater table content from file: "sfdp.vmf".
+Test baslatiliyor...
+
+-------------------------------------------------
+--- TEST 1.1 - Reset sonrasi baslangic durumu ---
+-------------------------------------------------
+
+-----------------------------------------------------------------------
+Okuma/yazma transaction durumu => 0, Tamamlanmis transaction yok.
+Mesguliyet durumu              => 0, Mesgul degil.
+RX FIFO doluluk durumu         => 0, Dolu degil.
+RX FIFO bosluluk durumu        => 1, Bos!
+TX FIFO doluluk durumu         => 0, Dolu degil.
+TX FIFO bosluluk durumu        => 1, Bos!
+Hata durumu                    => 0000, hata yok.
+-----------------------------------------------------------------------
+
+ => FIFO RX empty flag'i 1, yani RX FIFO bos. DOGRU CALISIYOR.
+ => FIFO TX empty flag'i 1, yani TX FIFO bos. DOGRU CALISIYOR.
+
+
+
+
+
+
+---------------------------------------------------------
+--- TEST 1.2 - Doluluk bayraklari dogru calisiyor mu? ---
+---------------------------------------------------------
+
+TX FIFO 64 veri ile dolduruluyor...
+Islem tamamlandi. TX FIFO'da 64 veri var, 0 boş yer kaldi
+
+RX FIFO 64 veri ile dolduruluyor...
+Islem tamamlandi. RX FIFO'da 64 veri var, 0 boş yer kaldi
+
+-----------------------------------------------------------------------
+Okuma/yazma transaction durumu => 1, Transaction tamamlandi!
+Mesguliyet durumu              => 0, Mesgul degil.
+RX FIFO doluluk durumu         => 1, Dolu!
+RX FIFO bosluluk durumu        => 0, Bos degil.
+TX FIFO doluluk durumu         => 1, Dolu!
+TX FIFO bosluluk durumu        => 0, Bos degil
+Hata durumu                    => 0000, hata yok.
+-----------------------------------------------------------------------
+
+ => FIFO TX full flag'i 1, yani TX FIFO dolu. DOGRU CALISIYOR.
+ => FIFO RX full flag'i 1, yani RX FIFO dolu. DOGRU CALISIYOR.
+
+
+
+
+
+
+---------------------------------------------------------
+--- TEST 1.3 - Hata bayraklari dogru calisiyor mu? ------
+---------------------------------------------------------
+
+TX FIFO 5 veri ile dolduruluyor...
+Islem tamamlandi. TX FIFO'da 64 veri var, 0 boş yer kaldi
+
+-----------------------------------------------------------------------
+Okuma/yazma transaction durumu => 1, Transaction tamamlandi!
+Mesguliyet durumu              => 0, Mesgul degil.
+RX FIFO doluluk durumu         => 0, Dolu degil.
+RX FIFO bosluluk durumu        => 1, Bos!
+TX FIFO doluluk durumu         => 1, Dolu!
+TX FIFO bosluluk durumu        => 0, Bos degil
+Hata durumu                    => 0011, RX FIFO bosken okunmaya calisildi.
+Hata durumu                    => 0011, TX FIFO doluyken yazilmaya calisildi.
+-----------------------------------------------------------------------
+
+ => RX FIFO bosken okunmaya calisildiginda hata flag'i 1, yani DOGRU CALISIYOR.
+ => TX FIFO doluyken yazilmaya calisildiginda hata flag'i 1, yani DOGRU CALISIYOR.
+
+
+
+
+
+
+---------------------------------------------------------
+------- TEST 1.4 - FIFO flush dogru calisiyor mu? -------
+---------------------------------------------------------
+
+ => TX FIFO'nun sayaci ve isaretcileri sifirlanmis, yani DOGRU CALISIYOR.
+ => RX FIFO'nun sayaci ve isaretcileri sifirlanmis, yani DOGRU CALISIYOR.
+
+
+
+
+
+
+TEST 1 TAMAMLANDI    8 basarili,          0 basarisiz
+
+WARNING: File mem_Q512.vmf referenced from process on /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/Micron_sim_model.v at line 38498 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+[26240000 ns] ==INFO== 2. Load memory content from file: "mem_Q512.vmf".
+[26240000 ns] ==INFO== Power up: polling allowed.
+[26390000 ns] ==INFO== Power up: device fully accessible.
+[26390000 ns] ==INFO== Protocol selected is extended
+[26390000 ps] ==INFO== Single Transfer Rate selected
+[26390000 ns] ==INFO== 3-byte address mode selected
+[26390000 ns] ==INFO== Bottom 128M selected
+
+==========================================================================
+=== TEST 2: Flash memory simulasyon modeli ile gercek senaryo testleri ===
+==========================================================================
+
+---------------------------------------------------------
+------- TEST 2.1 - JEDEC tanimlama bilgisi okuma --------
+---------------------------------------------------------
+
+JEDEC ID: 0x20ba19 (beklenen: 0x20BA19)
+OKUMA BASARILI!
+
+
+
+
+----------------------------------------
+------- TEST 2.2 - Sector Silme --------
+----------------------------------------
+
+  [1028189000 ns] Command execution completed: WEL bit set.
+  [1028731000 ns]- Command execution: erase ppb register  01
+  [3028731000 ns] Command execution completed: Erase PPB Register. PPB=ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff (11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111)
+Clear_Flag_Status komutu gonderildi. Flag durum register'i temizlendi.
+PPB temizlendi, tum sektorler korumasiz.
+  [3030462000 ns] Command execution begins:Clear Flag Status Register.
+  [3030502000 ns] Command execution completed: Clear Flag Status Register. FSR=10000000
+  [3031003000 ns] Command execution completed: WEL bit set.
+  - [3032524000 ns] S high: command aborted
+[3032524.121000 ns] --TIMING VIOLATION-- tSHCH constraint violation. Measured time: 0.000000 ns - Constraint: 4.000000 ns
+Clear_Flag_Status komutu gonderildi. Flag durum register'i temizlendi.
+Sector silme islemi tamamlandi. Silinen bolgedeki veriler artik 0xFF.
+
+
+
+
+
+
+--------------------------------------------------------------------------------------
+------- TEST 2.3 - Farkli frekans ve veri modlarinda flash bellege veri yazma --------
+---------------------------------------------------------------------------------------
+
+--- 12MHz ile x4 modunda 256 bayt veri yazma islemi baslatiliyor...  
+
+TX FIFO 64 veri ile dolduruluyor...
+Islem tamamlandi. TX FIFO'da 64 veri var, 0 boş yer kaldi
+
+  [3036691000 ns] Command execution begins:Clear Flag Status Register.
+  [3036731000 ns] Command execution completed: Clear Flag Status Register. FSR=10000000
+  [3037233000 ns] Command execution completed: WEL bit set.
+--- Flash belleğe veri yazma islemi baslatiliyor...  
+
+  [3041379000 ns] Address latched: 0000000 (byte 0 of page 0, sector 0)
+  [3105443000 ns] Command execution begins: Quad Program.
+  [3105443000 ns] isProtected_by_lockReg: 0 sectAddr: 000
+  [3105443000 ns] isProtected_by_lockReg: 0 subsecAddr: 0000
+  [4105443000 ns] Command execution completed: Quad Program.
+Clear_Flag_Status komutu gonderildi. Flag durum register'i temizlendi.
+--- Islem tamamlandi, TX FIFO'da kalan veri:   0  
+
+
+--- 4MHz ile x1 modunda 256 bayt veri yazma islemi baslatiliyor...  
+
+TX FIFO 64 veri ile dolduruluyor...
+Islem tamamlandi. TX FIFO'da 64 veri var, 0 boş yer kaldi
+
+  [4109829000 ns] Command execution begins:Clear Flag Status Register.
+  [4109869000 ns] Command execution completed: Clear Flag Status Register. FSR=10000000
+  [4110371000 ns] Command execution completed: WEL bit set.
+--- Flash belleğe veri yazma islemi baslatiliyor...  
+
+  [4125017000 ns] Address latched: 0000100 (byte 0 of page 1, sector 0)
+  [5063943000 ns] Command execution begins: Page Program.
+  [5063943000 ns] isProtected_by_lockReg: 0 sectAddr: 000
+  [5063943000 ns] isProtected_by_lockReg: 0 subsecAddr: 0000
+  [6063943000 ns] Command execution completed: Page Program.
+Clear_Flag_Status komutu gonderildi. Flag durum register'i temizlendi.
+--- Islem tamamlandi, TX FIFO'da kalan veri:   0  
+
+
+
+
+
+----------------------------------------------------------------------------------------
+------- TEST 2.4 - Farkli frekans ve veri modlarinda flash bellekten veri okuma --------
+------------------------------------------------------------------------------------------
+
+--- 6MHz ile x4 modunda 256 bayt veri okuma islemi baslatiliyor...  
+
+  [6074455000 ns] Address latched: 0000000 (byte 0 of page 0, sector 0)
+  [8000 ns]              6074455 Dummy clock cycles expected ...
+  [6076788000 ns] Dummy clock cycles latched .
+OKUMA BASARILI!
+  [6224355000 ns] Command execution begins:Clear Flag Status Register.
+  [6224395000 ns] Command execution completed: Clear Flag Status Register. FSR=10000000
+--- 12MHz ile x2 modunda 128 bayt veri okuma islemi baslatiliyor...  
+
+  [6228543000 ns] Address latched: 0000100 (byte 0 of page 1, sector 0)
+  [6228543000 ns] Dummy byte expected ...
+  [6229543000 ns] Dummy clock cycles latched .
+OKUMA BASARILI!
+  [6294108000 ns] Command execution begins:Clear Flag Status Register.
+  [6294148000 ns] Command execution completed: Clear Flag Status Register. FSR=10000000
+--- 24MHz ile x1 modunda 128 bayt veri okuma islemi baslatiliyor...  
+
+  [6295670000 ns] Address latched: 0000180 (byte 128 of page 1, sector 0)
+OKUMA BASARILI!
+  [6338901000 ns] Command execution begins:Clear Flag Status Register.
+  [6338941000 ns] Command execution completed: Clear Flag Status Register. FSR=10000000
+TEST 2 TAMAMLANDI    4 basarili,          0 basarisiz
+
+
+
+
+
+
+
+----------------------------------------------------------------------
+---------------------- BUTUN TESTLER TAMAMLANDI ----------------------
+----------------------------------------------------------------------
+
+Toplam basarili test sayisi: 12
+Toplam basarisiz test sayisi:  0
+
+TUM TESTLER BASARILI!
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+======================================================================
+            AXI4-LITE PROTOKOL KONTROL OZETI
+======================================================================
+  Izlenen AXI arayuzu sayisi : 1
+  Protokol ihlali            : 0
+  Uyari (stall/watchdog)     : 0
+  SONUC                      : GECTI  (0 ihlal)
+======================================================================
+
+[AXI-CHK]           QSPI | AW=9408 W=9408 B=9408 AR=118166 R=118166 | ihlal=0 uyari=0
+$finish called at time : 6339223682 ps : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/QSPI_tb.sv" Line 751
+## quit
+INFO: xsimkernel Simulation Memory Usage: 367628 KB (Peak: 367628 KB), Simulation CPU Usage: 5050 ms
+INFO: [Common 17-206] Exiting xsim at Sun Aug 23 19:01:57 2026...

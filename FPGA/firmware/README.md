@@ -30,7 +30,7 @@ Temelde kartın 2 aşaması vardır: `main_boot.c` ve `main_app.c`
 	| `YZ:B\n` | Ses verisi YZ belleğine yüklendi, çıkarım başladı | `load_done_isr()` |
 	| `YZ:0\n` … `YZ:3\n` | Çıkarım bitti, `YZ_RESULT.CLASS` (0=sessizlik, 1=bilinmeyen, 2=evet, 3=hayır) | `infer_done_isr()` |
 	
-	> Sonuç **genel UART'tan değil `UART_YZ`'den** gönderilir: `UART_mux.sv` (modül adı `uart_mux`) tek fiziksel TX pinini `GPIO_IDR[1:0]`'a göre sürer ve YZ modunda (SW1=1, SW0=0 → değer 2) pini `UART_YZ_TX`'e bağlar. Genel UART'a yazılan bayt karttan hiç çıkmaz.
+	> Sonuç **genel UART'tan** gönderilir (şartname Bölüm 4.2.2 madde 5). `UART_mux.sv` (modül adı `uart_mux`) fiziksel TX pinini artık **her modda** `UART_GU_TX`'ten sürer; eskiden `GPIO_IDR[1:0]`'a göre 2:1 mux vardı ve YZ modunda pin `UART_YZ_TX`'e bağlandığı için genel UART'a yazılan bayt karttan çıkmıyordu. YZ arayüzü tek yönlüdür (host → çip), `UART_YZ`'nin göndereceği bir şey yoktur; RX tarafı değişmemiştir.
 
 - **Doğrulama uygulaması(yz_bench.c)**
 	Yarışma şartnamesinin iki maddesini ölçen ayrı bir programdır; ana akışın parçası **değildir**, yalnızca kanıt üretmek için çalıştırılır. `main_app.c`'nin yerine geçer (ikisi aynı anda kartta olmaz).

@@ -1,0 +1,14 @@
+
+===========================================================================
+Clock Skew (Setup)
+============================================================================
+======================= max_tt_025C_1v80 Corner ===================================
+
+Clock clk_i
+4.367915 source latency _125573_/CLK ^
+-2.683714 target latency conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/clk1 ^
+0.250000 clock uncertainty
+-0.055405 CRPR
+--------------
+1.878796 setup skew
+

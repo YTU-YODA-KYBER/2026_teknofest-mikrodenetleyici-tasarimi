@@ -1,0 +1,22 @@
+karsilastirilacak ornek : 3
+iverilog derleniyor...
+RTL kosumu (3 ornek, 3 paralel)...
+
+ornek                            yzlm dnnm   cevrim   en buyuk skor farki
+--------------------------------------------------------------------------
+input_data_no.hex                   3    3    45517                0.07%
+input_data_sessizlik.hex            0    0    45517                0.00%
+input_data_yes.hex                  2    2    45517                0.04%
+
+==========================================================================
+  TFLite yazilim referansi  vs  conv_accelerator (RTL)
+==========================================================================
+  ornek sayisi                 : 3
+  sinif uyumu                  : 3/3  (100.0%)
+  en buyuk skor sapmasi        : 0.07% (skor araligina gore)
+
+  donanim cevrim sayisi        : 45517   (50 MHz -> 0.910 ms)
+    ^ 'hizlanma' maddesinin donanim tarafi; yazilim tarafi
+      ayni modelin RV32 kosumundan olculecek.
+
+  SONUC: tum orneklerde AYNI SINIF.

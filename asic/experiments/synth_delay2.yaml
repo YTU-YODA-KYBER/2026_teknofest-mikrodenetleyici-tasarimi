@@ -1,0 +1,17 @@
+meta:
+  version: 2
+
+# ---------------------------------------------------------------------------
+#  SENTEZ STRATEJI PROBE'U -- "DELAY 2"   [SONUC: REDDEDILDI]
+#
+#  OLCULEN (Yosys logu, `ABC: WireLoad = "none" ... Delay`, `stime -p`):
+#      18.828,1 ps (+%3,8 vs AREA 0 = 18.135,9) @30 MHz netlisti
+#
+#  Tam kayit ve gerekce: reports/synthesis/strateji_denemeleri.md
+#  bolum "11. SENTEZ STRATEJISI A/B".
+#
+#  Bu overlay TARIHSEL KAYITTIR. Secilen strateji artik config.yaml icindeki
+#  SYNTH_STRATEGY anahtarindadir (zorunlu hedef `make asic_run` yalnizca
+#  config.yaml'i okur, overlay okumaz).
+# ---------------------------------------------------------------------------
+SYNTH_STRATEGY: "DELAY 2"

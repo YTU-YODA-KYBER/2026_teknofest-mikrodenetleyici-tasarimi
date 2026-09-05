@@ -75,8 +75,8 @@ static inline uint32_t mcycle(void)
  * ===================================================================== */
 static void uart_init(void)
 {
-    Uart->UART_CPB   = 434u;   /* 50 MHz / 434 = 115200 baud */
-    UartAI->UART_CPB = 434u;
+    Uart->UART_CPB   = UART_CPB_115200;   /* bkz. soc.h: SYS_CLK_HZ'den turetilir */
+    UartAI->UART_CPB = UART_CPB_115200;
     UartAI->UART_STP.all = 0;  /* 1 stop bit */
 }
 
@@ -94,13 +94,15 @@ static uint8_t gu_getc(void)
 }
 #endif
 
-/* UART_YZ'den bir bayt gonder. */
+/* Genel UART'tan bir bayt gonder.
+ * uart_mux.sv artik fiziksel TX pinini HER MODDA genel UART'tan surer
+ * (sartname Bolum 4.2.2 madde 5); UART_YZ tek yonlu giris arayuzudur. */
 static void yz_putc(uint8_t b)
 {
-    UartAI->UART_TDR             = b;
-    UartAI->UART_CFG.bit.TXSTART = 1;
-    while (!UartAI->UART_CFG.bit.TXDONE);
-    UartAI->UART_CFG.bit.TXDONE  = 0;
+    Uart->UART_TDR             = b;
+    Uart->UART_CFG.bit.TXSTART = 1;
+    while (!Uart->UART_CFG.bit.TXDONE);
+    Uart->UART_CFG.bit.TXDONE  = 0;
 }
 
 /* Isaretsiz ondalik bas. rv32imc'de bolme donanimda (M uzantisi), bu

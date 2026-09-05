@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Acceptance overlay: FastRoute may emit a database with residual overflow
+# when GRT_ALLOW_CONGESTION is true.  Production/signoff candidates must fail
+# at this step instead, so a congested guide can never reach detailed routing.
+GRT_ALLOW_CONGESTION: false

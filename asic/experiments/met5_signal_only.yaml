@@ -1,0 +1,13 @@
+meta:
+  version: 2
+
+# Kontrollu met5 deneyi: yalniz sinyal router'ina met5 eklenir. Saat/NDR
+# araligi baseline ile ayni met2..met4'te tutulur; manuel macro obstruction
+# eklenmez. Bu OpenROAD surumu met4 macro OBS geometrilerini maksimum katman
+# met5'e zaten projekte eder. Boylece met5 etkisi clock katmani veya bbox
+# obstruction ile karismaz.
+RT_MAX_LAYER: met5
+RT_CLOCK_MAX_LAYER: met4
+SIGNAL_WIRE_RC_LAYERS: [met1, met2, met3, met4, met5]
+CLOCK_WIRE_RC_LAYERS: [met2, met3, met4]
+GRT_ADJUSTMENT: 0.10

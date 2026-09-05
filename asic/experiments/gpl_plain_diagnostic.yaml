@@ -1,0 +1,9 @@
+meta:
+  version: 2
+
+# Diagnostic fallback for the corrected RTL placement.  The routability-
+# driven run retained a good congestion snapshot but then spent thousands of
+# Nesterov iterations in a divergent trajectory.  Disable only the inflation/
+# congestion feedback loop so placement stability and HPWL can be compared
+# from the identical pre-GPL database.
+PL_ROUTABILITY_DRIVEN: false

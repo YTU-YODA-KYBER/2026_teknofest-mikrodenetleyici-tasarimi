@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# GPL iraksama tanisi: Nesterov cozucusunun yogunluk cezasi katsayisi mu_k'nin
+# ust sinirini dusurur (OpenROAD varsayilani 1.05). Aracin kendi dokumaninda
+# "Useful if global placement diverges" diye gecer.
+PL_MAX_PHI_COEFFICIENT: 1.02

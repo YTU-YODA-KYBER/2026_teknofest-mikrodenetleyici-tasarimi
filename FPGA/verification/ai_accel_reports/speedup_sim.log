@@ -1,0 +1,40 @@
+Time resolution is 1 ps
+
+======================================================================
+  YZ BENCH  --  hizlandirici  vs  yazilim gerceklemesi
+  girdi: input_data_yes.hex   (beklenen sinif 2)
+======================================================================
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+
+======================================================================
+  YZ BENCH  --  hizlandirici  vs  yazilim gerceklemesi
+  girdi: input_data_yes.hex   (beklenen sinif 2)
+======================================================================
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+[TB] YZ RAM DMA ile dolduruluyor (1960 bayt)...
+[TB] YZ RAM hazir, load_pending bekleniyor...
+[TB] t=1510730000  ACCEL DONE, sinif=2, cevrim=45517
+[UART] YZ:2
+[UART] SW:2 HC:45540 SC:12608381
+
+======================================================================
+  SONUC
+======================================================================
+  donanim sinifi (YZ_RESULT)   : 2
+  yazilim sinifi (tflite_ref)  : 2
+
+  donanim cevrimi (mcycle)     : 45540  (0.911 ms @ 50 MHz)
+  yazilim cevrimi (mcycle)     : 12608381  (252.168 ms)
+  ----------------------------------------------------------
+  HIZLANMA                     : 276.9 x
+  ----------------------------------------------------------
+  TB'nin bagimsiz olctugu       : 45517 cevrim (start->done)
+    ^ mcycle'daki donanim sayisi bundan biraz BUYUK olmali:
+      olcum penceresi START yazmasini ve durum yoklamasini
+      da kapsiyor (AXI gidis-donusleri).
+
+[GECTI] Hizlandirici yazilim gerceklemesinden 276.9 kat hizli.
+
+$finish called at time : 256368670 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/testbench/System_Test/yz_bench_test.sv" Line 277

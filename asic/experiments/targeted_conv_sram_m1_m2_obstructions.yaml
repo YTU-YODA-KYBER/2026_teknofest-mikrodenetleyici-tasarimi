@@ -1,0 +1,21 @@
+meta:
+  version: 2
+
+# Post-GRT 20 ps zamanlama adayindaki 44 TrDRC Short isaretinin tamami iki
+# conv SRAM makrosunun LEF/GDS alt-metal sinirindadir. Isaretler g_2k[0] ve
+# g_2k[1] icinde net2843/net5144/net7646/net2590 uzerindedir. Makrolarin
+# sinyal pinleri met3/met4 katmanlarinda oldugundan met1/met2 engelleri pin
+# erisimini kapatmaz. Bu dosya yalniz olculu DRC deneyi icindir.
+#
+# Her dikdortgen makro ayak izini 2 um disari tasir. Boylece LEF OBS
+# sinirindaki sayisal/izgara bosluklari da GRT guide disinda tutulur.
+ROUTING_OBSTRUCTIONS:
+  # conv_accelerator...g_2k[0]: (1760.00, 1575.00) - (2443.10, 1991.54)
+  - [met1, 1758.00, 1573.00, 2445.10, 1993.54]
+  - [met2, 1758.00, 1573.00, 2445.10, 1993.54]
+  # conv_accelerator...g_2k[1]: (2563.10, 1575.00) - (3246.20, 1991.54)
+  - [met1, 2561.10, 1573.00, 3248.20, 1993.54]
+  - [met2, 2561.10, 1573.00, 3248.20, 1993.54]
+
+# Kalite kapilari ana config'teki degerlerde kalir. Kabul olcutu ikinci GRT
+# asimi ve nihai TrDRC sayisinin birlikte iyilesmesidir.

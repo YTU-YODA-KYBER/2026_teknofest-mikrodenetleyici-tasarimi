@@ -1,0 +1,35 @@
+meta:
+  version: 2
+
+# Deney: met5'i die genelinde yeniden kullan, ancak SRAM izdususlerini met5'te
+# konservatif olarak tamamen kapat. Kurulu OpenROAD met4 macro OBS sekillerini
+# maksimum katmana zaten projekte eder; bu ek obstruction yeni bir via modeli
+# degil, parcalı %97,8 projeksiyondaki sliver'lari ve fiziksel olarak gecerli
+# yatay crossing'leri de kapatan muhafazakar bir kontroldur. DRT ile olumlu
+# olculmeden nihai config'e tasinmaz.
+RT_MAX_LAYER: met5
+RT_CLOCK_MAX_LAYER: met4
+SIGNAL_WIRE_RC_LAYERS: [met1, met2, met3, met4, met5]
+CLOCK_WIRE_RC_LAYERS: [met2, met3, met4]
+GRT_ADJUSTMENT: 0.10
+
+ROUTING_OBSTRUCTIONS:
+  # IMEM 2x2
+  - [met5, 153.80, 241.92, 836.90, 658.46]
+  - [met5, 956.90, 241.92, 1640.00, 658.46]
+  - [met5, 153.80, 908.46, 836.90, 1325.00]
+  - [met5, 956.90, 908.46, 1640.00, 1325.00]
+  # DMEM 2x2
+  - [met5, 1760.00, 241.92, 2443.10, 658.46]
+  - [met5, 2563.10, 241.92, 3246.20, 658.46]
+  - [met5, 1760.00, 908.46, 2443.10, 1325.00]
+  - [met5, 2563.10, 908.46, 3246.20, 1325.00]
+  # YZ RAM 4x2k + 1x1k
+  - [met5, 153.80, 1575.00, 836.90, 1991.54]
+  - [met5, 956.90, 1575.00, 1640.00, 1991.54]
+  - [met5, 153.80, 2241.54, 836.90, 2658.08]
+  - [met5, 956.90, 2241.54, 1640.00, 2658.08]
+  - [met5, 1760.00, 2241.54, 2239.78, 2639.04]
+  # Konvolusyon tamponu 2x2k
+  - [met5, 1760.00, 1575.00, 2443.10, 1991.54]
+  - [met5, 2563.10, 1575.00, 3246.20, 1991.54]

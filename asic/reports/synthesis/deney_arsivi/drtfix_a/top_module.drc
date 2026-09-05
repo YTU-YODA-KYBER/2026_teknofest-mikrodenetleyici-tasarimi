@@ -1,0 +1,72 @@
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2394.0000, 1860.7500) - (2394.1400, 1875.1700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2394.0000, 1860.7500) - (2442.4800, 1860.8900) on Layer met2
+violation type: Short
+	srcs: net:conv_accelerator_inst.cbuf_raddr\[1\] inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram
+	bbox = (2823.6400, 1575.6200) - (2823.7800, 1990.9200) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net9805
+	bbox = (2876.5400, 1575.6200) - (2876.6800, 1990.9200) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2372.8400, 1872.9900) - (2372.9800, 1904.4700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2387.3300, 1872.9900) - (2387.4700, 1875.1700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2372.8400, 1872.9900) - (2387.4700, 1873.1300) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2387.3300, 1875.0300) - (2394.1400, 1875.1700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2374.6800, 1904.3300) - (2374.8200, 1990.9200) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram net:net9760
+	bbox = (2372.8400, 1904.3300) - (2374.8200, 1904.4700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net1643
+	bbox = (2842.5000, 1575.6200) - (2842.6400, 1990.9200) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net910
+	bbox = (2845.7200, 1575.6200) - (2845.8600, 1990.9200) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net12906
+	bbox = (2831.4600, 1575.6200) - (2831.6000, 1990.9200) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2782.7000, 1575.6200) - (2782.8400, 1656.0700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2782.7000, 1655.9300) - (2784.2200, 1656.0700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2783.6200, 1890.5300) - (2783.7600, 1990.9200) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2783.6200, 1890.5300) - (2784.2200, 1890.6700) on Layer met2
+violation type: Short
+	srcs: inst:yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram net:net4924
+	bbox = (2104.4300, 2601.2300) - (2104.5700, 2638.4200) on Layer met2
+violation type: Short
+	srcs: inst:yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram net:net4924
+	bbox = (2104.4300, 2601.2300) - (2239.1600, 2601.3700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2784.0800, 1655.9300) - (2784.2200, 1669.8700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2784.5400, 1669.7300) - (2784.6800, 1869.9700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2784.0800, 1669.7300) - (2784.6800, 1669.8700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2784.0800, 1869.8300) - (2784.2200, 1890.6700) on Layer met2
+violation type: Short
+	srcs: inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram net:net4850
+	bbox = (2784.0800, 1869.8300) - (2784.6800, 1869.9700) on Layer met2

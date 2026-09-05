@@ -245,16 +245,11 @@ class qspi_reset_mid_test extends qspi_base_test;
                 repeat (40) @(posedge vif.clk);
                 reset_uygula(6);
             end
-        join_any
-        disable fork;
+        join
 
-        // disable fork diziyi oldurur ama SURUCUDE ucusta kalmis bir islem
-        // reset'ten SONRA tamamlanabilir; o yazma DUT'u yeniden kirletir.
-        // Bu yuzden son kosullara bakmadan once hat bosalir ve TEMIZ bir
-        // reset daha uygulanir. Testin amaci (islem ortasinda reset ve
-        // kontrolcunun RST_01..05 kurallari) yukaridaki fork'ta zaten
-        // gerceklesmistir.
-        repeat (40) @(posedge vif.clk);
+        // Diziyi zorla oldurmek surucude kuyruklu bir islemi sahipsiz
+        // birakiyordu. Iki kol da tamamlandiktan sonra son kosulu temiz bir
+        // resetle denetle.
         reset_uygula(6);
 
         reg_oku(32'h04, d);

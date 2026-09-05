@@ -1,0 +1,45 @@
+UVM_INFO t/uvm/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING t/uvm/src/base/uvm_root.svh(549) @ 0: reporter [NO_DPI_USED] We are thinking of removing support for UVM_NO_DPI.  Please try this test without it and evaluate the impact
+UVM_INFO @ 0: reporter [RNTST] Running test hello_test...
+UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/smoke/t_uvm_hello.sv(24) @ 0: uvm_test_top [SMOKE] UVM fazlari calisiyor
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/smoke/t_uvm_hello.sv(26) @ 100000: uvm_test_top [SMOKE] objection birakiliyor
+
+*** MADDE 1 GECTI: UVM cekirdegi ayakta ***
+
+UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 100000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    5
+UVM_WARNING :    2
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[NO_DPI_USED]     1
+[NO_VISIT_CHECK]     1
+[RNTST]     1
+[SMOKE]     2
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+
+- /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 100ns; walltime 0.239 s; speed 417.755 ns/s
+- Verilator: cpu 0.239 s on 1 threads; allocated 46 MB

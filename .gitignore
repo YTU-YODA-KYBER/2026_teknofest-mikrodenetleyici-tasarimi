@@ -1,6 +1,7 @@
-# Vivado ve Quartus'un ürettiği gereksiz log ve derleme dosyaları
+# ===========================================================================
+#  Vivado / Quartus arac kalintilari
+# ===========================================================================
 *.jou
-*.log
 *.pb
 *.wdb
 *.dir
@@ -8,18 +9,33 @@
 *.dmp
 *.vcd
 *.bit
+!FPGA/bitstream_files/fpga_top.bit
 *.bin
 
-# Simülasyon ve Sentez klasörleri (Sadece kodları tut, gerisini boşver)
+# Simulasyon ve sentez calisma klasorleri (kodu tut, uretileni tutma)
 .Xil/
 *.sim/
 *.cache/
 *.hw/
 *.ip_user_files/
+/FPGA/Vivado_projects/
+/Full_MCU_Project.gen/
 
-# İşletim sistemi kalıntıları
+*.log
+!asic/reports/**/*.log
+!FPGA/verification/**/*.log
+
+# ===========================================================================
+#  Isletim sistemi kalintilari
+# ===========================================================================
 .DS_Store
 Thumbs.db
 
-CLAUDE.md
-*.claude/
+# ===========================================================================
+#  Depo disi / gecici
+# ===========================================================================
+__pycache__/
+
+# LibreLane gecici calisma alani (sartname: teslimde bos olmali)
+asic/run/*
+!asic/run/.gitkeep

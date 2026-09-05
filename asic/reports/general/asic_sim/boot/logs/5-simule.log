@@ -1,0 +1,200 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep  5 23:04:16 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/sim_top/xsim_script.tcl
+# xsim {sim_top} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+==============================================
+===INFO=== Model Configuration Info
+===INFO=== Device Name: MT25QL256ABA8E0
+===INFO=== DQ3 = HOLD pin
+===INFO=== XIP type = Numonyx
+===INFO=== VCC 3V
+==============================================
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+[0 ns] ==INFO== Protocol selected is extended
+WARNING: File mem_Q512.vmf referenced on /home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv at line 106 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+[0 ns] ==INFO== 2. Load memory content from file: "mem_Q512.vmf".
+[0 ns] ==INFO== Power up: polling allowed.
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+WARNING: File mem_Q512.vmf referenced from process on /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/Micron_sim_model.v at line 38478 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+[1000 ns] ==INFO== 1. Load memory content from file: "mem_Q512.vmf".
+WARNING: File sfdp.vmf referenced from process on /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/Micron_sim_model.v at line 102192 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+[1000 ns] ==INFO== Load flash discovery paramater table content from file: "sfdp.vmf".
+[150000 ns] ==INFO== Power up: device fully accessible.
+[150000 ns] ==INFO== Protocol selected is extended
+[150000 ps] ==INFO== Single Transfer Rate selected
+[150000 ns] ==INFO== 3-byte address mode selected
+[150000 ns] ==INFO== Bottom 128M selected
+
+[TB] === FAZ 1: FLASHER ===  reset birakildi @ 1000000000 ns
+[GPIO-B] t=1001690000 bvalid=1 bready=1 awvalid=0 wvalid=0 awready=0
+  [1002490000 ns] Command execution completed: WEL bit set.
+  [1003390000 ns]- Command execution: erase ppb register  01
+  [3003390000 ns] Command execution completed: Erase PPB Register. PPB=ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff (11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111)
+[TB] Flasher hazir (0x0002). Minik app (16 bayt) gonderiliyor...
+[GPIO-B] t=3005270000 bvalid=1 bready=1 awvalid=0 wvalid=0 awready=0
+  [3197970000 ns] Command execution completed: WEL bit set.
+  [3988170000 ns] Address latched: 0000000 (byte 0 of page 0, sector 0)
+  [4044710000 ns] Command execution begins: Page Program.
+  [4044710000 ns] isProtected_by_lockReg: 0 sectAddr: 000
+  [4044710000 ns] isProtected_by_lockReg: 0 subsecAddr: 0000
+  [5044710000 ns] Command execution completed: Page Program.
+[TB] chunk yazildi, ACK alindi @ 5094590000 ns
+  [5102710000 ns] Address latched: 0000000 (byte 0 of page 0, sector 0)
+  [8000 ns]              5102710 Dummy clock cycles expected ...
+  [5104950000 ns] Dummy clock cycles latched .
+[TB] FLASHER PASS (0x0003): app flash'a yazildi + dogrulandi.
+
+[TB] Flasher PASS
+[GPIO-B] t=5116330000 bvalid=1 bready=1 awvalid=0 wvalid=0 awready=0
+[TB] === FAZ 2: BOOT ===
+[TB] CPU reset'lendi (flash korundu), boot basliyor @ 5117710000 ns
+  [5128630000 ns] Address latched: 0000000 (byte 0 of page 0, sector 0)
+  [8000 ns]              5128630 Dummy clock cycles expected ...
+  [5130870000 ns] Dummy clock cycles latched .
+  [5283730000 ns] Address latched: 0000100 (byte 0 of page 1, sector 0)
+  [8000 ns]              5283730 Dummy clock cycles expected ...
+  [5285970000 ns] Dummy clock cycles latched .
+  [5438830000 ns] Address latched: 0000200 (byte 0 of page 2, sector 0)
+  [8000 ns]              5438830 Dummy clock cycles expected ...
+  [5441070000 ns] Dummy clock cycles latched .
+  [5593930000 ns] Address latched: 0000300 (byte 0 of page 3, sector 0)
+  [8000 ns]              5593930 Dummy clock cycles expected ...
+  [5596170000 ns] Dummy clock cycles latched .
+  [5749030000 ns] Address latched: 0000400 (byte 0 of page 4, sector 0)
+  [8000 ns]              5749030 Dummy clock cycles expected ...
+  [5751270000 ns] Dummy clock cycles latched .
+  [5904130000 ns] Address latched: 0000500 (byte 0 of page 5, sector 0)
+  [8000 ns]              5904130 Dummy clock cycles expected ...
+  [5906370000 ns] Dummy clock cycles latched .
+  [6059230000 ns] Address latched: 0000600 (byte 0 of page 6, sector 0)
+  [8000 ns]              6059230 Dummy clock cycles expected ...
+  [6061470000 ns] Dummy clock cycles latched .
+  [6214330000 ns] Address latched: 0000700 (byte 0 of page 7, sector 0)
+  [8000 ns]              6214330 Dummy clock cycles expected ...
+  [6216570000 ns] Dummy clock cycles latched .
+  [6369430000 ns] Address latched: 0000800 (byte 0 of page 8, sector 0)
+  [8000 ns]              6369430 Dummy clock cycles expected ...
+  [6371670000 ns] Dummy clock cycles latched .
+  [6524530000 ns] Address latched: 0000900 (byte 0 of page 9, sector 0)
+  [8000 ns]              6524530 Dummy clock cycles expected ...
+  [6526770000 ns] Dummy clock cycles latched .
+  [6679630000 ns] Address latched: 0000a00 (byte 0 of page 10, sector 0)
+  [8000 ns]              6679630 Dummy clock cycles expected ...
+  [6681870000 ns] Dummy clock cycles latched .
+  [6834730000 ns] Address latched: 0000b00 (byte 0 of page 11, sector 0)
+  [8000 ns]              6834730 Dummy clock cycles expected ...
+  [6836970000 ns] Dummy clock cycles latched .
+  [6989830000 ns] Address latched: 0000c00 (byte 0 of page 12, sector 0)
+  [8000 ns]              6989830 Dummy clock cycles expected ...
+  [6992070000 ns] Dummy clock cycles latched .
+  [7144930000 ns] Address latched: 0000d00 (byte 0 of page 13, sector 0)
+  [8000 ns]              7144930 Dummy clock cycles expected ...
+  [7147170000 ns] Dummy clock cycles latched .
+  [7300030000 ns] Address latched: 0000e00 (byte 0 of page 14, sector 0)
+  [8000 ns]              7300030 Dummy clock cycles expected ...
+  [7302270000 ns] Dummy clock cycles latched .
+  [7455130000 ns] Address latched: 0000f00 (byte 0 of page 15, sector 0)
+  [8000 ns]              7455130 Dummy clock cycles expected ...
+  [7457370000 ns] Dummy clock cycles latched .
+  [7610230000 ns] Address latched: 0001000 (byte 0 of page 16, sector 0)
+  [8000 ns]              7610230 Dummy clock cycles expected ...
+  [7612470000 ns] Dummy clock cycles latched .
+  [7765330000 ns] Address latched: 0001100 (byte 0 of page 17, sector 0)
+  [8000 ns]              7765330 Dummy clock cycles expected ...
+  [7767570000 ns] Dummy clock cycles latched .
+  [7920430000 ns] Address latched: 0001200 (byte 0 of page 18, sector 0)
+  [8000 ns]              7920430 Dummy clock cycles expected ...
+  [7922670000 ns] Dummy clock cycles latched .
+  [8075530000 ns] Address latched: 0001300 (byte 0 of page 19, sector 0)
+  [8000 ns]              8075530 Dummy clock cycles expected ...
+  [8077770000 ns] Dummy clock cycles latched .
+  [8230630000 ns] Address latched: 0001400 (byte 0 of page 20, sector 0)
+  [8000 ns]              8230630 Dummy clock cycles expected ...
+  [8232870000 ns] Dummy clock cycles latched .
+  [8385730000 ns] Address latched: 0001500 (byte 0 of page 21, sector 0)
+  [8000 ns]              8385730 Dummy clock cycles expected ...
+  [8387970000 ns] Dummy clock cycles latched .
+  [8540830000 ns] Address latched: 0001600 (byte 0 of page 22, sector 0)
+  [8000 ns]              8540830 Dummy clock cycles expected ...
+  [8543070000 ns] Dummy clock cycles latched .
+  [8695930000 ns] Address latched: 0001700 (byte 0 of page 23, sector 0)
+  [8000 ns]              8695930 Dummy clock cycles expected ...
+  [8698170000 ns] Dummy clock cycles latched .
+  [8851030000 ns] Address latched: 0001800 (byte 0 of page 24, sector 0)
+  [8000 ns]              8851030 Dummy clock cycles expected ...
+  [8853270000 ns] Dummy clock cycles latched .
+  [9006130000 ns] Address latched: 0001900 (byte 0 of page 25, sector 0)
+  [8000 ns]              9006130 Dummy clock cycles expected ...
+  [9008370000 ns] Dummy clock cycles latched .
+  [9161230000 ns] Address latched: 0001a00 (byte 0 of page 26, sector 0)
+  [8000 ns]              9161230 Dummy clock cycles expected ...
+  [9163470000 ns] Dummy clock cycles latched .
+  [9316330000 ns] Address latched: 0001b00 (byte 0 of page 27, sector 0)
+  [8000 ns]              9316330 Dummy clock cycles expected ...
+  [9318570000 ns] Dummy clock cycles latched .
+  [9471430000 ns] Address latched: 0001c00 (byte 0 of page 28, sector 0)
+  [8000 ns]              9471430 Dummy clock cycles expected ...
+  [9473670000 ns] Dummy clock cycles latched .
+  [9626530000 ns] Address latched: 0001d00 (byte 0 of page 29, sector 0)
+  [8000 ns]              9626530 Dummy clock cycles expected ...
+  [9628770000 ns] Dummy clock cycles latched .
+  [9781630000 ns] Address latched: 0001e00 (byte 0 of page 30, sector 0)
+  [8000 ns]              9781630 Dummy clock cycles expected ...
+  [9783870000 ns] Dummy clock cycles latched .
+  [9936730000 ns] Address latched: 0001f00 (byte 0 of page 31, sector 0)
+  [8000 ns]              9936730 Dummy clock cycles expected ...
+  [9938970000 ns] Dummy clock cycles latched .
+[TB] Minik app kosuyor: GPIO_ODR=0x0123 @ 10083070000 ns
+
+======================================================================
+[TB] >>> TAM SISTEM TESTI: BASARILI <<<
+[TB]   flasher -> flash -> boot -> DMA -> INSTRRAM -> jump -> execute
+======================================================================
+
+[GPIO-B] t=10083090000 bvalid=1 bready=1 awvalid=0 wvalid=0 awready=0
+
+======================================================================
+            AXI4-LITE PROTOKOL KONTROL OZETI
+======================================================================
+  Izlenen AXI arayuzu sayisi : 15
+  Protokol ihlali            : 0
+  Uyari (stall/watchdog)     : 0
+  SONUC                      : GECTI  (0 ihlal)
+======================================================================
+
+[AXI-CHK]       YZ_ACCEL | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
+[AXI-CHK]       YZ_ACCEL | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
+[AXI-CHK] BOOTROM_CPU | FIN_02 BILGI: 1 okuma cevapsiz -- 2 reset ve outstanding limiti (1) ile aciklanabilir, protokol ihlali DEGIL
+[AXI-CHK]    BOOTROM_CPU | AW=0 W=0 B=0 AR=151358 R=151357 | ihlal=0 uyari=0
+[AXI-CHK]    BOOTROM_ICN | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
+[AXI-CHK]      INSTR_RAM | AW=0 W=0 B=0 AR=1670 R=1670 | ihlal=0 uyari=0
+[AXI-CHK]       DATA_RAM | AW=21 W=21 B=21 AR=23 R=23 | ihlal=0 uyari=0
+[AXI-CHK] CPU_INSTR_M | FIN_02 BILGI: 1 okuma cevapsiz -- 2 reset ve outstanding limiti (2) ile aciklanabilir, protokol ihlali DEGIL
+[AXI-CHK]    CPU_INSTR_M | AW=0 W=0 B=0 AR=153028 R=153027 | ihlal=0 uyari=0
+[AXI-CHK]     CPU_DATA_M | AW=5467 W=5467 B=5467 AR=37632 R=37632 | ihlal=0 uyari=0
+[AXI-CHK]         ICN_S0 | AW=5467 W=5467 B=5467 AR=37632 R=37632 | ihlal=0 uyari=0
+[AXI-CHK]          TIMER | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
+[AXI-CHK]          TIMER | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
+[AXI-CHK]        UART_GU | AW=24 W=24 B=24 AR=3375 R=3375 | ihlal=0 uyari=0
+[AXI-CHK]        UART_YZ | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
+[AXI-CHK]        UART_YZ | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
+[AXI-CHK]            I2C | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
+[AXI-CHK]            I2C | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
+[AXI-CHK]           GPIO | AW=4 W=4 B=4 AR=2 R=2 | ihlal=0 uyari=0
+[AXI-CHK]           QSPI | AW=5418 W=5418 B=5418 AR=34232 R=34232 | ihlal=0 uyari=0
+[AXI-CHK] SPLITTER_S | FIN_02 BILGI: 1 okuma cevapsiz -- 2 reset ve outstanding limiti (2) ile aciklanabilir, protokol ihlali DEGIL
+[AXI-CHK]     SPLITTER_S | AW=0 W=0 B=0 AR=153028 R=153027 | ihlal=0 uyari=0
+$finish called at time : 10183070 ns : File "/home/luxyxp/Documents/mainfiles/asic/run/sim/boot/boot_test_asic_cpb.sv" Line 216
+run: Time (s): cpu = 00:00:00.02 ; elapsed = 00:01:21 . Memory (MB): peak = 1432.434 ; gain = 0.000 ; free physical = 3892 ; free virtual = 19440
+exit
+INFO: xsimkernel Simulation Memory Usage: 361752 KB (Peak: 361752 KB), Simulation CPU Usage: 82010 ms
+INFO: [Common 17-206] Exiting xsim at Sat Sep  5 23:05:39 2026...

@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Kontrollu setup-marji taramasi. Ayni post-GRT state'inden dallanir;
+# hold marji ana config'teki 0.45 ns degerinde sabit kalir.
+GRT_RESIZER_SETUP_SLACK_MARGIN: 0.5
+

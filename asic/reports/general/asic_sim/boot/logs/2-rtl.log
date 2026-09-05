@@ -1,0 +1,128 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_apu_core_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/include/cv32e40p_fpu_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/cf_math_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/axi_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/axi_req_rsp_ports.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/obi_req_rsp_ports.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/obi_to_axi_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module obi_to_axi
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/cv32e40p_obi_to_axi_wrapper_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_obi_to_axi_wrapper
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/instr_bram_axi_ctrl_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module instr_bram_axi_ctrl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/data_bram_axi_ctrl_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module data_bram_axi_ctrl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/GPIO_AXI4_Lite_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module GPIO_AXI4_Lite
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/Timer_AXI4_Lite_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module Timer_AXI4_Lite
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/QSPI_Master_AXI4_Lite_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module QSPI_Master_AXI4_Lite
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/I2C_Master_AXI4_Lite_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module I2C_Master_AXI4_Lite
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/UART_GU_AXI4_Lite_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module UART_GU_AXI4_Lite
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/UART_YZ_AXI4_Lite_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module UART_YZ_AXI4_Lite
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/conv_accelerator_asic.v" into library work
+INFO: [VRFC 10-311] analyzing module conv_accelerator
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/tech/xilinx_iobuf_stub.sv" into library work
+INFO: [VRFC 10-311] analyzing module IOBUF
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/tech/axi_read_arbiter2.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi_read_arbiter2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_cell
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell_1k.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_cell_1k
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_bank.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_bank
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram8_bank.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram8_bank
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_instr_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module bram_instr
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_data_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module bram_data
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_yz_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module bram_yz
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/conv_buf_ram_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module conv_buf_ram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic/run/sim/boot/boot_rom_sim.sv" into library work
+INFO: [VRFC 10-311] analyzing module boot_rom
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/weights_rom_p8_asic.v" into library work
+INFO: [VRFC 10-311] analyzing module weights_rom_p8
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/fc_weights_rom_p4_asic.v" into library work
+INFO: [VRFC 10-311] analyzing module fc_weights_rom_p4
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv" into library work
+INFO: [VRFC 10-311] analyzing module fifo_v3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/lzc.sv" into library work
+INFO: [VRFC 10-311] analyzing module lzc
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv" into library work
+INFO: [VRFC 10-311] analyzing module rr_arb_tree
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_aligner.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_aligner
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_alu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_alu_div.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_alu_div
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_apu_disp.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_apu_disp
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_clock_gate.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_clock_gate
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_compressed_decoder.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_compressed_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_controller.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_core.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_core
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_cs_registers
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_decoder.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ex_stage.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_ex_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_ff_one.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_ff_one
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_fifo.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_fifo
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_hwloop_regs.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_hwloop_regs
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_id_stage.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_id_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_if_stage.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_if_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_int_controller.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_int_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_load_store_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_mult.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_mult
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_obi_interface.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_obi_interface
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_popcnt.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_popcnt
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_buffer.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_prefetch_buffer
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_prefetch_controller.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_prefetch_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_register_file_ff.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_register_file
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_sleep_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_top.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv" into library work
+INFO: [VRFC 10-311] analyzing module boot_rom_axi_ctrl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Memory/YZ_RAM_AXI4-Lite/yz_bram_axi_ctrl.sv" into library work
+INFO: [VRFC 10-311] analyzing module yz_acclrtr_bram_axi_ctrl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv" into library work
+INFO: [VRFC 10-311] analyzing module Instr_Splitter
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv" into library work
+INFO: [VRFC 10-311] analyzing module AXI4_Interconnect
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv" into library work
+INFO: [VRFC 10-311] analyzing module uart_mux
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv" into library work
+INFO: [VRFC 10-311] analyzing module yz_csr_wrapper
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/Top_module_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module top_module

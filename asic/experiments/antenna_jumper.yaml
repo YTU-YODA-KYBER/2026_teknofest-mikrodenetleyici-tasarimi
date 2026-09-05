@@ -1,0 +1,40 @@
+meta:
+  version: 2
+
+# ---------------------------------------------------------------------------
+#  ANTEN JUMPER OVERLAY -- YALNIZ IKI FAZLI KOSUMUN 2. FAZINDA KULLANILIR
+#
+#  NEDEN IKI FAZ?
+#    LibreLane Classic'in adim sirasi sabittir (flows/classic.py:79-87):
+#        GlobalRouting -> CheckAntennas -> RepairAntennas
+#        -> ResizerTimingPostGRT -> DetailedRouting
+#    RepairAntennas jumper GUIDE'lari ekler; ResizerTimingPostGRT ise
+#    rsz_timing_postgrt.tcl:26-31'de KOSULSUZ bir global_route kosar
+#    (OpenROAD #5590 nedeniyle `if` yorum satirina alinmis). GlobalRouter::
+#    saveGuides her netin guide'larini clearGuides() ile silip yeniden yazar.
+#    Jumper bir netlist hucresi degil, yalnizca guide geometrisidir; bu yuzden
+#    %100'u yok olur. ODB denetimiyle olculdu: 1.661 guide -> 0 guide,
+#    ama "onarildi" bayraklari kaliyor (1.422 sahipsiz bayrak).
+#
+#    Cozum: jumper'i resizer'in CIKTISI uzerinde ekleyip DRT'yi tek kez
+#    kosmak. Bu, ayni etikete `--from OpenROAD.RepairAntennas` ile devam
+#    etmekle saglanir; flow.py:594-646 sira numaralarini surdurur ve faz 1'in
+#    dizinlerini EZMEZ (`--overwrite` VERILMEZ).
+#
+#  OLCULEN SONUC (run/jumper_sta40, tam signoff):
+#    anten 1.935 -> 1.474 net (-%23,8), 2.364 -> 1.870 pin (-%20,9)
+#    yollama DRC 0, Magic DRC 0, KLayout DRC 0, LVS 0, XOR 0, PDN 0
+#    setup +6,3149 -> +6,4294 (IYILESTI), hold +0,0570 -> +0,0576
+#    eklenen hucre 0 (antenna_diodes_count: 0), tel +%0,016
+# ---------------------------------------------------------------------------
+RUN_ANTENNA_REPAIR: true
+GRT_ANTENNA_REPAIR_JUMPER_ONLY: true   # hucre eklenmez, yalniz guide
+GRT_ANTENNA_REPAIR_DIODE_ONLY: false
+GRT_ANTENNA_REPAIR_ITERS: 1
+GRT_ANTENNA_REPAIR_MARGIN: 5
+
+# DIKKAT: bu bayrak resizer'i DEVRE DISI BIRAKMAZ. Resizer faz 1'de ZATEN
+# KOSTU (adim 43). Burada yalnizca IKINCI KEZ kosmasini engelliyoruz; ikinci
+# kosum jumper'lari silecek ve 16.363 hold gecikme hucresini ikiye
+# katlayacakti.
+RUN_POST_GRT_RESIZER_TIMING: false

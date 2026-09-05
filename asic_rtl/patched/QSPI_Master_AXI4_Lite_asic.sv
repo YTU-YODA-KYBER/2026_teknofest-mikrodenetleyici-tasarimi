@@ -3,6 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv
+//  SHA256 : cbd8870ce1617c25cd7e8bdfad596b2eb6de9cbb7d594feb74e228d83cfadcf4
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.

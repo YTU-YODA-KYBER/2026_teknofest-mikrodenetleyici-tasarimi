@@ -1,0 +1,14 @@
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+======================= max_ss_100C_1v60 Corner ===================================
+
+Clock clk_i
+4.421326 source latency conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/clk1 v
+-8.217470 target latency _129120_/CLK ^
+-0.250000 clock uncertainty
+-0.093451 CRPR
+--------------
+-4.139596 hold skew
+

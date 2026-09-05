@@ -3,7 +3,14 @@
 //
 //  Ureten : asic/scripts/gen_rom.py
 //  Kaynak : fc_weights_p4.hex
+//  Kaynak SHA256 : 2d6635eabb0b199b2998f8735880d70915cde29459bb9e01a0312ab5a0c8ba33
 //  Icerik : 4000 / 4000 kelime x 32 bit  (128000 bit)
+//
+//  Kaynak hex'in SHA256'si BILEREK bu basliktadir: `gen_rom.py --all --check`
+//  uretimi bellekte tekrarlayip diskteki dosyayla metin bazinda karsilastirir.
+//  Boylece firmware/agirliklar yeniden uretildiginde ve `make roms`
+//  unutuldugunda BAYAT bir ROM sessizce senteze giremez (patch_rtl.py'nin
+//  yamali kopyalar icin yaptigi kontrolun ROM karsiligi).
 //
 //  Bu modul ASIC akisinda AI_Accelerator/fc_weights_rom_p4.v dosyasinin
 //  yerine gecer (modul adi ve port listesi birebir aynidir). Icerik silikonda

@@ -1,0 +1,23 @@
+meta:
+  version: 2
+
+# ---------------------------------------------------------------------------
+#  LAYERS_RC devreye girdikten SONRA setup onarim marjini geri al
+#
+#  GEREKCE (olculdu, 2026-09-02):
+#    final40c'de ResizerTimingPostGRT tek basina 16.728 hucre ekliyor
+#    (248.117 -> 264.845, tasarimin %6,8'i). CLOCK_PERIOD 40 ve marj 10
+#    oldugu icin bu adim fiilen 30 ns'i hedefliyor; ulastigi 33,69 ns.
+#    Yani ULASILAMAYAN bir hedef icin 16,7 bin hucre harciyor.
+#
+#    10 ns'lik marj, tel modeli 2,2 kat iyimserken gercek ihlalleri yakalamanin
+#    dolayli yoluydu. LAYERS_RC ile model gercege %7 yaklasti; ayni marj artik
+#    CIFTE SAYIMDIR. config.yaml:638 bunun ayri deneyde olculecegini yaziyor,
+#    olcum hic yapilmadi. Post-GPL tarafinda ayni mantik zaten uygulandi
+#    (GRT_DESIGN_REPAIR_MAX_SLEW/CAP_PCT: 20 -> 0).
+#
+#  BEKLENTI: daha az hucre -> daha az tel -> daha az anten + daha kucuk alan.
+#  RISK: setup WS +6,31'den duser. 40 ns'de bol pay var; hold degismemeli
+#    (GRT_RESIZER_HOLD_SLACK_MARGIN dokunulmadi, 0,45'te kaliyor -- bagimsiz denetimin
+#    olcumu 0,05/0,06/0,08'in hepsinin hold ihlali urettigini gosterdi).
+GRT_RESIZER_SETUP_SLACK_MARGIN: 5.0

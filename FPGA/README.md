@@ -7,7 +7,9 @@ geliştirilen, **RISC-V CV32E40P** çekirdekli ve yapay zekâ hızlandırıcıl�
 SoC tasarımının çalışma dosyaları.
 
 Hedef kart **Nexys A7** (`xc7a100tcsg324-1`), sistem saati **50 MHz**.
-Bu klasördeki akış tamamen **Xilinx Vivado** tabanlıdır; Makefile ya da CI ile sentez yapılmaz.
+Bu klasördeki akış tamamen **Xilinx Vivado** tabanlıdır. Proje GUI üzerinden
+oluşturulabildiği gibi final sentez/implementasyon akışı batch betiğiyle de
+tek komutta çalıştırılabilir.
 
 ---
 
@@ -92,6 +94,8 @@ Vivado projesini sıfırdan kuran TCL scriptleri ve YZ doğrulama araç zinciri.
 
 | Alt klasör / dosya | Ne işe yarar |
 |---|---|
+| `scripts/run_fpga_build.sh` | Firmware derlemesini ve Vivado batch final akışını tek komutta başlatır |
+| `scripts/build_fpga.tcl` | Sentez, implementasyon, STA, kaynak, güç, DRC raporları ile bitstream'i üretir |
 | `project_gen/Main_MCU_Project.tcl` | **Ana proje** — bütün tasarımı içeren Vivado projesini kurar |
 | `project_gen/System_test/` | Sistem testleri: `boot_test.tcl`, `ai_accel_test.tcl`, `only_app_test.tcl`, `yz_bench_test.tcl` |
 | `project_gen/CPU/`, `Interconnect/`, `Memory/`, `Peripherals/` | Tek bir bloğun RTL'i + testbench'ini içeren küçük projeler; hızlı iterasyon için |
@@ -112,6 +116,18 @@ Projeler `Vivado_projects/` altına açılır. Sistem testleri firmware hex'leri
 ilgili `make` hedefi koşturulmalıdır. Hangi script hangi hedefi ister:
 [`scripts/README.md`](scripts/README.md).
 
+Final sentez, implementasyon, STA, kaynak kullanımı, güç, DRC ve bitstream
+çıktılarının tamamını temiz projeden yeniden üretmek için:
+
+```bash
+export VIVADO_ROOT=/kurulum/yolu/Vivado/2025.2
+./scripts/run_fpga_build.sh
+```
+
+İsteğe bağlı `FPGA_JOBS` değişkeni Vivado iş parçacığı sayısını belirler;
+varsayılan değer bellek kullanımını sınırlamak için `4`'tür. Raporlar
+`verification/vivado_reports/`, bitstream ise `bitstream_files/` altına yazılır.
+
 ---
 
 ## `verification/`
@@ -121,6 +137,7 @@ içinde; sonuçların ayrıntısı alt klasörlerin kendi README'lerinde.
 
 | Alt klasör | İçerik |
 |---|---|
+| `test_plan.md` | Blok, sistem, FPGA ve ASIC faaliyetlerini kapsayan üst seviye doğrulama planı |
 | `vivado_reports/synthesis/` | Sentez raporu + kaynak kullanımı |
 | `vivado_reports/implementation/` | Yerleştirme / yollama raporu |
 | `vivado_reports/timing_report/` | 50 MHz kısıtına karşı zamanlama analizi |

@@ -1,0 +1,5 @@
+$ python3 cmp_try.py trace_core_00000000.log spike.log
+
+Karşılaştırılan: 193 komut | rtl=193 spike=193 | hata=0
+[bilgi] 90 sıkıştırılmış (RVC) komutta kodlama kolonu karşılaştırılmadı — spike 16-bit ham, tracer 32-bit genişletilmiş kodlama basıyor. PC ve register yazmaları bu satırlarda da kontrol edildi.
+exit=0

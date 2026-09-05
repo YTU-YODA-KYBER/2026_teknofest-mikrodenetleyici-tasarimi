@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Tam sayi sistem saati hedefi: 30,000,000 Hz.
+# LibreLane zaman birimi ns oldugu icin karsilik gelen periyot ondaliklidir;
+# alt modul/firmware hesaplarinda kullanilan frekans ise tam sayidir.
+CLOCK_PERIOD: 33.333333333333336

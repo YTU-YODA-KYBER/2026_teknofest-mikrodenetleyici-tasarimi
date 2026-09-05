@@ -1,0 +1,2 @@
+[INFO GRT-0022] Global adjustment: 10%
+[INFO GRT-0053] Routing resources analysis:

@@ -1,0 +1,20 @@
+Total wire length on LAYER met2 = 3768355 um.
+Total wire length on LAYER met3 = 2363241 um.
+Total wire length on LAYER met4 = 1089105 um.
+Total wire length on LAYER met5 = 0 um.
+    Completing 100% with 7 violations.
+[INFO DRT-0199]   Number of violations = 7.
+Total wire length = 11200300 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 3979591 um.
+Total wire length on LAYER met2 = 3768360 um.
+Total wire length on LAYER met3 = 2363242 um.
+Total wire length on LAYER met4 = 1089105 um.
+Total wire length on LAYER met5 = 0 um.
+Total wire length = 11200300 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 3979591 um.
+Total wire length on LAYER met2 = 3768360 um.
+Total wire length on LAYER met3 = 2363242 um.
+Total wire length on LAYER met4 = 1089105 um.
+Total wire length on LAYER met5 = 0 um.

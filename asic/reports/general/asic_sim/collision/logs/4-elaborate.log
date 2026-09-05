@@ -1,0 +1,31 @@
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /usr/Vivado/2025.2/Vivado/bin/unwrapped/lnx64.o/xelab --relax -mt off -debug off tb_data_bram_collision -s sim_top 
+Turned off multi-threading.
+WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
+    LIBRARY_PATH
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/data_bram_axi_ctrl_asic.sv" Line 21. Module data_bram_axi_ctrl doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_data_asic.sv" Line 13. Module bram_data(ADDR_WIDTH=11) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_bank.sv" Line 54. Module sram32_bank_default doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" Line 15. Module sram32_cell doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v" Line 6. Module sky130_sram_2kbyte_1rw1r_32x512_8(VERBOSE=0) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" Line 15. Module sram32_cell doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v" Line 6. Module sky130_sram_2kbyte_1rw1r_32x512_8(VERBOSE=0) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" Line 15. Module sram32_cell doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v" Line 6. Module sky130_sram_2kbyte_1rw1r_32x512_8(VERBOSE=0) doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" Line 15. Module sram32_cell doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "/usr/asic_flow/pdk/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v" Line 6. Module sky130_sram_2kbyte_1rw1r_32x512_8(VERBOSE=0) doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.sky130_sram_2kbyte_1rw1r_32x512_...
+Compiling module work.sram32_cell
+Compiling module work.sram32_bank_default
+Compiling module work.bram_data(ADDR_WIDTH=11)
+Compiling module work.data_bram_axi_ctrl
+Compiling module work.tb_data_bram_collision
+Built simulation snapshot sim_top

@@ -5,7 +5,8 @@ kurulan UVM ortamının **regresyon ve kapsam çıktıları**. Doğrulama kodunu
 kendisi burada değil, [`main_codes/testbench/uvm/`](../../main_codes/testbench/uvm/)
 altındadır; bu klasör yalnızca kanıt tutar.
 
-Simülatör: **Verilator 5.050** · UVM: **2020.3.1 (no-DPI)** · Ölçüm tarihi: **2026-08-21**
+Simülatör: **Verilator 5.050** · UVM: **2020.3.1 (no-DPI)** · Regresyon
+ölçümü: **2026-09-05** · Kapsam ölçümü: **2026-08-21**
 
 > **Başlangıç noktaları:** regresyon için [`regression_summary.md`](regression_summary.md),
 > kapsam için [`coverage/index.html`](coverage/index.html) ve
@@ -22,17 +23,13 @@ Simülatör: **Verilator 5.050** · UVM: **2020.3.1 (no-DPI)** · Ölçüm tarih
 | Test | **73** |
 | Koşum | **219** (test × 3 tohum) |
 | Geçen | **219 / 219** |
-| AXI protokol ihlali | **0** ¹ |
-| Uyarı (stall watchdog) | 6 ¹ |
-| Fonksiyonel kapsam | **35 / 35 ölçülebilir bin → %100** ² |
+| AXI protokol ihlali | **0** |
+| Uyarı (stall watchdog) | **0** |
+| Fonksiyonel kapsam | **35 / 35 ölçülebilir bin → %100** ¹ |
 | Satır kapsamı (tasarım) | **1292 / 1341 → %96,3** |
-| Toplam regresyon süresi | 0,6 dakika (20 çekirdek, 7 paralel iş) |
+| Toplam regresyon süresi | 0,5 dakika (8 paralel test; bloklar sıralı, derleme 4 iş) |
 
-¹ Sayılara `gpio_stress_test` dahil değildir. O test bilerek başarısızdır ve
-  bir RTL bulgusunu gösterir; ürettiği 3 ihlal ile 2 uyarı bulgunun kendisidir
-  ([`findings.md`](findings.md) madde 1).
-
-² İki bin (`slverr`, `decerr`) **erişilemez** olarak işaretlenmiştir ve paydadan
+¹ İki bin (`slverr`, `decerr`) **erişilemez** olarak işaretlenmiştir ve paydadan
   çıkarılmıştır; gerekçesi aşağıda.
 
 ---
@@ -66,7 +63,7 @@ verification/uvm/
 
 | Blok | Taban adres | Test | Koşum | Geçen | AXI ihlali | Satır kapsamı |
 |---|---|---:|---:|---:|---:|---:|
-| GPIO | `0x4001_0000` | 9 | 27 | 27 | 0 ¹ | %93,4 |
+| GPIO | `0x4001_0000` | 9 | 27 | 27 | 0 | %93,4 |
 | Timer | `0x4000_0000` | 9 | 27 | 27 | 0 | %97,1 |
 | UART_GU | `0x4004_0000` | 12 | 36 | 36 | 0 | %98,2 |
 | UART_YZ | `0x4005_0000` | 13 | 39 | 39 | 0 | %98,3 |
@@ -96,7 +93,8 @@ raporlanmasını istiyor. Karşılığı şudur:
   blok modelleri, adapter ve predictor ile bağlanır.
 - **Karşı taraf gerçek protokol konuşur.** I2C slave'i START/STOP/repeated-START
   koşullarını hattan çözer; UART agent'ı gerçek baud zamanlamasıyla çerçeve
-  basar; QSPI flash responder'ı x1/x2/x4 komutları işler.
+  basar (50 MHz'de `UART_CPB=50`, TX/RX/full-duplex için 1 Mbps); QSPI flash
+  responder'ı x1/x2/x4 komutları işler.
 - **Rastgele uyaranla regresyon koşulur** ve fonksiyonel + satır kapsamı
   toplanır.
 - **Mevcut AXI protokol kontrolcüsü ortamın içine alınmıştır:** 40 kurallık
@@ -129,10 +127,10 @@ make regression                             # 7 blok × 73 test × 3 tohum
 make coverage                               # kapsam raporunu üret
 ```
 
-`make regression` bu klasördeki `regression_summary.md` ve
-`regression_results.csv` dosyalarını; `make coverage` ise `coverage/`
-altındakileri yeniden üretir. Loglar buraya elle kopyalanır (proje bilerek
-otomasyonsuzdur; koşucu betikler testbench altyapısıdır, rapor üreteci değil).
+`make regression` bu klasördeki `regression_summary.md`,
+`regression_results.csv` ve `logs/<blok>/` altındaki bütün test loglarını;
+`make coverage` ise `coverage/` altındakileri yeniden üretir. Koşulan blokların
+eski log dizinleri yenileriyle doğrudan değiştirilir; `logs/smoke/` korunur.
 
 ### Araç kapı testleri (smoke)
 
@@ -152,12 +150,10 @@ beş dil özelliğini gerçekten kaldırdığı kanıtlanmıştır. Çıktısı
 
 ## Okurken dikkat edilecekler
 
-- **`gpio_stress_test` bilerek başarısızdır.** GPIO'nun işlem kabul koşulu
-  kendi `awready`/`arready`'siyle nitelenmemiştir; boru hatlı bir master
-  bloğu kilitler. Test bu kilitlenmeyi gösterir, dolayısıyla KALDI çıkması
-  **doğru** sonuçtur. Aynı stres testi diğer altı blokta temiz geçer —
-  sorun GPIO'ya özgüdür. Ayrıntı ve tekrar üretme adımları
-  [`findings.md`](findings.md)'dedir.
+- **`gpio_stress_test` bir regresyon korumasıdır.** GPIO'nun daha önce
+  kilitlenmesine yol açan kabul koşulu düzeltilmiştir. Test artık diğer altı
+  bloktaki stres testleri gibi boru hatlı trafiği ihlalsiz tamamlamalıdır.
+  İlk bulgu ve düzeltme [`findings.md`](findings.md)'de kayıtlıdır.
 
 - **`slverr` ve `decerr` bin'leri hiçbir zaman dolmaz.** Tasarımdaki hiçbir
   AXI4-Lite slave'i hata cevabı üretmiyor; `bresp`/`rresp` sabit `OKAY`.

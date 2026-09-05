@@ -25,7 +25,7 @@
 /* -------------------------------------------------------------------- */
 static void uart_init(void)
 {
-    Uart->UART_CPB     = 434u;   /* baud boleni: 50 MHz / 434 = 115200 */
+    Uart->UART_CPB     = UART_CPB_115200;   /* baud boleni: SYS_CLK_HZ'den turetilir */
     Uart->UART_STP.all = 0u;     /* 1 stop bit */
     Uart->UART_CFG.all = 0u;     /* tum bayraklar temiz */
 }

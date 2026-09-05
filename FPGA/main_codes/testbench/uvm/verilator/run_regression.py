@@ -12,13 +12,15 @@ ikinci bir liste TUTULMAZ.
 
 Kullanim:
     source /usr/Verilator_uvm/env.sh
-    python3 run_regression.py [--seeds 3] [--jobs 8] [--blocks gpio,i2c]
+    python3 run_regression.py [--seeds 3] [--jobs 8] [--build-jobs 4]
+                              [--blocks gpio,i2c]
 """
 
 import argparse
 import csv
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -33,7 +35,6 @@ OBJ_ROOT  = Path(os.environ.get("UVM_OBJ_ROOT", "/usr/Verilator_uvm/build"))
 # Bilerek basarisiz olmasi beklenen testler: bulunan bir RTL hatasini
 # gosterirler. Raporda "beklenen basarisiz" olarak isaretlenir.
 BEKLENEN_BASARISIZ = {
-    "gpio_stress_test": "GPIO kabul kosulu kendi awready/arready'siyle nitelenmemis (bkz. findings.md)",
 }
 
 
@@ -50,9 +51,9 @@ def makefile_oku():
     return [b for b in bloklar if b in testler], testler
 
 
-def derle(blok):
+def derle(blok, build_jobs):
     t0 = time.time()
-    r = subprocess.run(["make", "build", f"BLK={blok}"], cwd=UVM_DIR,
+    r = subprocess.run(["make", "build", f"BLK={blok}", f"J={build_jobs}"], cwd=UVM_DIR,
                        capture_output=True, text=True)
     return blok, r.returncode == 0, time.time() - t0, r.stdout + r.stderr
 
@@ -80,8 +81,11 @@ def log_coz(log_yolu):
     if m: d["uyari"] = int(m.group(1))
     m = re.search(r"UVM_ERROR \+ FATAL\s*:\s*(\d+)", metin)
     if m: d["hata"] = int(m.group(1))
-    m = re.search(r"^  SONUC\s+:\s*(\S+)", metin, re.M)
-    if m: d["sonuc"] = m.group(1)
+    # Logda once AXI kontrolcusu, sonra butun UVM testi kendi SONUC satirini
+    # yazar. Ilkini almak scoreboard/UVM hatasini gizleyebilir; nihai test
+    # ozeti her zaman son SONUC satiridir.
+    sonuclar = re.findall(r"^\s*SONUC\s+:\s*(\S+)", metin, re.M)
+    if sonuclar: d["sonuc"] = sonuclar[-1]
     m = re.search(r"Scoreboard\s*:\s*yazma=(\d+) okuma=(\d+) kontrol=(\d+) uyusmazlik=(\d+)", metin)
     if m:
         d["yazma"], d["okuma"], d["kontrol"], d["uyusmazlik"] = map(int, m.groups())
@@ -93,7 +97,10 @@ def log_coz(log_yolu):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", type=int, default=3, help="blok basina tohum sayisi")
-    ap.add_argument("--jobs",  type=int, default=max(1, os.cpu_count() // 3))
+    ap.add_argument("--jobs", type=int, default=min(8, max(1, os.cpu_count() // 3)),
+                    help="ayni anda kosacak test ikilisi sayisi")
+    ap.add_argument("--build-jobs", type=int, default=min(4, os.cpu_count() or 1),
+                    help="tek Verilator C++ derlemesinin paralellik siniri")
     ap.add_argument("--blocks", default="", help="virgulle ayrilmis blok listesi")
     ap.add_argument("--no-build", action="store_true")
     args = ap.parse_args()
@@ -103,17 +110,24 @@ def main():
         istenen = args.blocks.split(",")
         bloklar = [b for b in bloklar if b in istenen]
 
-    print(f"[REGRESYON] {len(bloklar)} blok, tohum sayisi {args.seeds}, {args.jobs} paralel is")
+    if args.jobs < 1 or args.build_jobs < 1:
+        ap.error("--jobs ve --build-jobs pozitif olmalidir")
+
+    print(f"[REGRESYON] {len(bloklar)} blok, tohum sayisi {args.seeds}, "
+          f"{args.jobs} paralel test, {args.build_jobs} paralel derleyici")
 
     # ---- Derleme ----
     if not args.no_build:
         print("[REGRESYON] derleniyor...")
-        with ThreadPoolExecutor(max_workers=2) as ex:
-            for blok, ok, sure, ciktı in ex.map(derle, bloklar):
-                print(f"  {blok:8s} {'OK ' if ok else 'HATA'} ({sure:5.1f} s)")
-                if not ok:
-                    print(ciktı[-2000:])
-                    sys.exit(1)
+        # Her Verilator sureci kendi icinde C++ derleyicilerini paralel acar.
+        # Bloklari da paralel derlemek 16 GiB sinifi makinelerde OOM'a yol
+        # acabildigi icin derlemeler sirali, test binary'leri paraleldir.
+        for blok in bloklar:
+            blok, ok, sure, ciktı = derle(blok, args.build_jobs)
+            print(f"  {blok:8s} {'OK ' if ok else 'HATA'} ({sure:5.1f} s)")
+            if not ok:
+                print(ciktı[-2000:])
+                sys.exit(1)
 
     # ---- Kosum ----
     isler = [(b, t, s) for b in bloklar for t in testler[b]
@@ -138,6 +152,17 @@ def main():
     toplam_sure = time.time() - t0
 
     RAPOR_DIR.mkdir(parents=True, exist_ok=True)
+    # Teslim edilen log agacini bu kosumla birebir esitle. Smoke loglari ayri
+    # dizinde korunur; kosulan bloklarin eski seed/test loglari kalmaz.
+    for blok in bloklar:
+        hedef = RAPOR_DIR / "logs" / blok
+        if hedef.exists():
+            shutil.rmtree(hedef)
+        hedef.mkdir(parents=True)
+        for d in (x for x in sonuclar if x["blok"] == blok):
+            kaynak = OBJ_ROOT / blok / "logs" / f'{d["test"]}_seed{d["tohum"]}.log'
+            if kaynak.is_file():
+                shutil.copy2(kaynak, hedef / kaynak.name)
     rapor_yaz(sonuclar, bloklar, testler, args.seeds, toplam_sure)
     kalan = [d for d in sonuclar if not d["gecti"]]
     print(f"\n[REGRESYON] {len(sonuclar)} kosum, {len(sonuclar)-len(kalan)} gecti, "
@@ -187,12 +212,12 @@ def rapor_yaz(sonuclar, bloklar, testler, tohum_sayisi, toplam_sure):
                f"**{toplam}** | **{tgecti}** | **{toplam-tgecti}** | **{tihlal}** | "
                f"**{sum(d['uyari'] or 0 for d in sonuclar)}** |\n")
 
-    sat.append("> AXI ihlali sutununda **beklenen basarisiz** testler haric tutulmustur; "
-               "onlar zaten bir RTL bulgusunu gostermek icin yazilmistir.\n")
-
     # ---- Beklenen basarisizlar ----
     bb = sorted({d["test"] for d in sonuclar if d["beklenen_basarisiz"]})
     if bb:
+        sat.append("> AXI ihlali sutununda **beklenen basarisiz** testler haric "
+                   "tutulmustur; onlar zaten bir RTL bulgusunu gostermek icin "
+                   "yazilmistir.\n")
         sat.append("---\n")
         sat.append("## Beklenen basarisiz testler\n")
         sat.append("Bunlar ortamin bulduğu RTL sorunlarini gosterir; KALDI cikmalari "

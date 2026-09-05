@@ -1,0 +1,4 @@
+# Sentez-only A/B: SYNTH_ABC_USE_MFS3: true
+# LibreLane: "Experimental: attempts a SAT-based remapping in all area and
+# delay strategies before 'retime', which may improve PPA results."
+SYNTH_ABC_USE_MFS3: true

@@ -1,0 +1,37 @@
+# ---------------------------------------------------------------------------
+#  DENEY: die 4200 x 3600 -> 4200 x 2600  (15,12 mm2 -> 10,92 mm2, -%27,8)
+#
+#  GEREKCE
+#    rtl2gds temiz kosumunda std-hucre dolulugu yalnizca %11,914 ve 15,12 mm2
+#    die'in 8,819 mm2'si FILLER hucresi (1.088.528 adet). Gercek icerik
+#    5,462 mm2 (1,288 std hucre + 4,174 SRAM). Hucreler bu bosluga yayildigi
+#    icin toplam yollanmis tel 10,7 metre, en uzun tek net 6.346 um.
+#    Uzun tel -> slew/cap ihlali -> onarim tamponu -> anten ihlali zinciri
+#    buradan besleniyor.
+#
+#  NEDEN SADECE YUKSEKLIK
+#    Alt ve ust satirlardaki 5'er makro 5 x 683,10 + 4 x 80 = 3.735,5 um yer
+#    kaplar; genisligi 4200'un altina cekmek satir ici kanallari daraltir ve
+#    dikey yollamanin TEK yolu o kanallardir (SRAM LEF'i met2/met4'u tamamen
+#    kapatir). Bu deneyde genislik AYNEN korunur -- alt/ust satirlar ve
+#    aralarindaki dikey kanallar bit bazinda degismez, yeni risk yoktur.
+#    Silinen sey yalnizca halkanin ortasindaki bos dikey banttir.
+#
+#  YOLLAMA PAYI VAR MI?  Evet, olculdu.
+#    rtl2gds son GRT congestion raporu: met1 %33,3 / met2 %26,8 / met3 %11,3
+#    / met4 %13,7 ve HER katmanda toplam tasma 0. Yogunluk x1,385 olunca
+#    beklenen bant met1 ~%46 / met2 ~%37. Eski tikanma krizleri met2 %51-56 +
+#    hotspot'ta yasanmisti.
+#
+#  KABUL KAPISI: DRT DRC 0 VE GRT tasmasi 0. Aksi halde bu dal reddedilir.
+# ---------------------------------------------------------------------------
+DIE_AREA: [0, 0, 4200, 2600]
+MACRO_PLACEMENT_CFG: dir::experiments/macro_placement_4200x2600.cfg
+
+# Yerlestirilebilir alan 6,15 mm2'ye iner; std hucreler (LAYERS_RC duzeltmesi
+# sonrasi artacak tamponlarla birlikte) ~%27 doluluk yapar ve
+# PL_ROUTABILITY_DRIVEN olculmus +%31 yapay sisirme uygular -> ~%36. Hedef
+# yogunluk 35'te kalirsa GPL'in manevra alani kalmaz. 50'ye cikariliyor.
+# Not: bu, die ile birlikte degisen IKINCI degiskendir; PL_TARGET_DENSITY_PCT
+# 25 -> 35 yonunun daha once olculdugu (25 daha kotu) kaydi goz onune alindi.
+PL_TARGET_DENSITY_PCT: 50

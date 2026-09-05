@@ -1,0 +1,12 @@
+======================================================================
+  ADIM 0 -- SMOKE KAPI TESTLERI
+======================================================================
+Verilator 5.050 2026-07-01 rev v5.050
+  Madde 1 (UVM cekirdegi) : GECTI
+    Madde 2 (bind)       : GECTI
+    Madde 3 (SVA)        : GECTI (assert'ler derlendi ve kosturuldu)
+    Madde 5 (uvm_reg)    : GECTI  (3/3 alt kontrol)
+  Madde 4 (covergroup)    : GECTI  (37 bin kapsam ciktisinda)
+======================================================================
+  SONUC : 5/5 GECTI -- ortam kurulumu icin GO
+======================================================================

@@ -1,0 +1,12 @@
+{
+  "cleared_net_flag_count": 0,
+  "flagged_net_count": 1344,
+  "flagged_without_jumper_guide_count": 0,
+  "flagged_without_jumper_guide_examples": [],
+  "input_odb": "/usr/asic_flow/run/ant4_postresizer_jumper_met4_prep/cleared_orphans/top_module.odb",
+  "jumper_guide_count": 1592,
+  "jumper_guide_net_count": 1344,
+  "jumper_guide_without_flag_count": 0,
+  "jumper_guide_without_flag_examples": [],
+  "net_count": 119722
+}

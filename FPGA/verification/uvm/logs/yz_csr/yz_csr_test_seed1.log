@@ -1,0 +1,71 @@
+UVM_INFO t/uvm/src/base/uvm_root.svh(476) @ 0: reporter [UVM/RELNOTES] 
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  This implementation of the UVM Library deviates from the 1800.2-2020
+  standard.  See the DEVIATIONS.md file contained in the release
+  for more details.
+
+----------------------------------------------------------------
+Accellera:1800.2:UVM:2020.3.1
+
+All copyright owners for this kit are listed in NOTICE.txt
+All Rights Reserved Worldwide
+----------------------------------------------------------------
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_WARNING t/uvm/src/base/uvm_root.svh(549) @ 0: reporter [NO_DPI_USED] We are thinking of removing support for UVM_NO_DPI.  Please try this test without it and evaluate the impact
+UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+UVM_INFO @ 0: reporter [RNTST] Running test yz_csr_test...
+UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(263) @ 410000: uvm_test_top [CTRL] YZ_CTRL[0] -> acc_start darbesi dogru
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(274) @ 670000: uvm_test_top [CTRL] YZ_CTRL[1] -> load_clear darbesi dogru
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(319) @ 2260000: uvm_test_top [RESULT] dort sinifin dordu de YZ_RESULT'ta dogru yakalandi
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/yz_accel_pkg.sv(160) @ 2650000: uvm_test_top.env.accel.mon [YZ_MON] hizlandirici arayuzu: acc_start=1 load_clear=1 darbe, 0 genislik ihlali
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 2650000: uvm_test_top.env.sb [SB] YZ_CSR scoreboard: yazma=3 okuma=9 kontrol=0 uyusmazlik=0 kotu_cevap=0
+
+======================================================================
+            AXI4-LITE PROTOKOL KONTROL OZETI
+======================================================================
+  Izlenen AXI arayuzu sayisi : 1
+  Protokol ihlali            : 0
+  Uyari (stall/watchdog)     : 0
+  SONUC                      : GECTI  (0 ihlal)
+======================================================================
+
+
+======================================================================
+  UVM TEST OZETI : YZ_CSR / yz_csr_test
+----------------------------------------------------------------------
+  AXI protokol ihlali : 0
+  UVM_ERROR + FATAL   : 0
+  Scoreboard          : yazma=3 okuma=9 kontrol=0 uyusmazlik=0
+  SONUC               : GECTI
+======================================================================
+
+UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 2650000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    9
+UVM_WARNING :    2
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[CTRL]     2
+[NO_DPI_TSTNAME]     1
+[NO_DPI_USED]     1
+[NO_VISIT_CHECK]     1
+[RESULT]     1
+[RNTST]     1
+[SB]     1
+[UVM/COMP/NAMECHECK]     1
+[UVM/RELNOTES]     1
+[YZ_MON]     1
+
+- /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
+[AXI-CHK] YZ_ACCEL       | AW=3 W=3 B=3 AR=9 R=9 | ihlal=0 uyari=0
+- S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
+- Verilator: $finish at 3us; walltime 0.491 s; speed 5.396 us/s
+- Verilator: cpu 0.470 s on 1 threads; allocated 59 MB

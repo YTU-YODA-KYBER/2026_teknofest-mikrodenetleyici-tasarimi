@@ -1,0 +1,16 @@
+meta:
+  version: 2
+
+# RCX sonrasi STA'da gorulen on binlerce slew ve binlerce kapasitans
+# ihlalinin post-GRT tahmininde onarilip onarilamayacagini izole eder.
+# Once yalniz OpenROAD.RepairDesignPostGRT olarak kosulur; eklenen hucre ve
+# GRT maliyeti kabul edilebilirse ardindan postgrt_timing_repair_hold20 ile
+# birlestirilir. Marjlar sifirdir: sikisik tasarimda yalniz gercek kutuphane
+# limit ihlalleri hedeflenir, fazladan emniyet tampona donusturulmez.
+DEDUPLICATE_CORNERS: true
+RUN_POST_GRT_DESIGN_REPAIR: true
+
+GRT_DESIGN_REPAIR_RUN_GRT: true
+GRT_DESIGN_REPAIR_MAX_WIRE_LENGTH: 0
+GRT_DESIGN_REPAIR_MAX_SLEW_PCT: 0
+GRT_DESIGN_REPAIR_MAX_CAP_PCT: 0

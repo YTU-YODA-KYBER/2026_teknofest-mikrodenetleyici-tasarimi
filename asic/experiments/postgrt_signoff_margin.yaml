@@ -1,0 +1,22 @@
+meta:
+  version: 2
+
+# Macro-ring RCX sonucunda GRT tahminine gore yaklasik 0,415 ns hold kaybi ve
+# binlerce max-slew/max-cap ihlali goruldu. Bu tanisal overlay, signoff
+# sapmasini GRT asamasinda emniyet payiyla karsilamayi dener. Ana config'e
+# yalniz DRT + dokuz-kose RCX/STA iyilesmesiyle dogrulanirsa alinabilir.
+DEDUPLICATE_CORNERS: true
+RUN_POST_GRT_DESIGN_REPAIR: true
+GRT_DESIGN_REPAIR_RUN_GRT: true
+GRT_DESIGN_REPAIR_MAX_WIRE_LENGTH: 0
+GRT_DESIGN_REPAIR_MAX_SLEW_PCT: 20
+GRT_DESIGN_REPAIR_MAX_CAP_PCT: 20
+
+RUN_POST_GRT_RESIZER_TIMING: true
+GRT_RESIZER_SETUP_SLACK_MARGIN: 0.025
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.45
+GRT_RESIZER_SETUP_MAX_BUFFER_PCT: 50
+GRT_RESIZER_HOLD_MAX_BUFFER_PCT: 50
+GRT_RESIZER_ALLOW_SETUP_VIOS: false
+GRT_RESIZER_FIX_HOLD_FIRST: false
+GRT_RESIZER_RUN_GRT: true

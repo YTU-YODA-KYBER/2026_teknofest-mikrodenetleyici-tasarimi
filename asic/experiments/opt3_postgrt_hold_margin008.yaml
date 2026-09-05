@@ -1,0 +1,8 @@
+meta:
+  version: 2
+
+# 0.060 ns adayi DRT=0 ve -%8.18 std-cell alani verdi, fakat post-RCX
+# max_ff hold'u -0.0172 ns / 8 ihlal ile kapatmadi. Bir sonraki tek kontrollu
+# probe 0.080 ns'tir; DRT ve 9-kose STA gormeden aday sayilmaz.
+GRT_RESIZER_SETUP_SLACK_MARGIN: 10.0
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.08

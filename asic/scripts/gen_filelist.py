@@ -4,7 +4,7 @@
 #
 #  Kaynak agac main_codes/rtl/ altindadir; bu betik oradaki butun .sv/.v
 #  dosyalarini tarar, ASIC akisina girmeyenleri ayiklar, FPGA'ya ozgu bellek
-#  modullerini asic_sources/ karsiliklariyla degistirir ve sonucu HDL derleme
+#  modullerini asic_rtl/ karsiliklariyla degistirir ve sonucu HDL derleme
 #  bagimliliklarini karsilayan bir sirada yazar (paketler once, ust modul son).
 #
 #  Boylece filelist.f elle tutulmaz; RTL agacina dosya eklenirse `make filelist`
@@ -35,10 +35,13 @@ REPLACED = {
     "desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv",
     "desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv",
     "desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv",
+    "desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv",
     "desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv",
     "desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv",
     "desgin_sources/Memory/Instrurction_RAM_AXI4-Lite_Wrapper/instr_bram_axi_ctrl.sv",
+    "desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv",
     "desgin_sources/AI_Accelerator/conv_accelerator.v",
+    "desgin_sources/Top_Module/Top_module.sv",
 }
 
 # --- ASIC akisina hic girmeyenler, gerekcesiyle ---
@@ -77,20 +80,23 @@ ASIC_PATCHED = [
     "patched/obi_to_axi_asic.sv",
     "patched/cv32e40p_obi_to_axi_wrapper_asic.sv",
     "patched/instr_bram_axi_ctrl_asic.sv",
+    "patched/data_bram_axi_ctrl_asic.sv",
     "patched/GPIO_AXI4_Lite_asic.sv",
     "patched/Timer_AXI4_Lite_asic.sv",
     "patched/QSPI_Master_AXI4_Lite_asic.sv",
+    "patched/I2C_Master_AXI4_Lite_asic.sv",
     "patched/UART_GU_AXI4_Lite_asic.sv",
     "patched/UART_YZ_AXI4_Lite_asic.sv",
     "patched/conv_accelerator_asic.v",
 ]
-ASIC_TECH = ["tech/xilinx_iobuf_stub.sv"]
+ASIC_TECH = ["tech/xilinx_iobuf_stub.sv", "tech/axi_read_arbiter2.sv"]
 ASIC_MEM = ["mem/sram32_cell.sv", "mem/sram32_cell_1k.sv",
             "mem/sram32_bank.sv", "mem/sram8_bank.sv",
             "mem/bram_instr_asic.sv", "mem/bram_data_asic.sv",
             "mem/bram_yz_asic.sv", "mem/conv_buf_ram_asic.sv"]
 ASIC_ROM = ["gen/boot_rom_asic.sv", "gen/weights_rom_p8_asic.v",
             "gen/fc_weights_rom_p4_asic.v"]
+ASIC_TOP = ["patched/Top_module_asic.sv"]
 
 BUCKETS = [
     ("desgin_sources/CPU/cv32e40p_rtl/vendor/", "vendor",
@@ -120,13 +126,13 @@ HEADER = """# ------------------------------------------------------------------
 #       ASIC'te ust modul dogrudan top_module'dur, saat pad'den gelir.
 #
 #    2) Memory/BRAM_defines/*.sv ve YZ hizlandiricinin ROM/RAM dosyalari yerine
-#       main_codes/rtl/asic_sources/ altindaki AYNI ISIMLI moduller kullanilir:
+#       asic_rtl/ altindaki AYNI ISIMLI moduller kullanilir:
 #         * degisken bellekler (Instr/Data RAM, YZ girdi RAM'i, conv tamponu)
 #           -> SKY130 SRAM makrolari
 #         * kalici bellekler (Boot ROM, YZ agirlik ROM'lari)
 #           -> standart hucrelerden orulmus mask ROM (silikonda guc verildiginde
 #              hazir; SRAM makrosu ilklendirilemedigi icin zorunlu)
-#       Esdegerlik kaniti: main_codes/testbench/ASIC/tb_asic_mem_equiv.sv
+#       Esdegerlik kaniti: asic_rtl/testbench/tb_asic_mem_equiv.sv
 #
 #    3) Xilinx IOBUF primitifinin teknolojiden bagimsiz karsiligi eklenmistir.
 #
@@ -147,7 +153,7 @@ def main():
     for s in list(PKG_ORDER) + sorted(REPLACED) + sorted(EXCLUDED):
         if s not in names:
             sys.exit(f"HATA: beklenen kaynak dosya yok: {s}")
-    for s in ASIC_PATCHED + ASIC_TECH + ASIC_MEM + ASIC_ROM:
+    for s in ASIC_PATCHED + ASIC_TECH + ASIC_MEM + ASIC_ROM + ASIC_TOP:
         if not (ASIC_RTL / s).is_file():
             sys.exit(f"HATA: ASIC kaynagi yok: asic_rtl/{s}"
                      f"  (`make roms` calistirildi mi?)")
@@ -156,7 +162,7 @@ def main():
     groups = {}
     for p in all_rtl:
         n = str(p.relative_to(RTL))
-        if n.startswith("asic_sources/") or n in EXCLUDED or n in REPLACED or n in PKG_ORDER:
+        if n in EXCLUDED or n in REPLACED or n in PKG_ORDER:
             continue
         for prefix, key, _ in BUCKETS:
             if n.startswith(prefix):
@@ -177,7 +183,10 @@ def main():
          [AS / s for s in ASIC_MEM]),
         ("ASIC kalici bellekleri: uretilmis mask ROM'lar (gen_rom.py ciktisi)",
          [AS / s for s in ASIC_ROM]),
-    ] + [(title, groups.get(key, [])) for _, key, title in BUCKETS]
+    ] + [(title, groups.get(key, [])) for _, key, title in BUCKETS] + [
+        ("ASIC reset synchronizer'li ust modul (en son)",
+         [AS / s for s in ASIC_TOP]),
+    ]
 
     out, n = [HEADER], 0
     for title, files in sections:

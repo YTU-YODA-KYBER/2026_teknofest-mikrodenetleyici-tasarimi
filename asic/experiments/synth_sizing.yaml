@@ -1,0 +1,6 @@
+# Sentez-only A/B: SYNTH_SIZING: true
+# LibreLane: "Enables abc cell sizing (instead of buffering)."
+# Hedef: 30 MHz'i sinirlayan ALU bolucu yolu (alu_div_i.RemSel_SP) sentez
+# seviyesinde daha iyi eslesirse pre-PnR WNS iyilesir.
+# Kabul: WNS iyilesmesi VEYA alan kazanci; hata/unmapped/latch 0 kalmali.
+SYNTH_SIZING: true

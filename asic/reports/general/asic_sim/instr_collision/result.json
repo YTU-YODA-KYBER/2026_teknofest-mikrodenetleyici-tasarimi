@@ -1,0 +1,10 @@
+{
+  "test": "instr_collision",
+  "top": "tb_instr_bram_collision",
+  "passed": true,
+  "required_markers": [
+    "SONUC: BASARILI"
+  ],
+  "missing_markers": [],
+  "fast_uart": false
+}

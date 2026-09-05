@@ -1,0 +1,8 @@
+meta:
+  version: 2
+
+# OPT3 alan/hold taramasi: setup koruma marjini ana konfigurdeki 10 ns'de
+# tutar, post-GRT hold hedefini 0.45 ns'den 0.05 ns'ye indirir. Tek-adim
+# sonucu aday eleme icindir; kabul edilirse DRT+RCX+9-kose STA zorunludur.
+GRT_RESIZER_SETUP_SLACK_MARGIN: 10.0
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.05

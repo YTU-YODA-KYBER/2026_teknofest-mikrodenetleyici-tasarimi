@@ -1,0 +1,51 @@
+meta:
+  version: 2
+
+# ---------------------------------------------------------------------------
+#  ANTEN: JUMPER + DIYOT (adim 44, GRT asamasi) -- ILK KEZ OLCULUYOR
+#
+#  Bu overlay `antenna_jumper.yaml`'in kopyasidir; TEK FARK:
+#      GRT_ANTENNA_REPAIR_JUMPER_ONLY: true  ->  false
+#  yani `OpenROAD.RepairAntennas` artik jumper'a EK OLARAK diyot da ekler.
+#
+#  NEDEN ACIK BIR YOL (2026-09-04 bagimsiz denetimi):
+#  Onceki "diyot yolu olculdu ve kapali" sonucu YANLIS TEMELE dayaniyordu.
+#  Elemenin dayandigi deney diyotlari DRT DONGUSU ICINDE ekliyordu
+#  (`DRT_ANTENNA_REPAIR_ITERS>0`) ve log soyle diyor:
+#      [INFO ANT-0002] Found 2930 net violations.
+#      [INFO GRT-0015] Inserted 9587 diodes.
+#  Strateji belgesi 2.930'u "diyot sayisi" saniyordu; o NET sayisidir,
+#  gercek diyot 9.587'dir. Adim 44'teki GRT asamasi diyot yolu bu proje
+#  uzerinde HIC olculmedi.
+#
+#  FIZIK (SKY130 tech LEF'ten dogrulandi):
+#  Ihlaller "Gate area" degil "Side area" kuralindandir:
+#      antenna.rpt: Required ratio: 400.00 (Side area) (VIOLATED)
+#  Tech LEF, met katmanlari:
+#      ANTENNADIFFSIDEAREARATIO PWL ( (0 400) (0.0125 400) (0.0225 2609) (22.5 11600) )
+#  Sinir, nete bagli DIFUZYON alaninin fonksiyonudur.
+#  sky130_fd_sc_hd__diode_2: ANTENNADIFFAREA 0.434700
+#  -> bir diyot limiti 400'den ~2.774'e, yani ~7 KATINA cikarir.
+#
+#  BU TASARIMIN KENDI RAPORUNDA GORULUYOR: difuzyonu olan netlerin gercek
+#  Required degerleri 2.778,20 / 2.956,40 / 3.134,60 / 3.312,80 / 3.669,20
+#  / 3.872,32 (difuzyonsuzlar 400,00).
+#
+#  BEDELI: diyot PARALEL YAPRAKTIR, yola SERI GECIKME EKLEMEZ.
+#  Giris kapasitansi 0,000981 pF. Karsilastirma: tel bolme tamponu
+#  0,002414 pF + ~0,25-0,37 ns seri gecikme.
+#
+#  UYARI -- BU BIR TAHMIN DEGIL OLCUM OLMALI: "bir diyot ihlallerin %99'unu
+#  temizler" sonucu yalnizca mevcut P/R dagilimindan yapilan STATIK bir
+#  tahmindir. OpenROAD bir kapiya birden fazla diyot ekleyebilir ve yeniden
+#  yollama YENI ihlal uretebilir. Gercek sayi adim 48'de olculur.
+# ---------------------------------------------------------------------------
+RUN_ANTENNA_REPAIR: true
+GRT_ANTENNA_REPAIR_JUMPER_ONLY: false   # <-- TEK DEGISKEN (jumper + diyot)
+GRT_ANTENNA_REPAIR_DIODE_ONLY: false
+GRT_ANTENNA_REPAIR_ITERS: 1
+GRT_ANTENNA_REPAIR_MARGIN: 5
+
+# Resizer'i DEVRE DISI BIRAKMAZ -- faz 1'de zaten kostu; bu bayrak yalnizca
+# IKINCI kez kosup jumper guide'larini silmesini engeller.
+RUN_POST_GRT_RESIZER_TIMING: false

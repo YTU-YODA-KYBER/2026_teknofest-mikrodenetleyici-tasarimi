@@ -1,0 +1,7 @@
+[INFO DRT-0195] Start 0th optimization iteration.
+[INFO DRT-0199]   Number of violations = 186694.
+[INFO DRT-0195] Start 1st optimization iteration.
+[INFO DRT-0199]   Number of violations = 154201.
+[INFO DRT-0195] Start 2nd optimization iteration.
+[INFO DRT-0199]   Number of violations = 151079.
+[INFO DRT-0195] Start 3rd optimization iteration.

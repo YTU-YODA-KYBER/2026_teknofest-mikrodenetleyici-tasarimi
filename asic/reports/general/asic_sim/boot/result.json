@@ -1,0 +1,11 @@
+{
+  "test": "boot",
+  "top": "boot_test",
+  "passed": true,
+  "required_markers": [
+    "TAM SISTEM TESTI: BASARILI",
+    "SONUC                      : GECTI"
+  ],
+  "missing_markers": [],
+  "fast_uart": false
+}

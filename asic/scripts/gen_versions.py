@@ -91,7 +91,11 @@ def main():
     A(f"Open PDKs commit kimligi  : {pdk_commit}")
     A( "Standart hucre kutuphanesi: sky130_fd_sc_hd")
     A( "PDK paket yoneticisi      : ciel")
-    A(f"PDK_ROOT (yerel)          : {pdk_root}")
+    # Sartname Bolum 3/8: teslim edilen dosyalarda makineye ozgu MUTLAK YOL
+    # olamaz. Bu yuzden yerel PDK_ROOT degeri YAZILMAZ; yalnizca degiskenin
+    # tanimli olup olmadigi ve PDK'nin dogru commit'te oldugu raporlanir.
+    A(f"PDK_ROOT                  : ortam degiskeninden alinir "
+      f"({'tanimli' if pdk_root != '(tanimsiz)' else 'TANIMSIZ'})")
     A( "Kurulum komutu            : ciel enable --pdk-family sky130 \\")
     A(f"                              {pdk_commit}")
     A("")

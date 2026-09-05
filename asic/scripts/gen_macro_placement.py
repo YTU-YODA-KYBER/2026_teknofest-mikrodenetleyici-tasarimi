@@ -56,7 +56,8 @@ NCOL, NROW = 4, 4                       # "4x4" izgarasi (varsayilan)
 NCOL_3X5, NROW_3X5 = 3, 5
 
 # ---------------------------------------------------------------------------
-#  YERLESIM: her bellegin bankalari 2x2 KUME olarak bitisik yerlestirilir.
+#  YERLESIM: guncel varsayilan macro-ring'dir. Eski 4x4/3x5 izgara
+#  secenekleri tarihsel deneyleri yeniden uretmek icin korunur.
 #
 #  NEDEN ONEMLI?  Her bellek bloğunun 32-bit veri yolu, 9-bit adresi, bayt
 #  maskesi ve kontrol sinyalleri TEK bir AXI denetleyicisinde toplanir. Bankalar
@@ -88,6 +89,136 @@ PLACEMENT = [
     ("conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram", 2, 2),
     ("conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram", 3, 2),
 ]
+
+# DRC-temiz 4200x3600 macro-ring. Standart hucrelere tek parca merkez birakir;
+# butun makrolar N yonunde kalarak makro PDN gridini korur.
+RING_PLACEMENT = [
+    ("instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram", 232.25, 80.00),
+    ("instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram", 995.35, 80.00),
+    ("instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram", 1758.45, 80.00),
+    ("instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram", 2521.55, 80.00),
+    ("data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram", 3284.65, 80.00),
+    ("data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram", 80.00, 650.00),
+    ("data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram", 80.00, 1433.10),
+    ("data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram", 80.00, 2216.20),
+    ("yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram", 333.91, 3103.46),
+    ("yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram", 1097.01, 3103.46),
+    ("yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram", 1860.11, 3103.46),
+    ("yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram", 2623.21, 3103.46),
+    ("yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram", 3386.31, 3122.50),
+    ("conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram", 3436.90, 1050.00),
+    ("conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram", 3436.90, 1950.00),
+]
+# --- Parametrik macro-ring ------------------------------------------------
+#  RING_PLACEMENT yukaridaki 4200x3600 icin DOGRULANMIS mutlak koordinat
+#  listesidir ve DEGISTIRILMEZ: iki bagimsiz DRT dali onunla sifir ihlale
+#  ulasti; herhangi bir yeniden turetme o kaniti gecersiz kilardi.
+#
+#  Baska die boyutlari icin ayni TOPOLOJI su kurallarla yeniden uretilir:
+#    * kenar payi ve satir ici bosluk 80 um (dogrulanmis halkadaki degerler),
+#    * alt ve ust satirlar yatayda ORTALANIR -- 4200x3600'da da oyleydi
+#      (alt satir x0 = (4200 - (5*683,10 + 4*80))/2 = 232,25; ust satir icin
+#      1k makro genisligiyle 333,91). Yani kural mevcut dosyayi yeniden uretir.
+#    * sol/sag sutunlar, alt ve ust satirlarin arasinda kalan banda ESIT
+#      araliklarla dagitilir. 4200x3600'daki elle secilmis asimetrik y
+#      degerlerini (650/1433,10/2216,20) birebir vermez; bu yuzden o die icin
+#      dogrulanmis liste kullanilmaya devam eder.
+#
+#  Topoloji sabittir ve bellek sahipligine gore secilmistir:
+#    alt satir  : instruction RAM 4 banka + data RAM banka 0
+#    sol sutun  : data RAM banka 1..3
+#    ust satir  : YZ RAM 4 x 2k + 1 x 1k
+#    sag sutun  : konvolusyon tamponu 2 banka
+#  Ayni belleğin bankalari bitisik kalir; aksi halde 32 bitlik veri yolu ve
+#  9 bitlik adres, cipi bastan basa gecen bir tel yildizina doner.
+RING_ROWS = {
+    "bottom": [
+        "instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram",
+        "instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram",
+        "instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram",
+        "instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram",
+        "data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram",
+    ],
+    "left": [
+        "data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram",
+        "data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram",
+        "data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram",
+    ],
+    "top": [
+        "yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram",
+        "yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram",
+        "yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram",
+        "yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram",
+        "yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram",
+    ],
+    "right": [
+        "conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram",
+        "conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram",
+    ],
+}
+RING_MARGIN = 80.0   # die kenari ile makro arasi
+RING_GAP    = 80.0   # satir icindeki makrolar arasi (dikey yollama kanali)
+
+
+def macro_size(inst):
+    return (MACRO1K_W, MACRO1K_H) if "g_1k" in inst else (MACRO_W, MACRO_H)
+
+
+def ring_placement(die_w, die_h):
+    """Verilen die icin macro-ring koordinatlarini uretir.
+
+    Dogrulanmis 4200 x 3600 die'da elle olculmus RING_PLACEMENT dondurulur.
+    """
+    if (die_w, die_h) == (4200.0, 3600.0):
+        return list(RING_PLACEMENT)
+
+    out = []
+
+    def row(insts, y):
+        total = sum(macro_size(i)[0] for i in insts) + RING_GAP * (len(insts) - 1)
+        x = round((die_w - total) / 2, 2)
+        if x < RING_MARGIN:
+            sys.exit(f"HATA: {len(insts)} makroluk satir {die_w} um genislige "
+                     f"sigmiyor (gerekli {total + 2 * RING_MARGIN:.1f} um)")
+        for i in insts:
+            out.append((i, round(x, 2), round(y, 2)))
+            x += macro_size(i)[0] + RING_GAP
+
+    def col(insts, x):
+        # Alt ve ust satirlarin arasinda kalan banda esit araliklarla dagit
+        lo = RING_MARGIN + MACRO_H
+        hi = die_h - MACRO_H - RING_MARGIN
+        band = hi - lo
+        need = sum(macro_size(i)[1] for i in insts)
+        gap = (band - need) / (len(insts) + 1)
+        if gap < 0:
+            sys.exit(f"HATA: {len(insts)} makroluk sutun {die_h} um yukseklige "
+                     f"sigmiyor (bant {band:.1f} um, gereken {need:.1f} um)")
+        y = lo + gap
+        for i in insts:
+            out.append((i, round(x, 2), round(y, 2)))
+            y += macro_size(i)[1] + gap
+
+    row(RING_ROWS["bottom"], RING_MARGIN)
+    row(RING_ROWS["top"], die_h - MACRO_H - RING_MARGIN)
+    col(RING_ROWS["left"], RING_MARGIN)
+    col(RING_ROWS["right"], die_w - MACRO_W - RING_MARGIN)
+    return out
+
+
+def ring_check_overlaps(place):
+    """Iki makronun ust uste binmedigini dogrular (halo haric)."""
+    boxes = []
+    for inst, x, y in place:
+        w, h = macro_size(inst)
+        boxes.append((inst, x, y, x + w, y + h))
+    for i in range(len(boxes)):
+        for j in range(i + 1, len(boxes)):
+            a, b = boxes[i], boxes[j]
+            if a[1] < b[3] and b[1] < a[3] and a[2] < b[4] and b[2] < a[4]:
+                sys.exit(f"HATA: makrolar ust uste biniyor: {a[0]} <-> {b[0]}")
+
+
 # 3x5 izgarasi icin yerlesim. IMEM ve DMEM 2x2 kume olarak korunur (CPU'nun
 # kritik yollari); conv tamponunun iki bankasi yan yana kalir. YZ girdi RAM'i
 # 5 bankasiyla tek sutuna dizilir -- 3 sutunlu izgarada bir bellek zorunlu
@@ -140,8 +271,8 @@ def main():
     ap = argparse.ArgumentParser()
     dw, dh = die_from_config()
     ap.add_argument("--netlist", required=True, type=pathlib.Path)
-    ap.add_argument("--grid", choices=("4x4", "3x5"), default="3x5",
-                    help="makro izgarasi; 3x5 dikey kanallari genisletir")
+    ap.add_argument("--grid", choices=("ring", "4x4", "3x5"), default="ring",
+                    help="makro yerlesimi; varsayilan DRC-temiz cevre halkasi")
     ap.add_argument("--die-width", type=float, default=dw)
     ap.add_argument("--die-height", type=float, default=dh)
     ap.add_argument("--col-gap", type=float, default=None,
@@ -153,7 +284,10 @@ def main():
     a = ap.parse_args()
 
     # Izgaraya gore harita + varsayilan kanal genislikleri
-    if a.grid == "3x5":
+    if a.grid == "ring":
+        PLACE, NC, NR = RING_PLACEMENT, None, None
+        col_gap = row_gap = None
+    elif a.grid == "3x5":
         PLACE, NC, NR = PLACEMENT_3X5, NCOL_3X5, NROW_3X5
         col_gap = 400.0 if a.col_gap is None else a.col_gap
         row_gap = 150.0 if a.row_gap is None else a.row_gap
@@ -172,6 +306,46 @@ def main():
     if missing or extra:
         sys.exit(f"HATA: netlist ile beklenen makro listesi uyusmuyor\n"
                  f"  eksik: {missing}\n  fazla: {extra}")
+
+    if a.grid == "ring":
+        PLACE = ring_placement(a.die_width, a.die_height)
+        validated = (a.die_width, a.die_height) == (4200.0, 3600.0)
+        for inst, x, y in PLACE:
+            w, h = macro_size(inst)
+            if x < 0 or y < 0 or x + w > a.die_width or y + h > a.die_height:
+                sys.exit(f"HATA: macro die disinda: {inst} @ ({x}, {y})")
+        ring_check_overlaps(PLACE)
+        # Dikey yollama kanali toplami: makrolar met2/met4'u tamamen kapattigi
+        # icin bu sayi global routing'in gercek darbogazidir.
+        vchan = a.die_width - sum(macro_size(i)[0] for i, _, _ in
+                                  [p for p in PLACE if abs(p[2] - RING_MARGIN) < 1])
+        lines = [
+            "# ------------------------------------------------------------------",
+            "#  SKY130 SRAM macro-ring yerlesimi -- OTOMATIK URETILMIS",
+            "#  Ureten: asic/scripts/gen_macro_placement.py --grid ring",
+            f"#  Die: {a.die_width} x {a.die_height} um; yon: tum makrolar N",
+            ("#  Olcum: GRT tasmasi 0, DRT ihlali 0, PDN grid ihlali 0."
+             if validated else
+             "#  DIKKAT: bu die icin yerlesim TURETILMISTIR, henuz DRT'den"),
+            ("# ------------------------------------------------------------------"
+             if validated else
+             "#  gecirilmemistir. Kabul icin OpenROAD.DetailedRouting kosulmalidir."),
+        ]
+        if not validated:
+            lines.append(f"#  Alt satir hizasinda dikey kanal toplami: {vchan:.0f} um "
+                         f"(%{100 * vchan / a.die_width:.1f})")
+            lines.append("# ---------------------------------------------------------------"
+                         "---")
+        lines.extend(f"{inst} {x:.2f} {y:.2f} N" for inst, x, y in PLACE)
+        a.out.parent.mkdir(parents=True, exist_ok=True)
+        a.out.write_text("\n".join(lines) + "\n")
+        macro_area = 14 * MACRO_W * MACRO_H + MACRO1K_W * MACRO1K_H
+        die_area = a.die_width * a.die_height
+        print(f"{a.out.name}: {len(wanted)} makro, macro-ring, "
+              f"die {a.die_width} x {a.die_height} um")
+        print(f"  makro alani {macro_area/1e6:.3f} mm² / die {die_area/1e6:.3f} mm² "
+              f"= %{100*macro_area/die_area:.1f}")
+        return
 
     # Izgara: sol-alttan baslar, once sutunlar dolar
     COL_GAP, ROW_GAP = col_gap, row_gap

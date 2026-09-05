@@ -37,7 +37,7 @@ module ai_accel_test;
     //  1) SAAT VE BAUD
     // =================================================================
     //  CLK_HALF=10 ns  ->  20 ns periyot  ->  50 MHz. Sistem saati budur
-    //  (clk_wiz_0: 100 MHz x 10 / 20, bkz. CLAUDE.md).
+    //  (clk_wiz_0: 100 MHz x 10 / 20).
     //  DUZELTME: burada eskiden "48e6 / 115200" yaziyordu ve asagidaki
     //  performans matematigi de 48 MHz varsayiyordu -- eski bir tasarimdan
     //  kalinti. Bolen dogruydu (50e6/434 = 115207 baud, %0.006 hata) ama

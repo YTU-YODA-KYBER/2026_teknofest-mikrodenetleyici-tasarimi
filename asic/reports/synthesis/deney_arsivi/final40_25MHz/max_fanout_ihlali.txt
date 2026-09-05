@@ -1,0 +1,15 @@
+1637:max fanout
+1638-
+1639-Pin                                   Limit Fanout  Slack
+1640----------------------------------------------------------
+1641-clkbuf_7_25_0_clk_i_regs/X               25     28     -3 (VIOLATED)
+1642-
+1643-max capacitance
+--
+3988:max fanout violation count 1
+3989-max cap violation count 629
+3990-============================================================================
+3991-
+3992-===========================================================================
+3993-check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+3994-===========================================================================

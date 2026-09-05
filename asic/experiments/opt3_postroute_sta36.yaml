@@ -1,0 +1,6 @@
+meta:
+  version: 2
+
+# Ayni yollanmis veritabani/parazitikler uzerinde 36 ns STA taramasi.
+# Akis adayi olursa temiz PnR ve gercek UART boot regresyonu zorunludur.
+CLOCK_PERIOD: 36.0

@@ -13,11 +13,16 @@
 /* Register tanımları soc.h'tadır (YzAccel, UartAI, Gpio);
  * register'lara yazılan değerler burada doğrudan sayı olarak verilir. */
 
-/* --- UART_YZ üzerinden tek bayt gönder (blocking) ---
- *  Neden UartAI, neden Uart değil: uart_mux.sv fiziksel TX pinini
- *  GPIO_IDR[1:0]'a göre sürer -> ==1 (SW0) genel UART, ==2 (SW1) UART_YZ.
- *  YZ modunda (SW1=1, SW0=0) pin UART_YZ'ye bağlıdır; genel UART'a yazılan
- *  bayt karttan hiç çıkmaz.
+/* --- GENEL UART üzerinden tek bayt gönder (blocking) ---
+ *  Şartname Bölüm 4.2.2 madde 5: "CPU kesme servisi (ISR) ile sonucu alıp
+ *  GENEL UART üzerinden yazdıracaktır."
+ *
+ *  Eskiden UartAI (UART_YZ) kullanılıyordu, çünkü uart_mux.sv fiziksel TX
+ *  pinini GPIO_IDR[1:0]'a göre sürüyordu ve YZ modunda pin UART_YZ'ye
+ *  bağlıydı -> genel UART'a yazılan bayt karttan hiç çıkmıyordu.
+ *  uart_mux.sv artık TX'i HER MODDA genel UART'tan sürüyor (gerekçesi o
+ *  dosyada); YZ arayüzü zaten tek yönlüdür, UART_YZ'nin göndereceği bir şey
+ *  yoktur. Bu yüzden sonuç artık şartnamenin istediği yoldan çıkıyor.
  *
  *  Protokol (UART RTL'i): TDR'ye bayt yaz -> CFG.TXSTART=1 ile başlat ->
  *  HW stop bit'te TXSTART'ı 0, TXDONE'ı 1 yapar -> TXDONE'ı SW temizler.
@@ -25,10 +30,10 @@
  *  (bit alanı yazması read-modify-write olduğu için eski 1 geri yazılır). */
 static void yz_putc(uint8_t b)
 {
-    UartAI->UART_TDR             = b;
-    UartAI->UART_CFG.bit.TXSTART = 1;
-    while (!UartAI->UART_CFG.bit.TXDONE);
-    UartAI->UART_CFG.bit.TXDONE  = 0;
+    Uart->UART_TDR             = b;
+    Uart->UART_CFG.bit.TXSTART = 1;
+    while (!Uart->UART_CFG.bit.TXDONE);
+    Uart->UART_CFG.bit.TXDONE  = 0;
 }
 
 /* Sonuç çerçevesi: 'Y' 'Z' ':' <karakter> '\n'  (5 bayt, ~434 us @115200)
@@ -106,19 +111,28 @@ static void irq_init(void)
     __asm__ volatile ("csrsi mstatus, 0x8");                               /* MIE = 1 */
 }
 
-/* --- UART_YZ'yi konfigüre et (bir kere, boot'ta) ---
- *  Bu olmadan RX reset default'unda kalır ve host'un gönderdiği veriyi
- *  hiç doğru örnekleyemez -> DMA'ya hiçbir zaman doğru bayt gitmez. */
-static void uart_yz_init(void)
+/* --- UART'ları konfigüre et (bir kere, boot'ta) ---
+ *  UART_YZ (UartAI): host'un gönderdiği ses özniteliğini ALIR. Bu olmadan RX
+ *  reset default'unda kalır ve veriyi hiç doğru örnekleyemez -> DMA'ya
+ *  hiçbir zaman doğru bayt gitmez.
+ *
+ *  Genel UART (Uart): çıkarım sonucunu GÖNDERİR (bkz. yz_putc). Eskiden
+ *  yalnız UART_YZ konfigüre ediliyordu; TX genel UART'a taşındığı için
+ *  onun bölücüsü de kurulmak zorunda, aksi halde sonuç çerçevesi reset
+ *  default baud'unda çıkar ve host okuyamaz. */
+static void uart_init(void)
 {
-    UartAI->UART_CPB     = 434u;  /* 50 MHz / 434 = 115200 baud (send_data.py ile aynı) */
+    UartAI->UART_CPB     = UART_CPB_115200;  /* SYS_CLK_HZ'den turetilir (send_data.py ile aynı baud) */
     UartAI->UART_STP.all = 0;     /* 1 stop bit (RX bu alanı kullanmıyor ama netlik icin) */
+
+    Uart->UART_CPB       = UART_CPB_115200;  /* sonuç çerçevesi aynı baud'da çıksın */
+    Uart->UART_STP.all   = 0;     /* 1 stop bit */
 }
 
 /* --- main: kurulumlar, sonra dur --- */
 int main(void) {
 
-    uart_yz_init();
+    uart_init();
     irq_init();
 
     for (;;);

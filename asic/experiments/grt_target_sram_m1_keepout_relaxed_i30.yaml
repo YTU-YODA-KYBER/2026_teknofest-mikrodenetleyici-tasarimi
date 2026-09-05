@@ -1,0 +1,16 @@
+meta:
+  version: 2
+
+# The best strict-capacity experiment missed zero overflow by only 5,114
+# tracks out of 4.26 million resources.  Relax each routing-layer derating by
+# five percentage points while retaining useful DRT headroom, and combine it
+# with the local met1 keep-out that prevents guides from crossing the SRAM OBS
+# boundary seen in the seven remaining DRT markers.
+GRT_ADJUSTMENT: 0.05
+GRT_LAYER_ADJUSTMENTS: [0, 0.25, 0.20, 0, 0, 0]
+
+ROUTING_OBSTRUCTIONS:
+  - [met1, 2553.10, 1565.00, 3256.20, 2001.54]
+
+GRT_OVERFLOW_ITERS: 30
+GRT_ALLOW_CONGESTION: true

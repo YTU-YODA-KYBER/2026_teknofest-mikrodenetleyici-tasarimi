@@ -14,13 +14,13 @@
 #       ASIC'te ust modul dogrudan top_module'dur, saat pad'den gelir.
 #
 #    2) Memory/BRAM_defines/*.sv ve YZ hizlandiricinin ROM/RAM dosyalari yerine
-#       main_codes/rtl/asic_sources/ altindaki AYNI ISIMLI moduller kullanilir:
+#       asic_rtl/ altindaki AYNI ISIMLI moduller kullanilir:
 #         * degisken bellekler (Instr/Data RAM, YZ girdi RAM'i, conv tamponu)
 #           -> SKY130 SRAM makrolari
 #         * kalici bellekler (Boot ROM, YZ agirlik ROM'lari)
 #           -> standart hucrelerden orulmus mask ROM (silikonda guc verildiginde
 #              hazir; SRAM makrosu ilklendirilemedigi icin zorunlu)
-#       Esdegerlik kaniti: main_codes/testbench/ASIC/tb_asic_mem_equiv.sv
+#       Esdegerlik kaniti: asic_rtl/testbench/tb_asic_mem_equiv.sv
 #
 #    3) Xilinx IOBUF primitifinin teknolojiden bagimsiz karsiligi eklenmistir.
 #
@@ -47,15 +47,18 @@
 ../asic_rtl/patched/obi_to_axi_asic.sv
 ../asic_rtl/patched/cv32e40p_obi_to_axi_wrapper_asic.sv
 ../asic_rtl/patched/instr_bram_axi_ctrl_asic.sv
+../asic_rtl/patched/data_bram_axi_ctrl_asic.sv
 ../asic_rtl/patched/GPIO_AXI4_Lite_asic.sv
 ../asic_rtl/patched/Timer_AXI4_Lite_asic.sv
 ../asic_rtl/patched/QSPI_Master_AXI4_Lite_asic.sv
+../asic_rtl/patched/I2C_Master_AXI4_Lite_asic.sv
 ../asic_rtl/patched/UART_GU_AXI4_Lite_asic.sv
 ../asic_rtl/patched/UART_YZ_AXI4_Lite_asic.sv
 ../asic_rtl/patched/conv_accelerator_asic.v
 
 # --- ASIC teknoloji sarmalayicisi (FPGA akisinda YOKTUR) ---
 ../asic_rtl/tech/xilinx_iobuf_stub.sv
+../asic_rtl/tech/axi_read_arbiter2.sv
 
 # --- ASIC degisken bellekleri: SKY130 SRAM makro sarmalayicilari ---
 ../asic_rtl/mem/sram32_cell.sv
@@ -107,7 +110,6 @@
 
 # --- Bellek AXI4-Lite kontrolculeri ---
 ../FPGA/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv
-../FPGA/main_codes/rtl/desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv
 ../FPGA/main_codes/rtl/desgin_sources/Memory/YZ_RAM_AXI4-Lite/yz_bram_axi_ctrl.sv
 
 # --- Ara baglanti ---
@@ -115,11 +117,8 @@
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv
 
-# --- Cevre birimleri ---
-../FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv
-
 # --- YZ hizlandirici ---
 ../FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv
 
-# --- Ust modul (en son) ---
-../FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv
+# --- ASIC reset synchronizer'li ust modul (en son) ---
+../asic_rtl/patched/Top_module_asic.sv

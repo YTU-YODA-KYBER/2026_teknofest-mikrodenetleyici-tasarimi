@@ -1,0 +1,9 @@
+meta:
+  version: 2
+
+# Radical physical-only diagnostic: macros form a perimeter ring and leave a
+# contiguous central standard-cell region.  The main config remains unchanged
+# until floorplan, PDN connectivity, placement and routing all validate it.
+DIE_AREA: [0, 0, 4200, 3600]
+MACRO_PLACEMENT_CFG: dir::experiments/macro_ring_placement.cfg
+

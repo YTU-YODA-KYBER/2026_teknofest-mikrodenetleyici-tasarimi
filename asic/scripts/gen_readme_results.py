@@ -73,6 +73,24 @@ def fmt(v, unit="", digits=3):
     return f"{v}{unit}"
 
 
+def power_of(corner):
+    """OpenSTA power.rpt icindeki Total satirini oku.
+
+    LibreLane 3.0.6 dokuz corner icin ayri rapor yazar, fakat final
+    metrics.json'a yalniz corner suffix'i olmayan son guc degerini tasir.
+    Bu nedenle dokuzlu tabloyu kaynak raporlardan uretmek gerekir.
+    """
+    p = ASIC / "reports" / "power" / corner / "power.rpt"
+    if not p.is_file():
+        sys.exit(f"HATA: corner guc raporu yok: {p}")
+    for line in p.read_text(errors="replace").splitlines():
+        if line.lstrip().startswith("Total"):
+            nums = re.findall(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?", line)
+            if len(nums) >= 4:
+                return tuple(float(x) for x in nums[:4])
+    sys.exit(f"HATA: power.rpt Total satiri okunamadi: {p}")
+
+
 def main():
     mj = ASIC / "results" / "metrics" / "metrics.json"
     if not mj.is_file():
@@ -84,8 +102,9 @@ def main():
     A(BEGIN)
     A("## Signoff sonuç özeti")
     A("")
-    A("Aşağıdaki sayıların tamamı akışın ürettiği")
-    A("[`results/metrics/metrics.json`](results/metrics/metrics.json) dosyasından")
+    A("Aşağıdaki sayılar akışın ürettiği")
+    A("[`results/metrics/metrics.json`](results/metrics/metrics.json) ile corner bazlı")
+    A("[`reports/power/`](reports/power/) raporlarından")
     A("`scripts/gen_readme_results.py` ile doldurulur; elle yazılmaz.")
     A("")
     A("### Alan ve kaynak kullanımı")
@@ -94,7 +113,12 @@ def main():
     A("|---|---|")
     A(f"| Die alanı | {fmt_area(g(m,'design__die__area'))} |")
     A(f"| Core alanı | {fmt_area(g(m,'design__core__area'))} |")
-    A(f"| Standart hücre alanı | {fmt_area(g(m,'design__instance__area'))} |")
+    # DIKKAT: design__instance__area MAKROLARI DA icerir (bu tasarimda 15 SRAM
+    # = 4,17 mm²). Standart hucre alani icin ayri anahtar kullanilir; ikisini
+    # karistirmak alani ~5 kat buyuk gosterirdi.
+    A(f"| Standart hücre alanı | {fmt_area(g(m,'design__instance__area__stdcell'))} |")
+    A(f"| Makro alanı (15 SRAM) | {fmt_area(g(m,'design__instance__area__macros'))} |")
+    A(f"| Toplam yerleşim alanı (hücre + makro) | {fmt_area(g(m,'design__instance__area'))} |")
     A(f"| Core utilization | {fmt(g(m,'design__instance__utilization'),'',4)} |")
     ic = g(m, "design__instance__count")
     A(f"| Toplam hücre sayısı | {tr_num(ic) if ic != '—' else '—'} |")
@@ -129,13 +153,20 @@ def main():
         ("magic__drc_error__count",         "Magic DRC"),
         ("klayout__drc_error__count",       "KLayout DRC"),
         ("design__lvs_error__count",        "Netgen LVS"),
-        ("design__lvs_device_count_difference", "LVS cihaz sayısı farkı"),
-        ("design__lvs_net_count_differences",  "LVS net sayısı farkı"),
-        ("route__antenna_violation__count", "Anten ihlali"),
+        ("design__lvs_device_difference__count", "LVS cihaz sayısı farkı"),
+        ("design__lvs_net_difference__count",  "LVS net sayısı farkı"),
+        ("antenna__violating__nets",       "Anten ihlali (net)"),
+        ("antenna__violating__pins",       "Anten ihlali (pin)"),
         ("route__drc_errors",               "Yollama DRC"),
         ("design__disconnected_pin__count", "Bağlantısız pin"),
+        ("design__critical_disconnected_pin__count", "Kritik bağlantısız pin"),
         ("design__xor_difference__count",   "GDSII XOR farkı (Magic ↔ KLayout)"),
-        ("design__instance__count__setup_violations", "Setup ihlali olan uç"),
+        ("timing__setup_vio__count", "Setup ihlali olan uç"),
+        ("timing__hold_vio__count",         "Hold ihlali olan uç"),
+        ("design__max_slew_violation__count", "Max slew ihlali"),
+        ("design__max_cap_violation__count", "Max cap ihlali"),
+        ("magic__illegal_overlap__count",   "Geçersiz örtüşme (illegal overlap)"),
+        ("design__power_grid_violation__count", "Güç dağıtım ağı ihlali"),
         ("design__inferred_latch__count",   "Çıkarılan latch"),
         ("design__lint_error__count",       "Lint hatası"),
         ("design__lint_warning__count",     "Lint uyarısı"),
@@ -149,13 +180,11 @@ def main():
     A("| Corner | Internal | Switching | Leakage | Toplam |")
     A("|---|---|---|---|---|")
     for c in cs:
-        tot = g(m, f"power__total__corner:{c}")
-        if tot == "—":
-            continue
-        A(f"| `{c}` | {fmt(g(m,f'power__internal__total__corner:{c}'),' W',5)} "
-          f"| {fmt(g(m,f'power__switching__total__corner:{c}'),' W',5)} "
-          f"| {fmt(g(m,f'power__leakage__total__corner:{c}'),' W',8)} "
-          f"| {fmt(tot,' W',5)} |")
+        internal, switching, leakage, total = power_of(c)
+        A(f"| `{c}` | {fmt(internal,' W',5)} "
+          f"| {fmt(switching,' W',5)} "
+          f"| {fmt(leakage,' W',8)} "
+          f"| {fmt(total,' W',5)} |")
     # ir__voltage__worst = en kotu dugum GERILIMI, ir__drop__worst = o dugumdeki
     # DUSUS. Ikisi farkli metriktir; tek satirda birlestirmek yanlis olurdu.
     irv = g(m, "ir__voltage__worst")

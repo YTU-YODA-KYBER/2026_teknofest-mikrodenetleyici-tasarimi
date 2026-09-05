@@ -1,0 +1,8 @@
+meta:
+  version: 2
+
+# Physical-only diagnostic: cap each post-CTS clock segment at 500 um.  The
+# default value 0 lets OpenROAD choose an automatic limit (5615 um in the
+# current floorplan), leaving a long root-to-tree branch that dominates skew.
+# Keep only if measured post-CTS hold improves without excessive buffers.
+CTS_CLK_MAX_WIRE_LENGTH: 500

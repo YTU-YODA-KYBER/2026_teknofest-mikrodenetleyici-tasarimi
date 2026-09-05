@@ -38,9 +38,17 @@
 
 /* ---------------------------------------------------------------------
  *  Sistem saati
- *  fpga_top icindeki clk_wiz_0: 100 MHz * 10 / 20 = 50 MHz.
+ *  FPGA: fpga_top icindeki clk_wiz_0 -> 100 MHz * 10 / 20 = 50 MHz.
+ *  ASIC: config.yaml CLOCK_PERIOD 40 ns -> 25 MHz.
+ *
+ *  Ayni firmware iki farkli saatte kosuyor, bu yuzden deger derleme zamaninda
+ *  ezilebilir olmali. ASIC derlemesi -DSYS_CLK_HZ=<asic frekansi> verir
+ *  (Makefile hedefleri `asic_boot` / `asic_app`); baska hicbir sey
+ *  degistirmeden UART bolucusu ve zamanlayici hesaplari dogru olcege oturur.
  * --------------------------------------------------------------------- */
-#define SYS_CLK_HZ   50000000UL
+#ifndef SYS_CLK_HZ
+#define SYS_CLK_HZ   50000000UL      /* varsayilan: FPGA gerceklemesi */
+#endif
 
 /* ---------------------------------------------------------------------
  *  Bellek haritasi (AXI4_Interconnect.sv'deki sel_* ile ayni olmali)
@@ -129,13 +137,25 @@ typedef struct {
  *  aldigi bayti DMA ile YZ bellegine yazar. Ikisi de ayni fiziksel pine
  *  baglidir, uart_mux SW1 ile birini secer.
  *
- *  baud = 50 MHz / UART_CPB.  TX bit suresi dogrudan CPB'dir; RX tarafi
- *  CPB[19:4]'u 16x oversampling limiti olarak kullanir, bu yuzden CPB'yi
- *  16'nin kati secmek RX/TX kaymasini engeller.
+ *  baud = SYS_CLK_HZ / UART_CPB.  TX bit suresi dogrudan CPB'dir; RX tarafi
+ *  CPB[19:4]'u 16x oversampling limiti olarak kullanir.
  *
- *  Sik kullanilan bolenler (CPB olarak dogrudan yazilir):
- *      115200 -> 434     230400 -> 217     9600 -> 5208
+ *  BOLUCU ARTIK SABIT DEGIL, SAAT FREKANSINDAN TURETILIR.
+ *  Ayni firmware iki farkli saatte kosuyor:
+ *      FPGA gerceklemesi : 50 MHz  -> 115200 baud icin CPB = 434
+ *      ASIC              : 25 MHz  -> 115200 baud icin CPB = 217
+ *  Sabit 434 yazilirsa ASIC'te 57.604 baud cikar; sabit 217 yazilirsa bu sefer
+ *  FPGA demosu 230.415 baud'a kayar. Bu yuzden deger derleme zamaninda
+ *  hesaplanir ve ASIC derlemesi -DSYS_CLK_HZ=<asic frekansi> ile ezer
+ *  (bkz. Makefile hedefi `asic_boot` / `asic_app`).
  * ===================================================================== */
+
+/* En yakina yuvarlayan bolucu: (f + baud/2) / baud
+ *   50 MHz -> (50.000.000 + 57.600) / 115.200 = 434  (gercek 115.207 baud)
+ *   25 MHz -> (25.000.000 + 57.600) / 115.200 = 217  (gercek 115.207 baud)
+ * Ikisi de UART'in +/-%2 toleransinin cok icindedir. */
+#define UART_CPB_FOR(baud)  (((SYS_CLK_HZ) + (baud) / 2u) / (baud))
+#define UART_CPB_115200     UART_CPB_FOR(115200u)
 
 typedef union {
     uint32_t all;

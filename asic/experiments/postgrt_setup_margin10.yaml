@@ -1,0 +1,8 @@
+# Temiz 50 ns kosumunda GRT-tahmini setup temizken nihai max-RC/SS STA
+# -5.729 ns oldu. Tahmini-gercek RC farkini PnR'da karsilamak icin 10 ns
+# setup guvenlik marji; hold marji ana config'teki 0.45 ns olarak kalir.
+GRT_RESIZER_SETUP_SLACK_MARGIN: 10.0
+RSZ_CORNERS:
+  - nom_tt_025C_1v80
+  - nom_ss_100C_1v60
+  - nom_ff_n40C_1v95

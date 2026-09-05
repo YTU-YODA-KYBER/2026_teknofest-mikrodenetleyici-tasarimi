@@ -1,0 +1,12 @@
+meta:
+  version: 2
+
+# Same clustering limit, with clkbuf_16 available as the leaf/sink buffer.
+CTS_SINK_CLUSTERING_SIZE: 10
+CTS_SINK_CLUSTERING_MAX_DIAMETER: 30
+CTS_CLK_BUFFERS:
+  - sky130_fd_sc_hd__clkbuf_16
+  - sky130_fd_sc_hd__clkbuf_8
+  - sky130_fd_sc_hd__clkbuf_4
+  - sky130_fd_sc_hd__clkbuf_2
+

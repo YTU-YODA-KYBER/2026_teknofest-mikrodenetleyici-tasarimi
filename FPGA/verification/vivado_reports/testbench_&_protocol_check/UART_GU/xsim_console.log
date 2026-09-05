@@ -1,0 +1,111 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Aug 23 19:00:27 2026
+# Process ID         : 502036
+# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/UART_GU_Module/UART_GU_Module.sim/sim_1/behav/xsim
+# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/UART_GU_testbench_behav/xsim_script.tcl}
+# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/UART_GU_Module/UART_GU_Module.sim/sim_1/behav/xsim/simulate.log
+# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/UART_GU_Module/UART_GU_Module.sim/sim_1/behav/xsim/xsim.jou
+# Running On         : stradale
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 26.04 LTS
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 400.059 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16473 MB
+# Swap memory        : 9130 MB
+# Total Virtual      : 25604 MB
+# Available Virtual  : 10762 MB
+#-----------------------------------------------------------
+source xsim.dir/UART_GU_testbench_behav/xsim_script.tcl
+# xsim {UART_GU_testbench_behav} -autoloadwcfg -tclbatch {UART_GU_testbench.tcl} -key {Behavioral:sim_1:Functional:UART_GU_testbench}
+Time resolution is 1 ps
+source UART_GU_testbench.tcl
+## run all
+
+-----------------------------------------------------
+--- TEST 1: Ayni anda yazma ve okuma islemi testi ---
+-----------------------------------------------------
+
+--- Register'lar konfigure ediliyor... ---
+--- Konfigurasyon tamamlandi. ---
+
+--- Yazma ve okuma islemi baslatildi. ---
+
+  [GECTI ] Test 1a basarili: RX verisi dogru, okunan: 10101101
+  [GECTI ] Test 1b basarili: TX tamamlandi (CFG[2]=1)
+------------------------------------------------------------
+--- TEST 2: Yazma ve okuma islemlerini asenkron baslatma ---
+------------------------------------------------------------
+
+--- Register'lar konfigure ediliyor... ---
+--- Konfigurasyon tamamlandi. ---
+
+--- Yazma islemi baslatildi. ---
+--- Okuma islemi baslatildi. ---
+
+  [GECTI ] Test 2a basarili: Asenkron RX verisi dogru, okunan: 11010110
+  [GECTI ] Test 2b basarili: Asenkron TX tamamlandi (CFG[2]=1)
+-------------------------------------
+--- TEST 3: Art arda yazma islemi ---
+-------------------------------------
+
+--- Register'lar konfigure ediliyor... ---
+--- Konfigurasyon tamamlandi. ---
+
+--- 1. Yazma islemi baslatildi. ---
+  [GECTI ] Test 3a basarili: 1. TX (0x8B) tamamlandi
+--- 2. Yazma islemi baslatildi. ---
+  [GECTI ] Test 3b basarili: 2. TX (0x6D) tamamlandi
+--- 3. Yazma islemi baslatildi. ---
+  [GECTI ] Test 3c basarili: 3. TX (0xF0) tamamlandi
+--- Yazma islemleri tamamlandi. ---
+
+
+-------------------------------------
+--- TEST 4: Art arda okuma islemi ---
+-------------------------------------
+
+--- Register'lar konfigure ediliyor... ---
+--- Konfigurasyon tamamlandi. ---
+
+--- 1. Okuma islemi baslatildi. ---
+--- Data received bit 1 oldu. ---
+  [GECTI ] Test 4a basarili: 1. RX verisi dogru, okunan: 11010110
+--- 2. Okuma islemi baslatildi. ---
+--- Data received bit 1 oldu. ---
+  [GECTI ] Test 4b basarili: 2. RX verisi dogru, okunan: 10101101
+--- 3. Okuma islemi baslatildi. ---
+--- Data received bit 1 oldu. ---
+  [GECTI ] Test 4c basarili: 3. RX verisi dogru, okunan: 11110000
+--- Okuma islemleri tamamlandi. ---
+----------------------------------------------------------------------
+---------------------- BUTUN TESTLER TAMAMLANDI ----------------------
+----------------------------------------------------------------------
+
+Toplam basarili test sayisi:          10
+Toplam basarisiz test sayisi:          0
+
+TUM TESTLER BASARILI!
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+======================================================================
+            AXI4-LITE PROTOKOL KONTROL OZETI
+======================================================================
+  Izlenen AXI arayuzu sayisi : 1
+  Protokol ihlali            : 0
+  Uyari (stall/watchdog)     : 0
+  SONUC                      : GECTI  (0 ihlal)
+======================================================================
+
+[AXI-CHK]        UART_GU | AW=17 W=17 B=17 AR=5 R=5 | ihlal=0 uyari=0
+$finish called at time : 1067554674 ps : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/UART_GU/UART_GU_tb.sv" Line 404
+## quit
+INFO: xsimkernel Simulation Memory Usage: 284272 KB (Peak: 341544 KB), Simulation CPU Usage: 1530 ms
+INFO: [Common 17-206] Exiting xsim at Sun Aug 23 19:00:31 2026...

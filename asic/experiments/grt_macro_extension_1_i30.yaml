@@ -1,0 +1,9 @@
+meta:
+  version: 2
+
+# GRT'nin SRAM OBS sinirlarini bir GCell genisleterek zero-capacity makro
+# kenarlarindan illegal guide gecirmesini onlemeyi dener. Bu dosya tani icin
+# congestion'a izin verir; nihai kabul config'i overflow != 0 ise durmalidir.
+GRT_MACRO_EXTENSION: 1
+GRT_OVERFLOW_ITERS: 30
+GRT_ALLOW_CONGESTION: true

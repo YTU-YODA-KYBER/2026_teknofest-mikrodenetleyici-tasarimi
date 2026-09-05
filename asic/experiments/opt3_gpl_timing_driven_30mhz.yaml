@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Sonucsuz kalan eski PL_TIMING_DRIVEN dalinin tam 30 MHz hedefli kontrollu
+# A/B'si. GRT tasmasi kabul metrigi degildir; terfi eden aday tam DRT'ye gider.
+CLOCK_PERIOD: 33.333333333333336
+PL_TIMING_DRIVEN: true

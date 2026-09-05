@@ -1,0 +1,142 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun Aug 23 19:00:06 2026
+# Process ID         : 501448
+# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/GPIO_Module/GPIO_Module.sim/sim_1/behav/xsim
+# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/GPIO_testbench_behav/xsim_script.tcl}
+# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/GPIO_Module/GPIO_Module.sim/sim_1/behav/xsim/simulate.log
+# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/GPIO_Module/GPIO_Module.sim/sim_1/behav/xsim/xsim.jou
+# Running On         : stradale
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 26.04 LTS
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency      : 898.451 MHz
+# CPU Physical cores : 14
+# CPU Logical cores  : 20
+# Host memory        : 16473 MB
+# Swap memory        : 9130 MB
+# Total Virtual      : 25604 MB
+# Available Virtual  : 10765 MB
+#-----------------------------------------------------------
+source xsim.dir/GPIO_testbench_behav/xsim_script.tcl
+# xsim {GPIO_testbench_behav} -autoloadwcfg -tclbatch {GPIO_testbench.tcl} -key {Behavioral:sim_1:Functional:GPIO_testbench}
+Time resolution is 1 ps
+source GPIO_testbench.tcl
+## run all
+======================================================================
+               GPIO_AXI4_Lite TESTBENCH BASLIYOR
+======================================================================
+
+--- TEST 1: Reset sonrasi baslangic degerleri ---
+  [GECTI ] Test 1 basarili: AXI idle (aw/w/arready=1, b/rvalid=0), GPIO_ODR=0
+
+--- TEST 2: GPIO_ODR yazma ve geri okuma ---
+  [GECTI ] Test 2a (GPIO_ODR cikis portu): beklenen=0x0000abcd, gozlenen=0x0000abcd
+  [GECTI ] Test 2b (GPIO_ODR geri okuma): beklenen=0x0000abcd, gozlenen=0x0000abcd
+
+--- TEST 3: GPIO_ODR[31:16] etkisiz (EK-2 isteri) ---
+  [GECTI ] Test 3a (ust 16 bit kirpildi mi): beklenen=0x00001234, gozlenen=0x00001234
+  [GECTI ] Test 3b (geri okumada da kirpik): beklenen=0x00001234, gozlenen=0x00001234
+
+--- TEST 4: GPIO_IDR okuma ---
+  [GECTI ] Test 4 (GPIO_IDR okuma): beklenen=0x00005a5a, gozlenen=0x00005a5a
+
+--- TEST 5: GPIO_IDR salt-okunur (RO) korunmasi ---
+  [GECTI ] Test 5a (GPIO_ODR bozulmadi): beklenen=0x00001234, gozlenen=0x00001234
+  [GECTI ] Test 5b (GPIO_IDR degismedi): beklenen=0x00005a5a, gozlenen=0x00005a5a
+
+--- TEST 6: dma_enable_o (GPIO_IDR[1]) ---
+  [GECTI ] Test 6a (IDR[1]=1 -> dma_enable_o=1): beklenen=0x00000001, gozlenen=0x00000001
+  [GECTI ] Test 6b (IDR[1]=0 -> dma_enable_o=0): beklenen=0x00000000, gozlenen=0x00000000
+
+--- TEST 7: anode one-cold ve tarama (scan) kontrolu ---
+  [GECTI ] Test 7a basarili: 2000 vurus boyunca anode her zaman tek-'0' (one-cold)
+  [GECTI ] Test 7b basarili: anode_select ilerliyor (tarama calisiyor), son deger=2
+
+--- TEST 8: Ekran sonuk (blank) kosullari ---
+  [GECTI ] Test 8a (IDR=0 -> catode sonuk): beklenen=0x000000ff, gozlenen=0x000000ff
+  [GECTI ] Test 8b (IDR=1, ODR=0 -> catode sonuk): beklenen=0x000000ff, gozlenen=0x000000ff
+
+--- TEST 9: 7-segment mesaj tablolari (tam tarama) ---
+  [GECTI ] Test 9a ERASE (IDR=1 ODR=1, hane 2-7): tum haneler dogru
+  [GECTI ] Test 9b SNDING (IDR=1 ODR=2, hane 2-7): tum haneler dogru
+  [GECTI ] Test 9c FINISH (IDR=1 ODR=3, hane 2-7): tum haneler dogru
+  [GECTI ] Test 9d ERROR (IDR=1 ODR=4, hane 2-7): tum haneler dogru
+  [GECTI ] Test 9e BOOT(def) (IDR=1 ODR=5, hane 2-7): tum haneler dogru
+  [GECTI ] Test 9f SNDING (IDR=2 ODR=5, hane 2-7): tum haneler dogru
+  [GECTI ] Test 9g INFRNC (IDR=2 ODR=6, hane 2-7): tum haneler dogru
+  [GECTI ] Test 9h EVET (IDR=2 ODR=7, hane 0-7): tum haneler dogru
+  [GECTI ] Test 9i HAYIR (IDR=2 ODR=8, hane 0-7): tum haneler dogru
+  [GECTI ] Test 9j SESSIZLK (IDR=2 ODR=9, hane 0-7): tum haneler dogru
+  [GECTI ] Test 9k BILINMYN (IDR=2 ODR=10, hane 0-7): tum haneler dogru
+  [GECTI ] Test 9l YZUART(def) (IDR=2 ODR=11, hane 2-7): tum haneler dogru
+
+--- TEST 10: Sistem adresi (0x4001_0004) ile erisim ---
+  [GECTI ] Test 10a (sistem adresine yazma): beklenen=0x0000beef, gozlenen=0x0000beef
+  [GECTI ] Test 10b (sistem adresinden okuma): beklenen=0x0000beef, gozlenen=0x0000beef
+
+--- TEST 11: Arka arkaya yazma ---
+  [GECTI ] Test 11 (son yazilan deger gecerli): beklenen=0x000000a5, gozlenen=0x000000a5
+
+--- TEST 12: Tanimsiz adres davranisi ---
+  [GECTI ] Test 12a (tanimsiz adrese yazma ODR'yi bozmadi): beklenen=0x000000a5, gozlenen=0x000000a5
+  [BILGI ] Test 12b: tanimsiz adresten okuma -> rdata=0x0000beef (case'de default yok, onceki deger korunur), bresp=0 rresp=0
+
+  [BILGI ] GPIO_IDR=0xFFFF_5A5A surulunce okunan: 0xffff5a5a
+  [BILGI ] EK-2'nin IDR[31:16]=0 isteri fpga_top.sv'de {16'h0, GPIO_IDR_pins} ile saglanir.
+
+--- TEST 13: Calisma sirasinda reset ---
+  [GECTI ] Test 13 basarili: reset sonrasi GPIO_ODR=0 ve AXI yeniden idle
+  [GECTI ] Test 13b (reset sonrasi tekrar yazilabiliyor): beklenen=0x00000055, gozlenen=0x00000055
+
+--- TEST 14: Animasyon deseni (anode_select 0 ve 1) ---
+  [GECTI ] Test 14a hane0 anim0 (hane=0 anim=0): catode=8'b01110001
+  [GECTI ] Test 14b hane0 anim1 (hane=0 anim=1): catode=8'b01110011
+  [GECTI ] Test 14c hane0 anim2 (hane=0 anim=2): catode=8'b01110111
+  [GECTI ] Test 14d hane0 anim3 (hane=0 anim=3): catode=8'b11111111
+  [GECTI ] Test 14e hane0 anim4 (hane=0 anim=4): catode=8'b11111111
+  [GECTI ] Test 14f hane0 anim5 (hane=0 anim=5): catode=8'b11111110
+  [GECTI ] Test 14g hane0 anim6 (hane=0 anim=6): catode=8'b11111100
+  [GECTI ] Test 14h hane0 anim7 (hane=0 anim=7): catode=8'b11111000
+  [GECTI ] Test 14i hane1 anim0 (hane=1 anim=0): catode=8'b11111111
+  [GECTI ] Test 14j hane1 anim1 (hane=1 anim=1): catode=8'b01110111
+  [GECTI ] Test 14k hane1 anim2 (hane=1 anim=2): catode=8'b01100111
+  [GECTI ] Test 14l hane1 anim3 (hane=1 anim=3): catode=8'b01000111
+  [GECTI ] Test 14m hane1 anim4 (hane=1 anim=4): catode=8'b11001110
+  [GECTI ] Test 14n hane1 anim5 (hane=1 anim=5): catode=8'b11011110
+  [GECTI ] Test 14o hane1 anim6 (hane=1 anim=6): catode=8'b11111110
+  [GECTI ] Test 14p hane1 anim7 (hane=1 anim=7): catode=8'b11111111
+
+--- TEST 15: anode_select / anim_select sarma (wrap) ---
+  [GECTI ] Test 15a basarili: anode_select 7 -> 0 sarmasi gozlendi
+  [GECTI ] Test 15b basarili: anim_select 7 -> 0 sarmasi gozlendi
+
+----------------------------------------------------------------------
+---------------------- BUTUN TESTLER TAMAMLANDI ----------------------
+----------------------------------------------------------------------
+
+Toplam basarili test sayisi: 50
+Toplam basarisiz test sayisi:0
+
+TUM TESTLER BASARILI!
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+======================================================================
+            AXI4-LITE PROTOKOL KONTROL OZETI
+======================================================================
+  Izlenen AXI arayuzu sayisi : 1
+  Protokol ihlali            : 0
+  Uyari (stall/watchdog)     : 0
+  SONUC                      : GECTI  (0 ihlal)
+======================================================================
+
+[AXI-CHK]           GPIO | AW=26 W=26 B=26 AR=7 R=7 | ihlal=0 uyari=0
+$finish called at time : 31066 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/GPIO/GPIO_tb.sv" Line 720
+## quit
+INFO: xsimkernel Simulation Memory Usage: 297300 KB (Peak: 341760 KB), Simulation CPU Usage: 1390 ms
+INFO: [Common 17-206] Exiting xsim at Sun Aug 23 19:00:10 2026...

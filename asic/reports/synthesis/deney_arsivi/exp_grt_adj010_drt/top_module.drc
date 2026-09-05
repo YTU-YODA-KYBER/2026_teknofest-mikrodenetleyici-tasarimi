@@ -1,0 +1,21 @@
+violation type: Short
+	srcs: net:_019282_ inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram
+	bbox = (2632.7400, 1960.2000) - (2632.8800, 1990.9200) on Layer met1
+violation type: Short
+	srcs: net:_019282_ inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram
+	bbox = (2563.7200, 1960.2000) - (2632.8800, 1960.3400) on Layer met1
+violation type: Short
+	srcs: net:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.rdata\[2\] inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram
+	bbox = (2594.1000, 1965.6400) - (2594.2400, 1966.4600) on Layer met1
+violation type: Short
+	srcs: net:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.rdata\[2\] inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram
+	bbox = (2563.7200, 1965.6400) - (2594.2400, 1965.7800) on Layer met1
+violation type: Short
+	srcs: net:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.rdata\[2\] inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram
+	bbox = (2594.5600, 1966.3200) - (2594.7000, 1990.9200) on Layer met1
+violation type: Short
+	srcs: net:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.rdata\[2\] inst:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram
+	bbox = (2594.1000, 1966.3200) - (2594.7000, 1966.4600) on Layer met1
+violation type: Metal Spacing
+	srcs: net:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.rdata\[2\] net:conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.rdata\[5\]
+	bbox = (2594.4700, 1991.4800) - (2594.5600, 1991.6200) on Layer met1

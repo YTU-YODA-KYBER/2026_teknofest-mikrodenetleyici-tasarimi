@@ -1,0 +1,8 @@
+meta:
+  version: 2
+
+# Kritik data-BRAM bank0'u rdata mandallarina yakinlastiran baglantisal makro
+# permutasyonu. Sistem saati hedefi tam 30,000,000 Hz'dir.
+# Once GPL/post-GPL tampon zinciri olculur; kabul edilirse tam DRT gerekir.
+CLOCK_PERIOD: 33.333333333333336
+MACRO_PLACEMENT_CFG: dir::constraints/macro_placement_data0_local.cfg

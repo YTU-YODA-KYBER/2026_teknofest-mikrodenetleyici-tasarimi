@@ -65,6 +65,19 @@ Toplu dönüşüm: `python3 scripts/wav_to_yz.py *.wav`
 Bu klasördeki TCL scriptleri, Vivado projesini elle uğraşmadan **otomatik
 oluşturur**.
 
+Ana SoC'nin final sentez, implementasyon, zamanlama, kaynak kullanımı, güç,
+DRC ve bitstream çıktılarını batch modunda tek komutla yeniden üretmek için:
+
+```bash
+cd FPGA
+export VIVADO_ROOT=/kurulum/yolu/Vivado/2025.2
+./scripts/run_fpga_build.sh
+```
+
+Bu komut önce FPGA firmware'ini derler, ardından temiz Vivado projesi kurar ve
+çıktıları `verification/vivado_reports/` ile `bitstream_files/` dizinlerine
+yazar. `FPGA_JOBS` verilmezse bellek kullanımını sınırlamak için 4 kullanılır.
+
 ---
 
 ## Nasıl çalıştırılır?
@@ -73,17 +86,17 @@ Vivado'nun **Tcl Console**'unda iki adım:
 
 **1.** Önce **kendi dosya yoluna göre** `FPGA` klasörüne gir:
 ```tcl
-cd /home/stradale/Documents/mainfiles/FPGA/
+cd /deponun/yolu/FPGA/
 ```
 
 **2.** İhtiyacına uygun scriptin yolunu(path) kopyalayıp `source` ile çalıştır:
 ```tcl
-source /home/stradale/Documents/mainfiles/FPGA/scripts/project_gen/Interconnect/create_Interconnect.tcl
+source /deponun/yolu/FPGA/scripts/project_gen/Interconnect/create_Interconnect.tcl
 ```
 
 Bu kadar — proje otomatik oluşur.
 
-> Yol (`/home/stradale/Documents/...`) sana göre değişir; repoyu nereye
+> Yol (`/deponun/yolu/...`) sana göre değişir; repoyu nereye
 > kopyaladıysan o yolu kullan.
 
 ---
@@ -96,6 +109,7 @@ klasöre görelidir. Projeler `FPGA/Vivado_projects/` altına, hedef kart
 
 | Script | Oluşturduğu proje | Gereken firmware hedefi |
 |---|---|---|
+| `../run_fpga_build.sh` + `../build_fpga.tcl` | **Final batch akışı** — ana projeyi kurar; sentez, implementasyon, raporlar ve bitstream'i üretir | `make all` (otomatik) |
 | `Main_MCU_Project.tcl` | **Tüm sistem** (bütün tasarım kodlarını içeren ana projeyi oluşturur.) | `make all` (`boot.hex`) |
 | `System_test/boot_test.tcl` | Sistemin boot işlemi ve flash belleğe yazma testi | `make sim_boot` (`sim_boot.hex`) |
 | `System_test/ai_accel_test.tcl` | Sistemin yapay zeka hızlandırıcısını test eder. | `make sim_app` (`sim_app.hex`) |

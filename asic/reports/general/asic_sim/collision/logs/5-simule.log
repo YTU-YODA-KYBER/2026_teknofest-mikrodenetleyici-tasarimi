@@ -1,0 +1,18 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Sep  5 23:03:23 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/sim_top/xsim_script.tcl
+# xsim {sim_top} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+SONUC: BASARILI -- SRAM ayni-adres arbitraji ve read-enable
+$finish called at time : 891 ns : File "/home/luxyxp/Documents/mainfiles/asic_rtl/testbench/tb_data_bram_collision.sv" Line 164
+exit
+INFO: xsimkernel Simulation Memory Usage: 275036 KB (Peak: 340312 KB), Simulation CPU Usage: 910 ms
+INFO: [Common 17-206] Exiting xsim at Sat Sep  5 23:03:25 2026...

@@ -42,13 +42,24 @@ module bram_yz #(
     input  logic [ADDR_WIDTH-1:0] raddr,
     output logic [DATA_WIDTH-1:0] rdata
 );
+    // OKUMA PORTU KOSULSUZ ACIK  (2026-08-25 duzeltmesi)
+    //   Orijinal bram_yz_def.sv:36 `always_ff @(posedge clk) rdata <= ram[raddr];`
+    //   yani her cevrim KOSULSUZ okur. Onceki ASIC surumu `re(~we)` yaziyordu;
+    //   `we` = dma_valid_i (yz_bram_axi_ctrl.sv:42) oldugu icin UART'tan gelen
+    //   HER DMA bayti okuma portunu bir cevrim kapatiyordu. Sonuc: o cevrimin
+    //   okumasi dusuyor VE serit/banka secicileri veriyle hizasini kaybediyordu
+    //   -> hizlandirici, cikarim sirasinda gelen bir DMA baytindan sonra ESKI
+    //   kelimeden YANLIS BAYT okuyabiliyordu (sessiz yanlis sinif).
+    //   Artik `re=1`; ayni-kelime cakismasi RD_COLLISION_SAFE ile ele alinir
+    //   (o cevrimde makro deselect edilir, cikis son gecerli veriyi tutar).
     sram8_bank #(
-        .NBANK2K  (NBANK2K),
-        .HAS_1K   (HAS_1K),
-        .AW       (ADDR_WIDTH),
-        .INIT_ZERO(1'b0)
+        .NBANK2K          (NBANK2K),
+        .HAS_1K           (HAS_1K),
+        .AW               (ADDR_WIDTH),
+        .INIT_ZERO        (1'b0),
+        .RD_COLLISION_SAFE(1'b1)
     ) u_mem (
-        .clk(clk), .we(we),
+        .clk(clk), .we(we), .re(1'b1),
         .waddr(waddr), .wdata(wdata),
         .raddr(raddr), .rdata(rdata)
     );

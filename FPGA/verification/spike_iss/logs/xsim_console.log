@@ -1,0 +1,43 @@
+Time resolution is 1 ps
+UVM_INFO /usr/Vivado/2025.2/Vivado/data/system_verilog/uvm_1.2/xlnx_uvm_package.sv(18601) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+=====================================================
+ SPIKE ISS LOCKSTEP — RTL tarafi
+   hex        : test.hex
+   IMEM taban : 0x10000000  (2048 kelime)
+   watchdog   : 200000 cevrim
+=====================================================
+[SPIKE_TB] 39 kelime (156 bayt) yuklendi: test.hex
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+[SPIKE_TB] INSTRRAM + DATARAM hazir, reset birakiliyor
+[CORE_TRACER  0] Output filename is: trace_core_00000000.log
+-----------------------------------------------------
+[SPIKE_TB] BITTI — program sonsuz donguye girdi (PC 0x10000098)
+   cevrim          : 777
+   cozulen komut   : 194
+   son PC          : 0x10000098
+   trace dosyasi   : trace_core_00000000.log
+   (simulasyon calisma dizininde: 
+    Vivado_projects/spike_test/spike_test.sim/sim_1/behav/xsim/)
+-----------------------------------------------------
+$finish called at time : 15750 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/spike_iss/spike_iss_test.sv" Line 254
+INFO: xsimkernel Simulation Memory Usage: 312948 KB (Peak: 356032 KB), Simulation CPU Usage: 1120 ms

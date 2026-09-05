@@ -18,7 +18,7 @@ PDK ailesi / varyanti     : sky130 / sky130A
 Open PDKs commit kimligi  : 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
 Standart hucre kutuphanesi: sky130_fd_sc_hd
 PDK paket yoneticisi      : ciel
-PDK_ROOT (yerel)          : /usr/asic_flow/pdk
+PDK_ROOT                  : ortam degiskeninden alinir (tanimli)
 Kurulum komutu            : ciel enable --pdk-family sky130 \
                               8afc8346a57fe1ab7934ba5a6056ea8b43078e71
 

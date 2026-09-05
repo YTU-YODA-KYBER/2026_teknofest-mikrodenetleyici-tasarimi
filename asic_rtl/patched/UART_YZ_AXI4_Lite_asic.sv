@@ -3,6 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/Peripherals/UART_YZ/UART_YZ_AXI4-Lite.sv
+//  SHA256 : 284cb3b4f8e17064334ec2665a3a78458149ae72ec9b9859e742994b2e03916f
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
@@ -73,17 +74,13 @@ module UART_YZ_AXI4_Lite (
     logic [ 3:0] rx_shift_cnt;    // Alınan bit sayısını saymak için kullanılır
 
     logic [15:0] tx_tick_cnt;        // Baud rate'i belirlemek için kullanılan sayaç
-    logic [15:0] rx_tick_cnt;        // Baud rate'i belirlemek için kullanılan sayaç
+    logic [31:0] rx_tick_cnt;        // Baud rate'i belirlemek için kullanılan sayaç
     logic [15:0] tx_tick_cnt_limit;  // Baud rate'i belirlemek için kullanılan sayaç limiti
-    logic [15:0] rx_tick_cnt_limit;  // Baud rate'i belirlemek için kullanılan sayaç limiti
-    logic [31:0] cnt_limit_mirror;// Yazma işlemi sırasında baud rate'i değiştirebilmek için kullanılan logicister
 
     logic [ 1:0] stop_bit;        // Stop bit sayısını takip etmek için kullanılır
     
     logic        tx_middle_alert;    // TX işlemi sırasında orta noktaya gelindiğinde uyarı vermek için kullanılır
     logic        rx_middle_alert;    // RX işlemi sırasında orta noktaya gelindiğinde uyarı vermek için kullanılır
-    logic [ 4:0] sixteen_cnt_rx;     // RX için 16 baud tick'ini saymak için kullanılır
-    logic        rx_zero_alert;      // RX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
     logic        tx_zero_alert;      // TX işlemi sırasında bit sayısı sıfırlandığında uyarı vermek için kullanılır
     logic rx_meta, rx_sync;
 
@@ -113,34 +110,35 @@ module UART_YZ_AXI4_Lite (
     // ---------------------------------------------------------
     //                  RX BAUDRATE GENERATOR
     // ---------------------------------------------------------
-    always @(posedge clk or negedge rst_n) begin // negedge olarak düzeltildi
+    always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
-            rx_tick_cnt    <= 0;
-            sixteen_cnt_rx <= 0;
-            rx_tick_cnt_limit <= 5;
-        end 
-        else begin
-            
-            if(rx_middle_alert) rx_middle_alert <= ~rx_middle_alert;
-            if(rx_zero_alert) rx_zero_alert <= ~rx_zero_alert;
-
-            if ((rx_tick_cnt >= rx_tick_cnt_limit - 1) || (rx_sync == 0 && !rx_state)) begin
-                rx_tick_cnt_limit <= cnt_limit_mirror;
-                rx_tick_cnt <= 0;
-
-                if((rx_sync == 0 && !rx_state) || !sixteen_cnt_rx) begin
-                    sixteen_cnt_rx <= 15;
-                    rx_zero_alert <= 1;
-                end
-                else sixteen_cnt_rx <= sixteen_cnt_rx - 1;
-
-                if(sixteen_cnt_rx == 8) rx_middle_alert <= 1;
-            end
-            else begin
-                rx_tick_cnt <= rx_tick_cnt + 1;
-            end
-            end
+            rx_tick_cnt     <= 0;
+            rx_middle_alert <= 0;
         end
+        else begin
+            rx_middle_alert <= 0;
+            case (rx_state)
+                IDLE: rx_tick_cnt <= 0;
+                WAIT: begin
+                    if (UART_CPB != 0 && rx_tick_cnt >= UART_CPB + (UART_CPB >> 1) - 1) begin
+                        rx_tick_cnt     <= 0;
+                        rx_middle_alert <= 1;
+                    end else begin
+                        rx_tick_cnt <= rx_tick_cnt + 1;
+                    end
+                end
+                DATA: begin
+                    if (UART_CPB != 0 && rx_tick_cnt >= UART_CPB - 1) begin
+                        rx_tick_cnt     <= 0;
+                        rx_middle_alert <= 1;
+                    end else begin
+                        rx_tick_cnt <= rx_tick_cnt + 1;
+                    end
+                end
+                default: rx_tick_cnt <= 0;
+            endcase
+        end
+    end
 
 
     always @(posedge clk or negedge rst_n) begin
@@ -181,8 +179,6 @@ module UART_YZ_AXI4_Lite (
             arready <= 1;
 
             tx      <= 1;
-            cnt_limit_mirror <= 5;
-
             dma_data_o <= 0;
             dma_valid_o <= 0;
             
@@ -195,10 +191,7 @@ module UART_YZ_AXI4_Lite (
                 wready  <= 1'b0;
                 
                 case (awaddr[7:0])
-                    8'h00: begin
-                        UART_CPB <= wdata;
-                        cnt_limit_mirror <= wdata[19:4];
-                    end
+                    8'h00: UART_CPB <= wdata;
                     8'h04: UART_STP <= wdata[1:0];
                     8'h0C: UART_TDR <= wdata;
                     8'h10: UART_CFG <= wdata;
@@ -277,9 +270,10 @@ module UART_YZ_AXI4_Lite (
                 end
 
                 WAIT : begin
-                    if(!sixteen_cnt_rx)begin
+                    if(rx_middle_alert) begin
+                        UART_RDR[0] <= rx_sync;
                         rx_state <= DATA;
-                        rx_shift_cnt <= 0;
+                        rx_shift_cnt <= 1;
                     end
                 end
 

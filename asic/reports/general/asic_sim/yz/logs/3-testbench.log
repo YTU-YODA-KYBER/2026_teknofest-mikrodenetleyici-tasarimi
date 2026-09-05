@@ -1,0 +1,5 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/AXI_protocol_check/axi_chk_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/AXI_protocol_check/axi4lite_protocol_checker.sv" into library work
+INFO: [VRFC 10-311] analyzing module axi4lite_protocol_checker
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic/run/sim/yz/ai_accel_test_fast_uart.sv" into library work
+INFO: [VRFC 10-311] analyzing module ai_accel_test

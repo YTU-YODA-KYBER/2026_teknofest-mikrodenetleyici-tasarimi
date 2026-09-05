@@ -1,0 +1,33 @@
+{
+  "cleared_net_flag_count": 0,
+  "flagged_net_count": 1422,
+  "flagged_without_jumper_guide_count": 1422,
+  "flagged_without_jumper_guide_examples": [
+    "GPIO_araddr\\[6\\]",
+    "QSPI_IO0",
+    "QSPI_IO2",
+    "QSPI_IO3",
+    "_000024_",
+    "_000051_",
+    "_000059_",
+    "_000068_",
+    "_000070_",
+    "_000077_",
+    "_000093_",
+    "_000374_",
+    "_009168_",
+    "_009172_",
+    "_009184_",
+    "_009191_",
+    "_009241_",
+    "_009277_",
+    "_009342_",
+    "_009351_"
+  ],
+  "input_odb": "/usr/asic_flow/run/ant4_grt_jumper_final40c/02-openroad-resizertimingpostgrt/top_module.odb",
+  "jumper_guide_count": 0,
+  "jumper_guide_net_count": 0,
+  "jumper_guide_without_flag_count": 0,
+  "jumper_guide_without_flag_examples": [],
+  "net_count": 119722
+}

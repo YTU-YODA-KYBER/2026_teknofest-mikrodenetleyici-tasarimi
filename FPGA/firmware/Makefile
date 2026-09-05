@@ -159,6 +159,70 @@ $(OUT_DIR)/sim_boot.hex: $(OUT_DIR)/sim_boot.elf
 	@$(SIZE) $<
 
 # =====================================================================
+#  ASIC  (asagidaki ASIC_CLK_HZ -- FPGA gerceklemesi 50 MHz)
+#
+#  NEDEN AYRI HEDEF?  Ayni firmware iki farkli saatte kosuyor. UART bolucusu
+#  soc.h'ta SYS_CLK_HZ'den TURETILIR, elle yazilmaz:
+#      UART_CPB_115200 = (SYS_CLK_HZ + 57600) / 115200
+#  Ornekler: 50 MHz -> 434 | 30 MHz -> 260 | 28 MHz -> 243 | 25 MHz -> 217
+#  Tek bir sabit yazilsaydi taraflardan biri mutlaka yanlis baud'a kayardi:
+#  FPGA sabiti ASIC'te kullanilsa baud ~%67 yukari, ASIC sabiti FPGA'da
+#  kullanilsa ~%78 yukari kayardi.
+#
+#  asic/scripts/gen_rom.py mask ROM'u asic_boot.hex'ten uretir; FPGA akisi
+#  boot.hex'i kullanmaya devam eder. Iki cikti da ayni kaynaktan derlenir,
+#  yalnizca -DSYS_CLK_HZ farklidir.
+#
+#  Saat frekansi degisirse tek yer guncellenir: ASIC_CLK_HZ.
+# =====================================================================
+ASIC_CLK_HZ ?= 28000000
+
+.PHONY: asic asic_boot asic_app asic_sim_boot asic_sim_app
+asic: asic_boot asic_app asic_sim_boot asic_sim_app
+
+asic_boot: EXTRA_FLAGS = -DSYS_CLK_HZ=$(ASIC_CLK_HZ)UL
+asic_boot: $(OUT_DIR)/asic_boot.hex
+$(OUT_DIR)/asic_boot.elf: $(BOOT_SRCS) $(BOOT_LD) Makefile | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(LDFLAGS) -T $(BOOT_LD) $(BOOT_SRCS) -o $@
+$(OUT_DIR)/asic_boot.hex: $(OUT_DIR)/asic_boot.elf
+	$(OBJCOPY) -O verilog --verilog-data-width=4 $< $@
+	@echo "[OK] $@   (ASIC Boot ROM, $(ASIC_CLK_HZ) Hz)"
+	@$(SIZE) $<
+
+# --- ASIC + SIM varyantlari ---------------------------------------------
+#  asic/scripts/run_asic_sim.py `boot` ve `yz` testlerinde ROM icerigini
+#  simulasyona ozel imajla ezer (sim_boot / sim_app). O imajlar da ASIC
+#  frekansinda derlenmezse testbench'in UART bolucusu (config.yaml'dan
+#  turetilir) firmware'inkiyle ayrisir ve test islevsel bir hata olmadigi
+#  halde patlar. Bu yuzden sim varyantlarinin da ASIC surumu gerekir.
+asic_sim_boot: EXTRA_FLAGS = -DFLASHER_NO_ERASE -DSYS_CLK_HZ=$(ASIC_CLK_HZ)UL
+asic_sim_boot: $(OUT_DIR)/asic_sim_boot.hex
+$(OUT_DIR)/asic_sim_boot.elf: $(BOOT_SRCS) $(BOOT_LD) Makefile | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(LDFLAGS) -T $(BOOT_LD) $(BOOT_SRCS) -o $@
+$(OUT_DIR)/asic_sim_boot.hex: $(OUT_DIR)/asic_sim_boot.elf
+	$(OBJCOPY) -O verilog --verilog-data-width=4 $< $@
+	@echo "[OK] $@   (ASIC SIM Boot ROM, $(ASIC_CLK_HZ) Hz, erase KAPALI)"
+	@$(SIZE) $<
+
+asic_sim_app: EXTRA_FLAGS = -DSIMULATION -DSYS_CLK_HZ=$(ASIC_CLK_HZ)UL
+asic_sim_app: $(OUT_DIR)/asic_sim_app.hex
+$(OUT_DIR)/asic_sim_app.elf: $(APP_SRCS) $(APP_BOOTROM_LD) Makefile | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(LDFLAGS) -T $(APP_BOOTROM_LD) $(APP_SRCS) -o $@
+$(OUT_DIR)/asic_sim_app.hex: $(OUT_DIR)/asic_sim_app.elf
+	$(OBJCOPY) -O verilog --verilog-data-width=4 $< $@
+	@echo "[OK] $@   (ASIC SIM app hex, $(ASIC_CLK_HZ) Hz)"
+	@$(SIZE) $<
+
+asic_app: EXTRA_FLAGS = -DSYS_CLK_HZ=$(ASIC_CLK_HZ)UL
+asic_app: $(OUT_DIR)/asic_app.hex
+$(OUT_DIR)/asic_app.elf: $(APP_SRCS) $(APP_LD) Makefile | $(OUT_DIR)
+	$(CC) $(CFLAGS) $(LDFLAGS) -T $(APP_LD) $(APP_SRCS) -o $@
+$(OUT_DIR)/asic_app.hex: $(OUT_DIR)/asic_app.elf
+	$(OBJCOPY) -O verilog --verilog-data-width=4 --change-addresses -$(APP_BASE) $< $@
+	@echo "[OK] $@   (ASIC app hex, $(ASIC_CLK_HZ) Hz)"
+	@$(SIZE) $<
+
+# =====================================================================
 #  APP  (main_app -> INSTRRAM'e boot edilecek asil uygulama)
 # =====================================================================
 # --- HW: app.hex (send_data.py / hex2vmf girdisi) + app.bin (harici programlayici) ---

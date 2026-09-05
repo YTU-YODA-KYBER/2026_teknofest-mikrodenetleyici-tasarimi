@@ -3,7 +3,14 @@
 //
 //  Ureten : asic/scripts/gen_rom.py
 //  Kaynak : weights_p8.hex
+//  Kaynak SHA256 : 33b3c3c47aac0c32ac2cbf0b29c2e40f2fe5ef9b200d4d023c97cbb3e930b667
 //  Icerik : 80 / 80 kelime x 64 bit  (5120 bit)
+//
+//  Kaynak hex'in SHA256'si BILEREK bu basliktadir: `gen_rom.py --all --check`
+//  uretimi bellekte tekrarlayip diskteki dosyayla metin bazinda karsilastirir.
+//  Boylece firmware/agirliklar yeniden uretildiginde ve `make roms`
+//  unutuldugunda BAYAT bir ROM sessizce senteze giremez (patch_rtl.py'nin
+//  yamali kopyalar icin yaptigi kontrolun ROM karsiligi).
 //
 //  Bu modul ASIC akisinda AI_Accelerator/weights_rom_p8.v dosyasinin
 //  yerine gecer (modul adi ve port listesi birebir aynidir). Icerik silikonda

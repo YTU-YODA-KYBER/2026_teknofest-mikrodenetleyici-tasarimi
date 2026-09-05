@@ -1,0 +1,11 @@
+meta:
+  version: 2
+
+# GRT_LAYER_ADJUSTMENTS icindeki 0 degeri OpenROAD'da "ceza yok" anlamina
+# gelmez: once butun katmanlara GRT_ADJUSTMENT uygulanir, sonra yalnizca
+# sifirdan farkli katman degerleri onu ezer. Ana config'teki genel %30 ceza
+# bu nedenle met3/met4'te de kalmis ve step39'da yaklasik 711k kaynak
+# kaybettirmistir. Bu deney met1=.30, met2=.25 degerlerini korur; listedeki
+# sifirlarin aldigi genel cezayi %10'a indirerek ust katman kapasitesini geri
+# verir. Once ayni post-CTS ODB'de izole olarak olculur.
+GRT_ADJUSTMENT: 0.10

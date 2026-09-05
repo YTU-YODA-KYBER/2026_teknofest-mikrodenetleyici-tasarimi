@@ -3,6 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv
+//  SHA256 : 32cf788248bde52f22768d9a326869b92b3fadd27eba1d42b02d14e765b15e8c
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.

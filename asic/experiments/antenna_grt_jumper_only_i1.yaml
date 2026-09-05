@@ -1,0 +1,15 @@
+meta:
+  version: 2
+
+# GRT tabanlı saf-jumper karşılaştırması. Diyot/hücre eklemez; ancak
+# RepairAntennas'ın ürettiği artımlı guide'lar nedeniyle kabul için mutlaka
+# DetailedRouting DRC=0 gerekir. GRT/anten sayısı tek başına kabul değildir.
+RUN_HEURISTIC_DIODE_INSERTION: false
+DIODE_ON_PORTS: "none"
+RUN_ANTENNA_REPAIR: true
+GRT_ANTENNA_REPAIR_ITERS: 1
+GRT_ANTENNA_REPAIR_MARGIN: 5
+GRT_ANTENNA_REPAIR_JUMPER_ONLY: true
+GRT_ANTENNA_REPAIR_DIODE_ONLY: false
+DRT_ANTENNA_REPAIR_ITERS: 0
+

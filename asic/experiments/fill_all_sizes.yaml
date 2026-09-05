@@ -1,0 +1,7 @@
+# Ayni sky130_fd_sc_hd filler ailesinin buyuk hucrelerini once kullanarak
+# son durumdaki instance sayisini ve Magic.WriteLEF bellek yukunu azalt.
+FILL_CELLS:
+  - sky130_fd_sc_hd__fill_8
+  - sky130_fd_sc_hd__fill_4
+  - sky130_fd_sc_hd__fill_2
+  - sky130_fd_sc_hd__fill_1

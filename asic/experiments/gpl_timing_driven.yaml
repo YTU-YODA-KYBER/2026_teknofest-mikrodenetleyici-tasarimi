@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# Physical-only diagnostic.  Keep routability-driven placement and all other
+# main settings unchanged, but let GPL weight critical timing paths.  The
+# result must still pass GRT and DRT before it can be considered for main.
+PL_TIMING_DRIVEN: true

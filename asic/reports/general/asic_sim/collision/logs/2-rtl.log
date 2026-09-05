@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_cell
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_bank.sv" into library work
+INFO: [VRFC 10-311] analyzing module sram32_bank
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_data_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module bram_data
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/data_bram_axi_ctrl_asic.sv" into library work
+INFO: [VRFC 10-311] analyzing module data_bram_axi_ctrl

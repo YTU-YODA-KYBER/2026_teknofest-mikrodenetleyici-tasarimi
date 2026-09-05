@@ -12,13 +12,14 @@ Hedef aygıt: **xc7a100tcsg324-1** (Nexys A7), sistem saati **50 MHz**.
 | Doğrulama | Ne kapsıyor | Sonuç | Rapor |
 |---|---|---|---|
 | Sentez | `fpga_top`, tüm SoC | hatasız | [`vivado_reports/synthesis/`](vivado_reports/synthesis/) |
-| Implementasyon | yerleştirme + yollama | hatasız, 14575/14575 net yollandı, 0 hata | [`vivado_reports/implementation/`](vivado_reports/implementation/) |
-| Zamanlama | 50 MHz kısıtı | **WNS +0,564 ns**, WHS +0,037 ns, 0 ihlal (14322 uç) | [`vivado_reports/timing_report/`](vivado_reports/timing_report/) |
-| Kaynak kullanımı | — | LUT %15,76 · FF %3,56 · BRAM %14,07 · DSP %2,50 ¹ | [`vivado_reports/synthesis/`](vivado_reports/synthesis/) |
+| Implementasyon | yerleştirme + yollama | hatasız, 14646/14646 yönlendirilebilir ağ yollandı, 0 yönlendirme hatası | [`vivado_reports/implementation/`](vivado_reports/implementation/) |
+| Zamanlama | 50 MHz kısıtı | **WNS +0,181 ns**, WHS +0,029 ns, 0 ihlal (14114 uç) | [`vivado_reports/timing_report/`](vivado_reports/timing_report/) |
+| Kaynak kullanımı | — | LUT %15,78 · FF %3,54 · BRAM %11,11 · DSP %2,50 | [`vivado_reports/synthesis/`](vivado_reports/synthesis/) |
+| Güç kestirimi | vektörsüz etkinlik yayılımı | 0,251 W; güven düzeyi düşük | [`vivado_reports/power/`](vivado_reports/power/) |
 | Kod kapsamı | 6 çevre birimi + YZ hızlandırıcı | statement %91–100 | [`vivado_reports/code_coverage/`](vivado_reports/code_coverage/) |
 | Directed testbench | 6 çevre birimi + boot zinciri + YZ hızlandırıcı, 8 koşum | **8/8 koşum geçti**, 0 başarısız kontrol | [`vivado_reports/testbench_&_protocol_check/`](vivado_reports/testbench_&_protocol_check/) |
 | AXI4-Lite protokol | 15 arayüz, 40 kural, 8 koşum | **0 ihlal** | [`vivado_reports/testbench_&_protocol_check/`](vivado_reports/testbench_&_protocol_check/) |
-| UVM regresyon | 7 AXI4-Lite bloğu, 73 test × 3 tohum | **219/219 geçti**, 0 protokol ihlali ² | [`uvm/`](uvm/) |
+| UVM regresyon | 7 AXI4-Lite bloğu, 73 test × 3 tohum | **219/219 geçti**, 0 protokol ihlali | [`uvm/`](uvm/) |
 | UVM fonksiyonel kapsam | covergroup bin'leri | **35/35 ölçülebilir bin → %100** | [`uvm/coverage/`](uvm/coverage/) |
 | UVM satır kapsamı | 7 blok, Verilator | **%96,3** (1292/1341 satır) | [`uvm/coverage/`](uvm/coverage/) |
 | Spike ISS lockstep | CV32E40P, komut seviyesi | **193/193 komut eşleşti**, 0 fark | [`spike_iss/`](spike_iss/) |
@@ -27,12 +28,6 @@ Hedef aygıt: **xc7a100tcsg324-1** (Nexys A7), sistem saati **50 MHz**.
 | YZ — bellek bütçesi | hızlandırıcının tüm RAM/ROM'ları | **30.720 B = 30,00 KB** (sınır 30 KB) | [`ai_accel_reports/`](ai_accel_reports/) |
 | YZ — doğruluk | 156 ses örneği, kart üzerinde | yazılım %91,03 · donanım %91,03 → fark **0,00 puan** | [`ai_accel_reports/`](ai_accel_reports/) |
 | YZ — hızlanma | Vivado simülasyonu | **276,9×** (12.608.381 → 45.540 çevrim) | [`ai_accel_reports/`](ai_accel_reports/) |
-
-¹ YZ girdi RAM'i 32.768 → 9.904 bayta indirildikten sonra yeniden sentez
-bekliyor; BRAM oranı düşecek.
-
-² Sayıya `gpio_stress_test` dahil değildir: bilerek başarısız olan, bulunan
-bir RTL sorununu gösteren tek testtir ([`uvm/findings.md`](uvm/findings.md)).
 
 Şartnamenin iki YZ maddesi de karşılanmıştır: hızlanma sağlanmış, doğruluk farkı
 %10'luk pencerenin içinde kalmıştır (mutlak 0,00 puan / bağıl %0,00).
@@ -110,12 +105,11 @@ testin `report_phase`'inde UVM hatasına çevriliyor.
 | YZ CSR | 7 | 21 | 21 | 0 | %100,0 |
 | **Toplam** | **73** | **219** | **219** | **0** | **%96,3** |
 
-Ortam bir RTL sorunu buldu: **GPIO'nun işlem kabul koşulu kendi
-`awready`/`arready`'siyle nitelenmemiş.** Boru hatlı bir master — `VALID`'i
-indirmeden ikinci işlemi sunan, AXI'de tamamen yasal bir davranış — bloğu
-kilitliyor; tek bir yazma isteğine 10.008 yazma cevabı üretiliyor. Aynı stres
-testi diğer altı blokta temiz geçiyor. Ayrıntı ve tekrar üretme adımları
-[`uvm/findings.md`](uvm/findings.md)'dedir.
+Ortam, GPIO işlem kabul koşulunun kendi `awready`/`arready` sinyalleriyle
+nitelenmemesi nedeniyle boru hatlı trafikte oluşan bir kilitlenme buldu.
+Kabul koşulu düzeltildi; `gpio_stress_test` bu davranışın regresyon koruması
+olarak diğer altı bloktaki stres testleriyle birlikte geçmektedir. İlk bulgu,
+etkisi ve tekrar üretme adımları [`uvm/findings.md`](uvm/findings.md)'dedir.
 
 Ayrıca mevcut blok testbench'lerinde hiç bağlanmamış iki yol ilk kez
 doğrulandı: UART_YZ'nin DMA yan bandı (`dma_enable_i`/`dma_data_o`/
@@ -204,7 +198,7 @@ belgenin kendi alt bilgisindeki numaralardır.
 
 | # | Metot | Şartname önceliği | Durum | Kanıt |
 |---|---|---|---|---|
-| 1 | Doğrulama Planı | Elden gelenin en iyisi | **kısmen** — mevcut plan yalnızca UVM ortamını kapsıyor; bütün doğrulama faaliyetlerini ve tamamlanma hedeflerini tarif eden üst seviye bir plan yok | [`uvm/test_plan.md`](uvm/test_plan.md) · [`uvm/findings.md`](uvm/findings.md) |
+| 1 | Doğrulama Planı | Elden gelenin en iyisi | **yapıldı** — bütün blok, sistem, FPGA ve ASIC faaliyetleri ile tamamlanma ölçütleri eşlendi | [`test_plan.md`](test_plan.md) · [`uvm/test_plan.md`](uvm/test_plan.md) |
 | 2 | Blok Seviyesi Testler (directed veya randomized) | Opsiyonel | **yapıldı** | directed: [`vivado_reports/testbench_&_protocol_check/`](vivado_reports/testbench_&_protocol_check/) · randomized: [`uvm/`](uvm/) |
 | 3 | Protokol Kontrolleri (SVA / AXI agent) | **Zorunlu** | **yapıldı** | [`vivado_reports/testbench_&_protocol_check/`](vivado_reports/testbench_&_protocol_check/) — 15 arayüz, 0 ihlal |
 | 4 | Çekirdek Testleri (Spike ISS, self-checking) | Elden gelenin en iyisi | **yapıldı** | [`spike_iss/`](spike_iss/) — 193/193 komut eşleşti |
@@ -240,7 +234,7 @@ belgenin kendi alt bilgisindeki numaralardır.
 | 1 | Bütün tasarım RTL kodları | **yapıldı** | [`../main_codes/rtl/`](../main_codes/rtl/) |
 | 2 | Bütün testbench kodları | **yapıldı** | [`../main_codes/testbench/`](../main_codes/testbench/) |
 | 3 | Hatasız (error free) sentez raporu | **yapıldı** | [`vivado_reports/synthesis/`](vivado_reports/synthesis/) |
-| 4 | Hatasız durağan zamanlama analizi (STA) raporu | **yapıldı** | [`vivado_reports/timing_report/`](vivado_reports/timing_report/) — WNS +0,564 ns, 0 ihlal |
+| 4 | Hatasız durağan zamanlama analizi (STA) raporu | **yapıldı** | [`vivado_reports/timing_report/`](vivado_reports/timing_report/) — WNS +0,181 ns, 0 ihlal |
 | 5 | Hatasız implementasyon (Place & Route) raporu | **yapıldı** | [`vivado_reports/implementation/`](vivado_reports/implementation/) |
 | 6 | FPGA'ya yüklenebilecek bitstream | **yapıldı** | [`../bitstream_files/fpga_top.bit`](../bitstream_files/fpga_top.bit) |
 
@@ -266,7 +260,7 @@ yazmaç tanımlarına uygunluğun ancak testlerle gösterilebilmesidir.
 | 3 | Timer: `TIM_PRE` bölme oranı | **yapıldı** — gerçekleme `sistem saati / (TIM_PRE+1)` | Şartnamenin `TIM_PRE=0xFFFFFFFF → 0x80000000 periyot` örneği kendi içinde tutarsızdır (aynı tabloda `0→1`, `1→2` verilmiş); DDK'ya sorulmalı |
 | 4 | UART: `UART_CPB / STP / RDR / TDR / CFG` haritası, `UART_CFG[0]`'ın donanımca temizlenmesi (v1.3) | **yapıldı** | [`.../UART_GU/`](vivado_reports/testbench_&_protocol_check/UART_GU/) Test 1–4 |
 | 5 | UART: **en az iki farklı baud hızı** | **yapıldı** — üç farklı bölen denendi (`UART_CPB` = 375 / 417 / 500) | [`.../UART_GU/`](vivado_reports/testbench_&_protocol_check/UART_GU/) |
-| 6 | UART: **1 Mbps veri aktarım hızı desteği** | **eksik** — alıcı tarafın 16× örnekleme böleni `UART_CPB[19:4]` olduğu için `UART_CPB` 16'nın katı olmalıdır; 50 MHz'de 1 Mbps `UART_CPB=50` ister ve RX bit süresi 48 çevrime yuvarlanır (**%4 baud hatası**). Hiç test edilmedi | — |
+| 6 | UART: **1 Mbps veri aktarım hızı desteği** | **yapıldı** — 50 MHz'de `UART_CPB=50`; iki UART'ta TX, RX ve full-duplex testleri geçti | [`uvm/logs/uart_gu/`](uvm/logs/uart_gu/) · [`uvm/logs/uart_yz/`](uvm/logs/uart_yz/) |
 | 7 | I2C: SCL 400 kHz sabit | **yapıldı** | `I2C_FREQ_HZ = 400_000` parametresi; [`.../I2C/`](vivado_reports/testbench_&_protocol_check/I2C/) |
 | 8 | I2C: `NBY` 1–4 kırpması, TX/RX aynı anda enable'da donanımsal önlem, `CFG[0..3]` bayrakları | **yapıldı** | [`.../I2C/`](vivado_reports/testbench_&_protocol_check/I2C/) Test 1–10 + UVM `i2c_nby_test`, `i2c_flags_test` |
 | 9 | QSPI: x1 / x2 / x4 veri genişlikleri, 256 baytlık sayfa yazma/okuma, SPI mod 0, SDR | **yapıldı** | [`.../QSPI/`](vivado_reports/testbench_&_protocol_check/QSPI/) Test 2.3–2.4, gerçek Micron modeline karşı |
@@ -281,15 +275,12 @@ yazmaç tanımlarına uygunluğun ancak testlerle gösterilebilmesidir.
 > zorunlu (`*`) işaretli üç metodunun (protokol kontrolleri, YZ hızlandırıcı
 > testleri, sistem seviyesi testler) üçü de karşılanmıştır.
 >
-> Açık kalan üç kalem: **JTAG** (opsiyonel, bonus puanlı), **UART'ın 1 Mbps
-> desteği** (EK-2 isteri, alıcı tarafta bölen kısıtı) ve **üst seviye
-> doğrulama planı** (EK-3'te "elden gelenin en iyisi", Tablo 3-1'de kendi
-> puan başlığı var).
+> Açık kalan tek kalem **JTAG**'dir; şartnamede opsiyonel ve bonus puanlıdır.
 
 ---
 
-Ölçüm tarihleri: Vivado / XSim **2025.2** ile alınan sentez, implementasyon,
-zamanlama ve kod kapsamı ölçümleri 2026-08-08; UVM regresyon ve kapsamı
-**Verilator 5.050** ile 2026-08-21; Spike ISS lockstep **Spike 1.1.1-dev** ile
+Ölçüm tarihleri: Vivado **2025.2** ile alınan sentez, implementasyon, zamanlama
+ve güç ölçümleri 2026-09-05; XSim **2025.2** kod kapsamı 2026-08-08; UVM regresyonu **Verilator
+5.050** ile 2026-09-05, UVM kapsamı 2026-08-21; Spike ISS lockstep **Spike 1.1.1-dev** ile
 2026-08-22; directed testbench ve AXI protokol koşumları **XSim 2025.2** ile
 2026-08-23.

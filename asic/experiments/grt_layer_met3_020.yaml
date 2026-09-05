@@ -1,0 +1,10 @@
+meta:
+  version: 2
+
+# Tek-degiskenli deney: met3 kaynak cezasini genel %10'dan %20'ye cikarir.
+# met1=%30 ve met2=%25 aynen korunur; met4 listedeki sifir nedeniyle genel
+# %10 cezayi almaya devam eder. Amac uzun yatay rotalarin met3'e yigilisini
+# azaltip jumper'in erisebildigi met1/met2 katmanlarina daha cok firsat
+# vermektir. GRT sonucu tek basina kabul degildir; DRT DRC, nihai anten ve
+# adim-43 zamanlama vekili birlikte olculmelidir.
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0.2, 0, 0]

@@ -1,0 +1,41 @@
+
+========================================================================
+  YZ DOGRULUK RAPORU -- TFLite yazilim gerceklemesi vs hizlandirici
+========================================================================
+
+  Kart uzerinde, 156 ornek, tek gonderim -> iki sonuc
+  accuracy(yazilim, CV32E40P) :  91.03 %   (142/156)
+  accuracy(donanim, YZ accel) :  91.03 %   (142/156)
+
+  --- Sartname: %10'luk pencere ---
+  fark (mutlak puan)   :   0.00 puan   sinir 10.00   -> GECTI
+  fark (bagil dusus)   :   0.00 %       sinir 10.00   -> GECTI
+
+  ornek-basi sinif uyumu :  99.36 %   (155/156)
+
+    AYRISAN ORNEKLER (1 adet):
+      e1469561_nohash_1.hex                  gercek=no          yazilim=bilinmeyen  donanim=yes
+
+    Az sayida ayrisma NORMALDIR: hizlandirici requant'i tek
+    adimli (acc*M0 >> SHR), TFLite ise iki adimli gemmlowp;
+    ayrica hizlandirici FC cikisini int8'e sikistirmaz.
+
+  --- Hiz (ayni kosudan, ortalama) ---
+  donanim :       45,539 cevrim   (  0.911 ms @ 50 MHz)
+  yazilim :   12,609,525 cevrim   (252.191 ms)
+  HIZLANMA: 276.9 x
+
+  YAZILIM (CV32E40P)   (satir = gercek, sutun = tahmin)
+                  sessizlik  bilinmeye        yes         no      dogruluk
+       sessizlik         32          0          0          0        100.0%
+      bilinmeyen          0         28          1          8         75.7%
+             yes          0          2         46          2         92.0%
+              no          0          1          0         36         97.3%
+
+  DONANIM (YZ hizlandirici)   (satir = gercek, sutun = tahmin)
+                  sessizlik  bilinmeye        yes         no      dogruluk
+       sessizlik         32          0          0          0        100.0%
+      bilinmeyen          0         28          1          8         75.7%
+             yes          0          2         46          2         92.0%
+              no          0          0          1         36         97.3%
+

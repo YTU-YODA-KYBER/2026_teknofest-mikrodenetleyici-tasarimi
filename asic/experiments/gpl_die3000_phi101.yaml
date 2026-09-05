@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+#  GPL-only probe: die 4200x3000 (12,60 mm2, -%16,7) + PL_MAX_PHI_COEFFICIENT 1.01
+#
+#  NEDEN BU TEK DEGISKEN
+#    Dort kucuk-die denemesi (2600/d50, 2800/d35, 2800/d50, 3000/d35) GPL'de
+#    IRAKSADI: overflow 0,11-0,14 platosunda takilirken HPWL 3,5-3,9e7'ye,
+#    ceza katsayisi 4,4-7,6e9'a cikti; hicbiri GPL-1001 uretmedi.
+#
+#    Kok neden OpenROAD kaynagindan (commit dcf36133...):
+#      * nesterovBase.cpp:3029-3058 -- IRAKSAMA ALGISI hem HPWL artisi HEM
+#        overflow artisi ister. Bizde overflow platoda sabit kaldigi icin
+#        kosul hic tetiklenmiyor, cozucu durmuyor.
+#      * nesterovBase.cpp:2806-2822 -- `densityPenalty *= phiCoef`, yani
+#        PL_MAX_PHI_COEFFICIENT mutlak tavan DEGIL, iterasyon basina CARPANDIR.
+#        1,02 ile 3.000 iterasyon = 1,02^3000; ıraksamayi onlemez, geciktirir.
+#      * nesterovBase.cpp:2918-2948 -- normal bitis yalnizca unscaled overflow
+#        hedefin altina inince olur.
+#
+#    Dolayisiyla dogru mudahale carpani kucultmektir: 1,02 -> 1,01.
+#    Arsiv kaniti: 4200x3600'de phi 1,01 ile GPL-1001 @10.076, overflow 0,0997,
+#    HPWL 6,12e6 (reports/synthesis/deney_arsivi/exp_macro_ring_phi101/).
+#
+#  KABUL KAPISI (yalniz GPL, ~30 dk):
+#    GPL-1001 uretilecek, son overflow < 0,10, HPWL < 1e7 ve son 500
+#    iterasyonda ceza/HPWL patlamasi olmayacak. Saglikli bitmezse kucuk die
+#    ELENIR ve DPL/CTS/GRT/DRT harcanmaz.
+# ---------------------------------------------------------------------------
+DIE_AREA: [0, 0, 4200, 3000]
+MACRO_PLACEMENT_CFG: dir::experiments/macro_placement_4200x3000.cfg
+PL_MAX_PHI_COEFFICIENT: 1.01

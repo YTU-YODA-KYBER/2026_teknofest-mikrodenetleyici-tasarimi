@@ -68,11 +68,15 @@ class axil_base_test extends uvm_test;
         vif.rst_req = 1'b1;
         repeat (cevrim) @(posedge vif.clk);
         vif.rst_req = 1'b0;
-        repeat (10) @(posedge vif.clk);
+        // Surucu reset kalkar kalkmaz kuyruktaki sonraki islemi baslatabilir.
+        // Scoreboard'u 10 cevrim daha kapali tutmak bu yazmayi kacirip sonraki
+        // okumada sahte veri uyusmazligi uretiyordu. Golge modeli, reset
+        // deassert edildigi anda ve ilk yeni el sikismadan once etkinlestir.
         if (env.sb != null) begin
             env.sb.do_reset();
             env.sb.aktif = 1'b1;
         end
+        repeat (10) @(posedge vif.clk);
     endtask
 
     // Diziyi zaman asimi ile calistir. Zaman asimi = DUT kilitlendi.

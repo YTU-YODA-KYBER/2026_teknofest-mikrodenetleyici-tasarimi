@@ -22,6 +22,14 @@ DESIGN_NAME: top_module
 PDK: sky130A
 STD_CELL_LIBRARY: sky130_fd_sc_hd
 
+# Ana GDSII gorunumu KLayout ile uretilir. Magic stream-out da Classic akis
+# icinde ayrica kosar ve iki gorunum KLayout.XOR ile karsilastirilir. Referans
+# SRAM GDS'leri Magic gorunumunde bazi yardimci hucreleri ek top-level hucreler
+# olarak biraktigi icin o gorunum ana secildiginde KLayout DRC/render PDK
+# betikleri "multiple top cells" ile duruyordu. Ayni DEF'ten uretilen KLayout
+# gorunumu tek bir top_module tasir; iki stream-out arasinda XOR=0 olculmustur.
+PRIMARY_GDSII_STREAMOUT_TOOL: klayout
+
 # ---------------------------------------------------------------------------
 #  RTL girdileri
 #
@@ -55,14 +63,17 @@ VERILOG_FILES:
   - dir::../asic_rtl/patched/obi_to_axi_asic.sv
   - dir::../asic_rtl/patched/cv32e40p_obi_to_axi_wrapper_asic.sv
   - dir::../asic_rtl/patched/instr_bram_axi_ctrl_asic.sv
+  - dir::../asic_rtl/patched/data_bram_axi_ctrl_asic.sv
   - dir::../asic_rtl/patched/GPIO_AXI4_Lite_asic.sv
   - dir::../asic_rtl/patched/Timer_AXI4_Lite_asic.sv
   - dir::../asic_rtl/patched/QSPI_Master_AXI4_Lite_asic.sv
+  - dir::../asic_rtl/patched/I2C_Master_AXI4_Lite_asic.sv
   - dir::../asic_rtl/patched/UART_GU_AXI4_Lite_asic.sv
   - dir::../asic_rtl/patched/UART_YZ_AXI4_Lite_asic.sv
   - dir::../asic_rtl/patched/conv_accelerator_asic.v
   # --- ASIC teknoloji sarmalayicisi (FPGA akisinda YOKTUR) ---
   - dir::../asic_rtl/tech/xilinx_iobuf_stub.sv
+  - dir::../asic_rtl/tech/axi_read_arbiter2.sv
   # --- ASIC degisken bellekleri: SKY130 SRAM makro sarmalayicilari ---
   - dir::../asic_rtl/mem/sram32_cell.sv
   - dir::../asic_rtl/mem/sram32_cell_1k.sv
@@ -109,35 +120,109 @@ VERILOG_FILES:
   - dir::../FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_top.sv
   # --- Bellek AXI4-Lite kontrolculeri ---
   - dir::../FPGA/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv
-  - dir::../FPGA/main_codes/rtl/desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv
   - dir::../FPGA/main_codes/rtl/desgin_sources/Memory/YZ_RAM_AXI4-Lite/yz_bram_axi_ctrl.sv
   # --- Ara baglanti ---
   - dir::../FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv
   - dir::../FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv
   - dir::../FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv
-  # --- Cevre birimleri ---
-  - dir::../FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv
   # --- YZ hizlandirici ---
   - dir::../FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv
-  # --- Ust modul (en son) ---
-  - dir::../FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv
+  # --- ASIC reset synchronizer'li ust modul (en son) ---
+  - dir::../asic_rtl/patched/Top_module_asic.sv
 # >>> OTOMATIK URETILEN BLOK SONU <<<
 
 # ---------------------------------------------------------------------------
-#  Saat
-#  50 MHz, FPGA gerceklemesiyle ayni (Nexys A7 uzerinde clk_wiz_0 ile uretilen
-#  sistem saati de 50 MHz'dir). ASIC'te saat dogrudan clk_i pininden gelir.
+#  Saat -- 35,714285714285715 ns = 28 MHz. ASIC'te saat dogrudan clk_i pinidir.
+#
+#  --- NEDEN 28 MHz? (2026-09-03, olculdu) ---------------------------------
+#  30 MHz (33,333333 ns) TAM AKISLA DENENDI VE DUSTU. `run/final30` 78 adimi
+#  tamamladi, fizik temizdi (DRC/LVS/XOR/PDN/hold = 0), ama setup ss
+#  koselerinde kapanmadi:
+#      max_ss_100C_1v60  WNS -2,0116 ns   TNS -494,33 ns   460 ihlalli uc
+#      nom_ss_100C_1v60  WNS -1,5145 ns                    416 ihlalli uc
+#      min_ss_100C_1v60  WNS -1,0958 ns                    293 ihlalli uc
+#  Toplam 1.169 setup ihlali. Yollama DRC 0, anten 1.441 net.
+#
+#  DIKKAT -- AKIS BUNU DUSURMEZ: LibreLane'in Checker.SetupViolations adimi
+#  yalniz `TIMING_VIOLATION_CORNERS = ['*tt*']` koselerini zorlar; ss koseleri
+#  yalnizca UYARI uretir (steps/checker.py:531-538, 610-625). MaxSlew ve
+#  MaxCap checker'lari ise `['']` ile hicbir koseyi zorlamaz. Bu yuzden
+#  "Flow complete." mesaji zamanlamanin kapandigi anlamina GELMEZ; karar
+#  daima final/metrics.json icindeki timing__setup_vio__count ve
+#  timing__setup__ws__corner:* alanlarindan verilir.
+#
+#  --- OLCULEN Fmax ---------------------------------------------------------
+#  Sabit netlist + sabit rota uzerinde slack periyoda birebir dogrusaldir.
+#  `final30`in 460 negatif yolunun TAMAMI tam cevrimlidir (yarim cevrimli
+#  ihlal SIFIR), yani sifir-slack periyodu dogrudan hesaplanir:
+#      final30  : 33,3333 + 2,0116 = 35,345 ns -> Fmax 28,29 MHz
+#      final40c : T0 = 32,93 ns              -> Fmax 30,37 MHz
+#  25 MHz hedefiyle kosulan final40c, 30 MHz hedefiyle kosulan final30'dan
+#  2,42 ns DAHA HIZLI cikti. Yani kosumdan kosuma dagilim ~2,4 ns'dir ve
+#  beyan edilen frekans bu dagilimi karsilayacak paya sahip olmalidir.
+#  35,714285 ns, final30'un olculen 35,345 ns tabanina gore +0,37 ns paydadir
+#  ve final40c sinifi bir kosumda pay cok daha genistir.
+#
+#  --- 28 MHz'in BOLUCU AVANTAJI (secimin ikinci gerekcesi) -----------------
+#  I2C 400 kHz: 28.000.000 / (2 x 400.000) = 35 TAM SAYI, kalan 0.
+#    Uretilen ASIC kopyasindaki Bresenham kesirli bolucu (HALF_REM == 0 dali)
+#    tamamen ATIL kalir -> jitter'siz, tam 400,000 kHz.
+#    Karsilastirma: 30 MHz'de oran 37,5; 25 MHz'de 31,25 -- ikisi de kesirli
+#    bolucu gerektirir.
+#  UART 115200: CPB = 243 -> 115.226,3 baud, hata yalniz +%0,023.
+#    Karsilastirma: 30 MHz -> CPB 260, +%0,160.
+#  Ikisi de scripts/patch_rtl.py ve FPGA/firmware/Makefile tarafindan
+#  CLOCK_PERIOD'dan TURETILIR; elle yazilmaz.
+#
+#  --- KRITIK YOL (final30, taze kosum) -------------------------------------
+#      cpu_inst.CORE.core_i.id_stage_i.decoder_i.instr_rdata_i[18]
+#        -> 83 kademe ->
+#      cpu_inst.CORE.core_i.alu_operand_a_ex[3]
+#  Yani ID komut yazmaci -> rs1 adresi -> register-file okuma mux'i ->
+#  forwarding -> ID/EX ALU operand yazmaci. 83 kademenin ayristirmasi:
+#      gercek mantik            44 kademe  23,618 ns
+#      resizer tekrarlayicisi   39 kademe   9,521 ns  (%29)
+#  ESKI KAYIT DUZELTMESI: bu blok bir donem kritik yolu ALU bolucusu
+#  (ex_stage_i.alu_i.alu_div_i.RemSel_SP) diye veriyordu. O tespit, ESKI
+#  final40c veritabani uzerinde yalniz SDC degistirilerek yapilan yeniden
+#  analize aitti; TAZE kosumda kritik yol yukaridakidir.
+#
+#  ESKI KAYIT DUZELTMESI 2: bu blok bir donem "33,3333 ns -> +0,4051 ns /
+#  0 ihlal, mevcut fiziksel gerceklemenin kendisi 30 MHz'i ZATEN karsiliyor"
+#  diyordu. O da ayni yeniden analizden geliyordu ve TAZE kosumla curudu
+#  (-2,0116 ns). Yeniden analiz SIRALAMA icin kullanilir, BEYAN icin degil.
+#
+#  I2C SCL bolucusu bu periyoda gore ASIC top yamasinda override edilir
+#  (scripts/patch_rtl.py -> i2c_clk_freq_hz). Kaynak RTL degismez; uretilen
+#  ASIC top kopyasinda ust siniri asmayan bolucu ve parametrik FSM kullanilir.
 # ---------------------------------------------------------------------------
 CLOCK_PORT: clk_i
 CLOCK_NET: clk_i
-CLOCK_PERIOD: 20
-
+CLOCK_PERIOD: 35.714285714285715
 # ---------------------------------------------------------------------------
 #  Zamanlama kisitlari (Bolum 3.2 / 6.2)
 #  PnR ve signoff ayni dosyayi kullanir.
 # ---------------------------------------------------------------------------
 PNR_SDC_FILE: dir::constraints/design.sdc
 SIGNOFF_SDC_FILE: dir::constraints/design.sdc
+
+# Dokuz post-PnR STA kosesinin her biri yaklasik 1,5--2 GiB bellek kullaniyor.
+# LibreLane'in bos STA_THREADS varsayilani tum koseleri ayni anda baslattigi
+# icin 16 GiB makinede isletim sistemi akis surucusunu sonlandirdi. Koseler
+# bagimsizdir; tek isci yalnizca calisma suresini etkiler, STA sonucunu degil.
+STA_THREADS: 1
+
+# PDK varsayilani yalniz fill_2/fill_1 kullanip 2,45 milyon filler instance
+# uretti; Magic LEF/DRC 16 GiB makinede OOM oldu. Ayni onayli kutuphane
+# ailesinin buyuk filler'larini once kullanmak filler sayisini 1,08 milyona,
+# toplam instance sayisini 2,70 milyondan 1,34 milyona dusurdu. Mantik,
+# yerlestirme ve yollama geometrisi degismez; yalnız esdeger bosluk doldurma
+# hucrelerinin parcalanma boyutu degisir.
+FILL_CELLS:
+  - sky130_fd_sc_hd__fill_8
+  - sky130_fd_sc_hd__fill_4
+  - sky130_fd_sc_hd__fill_2
+  - sky130_fd_sc_hd__fill_1
 
 # ---------------------------------------------------------------------------
 #  Fiziksel makrolar: SKY130 SRAM'leri (Bolum 1.3 -- en az bir SRAM zorunlu)
@@ -172,47 +257,247 @@ MACROS:
 # ---------------------------------------------------------------------------
 #  Sentez
 # ---------------------------------------------------------------------------
+# --- Sentez stratejisi: UC ADAY OLCULUP ELENDI, 2026-09-03 ----------------
+# "AREA 0" KORUNDU. Alan dali kapali oldugu icin (die sabit, %56,94 filler)
+# once "alan icin optimize etmek bedava kayiptir" varsayildi ve gecikme
+# odakli stratejiler denendi. UCU DE OLCULDU, UCU DE ELENDI.
+#
+# ABC olcumu (Yosys logu, `ABC: WireLoad = "none" ... Delay`, `stime -p`):
+#   30 MHz netlisti: AREA 0 = 18.135,9 ps | DELAY 0 = 21.852,2 (+%20,5) RED
+#                                          | DELAY 2 = 18.828,1 (+%3,8)  RED
+#   28 MHz netlisti: AREA 0 = 19.198,4 ps | DELAY 4 =  9.394,5 (-%51,1)
+#
+# DELAY 0'in kaybi betikten gelir: construct_abc_script.py icindeki
+# `elif strategy != "DELAY 0"` kosulu DELAY 0'a `choice2` adimini ATLATIR,
+# AREA 0 ise kosar; ikisi de ayni `&dch; &nf` ile biter.
+#
+# DELAY 4 ABC'de -%51 ile acik ara onde gorunuyordu. TAM AKIS BUNU CURUTTU
+# (`run/final28`, tek degisken, adim 39'da AKIS OLDU):
+#     yollanabilirlik sisirmesi  +%41,9  ->  +%166,7   (4 kat)
+#     post-CTS gereken periyot   24,312  ->  26,683 ns (+2,371, ayni kose)
+#     GRT yollama talebi     1.440.253  -> 2.636.925   (+%83,1)
+#     GRT toplam asim                0  ->       102
+#     [ERROR GRT-0116] Global routing finished with congestion -> FlowError
+#
+# KOK NEDEN: DELAY 4 (ORFS betigi) `&if -g -K 6` SOP dengelemesiyle mantigi
+# SIGLASTIRIR ama GENISLETIR. Hucre +%27,8 artarken yollama talebi +%83,1
+# artiyor -- maliyet alan degil, AG SAYISIDIR. Bu tasarim tel-baskindir:
+# kritik yolun 83 kademesinin 39'u (9,521 ns) zaten tel tekrarlayicisidir.
+#
+# DERS: `ABC ... WireLoad = "none"` satirindaki Delay/lev sayisi tel
+# gecikmesini ICERMEZ ve bu tasarim icin KOTU BIR VEKILDIR. Sentez
+# stratejisi karari en az GlobalRouting'e kadar kosulmadan verilmemeli.
+# Tam kayit: reports/synthesis/strateji_denemeleri.md bolum 11 ve 13.
 SYNTH_STRATEGY: "AREA 0"
 SYNTH_HIERARCHY_MODE: flatten
 
+# --- Saat portunun harici surucu modeli -----------------------------------
+# Tasarim bir ASIC BLOGU olarak teslim ediliyor (pad ring sartname Bolum 2
+# geregi kapsam disi), yani clk_i bir MAKRO PINIDIR ve onu ust seviyede neyin
+# surdugu SDC'de beyan edilmek zorundadir. `SYNTH_CLK_DRIVING_CELL` bos
+# birakilirsa constraints/design.sdc genel `SYNTH_DRIVING_CELL` degerine
+# duser -- yani saat girisi bir `inv_2` ile modellenir.
+#
+# OLCULEN SONUC (rtl2gds, max_ss_100C_1v60/checks.rpt):
+#     clk_i                    slew 3,027 ns   (limit 0,750)
+#     clkbuf_regs_0_clk_i/A    slew 3,139 ns
+#     delaybuf_0_clk_i/A       slew 3,089 ns
+# Bunlar tasarimdaki EN KOTU alti slew ihlalinin ucudur ve hicbiri gercek bir
+# tasarim sorunu degildir: `inv_2`, saat agacinin kokundeki 0,422 pF yuku
+# suremeyen bir modelleme varsayimidir. Bozuk gecis suresi ilk saat tamponunun
+# gecikmesine ve cikis slew'una girdigi icin butun agaca yayilir.
+#
+# clkbuf_16 secildi cunku CTS'in kok tamponu (`CTS_ROOT_BUFFER`) zaten odur:
+# saatin cipe ayni surus gucuyle girdigi varsayimi kendi icinde tutarlidir.
+# Bu bir IO VARSAYIMIDIR, olculmus bir deger degildir; README 9.6'da beyan
+# edilir. Reg-to-reg kritik yolu etkilemez (saat gecikmesi hem launch hem
+# capture tarafinda ayni sekilde vardir ve sadelesir).
+SYNTH_CLK_DRIVING_CELL: "sky130_fd_sc_hd__clkbuf_16/X"
+
+# --- CTS kapasitans butcesi signoff limitiyle hizalandi ------------------
+# `sramreg` kosumunda SRAM kayit kademesi 112 flip-flop ekledi; CTS kumelemesi
+# iki yaprak tamponu sinirin ustune tasidi:
+#     clkbuf_7_1__f_clk_i_regs/X  fanout 27 (limit 25), cap 0,247 pF
+#     clkbuf_7_3__f_clk_i_regs/X  fanout 26 (limit 25), cap 0,256 pF
+# Ikisi de HEM fanout HEM cap ihlalindeydi, yani gercekten asiri yuklenmislerdi
+# ve `design__max_fanout_violation__count` 0 -> 2 oldu; kabul kapisi bu yuzden
+# o kosumu REDDETTI.
+#
+# DUZELTME (final40 kosumundan sonra): asagidaki `CTS_MAX_CAP` TEK BASINA
+# YETMEDI ve ilk gerekcesi HATALIYDI. LibreLane kaynagi
+# (steps/openroad.py:2511) bu degiskeni soyle tanimlar: *"Overrides the maximum
+# capacitance CTS CHARACTERIZATION will test."* Yani yalnizca CTS'in kumeleme
+# sirasinda kullandigi gecikme/slew tablolarinin ust sinirini belirler;
+# yollama sonrasi GERCEK tel kapasitansini baglamaz.
+#
+# Olculen: ihlal 2 -> 1'e dustu (etkisiz degil), ama kalan tampon hala asiyor:
+#     final40: clkbuf_7_25_0_clk_i_regs/X  fanout 28 (limit 25), cap 0,269 pF
+#
+# Fanout'u dogrudan sinirlayan kaldirac CTS_SINK_CLUSTERING_SIZE'dir; kapasitans
+# limiti fanout'u sinirlamaz, cunku birbirine YAKIN 28 sink dusuk kapasitans
+# verebilir. CTS_MAX_CAP yine de korunuyor (2 -> 1 kazanci olculdu).
+CTS_MAX_CAP: 0.2
+
+# --- SAAT NETI UZUNLUK SINIRI: SLEW KALDIRACI (olculdu 2026-09-03) --------
+# DIKKAT -- `0` "KAPALI" DEMEK DEGILDIR. Bu anahtar `clock_tree_synthesis`'e
+# degil, `repair_clock_nets -max_wire_length` komutuna gider (cts.tcl:96) ve
+# 0 verildiginde OpenROAD GECIKME-OPTIMAL uzunlugu KENDISI HESAPLAR:
+#     eski kosum (0)   : [RSZ-0058] Using max wire length 2936um
+#                        [RSZ-0047] Found 2 long wires -> 4 tampon
+#     bu kosum (600)   : [RSZ-0065] WARNING: max wire length less than 2936u
+#                        increases wire delays
+#                        [RSZ-0047] Found 12 long wires -> 48 tampon
+#
+# YANI BU BIR TAKASTIR, bedava degil: 2936 um OpenROAD'in hesapladigi
+# gecikme-optimal tekrarlayici araligidir. 600'e inmek tampon gecikmesini
+# RC kazancindan fazla artirir -- ZAMANLAMA icin ters, SLEW ve ANTEN icin
+# lehte. Bilerek slew/anten tarafi secilmistir; zamanlama etkisi adim 43
+# resizer WNS'i ile olculur.
+#
+# Hedeflenen sorun: tek bir net butun kotu slew ihlallerini uretiyordu:
+#     clknet_1_0_1_clk_i = 6.326,5 um  <- tasarimdaki EN UZUN net
+#     (die 4200x3600 um; yani cipin tamamini dolasiyor)
+#
+# Bu net clkbuf_leaf_0/1/6/7/8_clk_i'yi suruyor ve o pinlerde olculen giris
+# slew'i 2,32-2,37 ns'dir -- kutuphanenin kendi `default_max_transition`
+# degeri olan 1,5 ns'yi de asan 21 pinin en kotuleri bunlardir. Karakterizasyon
+# araligi disindaki bir slew, o hucrenin gecikmesinin Liberty'den EKSTRAPOLE
+# edildigi anlamina gelir; STA o arclarda guvenilir degildir.
+#
+# AYNI NET ANTEN IHLALI DE URETIYOR (3,30x, met3), yani tek duzeltme iki
+# problemi birden vuruyor.
+#
+# `clk_i` agacinin yalnizca 9 yapragi var (`clk_i_regs`'in 584'une karsi);
+# bunlar die'a yayilmis makro saat pinleridir ve CTS onlara ulasmak icin tek
+# bir devasa net cekmisti.
+#
+# MALIYET (olculdu): 731 saat netinin yalnizca 43'u 600 um'yi asiyor,
+# ~32 ek saat tamponu. Toplam saat teli 199,9 mm'dir; bolunecek fazlalik
+# 19,4 mm (%9,7).
+CTS_CLK_MAX_WIRE_LENGTH: 600
+
+# --- Saat agaci yaprak kume boyutu ---------------------------------------
+# `MAX_FANOUT_CONSTRAINT: 25` butun tasarima uygulanir (saat netleri dahil).
+# CTS varsayilan kumelemesiyle tek bir yaprak tamponu 28 sink surerek bu siniri
+# asti ve `design__max_fanout_violation__count` 0 -> 1 oldu.
+#
+# Bu deger, bu belgede DAHA ONCE 10 ve 5 ile denenmis ve post-CTS hold'u
+# bozdugu olculmustur. 20 o denemelerden cok daha yumusaktir: yalnizca 25
+# sinirinin hemen ustundeki kumeleri boler, agacin genel seklini degistirmez.
+# KABUL KAPISI: max fanout 0 olacak VE hold WS pozitif kalacak
+# (final40'ta +0,1424 ns).
+CTS_SINK_CLUSTERING_SIZE: 20
+
 # ---------------------------------------------------------------------------
-#  Floorplan
-#
-#  Die alani sentez sonucundan VE yollama tikanmasi deneyiminden turetilmistir:
-#     standart hucre alani (sentez)                            0,770 mm²
-#     standart hucre alani (resizer sonrasi, tamponlar dahil)   1,174 mm²
-#     15 SRAM makrosu                                          4,174 mm²
-#     ------------------------------------------------------------------
-#     die 3400 x 2900 um = 9,860 mm²   ->  makrolar %42,3
-#     std hucrelere kalan                                      7,346 mm²
-#
-#  NEDEN BU KADAR FERAH?
-#    SRAM makrolari met1-met4'u kapatir; uzerlerinden yalnizca met5 gecebilir.
-#    Ilk denemede die 2920 x 2420 idi (makrolar %59,1, satir kanallari 150 um)
-#    ve global routing saat aginda (clk_i, delaynet_2_clk_i) tikanmayi
-#    cozemedi. Makro kaplamasini %42'ye dusurup satir kanallarini 250 um'ye
-#    acmak, saat agacinin ve veri yollarinin makrolar arasindan TAM katman
-#    yiginiyla gecmesine izin verir.
-#
-#  Makro blogu 4 sutun x 4 satir bir izgaradir (15 dolu, 1 bos). SRAM sinyal
-#  pinleri alt/ust kenarda oldugu icin satirlar arasindaki kanallar genis
-#  (250 um), sutunlar arasindaki bosluk dardir (120 um).
+#  Floorplan -- 15 SRAM cevre halkasinda, standart hucreler tek parca merkezde.
+#  4200x3600 um macro-ring iki bagimsiz DRT dalinda sifir ihlale ulasmistir;
+#  eski 3400x2900 ic izgara 14 route DRC ve 16.108 GRT tasmasi uretiyordu.
+#  Tum makrolar N yonundedir; W/E deneyi makro PDN kabul kapisini gecememistir.
 # ---------------------------------------------------------------------------
 FP_SIZING: absolute
-# Die yuksekligi 3000 -> 3210: makrolar 4x4 yerine 3 sutun x 5 satira
-# dizildi (bkz. constraints/macro_placement.cfg). SRAM LEF'i met1/met2'yi
-# tamamen, met3/met4'u %98 kapatir -- yani DIKEY yonlu hicbir katman makro
-# uzerinden gecemez ve butun dikey trafik sutun kanallarina sikisir. 4x4'te
-# ic dikey kanal 3 x 120 = 360 um idi; 3x5'te 2 x 400 = 800 um. Ek 210 um
-# yukseklik ise satir kanalini 250'den 200'e dusurmek yerine korumak icin.
-DIE_AREA: [0, 0, 3400, 2900]
+DIE_AREA: [0, 0, 4200, 3600]
 FP_MACRO_HORIZONTAL_HALO: 20
 FP_MACRO_VERTICAL_HALO: 20
 MACRO_PLACEMENT_CFG: dir::constraints/macro_placement.cfg
 
+# --- SRAM makrolarinin guc baglantisi ------------------------------------
+# ZORUNLU. Bu satir olmadan 15 SRAM makrosunun HICBIRI guc sebekesine
+# baglanmaz ve uretilen GDS fiziksel olarak calismaz.
+#
+# NEDEN?  Makro LEF'i vccd1/vssd1 pinlerini tanimlar, ama RTL sarmalayicisi
+# (asic_rtl/mem/sram32_cell.sv) bu iki inout portu ORNEKLEMEDE BAGLAMAZ --
+# guc baglantisi RTL'in degil fiziksel akisin isidir. LibreLane'in
+# Odb.SetPowerConnections adimi ise Verilog'da bagli olmayan PG pinlerini
+# "Bad Verilog view -- error would break backcompat" yorumuyla SESSIZCE
+# atlar (librelane/scripts/odbpy/power_utils.py:110-113).
+#
+# Sonuc, bu satir yokken olculdu:
+#   warning.log -> 15 adet [PDN-0231] "... is not connected to any
+#                  power/ground nets" + [PDN-0189] "Supply pin .../vccd1
+#                  is not connected to any net"
+#   generatepdn logu -> yalnizca "[INFO PDN-0001] Inserting grid:
+#                       stdcell_grid"; MAKRO IZGARASI HIC KURULMADI
+#
+# Kalip, ornek adi ".*u_sram" ile 15 makronun tamamini yakalar
+# (instr/data/yz/conv hepsi u_cell.u_sram ile biter).
+#
+# YOLLAMAYA MALIYETI SIFIRA YAKIN: pdn_cfg.tcl makro izgarasini
+# "add_pdn_connect -layers met4 met5" ile baglar, yani via4 ile met5'e cikar.
+# met5 zaten sinyal yollamasina kapalidir (RT_MAX_LAYER: met4), dolayisiyla
+# makro PDN'i orada bos alan bulur ve sinyal kaynagindan pay almaz.
+PDN_MACRO_CONNECTIONS:
+  - ".*u_sram VPWR VGND vccd1 vssd1"
+
 # Global yerlestirme hedef yogunlugu -- makro disi alanda gercek hucre doluluğu
 # ~%21; yerlestiriciye tikanmayi dagitmasi icin pay birakilir.
+# --- YERLESTIRME YOGUNLUGU: 50 DENENDI VE CURUTULDU (2026-09-03) ----------
+# 35 KORUNDU. Hipotez: hedef yogunlugu artirmak hucreleri sikistirir, tel
+# kisalir, 30 MHz icin gereken ~2 ns oradan gelir. OLCUM BUNU CURUTTU.
+#
+# Tek degiskenli GPL karsilastirmasi (ayni netlist, `--to GlobalPlacement`):
+#   density 35 (`final28`) : sisirme +%36,84 | nihai yerlesim 1.241.747 um²
+#                            NESTEROV HPWL = 5,912e+06 um
+#   density 50 (`final30b`): sisirme +%217,48| nihai yerlesim 2.844.385 um²
+#                            NESTEROV HPWL = 7,075e+06 um   (+%19,7 KOTU)
+#
+# MEKANIZMA: yuksek hedef yogunluk yerlestiriciyi once sikistirir, bu YEREL
+# tikaniklik yaratir, routability surucusu de hucreleri +%217 sisirerek
+# patlatir. Sonuc gevsek hedefle baslamaktan DAHA YAYVAN bir yerlesimdir.
+# Yerlestirici kendisiyle guresiyor.
+#
+# Yani 35 yerel optimuma yakindir; aracin kendi onerisi de onu isaret eder
+# (GPL-1007: bos alanin %80'i icin 0,3525). `PL_TARGET_DENSITY_PCT: 25` de
+# daha once denenip elenmisti (overflow 258k). Her iki yon de kotu.
+#
+# NOT: bu, DELAY 4 ile AYNI hata desenidir -- ara bir vekil metrikte iyi
+# gorunen bir degisiklik, routability surucusunun tepkisi yuzunden gercek
+# sonucta kotulesiyor. Yerlestirme/sentez degisiklikleri en az GPL'in
+# NESTEROV HPWL satirina kadar kosulmadan kabul edilmemeli.
 PL_TARGET_DENSITY_PCT: 35
+
+# --- Yonlendirilebilirlik odakli global yerlestirme ----------------------
+# LibreLane varsayilani zaten true; burada ACIKCA yazilmasinin sebebi, tersinin
+# denenip OLCUMLE ELENMIS olmasidir. Kontrollu deney (ayni netlist, ayni
+# pre-GPL veritabani):
+#
+#   PL_ROUTABILITY_DRIVEN | GPL sonucu                 | GRT toplam overflow
+#   ----------------------+----------------------------+--------------------
+#   false                 | iter 487, HPWL 4,60e6 um,  |        113.525
+#                         | yapay sisirme +%0,00       |
+#   true  (bu ayar)       | snapshot'a donus, sisirme  |             90
+#                         | +%32..36                   |
+#
+# false modu HPWL'i ~%22 KISALTIYOR ama tikanikligi 1.261 KAT artiriyor:
+# hucreler makrolar arasindaki dar kanallarda yiginlaşiyor ve tile basina en
+# kotu asim 5/2'den 79/64'e cikiyor. Yani sorun global kaynak degil, HOTSPOT.
+# Bu tasarimda yonlendirilebilirlik geri beslemesi ZORUNLUDUR.
+#
+# Not: routability modunun kendi ic uyarisi ([GPL-0998] Divergence -> min-HPWL
+# snapshot'ina donus) bu tasarimda BEKLENEN davranistir; yerlestirici hedef
+# overflow'a ulasamayip en iyi anlik goruntusune donuyor ve akis oradan devam
+# ediyor. Nihai kosumda [GPL-1001] ile temiz bitis izlenir.
+PL_ROUTABILITY_DRIVEN: true
+
+# --- Nesterov cozucusunun yogunluk cezasi ust siniri ----------------------
+# ZORUNLU. Bu satir olmadan global yerlestirme YAKINSAMIYOR.
+#
+# Belirti: routability fazi "could not reach target" deyip biraktiktan sonra
+# duz Nesterov cozucusu iraksiyordu -- HPWL 4,6e6 mertebesinden 1,8e8'e
+# firliyor (39 kat), overflow 0,37-0,41 arasinda saliniyor ve 5000+
+# iterasyonda hicbir yere varmiyordu. Onceki oturumda bir kosum bu yuzden
+# iterasyon 5450'de elle oldurulmustu ve o dalda hic ODB uretilememisti.
+#
+# mu_k'nin ust sinirini 1,05'ten (OpenROAD varsayilani) 1,02'ye cekmek yogunluk
+# kuvvetinin tel uzunlugu terimini ezmesini engelliyor. OpenROAD'in kendi
+# dokumaninda bu degisken zaten "Useful if global placement diverges" diye
+# tanimlanir.
+#
+# OLCULEN SONUC (ayni pre-GPL veritabani, tek degisken):
+#   varsayilan (1.05) -> iterasyon 5000+, HPWL 1,8e8, YAKINSAMADI
+#   1.02              -> [GPL-1001] iterasyon 5481'de bitti,
+#                        overflow 0,0999 (hedef 0,10'un ALTINDA),
+#                        HPWL 6,06e6, yapay sisirme +%31,3, iraksama YOK
+PL_MAX_PHI_COEFFICIENT: 1.02
 
 
 # --- Tasarim onarimi agirligi -------------------------------------------
@@ -223,70 +508,400 @@ PL_TARGET_DENSITY_PCT: 35
 # Tamponlar makrolar arasindaki dar kanal bantlarina dusuyor; yerlestirme
 # yogunluk haritasinda o bantlar zaten %90-99 doluluktadir ve met1/met2 tam
 # orada doyuyor (kullanim %77/%74 iken met3-5 %55/%33/%30'da bos kaliyor).
-# Marji 0'a cekmek onarimi yalnizca GERCEK sinir ihlallerine indirger;
-# kutuphane sinirlari yine saglanir ve signoff STA bunu ayrica dogrular.
+# Marji 0'a cekmek onarimi yalnizca o asamada gorulen GERCEK sinir ihlallerine
+# indirger. Bu bir signoff garantisi degildir: nihai RCX STA 38.890 max-slew ve
+# 3.809 max-cap ihlali raporlamistir; gercek sayilar teslimde saklanmaz.
 DESIGN_REPAIR_MAX_SLEW_PCT: 0
 DESIGN_REPAIR_MAX_CAP_PCT: 0
 
-# --- Anten onarimi kapali -------------------------------------------------
-# OpenROAD.RepairAntennas'in ic adimi _DiodeInsertion, GlobalRouting'den
-# turer: diyotlari ekledikten sonra ARTIMLI global routing kosar. Bu
-# tasarimin tikanikligi o noktada OpenROAD'i iceriden kiriyor:
-#   [GRT-0183] Net net6004: heap underflow during 3D maze routing
-# yani router doymus bolgede hicbir yol bulamiyor ve akis GDSII'ye
-# ulasmadan duruyor. Adim kapatilarak yollama DRT'ye birakilir.
-# BEDELI: anten ihlalleri onarilmaz. Onarilmamis olmasi olculmedigi
-# anlamina gelmez -- OpenROAD.CheckAntennas adimi yine kosar ve ihlal
-# sayisi raporlanir; sonuc teslim raporunda acikca belirtilir.
-RUN_ANTENNA_REPAIR: false
+# --- CTS sonrasi hold onarim marji ---------------------------------------
+# LibreLane/OpenROAD varsayilani 0.10 ns'dir. Mevcut post-CTS logunda gercek
+# hold ihlalleri ~172 tamponla WNS/TNS=0 noktasinda kapaniyor; marj 0.10'a
+# zorlandiginda 6.783 hold tamponu ekleniyor. Olculen marj egirisinde 0.02 ns
+# hedefi 911 tampon gerektiriyor: yaklasik 5.872 gereksiz tampon/neti ve buna
+# bagli routing talebini kaldirirken sifir marj kullanmiyor. Ancak nihai
+# post-route sonuc kapanmamistir: en kotu hold WNS -1,751 ns, TNS -260,481 ns
+# ve 2.672 ihlalli uctur. Periyodu 40 ns yapmak en kotu hold WNS'yi degistirmez.
+PL_RESIZER_HOLD_SLACK_MARGIN: 0.02
 
-# --- Signoff kontrolculeri: DURDURMA kapali, OLCUM acik -------------------
-# Bu bayraklar kontrolleri KAPATMAZ ve ihlalleri GIZLEMEZ. DRT DRC, Magic
-# DRC, KLayout DRC, Netgen LVS ve GDSII XOR adimlarinin hepsi yine kosar;
-# buldugu ihlal sayilari metrics.json'a yazilir ve README'deki signoff ozet
-# tablosuna oradan otomatik gecer. Bayrak yalnizca "ilk ihlalde akisi
-# durdur" davranisini kaldirir.
+# --- Global route sonrasi signoff odakli onarim --------------------------
+# Macro-ring uzerindeki kontrollu deneyde %20 slew/cap emniyet payi, 10 ns
+# setup guvenlik marji ve 0,45 ns hold hedefi; GRT/DRT=0, dokuz-kose RCX
+# setup WNS +2,100 ns / hold WNS +0,192 ns ve sifir zamanlama ucu verdi.
+# 31.350 timing tamponuna ragmen std-cell dolulugu %11,91'dir.
+RUN_POST_GRT_DESIGN_REPAIR: true
+GRT_DESIGN_REPAIR_RUN_GRT: true
+# --- UZUNLUK TABANLI TAMPONLAMA: ANTEN KALDIRACI (olculdu 2026-09-03) -----
+# Bu deger 0 idi. LibreLane tanimi: "If set to 0, no buffers will be inserted"
+# -- yani uzunluk tabanli bolme TAMAMEN KAPALIYDI. (Netlistteki 20.522 `wire*`
+# tamponu uzunluktan degil, slew/cap onariminda steiner agacinin bolunmesinden
+# geliyordu; kosum logunda komut birebir `repair_design -max_wire_length 0`.)
 #
-# GEREKCE: kapali olduklarinda akis DRC kontrolcusunde durur ve teslim
-# edilecek hicbir fiziksel cikti (GDS/LEF/DEF/SPEF) uretilmez. Acik
-# olduklarinda akis tamamlanir, ciktilar uretilir ve kalan ihlaller
-# sayisiyla raporlanir. Kullanici bu tercihi acikca onaylamistir.
-QUIT_ON_TR_DRC: false
-QUIT_ON_MAGIC_DRC: false
-QUIT_ON_KLAYOUT_DRC: false
-QUIT_ON_LVS_ERROR: false
-QUIT_ON_XOR_ERROR: false
+# SONUC: guclu bir surucuyle 0,75 ns slew'i tutturan UZUN bir net hic
+# bolunmuyor ve devasa anten metal alani biriktiriyor.
+#
+# OLCUM (`final28`, 1.927 ihlalli pin):
+#   anten ihlal eden netlerin medyan uzunlugu : 662,8 um
+#   TUM netlerin medyan uzunlugu              :  15,0 um   (44 kat fark)
+#   ihlallerin %88,7'si >250 um, %70,5'i >400 um
+#   ihlallerin %72,6'si met3'te (medyan 714,5 um, %82,4'u >400 um)
+#
+# met3 kritik cunku jumper onarimi iki katman yukari cikar
+# (RepairAntennas.cpp:1080-1103): met1->met3 ve met2->met4 mumkun, ama
+# met3->met5 DEGIL (RT_MAX_LAYER: met4). met5'e cikmak ayrica olculup
+# elenmistir (via4 makro ustunde kapali; DRC'lerin ~%67'sini tek basina
+# uretiyordu -- strateji belgesi satir 48).
+#
+# Yani met3 ihlalleri jumper'la ULASILAMAZ; tek kaldirac metal alanini
+# BOLMEKTIR. 662 um'lik bir net 400'de bolununce her parca ~331 um olur,
+# metal alani yarilanir, met3 medyan orani 1,71x -> ~0,86x (sinirin altina).
+#
+# MALIYET (olculdu): >400 um olan 5.123 net (%4,28), ~3.435 ek tampon,
+# yani std hucrelerin ~%1,3'u. Karsilastirma icin: SYNTH_STRATEGY DELAY 4
+# hucreleri %27,8 artirip GRT asimini 0'dan 102'ye cikarmis ve akisi
+# oldurmustu. Buradaki artis onun yirmide biridir.
+#
+# NOT: post-GPL karsiligi (DESIGN_REPAIR_MAX_WIRE_LENGTH) bilerek 0
+# birakildi; o asamada uzunluklar yalnizca TAHMINDIR. Bu anahtar post-GRT'dir
+# ve GERCEK yollanmis uzunluklari kullanir.
+# SECILEN DEGER 250 um (400 degil). Gerekce: 28 MHz'de setup payi +2,522 ns
+# olculdu; tel bolmenin zamanlama bedeli `final30b`'de ~0,44 ns olculdu
+# (resizer bitisi -3,312 -> -3,756). Yani daha agresif gidilebilir.
+# Modellenen anten kazanci (final28'in 1.927 ihlalli pini uzerinde):
+#     400 um -> %45,4 cozulur, ~1.053 pin kalir
+#     250 um -> %71,4 cozulur, ~  552 pin kalir
+# SIFIR ULASILAMAZ: ihlallerin %29,5'i zaten 400 um'nin ALTINDA -- bunlar
+# uzun olduklari icin degil KAPILARI KUCUK oldugu icin ihlal ediyor
+# (P/R orani = metal alani / kapi alani; oran-uzunluk korelasyonu r=0,177).
+GRT_DESIGN_REPAIR_MAX_WIRE_LENGTH: 250
+# --- Post-GRT onarim marji SIFIR (olculdu, 2026-08-30) --------------------
+# Bu deger 20 idi ("kutuphane sinirinin %20 ALTINA kadar onar"). O emniyet payi,
+# tel modeli 2,2 kat iyimserken GERCEK ihlalleri yakalamanin DOLAYLI yoluydu.
+# LAYERS_RC ile model gercege %7 yaklastigi icin ayni %20 artik CIFTE SAYIMDIR.
+#
+# Tek degiskenli olcum (ayni adim-40 state'inden devam, `p_rc_only` vs `p_rc_a2`):
+#     marj %20 -> 3.469 slew + 3.501 cap ihlali, 5.893 tampon,
+#                 artimli GRT met3'te 6 TILE tasma -> [GRT-0116] AKIS OLDU
+#     marj  %0 -> 1.342 slew + 1.758 cap ihlali, 2.354 tampon,
+#                 her katmanda tasma 0
+# Yani ihlal ve tampon yariya iniyor, tikanikligi tek basina bu marj uretiyordu.
+#
+# Ayni ayar post-GPL tarafinda ZATEN 0'dir (DESIGN_REPAIR_MAX_SLEW/CAP_PCT,
+# yukarida) ve orada da olculmus kazanci vardi: tampon 15.783 -> 11.938.
+GRT_DESIGN_REPAIR_MAX_SLEW_PCT: 0
+GRT_DESIGN_REPAIR_MAX_CAP_PCT: 0
 
-# --- Global routing tikanmasina ragmen devam et --------------------------
-# GRT'nin overflow'u KABA IZGARA UZERINDE BIR TAHMINDIR; gercek yollamayi
-# DRT yapar ve yerel tikanmayi cozmekte GRT'den cok daha yeteneklidir.
-# 12 denemenin en iyisinde (bu yapilandirma) tablo su noktada:
-#   ortalama kullanim %52,8 -- yani genel kaynak darligi YOK
-#   tile basina en kotu asim 17/17 -- yani asim genis alana yayilmis, derin
-#   toplam overflow 69.399 / 3.588.142 kaynak = %1,9
-# Bu profil DRT'nin cozebilecegi bir profildir. Bayrak acilmadan akis GRT'de
-# durur ve GDSII hic uretilmez; acilinca DRT gercek denemeyi yapar ve
-# sonucu DRC/LVS ile ayrica dogrulanir (basarisiz olursa rapora yazilir).
-# NOT: 'true' yapmak ihlali gizlemez -- DRT'nin kendi DRC sonucu belirleyicidir.
-GRT_ALLOW_CONGESTION: true
+RUN_POST_GRT_RESIZER_TIMING: true
+GRT_RESIZER_SETUP_SLACK_MARGIN: 10.0
+RSZ_CORNERS:
+  - nom_tt_025C_1v80
+  - nom_ss_100C_1v60
+  - nom_ff_n40C_1v95
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.45
+GRT_RESIZER_SETUP_MAX_BUFFER_PCT: 50
+GRT_RESIZER_HOLD_MAX_BUFFER_PCT: 50
+GRT_RESIZER_ALLOW_SETUP_VIOS: false
+GRT_RESIZER_FIX_HOLD_FIRST: false
+GRT_RESIZER_RUN_GRT: true
+
+# --- Anten onarimi KAPALI (olculdu) ------------------------------------
+# ANTEN ONARIMI, DETAYLI YOLLAMAYI YAKINSAMAZ HALE GETIRIYOR.
+#
+# Bir donem "tikaniklik cozuldugu icin artik acilabilir" diye acilmisti; acilan
+# hali OLCULDU ve geri kapatildi. Ayni GRT ayarlari (adj 0.10), ayni netlist,
+# ayni yerlestirme -- tek fark anten zinciri:
+#
+#   DRT iterasyonu | anten KAPALI | anten ACIK
+#   ---------------+--------------+------------
+#                0 |       89.218 |    186.694
+#                1 |       41.952 |    154.201   (-%17, oysa kapalida -%53)
+#                2 |       38.028 |    151.079   (-%2,  oysa kapalida -%9)
+#                3 |       14.862 |          -
+#              son |   **24 ihlal** |  yakinsamiyor
+#
+# MEKANIZMA: Odb.DiodesOnPorts ve OpenROAD.RepairAntennas hucre ekler,
+# yerlestirmeyi yeniden yasallastirir ve ARTIMLI global routing kosar. DRT'nin
+# tukettigi guide'lar adim 39'un temiz guide'lari DEGIL, o artimli olanlardir;
+# kaliteleri belirgin dusuktur.
+#
+# BEDELI ACIKCA KABUL EDILDI: anten ihlalleri onarilmaz. Olculen degerler --
+# onarim acikken 3.676 net / 5.489 pin -> 22 net / 30 pin'e iniyordu; tarihsel
+# kapali `drtfix_a` kosumunda 3.676 / 5.489 ve 24 DRC kaliyordu. Nihai
+# `rtl2gds` sonucu 3.181 net / 4.874 pin ve 14 yollama DRC ihlalidir.
+# Sartname Bolum 7 ihlalin teslimi gecersiz kilmadigini soyluyor; iki kotuluk
+# arasinda YOLLAMA DRC'si secildi, cunku yakinsamayan bir DRT kullanilabilir bir
+# GDS bile uretmiyor.
+#
+# OLCUM ADIMI KOSMAYA DEVAM EDER: OpenROAD.CheckAntennas kapatilmadi, ihlaller
+# sayilir ve README'nin signoff ozetinde ACIKCA raporlanir.
+#
+# DENENMEMIS ARA YOL: yalnizca DIODE_ON_PORTS acik, RepairAntennas kapali.
+# Port diyotlari yalniz 36 port netini duzeltir, asil kutle (3.676) icin
+# RepairAntennas gerekir; yani kazanci kucuk, maliyeti bir artimli GRT. Bu
+# yuzden olculmedi.
+RUN_ANTENNA_REPAIR: false
+DIODE_ON_PORTS: "none"
+
+# DRT'nin KENDI anten onarim dongusu de kapali. RUN_ANTENNA_REPAIR yalnizca
+# GRT tabanli ayri adimi (OpenROAD.RepairAntennas) kapatir; DetailedRouting
+# adiminin ICINDE bagimsiz bir dongu daha vardir
+# (librelane/scripts/openroad/drt.tcl):
+#
+#     while {$i <= DRT_ANTENNA_REPAIR_ITERS && [check_antennas]} {
+#         repair_antennas ...
+#         drt_run $i ...        <-- TAM detayli yollamayi BASTAN kosar
+#     }
+#     write_views               <-- GDS burada uretilir, DONGUDEN SONRA
+#
+# Varsayilani 3'tur. Tasarimda ~3.676 ihlalli anten neti oldugu icin
+# check_antennas kesin true doner ve DRT toplam 4 kez kosar. Iki somut sonuc:
+#   1) Sure: tek DRT turu ~4 saat; dort tur kabul edilemez.
+#   2) repair_antennas de hucre ekleyip yollamayi degistirir -- yani yukarida
+#      olculen "anten zinciri DRT'yi yakinsamaz yapiyor" etkisinin AYNISINI
+#      DRT'nin icinde tekrar uretir.
+# Ayrica write_views dongunun ARDINDA oldugu icin herhangi bir turda cokme
+# olursa GDS HIC uretilmez.
+#
+# 0 yapilinca dongu atlanir ve dogrudan write_views'a gecilir. Dogrulanmis
+# deney (drtfix_a, 24 DRC ihlali) de bu degerle kosmustur.
+DRT_ANTENNA_REPAIR_ITERS: 0
+
+# --- Signoff kontrolculeri: temiz siniflar teslimde ZORUNLU ---------------
+# Bu bayraklar bir KONTROLU KAPATMAZ. Ilgili adimlarin hepsi kosar
+# (Magic DRC, KLayout DRC, Netgen LVS, CheckAntennas, XOR, DisconnectedPins,
+# TrDRC), ihlalleri sayar ve metrics.json'a yazar. Degisen tek sey "ilk
+# ihlalde akisi durdur" davranisidir.
+#
+# final40 tam kosumunda TrDRC, Magic/KLayout DRC, LVS, XOR, illegal overlap ve
+# PDN ihlalleri sifirdir. Teslim kosumunda bunlardan biri geri gelirse akis
+# basarisiz sayilmalidir; false birakmak artik yalniz gerilemeyi gizler.
+#
+# Iki bilincli istisna vardir:
+#   * DISCONNECTED_PINS: 15 SRAM makrosunun kullanilmayan dout0[31:0]
+#     pinlerinden gelen 15*32=480 baglanti; kritik baglanti sayisi sifirdir.
+#   * LONG_WIRE: secilecek yeni tam kosumda sifir oldugu henuz kanitlanmadi.
+# Her ikisi de raporlanmaya ve metrics.json'a yazilmaya devam eder.
+#
+# SENTEZ ONCESI/SIRASI KAPILARA DOKUNULMADI: ERROR_ON_UNMAPPED_CELLS,
+# ERROR_ON_SYNTH_CHECKS, ERROR_ON_NL_ASSIGN_STATEMENTS ve
+# ERROR_ON_LINTER_ERRORS hala LibreLane varsayilaninda (true). Onlar fiziksel
+# bir olcumu degil GERCEK BIR RTL HATASINI gosterir; gevsetilmeleri icin
+# hicbir gerekce yoktur.
+ERROR_ON_TR_DRC: true
+ERROR_ON_MAGIC_DRC: true
+ERROR_ON_KLAYOUT_DRC: true
+ERROR_ON_LVS_ERROR: true
+ERROR_ON_XOR_ERROR: true
+ERROR_ON_ILLEGAL_OVERLAPS: true
+ERROR_ON_DISCONNECTED_PINS: false
+ERROR_ON_LONG_WIRE: false
+ERROR_ON_PDN_VIOLATIONS: true
+
+# Macro-ring ve iki post-GRT onarim varyanti GRT'yi sifir tasma ile bitirdi.
+# Temiz tam kosumda gerileme olursa burada durmak, DRT'ye gecip kotu guide
+# kullanmaktan daha guvenlidir.
+GRT_ALLOW_CONGESTION: false
 
 # --- Sinyal yollamasi met4'e kadar; met5 guc agina ayrildi ----------------
-# KOK NEDEN BULGUSU. PDK varsayilanlari sunlardi:
-#     PDN_HORIZONTAL_LAYER met5   (guc seritleri)
-#     PDN_VERTICAL_LAYER   met4
-#     RT_MAX_LAYER         met5   (sinyal yollamasi)
-# yani sinyaller ile guc dagitim agi AYNI katmani paylasiyordu. GRT'nin kaba
-# izgara modeli met5'i %23 dolu (neredeyse bos) goruyor ve oraya yol veriyor;
-# DRT gercek geometriye carpinca ayni katmanda 6.056 KISA DEVRE + 2.677
-# aralik ihlali uretiyor -- toplam DRC ihlallerinin ~%75'i tek basina met5'te.
+# KOK NEDEN BULGUSU. PDK varsayilani RT_MAX_LAYER = met5'tir
+# (sky130A/libs.tech/openlane/config.tcl:156). Bu tasarimda o varsayilan
+# YANLIS sonuc veriyor; sebebi makrolarin katman engelleridir:
+#
+#   * SRAM makrosunun LEF'i met1 ve met2'yi TAMAMEN, met3 ve met4'u ise tek
+#     RECT'lerle kapatir: met3'te 61 rect -> alanin %96,7'si, met4'te 143
+#     rect -> %97,8'i (met1/met2 tek rect ile %99,5). Hicbirinde kesintisiz
+#     gecis yolu yoktur.
+#     Serbest kalan tek katman met5'tir.
+#   * Ama met5'e cikmak via4 gerektirir ve via4'un altindaki met4 makro
+#     uzerinde kapalidir. Yani met5, makronun ustunde geometrik olarak bos
+#     gorunmesine ragmen oraya ancak makro DISINDAN girilip cikilabilir.
+#
+# GRT'nin kaba izgara modeli bu erisim kisitini gormez: met5'i %23 dolu
+# (neredeyse bos) sayip oraya yol planlar. DRT gercek geometriye carpinca o
+# yollari gerceklestiremez ve sekilleri ust uste bindirir:
+#     met5'te 6.056 KISA DEVRE + 2.677 aralik ihlali
+# met5 toplam talebin yalnizca %1,4'unu (26.791 / 1.893.191) tasirken DRC
+# ihlallerinin ~%67'sini tek basina uretiyordu.
 #
 # Yani router VAR OLMAYAN bir kapasiteye guvenerek cozum uretiyordu ve global
 # cozum hicbir zaman fiziksel olarak gerceklenebilir degildi. met5 sinyal
-# yollamasina kapatilir; guc agina birakilir.
+# yollamasina kapatildi.
 #
-# met5'in tasidigi ~26.791 birimlik talep met3/met4'e kayar; ikisinde de yer
-# vardir (met3 %46 dolu -> ~499k bos, met4 %29 -> ~449k bos).
+# NOT: sebep PDN degildir. PDN met4/met5'te 1,6+1,7+1,6 = 4,9 um'lik serit
+# cifti kullanir, adim ~153,6 um; yani bu katmanlarin yalnizca %3,2'sini
+# tuketir. Bu hipotez olculup ELENMISTIR.
+#
+# met5'in tasidigi ~26.791 birimlik talep met3/met4'e kaydi; ikisinde de yer
+# vardi (met3 %46 dolu -> ~499k bos, met4 %29 -> ~449k bos).
+#
+# OLCULEN SONUC: GRT overflow 69.399 -> 8.074 (-%88), kullanim %52,8 -> %44,8,
+# GRT'nin tikanma yuzunden turu bastan baslatma sayisi 344 -> 99.
 RT_MAX_LAYER: met4
+
+# --- Saat agaci met2'den baslar (met3 DENENDI ve ELENDI) ------------------
+# PDK bu degeri ACIKCA tavsiye eder (sky130A/libs.tech/openlane/config.tcl:158
+# -> set ::env(RT_CLOCK_MIN_LAYER) "met3") ama LibreLane 3.0.6'da bu degisken
+# Optional[str] ve pdk=True DEGIL, yani PDK degeri okunmaz ve varsayilan null
+# kalir. Sonucu global routing logunda gorunur:
+#     "Setting signal min routing layer to: met1 and clock min routing
+#      layer to met1."
+# Bu tasarimda saat agaci 1.290 net icerir ve CTS bunlara NDR (cift
+# genislik/aralik) uygular; yani en tikanik iki katmanda (met1 %56,1 /
+# met2 %51,0) normalin iki kati yer kaplarlar. met3 (%39,1) ve met4 (%23,8)
+# ise bos durur. Saat agacini met3'ten baslatmak yuku tam ihtiyac duyulan
+# yerden alip bos kapasiteye tasir.
+#
+# DEGER met3 DEGIL met2. Gerekcesi: met3 denendi ve GRT'yi 8 KATINA cikardi.
+# Olcum:
+#     saat met1 (varsayilan) -> GRT'nin tur bastan baslatma sayisi  99 = 2 tur
+#     saat met3              -> 301+ = 8+ tur, GRT 9,5 saatte bitmedi
+# Mekanizma: global router tikanmis bir NDR netinin kuralini kapattiginda
+# iterasyon sayacini SIFIRLIYOR (i = 1), yani sure (NDR_kapatma + 1) x 49
+# iterasyondur. Tasarimda NDR tasiyan 13 saat neti var -> 14 tura kadar.
+# Saat agacini met3/met4'e kilitlemek, SRAM makrolarinin o iki katmanin
+# %96,7 ve %97,8'ini kapatmasi nedeniyle 13 NDR netinin HEPSINI garantili
+# tikanik bolgeden gecirir; GRT her turda taze bir kurban bulur.
+#
+# met2 uzlasma noktasidir: en dolu katmani (met1, %56) saat agacina kapatir
+# -- asil amac buydu -- ama makrolarin kapattigi katmanlara da kilitlemez.
+RT_CLOCK_MIN_LAYER: met2
+
+# --- Katman RC degerleri: PnR tahmincisinin kalibrasyonu -------------------
+#
+# SORUN (kendi SPEF'imizle olculdu, 2026-08-30)
+#   PnR sirasinda SPEF yoktur; OpenSTA tel parazitiklerini `set_wire_rc` ile
+#   TAHMIN eder. LibreLane bu tahmini `set_layers_default_rc`
+#   (scripts/openroad/common/set_rc.tcl:72) ile TEKNOLOJI LEF'inden okur ve
+#   AYNI degeri butun kose'lere uygular. Teknoloji LEF'inin verdigi kapasitans
+#   yalnizca PLAKA bileseni; sacaklanma (fringe) ve komsu tel eslesmesi yok.
+#
+#   Sonuc, tamamlanmis `rtl2gds` kosumunun kendi SPEF'leriyle olculdu.
+#   Yollanmis tel 10.715.050 um uzerinden birim uzunluk basina:
+#
+#     RCX kose   gercek C (pF/um)  C orani   gercek R (ohm/um)  R orani  RC orani
+#     nom          1,8058e-04       2,23        1,1927           2,27      5,1
+#     max          1,9793e-04       2,44        2,1764           4,15     10,1
+#     min          1,6034e-04       1,98        0,7231           1,38      2,7
+#     tahminci     8,1050e-05       1,00        0,5248           1,00      1,0
+#
+#   Yani resizer GERCEGIN 2,2 KATI IYIMSER bir kapasitans goruyor.
+#
+#   DIRENC SUTUNU AYRI OKUNMALI. Oradaki 2,27-4,15 katlik farkin buyuk kismi
+#   modelleme hatasi DEGILDIR: li1 yerel baglanti katmani 75,29 ohm/um iken
+#   met1-met4'un (GRT talep karisimina gore agirlikli) ortalamasi
+#   0,5829 ohm/um, yani 130 kat dusuktur. li1 `SIGNAL_WIRE_RC_LAYERS` icinde
+#   degildir ve olmamalidir (uzun net tahminlerini bozardi), ama SPEF onu
+#   icerir. Ayristirma: nom kosesinde met1-4 payi 6,246e+06 ohm, kalan
+#   6,534e+06 ohm ise yalnizca 86.776 um'lik li1'e (telin %0,81'i) karsilik
+#   gelir. Yani met katmanlarinin direnci ZATEN DOGRUDUR.
+#
+#   DUZELTILEBILIR GERCEK HATA KAPASITANSTADIR ve LAYERS_RC tam olarak onu
+#   duzeltir. li1 kaynakli direnc payi `set_wire_rc`'nin yapisal siniridir;
+#   bu ayardan sonra da bir miktar tahmin/signoff bosluğu kalacaktir.
+#
+# BU, TESLIMDEKI UC BILINMEYENI AYNI ANDA ACIKLIYOR
+#   1. post-GRT repair_design 2.720 slew / 786 cap ihlali gorup onariyor,
+#      nihai RCX STA ayni tasarimda 32.763 / 2.858 raporluyor. Arada 12 kat
+#      fark var; kose listesi degil, tel modeli farkli.
+#   2. Resizer'in KENDI taktigi tamponlar ihlalde cikiyor (wire333/A 4,575 ns,
+#      rebuffer15076/X 1,862 ns): taktigi anda o tamponlarin yuku modele gore
+#      sinir icindeydi.
+#   3. 25 ps setup marjiyla tahmin temiz gorunup gercek max-SS sonucu
+#      -5,729 ns cikmisti. 10 ns'lik `GRT_RESIZER_SETUP_SLACK_MARGIN` bu
+#      bosluga karsi konmus KOR bir yamadir; asil hata burada.
+#
+# COZUM
+#   LibreLane'in `LAYERS_RC` yapilandirma degiskeni kose basina R/C tanimlar
+#   (steps/openroad.py:221; `_LAYER_RC_<i>` env'i uzerinden set_layer_rc'ye
+#   gider). Asagidaki tablo LibreLane'in KENDI kaynagindaki, OpenROAD Flow
+#   Scripts'ten uyarlanmis sky130 tablosudur -- config/pdk_compat.py:258-301
+#   icinde YORUM SATIRI olarak duruyor, yani hicbir zaman etkinlesmiyor.
+#   Buraya birebir, elle yazilmadan (sed + ast.literal_eval ile) tasindi.
+#
+# NEDEN BU TABLOYA GUVENIYORUZ -- kendi olcumumuzle dogrulandi
+#   Tablonun tt sinyal kapasitans ortalamasi (met1+met3)/2 = 1,9367e-04 pF/um.
+#   Bizim nom SPEF'imizden olculen gercek deger 1,8058e-04 pF/um.
+#   Sapma yalnizca %7,2 ve PESIMIST yonde -- PnR tahmini icin dogru yon budur.
+#   Direnc tarafinda tablonun tt degerleri teknoloji LEF ile ZATEN AYNIDIR
+#   (met1 8,929e-04 vs 8,928571e-04); tablo yalnizca ss/ff icin fiziksel
+#   proses degisimini (+/-%30) ekler. Yani degisen sey esas olarak
+#   kapasitansin sacaklanma bilesenidir.
+#
+# BU BIR "ESIK OYNATMA" DEGILDIR (Final Istenen Ciktilar Bolum 1.1)
+#   Hicbir PDK, teknoloji, katman esleme veya tasarim kurali dosyasi
+#   degistirilmedi; degisen tek sey bir LibreLane yapilandirma parametresidir
+#   ve Bolum 1.1 bunu acikca serbest birakir. Degisiklik tahmini KOTUMSER
+#   yapar: araci daha cok calismaya zorlar. Raporlanan hicbir signoff sayisi
+#   bu ayardan dogrudan etkilenmez -- nihai STA zaten gercek RCX SPEF'i
+#   kullanir. Beklenen etki, ihlallerin GIZLENMESI degil GERCEKTEN AZALMASIDIR.
+#
+# Birimler ilk lib dosyasindaki gibi: res kohm/um, cap pF/um.
+LAYERS_RC:
+  "*tt*":
+    li1: { res: 0.07176, cap: 0.0001499 }
+    met1: { res: 0.0008929, cap: 0.000172375 }
+    met2: { res: 0.0008929, cap: 0.000136233 }
+    met3: { res: 0.0001567, cap: 0.000214962 }
+    met4: { res: 0.0001567, cap: 0.000154087 }
+    met5: { res: 1.781e-05, cap: 0.000154087 }
+  "*ss*":
+    li1: { res: 0.093288, cap: 0.00019487 }
+    met1: { res: 0.00116077, cap: 0.000224088 }
+    met2: { res: 0.00116077, cap: 0.000177103 }
+    met3: { res: 0.00020371, cap: 0.000279451 }
+    met4: { res: 0.00020371, cap: 0.000200313 }
+    met5: { res: 2.3153e-05, cap: 0.000200313 }
+  "*ff*":
+    li1: { res: 0.050232, cap: 0.00010493 }
+    met1: { res: 0.00062503, cap: 0.000120662 }
+    met2: { res: 0.00062503, cap: 9.53631e-05 }
+    met3: { res: 0.00010969, cap: 0.000150473 }
+    met4: { res: 0.00010969, cap: 0.000107861 }
+    met5: { res: 1.2467e-05, cap: 0.000107861 }
+
+# --- Parazitik tahmininde kullanilan katmanlar ----------------------------
+# BUNLARI ACIKCA YAZMAK ZORUNLU. Bos birakilirsa LibreLane katman listesini
+# "get_layers -constrained" ile turetir (scripts/openroad/common/io.tcl), ama
+# o proc'ta -constrained bayragi UST SINIRDA TERS calisir:
+#     set adding [expr ![info exists flags(-constrained)]]   ;# constrained -> 0
+#     if {"$::env(RT_MAX_LAYER)" == "$name"} {
+#         set adding [info exists flags(-constrained)]       ;# constrained -> 1
+#     }
+# yani -constrained ile met4'ten SONRA eklemeye baslar ve met5 listeye GIRER.
+#
+# Olcumle dogrulandi (14-openroad-dumprcvalues/resizer_values_after.rpt):
+#     Signal Avg 4,402703e-04    Clock Avg 4,402703e-04
+# Yalnizca met1-met4 olsaydi (met1+met3)/2 = 5,2476e-4 cikardi. Gozlenen
+# degeri saglayan tek cozum, ucuncu terim olarak met5'in 1,781e-5'lik
+# direncidir -- yani met5, sinyal yollamasina kapali oldugu halde RC
+# ortalamasina giriyor ve tahmini %19 IYIMSER yapiyordu.
+SIGNAL_WIRE_RC_LAYERS: [met1, met2, met3, met4]
+
+# Saat agaci met2'den basladigi icin (bkz. RT_CLOCK_MIN_LAYER) RC tahminine
+# met2 de girmelidir. Onceki [met3, met4] degeri, gercek GRT alt siniri met2
+# oldugu halde clock direncini yaklasik 2,57 kat iyimser aliyordu.
+CLOCK_WIRE_RC_LAYERS: [met2, met3, met4]
+
+# --- PnR'da kullanilmayacak hucreler --------------------------------------
+# PDK'nin drc_exclude.cells listesi (= set_dont_use) yalnizca clkdlybuf4s15_1
+# ve clkdlybuf4s18_1'i disliyor; 4s25_* ve 4s50_* serbest kaliyor.
+# no_synth.cells hepsini disliyor ama o SADECE sentezi baglar, PnR
+# resizer'ini baglamaz. Sonuc: OpenROAD'in "en dusuk surus gucu" secimi bu
+# GECIKME hucrelerine dusuyor --
+#     repair_design: "Inserted 34 ... clkdlybuf4s25_1 input buffers"
+#     yollama oncesi DEF'te 1.955 adet clkdlybuf4s25_1
+#     en kotu setup yolunda: fanout11206 0,355 ns / fanout11195 0,575 ns
+# Ayni isi buf_1/buf_2 ~0,05-0,10 ns'de yapar.
+#
+# NOT: dlygate4sd3_1 BILEREK DISLANMADI -- o hold onariminin dogru hucresidir
+# (yavas ve kucuk olmasi istenir).
+EXTRA_EXCLUDED_CELLS:
+  - sky130_fd_sc_hd__clkdlybuf4s15_2
+  - sky130_fd_sc_hd__clkdlybuf4s18_2
+  - sky130_fd_sc_hd__clkdlybuf4s25_1
+  - sky130_fd_sc_hd__clkdlybuf4s25_2
+  - sky130_fd_sc_hd__clkdlybuf4s50_1
+  - sky130_fd_sc_hd__clkdlybuf4s50_2
 
 # ---------------------------------------------------------------------------
 #  Yollama tikanmasi karsi onlemler
@@ -308,7 +923,7 @@ RT_MAX_LAYER: met4
 #
 #  DENENEN ama ISE YARAMAYAN yollar (kayit icin):
 #    * die buyutmek (9,86 -> 11,52 mm²)  -> teller uzadi, overflow 133k -> 258k
-#    * hucre dolgusu (GPL/DPL_CELL_PADDING 4/2) -> tel 16,5 -> 24,6 mm, overflow 540k
+#    * hucre dolgusu (GPL/DPL_CELL_PADDING 4/2) -> tel 16,5 -> 24,6 m, overflow 540k
 #    * CTS_APPLY_NDR: none + OBSTRUCTION_AWARE -> saat agaci uzadi, tel arttı
 #    * GRT_ALLOW_CONGESTION: true -> GRT gecti ama detayli yollayiciya cozumsuz
 #      kilavuz devretti; DRT 635k short ile yakinsamadi. Dogru yol GRT'yi
@@ -334,10 +949,121 @@ RT_MAX_LAYER: met4
 # amac yuku met3-met5'e itmekti. met5 artik sinyal yollamasina kapali oldugu
 # icin (bkz. RT_MAX_LAYER) met1'i %50 kismak tasarimi en buyuk kaynagindan
 # mahrum birakir. Cezalar dort katmanli yigina gore yeniden dengelendi.
-GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0.1, 0.1, 0]
+#
+# ONEMLI OPENROAD SEMANTIGI: listedeki 0, genel cezayi sifirlamaz. Router once
+# GRT_ADJUSTMENT'i butun katmanlara uygular; sonra yalnizca sifirdan farkli
+# katman degerleri genel degeri ezer. Varsayilan genel deger %30 oldugu icin
+# onceki ayarda met3/met4 de farkinda olmadan %30 kisiliyordu. Ayni post-CTS
+# ODB uzerindeki kontrollu deneyde genel cezayi %10'a indirmek toplam kaynagi
+# 3.805M'den 4.264M'e cikardi ve overflow'u 192.800'den 5.114'e dusurdu
+# (-%97,3); tel uzunlugu da 18,60 m'den 13,89 m'ye indi. Bu nedenle bos ust
+# katmanlarda yalniz emniyet payi olan %10 birakilir; met1/met2 ise listedeki
+# %30/%25 ile daha kuvvetli derate edilir.
+# ===========================================================================
+#  DIKKAT: GRT TOPLAM ASIMI BU TASARIMDA YANILTICI BIR VEKIL METRIKTIR.
+#
+#  Asimi dusuren ayarlar DETAYLI YOLLAMAYI KOTULESTIRIYOR. Ayni netlist, ayni
+#  yerlestirme, ayni post-CTS veritabani uzerinde olculdu:
+#
+#    GRT ayarlari                          | GRT asimi | DRT iter0 | DRT sonuc
+#    --------------------------------------+-----------+-----------+-----------
+#    adj 0.05, [0,.25,.20], i50, keep-out  |        39 |   233.380 | yakinsamadi
+#    adj 0.10, [0,.30,.25], i20, keep-out  |    15.218 |    89.218 | **24 ihlal**
+#      YOK                                 |           |           |
+#
+#  Mekanizma: GRT_ADJUSTMENT dusurulunce global router'a daha fazla GORUNUR
+#  kapasite verilir; o da daha sikisik guide uretir. Kaba izgarada "asim yok"
+#  gorunur ama detayli yollayici o guide'lari GERCEKLESTIREMEZ.
+#
+#  Bu yuzden asagidaki degerler GRT rakamina gore degil, DRT'DEN GECTIGI
+#  OLCULDUGU icin secilmistir. Referans dogrulama: exp_grt_adj010_drt kosumu
+#  ayni ayarlarla DRT'yi 44 dakikada 7 ihlalle bitirmisti.
+#
+#  KURAL: bir GRT ayari DRT'den gectigi OLCULMEDEN buraya alinmaz.
+#
+#  DURUSTLUK NOTU: yukaridaki karsilastirmada ceza ayarlari ve makro
+#  keep-out'lari BIRLIKTE degisti; hangisinin tek basina zararli oldugu izole
+#  edilmedi. Dogrulanan sey KOMBINASYONDUR.
+# ===========================================================================
+GRT_ADJUSTMENT: 0.10
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0, 0, 0]
+
+# --- Global routing iterasyon butcesi -------------------------------------
+# LibreLane'in global_route'a gecirdigi TEK ayarlanabilir sayi budur
+# (scripts/openroad/common/grt.tcl:24 -> -congestion_iterations).
+# Varsayilani 50'dir ve bu tasarimda kabul edilemez:
+#
+#   * Iterasyon maliyeti i ile birlikte buyur (costheight_ her turda artar,
+#     maze arama alani genisler), yani TUR SURESI ~ (N-1)^2.
+#   * Router tikanik bir NDR netini kapattiginda sayaci SIFIRLAR, yani
+#     toplam sure (NDR_kapatma + 1) x (N-1) iterasyondur.
+#   * N=50 ile olculen: tur basina ~72 dakika, 14 tura kadar -> ~17 SAAT.
+#     Karsilastirma: GRT'ye kadarki TUM adimlarin toplami 56 dakika.
+#
+# N=20 secildi: iterasyon cizelgesindeki i=8 (ikinci faz) ve i=20 (agresif
+# faz) gecislerinin ikisi de yasar, yalnizca i=35/50 gecisleri kaybedilir.
+# Beklenen tur suresi ~11 dakika. Bedeli, nihai overflow'un bir miktar
+# artmasidir; akis zaten GRT_ALLOW_CONGESTION ile DRT'ye devam ettigi ve
+# gercek yollamayi DRT yaptigi icin bu kabul edilebilir bir takastir.
+# N=50 ayri deneyde GRT overflow'unu 372'den 90'a indirdi, fakat bu tasarimda
+# daha dusuk GRT sayisinin daha iyi DRT anlamina gelmedigi yukarida olculdu ve
+# i50 ciktisi nihai DRT/signoff zincirinden gecirilmedi. Bu nedenle teslim
+# kosumu sure--kapsam takasi acikca belgelenerek N=20'de tutuldu: nihai GRT
+# overflow 16.108 / 4.264.443 (%0,378), DRT sonucu 14 ihlaldir.
+# 20 -> 30: artimli GRT'ye (design repair / resizer icinde kosan) tasmayi
+# cozmesi icin daha fazla tur. Marj sifirlamasiyla AYNI kosumda degistirildi;
+# tasma zaten 0'a indigi icin katkisi olsa olsa marjinaldir, ama geri
+# alinmadan once tek degiskenli olculmelidir.
+GRT_OVERFLOW_ITERS: 30
 MAX_FANOUT_CONSTRAINT: 25
 
 # ---------------------------------------------------------------------------
-#  Signoff STA corner'lari (Tablo 4 -- ucu de zorunlu)
+#  PNR corner tekillestirmesi
+#
+# PDK'nin STA_CORNERS listesi nom/min/max RC etiketleri x TT/SS/FF olmak
+# uzere dokuz kosul icerir.
+#
+# GUNCELLEME (2026-08-30): bu yorum yazildiginda LAYERS_RC tanimli DEGILDI.
+# Artik tanimlidir (yukariya bakin) ve anahtarlari `*tt*` / `*ss*` / `*ff*`,
+# yani LIB kosesine gore ayrisir, RCX etiketine (nom/min/max) gore degil.
+# Sonuc DEGISMEZ: dokuz STA kosesi PNR icin yine uc benzersiz IPVT kosuluna
+# iner, cunku nom/min/max ayni Liberty VE ayni LAYERS_RC girdisini paylasir.
+# RCX kural setleri (RCX_RULESETS) zaten yalnizca detayli yollamadan SONRA,
+# OpenROAD.RCX adiminda devreye girer.
+#
+# Tekillestirme olmasaydi PNR sirasinda ayni Liberty/RC kumesi ucer kez
+# yuklenirdi.
+# LibreLane'in standart tekillestirmesi PNR/CTS/resizer adimlarini uc benzersiz
+# IPVT kosuluna indirir. OpenROAD.STAPostPNR ayri MultiCornerSTA adimidir ve
+# signoff'ta STA_CORNERS listesindeki dokuz kosulun tamamini calistirmaya devam
+# eder. Ilk post-GRT deneyinde OpenROAD RSS'i yaklasik 3,0 GB -> 2,1 GB indi.
 # ---------------------------------------------------------------------------
-DEDUPLICATE_CORNERS: false
+DEDUPLICATE_CORNERS: true
+
+# >>> OTOMATIK URETILEN BLOK -- makro met1 keep-out (make keepout) <<<
+# KEEP-OUT'LAR KAPALI.  Bu blok bilerek 'null' birakilmistir.
+#
+# GEREKCE (olculdu, tahmin degil): makro kenarlarina 10 um met1 keep-out
+# koymak + GRT cezalarini gevsetmek GRT toplam asimini 5.114'ten 39'a
+# indiriyordu, ama DETAYLI YOLLAMAYI cok daha kotu bir noktadan
+# baslatiyordu:
+#
+#   DRT iterasyonu | keep-out + adj 0.05 | keep-out YOK + adj 0.10
+#   ---------------+---------------------+-------------------------
+#                0 |             233.380 |                  89.218
+#                1 |             204.779 |                  41.952
+#                3 |            ~165.000 |                  14.862
+#              son |    (yakinsamiyordu) |            **24 ihlal**
+#
+# Yani GRT asimi bu tasarimda gercek metrikle (DRT DRC) TERS korele bir
+# VEKIL METRIKTIR: router'a daha fazla gorunur kapasite verilince daha
+# sikisik guide uretiyor, detayli yollayici gerceklestiremiyor.
+#
+# DURUSTLUK NOTU: bu karsilastirmada keep-out'lar ve ceza ayarlari
+# BIRLIKTE degistirildi; hangisinin tek basina zararli oldugu izole
+# EDILMEDI. Dogrulanan sey KOMBINASYONDUR.
+#
+# Keep-out'lari geri acmak icin:  make keepout MODE=on
+# (uretilen deger: 15 makro, 10 um met1)
+ROUTING_OBSTRUCTIONS: null
+# >>> OTOMATIK URETILEN BLOK SONU (keep-out) <<<

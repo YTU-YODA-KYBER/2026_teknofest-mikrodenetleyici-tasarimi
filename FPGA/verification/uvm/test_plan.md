@@ -20,8 +20,9 @@ Toplam **73 test**, blok başına **3 tohum** → **219 koşum**.
 | `*_reset_mid_test` | Trafik akarken reset uygular, sonra reset değerlerini kontrol eder | Reset kurtarması; `RST_01..05` ihlal üretmiyor |
 | `*_stress_test` | `beats = 2` — aynı VALID yükseltmesi üzerinde iki işlem (boru hatlı master) | Kabul koşulunun kendi `*ready`'siyle nitelendiği |
 
-> `gpio_stress_test` **beklenen başarısızdır**: GPIO'nun kabul koşulu
-> nitelenmemiştir ve DUT kilitlenir. Ayrıntı [`findings.md`](findings.md).
+`gpio_stress_test`, düzeltilen GPIO kabul koşulunun regresyon korumasıdır;
+diğer bloklardaki stres testleri gibi kilitlenmeden ve ihlalsiz geçmelidir.
+Ayrıntı [`findings.md`](findings.md).
 
 ---
 

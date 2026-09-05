@@ -1,0 +1,2581 @@
+Starting…
+Running 'Verilator.Lint' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/01-verilator-lint'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/01-verilator-lint/verilator-lint.log'[/repr.filename]…
+Running 'Checker.LintTimingConstructs' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/02-checker-linttimingconstructs'…
+Check for Lint Timing Errors clear.
+Running 'Checker.LintErrors' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/03-checker-linterrors'…
+Check for Lint errors clear.
+Running 'Checker.LintWarnings' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/04-checker-lintwarnings'…
+883 Lint warnings found.
+Running 'Yosys.JsonHeader' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/05-yosys-jsonheader'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/05-yosys-jsonheader/yosys-jsonheader.log'[/repr.filename]…
+Running 'Yosys.Synthesis' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/06-yosys-synthesis'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/06-yosys-synthesis/yosys-synthesis.log'[/repr.filename]…
+Parsing synthesis checks…
+Running 'Checker.YosysUnmappedCells' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/07-checker-yosysunmappedcells'…
+Check for Unmapped Yosys instances clear.
+Running 'Checker.YosysSynthChecks' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/08-checker-yosyssynthchecks'…
+Check for Yosys check errors clear.
+Running 'Checker.NetlistAssignStatements' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/09-checker-netlistassignstatements'…
+Running 'OpenROAD.CheckSDCFiles' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/10-openroad-checksdcfiles'…
+Running 'OpenROAD.CheckMacroInstances' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/11-openroad-checkmacroinstances'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/11-openroad-checkmacroinstances/openroad-checkmacroinstances.log'[/repr.filename]…
+Running 'OpenROAD.STAPrePNR' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/12-openroad-staprepnr'…
+Starting STA for the nom_tt_025C_1v80 timing corner…
+Skipping corner min_tt_025C_1v80 for STA (identical to nom_tt_025C_1v80 at this stage)…
+Skipping corner min_ss_100C_1v60 for STA (identical to nom_ss_100C_1v60 at this stage)…
+Skipping corner min_ff_n40C_1v95 for STA (identical to nom_ff_n40C_1v95 at this stage)…
+Skipping corner max_tt_025C_1v80 for STA (identical to nom_tt_025C_1v80 at this stage)…
+Skipping corner max_ss_100C_1v60 for STA (identical to nom_ss_100C_1v60 at this stage)…
+Skipping corner max_ff_n40C_1v95 for STA (identical to nom_ff_n40C_1v95 at this stage)…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/12-openroad-staprepnr/nom_tt_025C_1v80/sta.log'[/repr.filename]…
+Finished STA for the nom_tt_025C_1v80 timing corner.
+Starting STA for the nom_ss_100C_1v60 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/12-openroad-staprepnr/nom_ss_100C_1v60/sta.log'[/repr.filename]…
+Finished STA for the nom_ss_100C_1v60 timing corner.
+Starting STA for the nom_ff_n40C_1v95 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/12-openroad-staprepnr/nom_ff_n40C_1v95/sta.log'[/repr.filename]…
+Finished STA for the nom_ff_n40C_1v95 timing corner.
+Running 'OpenROAD.Floorplan' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/13-openroad-floorplan'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/13-openroad-floorplan/openroad-floorplan.log'[/repr.filename]…
+Running 'OpenROAD.DumpRCValues' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/14-openroad-dumprcvalues'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/14-openroad-dumprcvalues/openroad-dumprcvalues.log'[/repr.filename]…
+Running 'Odb.CheckMacroAntennaProperties' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/15-odb-checkmacroantennaproperties'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/15-odb-checkmacroantennaproperties/odb-checkmacroantennaproperties.log'[/repr.filename]…
+Cell 'sky130_sram_2kbyte_1rw1r_32x512_8' has (59) input pin(s) without antenna gate information. They might not be connected to a gate.
+Cell 'sky130_sram_2kbyte_1rw1r_32x512_8' has (64) output pin(s) without antenna diffusion information. They might not be driven.
+Running 'Odb.SetPowerConnections' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/16-odb-setpowerconnections'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/16-odb-setpowerconnections/odb-setpowerconnections.log'[/repr.filename]…
+Running 'Odb.ManualMacroPlacement' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/17-odb-manualmacroplacement'…
+Using 'MACRO_PLACEMENT_CFG' is deprecated. It is recommended to use the new 'MACROS' configuration variable.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/17-odb-manualmacroplacement/odb-manualmacroplacement.log'[/repr.filename]…
+Running 'OpenROAD.CutRows' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/18-openroad-cutrows'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/18-openroad-cutrows/openroad-cutrows.log'[/repr.filename]…
+Running 'OpenROAD.TapEndcapInsertion' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/19-openroad-tapendcapinsertion'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/19-openroad-tapendcapinsertion/openroad-tapendcapinsertion.log'[/repr.filename]…
+Running 'Odb.AddPDNObstructions' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/20-odb-addpdnobstructions'…
+'PDN_OBSTRUCTIONS' is not defined. Skipping 'Odb.AddPDNObstructions'…
+Running 'OpenROAD.GeneratePDN' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/21-openroad-generatepdn'…
+'PDN_CFG' not explicitly set, setting it to /nix/store/5jsqcdxd774ydqqjk8zkw3zk47dxbryb-python3-3.13.9-env/lib/python3.13/site-packages/librelane/scripts/openroad/common/pdn_cfg.tcl…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/21-openroad-generatepdn/openroad-generatepdn.log'[/repr.filename]…
+[PDN-0110] No via inserted between met4 and met5 at (174.6400, 639.4500) - (176.2400, 640.3200) on VPWR
+[PDN-0110] No via inserted between met4 and met5 at (331.5400, 3093.6300) - (333.1400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (481.8400, 639.4500) - (483.4400, 640.3200) on VPWR
+[PDN-0110] No via inserted between met4 and met5 at (635.4400, 639.4500) - (637.0400, 640.3200) on VPWR
+[PDN-0110] No via inserted between met4 and met5 at (792.3400, 3093.6300) - (793.9400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (945.9400, 3093.6300) - (947.5400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (1099.5400, 3093.6300) - (1101.1400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (1406.7400, 3093.6300) - (1408.3400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (1560.3400, 3093.6300) - (1561.9400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (1867.5400, 3093.6300) - (1869.1400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (2174.7400, 3093.6300) - (2176.3400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (2328.3400, 3093.6300) - (2329.9400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (2481.9400, 3093.6300) - (2483.5400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (2635.5400, 3093.6300) - (2637.1400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (2942.7400, 3093.6300) - (2944.3400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (3096.3400, 3093.6300) - (3097.9400, 3093.7800) on VGND
+[PDN-0110] No via inserted between met4 and met5 at (3249.9400, 3093.6300) - (3251.5400, 3093.7800) on VGND
+Running 'Odb.RemovePDNObstructions' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/22-odb-removepdnobstructions'…
+'PDN_OBSTRUCTIONS' is not defined. Skipping 'Odb.RemovePDNObstructions'…
+Running 'Odb.AddRoutingObstructions' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/23-odb-addroutingobstructions'…
+'ROUTING_OBSTRUCTIONS' is not defined. Skipping 'Odb.AddRoutingObstructions'…
+Running 'OpenROAD.GlobalPlacementSkipIO' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/24-openroad-globalplacementskipio'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/24-openroad-globalplacementskipio/openroad-globalplacementskipio.log'[/repr.filename]…
+Running 'OpenROAD.IOPlacement' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/25-openroad-ioplacement'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/25-openroad-ioplacement/openroad-ioplacement.log'[/repr.filename]…
+Running 'Odb.CustomIOPlacement' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/26-odb-customioplacement'…
+No custom I/O placement file configured, skipping 'Odb.CustomIOPlacement'…
+Running 'Odb.ApplyDEFTemplate' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/27-odb-applydeftemplate'…
+No DEF template provided, skipping 'Odb.ApplyDEFTemplate'…
+Running 'OpenROAD.GlobalPlacement' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/28-openroad-globalplacement'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/28-openroad-globalplacement/openroad-globalplacement.log'[/repr.filename]…
+[GRT-0281] Net clk_i has a large fanout of 9327 terminals.
+[GRT-0281] Net rst_sync_q\[1\] has a large fanout of 4803 terminals.
+Running 'Odb.WriteVerilogHeader' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/29-odb-writeverilogheader'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/29-odb-writeverilogheader/odb-writeverilogheader.log'[/repr.filename]…
+Running 'Checker.PowerGridViolations' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/30-checker-powergridviolations'…
+Check for power grid violations (as reported by OpenROAD PSM- you may ignore these if LVS passes) clear.
+Running 'OpenROAD.STAMidPNR' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/31-openroad-stamidpnr'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/31-openroad-stamidpnr/openroad-stamidpnr.log'[/repr.filename]…
+Running 'OpenROAD.RepairDesignPostGPL' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/32-openroad-repairdesignpostgpl'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/32-openroad-repairdesignpostgpl/openroad-repairdesignpostgpl.log'[/repr.filename]…
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[RSZ-0020] found 2 floating nets.
+Running 'Odb.ManualGlobalPlacement' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/33-odb-manualglobalplacement'…
+'MANUAL_GLOBAL_PLACEMENTS' not set. Skipping 'Odb.ManualGlobalPlacement'…
+Running 'OpenROAD.DetailedPlacement' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/34-openroad-detailedplacement'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/34-openroad-detailedplacement/openroad-detailedplacement.log'[/repr.filename]…
+Running 'OpenROAD.CTS' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/35-openroad-cts'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/35-openroad-cts/openroad-cts.log'[/repr.filename]…
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[RSZ-0065] max wire length less than 2936u increases wire delays.
+Running 'OpenROAD.STAMidPNR-1' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/36-openroad-stamidpnr-1'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/36-openroad-stamidpnr-1/openroad-stamidpnr-1.log'[/repr.filename]…
+Running 'OpenROAD.ResizerTimingPostCTS' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/37-openroad-resizertimingpostcts'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/37-openroad-resizertimingpostcts/openroad-resizertimingpostcts.log'[/repr.filename]…
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+Running 'OpenROAD.STAMidPNR-2' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/38-openroad-stamidpnr-2'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/38-openroad-stamidpnr-2/openroad-stamidpnr-2.log'[/repr.filename]…
+Skipping step 'Global Routing'…
+Skipping step 'Check Antennas'…
+Skipping step 'Repair Design (Post-Global Routing)'…
+Skipping step 'Diodes on Ports'…
+Gating variable for step 'Odb.HeuristicDiodeInsertion' set to 'False'- the step will be skipped.
+Skipping step 'Heuristic Diode Insertion'…
+Gating variable for step 'OpenROAD.RepairAntennas' set to 'False'- the step will be skipped.
+Skipping step 'Antenna Repair'…
+Skipping step 'Resizer Timing Optimizations (Post-Global Routing)'…
+Skipping step 'STA (Mid-PnR)'…
+Skipping step 'Detailed Routing'…
+Skipping step 'Remove Obstructions'…
+Skipping step 'Check Antennas'…
+Skipping step 'Routing DRC Checker'…
+Skipping step 'Report Disconnected Pins'…
+Skipping step 'Disconnected Pins Checker'…
+Skipping step 'Report Wire Length'…
+Skipping step 'Wire Length Threshold Checker'…
+Skipping step 'Fill Insertion'…
+Skipping step 'Generate Cell Frequency Tables'…
+Skipping step 'Parasitics (RC) Extraction'…
+Skipping step 'STA (Post-PnR)'…
+Skipping step 'IR Drop Report'…
+Skipping step 'GDSII Stream Out (Magic)'…
+Skipping step 'GDSII Stream Out (KLayout)'…
+Skipping step 'Render Image (w/ KLayout)'…
+Skipping step 'Write LEF (Magic)'…
+Skipping step 'Check Antenna Properties of Pins in The Generated Design LEF view'…
+Skipping step 'KLayout vs. Magic XOR'…
+Skipping step 'XOR Difference Checker'…
+Skipping step 'DRC'…
+Skipping step 'Design Rule Check (KLayout)'…
+Skipping step 'Magic DRC Checker'…
+Skipping step 'KLayout DRC Checker'…
+Skipping step 'SPICE Extraction'…
+Skipping step 'Illegal Overlap Checker'…
+Skipping step 'Netgen LVS'…
+Skipping step 'LVS Error Checker'…
+Gating variable for step 'Yosys.EQY' set to 'False'- the step will be skipped.
+Skipping step 'Equivalence Check'…
+Skipping step 'Setup Timing Violations Checker'…
+Skipping step 'Hold Timing Violations Checker'…
+Skipping step 'Max Slew Violations Checker'…
+Skipping step 'Max Cap Violations Checker'…
+Skipping step 'Report Manufacturability'…
+Saving views to '/usr/asic_flow/run/uart28_m3a010_final/final'…
+Flow complete.
+Starting…
+Skipping step 'Verilator Lint'…
+Skipping step 'Lint Timing Error Checker'…
+Skipping step 'Lint Errors Checker'…
+Skipping step 'Lint Warnings Checker'…
+Skipping step 'Generate JSON Header'…
+Skipping step 'Synthesis'…
+Skipping step 'Unmapped Cells Checker'…
+Skipping step 'Yosys Synth Checks'…
+Skipping step 'Netlist Assign Statement Checker'…
+Skipping step 'Check SDC Files'…
+Skipping step 'Check Macro Instances'…
+Skipping step 'STA (Pre-PnR)'…
+Skipping step 'Floorplan Init'…
+Skipping step 'Dump RC Values'…
+Skipping step 'Check Antenna Properties of Macros Pins in Their LEF Views'…
+Skipping step 'Set Power Connections'…
+Skipping step 'Manual Macro Placement'…
+Skipping step 'Cut Rows'…
+Skipping step 'Tap/Decap Insertion'…
+Skipping step 'Add PDN obstructions'…
+Skipping step 'Generate PDN'…
+Skipping step 'Remove PDN obstructions'…
+Skipping step 'Add Obstructions'…
+Skipping step 'Global Placement Skip IO'…
+Skipping step 'I/O Placement'…
+Skipping step 'Custom I/O Placement'…
+Skipping step 'Apply DEF Template'…
+Skipping step 'Global Placement'…
+Skipping step 'Write Verilog Header'…
+Skipping step 'Power Grid Violation Checker'…
+Skipping step 'STA (Mid-PnR)'…
+Skipping step 'Repair Design (Post-Global Placement)'…
+Skipping step 'Manual Global Placement'…
+Skipping step 'Detailed Placement'…
+Skipping step 'Clock Tree Synthesis'…
+Skipping step 'STA (Mid-PnR)'…
+Skipping step 'Resizer Timing Optimizations (Post-Clock Tree Synthesis)'…
+Skipping step 'STA (Mid-PnR)'…
+Running 'OpenROAD.GlobalRouting' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/39-openroad-globalrouting'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/39-openroad-globalrouting/openroad-globalrouting.log'[/repr.filename]…
+Running 'OpenROAD.CheckAntennas' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/40-openroad-checkantennas'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/40-openroad-checkantennas/openroad-checkantennas.log'[/repr.filename]…
+Running 'OpenROAD.RepairDesignPostGRT' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/41-openroad-repairdesignpostgrt'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/41-openroad-repairdesignpostgrt/openroad-repairdesignpostgrt.log'[/repr.filename]…
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[RSZ-0065] max wire length less than 2936u increases wire delays.
+[EST-0026] Missing route to pin wire49734/A in net net1.
+[EST-0026] Missing route to pin input1/X in net net1.
+[EST-0026] Missing route to pin _064387_/B in net net1.
+[EST-0026] Missing route to pin _064047_/A_N in net net1.
+[EST-0026] Missing route to pin wire49734/A in net net1.
+[EST-0026] Missing route to pin input1/X in net net1.
+[EST-0026] Missing route to pin _064387_/B in net net1.
+[EST-0026] Missing route to pin _064047_/A_N in net net1.
+[EST-0026] Missing route to pin wire49734/A in net net1.
+[EST-0026] Missing route to pin input1/X in net net1.
+[EST-0026] Missing route to pin _064387_/B in net net1.
+[EST-0026] Missing route to pin _064047_/A_N in net net1.
+[EST-0026] Missing route to pin wire30500/A in net net2.
+[EST-0026] Missing route to pin input2/X in net net2.
+[EST-0026] Missing route to pin _064471_/C in net net2.
+[EST-0026] Missing route to pin wire30500/A in net net2.
+[EST-0026] Missing route to pin input2/X in net net2.
+[EST-0026] Missing route to pin _064471_/C in net net2.
+[EST-0026] Missing route to pin wire30500/A in net net2.
+[EST-0026] Missing route to pin input2/X in net net2.
+[EST-0026] Missing route to pin _064471_/C in net net2.
+[EST-0026] Missing route to pin wire30489/A in net net3.
+[EST-0026] Missing route to pin input3/X in net net3.
+[EST-0026] Missing route to pin _064471_/D in net net3.
+[EST-0026] Missing route to pin wire30489/A in net net3.
+[EST-0026] Missing route to pin input3/X in net net3.
+[EST-0026] Missing route to pin _064471_/D in net net3.
+[EST-0026] Missing route to pin wire30489/A in net net3.
+[EST-0026] Missing route to pin input3/X in net net3.
+[EST-0026] Missing route to pin _064471_/D in net net3.
+[EST-0026] Missing route to pin wire49733/A in net net4.
+[EST-0026] Missing route to pin input4/X in net net4.
+[EST-0026] Missing route to pin _064472_/A in net net4.
+[EST-0026] Missing route to pin wire49733/A in net net4.
+[EST-0026] Missing route to pin input4/X in net net4.
+[EST-0026] Missing route to pin _064472_/A in net net4.
+[EST-0026] Missing route to pin wire49733/A in net net4.
+[EST-0026] Missing route to pin input4/X in net net4.
+[EST-0026] Missing route to pin _064472_/A in net net4.
+[EST-0026] Missing route to pin wire30484/A in net net5.
+[EST-0026] Missing route to pin input5/X in net net5.
+[EST-0026] Missing route to pin _064472_/B in net net5.
+[EST-0026] Missing route to pin wire30484/A in net net5.
+[EST-0026] Missing route to pin input5/X in net net5.
+[EST-0026] Missing route to pin _064472_/B in net net5.
+[EST-0026] Missing route to pin wire30484/A in net net5.
+[EST-0026] Missing route to pin input5/X in net net5.
+[EST-0026] Missing route to pin _064472_/B in net net5.
+[EST-0026] Missing route to pin wire49732/A in net net6.
+[EST-0026] Missing route to pin input6/X in net net6.
+[EST-0026] Missing route to pin _064472_/C in net net6.
+[EST-0026] Missing route to pin wire49732/A in net net6.
+[EST-0026] Missing route to pin input6/X in net net6.
+[EST-0026] Missing route to pin _064472_/C in net net6.
+[EST-0026] Missing route to pin wire49732/A in net net6.
+[EST-0026] Missing route to pin input6/X in net net6.
+[EST-0026] Missing route to pin _064472_/C in net net6.
+[EST-0026] Missing route to pin wire49731/A in net net7.
+[EST-0026] Missing route to pin input7/X in net net7.
+[EST-0026] Missing route to pin _064472_/D in net net7.
+[EST-0026] Missing route to pin wire49731/A in net net7.
+[EST-0026] Missing route to pin input7/X in net net7.
+[EST-0026] Missing route to pin _064472_/D in net net7.
+[EST-0026] Missing route to pin wire49731/A in net net7.
+[EST-0026] Missing route to pin input7/X in net net7.
+[EST-0026] Missing route to pin _064472_/D in net net7.
+[EST-0026] Missing route to pin wire30483/A in net net8.
+[EST-0026] Missing route to pin input8/X in net net8.
+[EST-0026] Missing route to pin _064466_/A in net net8.
+[EST-0026] Missing route to pin wire30483/A in net net8.
+[EST-0026] Missing route to pin input8/X in net net8.
+[EST-0026] Missing route to pin _064466_/A in net net8.
+[EST-0026] Missing route to pin wire30483/A in net net8.
+[EST-0026] Missing route to pin input8/X in net net8.
+[EST-0026] Missing route to pin _064466_/A in net net8.
+[EST-0026] Missing route to pin wire30482/A in net net9.
+[EST-0026] Missing route to pin input9/X in net net9.
+[EST-0026] Missing route to pin _064466_/B in net net9.
+[EST-0026] Missing route to pin wire30482/A in net net9.
+[EST-0026] Missing route to pin input9/X in net net9.
+[EST-0026] Missing route to pin _064466_/B in net net9.
+[EST-0026] Missing route to pin wire30482/A in net net9.
+[EST-0026] Missing route to pin input9/X in net net9.
+[EST-0026] Missing route to pin _064466_/B in net net9.
+[EST-0026] Missing route to pin wire30510/A in net net10.
+[EST-0026] Missing route to pin input10/X in net net10.
+[EST-0026] Missing route to pin _064466_/C in net net10.
+[EST-0026] Missing route to pin wire30510/A in net net10.
+[EST-0026] Missing route to pin input10/X in net net10.
+[EST-0026] Missing route to pin _064466_/C in net net10.
+[EST-0026] Missing route to pin wire30510/A in net net10.
+[EST-0026] Missing route to pin input10/X in net net10.
+[EST-0026] Missing route to pin _064466_/C in net net10.
+[EST-0026] Missing route to pin wire30509/A in net net11.
+[EST-0026] Missing route to pin input11/X in net net11.
+[EST-0026] Missing route to pin _064466_/D in net net11.
+[EST-0026] Missing route to pin wire30509/A in net net11.
+[EST-0026] Missing route to pin input11/X in net net11.
+[EST-0026] Missing route to pin _064466_/D in net net11.
+[EST-0026] Missing route to pin wire30509/A in net net11.
+[EST-0026] Missing route to pin input11/X in net net11.
+[EST-0026] Missing route to pin _064466_/D in net net11.
+[EST-0026] Missing route to pin wire30508/A in net net12.
+[EST-0026] Missing route to pin input12/X in net net12.
+[EST-0026] Missing route to pin _064387_/A_N in net net12.
+[EST-0026] Missing route to pin _064047_/B in net net12.
+[EST-0026] Missing route to pin wire30508/A in net net12.
+[EST-0026] Missing route to pin input12/X in net net12.
+[EST-0026] Missing route to pin _064387_/A_N in net net12.
+[EST-0026] Missing route to pin _064047_/B in net net12.
+[EST-0026] Missing route to pin wire30508/A in net net12.
+[EST-0026] Missing route to pin input12/X in net net12.
+[EST-0026] Missing route to pin _064387_/A_N in net net12.
+[EST-0026] Missing route to pin _064047_/B in net net12.
+[EST-0026] Missing route to pin wire30507/A in net net13.
+[EST-0026] Missing route to pin input13/X in net net13.
+[EST-0026] Missing route to pin _064465_/A in net net13.
+[EST-0026] Missing route to pin wire30507/A in net net13.
+[EST-0026] Missing route to pin input13/X in net net13.
+[EST-0026] Missing route to pin _064465_/A in net net13.
+[EST-0026] Missing route to pin wire30507/A in net net13.
+[EST-0026] Missing route to pin input13/X in net net13.
+[EST-0026] Missing route to pin _064465_/A in net net13.
+[EST-0026] Missing route to pin wire30506/A in net net14.
+[EST-0026] Missing route to pin input14/X in net net14.
+[EST-0026] Missing route to pin _064465_/B in net net14.
+[EST-0026] Missing route to pin wire30506/A in net net14.
+[EST-0026] Missing route to pin input14/X in net net14.
+[EST-0026] Missing route to pin _064465_/B in net net14.
+[EST-0026] Missing route to pin wire30506/A in net net14.
+[EST-0026] Missing route to pin input14/X in net net14.
+[EST-0026] Missing route to pin _064465_/B in net net14.
+[EST-0026] Missing route to pin wire30505/A in net net15.
+[EST-0026] Missing route to pin input15/X in net net15.
+[EST-0026] Missing route to pin _064465_/C in net net15.
+[EST-0026] Missing route to pin wire30505/A in net net15.
+[EST-0026] Missing route to pin input15/X in net net15.
+[EST-0026] Missing route to pin _064465_/C in net net15.
+[EST-0026] Missing route to pin wire30505/A in net net15.
+[EST-0026] Missing route to pin input15/X in net net15.
+[EST-0026] Missing route to pin _064465_/C in net net15.
+[EST-0026] Missing route to pin wire30504/A in net net16.
+[EST-0026] Missing route to pin input16/X in net net16.
+[EST-0026] Missing route to pin _064465_/D in net net16.
+[EST-0026] Missing route to pin wire30504/A in net net16.
+[EST-0026] Missing route to pin input16/X in net net16.
+[EST-0026] Missing route to pin _064465_/D in net net16.
+[EST-0026] Missing route to pin wire30504/A in net net16.
+[EST-0026] Missing route to pin input16/X in net net16.
+[EST-0026] Missing route to pin _064465_/D in net net16.
+[EST-0026] Missing route to pin wire30503/A in net net17.
+[EST-0026] Missing route to pin input17/X in net net17.
+[EST-0026] Missing route to pin _064467_/A in net net17.
+[EST-0026] Missing route to pin wire30503/A in net net17.
+[EST-0026] Missing route to pin input17/X in net net17.
+[EST-0026] Missing route to pin _064467_/A in net net17.
+[EST-0026] Missing route to pin wire30503/A in net net17.
+[EST-0026] Missing route to pin input17/X in net net17.
+[EST-0026] Missing route to pin _064467_/A in net net17.
+[EST-0026] Missing route to pin wire30502/A in net net18.
+[EST-0026] Missing route to pin input18/X in net net18.
+[EST-0026] Missing route to pin _064467_/B in net net18.
+[EST-0026] Missing route to pin wire30502/A in net net18.
+[EST-0026] Missing route to pin input18/X in net net18.
+[EST-0026] Missing route to pin _064467_/B in net net18.
+[EST-0026] Missing route to pin wire30502/A in net net18.
+[EST-0026] Missing route to pin input18/X in net net18.
+[EST-0026] Missing route to pin _064467_/B in net net18.
+[EST-0026] Missing route to pin wire30501/A in net net19.
+[EST-0026] Missing route to pin input19/X in net net19.
+[EST-0026] Missing route to pin _064467_/C in net net19.
+[EST-0026] Missing route to pin wire30501/A in net net19.
+[EST-0026] Missing route to pin input19/X in net net19.
+[EST-0026] Missing route to pin _064467_/C in net net19.
+[EST-0026] Missing route to pin wire30501/A in net net19.
+[EST-0026] Missing route to pin input19/X in net net19.
+[EST-0026] Missing route to pin _064467_/C in net net19.
+[EST-0026] Missing route to pin wire30499/A in net net20.
+[EST-0026] Missing route to pin input20/X in net net20.
+[EST-0026] Missing route to pin _064467_/D in net net20.
+[EST-0026] Missing route to pin wire30499/A in net net20.
+[EST-0026] Missing route to pin input20/X in net net20.
+[EST-0026] Missing route to pin _064467_/D in net net20.
+[EST-0026] Missing route to pin wire30499/A in net net20.
+[EST-0026] Missing route to pin input20/X in net net20.
+[EST-0026] Missing route to pin _064467_/D in net net20.
+[EST-0026] Missing route to pin wire30498/A in net net21.
+[EST-0026] Missing route to pin input21/X in net net21.
+[EST-0026] Missing route to pin _064468_/A in net net21.
+[EST-0026] Missing route to pin wire30498/A in net net21.
+[EST-0026] Missing route to pin input21/X in net net21.
+[EST-0026] Missing route to pin _064468_/A in net net21.
+[EST-0026] Missing route to pin wire30498/A in net net21.
+[EST-0026] Missing route to pin input21/X in net net21.
+[EST-0026] Missing route to pin _064468_/A in net net21.
+[EST-0026] Missing route to pin wire30497/A in net net22.
+[EST-0026] Missing route to pin input22/X in net net22.
+[EST-0026] Missing route to pin _064468_/B in net net22.
+[EST-0026] Missing route to pin wire30497/A in net net22.
+[EST-0026] Missing route to pin input22/X in net net22.
+[EST-0026] Missing route to pin _064468_/B in net net22.
+[EST-0026] Missing route to pin wire30497/A in net net22.
+[EST-0026] Missing route to pin input22/X in net net22.
+[EST-0026] Missing route to pin _064468_/B in net net22.
+[EST-0026] Missing route to pin wire30496/A in net net23.
+[EST-0026] Missing route to pin input23/X in net net23.
+[EST-0026] Missing route to pin _064473_/A in net net23.
+[EST-0026] Missing route to pin wire30496/A in net net23.
+[EST-0026] Missing route to pin input23/X in net net23.
+[EST-0026] Missing route to pin _064473_/A in net net23.
+[EST-0026] Missing route to pin wire30496/A in net net23.
+[EST-0026] Missing route to pin input23/X in net net23.
+[EST-0026] Missing route to pin _064473_/A in net net23.
+[EST-0026] Missing route to pin wire30495/A in net net24.
+[EST-0026] Missing route to pin input24/X in net net24.
+[EST-0026] Missing route to pin _064468_/C in net net24.
+[EST-0026] Missing route to pin wire30495/A in net net24.
+[EST-0026] Missing route to pin input24/X in net net24.
+[EST-0026] Missing route to pin _064468_/C in net net24.
+[EST-0026] Missing route to pin wire30495/A in net net24.
+[EST-0026] Missing route to pin input24/X in net net24.
+[EST-0026] Missing route to pin _064468_/C in net net24.
+[EST-0026] Missing route to pin wire30494/A in net net25.
+[EST-0026] Missing route to pin input25/X in net net25.
+[EST-0026] Missing route to pin _064468_/D in net net25.
+[EST-0026] Missing route to pin wire30494/A in net net25.
+[EST-0026] Missing route to pin input25/X in net net25.
+[EST-0026] Missing route to pin _064468_/D in net net25.
+[EST-0026] Missing route to pin wire30494/A in net net25.
+[EST-0026] Missing route to pin input25/X in net net25.
+[EST-0026] Missing route to pin _064468_/D in net net25.
+[EST-0026] Missing route to pin wire30493/A in net net26.
+[EST-0026] Missing route to pin input26/X in net net26.
+[EST-0026] Missing route to pin _064473_/B in net net26.
+[EST-0026] Missing route to pin wire30493/A in net net26.
+[EST-0026] Missing route to pin input26/X in net net26.
+[EST-0026] Missing route to pin _064473_/B in net net26.
+[EST-0026] Missing route to pin wire30493/A in net net26.
+[EST-0026] Missing route to pin input26/X in net net26.
+[EST-0026] Missing route to pin _064473_/B in net net26.
+[EST-0026] Missing route to pin wire30492/A in net net27.
+[EST-0026] Missing route to pin input27/X in net net27.
+[EST-0026] Missing route to pin _064470_/A in net net27.
+[EST-0026] Missing route to pin wire30492/A in net net27.
+[EST-0026] Missing route to pin input27/X in net net27.
+[EST-0026] Missing route to pin _064470_/A in net net27.
+[EST-0026] Missing route to pin wire30492/A in net net27.
+[EST-0026] Missing route to pin input27/X in net net27.
+[EST-0026] Missing route to pin _064470_/A in net net27.
+[EST-0026] Missing route to pin wire30491/A in net net28.
+[EST-0026] Missing route to pin input28/X in net net28.
+[EST-0026] Missing route to pin _064470_/B in net net28.
+[EST-0026] Missing route to pin wire30491/A in net net28.
+[EST-0026] Missing route to pin input28/X in net net28.
+[EST-0026] Missing route to pin _064470_/B in net net28.
+[EST-0026] Missing route to pin wire30491/A in net net28.
+[EST-0026] Missing route to pin input28/X in net net28.
+[EST-0026] Missing route to pin _064470_/B in net net28.
+[EST-0026] Missing route to pin wire30490/A in net net29.
+[EST-0026] Missing route to pin input29/X in net net29.
+[EST-0026] Missing route to pin _064470_/C in net net29.
+[EST-0026] Missing route to pin wire30490/A in net net29.
+[EST-0026] Missing route to pin input29/X in net net29.
+[EST-0026] Missing route to pin _064470_/C in net net29.
+[EST-0026] Missing route to pin wire30490/A in net net29.
+[EST-0026] Missing route to pin input29/X in net net29.
+[EST-0026] Missing route to pin _064470_/C in net net29.
+[EST-0026] Missing route to pin wire30488/A in net net30.
+[EST-0026] Missing route to pin input30/X in net net30.
+[EST-0026] Missing route to pin _064470_/D in net net30.
+[EST-0026] Missing route to pin wire30488/A in net net30.
+[EST-0026] Missing route to pin input30/X in net net30.
+[EST-0026] Missing route to pin _064470_/D in net net30.
+[EST-0026] Missing route to pin wire30488/A in net net30.
+[EST-0026] Missing route to pin input30/X in net net30.
+[EST-0026] Missing route to pin _064470_/D in net net30.
+[EST-0026] Missing route to pin wire30487/A in net net31.
+[EST-0026] Missing route to pin input31/X in net net31.
+[EST-0026] Missing route to pin _064471_/A in net net31.
+[EST-0026] Missing route to pin wire30487/A in net net31.
+[EST-0026] Missing route to pin input31/X in net net31.
+[EST-0026] Missing route to pin _064471_/A in net net31.
+[EST-0026] Missing route to pin wire30487/A in net net31.
+[EST-0026] Missing route to pin input31/X in net net31.
+[EST-0026] Missing route to pin _064471_/A in net net31.
+[EST-0026] Missing route to pin wire30486/A in net net32.
+[EST-0026] Missing route to pin input32/X in net net32.
+[EST-0026] Missing route to pin _064471_/B in net net32.
+[EST-0026] Missing route to pin wire30486/A in net net32.
+[EST-0026] Missing route to pin input32/X in net net32.
+[EST-0026] Missing route to pin _064471_/B in net net32.
+[EST-0026] Missing route to pin wire30486/A in net net32.
+[EST-0026] Missing route to pin input32/X in net net32.
+[EST-0026] Missing route to pin _064471_/B in net net32.
+[EST-0026] Missing route to pin wire49539/A in net net35.
+[EST-0026] Missing route to pin _125241_/Q in net net35.
+[EST-0026] Missing route to pin _115137_/A1 in net net35.
+[EST-0026] Missing route to pin _085916_/A0 in net net35.
+[EST-0026] Missing route to pin wire49539/A in net net35.
+[EST-0026] Missing route to pin _125241_/Q in net net35.
+[EST-0026] Missing route to pin _115137_/A1 in net net35.
+[EST-0026] Missing route to pin _085916_/A0 in net net35.
+[EST-0026] Missing route to pin wire49539/A in net net35.
+[EST-0026] Missing route to pin _125241_/Q in net net35.
+[EST-0026] Missing route to pin _115137_/A1 in net net35.
+[EST-0026] Missing route to pin _085916_/A0 in net net35.
+[EST-0026] Missing route to pin output36/A in net net36.
+[EST-0026] Missing route to pin _125251_/Q in net net36.
+[EST-0026] Missing route to pin _115157_/A1 in net net36.
+[EST-0026] Missing route to pin _085926_/A0 in net net36.
+[EST-0026] Missing route to pin _064389_/C in net net36.
+[EST-0026] Missing route to pin output36/A in net net36.
+[EST-0026] Missing route to pin _125251_/Q in net net36.
+[EST-0026] Missing route to pin _115157_/A1 in net net36.
+[EST-0026] Missing route to pin _085926_/A0 in net net36.
+[EST-0026] Missing route to pin _064389_/C in net net36.
+[EST-0026] Missing route to pin output36/A in net net36.
+[EST-0026] Missing route to pin _125251_/Q in net net36.
+[EST-0026] Missing route to pin _115157_/A1 in net net36.
+[EST-0026] Missing route to pin _085926_/A0 in net net36.
+[EST-0026] Missing route to pin _064389_/C in net net36.
+[EST-0026] Missing route to pin output37/A in net net37.
+[EST-0026] Missing route to pin _125252_/Q in net net37.
+[EST-0026] Missing route to pin _115159_/A1 in net net37.
+[EST-0026] Missing route to pin _085927_/A0 in net net37.
+[EST-0026] Missing route to pin _064389_/D in net net37.
+[EST-0026] Missing route to pin output37/A in net net37.
+[EST-0026] Missing route to pin _125252_/Q in net net37.
+[EST-0026] Missing route to pin _115159_/A1 in net net37.
+[EST-0026] Missing route to pin _085927_/A0 in net net37.
+[EST-0026] Missing route to pin _064389_/D in net net37.
+[EST-0026] Missing route to pin output37/A in net net37.
+[EST-0026] Missing route to pin _125252_/Q in net net37.
+[EST-0026] Missing route to pin _115159_/A1 in net net37.
+[EST-0026] Missing route to pin _085927_/A0 in net net37.
+[EST-0026] Missing route to pin _064389_/D in net net37.
+[EST-0026] Missing route to pin max_length49537/A in net net38.
+[EST-0026] Missing route to pin _125253_/Q in net net38.
+[EST-0026] Missing route to pin _115161_/A1 in net net38.
+[EST-0026] Missing route to pin _085928_/A0 in net net38.
+[EST-0026] Missing route to pin max_length49537/A in net net38.
+[EST-0026] Missing route to pin _125253_/Q in net net38.
+[EST-0026] Missing route to pin _115161_/A1 in net net38.
+[EST-0026] Missing route to pin _085928_/A0 in net net38.
+[EST-0026] Missing route to pin max_length49537/A in net net38.
+[EST-0026] Missing route to pin _125253_/Q in net net38.
+[EST-0026] Missing route to pin _115161_/A1 in net net38.
+[EST-0026] Missing route to pin _085928_/A0 in net net38.
+[EST-0026] Missing route to pin wire49536/A in net net39.
+[EST-0026] Missing route to pin _125254_/Q in net net39.
+[EST-0026] Missing route to pin _085929_/A0 in net net39.
+[EST-0026] Missing route to pin wire49536/A in net net39.
+[EST-0026] Missing route to pin _125254_/Q in net net39.
+[EST-0026] Missing route to pin _085929_/A0 in net net39.
+[EST-0026] Missing route to pin wire49536/A in net net39.
+[EST-0026] Missing route to pin _125254_/Q in net net39.
+[EST-0026] Missing route to pin _085929_/A0 in net net39.
+[EST-0026] Missing route to pin wire49535/A in net net40.
+[EST-0026] Missing route to pin _125255_/Q in net net40.
+[EST-0026] Missing route to pin _115165_/A1 in net net40.
+[EST-0026] Missing route to pin _085930_/A0 in net net40.
+[EST-0026] Missing route to pin wire49535/A in net net40.
+[EST-0026] Missing route to pin _125255_/Q in net net40.
+[EST-0026] Missing route to pin _115165_/A1 in net net40.
+[EST-0026] Missing route to pin _085930_/A0 in net net40.
+[EST-0026] Missing route to pin wire49535/A in net net40.
+[EST-0026] Missing route to pin _125255_/Q in net net40.
+[EST-0026] Missing route to pin _115165_/A1 in net net40.
+[EST-0026] Missing route to pin _085930_/A0 in net net40.
+[EST-0026] Missing route to pin wire49534/A in net net41.
+[EST-0026] Missing route to pin _125256_/Q in net net41.
+[EST-0026] Missing route to pin _115167_/A1 in net net41.
+[EST-0026] Missing route to pin _085931_/A0 in net net41.
+[EST-0026] Missing route to pin wire49534/A in net net41.
+[EST-0026] Missing route to pin _125256_/Q in net net41.
+[EST-0026] Missing route to pin _115167_/A1 in net net41.
+[EST-0026] Missing route to pin _085931_/A0 in net net41.
+[EST-0026] Missing route to pin wire49534/A in net net41.
+[EST-0026] Missing route to pin _125256_/Q in net net41.
+[EST-0026] Missing route to pin _115167_/A1 in net net41.
+[EST-0026] Missing route to pin _085931_/A0 in net net41.
+[EST-0026] Missing route to pin top_module_30538/LO in net net30538.
+[EST-0026] Missing route to pin top_module_30538/LO in net net30538.
+[EST-0026] Missing route to pin top_module_30538/LO in net net30538.
+[EST-0026] Missing route to pin top_module_30539/LO in net net30539.
+[EST-0026] Missing route to pin top_module_30539/LO in net net30539.
+[EST-0026] Missing route to pin top_module_30539/LO in net net30539.
+[EST-0026] Missing route to pin top_module_30540/LO in net net30540.
+[EST-0026] Missing route to pin top_module_30540/LO in net net30540.
+[EST-0026] Missing route to pin top_module_30540/LO in net net30540.
+[EST-0026] Missing route to pin top_module_30541/LO in net net30541.
+[EST-0026] Missing route to pin top_module_30541/LO in net net30541.
+[EST-0026] Missing route to pin top_module_30541/LO in net net30541.
+[EST-0026] Missing route to pin max_cap30441/A in net net42.
+[EST-0026] Missing route to pin _125242_/Q in net net42.
+[EST-0026] Missing route to pin _115139_/A1 in net net42.
+[EST-0026] Missing route to pin max_cap30441/A in net net42.
+[EST-0026] Missing route to pin _125242_/Q in net net42.
+[EST-0026] Missing route to pin _115139_/A1 in net net42.
+[EST-0026] Missing route to pin max_cap30441/A in net net42.
+[EST-0026] Missing route to pin _125242_/Q in net net42.
+[EST-0026] Missing route to pin _115139_/A1 in net net42.
+[EST-0026] Missing route to pin top_module_30543/LO in net net30543.
+[EST-0026] Missing route to pin top_module_30543/LO in net net30543.
+[EST-0026] Missing route to pin top_module_30543/LO in net net30543.
+[EST-0026] Missing route to pin top_module_30544/LO in net net30544.
+[EST-0026] Missing route to pin top_module_30544/LO in net net30544.
+[EST-0026] Missing route to pin top_module_30544/LO in net net30544.
+[EST-0026] Missing route to pin top_module_30545/LO in net net30545.
+[EST-0026] Missing route to pin top_module_30545/LO in net net30545.
+[EST-0026] Missing route to pin top_module_30545/LO in net net30545.
+[EST-0026] Missing route to pin top_module_30546/LO in net net30546.
+[EST-0026] Missing route to pin top_module_30546/LO in net net30546.
+[EST-0026] Missing route to pin top_module_30546/LO in net net30546.
+[EST-0026] Missing route to pin top_module_30547/LO in net net30547.
+[EST-0026] Missing route to pin top_module_30547/LO in net net30547.
+[EST-0026] Missing route to pin top_module_30547/LO in net net30547.
+[EST-0026] Missing route to pin top_module_30548/LO in net net30548.
+[EST-0026] Missing route to pin top_module_30548/LO in net net30548.
+[EST-0026] Missing route to pin top_module_30548/LO in net net30548.
+[EST-0026] Missing route to pin top_module_30549/LO in net net30549.
+[EST-0026] Missing route to pin top_module_30549/LO in net net30549.
+[EST-0026] Missing route to pin top_module_30549/LO in net net30549.
+[EST-0026] Missing route to pin top_module_30550/LO in net net30550.
+[EST-0026] Missing route to pin top_module_30550/LO in net net30550.
+[EST-0026] Missing route to pin top_module_30550/LO in net net30550.
+[EST-0026] Missing route to pin top_module_30551/LO in net net30551.
+[EST-0026] Missing route to pin top_module_30551/LO in net net30551.
+[EST-0026] Missing route to pin top_module_30551/LO in net net30551.
+[EST-0026] Missing route to pin output43/A in net net43.
+[EST-0026] Missing route to pin _125243_/Q in net net43.
+[EST-0026] Missing route to pin _115141_/A1 in net net43.
+[EST-0026] Missing route to pin _085918_/A0 in net net43.
+[EST-0026] Missing route to pin _064464_/A3 in net net43.
+[EST-0026] Missing route to pin _064435_/B in net net43.
+[EST-0026] Missing route to pin _064402_/C_N in net net43.
+[EST-0026] Missing route to pin _064399_/C_N in net net43.
+[EST-0026] Missing route to pin _064391_/A in net net43.
+[EST-0026] Missing route to pin output43/A in net net43.
+[EST-0026] Missing route to pin _125243_/Q in net net43.
+[EST-0026] Missing route to pin _115141_/A1 in net net43.
+[EST-0026] Missing route to pin _085918_/A0 in net net43.
+[EST-0026] Missing route to pin _064464_/A3 in net net43.
+[EST-0026] Missing route to pin _064435_/B in net net43.
+[EST-0026] Missing route to pin _064402_/C_N in net net43.
+[EST-0026] Missing route to pin _064399_/C_N in net net43.
+[EST-0026] Missing route to pin _064391_/A in net net43.
+[EST-0026] Missing route to pin output43/A in net net43.
+[EST-0026] Missing route to pin _125243_/Q in net net43.
+[EST-0026] Missing route to pin _115141_/A1 in net net43.
+[EST-0026] Missing route to pin _085918_/A0 in net net43.
+[EST-0026] Missing route to pin _064464_/A3 in net net43.
+[EST-0026] Missing route to pin _064435_/B in net net43.
+[EST-0026] Missing route to pin _064402_/C_N in net net43.
+[EST-0026] Missing route to pin _064399_/C_N in net net43.
+[EST-0026] Missing route to pin _064391_/A in net net43.
+[EST-0026] Missing route to pin top_module_30552/LO in net net30552.
+[EST-0026] Missing route to pin top_module_30552/LO in net net30552.
+[EST-0026] Missing route to pin top_module_30552/LO in net net30552.
+[EST-0026] Missing route to pin wire49538/A in net net44.
+[EST-0026] Missing route to pin _125244_/Q in net net44.
+[EST-0026] Missing route to pin _085919_/A0 in net net44.
+[EST-0026] Missing route to pin wire49538/A in net net44.
+[EST-0026] Missing route to pin _125244_/Q in net net44.
+[EST-0026] Missing route to pin _085919_/A0 in net net44.
+[EST-0026] Missing route to pin wire49538/A in net net44.
+[EST-0026] Missing route to pin _125244_/Q in net net44.
+[EST-0026] Missing route to pin _085919_/A0 in net net44.
+[EST-0026] Missing route to pin output45/A in net net45.
+[EST-0026] Missing route to pin _125245_/Q in net net45.
+[EST-0026] Missing route to pin _115145_/A1 in net net45.
+[EST-0026] Missing route to pin _085920_/A0 in net net45.
+[EST-0026] Missing route to pin _064392_/A in net net45.
+[EST-0026] Missing route to pin output45/A in net net45.
+[EST-0026] Missing route to pin _125245_/Q in net net45.
+[EST-0026] Missing route to pin _115145_/A1 in net net45.
+[EST-0026] Missing route to pin _085920_/A0 in net net45.
+[EST-0026] Missing route to pin _064392_/A in net net45.
+[EST-0026] Missing route to pin output45/A in net net45.
+[EST-0026] Missing route to pin _125245_/Q in net net45.
+[EST-0026] Missing route to pin _115145_/A1 in net net45.
+[EST-0026] Missing route to pin _085920_/A0 in net net45.
+[EST-0026] Missing route to pin _064392_/A in net net45.
+[EST-0026] Missing route to pin output46/A in net net46.
+[EST-0026] Missing route to pin _125246_/Q in net net46.
+[EST-0026] Missing route to pin _115147_/A1 in net net46.
+[EST-0026] Missing route to pin _085921_/A0 in net net46.
+[EST-0026] Missing route to pin _064392_/B in net net46.
+[EST-0026] Missing route to pin output46/A in net net46.
+[EST-0026] Missing route to pin _125246_/Q in net net46.
+[EST-0026] Missing route to pin _115147_/A1 in net net46.
+[EST-0026] Missing route to pin _085921_/A0 in net net46.
+[EST-0026] Missing route to pin _064392_/B in net net46.
+[EST-0026] Missing route to pin output46/A in net net46.
+[EST-0026] Missing route to pin _125246_/Q in net net46.
+[EST-0026] Missing route to pin _115147_/A1 in net net46.
+[EST-0026] Missing route to pin _085921_/A0 in net net46.
+[EST-0026] Missing route to pin _064392_/B in net net46.
+[EST-0026] Missing route to pin output47/A in net net47.
+[EST-0026] Missing route to pin _125247_/Q in net net47.
+[EST-0026] Missing route to pin _115149_/A1 in net net47.
+[EST-0026] Missing route to pin _085922_/A0 in net net47.
+[EST-0026] Missing route to pin _064392_/C in net net47.
+[EST-0026] Missing route to pin output47/A in net net47.
+[EST-0026] Missing route to pin _125247_/Q in net net47.
+[EST-0026] Missing route to pin _115149_/A1 in net net47.
+[EST-0026] Missing route to pin _085922_/A0 in net net47.
+[EST-0026] Missing route to pin _064392_/C in net net47.
+[EST-0026] Missing route to pin output47/A in net net47.
+[EST-0026] Missing route to pin _125247_/Q in net net47.
+[EST-0026] Missing route to pin _115149_/A1 in net net47.
+[EST-0026] Missing route to pin _085922_/A0 in net net47.
+[EST-0026] Missing route to pin _064392_/C in net net47.
+[EST-0026] Missing route to pin output48/A in net net48.
+[EST-0026] Missing route to pin _125248_/Q in net net48.
+[EST-0026] Missing route to pin _115151_/A1 in net net48.
+[EST-0026] Missing route to pin _085923_/A0 in net net48.
+[EST-0026] Missing route to pin _064392_/D in net net48.
+[EST-0026] Missing route to pin output48/A in net net48.
+[EST-0026] Missing route to pin _125248_/Q in net net48.
+[EST-0026] Missing route to pin _115151_/A1 in net net48.
+[EST-0026] Missing route to pin _085923_/A0 in net net48.
+[EST-0026] Missing route to pin _064392_/D in net net48.
+[EST-0026] Missing route to pin output48/A in net net48.
+[EST-0026] Missing route to pin _125248_/Q in net net48.
+[EST-0026] Missing route to pin _115151_/A1 in net net48.
+[EST-0026] Missing route to pin _085923_/A0 in net net48.
+[EST-0026] Missing route to pin _064392_/D in net net48.
+[EST-0026] Missing route to pin output49/A in net net49.
+[EST-0026] Missing route to pin _125249_/Q in net net49.
+[EST-0026] Missing route to pin _115153_/A1 in net net49.
+[EST-0026] Missing route to pin _085924_/A0 in net net49.
+[EST-0026] Missing route to pin _064389_/A in net net49.
+[EST-0026] Missing route to pin output49/A in net net49.
+[EST-0026] Missing route to pin _125249_/Q in net net49.
+[EST-0026] Missing route to pin _115153_/A1 in net net49.
+[EST-0026] Missing route to pin _085924_/A0 in net net49.
+[EST-0026] Missing route to pin _064389_/A in net net49.
+[EST-0026] Missing route to pin output49/A in net net49.
+[EST-0026] Missing route to pin _125249_/Q in net net49.
+[EST-0026] Missing route to pin _115153_/A1 in net net49.
+[EST-0026] Missing route to pin _085924_/A0 in net net49.
+[EST-0026] Missing route to pin _064389_/A in net net49.
+[EST-0026] Missing route to pin output50/A in net net50.
+[EST-0026] Missing route to pin _125250_/Q in net net50.
+[EST-0026] Missing route to pin _115155_/A1 in net net50.
+[EST-0026] Missing route to pin _085925_/A0 in net net50.
+[EST-0026] Missing route to pin _064389_/B in net net50.
+[EST-0026] Missing route to pin output50/A in net net50.
+[EST-0026] Missing route to pin _125250_/Q in net net50.
+[EST-0026] Missing route to pin _115155_/A1 in net net50.
+[EST-0026] Missing route to pin _085925_/A0 in net net50.
+[EST-0026] Missing route to pin _064389_/B in net net50.
+[EST-0026] Missing route to pin output50/A in net net50.
+[EST-0026] Missing route to pin _125250_/Q in net net50.
+[EST-0026] Missing route to pin _115155_/A1 in net net50.
+[EST-0026] Missing route to pin _085925_/A0 in net net50.
+[EST-0026] Missing route to pin _064389_/B in net net50.
+[EST-0026] Missing route to pin wire46149/A in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin _063011_/X in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin wire46149/A in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin _063011_/X in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin wire46149/A in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin _063011_/X in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin wire46969/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin max_cap3860/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _115041_/A1 in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _060700_/Y in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin wire46969/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin max_cap3860/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _115041_/A1 in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _060700_/Y in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin wire46969/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin max_cap3860/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _115041_/A1 in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _060700_/Y in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin wire46968/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin max_cap2818/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin _062900_/Y in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin wire46968/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin max_cap2818/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin _062900_/Y in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin wire46968/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin max_cap2818/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin _062900_/Y in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin load_slew2805/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire2794/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin _062920_/Y in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin load_slew2805/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire2794/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin _062920_/Y in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin load_slew2805/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire2794/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin _062920_/Y in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire46151/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin max_cap2572/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin fanout2555/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _063149_/B in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _062944_/Y in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin wire46151/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin max_cap2572/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin fanout2555/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _063149_/B in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _062944_/Y in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin wire46151/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin max_cap2572/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin fanout2555/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _063149_/B in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _062944_/Y in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin wire2389/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin fanout2373/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _065371_/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _063104_/A2 in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _062950_/Y in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin wire2389/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin fanout2373/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _065371_/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _063104_/A2 in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _062950_/Y in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin wire2389/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin fanout2373/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _065371_/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _063104_/A2 in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _062950_/Y in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin wire44603/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin max_cap2211/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin _062956_/Y in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin wire44603/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin max_cap2211/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin _062956_/Y in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin wire44603/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin max_cap2211/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin _062956_/Y in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin wire45195/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin max_cap2059/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin _062963_/Y in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin wire45195/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin max_cap2059/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin _062963_/Y in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin wire45195/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin max_cap2059/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin _062963_/Y in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin wire44014/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire1950/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin _062989_/Y in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire44014/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire1950/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin _062989_/Y in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire44014/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire1950/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin _062989_/Y in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin _127929_/Q in net GPIO_arready.
+[EST-0026] Missing route to pin _115132_/B1 in net GPIO_arready.
+[EST-0026] Missing route to pin _063199_/A in net GPIO_arready.
+[EST-0026] Missing route to pin _127929_/Q in net GPIO_arready.
+[EST-0026] Missing route to pin _115132_/B1 in net GPIO_arready.
+[EST-0026] Missing route to pin _063199_/A in net GPIO_arready.
+[EST-0026] Missing route to pin _127929_/Q in net GPIO_arready.
+[EST-0026] Missing route to pin _115132_/B1 in net GPIO_arready.
+[EST-0026] Missing route to pin _063199_/A in net GPIO_arready.
+[EST-0026] Missing route to pin _127964_/Q in net GPIO_awready.
+[EST-0026] Missing route to pin _115187_/B1 in net GPIO_awready.
+[EST-0026] Missing route to pin _063204_/A in net GPIO_awready.
+[EST-0026] Missing route to pin _127964_/Q in net GPIO_awready.
+[EST-0026] Missing route to pin _115187_/B1 in net GPIO_awready.
+[EST-0026] Missing route to pin _063204_/A in net GPIO_awready.
+[EST-0026] Missing route to pin _127964_/Q in net GPIO_awready.
+[EST-0026] Missing route to pin _115187_/B1 in net GPIO_awready.
+[EST-0026] Missing route to pin _063204_/A in net GPIO_awready.
+[EST-0026] Missing route to pin _127930_/Q in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115187_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115135_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin _063264_/A in net GPIO_bvalid.
+[EST-0026] Missing route to pin _127930_/Q in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115187_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115135_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin _063264_/A in net GPIO_bvalid.
+[EST-0026] Missing route to pin _127930_/Q in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115187_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115135_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin _063264_/A in net GPIO_bvalid.
+[EST-0026] Missing route to pin _127931_/Q in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _115138_/A1 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _106665_/B2 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _127931_/Q in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _115138_/A1 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _106665_/B2 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _127931_/Q in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _115138_/A1 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _106665_/B2 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _127941_/Q in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _115158_/A1 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _106979_/B2 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _127941_/Q in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _115158_/A1 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _106979_/B2 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _127941_/Q in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _115158_/A1 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _106979_/B2 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _127942_/Q in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _115160_/A1 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _107102_/B2 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _127942_/Q in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _115160_/A1 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _107102_/B2 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _127942_/Q in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _115160_/A1 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _107102_/B2 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _127943_/Q in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _115162_/A1 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _107228_/B2 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _127943_/Q in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _115162_/A1 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _107228_/B2 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _127943_/Q in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _115162_/A1 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _107228_/B2 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _127944_/Q in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _115164_/A1 in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _107336_/B2 in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _127944_/Q in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _115164_/A1 in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _107336_/B2 in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _127944_/Q in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _115164_/A1 in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _107336_/B2 in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _127945_/Q in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _115166_/A1 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _107471_/B2 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _127945_/Q in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _115166_/A1 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _107471_/B2 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _127945_/Q in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _115166_/A1 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _107471_/B2 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _127946_/Q in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _115168_/A1 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _107616_/B2 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _127946_/Q in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _115168_/A1 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _107616_/B2 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _127946_/Q in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _115168_/A1 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _107616_/B2 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _127947_/Q in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _115170_/A1 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _106700_/B2 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _127947_/Q in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _115170_/A1 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _106700_/B2 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _127947_/Q in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _115170_/A1 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _106700_/B2 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _127948_/Q in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _115171_/A1 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _106848_/B2 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _127948_/Q in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _115171_/A1 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _106848_/B2 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _127948_/Q in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _115171_/A1 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _106848_/B2 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _127949_/Q in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _115172_/A1 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _106987_/B2 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _127949_/Q in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _115172_/A1 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _106987_/B2 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _127949_/Q in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _115172_/A1 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _106987_/B2 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _127950_/Q in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _115173_/A1 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _107093_/B2 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _127950_/Q in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _115173_/A1 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _107093_/B2 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _127950_/Q in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _115173_/A1 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _107093_/B2 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin wire27271/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _127932_/Q in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _115140_/A1 in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin wire27271/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _127932_/Q in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _115140_/A1 in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin wire27271/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _127932_/Q in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _115140_/A1 in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _127951_/Q in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _115174_/A1 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _107220_/B2 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _127951_/Q in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _115174_/A1 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _107220_/B2 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _127951_/Q in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _115174_/A1 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _107220_/B2 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin max_cap27267/A in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin _127952_/Q in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin _115175_/A1 in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin max_cap27267/A in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin _127952_/Q in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin _115175_/A1 in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin max_cap27267/A in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin _127952_/Q in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin _115175_/A1 in net GPIO_rdata\[21\].
+[EST-0026] Missing route to pin wire49392/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _127953_/Q in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _115176_/A1 in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin wire49392/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _127953_/Q in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _115176_/A1 in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin wire49392/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _127953_/Q in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _115176_/A1 in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin wire49391/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _127954_/Q in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _115177_/A1 in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin wire49391/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _127954_/Q in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _115177_/A1 in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin wire49391/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _127954_/Q in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _115177_/A1 in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _127955_/Q in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _115178_/A1 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _106678_/B2 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _127955_/Q in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _115178_/A1 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _106678_/B2 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _127955_/Q in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _115178_/A1 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _106678_/B2 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _127956_/Q in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _115179_/A1 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _106830_/B2 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _127956_/Q in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _115179_/A1 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _106830_/B2 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _127956_/Q in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _115179_/A1 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _106830_/B2 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin wire49390/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _127957_/Q in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _115180_/A1 in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin wire49390/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _127957_/Q in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _115180_/A1 in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin wire49390/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _127957_/Q in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _115180_/A1 in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin wire49389/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _127958_/Q in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _115181_/A1 in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin wire49389/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _127958_/Q in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _115181_/A1 in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin wire49389/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _127958_/Q in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _115181_/A1 in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin wire49388/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _127959_/Q in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _115182_/A1 in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin wire49388/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _127959_/Q in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _115182_/A1 in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin wire49388/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _127959_/Q in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _115182_/A1 in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin wire49387/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _127960_/Q in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _115183_/A1 in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin wire49387/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _127960_/Q in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _115183_/A1 in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin wire49387/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _127960_/Q in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _115183_/A1 in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin max_cap27270/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _127933_/Q in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _115142_/A1 in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin max_cap27270/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _127933_/Q in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _115142_/A1 in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin max_cap27270/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _127933_/Q in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _115142_/A1 in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin wire49386/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _127961_/Q in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _115184_/A1 in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin wire49386/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _127961_/Q in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _115184_/A1 in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin wire49386/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _127961_/Q in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _115184_/A1 in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin wire49385/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _127962_/Q in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _115185_/A1 in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin wire49385/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _127962_/Q in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _115185_/A1 in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin wire49385/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _127962_/Q in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _115185_/A1 in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin wire27269/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127934_/Q in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _115144_/A1 in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin wire27269/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127934_/Q in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _115144_/A1 in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin wire27269/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127934_/Q in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _115144_/A1 in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127935_/Q in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _115146_/A1 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _107212_/B2 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _127935_/Q in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _115146_/A1 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _107212_/B2 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _127935_/Q in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _115146_/A1 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _107212_/B2 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin max_cap27268/A in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _127936_/Q in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _115148_/A1 in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin max_cap27268/A in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _127936_/Q in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _115148_/A1 in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin max_cap27268/A in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _127936_/Q in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _115148_/A1 in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _127937_/Q in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _115150_/A1 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _107455_/B2 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _127937_/Q in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _115150_/A1 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _107455_/B2 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _127937_/Q in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _115150_/A1 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _107455_/B2 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _127938_/Q in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _115152_/A1 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _107599_/B2 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _127938_/Q in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _115152_/A1 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _107599_/B2 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _127938_/Q in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _115152_/A1 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _107599_/B2 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _127939_/Q in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _115154_/A1 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _106690_/B2 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _127939_/Q in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _115154_/A1 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _106690_/B2 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _127939_/Q in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _115154_/A1 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _106690_/B2 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _127940_/Q in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _115156_/A1 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _106840_/B2 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _127940_/Q in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _115156_/A1 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _106840_/B2 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _127940_/Q in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _115156_/A1 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _106840_/B2 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _127963_/Q in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115186_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115132_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106664_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106663_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063251_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063250_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _127963_/Q in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115186_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115132_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106664_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106663_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063251_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063250_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _127963_/Q in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115186_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115132_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106664_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106663_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063251_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063250_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin load_slew5370/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire5361/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin _063356_/X in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin load_slew5370/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire5361/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin _063356_/X in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin load_slew5370/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire5361/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin _063356_/X in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire3151/A in net GPIO_wdata\[10\].
+[EST-0026] message limit (1000) reached. This message will no longer print.
+Running 'Odb.DiodesOnPorts' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/42-odb-diodesonports'…
+'DIODE_ON_PORTS' is set to 'none': skipping 'Odb.DiodesOnPorts'…
+Gating variable for step 'Odb.HeuristicDiodeInsertion' set to 'False'- the step will be skipped.
+Skipping step 'Heuristic Diode Insertion'…
+Gating variable for step 'OpenROAD.RepairAntennas' set to 'False'- the step will be skipped.
+Skipping step 'Antenna Repair'…
+Running 'OpenROAD.ResizerTimingPostGRT' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/43-openroad-resizertimingpostgrt'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/43-openroad-resizertimingpostgrt/openroad-resizertimingpostgrt.log'[/repr.filename]…
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lib/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib line 1, library sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib already exists.
+[STA-1140] /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lib/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.lib line 1, library sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib already exists.
+[RSZ-0062] Unable to repair all setup violations.
+[EST-0026] Missing route to pin wire49734/A in net net1.
+[EST-0026] Missing route to pin input1/X in net net1.
+[EST-0026] Missing route to pin _064387_/B in net net1.
+[EST-0026] Missing route to pin _064047_/A_N in net net1.
+[EST-0026] Missing route to pin wire49734/A in net net1.
+[EST-0026] Missing route to pin input1/X in net net1.
+[EST-0026] Missing route to pin _064387_/B in net net1.
+[EST-0026] Missing route to pin _064047_/A_N in net net1.
+[EST-0026] Missing route to pin wire49734/A in net net1.
+[EST-0026] Missing route to pin input1/X in net net1.
+[EST-0026] Missing route to pin _064387_/B in net net1.
+[EST-0026] Missing route to pin _064047_/A_N in net net1.
+[EST-0026] Missing route to pin wire30500/A in net net2.
+[EST-0026] Missing route to pin input2/X in net net2.
+[EST-0026] Missing route to pin _064471_/C in net net2.
+[EST-0026] Missing route to pin wire30500/A in net net2.
+[EST-0026] Missing route to pin input2/X in net net2.
+[EST-0026] Missing route to pin _064471_/C in net net2.
+[EST-0026] Missing route to pin wire30500/A in net net2.
+[EST-0026] Missing route to pin input2/X in net net2.
+[EST-0026] Missing route to pin _064471_/C in net net2.
+[EST-0026] Missing route to pin wire30489/A in net net3.
+[EST-0026] Missing route to pin input3/X in net net3.
+[EST-0026] Missing route to pin _064471_/D in net net3.
+[EST-0026] Missing route to pin wire30489/A in net net3.
+[EST-0026] Missing route to pin input3/X in net net3.
+[EST-0026] Missing route to pin _064471_/D in net net3.
+[EST-0026] Missing route to pin wire30489/A in net net3.
+[EST-0026] Missing route to pin input3/X in net net3.
+[EST-0026] Missing route to pin _064471_/D in net net3.
+[EST-0026] Missing route to pin wire49733/A in net net4.
+[EST-0026] Missing route to pin input4/X in net net4.
+[EST-0026] Missing route to pin _064472_/A in net net4.
+[EST-0026] Missing route to pin wire49733/A in net net4.
+[EST-0026] Missing route to pin input4/X in net net4.
+[EST-0026] Missing route to pin _064472_/A in net net4.
+[EST-0026] Missing route to pin wire49733/A in net net4.
+[EST-0026] Missing route to pin input4/X in net net4.
+[EST-0026] Missing route to pin _064472_/A in net net4.
+[EST-0026] Missing route to pin wire30484/A in net net5.
+[EST-0026] Missing route to pin input5/X in net net5.
+[EST-0026] Missing route to pin _064472_/B in net net5.
+[EST-0026] Missing route to pin wire30484/A in net net5.
+[EST-0026] Missing route to pin input5/X in net net5.
+[EST-0026] Missing route to pin _064472_/B in net net5.
+[EST-0026] Missing route to pin wire30484/A in net net5.
+[EST-0026] Missing route to pin input5/X in net net5.
+[EST-0026] Missing route to pin _064472_/B in net net5.
+[EST-0026] Missing route to pin wire49732/A in net net6.
+[EST-0026] Missing route to pin input6/X in net net6.
+[EST-0026] Missing route to pin _064472_/C in net net6.
+[EST-0026] Missing route to pin wire49732/A in net net6.
+[EST-0026] Missing route to pin input6/X in net net6.
+[EST-0026] Missing route to pin _064472_/C in net net6.
+[EST-0026] Missing route to pin wire49732/A in net net6.
+[EST-0026] Missing route to pin input6/X in net net6.
+[EST-0026] Missing route to pin _064472_/C in net net6.
+[EST-0026] Missing route to pin wire49731/A in net net7.
+[EST-0026] Missing route to pin input7/X in net net7.
+[EST-0026] Missing route to pin _064472_/D in net net7.
+[EST-0026] Missing route to pin wire49731/A in net net7.
+[EST-0026] Missing route to pin input7/X in net net7.
+[EST-0026] Missing route to pin _064472_/D in net net7.
+[EST-0026] Missing route to pin wire49731/A in net net7.
+[EST-0026] Missing route to pin input7/X in net net7.
+[EST-0026] Missing route to pin _064472_/D in net net7.
+[EST-0026] Missing route to pin wire30483/A in net net8.
+[EST-0026] Missing route to pin input8/X in net net8.
+[EST-0026] Missing route to pin _064466_/A in net net8.
+[EST-0026] Missing route to pin wire30483/A in net net8.
+[EST-0026] Missing route to pin input8/X in net net8.
+[EST-0026] Missing route to pin _064466_/A in net net8.
+[EST-0026] Missing route to pin wire30483/A in net net8.
+[EST-0026] Missing route to pin input8/X in net net8.
+[EST-0026] Missing route to pin _064466_/A in net net8.
+[EST-0026] Missing route to pin wire30482/A in net net9.
+[EST-0026] Missing route to pin input9/X in net net9.
+[EST-0026] Missing route to pin _064466_/B in net net9.
+[EST-0026] Missing route to pin wire30482/A in net net9.
+[EST-0026] Missing route to pin input9/X in net net9.
+[EST-0026] Missing route to pin _064466_/B in net net9.
+[EST-0026] Missing route to pin wire30482/A in net net9.
+[EST-0026] Missing route to pin input9/X in net net9.
+[EST-0026] Missing route to pin _064466_/B in net net9.
+[EST-0026] Missing route to pin wire30510/A in net net10.
+[EST-0026] Missing route to pin input10/X in net net10.
+[EST-0026] Missing route to pin _064466_/C in net net10.
+[EST-0026] Missing route to pin wire30510/A in net net10.
+[EST-0026] Missing route to pin input10/X in net net10.
+[EST-0026] Missing route to pin _064466_/C in net net10.
+[EST-0026] Missing route to pin wire30510/A in net net10.
+[EST-0026] Missing route to pin input10/X in net net10.
+[EST-0026] Missing route to pin _064466_/C in net net10.
+[EST-0026] Missing route to pin wire30509/A in net net11.
+[EST-0026] Missing route to pin input11/X in net net11.
+[EST-0026] Missing route to pin _064466_/D in net net11.
+[EST-0026] Missing route to pin wire30509/A in net net11.
+[EST-0026] Missing route to pin input11/X in net net11.
+[EST-0026] Missing route to pin _064466_/D in net net11.
+[EST-0026] Missing route to pin wire30509/A in net net11.
+[EST-0026] Missing route to pin input11/X in net net11.
+[EST-0026] Missing route to pin _064466_/D in net net11.
+[EST-0026] Missing route to pin wire30508/A in net net12.
+[EST-0026] Missing route to pin input12/X in net net12.
+[EST-0026] Missing route to pin _064387_/A_N in net net12.
+[EST-0026] Missing route to pin _064047_/B in net net12.
+[EST-0026] Missing route to pin wire30508/A in net net12.
+[EST-0026] Missing route to pin input12/X in net net12.
+[EST-0026] Missing route to pin _064387_/A_N in net net12.
+[EST-0026] Missing route to pin _064047_/B in net net12.
+[EST-0026] Missing route to pin wire30508/A in net net12.
+[EST-0026] Missing route to pin input12/X in net net12.
+[EST-0026] Missing route to pin _064387_/A_N in net net12.
+[EST-0026] Missing route to pin _064047_/B in net net12.
+[EST-0026] Missing route to pin wire30507/A in net net13.
+[EST-0026] Missing route to pin input13/X in net net13.
+[EST-0026] Missing route to pin _064465_/A in net net13.
+[EST-0026] Missing route to pin wire30507/A in net net13.
+[EST-0026] Missing route to pin input13/X in net net13.
+[EST-0026] Missing route to pin _064465_/A in net net13.
+[EST-0026] Missing route to pin wire30507/A in net net13.
+[EST-0026] Missing route to pin input13/X in net net13.
+[EST-0026] Missing route to pin _064465_/A in net net13.
+[EST-0026] Missing route to pin wire30506/A in net net14.
+[EST-0026] Missing route to pin input14/X in net net14.
+[EST-0026] Missing route to pin _064465_/B in net net14.
+[EST-0026] Missing route to pin wire30506/A in net net14.
+[EST-0026] Missing route to pin input14/X in net net14.
+[EST-0026] Missing route to pin _064465_/B in net net14.
+[EST-0026] Missing route to pin wire30506/A in net net14.
+[EST-0026] Missing route to pin input14/X in net net14.
+[EST-0026] Missing route to pin _064465_/B in net net14.
+[EST-0026] Missing route to pin wire30505/A in net net15.
+[EST-0026] Missing route to pin input15/X in net net15.
+[EST-0026] Missing route to pin _064465_/C in net net15.
+[EST-0026] Missing route to pin wire30505/A in net net15.
+[EST-0026] Missing route to pin input15/X in net net15.
+[EST-0026] Missing route to pin _064465_/C in net net15.
+[EST-0026] Missing route to pin wire30505/A in net net15.
+[EST-0026] Missing route to pin input15/X in net net15.
+[EST-0026] Missing route to pin _064465_/C in net net15.
+[EST-0026] Missing route to pin wire30504/A in net net16.
+[EST-0026] Missing route to pin input16/X in net net16.
+[EST-0026] Missing route to pin _064465_/D in net net16.
+[EST-0026] Missing route to pin wire30504/A in net net16.
+[EST-0026] Missing route to pin input16/X in net net16.
+[EST-0026] Missing route to pin _064465_/D in net net16.
+[EST-0026] Missing route to pin wire30504/A in net net16.
+[EST-0026] Missing route to pin input16/X in net net16.
+[EST-0026] Missing route to pin _064465_/D in net net16.
+[EST-0026] Missing route to pin wire30503/A in net net17.
+[EST-0026] Missing route to pin input17/X in net net17.
+[EST-0026] Missing route to pin _064467_/A in net net17.
+[EST-0026] Missing route to pin wire30503/A in net net17.
+[EST-0026] Missing route to pin input17/X in net net17.
+[EST-0026] Missing route to pin _064467_/A in net net17.
+[EST-0026] Missing route to pin wire30503/A in net net17.
+[EST-0026] Missing route to pin input17/X in net net17.
+[EST-0026] Missing route to pin _064467_/A in net net17.
+[EST-0026] Missing route to pin wire30502/A in net net18.
+[EST-0026] Missing route to pin input18/X in net net18.
+[EST-0026] Missing route to pin _064467_/B in net net18.
+[EST-0026] Missing route to pin wire30502/A in net net18.
+[EST-0026] Missing route to pin input18/X in net net18.
+[EST-0026] Missing route to pin _064467_/B in net net18.
+[EST-0026] Missing route to pin wire30502/A in net net18.
+[EST-0026] Missing route to pin input18/X in net net18.
+[EST-0026] Missing route to pin _064467_/B in net net18.
+[EST-0026] Missing route to pin wire30501/A in net net19.
+[EST-0026] Missing route to pin input19/X in net net19.
+[EST-0026] Missing route to pin _064467_/C in net net19.
+[EST-0026] Missing route to pin wire30501/A in net net19.
+[EST-0026] Missing route to pin input19/X in net net19.
+[EST-0026] Missing route to pin _064467_/C in net net19.
+[EST-0026] Missing route to pin wire30501/A in net net19.
+[EST-0026] Missing route to pin input19/X in net net19.
+[EST-0026] Missing route to pin _064467_/C in net net19.
+[EST-0026] Missing route to pin wire30499/A in net net20.
+[EST-0026] Missing route to pin input20/X in net net20.
+[EST-0026] Missing route to pin _064467_/D in net net20.
+[EST-0026] Missing route to pin wire30499/A in net net20.
+[EST-0026] Missing route to pin input20/X in net net20.
+[EST-0026] Missing route to pin _064467_/D in net net20.
+[EST-0026] Missing route to pin wire30499/A in net net20.
+[EST-0026] Missing route to pin input20/X in net net20.
+[EST-0026] Missing route to pin _064467_/D in net net20.
+[EST-0026] Missing route to pin wire30498/A in net net21.
+[EST-0026] Missing route to pin input21/X in net net21.
+[EST-0026] Missing route to pin _064468_/A in net net21.
+[EST-0026] Missing route to pin wire30498/A in net net21.
+[EST-0026] Missing route to pin input21/X in net net21.
+[EST-0026] Missing route to pin _064468_/A in net net21.
+[EST-0026] Missing route to pin wire30498/A in net net21.
+[EST-0026] Missing route to pin input21/X in net net21.
+[EST-0026] Missing route to pin _064468_/A in net net21.
+[EST-0026] Missing route to pin wire30497/A in net net22.
+[EST-0026] Missing route to pin input22/X in net net22.
+[EST-0026] Missing route to pin _064468_/B in net net22.
+[EST-0026] Missing route to pin wire30497/A in net net22.
+[EST-0026] Missing route to pin input22/X in net net22.
+[EST-0026] Missing route to pin _064468_/B in net net22.
+[EST-0026] Missing route to pin wire30497/A in net net22.
+[EST-0026] Missing route to pin input22/X in net net22.
+[EST-0026] Missing route to pin _064468_/B in net net22.
+[EST-0026] Missing route to pin wire30496/A in net net23.
+[EST-0026] Missing route to pin input23/X in net net23.
+[EST-0026] Missing route to pin _064473_/A in net net23.
+[EST-0026] Missing route to pin wire30496/A in net net23.
+[EST-0026] Missing route to pin input23/X in net net23.
+[EST-0026] Missing route to pin _064473_/A in net net23.
+[EST-0026] Missing route to pin wire30496/A in net net23.
+[EST-0026] Missing route to pin input23/X in net net23.
+[EST-0026] Missing route to pin _064473_/A in net net23.
+[EST-0026] Missing route to pin wire30495/A in net net24.
+[EST-0026] Missing route to pin input24/X in net net24.
+[EST-0026] Missing route to pin _064468_/C in net net24.
+[EST-0026] Missing route to pin wire30495/A in net net24.
+[EST-0026] Missing route to pin input24/X in net net24.
+[EST-0026] Missing route to pin _064468_/C in net net24.
+[EST-0026] Missing route to pin wire30495/A in net net24.
+[EST-0026] Missing route to pin input24/X in net net24.
+[EST-0026] Missing route to pin _064468_/C in net net24.
+[EST-0026] Missing route to pin wire30494/A in net net25.
+[EST-0026] Missing route to pin input25/X in net net25.
+[EST-0026] Missing route to pin _064468_/D in net net25.
+[EST-0026] Missing route to pin wire30494/A in net net25.
+[EST-0026] Missing route to pin input25/X in net net25.
+[EST-0026] Missing route to pin _064468_/D in net net25.
+[EST-0026] Missing route to pin wire30494/A in net net25.
+[EST-0026] Missing route to pin input25/X in net net25.
+[EST-0026] Missing route to pin _064468_/D in net net25.
+[EST-0026] Missing route to pin wire30493/A in net net26.
+[EST-0026] Missing route to pin input26/X in net net26.
+[EST-0026] Missing route to pin _064473_/B in net net26.
+[EST-0026] Missing route to pin wire30493/A in net net26.
+[EST-0026] Missing route to pin input26/X in net net26.
+[EST-0026] Missing route to pin _064473_/B in net net26.
+[EST-0026] Missing route to pin wire30493/A in net net26.
+[EST-0026] Missing route to pin input26/X in net net26.
+[EST-0026] Missing route to pin _064473_/B in net net26.
+[EST-0026] Missing route to pin wire30492/A in net net27.
+[EST-0026] Missing route to pin input27/X in net net27.
+[EST-0026] Missing route to pin _064470_/A in net net27.
+[EST-0026] Missing route to pin wire30492/A in net net27.
+[EST-0026] Missing route to pin input27/X in net net27.
+[EST-0026] Missing route to pin _064470_/A in net net27.
+[EST-0026] Missing route to pin wire30492/A in net net27.
+[EST-0026] Missing route to pin input27/X in net net27.
+[EST-0026] Missing route to pin _064470_/A in net net27.
+[EST-0026] Missing route to pin wire30491/A in net net28.
+[EST-0026] Missing route to pin input28/X in net net28.
+[EST-0026] Missing route to pin _064470_/B in net net28.
+[EST-0026] Missing route to pin wire30491/A in net net28.
+[EST-0026] Missing route to pin input28/X in net net28.
+[EST-0026] Missing route to pin _064470_/B in net net28.
+[EST-0026] Missing route to pin wire30491/A in net net28.
+[EST-0026] Missing route to pin input28/X in net net28.
+[EST-0026] Missing route to pin _064470_/B in net net28.
+[EST-0026] Missing route to pin wire30490/A in net net29.
+[EST-0026] Missing route to pin input29/X in net net29.
+[EST-0026] Missing route to pin _064470_/C in net net29.
+[EST-0026] Missing route to pin wire30490/A in net net29.
+[EST-0026] Missing route to pin input29/X in net net29.
+[EST-0026] Missing route to pin _064470_/C in net net29.
+[EST-0026] Missing route to pin wire30490/A in net net29.
+[EST-0026] Missing route to pin input29/X in net net29.
+[EST-0026] Missing route to pin _064470_/C in net net29.
+[EST-0026] Missing route to pin wire30488/A in net net30.
+[EST-0026] Missing route to pin input30/X in net net30.
+[EST-0026] Missing route to pin _064470_/D in net net30.
+[EST-0026] Missing route to pin wire30488/A in net net30.
+[EST-0026] Missing route to pin input30/X in net net30.
+[EST-0026] Missing route to pin _064470_/D in net net30.
+[EST-0026] Missing route to pin wire30488/A in net net30.
+[EST-0026] Missing route to pin input30/X in net net30.
+[EST-0026] Missing route to pin _064470_/D in net net30.
+[EST-0026] Missing route to pin wire30487/A in net net31.
+[EST-0026] Missing route to pin input31/X in net net31.
+[EST-0026] Missing route to pin _064471_/A in net net31.
+[EST-0026] Missing route to pin wire30487/A in net net31.
+[EST-0026] Missing route to pin input31/X in net net31.
+[EST-0026] Missing route to pin _064471_/A in net net31.
+[EST-0026] Missing route to pin wire30487/A in net net31.
+[EST-0026] Missing route to pin input31/X in net net31.
+[EST-0026] Missing route to pin _064471_/A in net net31.
+[EST-0026] Missing route to pin wire30486/A in net net32.
+[EST-0026] Missing route to pin input32/X in net net32.
+[EST-0026] Missing route to pin _064471_/B in net net32.
+[EST-0026] Missing route to pin wire30486/A in net net32.
+[EST-0026] Missing route to pin input32/X in net net32.
+[EST-0026] Missing route to pin _064471_/B in net net32.
+[EST-0026] Missing route to pin wire30486/A in net net32.
+[EST-0026] Missing route to pin input32/X in net net32.
+[EST-0026] Missing route to pin _064471_/B in net net32.
+[EST-0026] Missing route to pin hold62250/A in net net35.
+[EST-0026] Missing route to pin _125241_/Q in net net35.
+[EST-0026] Missing route to pin hold62250/A in net net35.
+[EST-0026] Missing route to pin _125241_/Q in net net35.
+[EST-0026] Missing route to pin hold62250/A in net net35.
+[EST-0026] Missing route to pin _125241_/Q in net net35.
+[EST-0026] Missing route to pin hold64814/A in net net36.
+[EST-0026] Missing route to pin output36/A in net net36.
+[EST-0026] Missing route to pin _125251_/Q in net net36.
+[EST-0026] Missing route to pin _115157_/A1 in net net36.
+[EST-0026] Missing route to pin _064389_/C in net net36.
+[EST-0026] Missing route to pin hold64814/A in net net36.
+[EST-0026] Missing route to pin output36/A in net net36.
+[EST-0026] Missing route to pin _125251_/Q in net net36.
+[EST-0026] Missing route to pin _115157_/A1 in net net36.
+[EST-0026] Missing route to pin _064389_/C in net net36.
+[EST-0026] Missing route to pin hold64814/A in net net36.
+[EST-0026] Missing route to pin output36/A in net net36.
+[EST-0026] Missing route to pin _125251_/Q in net net36.
+[EST-0026] Missing route to pin _115157_/A1 in net net36.
+[EST-0026] Missing route to pin _064389_/C in net net36.
+[EST-0026] Missing route to pin hold64754/A in net net37.
+[EST-0026] Missing route to pin output37/A in net net37.
+[EST-0026] Missing route to pin _125252_/Q in net net37.
+[EST-0026] Missing route to pin _115159_/A1 in net net37.
+[EST-0026] Missing route to pin _064389_/D in net net37.
+[EST-0026] Missing route to pin hold64754/A in net net37.
+[EST-0026] Missing route to pin output37/A in net net37.
+[EST-0026] Missing route to pin _125252_/Q in net net37.
+[EST-0026] Missing route to pin _115159_/A1 in net net37.
+[EST-0026] Missing route to pin _064389_/D in net net37.
+[EST-0026] Missing route to pin hold64754/A in net net37.
+[EST-0026] Missing route to pin output37/A in net net37.
+[EST-0026] Missing route to pin _125252_/Q in net net37.
+[EST-0026] Missing route to pin _115159_/A1 in net net37.
+[EST-0026] Missing route to pin _064389_/D in net net37.
+[EST-0026] Missing route to pin hold60327/A in net net38.
+[EST-0026] Missing route to pin max_length49537/A in net net38.
+[EST-0026] Missing route to pin _125253_/Q in net net38.
+[EST-0026] Missing route to pin hold60327/A in net net38.
+[EST-0026] Missing route to pin max_length49537/A in net net38.
+[EST-0026] Missing route to pin _125253_/Q in net net38.
+[EST-0026] Missing route to pin hold60327/A in net net38.
+[EST-0026] Missing route to pin max_length49537/A in net net38.
+[EST-0026] Missing route to pin _125253_/Q in net net38.
+[EST-0026] Missing route to pin hold60142/A in net net39.
+[EST-0026] Missing route to pin wire49536/A in net net39.
+[EST-0026] Missing route to pin _125254_/Q in net net39.
+[EST-0026] Missing route to pin hold60142/A in net net39.
+[EST-0026] Missing route to pin wire49536/A in net net39.
+[EST-0026] Missing route to pin _125254_/Q in net net39.
+[EST-0026] Missing route to pin hold60142/A in net net39.
+[EST-0026] Missing route to pin wire49536/A in net net39.
+[EST-0026] Missing route to pin _125254_/Q in net net39.
+[EST-0026] Missing route to pin hold62101/A in net net40.
+[EST-0026] Missing route to pin wire49535/A in net net40.
+[EST-0026] Missing route to pin _125255_/Q in net net40.
+[EST-0026] Missing route to pin _115165_/A1 in net net40.
+[EST-0026] Missing route to pin hold62101/A in net net40.
+[EST-0026] Missing route to pin wire49535/A in net net40.
+[EST-0026] Missing route to pin _125255_/Q in net net40.
+[EST-0026] Missing route to pin _115165_/A1 in net net40.
+[EST-0026] Missing route to pin hold62101/A in net net40.
+[EST-0026] Missing route to pin wire49535/A in net net40.
+[EST-0026] Missing route to pin _125255_/Q in net net40.
+[EST-0026] Missing route to pin _115165_/A1 in net net40.
+[EST-0026] Missing route to pin hold62192/A in net net41.
+[EST-0026] Missing route to pin wire49534/A in net net41.
+[EST-0026] Missing route to pin _125256_/Q in net net41.
+[EST-0026] Missing route to pin _115167_/A1 in net net41.
+[EST-0026] Missing route to pin hold62192/A in net net41.
+[EST-0026] Missing route to pin wire49534/A in net net41.
+[EST-0026] Missing route to pin _125256_/Q in net net41.
+[EST-0026] Missing route to pin _115167_/A1 in net net41.
+[EST-0026] Missing route to pin hold62192/A in net net41.
+[EST-0026] Missing route to pin wire49534/A in net net41.
+[EST-0026] Missing route to pin _125256_/Q in net net41.
+[EST-0026] Missing route to pin _115167_/A1 in net net41.
+[EST-0026] Missing route to pin top_module_30538/LO in net net30538.
+[EST-0026] Missing route to pin top_module_30538/LO in net net30538.
+[EST-0026] Missing route to pin top_module_30538/LO in net net30538.
+[EST-0026] Missing route to pin top_module_30539/LO in net net30539.
+[EST-0026] Missing route to pin top_module_30539/LO in net net30539.
+[EST-0026] Missing route to pin top_module_30539/LO in net net30539.
+[EST-0026] Missing route to pin top_module_30540/LO in net net30540.
+[EST-0026] Missing route to pin top_module_30540/LO in net net30540.
+[EST-0026] Missing route to pin top_module_30540/LO in net net30540.
+[EST-0026] Missing route to pin top_module_30541/LO in net net30541.
+[EST-0026] Missing route to pin top_module_30541/LO in net net30541.
+[EST-0026] Missing route to pin top_module_30541/LO in net net30541.
+[EST-0026] Missing route to pin hold65254/A in net net42.
+[EST-0026] Missing route to pin _125242_/Q in net net42.
+[EST-0026] Missing route to pin _115139_/A1 in net net42.
+[EST-0026] Missing route to pin hold65254/A in net net42.
+[EST-0026] Missing route to pin _125242_/Q in net net42.
+[EST-0026] Missing route to pin _115139_/A1 in net net42.
+[EST-0026] Missing route to pin hold65254/A in net net42.
+[EST-0026] Missing route to pin _125242_/Q in net net42.
+[EST-0026] Missing route to pin _115139_/A1 in net net42.
+[EST-0026] Missing route to pin top_module_30543/LO in net net30543.
+[EST-0026] Missing route to pin top_module_30543/LO in net net30543.
+[EST-0026] Missing route to pin top_module_30543/LO in net net30543.
+[EST-0026] Missing route to pin top_module_30544/LO in net net30544.
+[EST-0026] Missing route to pin top_module_30544/LO in net net30544.
+[EST-0026] Missing route to pin top_module_30544/LO in net net30544.
+[EST-0026] Missing route to pin top_module_30545/LO in net net30545.
+[EST-0026] Missing route to pin top_module_30545/LO in net net30545.
+[EST-0026] Missing route to pin top_module_30545/LO in net net30545.
+[EST-0026] Missing route to pin top_module_30546/LO in net net30546.
+[EST-0026] Missing route to pin top_module_30546/LO in net net30546.
+[EST-0026] Missing route to pin top_module_30546/LO in net net30546.
+[EST-0026] Missing route to pin top_module_30547/LO in net net30547.
+[EST-0026] Missing route to pin top_module_30547/LO in net net30547.
+[EST-0026] Missing route to pin top_module_30547/LO in net net30547.
+[EST-0026] Missing route to pin top_module_30548/LO in net net30548.
+[EST-0026] Missing route to pin top_module_30548/LO in net net30548.
+[EST-0026] Missing route to pin top_module_30548/LO in net net30548.
+[EST-0026] Missing route to pin top_module_30549/LO in net net30549.
+[EST-0026] Missing route to pin top_module_30549/LO in net net30549.
+[EST-0026] Missing route to pin top_module_30549/LO in net net30549.
+[EST-0026] Missing route to pin top_module_30550/LO in net net30550.
+[EST-0026] Missing route to pin top_module_30550/LO in net net30550.
+[EST-0026] Missing route to pin top_module_30550/LO in net net30550.
+[EST-0026] Missing route to pin top_module_30551/LO in net net30551.
+[EST-0026] Missing route to pin top_module_30551/LO in net net30551.
+[EST-0026] Missing route to pin top_module_30551/LO in net net30551.
+[EST-0026] Missing route to pin hold65809/A in net net43.
+[EST-0026] Missing route to pin output43/A in net net43.
+[EST-0026] Missing route to pin _125243_/Q in net net43.
+[EST-0026] Missing route to pin _115141_/A1 in net net43.
+[EST-0026] Missing route to pin _064435_/B in net net43.
+[EST-0026] Missing route to pin _064402_/C_N in net net43.
+[EST-0026] Missing route to pin _064399_/C_N in net net43.
+[EST-0026] Missing route to pin _064391_/A in net net43.
+[EST-0026] Missing route to pin hold65809/A in net net43.
+[EST-0026] Missing route to pin output43/A in net net43.
+[EST-0026] Missing route to pin _125243_/Q in net net43.
+[EST-0026] Missing route to pin _115141_/A1 in net net43.
+[EST-0026] Missing route to pin _064435_/B in net net43.
+[EST-0026] Missing route to pin _064402_/C_N in net net43.
+[EST-0026] Missing route to pin _064399_/C_N in net net43.
+[EST-0026] Missing route to pin _064391_/A in net net43.
+[EST-0026] Missing route to pin hold65809/A in net net43.
+[EST-0026] Missing route to pin output43/A in net net43.
+[EST-0026] Missing route to pin _125243_/Q in net net43.
+[EST-0026] Missing route to pin _115141_/A1 in net net43.
+[EST-0026] Missing route to pin _064435_/B in net net43.
+[EST-0026] Missing route to pin _064402_/C_N in net net43.
+[EST-0026] Missing route to pin _064399_/C_N in net net43.
+[EST-0026] Missing route to pin _064391_/A in net net43.
+[EST-0026] Missing route to pin top_module_30552/LO in net net30552.
+[EST-0026] Missing route to pin top_module_30552/LO in net net30552.
+[EST-0026] Missing route to pin top_module_30552/LO in net net30552.
+[EST-0026] Missing route to pin hold64689/A in net net45.
+[EST-0026] Missing route to pin output45/A in net net45.
+[EST-0026] Missing route to pin _125245_/Q in net net45.
+[EST-0026] Missing route to pin _115145_/A1 in net net45.
+[EST-0026] Missing route to pin hold64689/A in net net45.
+[EST-0026] Missing route to pin output45/A in net net45.
+[EST-0026] Missing route to pin _125245_/Q in net net45.
+[EST-0026] Missing route to pin _115145_/A1 in net net45.
+[EST-0026] Missing route to pin hold64689/A in net net45.
+[EST-0026] Missing route to pin output45/A in net net45.
+[EST-0026] Missing route to pin _125245_/Q in net net45.
+[EST-0026] Missing route to pin _115145_/A1 in net net45.
+[EST-0026] Missing route to pin hold64623/A in net net46.
+[EST-0026] Missing route to pin output46/A in net net46.
+[EST-0026] Missing route to pin _125246_/Q in net net46.
+[EST-0026] Missing route to pin _115147_/A1 in net net46.
+[EST-0026] Missing route to pin hold64623/A in net net46.
+[EST-0026] Missing route to pin output46/A in net net46.
+[EST-0026] Missing route to pin _125246_/Q in net net46.
+[EST-0026] Missing route to pin _115147_/A1 in net net46.
+[EST-0026] Missing route to pin hold64623/A in net net46.
+[EST-0026] Missing route to pin output46/A in net net46.
+[EST-0026] Missing route to pin _125246_/Q in net net46.
+[EST-0026] Missing route to pin _115147_/A1 in net net46.
+[EST-0026] Missing route to pin hold64788/A in net net47.
+[EST-0026] Missing route to pin output47/A in net net47.
+[EST-0026] Missing route to pin _125247_/Q in net net47.
+[EST-0026] Missing route to pin _115149_/A1 in net net47.
+[EST-0026] Missing route to pin hold64788/A in net net47.
+[EST-0026] Missing route to pin output47/A in net net47.
+[EST-0026] Missing route to pin _125247_/Q in net net47.
+[EST-0026] Missing route to pin _115149_/A1 in net net47.
+[EST-0026] Missing route to pin hold64788/A in net net47.
+[EST-0026] Missing route to pin output47/A in net net47.
+[EST-0026] Missing route to pin _125247_/Q in net net47.
+[EST-0026] Missing route to pin _115149_/A1 in net net47.
+[EST-0026] Missing route to pin hold64629/A in net net48.
+[EST-0026] Missing route to pin output48/A in net net48.
+[EST-0026] Missing route to pin _125248_/Q in net net48.
+[EST-0026] Missing route to pin _115151_/A1 in net net48.
+[EST-0026] Missing route to pin hold64629/A in net net48.
+[EST-0026] Missing route to pin output48/A in net net48.
+[EST-0026] Missing route to pin _125248_/Q in net net48.
+[EST-0026] Missing route to pin _115151_/A1 in net net48.
+[EST-0026] Missing route to pin hold64629/A in net net48.
+[EST-0026] Missing route to pin output48/A in net net48.
+[EST-0026] Missing route to pin _125248_/Q in net net48.
+[EST-0026] Missing route to pin _115151_/A1 in net net48.
+[EST-0026] Missing route to pin hold64690/A in net net49.
+[EST-0026] Missing route to pin output49/A in net net49.
+[EST-0026] Missing route to pin _125249_/Q in net net49.
+[EST-0026] Missing route to pin _115153_/A1 in net net49.
+[EST-0026] Missing route to pin _064389_/A in net net49.
+[EST-0026] Missing route to pin hold64690/A in net net49.
+[EST-0026] Missing route to pin output49/A in net net49.
+[EST-0026] Missing route to pin _125249_/Q in net net49.
+[EST-0026] Missing route to pin _115153_/A1 in net net49.
+[EST-0026] Missing route to pin _064389_/A in net net49.
+[EST-0026] Missing route to pin hold64690/A in net net49.
+[EST-0026] Missing route to pin output49/A in net net49.
+[EST-0026] Missing route to pin _125249_/Q in net net49.
+[EST-0026] Missing route to pin _115153_/A1 in net net49.
+[EST-0026] Missing route to pin _064389_/A in net net49.
+[EST-0026] Missing route to pin hold64685/A in net net50.
+[EST-0026] Missing route to pin output50/A in net net50.
+[EST-0026] Missing route to pin _125250_/Q in net net50.
+[EST-0026] Missing route to pin _115155_/A1 in net net50.
+[EST-0026] Missing route to pin _064389_/B in net net50.
+[EST-0026] Missing route to pin hold64685/A in net net50.
+[EST-0026] Missing route to pin output50/A in net net50.
+[EST-0026] Missing route to pin _125250_/Q in net net50.
+[EST-0026] Missing route to pin _115155_/A1 in net net50.
+[EST-0026] Missing route to pin _064389_/B in net net50.
+[EST-0026] Missing route to pin hold64685/A in net net50.
+[EST-0026] Missing route to pin output50/A in net net50.
+[EST-0026] Missing route to pin _125250_/Q in net net50.
+[EST-0026] Missing route to pin _115155_/A1 in net net50.
+[EST-0026] Missing route to pin _064389_/B in net net50.
+[EST-0026] Missing route to pin wire46149/A in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin _063011_/X in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin wire46149/A in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin _063011_/X in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin wire46149/A in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin _063011_/X in net GPIO_araddr\[10\].
+[EST-0026] Missing route to pin wire46969/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin max_cap3860/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _115041_/A1 in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _060700_/Y in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin wire46969/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin max_cap3860/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _115041_/A1 in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _060700_/Y in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin wire46969/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin max_cap3860/A in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _115041_/A1 in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin _060700_/Y in net GPIO_araddr\[2\].
+[EST-0026] Missing route to pin wire46968/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin max_cap2818/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin _062900_/Y in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin wire46968/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin max_cap2818/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin _062900_/Y in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin wire46968/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin max_cap2818/A in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin _062900_/Y in net GPIO_araddr\[3\].
+[EST-0026] Missing route to pin load_slew2805/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire2794/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin _062920_/Y in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin load_slew2805/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire2794/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin _062920_/Y in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin load_slew2805/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire2794/A in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin _062920_/Y in net GPIO_araddr\[4\].
+[EST-0026] Missing route to pin wire46151/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin max_cap2572/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin fanout2555/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _063149_/B in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _062944_/Y in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin wire46151/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin max_cap2572/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin fanout2555/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _063149_/B in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _062944_/Y in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin wire46151/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin max_cap2572/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin fanout2555/A in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _063149_/B in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin _062944_/Y in net GPIO_araddr\[5\].
+[EST-0026] Missing route to pin wire2389/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin fanout2373/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _065371_/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _063104_/A2 in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _062950_/Y in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin wire2389/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin fanout2373/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _065371_/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _063104_/A2 in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _062950_/Y in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin wire2389/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin fanout2373/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _065371_/A in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _063104_/A2 in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin _062950_/Y in net GPIO_araddr\[6\].
+[EST-0026] Missing route to pin wire44603/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin max_cap2211/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin _062956_/Y in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin wire44603/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin max_cap2211/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin _062956_/Y in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin wire44603/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin max_cap2211/A in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin _062956_/Y in net GPIO_araddr\[7\].
+[EST-0026] Missing route to pin wire45195/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin max_cap2059/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin _062963_/Y in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin wire45195/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin max_cap2059/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin _062963_/Y in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin wire45195/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin max_cap2059/A in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin _062963_/Y in net GPIO_araddr\[8\].
+[EST-0026] Missing route to pin wire44014/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire1950/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin _062989_/Y in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire44014/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire1950/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin _062989_/Y in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire44014/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin wire1950/A in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin _062989_/Y in net GPIO_araddr\[9\].
+[EST-0026] Missing route to pin hold60495/A in net GPIO_bvalid.
+[EST-0026] Missing route to pin _127930_/Q in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115187_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin hold60495/A in net GPIO_bvalid.
+[EST-0026] Missing route to pin _127930_/Q in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115187_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin hold60495/A in net GPIO_bvalid.
+[EST-0026] Missing route to pin _127930_/Q in net GPIO_bvalid.
+[EST-0026] Missing route to pin _115187_/A1 in net GPIO_bvalid.
+[EST-0026] Missing route to pin hold65023/A in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _127931_/Q in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _106665_/B2 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin hold65023/A in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _127931_/Q in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _106665_/B2 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin hold65023/A in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _127931_/Q in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin _106665_/B2 in net GPIO_rdata\[0\].
+[EST-0026] Missing route to pin hold61051/A in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _127941_/Q in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _106979_/B2 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin hold61051/A in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _127941_/Q in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _106979_/B2 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin hold61051/A in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _127941_/Q in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin _106979_/B2 in net GPIO_rdata\[10\].
+[EST-0026] Missing route to pin hold61421/A in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _127942_/Q in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _107102_/B2 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin hold61421/A in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _127942_/Q in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _107102_/B2 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin hold61421/A in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _127942_/Q in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin _107102_/B2 in net GPIO_rdata\[11\].
+[EST-0026] Missing route to pin hold60732/A in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _127943_/Q in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _107228_/B2 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin hold60732/A in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _127943_/Q in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _107228_/B2 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin hold60732/A in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _127943_/Q in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin _107228_/B2 in net GPIO_rdata\[12\].
+[EST-0026] Missing route to pin hold59974/A in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _127944_/Q in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin hold59974/A in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _127944_/Q in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin hold59974/A in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin _127944_/Q in net GPIO_rdata\[13\].
+[EST-0026] Missing route to pin hold61616/A in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _127945_/Q in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _107471_/B2 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin hold61616/A in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _127945_/Q in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _107471_/B2 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin hold61616/A in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _127945_/Q in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin _107471_/B2 in net GPIO_rdata\[14\].
+[EST-0026] Missing route to pin hold61312/A in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _127946_/Q in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _107616_/B2 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin hold61312/A in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _127946_/Q in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _107616_/B2 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin hold61312/A in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _127946_/Q in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin _107616_/B2 in net GPIO_rdata\[15\].
+[EST-0026] Missing route to pin hold60684/A in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _127947_/Q in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _106700_/B2 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin hold60684/A in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _127947_/Q in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _106700_/B2 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin hold60684/A in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _127947_/Q in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin _106700_/B2 in net GPIO_rdata\[16\].
+[EST-0026] Missing route to pin hold61286/A in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _127948_/Q in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _106848_/B2 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin hold61286/A in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _127948_/Q in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _106848_/B2 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin hold61286/A in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _127948_/Q in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin _106848_/B2 in net GPIO_rdata\[17\].
+[EST-0026] Missing route to pin hold62532/A in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _127949_/Q in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _106987_/B2 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin hold62532/A in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _127949_/Q in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _106987_/B2 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin hold62532/A in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _127949_/Q in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin _106987_/B2 in net GPIO_rdata\[18\].
+[EST-0026] Missing route to pin hold64015/A in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _127950_/Q in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _107093_/B2 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin hold64015/A in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _127950_/Q in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _107093_/B2 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin hold64015/A in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _127950_/Q in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin _107093_/B2 in net GPIO_rdata\[19\].
+[EST-0026] Missing route to pin hold61693/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin wire27271/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _127932_/Q in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin hold61693/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin wire27271/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _127932_/Q in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin hold61693/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin wire27271/A in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin _127932_/Q in net GPIO_rdata\[1\].
+[EST-0026] Missing route to pin hold64306/A in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _127951_/Q in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _107220_/B2 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin hold64306/A in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _127951_/Q in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _107220_/B2 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin hold64306/A in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _127951_/Q in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin _107220_/B2 in net GPIO_rdata\[20\].
+[EST-0026] Missing route to pin hold64241/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin wire49392/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _127953_/Q in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin hold64241/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin wire49392/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _127953_/Q in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin hold64241/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin wire49392/A in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin _127953_/Q in net GPIO_rdata\[22\].
+[EST-0026] Missing route to pin hold63936/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin wire49391/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _127954_/Q in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin hold63936/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin wire49391/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _127954_/Q in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin hold63936/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin wire49391/A in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin _127954_/Q in net GPIO_rdata\[23\].
+[EST-0026] Missing route to pin hold64705/A in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _127955_/Q in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _106678_/B2 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin hold64705/A in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _127955_/Q in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _106678_/B2 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin hold64705/A in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _127955_/Q in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin _106678_/B2 in net GPIO_rdata\[24\].
+[EST-0026] Missing route to pin hold64822/A in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _127956_/Q in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _106830_/B2 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin hold64822/A in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _127956_/Q in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _106830_/B2 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin hold64822/A in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _127956_/Q in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin _106830_/B2 in net GPIO_rdata\[25\].
+[EST-0026] Missing route to pin hold62266/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin wire49390/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _127957_/Q in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin hold62266/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin wire49390/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _127957_/Q in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin hold62266/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin wire49390/A in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin _127957_/Q in net GPIO_rdata\[26\].
+[EST-0026] Missing route to pin hold64569/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin wire49389/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _127958_/Q in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin hold64569/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin wire49389/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _127958_/Q in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin hold64569/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin wire49389/A in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin _127958_/Q in net GPIO_rdata\[27\].
+[EST-0026] Missing route to pin hold62934/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin wire49388/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _127959_/Q in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin hold62934/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin wire49388/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _127959_/Q in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin hold62934/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin wire49388/A in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin _127959_/Q in net GPIO_rdata\[28\].
+[EST-0026] Missing route to pin hold62174/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin wire49387/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _127960_/Q in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin hold62174/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin wire49387/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _127960_/Q in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin hold62174/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin wire49387/A in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin _127960_/Q in net GPIO_rdata\[29\].
+[EST-0026] Missing route to pin hold61460/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin max_cap27270/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _127933_/Q in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin hold61460/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin max_cap27270/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _127933_/Q in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin hold61460/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin max_cap27270/A in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin _127933_/Q in net GPIO_rdata\[2\].
+[EST-0026] Missing route to pin hold62948/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin wire49386/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _127961_/Q in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin hold62948/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin wire49386/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _127961_/Q in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin hold62948/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin wire49386/A in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin _127961_/Q in net GPIO_rdata\[30\].
+[EST-0026] Missing route to pin hold64238/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin wire49385/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _127962_/Q in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin hold64238/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin wire49385/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _127962_/Q in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin hold64238/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin wire49385/A in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin _127962_/Q in net GPIO_rdata\[31\].
+[EST-0026] Missing route to pin hold61042/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin wire27269/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127934_/Q in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin hold61042/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin wire27269/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127934_/Q in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin hold61042/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin wire27269/A in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127934_/Q in net GPIO_rdata\[3\].
+[EST-0026] Missing route to pin _127935_/Q in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _115146_/A1 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _107212_/B2 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _127935_/Q in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _115146_/A1 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _107212_/B2 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _127935_/Q in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _115146_/A1 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin _107212_/B2 in net GPIO_rdata\[4\].
+[EST-0026] Missing route to pin max_cap27268/A in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _127936_/Q in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _115148_/A1 in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin max_cap27268/A in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _127936_/Q in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _115148_/A1 in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin max_cap27268/A in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _127936_/Q in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin _115148_/A1 in net GPIO_rdata\[5\].
+[EST-0026] Missing route to pin hold60829/A in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _127937_/Q in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _107455_/B2 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin hold60829/A in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _127937_/Q in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _107455_/B2 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin hold60829/A in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _127937_/Q in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin _107455_/B2 in net GPIO_rdata\[6\].
+[EST-0026] Missing route to pin hold61802/A in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _127938_/Q in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _107599_/B2 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin hold61802/A in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _127938_/Q in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _107599_/B2 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin hold61802/A in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _127938_/Q in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin _107599_/B2 in net GPIO_rdata\[7\].
+[EST-0026] Missing route to pin hold61401/A in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _127939_/Q in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _106690_/B2 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin hold61401/A in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _127939_/Q in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _106690_/B2 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin hold61401/A in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _127939_/Q in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin _106690_/B2 in net GPIO_rdata\[8\].
+[EST-0026] Missing route to pin hold61226/A in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _127940_/Q in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _106840_/B2 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin hold61226/A in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _127940_/Q in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _106840_/B2 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin hold61226/A in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _127940_/Q in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin _106840_/B2 in net GPIO_rdata\[9\].
+[EST-0026] Missing route to pin hold65053/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _127963_/Q in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115132_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106664_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106663_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063251_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063250_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin hold65053/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _127963_/Q in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115132_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106664_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106663_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063251_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063250_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin hold65053/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _127963_/Q in net GPIO_rvalid.
+[EST-0026] Missing route to pin _115132_/A1 in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106664_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _106663_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063251_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin _063250_/A in net GPIO_rvalid.
+[EST-0026] Missing route to pin load_slew5370/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire5361/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin _063356_/X in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin load_slew5370/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire5361/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin _063356_/X in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin load_slew5370/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire5361/A in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin _063356_/X in net GPIO_wdata\[0\].
+[EST-0026] Missing route to pin wire3151/A in net GPIO_wdata\[10\].
+[EST-0026] Missing route to pin _060670_/X in net GPIO_wdata\[10\].
+[EST-0026] Missing route to pin wire3151/A in net GPIO_wdata\[10\].
+[EST-0026] Missing route to pin _060670_/X in net GPIO_wdata\[10\].
+[EST-0026] Missing route to pin wire3151/A in net GPIO_wdata\[10\].
+[EST-0026] Missing route to pin _060670_/X in net GPIO_wdata\[10\].
+[EST-0026] Missing route to pin wire46760/A in net GPIO_wdata\[11\].
+[EST-0026] Missing route to pin _060667_/X in net GPIO_wdata\[11\].
+[EST-0026] Missing route to pin wire46760/A in net GPIO_wdata\[11\].
+[EST-0026] Missing route to pin _060667_/X in net GPIO_wdata\[11\].
+[EST-0026] Missing route to pin wire46760/A in net GPIO_wdata\[11\].
+[EST-0026] Missing route to pin _060667_/X in net GPIO_wdata\[11\].
+[EST-0026] Missing route to pin wire47429/A in net GPIO_wdata\[12\].
+[EST-0026] Missing route to pin _060664_/X in net GPIO_wdata\[12\].
+[EST-0026] Missing route to pin wire47429/A in net GPIO_wdata\[12\].
+[EST-0026] Missing route to pin _060664_/X in net GPIO_wdata\[12\].
+[EST-0026] Missing route to pin wire47429/A in net GPIO_wdata\[12\].
+[EST-0026] Missing route to pin _060664_/X in net GPIO_wdata\[12\].
+[EST-0026] Missing route to pin wire5459/A in net GPIO_wdata\[13\].
+[EST-0026] Missing route to pin _060663_/X in net GPIO_wdata\[13\].
+[EST-0026] Missing route to pin wire5459/A in net GPIO_wdata\[13\].
+[EST-0026] Missing route to pin _060663_/X in net GPIO_wdata\[13\].
+[EST-0026] Missing route to pin wire5459/A in net GPIO_wdata\[13\].
+[EST-0026] Missing route to pin _060663_/X in net GPIO_wdata\[13\].
+[EST-0026] Missing route to pin wire3172/A in net GPIO_wdata\[14\].
+[EST-0026] Missing route to pin _060662_/X in net GPIO_wdata\[14\].
+[EST-0026] Missing route to pin wire3172/A in net GPIO_wdata\[14\].
+[EST-0026] Missing route to pin _060662_/X in net GPIO_wdata\[14\].
+[EST-0026] Missing route to pin wire3172/A in net GPIO_wdata\[14\].
+[EST-0026] Missing route to pin _060662_/X in net GPIO_wdata\[14\].
+[EST-0026] Missing route to pin wire46466/A in net GPIO_wdata\[15\].
+[EST-0026] Missing route to pin _060659_/X in net GPIO_wdata\[15\].
+[EST-0026] Missing route to pin wire46466/A in net GPIO_wdata\[15\].
+[EST-0026] Missing route to pin _060659_/X in net GPIO_wdata\[15\].
+[EST-0026] Missing route to pin wire46466/A in net GPIO_wdata\[15\].
+[EST-0026] Missing route to pin _060659_/X in net GPIO_wdata\[15\].
+[EST-0026] Missing route to pin wire46467/A in net GPIO_wdata\[16\].
+[EST-0026] Missing route to pin _060656_/X in net GPIO_wdata\[16\].
+[EST-0026] Missing route to pin wire46467/A in net GPIO_wdata\[16\].
+[EST-0026] Missing route to pin _060656_/X in net GPIO_wdata\[16\].
+[EST-0026] Missing route to pin wire46467/A in net GPIO_wdata\[16\].
+[EST-0026] Missing route to pin _060656_/X in net GPIO_wdata\[16\].
+[EST-0026] Missing route to pin wire46761/A in net GPIO_wdata\[17\].
+[EST-0026] Missing route to pin _060653_/X in net GPIO_wdata\[17\].
+[EST-0026] Missing route to pin wire46761/A in net GPIO_wdata\[17\].
+[EST-0026] Missing route to pin _060653_/X in net GPIO_wdata\[17\].
+[EST-0026] Missing route to pin wire46761/A in net GPIO_wdata\[17\].
+[EST-0026] Missing route to pin _060653_/X in net GPIO_wdata\[17\].
+[EST-0026] Missing route to pin wire47281/A in net GPIO_wdata\[18\].
+[EST-0026] Missing route to pin _060649_/X in net GPIO_wdata\[18\].
+[EST-0026] Missing route to pin wire47281/A in net GPIO_wdata\[18\].
+[EST-0026] Missing route to pin _060649_/X in net GPIO_wdata\[18\].
+[EST-0026] Missing route to pin wire47281/A in net GPIO_wdata\[18\].
+[EST-0026] Missing route to pin _060649_/X in net GPIO_wdata\[18\].
+[EST-0026] Missing route to pin wire46468/A in net GPIO_wdata\[19\].
+[EST-0026] Missing route to pin _060647_/X in net GPIO_wdata\[19\].
+[EST-0026] Missing route to pin wire46468/A in net GPIO_wdata\[19\].
+[EST-0026] Missing route to pin _060647_/X in net GPIO_wdata\[19\].
+[EST-0026] Missing route to pin wire46468/A in net GPIO_wdata\[19\].
+[EST-0026] Missing route to pin _060647_/X in net GPIO_wdata\[19\].
+[EST-0026] Missing route to pin wire47148/A in net GPIO_wdata\[1\].
+[EST-0026] Missing route to pin wire3839/A in net GPIO_wdata\[1\].
+[EST-0026] Missing route to pin _063377_/X in net GPIO_wdata\[1\].
+[EST-0026] Missing route to pin wire47148/A in net GPIO_wdata\[1\].
+[EST-0026] Missing route to pin wire3839/A in net GPIO_wdata\[1\].
+[EST-0026] Missing route to pin _063377_/X in net GPIO_wdata\[1\].
+[EST-0026] Missing route to pin wire47148/A in net GPIO_wdata\[1\].
+[EST-0026] message limit (1000) reached. This message will no longer print.
+Skipping step 'STA (Mid-PnR)'…
+Skipping step 'Detailed Routing'…
+Skipping step 'Remove Obstructions'…
+Skipping step 'Check Antennas'…
+Skipping step 'Routing DRC Checker'…
+Skipping step 'Report Disconnected Pins'…
+Skipping step 'Disconnected Pins Checker'…
+Skipping step 'Report Wire Length'…
+Skipping step 'Wire Length Threshold Checker'…
+Skipping step 'Fill Insertion'…
+Skipping step 'Generate Cell Frequency Tables'…
+Skipping step 'Parasitics (RC) Extraction'…
+Skipping step 'STA (Post-PnR)'…
+Skipping step 'IR Drop Report'…
+Skipping step 'GDSII Stream Out (Magic)'…
+Skipping step 'GDSII Stream Out (KLayout)'…
+Skipping step 'Render Image (w/ KLayout)'…
+Skipping step 'Write LEF (Magic)'…
+Skipping step 'Check Antenna Properties of Pins in The Generated Design LEF view'…
+Skipping step 'KLayout vs. Magic XOR'…
+Skipping step 'XOR Difference Checker'…
+Skipping step 'DRC'…
+Skipping step 'Design Rule Check (KLayout)'…
+Skipping step 'Magic DRC Checker'…
+Skipping step 'KLayout DRC Checker'…
+Skipping step 'SPICE Extraction'…
+Skipping step 'Illegal Overlap Checker'…
+Skipping step 'Netgen LVS'…
+Skipping step 'LVS Error Checker'…
+Gating variable for step 'Yosys.EQY' set to 'False'- the step will be skipped.
+Skipping step 'Equivalence Check'…
+Skipping step 'Setup Timing Violations Checker'…
+Skipping step 'Hold Timing Violations Checker'…
+Skipping step 'Max Slew Violations Checker'…
+Skipping step 'Max Cap Violations Checker'…
+Skipping step 'Report Manufacturability'…
+Saving views to '/usr/asic_flow/run/uart28_m3a010_final/final'…
+Flow complete.
+Starting…
+Skipping step 'Verilator Lint'…
+Skipping step 'Lint Timing Error Checker'…
+Skipping step 'Lint Errors Checker'…
+Skipping step 'Lint Warnings Checker'…
+Skipping step 'Generate JSON Header'…
+Skipping step 'Synthesis'…
+Skipping step 'Unmapped Cells Checker'…
+Skipping step 'Yosys Synth Checks'…
+Skipping step 'Netlist Assign Statement Checker'…
+Skipping step 'Check SDC Files'…
+Skipping step 'Check Macro Instances'…
+Skipping step 'STA (Pre-PnR)'…
+Skipping step 'Floorplan Init'…
+Skipping step 'Dump RC Values'…
+Skipping step 'Check Antenna Properties of Macros Pins in Their LEF Views'…
+Skipping step 'Set Power Connections'…
+Skipping step 'Manual Macro Placement'…
+Skipping step 'Cut Rows'…
+Skipping step 'Tap/Decap Insertion'…
+Skipping step 'Add PDN obstructions'…
+Skipping step 'Generate PDN'…
+Skipping step 'Remove PDN obstructions'…
+Skipping step 'Add Obstructions'…
+Skipping step 'Global Placement Skip IO'…
+Skipping step 'I/O Placement'…
+Skipping step 'Custom I/O Placement'…
+Skipping step 'Apply DEF Template'…
+Skipping step 'Global Placement'…
+Skipping step 'Write Verilog Header'…
+Skipping step 'Power Grid Violation Checker'…
+Skipping step 'STA (Mid-PnR)'…
+Skipping step 'Repair Design (Post-Global Placement)'…
+Skipping step 'Manual Global Placement'…
+Skipping step 'Detailed Placement'…
+Skipping step 'Clock Tree Synthesis'…
+Skipping step 'STA (Mid-PnR)'…
+Skipping step 'Resizer Timing Optimizations (Post-Clock Tree Synthesis)'…
+Skipping step 'STA (Mid-PnR)'…
+Skipping step 'Global Routing'…
+Skipping step 'Check Antennas'…
+Skipping step 'Repair Design (Post-Global Routing)'…
+Skipping step 'Diodes on Ports'…
+Gating variable for step 'Odb.HeuristicDiodeInsertion' set to 'False'- the step will be skipped.
+Skipping step 'Heuristic Diode Insertion'…
+Running 'OpenROAD.RepairAntennas' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/44-openroad-repairantennas'…
+Running 'OpenROAD.DiodeInsertion' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/44-openroad-repairantennas/1-openroad-diodeinsertion'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/44-openroad-repairantennas/1-openroad-diodeinsertion/openroad-diodeinsertion.log'[/repr.filename]…
+Running 'OpenROAD.CheckAntennas' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/44-openroad-repairantennas/2-openroad-checkantennas'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/44-openroad-repairantennas/2-openroad-checkantennas/openroad-checkantennas.log'[/repr.filename]…
+Gating variable for step 'OpenROAD.ResizerTimingPostGRT' set to 'False'- the step will be skipped.
+Skipping step 'Resizer Timing Optimizations (Post-Global Routing)'…
+Running 'OpenROAD.STAMidPNR-3' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/45-openroad-stamidpnr-3'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/45-openroad-stamidpnr-3/openroad-stamidpnr-3.log'[/repr.filename]…
+Running 'OpenROAD.DetailedRouting' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/46-openroad-detailedrouting'…
+Running TritonRoute with 20 threads…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/46-openroad-detailedrouting/openroad-detailedrouting.log'[/repr.filename]…
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+Running 'Odb.RemoveRoutingObstructions' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/47-odb-removeroutingobstructions'…
+'ROUTING_OBSTRUCTIONS' is not defined. Skipping 'Odb.RemoveRoutingObstructions'…
+Running 'OpenROAD.CheckAntennas-1' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/48-openroad-checkantennas-1'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/48-openroad-checkantennas-1/openroad-checkantennas-1.log'[/repr.filename]…
+Running 'Checker.TrDRC' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/49-checker-trdrc'…
+Check for Routing DRC errors clear.
+Running 'Odb.ReportDisconnectedPins' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/50-odb-reportdisconnectedpins'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/50-odb-reportdisconnectedpins/odb-reportdisconnectedpins.log'[/repr.filename]…
+Running 'Checker.DisconnectedPins' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/51-checker-disconnectedpins'…
+Check for critical disconnected pins clear.
+Running 'Odb.ReportWireLength' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/52-odb-reportwirelength'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/52-odb-reportwirelength/odb-reportwirelength.log'[/repr.filename]…
+Running 'Checker.WireLength' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/53-checker-wirelength'…
+Threshold for Threshold-surpassing long wires is not set. The checker will be skipped.
+Running 'OpenROAD.FillInsertion' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/54-openroad-fillinsertion'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/54-openroad-fillinsertion/openroad-fillinsertion.log'[/repr.filename]…
+Running 'Odb.CellFrequencyTables' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/55-odb-cellfrequencytables'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/55-odb-cellfrequencytables/buffer_list.txt'[/repr.filename]…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/55-odb-cellfrequencytables/odb-cellfrequencytables.log'[/repr.filename]…
+Running 'OpenROAD.RCX' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx'…
+Running RCX for corners matching nom_* (/usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/nom/rcx.log)…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/nom/rcx.log'[/repr.filename]…
+Finished RCX for corners matching nom_*.
+Running RCX for corners matching min_* (/usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/min/rcx.log)…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/min/rcx.log'[/repr.filename]…
+Finished RCX for corners matching min_*.
+Running RCX for corners matching max_* (/usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/max/rcx.log)…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/max/rcx.log'[/repr.filename]…
+Finished RCX for corners matching max_*.
+Running 'OpenROAD.STAPostPNR' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr'…
+Starting STA for the nom_tt_025C_1v80 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/nom_tt_025C_1v80/sta.log'[/repr.filename]…
+Finished STA for the nom_tt_025C_1v80 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/nom_tt_025C_1v80/filter_unannotated.log'[/repr.filename]…
+Starting STA for the nom_ss_100C_1v60 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/nom_ss_100C_1v60/sta.log'[/repr.filename]…
+Finished STA for the nom_ss_100C_1v60 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/nom_ss_100C_1v60/filter_unannotated.log'[/repr.filename]…
+Starting STA for the nom_ff_n40C_1v95 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/nom_ff_n40C_1v95/sta.log'[/repr.filename]…
+Finished STA for the nom_ff_n40C_1v95 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/nom_ff_n40C_1v95/filter_unannotated.log'[/repr.filename]…
+Starting STA for the min_tt_025C_1v80 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/min_tt_025C_1v80/sta.log'[/repr.filename]…
+Finished STA for the min_tt_025C_1v80 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/min_tt_025C_1v80/filter_unannotated.log'[/repr.filename]…
+Starting STA for the min_ss_100C_1v60 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/min_ss_100C_1v60/sta.log'[/repr.filename]…
+Finished STA for the min_ss_100C_1v60 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/min_ss_100C_1v60/filter_unannotated.log'[/repr.filename]…
+Starting STA for the min_ff_n40C_1v95 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/min_ff_n40C_1v95/sta.log'[/repr.filename]…
+Finished STA for the min_ff_n40C_1v95 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/min_ff_n40C_1v95/filter_unannotated.log'[/repr.filename]…
+Starting STA for the max_tt_025C_1v80 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/max_tt_025C_1v80/sta.log'[/repr.filename]…
+Finished STA for the max_tt_025C_1v80 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/max_tt_025C_1v80/filter_unannotated.log'[/repr.filename]…
+Starting STA for the max_ss_100C_1v60 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/max_ss_100C_1v60/sta.log'[/repr.filename]…
+Finished STA for the max_ss_100C_1v60 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/max_ss_100C_1v60/filter_unannotated.log'[/repr.filename]…
+Starting STA for the max_ff_n40C_1v95 timing corner…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/max_ff_n40C_1v95/sta.log'[/repr.filename]…
+Finished STA for the max_ff_n40C_1v95 timing corner.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/max_ff_n40C_1v95/filter_unannotated.log'[/repr.filename]…
+Running 'OpenROAD.IRDropReport' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/58-openroad-irdropreport'…
+'VSRC_LOC_FILES' was not given a value, which may make the results of IR drop analysis inaccurate. If you are not integrating a top-level chip for manufacture, you may ignore this warning, otherwise, see the documentation for 'VSRC_LOC_FILES'.
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/58-openroad-irdropreport/openroad-irdropreport.log'[/repr.filename]…
++ analyze_power_grid -net VPWR -voltage_file /usr/asic_flow/run/uart28_m3a010_final/58-openroad-irdropreport/net-VPWR.csv
+[INFO PSM-0040] All shapes on net VPWR are connected.
+########## IR report #################
+Net              : VPWR
+Corner           : nom_tt_025C_1v80
+Total power      : 4.14e-02 W
+Supply voltage   : 1.80e+00 V
+Worstcase voltage: 1.80e+00 V
+Average voltage  : 1.80e+00 V
+Average IR drop  : 4.14e-06 V
+Worstcase IR drop: 5.31e-04 V
+Percentage drop  : 0.03 %
+######################################
++ analyze_power_grid -net VGND -voltage_file /usr/asic_flow/run/uart28_m3a010_final/58-openroad-irdropreport/net-VGND.csv
+[INFO PSM-0040] All shapes on net VGND are connected.
+########## IR report #################
+Net              : VGND
+Corner           : nom_tt_025C_1v80
+Total power      : 4.14e-02 W
+Supply voltage   : 0.00e+00 V
+Worstcase voltage: 5.32e-04 V
+Average voltage  : 4.13e-06 V
+Average IR drop  : 4.13e-06 V
+Worstcase IR drop: 5.32e-04 V
+Percentage drop  : 0.03 %
+######################################
+
+Running 'Magic.StreamOut' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/59-magic-streamout'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/59-magic-streamout/sky130_sram_2kbyte_1rw1r_32x512_8.get_bbox.log'[/repr.filename]…
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_cap_row" (byte position 258854): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_cap_row" (byte position 259558): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_cap_row" (byte position 260518): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 275442): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 279218): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 283410): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 284274): Unknown layer/datatype in boundary, layer=22 type=22
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 284530): Unknown layer/datatype in boundary, layer=235 type=0
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 302494): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 306270): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 310462): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 311838): Unknown layer/datatype in boundary, layer=22 type=22
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 312094): Unknown layer/datatype in boundary, layer=235 type=0
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 332736): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 336512): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 340704): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 342080): Unknown layer/datatype in boundary, layer=22 type=22
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 342336): Unknown layer/datatype in boundary, layer=235 type=0
+
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/59-magic-streamout/sky130_sram_1kbyte_1rw1r_32x256_8.get_bbox.log'[/repr.filename]…
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_cap_row" (byte position 251578): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_cap_row" (byte position 252282): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_cap_row" (byte position 253242): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 268166): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 271942): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 276134): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 276998): Unknown layer/datatype in boundary, layer=22 type=22
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_dummy" (byte position 277254): Unknown layer/datatype in boundary, layer=235 type=0
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 295218): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 298994): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 303186): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 304562): Unknown layer/datatype in boundary, layer=22 type=22
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell_replica" (byte position 304818): Unknown layer/datatype in boundary, layer=235 type=0
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 325460): Unknown layer/datatype in boundary, layer=33 type=42
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 329236): Unknown layer/datatype in boundary, layer=33 type=43
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 333428): Unknown layer/datatype in boundary, layer=22 type=21
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 334804): Unknown layer/datatype in boundary, layer=22 type=22
+
+Error while reading cell "sky130_fd_bd_sram__openram_dp_cell" (byte position 335060): Unknown layer/datatype in boundary, layer=235 type=0
+
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/59-magic-streamout/magic-streamout.log'[/repr.filename]…
+Running 'KLayout.StreamOut' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/60-klayout-streamout'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/60-klayout-streamout/klayout-streamout.log'[/repr.filename]…
+Running 'KLayout.Render' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/61-klayout-render'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/61-klayout-render/klayout-render.log'[/repr.filename]…
+Running 'Magic.WriteLEF' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/62-magic-writelef'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/62-magic-writelef/magic-writelef.log'[/repr.filename]…
+Running 'Odb.CheckDesignAntennaProperties' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/63-odb-checkdesignantennaproperties'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/63-odb-checkdesignantennaproperties/odb-checkdesignantennaproperties.log'[/repr.filename]…
+Cell 'top_module' has (16) output pin(s) without antenna diffusion information. They might not be driven.
+Running 'KLayout.XOR' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/64-klayout-xor'…
+Running XOR with 20 threads…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/64-klayout-xor/klayout-xor.log'[/repr.filename]…
+Running 'Checker.XOR' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/65-checker-xor'…
+Check for XOR differences clear.
+Running 'Magic.DRC' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/66-magic-drc'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/66-magic-drc/magic-drc.log'[/repr.filename]…
+Running 'KLayout.DRC' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/67-klayout-drc'…
+Running KLayout DRC with 20 threads…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/67-klayout-drc/klayout-drc.log'[/repr.filename]…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/67-klayout-drc/xml_drc_report_to_json.log'[/repr.filename]…
+Running 'Checker.MagicDRC' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/68-checker-magicdrc'…
+Check for Magic DRC errors clear.
+Running 'Checker.KLayoutDRC' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/69-checker-klayoutdrc'…
+Check for KLayout DRC errors clear.
+Running 'Magic.SpiceExtraction' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/70-magic-spiceextraction'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/70-magic-spiceextraction/magic-spiceextraction.log'[/repr.filename]…
+Running 'Checker.IllegalOverlap' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/71-checker-illegaloverlap'…
+Check for Magic Illegal Overlap errors clear.
+Running 'Netgen.LVS' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/72-netgen-lvs'…
+Logging subprocess to [repr.filename]'../../../../../usr/asic_flow/run/uart28_m3a010_final/72-netgen-lvs/netgen-lvs.log'[/repr.filename]…
+Running 'Checker.LVS' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/73-checker-lvs'…
+Check for LVS errors clear.
+Gating variable for step 'Yosys.EQY' set to 'False'- the step will be skipped.
+Skipping step 'Equivalence Check'…
+Running 'Checker.SetupViolations' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/74-checker-setupviolations'…
+No setup violations found
+Running 'Checker.HoldViolations' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/75-checker-holdviolations'…
+No hold violations found
+Running 'Checker.MaxSlewViolations' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/76-checker-maxslewviolations'…
+Max Slew violations found in the following corners:
+* max_ff_n40C_1v95
+* max_ss_100C_1v60
+* max_tt_025C_1v80
+* min_ff_n40C_1v95
+* min_ss_100C_1v60
+* min_tt_025C_1v80
+* nom_ff_n40C_1v95
+* nom_ss_100C_1v60
+* nom_tt_025C_1v80
+No max slew violations found
+Running 'Checker.MaxCapViolations' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/77-checker-maxcapviolations'…
+Max Cap violations found in the following corners:
+* max_ff_n40C_1v95
+* max_ss_100C_1v60
+* max_tt_025C_1v80
+* min_ff_n40C_1v95
+* min_ss_100C_1v60
+* min_tt_025C_1v80
+* nom_ff_n40C_1v95
+* nom_ss_100C_1v60
+* nom_tt_025C_1v80
+No max cap violations found
+Running 'Misc.ReportManufacturability' at '../../../../../usr/asic_flow/run/uart28_m3a010_final/78-misc-reportmanufacturability'…
+Saving views to '/usr/asic_flow/run/uart28_m3a010_final/final'…
+Flow complete.

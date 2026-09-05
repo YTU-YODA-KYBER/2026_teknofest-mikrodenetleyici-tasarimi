@@ -1,0 +1,13 @@
+meta:
+  version: 2
+
+# final40c'nin DRT-temiz post-GRT durumunda yalnız katman atlatan anten
+# onarımını sınar. Diyot/hücre eklemez ve artımlı global routing üretmez.
+# Kabul: DetailedRouting DRC=0; ardından CheckAntennas'ta net/pin anlamlı
+# azalmalı ve seçilirse RCX + dokuz-köşe STAPostPNR gerilememelidir.
+RUN_ANTENNA_REPAIR: false
+DIODE_ON_PORTS: "none"
+DRT_ANTENNA_REPAIR_ITERS: 1
+DRT_ANTENNA_REPAIR_JUMPER_ONLY: true
+DRT_ANTENNA_REPAIR_DIODE_ONLY: false
+

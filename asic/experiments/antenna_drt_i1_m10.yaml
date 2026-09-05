@@ -1,0 +1,18 @@
+meta:
+  version: 2
+
+# Isolate one diode-only detailed-routing antenna-repair pass.  Both margin
+# variables are pinned because the installed DRT script consumes the GRT
+# margin while the DRT variable remains part of LibreLane's public config.
+RUN_HEURISTIC_DIODE_INSERTION: false
+DIODE_ON_PORTS: "none"
+GRT_ALLOW_CONGESTION: false
+
+RUN_ANTENNA_REPAIR: false
+GRT_ANTENNA_REPAIR_ITERS: 0
+GRT_ANTENNA_REPAIR_MARGIN: 10
+
+DRT_ANTENNA_REPAIR_ITERS: 1
+DRT_ANTENNA_REPAIR_MARGIN: 10
+DRT_ANTENNA_REPAIR_JUMPER_ONLY: false
+DRT_ANTENNA_REPAIR_DIODE_ONLY: true

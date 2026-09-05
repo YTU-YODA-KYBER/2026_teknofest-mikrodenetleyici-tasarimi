@@ -4,30 +4,32 @@ Bu dosya, UVM doğrulama ortamının çalıştırılması sırasında ortaya ç�
 bulgularını ve doğrulanan belgelenmiş davranışları listeler. Her madde için
 hangi testin ne gösterdiği ve nasıl tekrar üretileceği yazılıdır.
 
-Ölçüm tarihi: **2026-08-21** · Verilator 5.050 · UVM 2020.3.1 (no-DPI)
+Regresyon ölçüm tarihi: **2026-09-05** · Verilator 5.050 · UVM 2020.3.1 (no-DPI)
 
 ---
 
 ## 1. GPIO: kabul koşulu kendi hazır sinyaliyle nitelenmemiş
 
-**Durum: düzeltilmedi — raporlanıyor.**
+**Durum: düzeltildi.** `GPIO_AXI4_Lite.sv` kabul koşulu artık kendi
+`awready`/`arready`'siyle nitelenmektedir (satır 72 ve 91); diğer altı çevre
+birimiyle aynı kalıptadır. `gpio_stress_test` geçmektedir.
 
-`GPIO_AXI4_Lite.sv` işlem kabul koşulunu kendi `awready`/`arready`'siyle
-niteliyor değil:
+Ortam bu bulguyu ilk koşumda tespit etmişti; o sırada `GPIO_AXI4_Lite.sv` işlem
+kabul koşulunu kendi `awready`/`arready`'siyle nitelemiyordu:
 
 ```systemverilog
-if (awvalid && wvalid) begin      // GPIO   — nitelenmemiş
-if (arvalid)           begin      // GPIO   — nitelenmemiş
+if (awvalid && wvalid) begin      // eski GPIO — nitelenmemiş
+if (arvalid)           begin      // eski GPIO — nitelenmemiş
 ```
 
-Diğer altı çevre biriminde ise:
+Şimdi diğer altı çevre birimiyle aynı kalıptadır:
 
 ```systemverilog
 if (awvalid && wvalid && awready && wready) begin
 if (arvalid && arready)                     begin
 ```
 
-### Sonuç
+### Hatanın etkisi (düzeltme öncesi)
 
 Boru hatlı bir master — kuyruğunda bekleyen ikinci bir işlem varken `AWVALID`'i
 indirmeden yeni adres/veriyi sunan bir CPU ya da DMA — GPIO'yu **kilitler**.
@@ -54,8 +56,9 @@ işlem). AXI protokol kontrolcüsünün sayacı:
 kilitlenmiştir. Üç ihlalin üçü de DUT tarafındadır; master tarafında ihlal
 yoktur (sürücü `VALID`'i erken indirmez).
 
-Bu test **beklenen başarısız** olarak işaretlidir: kilitlenmenin oluşması
-testin amacına ulaştığı anlamına gelir.
+İlk ölçümde test **beklenen başarısız** olarak işaretlenmişti: kilitlenmenin
+oluşması bulguyu doğruluyordu. Düzeltmeden sonra bu işaret kaldırılmıştır;
+aynı trafik artık normal regresyon kapısı olarak ihlalsiz geçmelidir.
 
 ### Tekrar üretme
 
@@ -93,7 +96,7 @@ bu sınıftan 91 sinyal saymıştır.
 
 **Bu ortam bu bulguyu üretemez ve üretmeye çalışmaz.** UVM tarafında
 doğrulanan şey davranıştır: `axil_scoreboard` her transaction'da cevabın
-`OKAY` olduğunu kontrol eder ve 219 koşumun tamamında (9.195 örnek) sapma
+`OKAY` olduğunu kontrol eder ve 219 koşumun tamamında (9.696 işlem) sapma
 görülmemiştir.
 
 Ayrıca Verilator **iki durumludur**: `X` yoktur. Bu yüzden protokol
@@ -141,9 +144,10 @@ ilk kez doğrulanmıştır:
 
 ## 5. Bulunmayan şeyler
 
-Dürüstlük gereği: 219 koşumun tamamında, yukarıdaki GPIO bulgusu dışında
-**hiçbir protokol ihlali, veri uyuşmazlığı ya da beklenmeyen davranış**
-görülmemiştir. Altı blok stres testi dahil bütün testlerde temizdir.
+Dürüstlük gereği: güncel 219 koşumun tamamında **hiçbir protokol ihlali, veri
+uyuşmazlığı ya da beklenmeyen davranış** görülmemiştir. Yukarıdaki GPIO
+bulgusu ilk koşumun tarihsel kaydıdır ve düzeltilmiştir; yedi bloktaki bütün
+stres ve reset-mid testleri güncel regresyonda temizdir.
 
 Ortamın göremeyeceği şeyler açıkça şunlardır:
 

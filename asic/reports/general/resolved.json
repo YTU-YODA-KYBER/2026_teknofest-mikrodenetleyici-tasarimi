@@ -7,7 +7,7 @@
         "min_*": "/usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__min.tlef",
         "max_*": "/usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__max.tlef"
     },
-    "PRIMARY_GDSII_STREAMOUT_TOOL": "magic",
+    "PRIMARY_GDSII_STREAMOUT_TOOL": "klayout",
     "DEFAULT_MAX_TRAN": null,
     "DEFAULT_CORNER": "nom_tt_025C_1v80",
     "STA_CORNERS": [
@@ -22,7 +22,7 @@
         "max_ff_n40C_1v95"
     ],
     "RT_MIN_LAYER": "met1",
-    "RT_MAX_LAYER": "met5",
+    "RT_MAX_LAYER": "met4",
     "SCL_GROUND_PINS": [
         "VGND",
         "VNB"
@@ -35,6 +35,8 @@
         "sky130_fd_sc_hd__ebuf*"
     ],
     "FILL_CELLS": [
+        "sky130_fd_sc_hd__fill_8",
+        "sky130_fd_sc_hd__fill_4",
         "sky130_fd_sc_hd__fill_2",
         "sky130_fd_sc_hd__fill_1"
     ],
@@ -85,7 +87,7 @@
     "SYNTH_EXCLUDED_CELL_FILE": "/usr/asic_flow/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/no_synth.cells",
     "PNR_EXCLUDED_CELL_FILE": "/usr/asic_flow/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/drc_exclude.cells",
     "OUTPUT_CAP_LOAD": 33.442,
-    "MAX_FANOUT_CONSTRAINT": 10,
+    "MAX_FANOUT_CONSTRAINT": 25,
     "MAX_TRANSITION_CONSTRAINT": 0.75,
     "MAX_CAPACITANCE_CONSTRAINT": 0.2,
     "CLOCK_UNCERTAINTY_CONSTRAINT": 0.25,
@@ -93,7 +95,7 @@
     "TIME_DERATING_CONSTRAINT": 5,
     "IO_DELAY_CONSTRAINT": 20,
     "SYNTH_DRIVING_CELL": "sky130_fd_sc_hd__inv_2/Y",
-    "SYNTH_CLK_DRIVING_CELL": null,
+    "SYNTH_CLK_DRIVING_CELL": "sky130_fd_sc_hd__clkbuf_16/X",
     "SYNTH_TIEHI_CELL": "sky130_fd_sc_hd__conb_1/HI",
     "SYNTH_TIELO_CELL": "sky130_fd_sc_hd__conb_1/LO",
     "SYNTH_BUFFER_CELL": "sky130_fd_sc_hd__buf_2/A/X",
@@ -111,7 +113,7 @@
     "PDK_ROOT": "/usr/asic_flow/pdk",
     "DESIGN_NAME": "top_module",
     "PDK": "sky130A",
-    "CLOCK_PERIOD": 20,
+    "CLOCK_PERIOD": 35.714285714285715,
     "CLOCK_PORT": "clk_i",
     "CLOCK_NET": "clk_i",
     "VDD_NETS": null,
@@ -119,10 +121,17 @@
     "DIE_AREA": [
         0,
         0,
-        2920,
-        2420
+        4200,
+        3600
     ],
-    "EXTRA_EXCLUDED_CELLS": null,
+    "EXTRA_EXCLUDED_CELLS": [
+        "sky130_fd_sc_hd__clkdlybuf4s15_2",
+        "sky130_fd_sc_hd__clkdlybuf4s18_2",
+        "sky130_fd_sc_hd__clkdlybuf4s25_1",
+        "sky130_fd_sc_hd__clkdlybuf4s25_2",
+        "sky130_fd_sc_hd__clkdlybuf4s50_1",
+        "sky130_fd_sc_hd__clkdlybuf4s50_2"
+    ],
     "MACROS": {
         "sky130_sram_2kbyte_1rw1r_32x512_8": {
             "gds": [
@@ -197,7 +206,7 @@
     "PAD_EDGE_SPACING": 0,
     "RUN_TAP_ENDCAP_INSERTION": true,
     "RUN_POST_GPL_DESIGN_REPAIR": true,
-    "RUN_POST_GRT_DESIGN_REPAIR": false,
+    "RUN_POST_GRT_DESIGN_REPAIR": true,
     "RUN_CTS": true,
     "RUN_POST_CTS_RESIZER_TIMING": true,
     "RUN_POST_GRT_RESIZER_TIMING": false,
@@ -226,26 +235,30 @@
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_pkg.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/axi_req_rsp_ports.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/obi_req_rsp_ports.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/obi_to_axi_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/cv32e40p_obi_to_axi_wrapper_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/instr_bram_axi_ctrl_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/GPIO_AXI4_Lite_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/Timer_AXI4_Lite_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/QSPI_Master_AXI4_Lite_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/UART_GU_AXI4_Lite_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/patched/UART_YZ_AXI4_Lite_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/tech/xilinx_iobuf_stub.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/sram32_cell.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/sram32_cell_1k.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/sram32_bank.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/sram8_bank.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/bram_instr_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/bram_data_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/bram_yz_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/mem/conv_buf_ram_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/gen/boot_rom_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/gen/weights_rom_p8_asic.v",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/asic_sources/gen/fc_weights_rom_p4_asic.v",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/obi_to_axi_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/cv32e40p_obi_to_axi_wrapper_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/instr_bram_axi_ctrl_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/data_bram_axi_ctrl_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/GPIO_AXI4_Lite_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/Timer_AXI4_Lite_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/QSPI_Master_AXI4_Lite_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/I2C_Master_AXI4_Lite_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/UART_GU_AXI4_Lite_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/UART_YZ_AXI4_Lite_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/conv_accelerator_asic.v",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/tech/xilinx_iobuf_stub.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/tech/axi_read_arbiter2.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_cell_1k.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram32_bank.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/sram8_bank.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_instr_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_data_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/bram_yz_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/mem/conv_buf_ram_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/boot_rom_asic.sv",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/weights_rom_p8_asic.v",
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/gen/fc_weights_rom_p4_asic.v",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/lzc.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv",
@@ -276,15 +289,12 @@
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_top.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Memory/Data_RAM_AXI4-Lite_Wrapper/data_bram_axi_ctrl.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Memory/YZ_RAM_AXI4-Lite/yz_bram_axi_ctrl.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv",
-        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv"
+        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/Top_module_asic.sv"
     ],
     "VERILOG_INCLUDE_DIRS": [
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/include/CPU"
@@ -355,19 +365,109 @@
     "SIGNOFF_SDC_FILE": "/home/luxyxp/Documents/mainfiles/asic/constraints/design.sdc",
     "PNR_CORNERS": null,
     "SET_RC_VERBOSE": false,
-    "LAYERS_RC": null,
+    "LAYERS_RC": {
+        "*tt*": {
+            "li1": {
+                "res": 0.07176,
+                "cap": 0.0001499
+            },
+            "met1": {
+                "res": 0.0008929,
+                "cap": 0.000172375
+            },
+            "met2": {
+                "res": 0.0008929,
+                "cap": 0.000136233
+            },
+            "met3": {
+                "res": 0.0001567,
+                "cap": 0.000214962
+            },
+            "met4": {
+                "res": 0.0001567,
+                "cap": 0.000154087
+            },
+            "met5": {
+                "res": 1.781e-05,
+                "cap": 0.000154087
+            }
+        },
+        "*ss*": {
+            "li1": {
+                "res": 0.093288,
+                "cap": 0.00019487
+            },
+            "met1": {
+                "res": 0.00116077,
+                "cap": 0.000224088
+            },
+            "met2": {
+                "res": 0.00116077,
+                "cap": 0.000177103
+            },
+            "met3": {
+                "res": 0.00020371,
+                "cap": 0.000279451
+            },
+            "met4": {
+                "res": 0.00020371,
+                "cap": 0.000200313
+            },
+            "met5": {
+                "res": 2.3153e-05,
+                "cap": 0.000200313
+            }
+        },
+        "*ff*": {
+            "li1": {
+                "res": 0.050232,
+                "cap": 0.00010493
+            },
+            "met1": {
+                "res": 0.00062503,
+                "cap": 0.000120662
+            },
+            "met2": {
+                "res": 0.00062503,
+                "cap": 9.53631e-05
+            },
+            "met3": {
+                "res": 0.00010969,
+                "cap": 0.000150473
+            },
+            "met4": {
+                "res": 0.00010969,
+                "cap": 0.000107861
+            },
+            "met5": {
+                "res": 1.2467e-05,
+                "cap": 0.000107861
+            }
+        }
+    },
     "VIAS_R": null,
-    "SIGNAL_WIRE_RC_LAYERS": null,
-    "CLOCK_WIRE_RC_LAYERS": null,
+    "SIGNAL_WIRE_RC_LAYERS": [
+        "met1",
+        "met2",
+        "met3",
+        "met4"
+    ],
+    "CLOCK_WIRE_RC_LAYERS": [
+        "met2",
+        "met3",
+        "met4"
+    ],
     "PDN_CONNECT_MACROS_TO_GRID": true,
-    "PDN_MACRO_CONNECTIONS": null,
+    "PDN_MACRO_CONNECTIONS": [
+        ".*u_sram VPWR VGND vccd1 vssd1"
+    ],
     "PDN_ENABLE_GLOBAL_CONNECTIONS": true,
     "STA_EXTRA_CORNER_TCL_FILE": null,
-    "DEDUPLICATE_CORNERS": false,
+    "DEDUPLICATE_CORNERS": true,
     "STA_MACRO_PRIORITIZE_NL": true,
     "STA_MAX_VIOLATOR_COUNT": null,
     "EXTRA_SPEFS": null,
-    "STA_THREADS": null,
+    "STA_THREADS": 1,
     "FP_FLIP_SITES": null,
     "FP_TRACKS_INFO": "/usr/asic_flow/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info",
     "FP_SIZING": "absolute",
@@ -382,8 +482,8 @@
     "RIGHT_MARGIN_MULT": 12,
     "EXTRA_SITES": null,
     "MACRO_PLACEMENT_CFG": "/home/luxyxp/Documents/mainfiles/asic/constraints/macro_placement.cfg",
-    "FP_MACRO_HORIZONTAL_HALO": 15,
-    "FP_MACRO_VERTICAL_HALO": 15,
+    "FP_MACRO_HORIZONTAL_HALO": 20,
+    "FP_MACRO_VERTICAL_HALO": 20,
     "FP_PRUNE_THRESHOLD": null,
     "FP_TAPCELL_DIST": 13,
     "PDN_OBSTRUCTIONS": null,
@@ -420,15 +520,15 @@
     "PDN_ENABLE_PINS": true,
     "PDN_CFG": null,
     "ROUTING_OBSTRUCTIONS": null,
-    "RT_CLOCK_MIN_LAYER": null,
+    "RT_CLOCK_MIN_LAYER": "met2",
     "RT_CLOCK_MAX_LAYER": null,
-    "GRT_ADJUSTMENT": 0.3,
+    "GRT_ADJUSTMENT": 0.1,
     "GRT_MACRO_EXTENSION": 0,
     "GRT_LAYER_ADJUSTMENTS": [
-        0.99,
         0,
-        0,
-        0,
+        0.3,
+        0.25,
+        0.1,
         0,
         0
     ],
@@ -438,12 +538,16 @@
     "DPL_CELL_PADDING": 0,
     "RSZ_DONT_TOUCH_RX": "$^",
     "RSZ_DONT_TOUCH_LIST": null,
-    "RSZ_CORNERS": null,
-    "PL_TARGET_DENSITY_PCT": 40,
+    "RSZ_CORNERS": [
+        "nom_tt_025C_1v80",
+        "nom_ss_100C_1v60",
+        "nom_ff_n40C_1v95"
+    ],
+    "PL_TARGET_DENSITY_PCT": 35,
     "PL_SKIP_INITIAL_PLACEMENT": false,
     "PL_WIRE_LENGTH_COEF": 0.25,
     "PL_MIN_PHI_COEFFICIENT": null,
-    "PL_MAX_PHI_COEFFICIENT": null,
+    "PL_MAX_PHI_COEFFICIENT": 1.02,
     "GPL_CELL_PADDING": 0,
     "PL_KEEP_RESIZE_BELOW_OVERFLOW": null,
     "IO_PIN_PLACEMENT_MODE": "matching",
@@ -470,18 +574,18 @@
     "ERROR_ON_PDN_VIOLATIONS": true,
     "DIODE_PADDING": null,
     "GRT_ALLOW_CONGESTION": false,
-    "GRT_ANTENNA_REPAIR_ITERS": 3,
-    "GRT_OVERFLOW_ITERS": 50,
-    "GRT_ANTENNA_REPAIR_MARGIN": 10,
-    "GRT_ANTENNA_REPAIR_JUMPER_ONLY": false,
+    "GRT_ANTENNA_REPAIR_ITERS": 1,
+    "GRT_OVERFLOW_ITERS": 30,
+    "GRT_ANTENNA_REPAIR_MARGIN": 5,
+    "GRT_ANTENNA_REPAIR_JUMPER_ONLY": true,
     "GRT_ANTENNA_REPAIR_DIODE_ONLY": false,
     "DESIGN_REPAIR_BUFFER_INPUT_PORTS": true,
     "DESIGN_REPAIR_BUFFER_OUTPUT_PORTS": true,
     "DESIGN_REPAIR_TIE_FANOUT": true,
     "DESIGN_REPAIR_TIE_SEPARATION": false,
     "DESIGN_REPAIR_MAX_WIRE_LENGTH": 0,
-    "DESIGN_REPAIR_MAX_SLEW_PCT": 20,
-    "DESIGN_REPAIR_MAX_CAP_PCT": 20,
+    "DESIGN_REPAIR_MAX_SLEW_PCT": 0,
+    "DESIGN_REPAIR_MAX_CAP_PCT": 0,
     "DESIGN_REPAIR_REMOVE_BUFFERS": false,
     "MANUAL_GLOBAL_PLACEMENTS": null,
     "CTS_BALANCE_LEVELS": null,
@@ -489,11 +593,11 @@
     "CTS_DELAY_BUFFER_DERATE_PCT": null,
     "CTS_OBSTRUCTION_AWARE": null,
     "CTS_SINK_CLUSTERING_ENABLE": true,
-    "CTS_SINK_CLUSTERING_SIZE": null,
+    "CTS_SINK_CLUSTERING_SIZE": 20,
     "CTS_SINK_CLUSTERING_MAX_DIAMETER": null,
     "CTS_MACRO_CLUSTERING_SIZE": null,
     "CTS_MACRO_CLUSTERING_MAX_DIAMETER": null,
-    "CTS_CLK_MAX_WIRE_LENGTH": 0,
+    "CTS_CLK_MAX_WIRE_LENGTH": 600,
     "CTS_DISABLE_POST_PROCESSING": false,
     "CTS_DISTANCE_BETWEEN_BUFFERS": 0,
     "CTS_CORNERS": null,
@@ -503,10 +607,10 @@
         "sky130_fd_sc_hd__clkbuf_4",
         "sky130_fd_sc_hd__clkbuf_2"
     ],
-    "CTS_MAX_CAP": null,
+    "CTS_MAX_CAP": 0.2,
     "CTS_MAX_SLEW": null,
     "CTS_APPLY_NDR": "half",
-    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.1,
+    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.02,
     "PL_RESIZER_SETUP_SLACK_MARGIN": 0.05,
     "PL_RESIZER_HOLD_MAX_BUFFER_PCT": 50,
     "PL_RESIZER_SETUP_MAX_BUFFER_PCT": 50,
@@ -520,13 +624,13 @@
     "PL_RESIZER_HOLD_MAX_UTIL_PCT": null,
     "PL_RESIZER_FIX_HOLD_FIRST": false,
     "GRT_DESIGN_REPAIR_RUN_GRT": true,
-    "GRT_DESIGN_REPAIR_MAX_WIRE_LENGTH": 0,
-    "GRT_DESIGN_REPAIR_MAX_SLEW_PCT": 10,
-    "GRT_DESIGN_REPAIR_MAX_CAP_PCT": 10,
+    "GRT_DESIGN_REPAIR_MAX_WIRE_LENGTH": 250,
+    "GRT_DESIGN_REPAIR_MAX_SLEW_PCT": 0,
+    "GRT_DESIGN_REPAIR_MAX_CAP_PCT": 0,
     "DIODE_ON_PORTS": "none",
     "HEURISTIC_ANTENNA_THRESHOLD": 90,
-    "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.05,
-    "GRT_RESIZER_SETUP_SLACK_MARGIN": 0.025,
+    "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.45,
+    "GRT_RESIZER_SETUP_SLACK_MARGIN": 10,
     "GRT_RESIZER_HOLD_MAX_BUFFER_PCT": 50,
     "GRT_RESIZER_SETUP_MAX_BUFFER_PCT": 50,
     "GRT_RESIZER_ALLOW_SETUP_VIOS": false,
@@ -542,7 +646,7 @@
     "DRT_THREADS": null,
     "DRT_OPT_ITERS": 64,
     "DRT_SAVE_SNAPSHOTS": false,
-    "DRT_ANTENNA_REPAIR_ITERS": 3,
+    "DRT_ANTENNA_REPAIR_ITERS": 0,
     "DRT_ANTENNA_REPAIR_MARGIN": 10,
     "DRT_ANTENNA_REPAIR_JUMPER_ONLY": false,
     "DRT_ANTENNA_REPAIR_DIODE_ONLY": false,
@@ -553,8 +657,8 @@
     "IGNORE_DISCONNECTED_MODULES": [
         "sky130_fd_sc_hd__conb_1"
     ],
-    "ERROR_ON_DISCONNECTED_PINS": true,
-    "ERROR_ON_LONG_WIRE": true,
+    "ERROR_ON_DISCONNECTED_PINS": false,
+    "ERROR_ON_LONG_WIRE": false,
     "WIRE_LENGTH_THRESHOLD": null,
     "RCX_MERGE_VIA_WIRE_RES": true,
     "RCX_SDC_FILE": null,
@@ -1533,7 +1637,7 @@
     ],
     "meta": {
         "version": 2,
-        "flow": "Classic",
+        "flow": null,
         "substituting_steps": null,
         "step": null,
         "librelane_version": "3.0.6"

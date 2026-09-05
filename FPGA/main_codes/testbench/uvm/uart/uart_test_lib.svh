@@ -17,9 +17,9 @@ class uart_base_test extends axil_base_test;
     bit [31:0] ro_ofset [$] = '{32'h08};
     bit [31:0] hrt_ofset[$] = '{32'h14, 32'h18, 32'h1C};
 
-    // Hizli simulasyon icin kisa bir bit suresi. 16'nin kati secilir cunku
-    // RX tarafi cnt_limit_mirror = UART_CPB[19:4] (yani CPB/16) kullanir.
-    int unsigned CPB_TEST = 160;
+    // UVM saat frekansi 50 MHz'dir; CPB=50 tam 1 Mbps bit suresidir. Ortak
+    // TX, RX ve full-duplex testleri boylece zorunlu en yuksek hizi da dener.
+    int unsigned CPB_TEST = 50;
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -247,16 +247,10 @@ class uart_reset_mid_test extends uart_base_test;
                 repeat (40) @(posedge vif.clk);
                 reset_uygula(6);
             end
-        join_any
-        disable fork;
+        join
 
-        // disable fork diziyi oldurur ama SURUCUDE ucusta kalmis bir islem
-        // reset'ten SONRA tamamlanabilir; o yazma DUT'u yeniden kirletir.
-        // Bu yuzden son kosullara bakmadan once hat bosalir ve TEMIZ bir
-        // reset daha uygulanir. Testin amaci (islem ortasinda reset ve
-        // kontrolcunun RST_01..05 kurallari) yukaridaki fork'ta zaten
-        // gerceklesmistir.
-        repeat (40) @(posedge vif.clk);
+        // Iki kol da tamamlansin; boylece surucude sahipsiz islem kalmadan
+        // son kosul temiz bir resetle denetlenir.
         reset_uygula(6);
 
         uenv.urm.UART_CPB.read(st, d);
@@ -375,16 +369,14 @@ endclass
 
 //---- 10) Baud supurmesi + stop biti varyantlari ----------------------------
 //
-//  UART_CPB'ye yazmanin YAN ETKISI vardir: cnt_limit_mirror <= wdata[19:4],
-//  yani RX tarafinin 16x asiri ornekleme siniri. Bu yuzden CPB'nin 16'nin
-//  kati olmasi TX/RX kaymasini engeller. Test hem 16'nin kati degerleri hem
-//  de gercek firmware degeri olan 434'u dener (50 MHz / 434 = 115200).
+//  50 MHz UVM saatinde CPB=50 tam 1 Mbps'i kanitlar. Ayrica daha yavas
+//  bolenler ve gercek firmware degeri olan 434 (yaklasik 115200 baud) denenir.
 class uart_baud_test extends uart_base_test;
     `uvm_component_utils(uart_baud_test)
     function new(string name, uvm_component parent); super.new(name, parent); endfunction
 
     task run_phase(uvm_phase phase);
-        int unsigned   cpb_listesi[$] = '{64, 160, 320, 434};
+        int unsigned   cpb_listesi[$] = '{50, 64, 160, 320, 434};
         uvm_status_e   st;
         uvm_reg_data_t d;
         uart_pkg::uart_item alinan;

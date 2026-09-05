@@ -235,16 +235,10 @@ class gpio_reset_mid_test extends gpio_base_test;
                 repeat (30) @(posedge vif.clk);
                 reset_uygula(6);
             end
-        join_any
-        disable fork;
+        join
 
-        // disable fork diziyi oldurur ama SURUCUDE ucusta kalmis bir islem
-        // reset'ten SONRA tamamlanabilir; o yazma DUT'u yeniden kirletir.
-        // Bu yuzden son kosullara bakmadan once hat bosalir ve TEMIZ bir
-        // reset daha uygulanir. Testin amaci (islem ortasinda reset ve
-        // kontrolcunun RST_01..05 kurallari) yukaridaki fork'ta zaten
-        // gerceklesmistir.
-        repeat (40) @(posedge vif.clk);
+        // Iki kol da tamamlansin; boylece surucude sahipsiz islem kalmadan
+        // son kosul temiz bir resetle denetlenir.
         reset_uygula(6);
 
         // Reset sonrasi ODR yeniden 0 olmali
@@ -260,28 +254,13 @@ endclass
 
 //---- 7) Stres: VALID'i el sikismadan sonra tutan trafik ---------------------
 //
-//  BEKLENEN BASARISIZ TEST.
-//  GPIO'nun kabul kosulu kendi awready/arready'siyle NITELENMEMISTIR:
-//      if (awvalid && wvalid)   // GPIO
-//      if (arvalid)             // GPIO
-//  digger alti cevre biriminde ise
-//      if (awvalid && wvalid && awready && wready)
-//      if (arvalid && arready)
-//  yazar. Bu yuzden master VALID'i el sikismadan sonra da yukarida tutarsa
-//  (AXI'de tamamen yasal -- yeni bir islem sunmak demektir) GPIO islemi her
-//  cevrim YENIDEN calistirir, bvalid/rvalid yukarida takilir ve serbest
-//  birakma daline (else if (bvalid && bready)) hic ulasamaz.
-//
-//  Testin AMACI bu kilitlenmeyi gostermektir; kilitlenme OLUSURSA test
-//  amacina ulasmistir.
+//  Bu test GPIO'da bulunan kabul-kosulu hatasinin regresyon korumasidir.
+//  Master ayni VALID yukselmesi uzerinde iki islem sunar. GPIO islemi yalniz
+//  kendi READY el sikismasinda kabul etmeli; dizi kilitlenmeden tamamlanmali
+//  ve protokol kontrolcusu ihlal gormemelidir.
 class gpio_stress_test extends gpio_base_test;
     `uvm_component_utils(gpio_stress_test)
     function new(string name, uvm_component parent); super.new(name, parent); endfunction
-
-    virtual function void yapilandir();
-        super.yapilandir();
-        beklenen_kilitlenme = 1'b1;
-    endfunction
 
     task run_phase(uvm_phase phase);
         axil_stress_seq s;

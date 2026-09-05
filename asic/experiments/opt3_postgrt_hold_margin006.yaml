@@ -1,0 +1,7 @@
+meta:
+  version: 2
+
+# 0.05 ns adayi alan kazandirdi fakat post-RCX hold'u kapatmadi. Baseline
+# onarim egrisindeki bir sonraki anlamli plato 0.060 ns'tir.
+GRT_RESIZER_SETUP_SLACK_MARGIN: 10.0
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.06

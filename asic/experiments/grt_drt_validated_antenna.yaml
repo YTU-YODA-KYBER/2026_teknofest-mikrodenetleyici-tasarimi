@@ -1,0 +1,44 @@
+meta:
+  version: 2
+
+# ===========================================================================
+#  IKINCI TANI DENEYI: DRT'den gecmis GRT ayarlari + ANTEN ZINCIRI ACIK
+#
+#  grt_drt_validated.yaml IKI degiskeni birden degistiriyordu (GRT ayarlari VE
+#  anten zinciri). Bu overlay ikincisini geri acar, boylece iki supheli ayrilir.
+#
+#  NEDEN ANTEN ZINCIRI SUPHELI?
+#    Nihai kosumda DRT'nin tukettigi yollama guide'lari adim 39'daki TEMIZ
+#    GRT'den GELMIYORDU. Zincir soyleydi:
+#        39-GlobalRouting            -> asim 39 (olculen, iyi)
+#        41-DiodesOnPorts            -> 36 diyot + ARTIMLI GRT
+#        42-RepairAntennas           -> 157 diyot + ARTIMLI GRT
+#        44-DetailedRouting          -> guide'lari 42'den aldi
+#    Yani DRT, diyot eklendikten sonra yeniden uretilen artimli guide'lari
+#    kullandi. O guide'larin kalitesi hic olculmemisti.
+#
+#  BEKLENEN OKUMA:
+#    - Bu deney de `a` gibi yakinsarsa  -> suclu GRT ayarlariydi; nihai
+#      yapilandirma = eski GRT ayarlari + anten ACIK (en iyi sonuc: hem temiz
+#      DRC hem onarilmis anten).
+#    - Bu deney kotuyse ama `a` iyiyse  -> suclu anten zincirinin artimli
+#      GRT'si; anten onarimi kapatilip ihlaller OLCULMUS ama ONARILMAMIS
+#      olarak belgelenir.
+#
+#  DRT_ANTENNA_REPAIR_ITERS bilerek 0'da tutulur: amac DRT'nin kendi anten
+#  dongusunu test etmek degil, GRT tarafindaki anten onariminin URETTIGI
+#  GUIDE'larin DRT'ye ne yaptigini olcmek. Ayrica tek DRT turu olcumu
+#  `a` ile birebir karsilastirilabilir kilar.
+# ===========================================================================
+
+GRT_ADJUSTMENT: 0.10
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0, 0, 0]
+GRT_OVERFLOW_ITERS: 20
+ROUTING_OBSTRUCTIONS: null
+
+# --- `a`dan TEK FARK: anten zinciri acik ---
+RUN_ANTENNA_REPAIR: true
+DIODE_ON_PORTS: "in"
+
+DRT_ANTENNA_REPAIR_ITERS: 0
+ERROR_ON_TR_DRC: false
