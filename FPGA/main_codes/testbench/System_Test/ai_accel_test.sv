@@ -38,10 +38,7 @@ module ai_accel_test;
     // =================================================================
     //  CLK_HALF=10 ns  ->  20 ns periyot  ->  50 MHz. Sistem saati budur
     //  (clk_wiz_0: 100 MHz x 10 / 20).
-    //  DUZELTME: burada eskiden "48e6 / 115200" yaziyordu ve asagidaki
-    //  performans matematigi de 48 MHz varsayiyordu -- eski bir tasarimdan
-    //  kalinti. Bolen dogruydu (50e6/434 = 115207 baud, %0.006 hata) ama
-    //  raporlanan us/cikarim-per-saniye degerleri %4 yanlisti.
+    //  UART bölücüsü ve performans hesabı aynı 50 MHz sistem saatini kullanır.
     localparam real CLK_HALF     = 10;
     localparam real CLK_FREQ_HZ  = 50.0e6;
     localparam int  CLKS_PER_BIT = 434;       // 50e6 / 115200 = 434.03

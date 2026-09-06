@@ -19,12 +19,12 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test i2c_read_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 72720000: uvm_test_top [RD] NBY=1: I2C_RDR=0x000000c4
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 165980000: uvm_test_top [RD] NBY=2: I2C_RDR=0x0000c9c8
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 281900000: uvm_test_top [RD] NBY=3: I2C_RDR=0x00cecdcc
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 418420000: uvm_test_top [RD] NBY=4: I2C_RDR=0xd3d2d1d0
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 418690000: uvm_test_top.env.sb [SB] I2C scoreboard: yazma=20 okuma=210 kontrol=0 uyusmazlik=0 kotu_cevap=0
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/i2c_slave_pkg.sv(277) @ 418690000: uvm_test_top.env.slave [I2C_SLV] I2C slave: 8 transfer, 10 bayt
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 74780000: uvm_test_top [RD] NBY=1: I2C_RDR=0x000000c4
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 172160000: uvm_test_top [RD] NBY=2: I2C_RDR=0x0000c9c8
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 292200000: uvm_test_top [RD] NBY=3: I2C_RDR=0x00cecdcc
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(407) @ 434900000: uvm_test_top [RD] NBY=4: I2C_RDR=0xd3d2d1d0
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 435170000: uvm_test_top.env.sb [SB] I2C scoreboard: yazma=20 okuma=218 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/i2c_slave_pkg.sv(277) @ 435170000: uvm_test_top.env.slave [I2C_SLV] I2C slave: 8 transfer, 10 bayt
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -41,11 +41,11 @@ UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/i
 ----------------------------------------------------------------------
   AXI protokol ihlali : 0
   UVM_ERROR + FATAL   : 0
-  Scoreboard          : yazma=20 okuma=210 kontrol=0 uyusmazlik=0
+  Scoreboard          : yazma=20 okuma=218 kontrol=0 uyusmazlik=0
   SONUC               : GECTI
 ======================================================================
 
-UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 418690000: reporter [UVM/REPORT/SERVER] 
+UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 435170000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -65,7 +65,7 @@ UVM_FATAL :    0
 [UVM/RELNOTES]     1
 
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
-[AXI-CHK] I2C            | AW=20 W=20 B=20 AR=210 R=210 | ihlal=0 uyari=0
+[AXI-CHK] I2C            | AW=20 W=20 B=20 AR=218 R=218 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 419us; walltime 0.852 s; speed 491.430 us/s
-- Verilator: cpu 0.740 s on 1 threads; allocated 64 MB
+- Verilator: $finish at 435us; walltime 0.612 s; speed 711.413 us/s
+- Verilator: cpu 0.608 s on 1 threads; allocated 64 MB

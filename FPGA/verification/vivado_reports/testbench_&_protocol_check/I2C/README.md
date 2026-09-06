@@ -10,7 +10,7 @@ köle (slave) de testbench tarafından modellenir; ACK/NACK'i o üretir.
 
 Testbench: [`I2C_tb.sv`](../../../../main_codes/testbench/Peripherals/I2C/I2C_tb.sv) ·
 Proje: `scripts/project_gen/Peripherals/create_I2C.tcl` ·
-Simülatör: **XSim 2025.2** · TB saati: 100 MHz · Simülasyon süresi: **1,080 ms**
+Simülatör: **XSim 2025.2** · TB saati: **50 MHz** · Simülasyon süresi: **1,067 ms**
 
 > **Ham çıktı: [`xsim_console.log`](xsim_console.log)** — `[BUS]` ile başlayan
 > satırlar veri yolu monitörünün çözdüğü gerçek I2C trafiğidir.
@@ -27,7 +27,8 @@ Simülatör: **XSim 2025.2** · TB saati: 100 MHz · Simülasyon süresi: **1,08
 | AXI protokol ihlali | **0** |
 | Uyarı (stall/watchdog) | 0 |
 | İzlenen AXI arayüzü | 1 (`I2C`) |
-| Gözlenen işlem | 54 yazma · 12.853 okuma |
+| SCL frekansı | **400,000 kHz** — 309/309 periyot ölçümü 2,500 µs |
+| Gözlenen işlem | 54 yazma · 13.223 okuma |
 
 ---
 
@@ -63,17 +64,17 @@ Simülatör: **XSim 2025.2** · TB saati: 100 MHz · Simülasyon süresi: **1,08
   SONUC                      : GECTI  (0 ihlal)
 ======================================================================
 
-[AXI-CHK]            I2C | AW=54 W=54 B=54 AR=12853 R=12853 | ihlal=0 uyari=0
+[AXI-CHK]            I2C | AW=54 W=54 B=54 AR=13223 R=13223 | ihlal=0 uyari=0
 ```
 
 ---
 
 ## Okurken dikkat edilecekler
 
-- **12.853 okuma işlemi bir hata değil, yoklamanın (polling) bedeli.** I2C
+- **13.223 okuma işlemi bir hata değil, yoklamanın (polling) bedeli.** I2C
   standart hızda çalışır; testbench transferin bitmesini `I2C_CFG`'yi AXI'den
   sürekli okuyarak bekler. Her yoklama bir AR/R çifti üretir. Protokol
-  kontrolcüsü bu 12.853 okumanın tamamını denetlemiştir.
+  kontrolcüsü bu 13.223 okumanın tamamını denetlemiştir.
 - **Test 5 ve 6'da "timeout" beklenen sonuçtur.** RTL'in NACK yanıtı
   DONE bayrağı set etmeden `S_ABORT`'a geçmektir; yazılım bunu bir
   **sessiz zaman aşımı** olarak görür. Testler bu davranışı hata değil,

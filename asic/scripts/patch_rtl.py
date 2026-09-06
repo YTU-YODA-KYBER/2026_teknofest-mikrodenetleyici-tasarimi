@@ -46,24 +46,14 @@ def i2c_clk_freq_hz():
     """config.yaml'daki CLOCK_PERIOD'dan I2C bolucusu icin dogru CLK_FREQ_HZ.
 
     NEDEN GEREKLI?
-      I2C_Master_AXI4_Lite.sv:7 `parameter CLK_FREQ_HZ = 48_000_000` ile gelir
-      ve HALF_PERIOD = CLK_FREQ_HZ/(2*400k) - 1 = 59 olarak turetilir. Ust
-      modul (Top_module.sv:874) bu parametreyi OVERRIDE ETMEZ, dolayisiyla
-      SCL = f_sys/120 olur:
-          FPGA'da 50 MHz  -> 416,7 kHz  (sartname 400 kHz istiyor, %+4)
-          ASIC'te 20 MHz   -> 166,7 kHz  (%-58 -- acik sartname ihlali)
-      Sartname Bolum 4.2: "SCL saat frekansi 400 kHz sabit olacaktir."
+      Ortak I2C RTL'i 50 MHz FPGA sistem saatini varsayar ve kesirli bolucuyle
+      ortalama tam 400 kHz SCL uretir. ASIC sistem saati config.yaml'da ayri
+      tanimlandigi icin Top_module_asic kopyasindaki I2C orneklemesine bu deger
+      acikca aktarilir. Boylece ayni ortak RTL, FPGA'da 50 MHz ve ASIC'te
+      beyan edilen saatle sartname Bolum 4.2'deki sabit 400 kHz hedefini korur.
 
-    ASIC kopyasi tam sayiya yuvarlanan eski HALF_PERIOD bolucusunu kesirli
-    bolucuye cevirir. `CLK_FREQ_HZ/(2*I2C_FREQ_HZ)` tam sayi degilse taban ve
-    taban+1 sistem cevrimli yari-periyotlar Bresenham tipi bir kalan sayaciyla
-    dagitilir. 25 MHz/800 kHz = 31,25 oldugu icin 31/32 cevrimler 3:1 oraninda
-    kullanilir; iki SCL periyodunun ortalamasi tam 400 kHz'dir. 20 MHz'te oran
-    zaten tam 25'tir ve jitter yoktur.
-
-    Kaynak RTL'deki sabit `freq_div_cnt == 7'd29` FSM esigi de secilen
-    yari-periyodun orta noktasina baglanir. 48 MHz varsayilaninda yari-periyot
-    60 cevrim ve esik yine 29'dur; davranis korunur.
+    Beyan edilen 28 MHz icin yari-periyot 35 sistem cevrimidir; bolme tam
+    sayidir ve kesirli dagitim/jitter olusmaz.
     """
     cfg = (ROOT / "asic/config.yaml").read_text()
     m = re.search(r"^CLOCK_PERIOD:\s*([\d.]+)\s*$", cfg, re.M)
@@ -158,95 +148,6 @@ _I2C_CLK_HZ, _I2C_F_HZ, _I2C_HALF = i2c_clk_freq_hz()
 _I2C_SCL_KHZ = 400.0
 
 PATCHES = [
-    # --- I2C: FSM zamanlamasini parametrik SCL bolucusuna bagla ----------
-    dict(
-        src="Peripherals/I2C/I2C_Master_AXI4_Lite.sv",
-        dst="I2C_Master_AXI4_Lite_asic.sv",
-        why=(
-            "I2C BOLUCU VE FSM ZAMANLAMASI PARAMETRIK HALE GETIRILDI.\n"
-            "//    Kaynakta SCL HALF_PERIOD'a gore bolunurken FSM yalniz sabit\n"
-            "//    `freq_div_cnt == 29` aninda ilerliyordu; 20 MHz'de sayac\n"
-            "//    24'te sifirlandigindan transfer duruyordu. Ayrica 25 MHz/800\n"
-            "//    kHz orani 31,25 oldugundan tek bir tam sayi bolucu 400 kHz'i\n"
-            "//    tam uretemez. ASIC kopyasi taban/taban+1 yari-periyotlarini\n"
-            "//    kalan akumulatoru ile dagitir (25 MHz'te 31/32, 3:1); ortalama\n"
-            "//    SCL tam 400 kHz olur. FSM her yari-periyodun ortasinda ilerler.\n"
-            "//    48 MHz varsayilaninda oran tam 60 ve FSM esigi yine 29'dur."
-        ),
-        subs=[
-            (
-                "    logic [ 6: 0] freq_div_cnt;\n"
-                "    logic         freq_div_en;",
-                "    logic [ 6: 0] freq_div_cnt;\n"
-                "    logic         freq_div_en;\n"
-                "    // ASIC yamasi: kesirli yari-periyot bolucusu. Sabit ifadeler\n"
-                "    // sentezde katlanir; kalan akumulatoru yalniz oran kesirliyse\n"
-                "    // taban ve taban+1 cevrimleri dogru oranda dagitir.\n"
-                "    localparam integer HALF_DEN  = 2 * I2C_FREQ_HZ;\n"
-                "    localparam integer HALF_BASE = CLK_FREQ_HZ / HALF_DEN;\n"
-                "    localparam integer HALF_REM  = CLK_FREQ_HZ % HALF_DEN;\n"
-                "    localparam integer HALF_FRAC_INIT =\n"
-                "        (HALF_REM == 0) ? 0 : (HALF_DEN - HALF_REM);\n"
-                "    logic [31:0] half_frac_acc;\n"
-                "    logic [ 6:0] half_cycles_q;",
-            ),
-            (
-                "    always @(posedge clk_i or negedge rst_n) begin\n"
-                "        if(!rst_n)begin\n"
-                "            I2C_SCL      <= 1;\n"
-                "            freq_div_cnt <= 0;\n"
-                "        end\n"
-                "        else begin\n"
-                "            if (freq_div_en) begin\n"
-                "                if(freq_div_cnt == HALF_PERIOD)begin\n"
-                "                    freq_div_cnt <= 0;\n"
-                "                    I2C_SCL      <= ~I2C_SCL;\n"
-                "                end\n"
-                "                else freq_div_cnt <= freq_div_cnt + 1;\n"
-                "            end\n"
-                "            else begin\n"
-                "                freq_div_cnt <= 0;\n"
-                "                I2C_SCL      <= 1;\n"
-                "            end\n"
-                "        end\n"
-                "    end",
-                "    always @(posedge clk_i or negedge rst_n) begin\n"
-                "        if(!rst_n)begin\n"
-                "            I2C_SCL      <= 1;\n"
-                "            freq_div_cnt <= 0;\n"
-                "            half_frac_acc <= HALF_FRAC_INIT;\n"
-                "            half_cycles_q <= HALF_BASE;\n"
-                "        end\n"
-                "        else begin\n"
-                "            if (freq_div_en) begin\n"
-                "                if (freq_div_cnt == (half_cycles_q - 1)) begin\n"
-                "                    freq_div_cnt <= 0;\n"
-                "                    I2C_SCL      <= ~I2C_SCL;\n"
-                "                    if ((half_frac_acc + HALF_REM) >= HALF_DEN) begin\n"
-                "                        half_frac_acc <= half_frac_acc + HALF_REM - HALF_DEN;\n"
-                "                        half_cycles_q <= HALF_BASE + 1;\n"
-                "                    end else begin\n"
-                "                        half_frac_acc <= half_frac_acc + HALF_REM;\n"
-                "                        half_cycles_q <= HALF_BASE;\n"
-                "                    end\n"
-                "                end\n"
-                "                else freq_div_cnt <= freq_div_cnt + 1;\n"
-                "            end\n"
-                "            else begin\n"
-                "                freq_div_cnt  <= 0;\n"
-                "                I2C_SCL       <= 1;\n"
-                "                half_frac_acc <= HALF_FRAC_INIT;\n"
-                "                half_cycles_q <= HALF_BASE;\n"
-                "            end\n"
-                "        end\n"
-                "    end",
-            ),
-            (
-                "                else if (freq_div_cnt == 7'd29) begin",
-                "                else if (freq_div_cnt == ((half_cycles_q - 1) / 2)) begin",
-            ),
-        ],
-    ),
     # --- (c) ucuncu taraf: obi_to_axi -----------------------------------
     dict(
         src="CPU/openhw_obi_to_axi/obi_to_axi.sv",
@@ -641,9 +542,8 @@ PATCHES = [
             ),
             (".rst_n(rst_ni)", ".rst_n(rst_sys_ni)", 12),
             (".rst_ni(rst_ni)", ".rst_ni(rst_sys_ni)", 2),
-            # --- I2C SCL bolucusu ASIC saatine gore duzeltildi ---
-            # Orijinal ust modul parametreyi override etmiyor, bu yuzden
-            # SCL = f_sys/120 oluyordu. Gerekce ve formul icin
+            # --- Ortak I2C RTL'ine ASIC sistem saati aktarilir ---
+            # Gerekce ve formul icin
             # i2c_clk_freq_hz() basligina bakin.
             (
                 "I2C_Master_AXI4_Lite i2c_master_inst(",

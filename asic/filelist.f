@@ -51,7 +51,6 @@
 ../asic_rtl/patched/GPIO_AXI4_Lite_asic.sv
 ../asic_rtl/patched/Timer_AXI4_Lite_asic.sv
 ../asic_rtl/patched/QSPI_Master_AXI4_Lite_asic.sv
-../asic_rtl/patched/I2C_Master_AXI4_Lite_asic.sv
 ../asic_rtl/patched/UART_GU_AXI4_Lite_asic.sv
 ../asic_rtl/patched/UART_YZ_AXI4_Lite_asic.sv
 ../asic_rtl/patched/conv_accelerator_asic.v
@@ -116,6 +115,9 @@
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv
+
+# --- Cevre birimleri ---
+../FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv
 
 # --- YZ hizlandirici ---
 ../FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv

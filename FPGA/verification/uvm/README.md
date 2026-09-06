@@ -6,7 +6,8 @@ kendisi burada değil, [`main_codes/testbench/uvm/`](../../main_codes/testbench/
 altındadır; bu klasör yalnızca kanıt tutar.
 
 Simülatör: **Verilator 5.050** · UVM: **2020.3.1 (no-DPI)** · Regresyon
-ölçümü: **2026-09-05** · Kapsam ölçümü: **2026-08-21**
+ölçümü: **2026-09-05** (I2C yenilemesi: **2026-09-06**) · Kapsam
+ölçümü: **2026-09-06**
 
 > **Başlangıç noktaları:** regresyon için [`regression_summary.md`](regression_summary.md),
 > kapsam için [`coverage/index.html`](coverage/index.html) ve
@@ -26,7 +27,7 @@ Simülatör: **Verilator 5.050** · UVM: **2020.3.1 (no-DPI)** · Regresyon
 | AXI protokol ihlali | **0** |
 | Uyarı (stall watchdog) | **0** |
 | Fonksiyonel kapsam | **35 / 35 ölçülebilir bin → %100** ¹ |
-| Satır kapsamı (tasarım) | **1292 / 1341 → %96,3** |
+| Satır kapsamı (tasarım) | **1298 / 1347 → %96,4** |
 | Toplam regresyon süresi | 0,5 dakika (8 paralel test; bloklar sıralı, derleme 4 iş) |
 
 ¹ İki bin (`slverr`, `decerr`) **erişilemez** olarak işaretlenmiştir ve paydadan
@@ -67,10 +68,10 @@ verification/uvm/
 | Timer | `0x4000_0000` | 9 | 27 | 27 | 0 | %97,1 |
 | UART_GU | `0x4004_0000` | 12 | 36 | 36 | 0 | %98,2 |
 | UART_YZ | `0x4005_0000` | 13 | 39 | 39 | 0 | %98,3 |
-| I2C Master | `0x4002_0000` | 12 | 36 | 36 | 0 | %97,5 |
+| I2C Master | `0x4002_0000` | 12 | 36 | 36 | 0 | %97,6 |
 | QSPI Master | `0x4003_0000` | 11 | 33 | 33 | 0 | %95,0 |
 | YZ CSR | `0x4006_0000` | 7 | 21 | 21 | 0 | %100,0 |
-| **Toplam** | — | **73** | **219** | **219** | **0** | **%96,3** |
+| **Toplam** | — | **73** | **219** | **219** | **0** | **%96,4** |
 
 Test listesi ve her testin ne kapsadığı [`test_plan.md`](test_plan.md)'dedir.
 

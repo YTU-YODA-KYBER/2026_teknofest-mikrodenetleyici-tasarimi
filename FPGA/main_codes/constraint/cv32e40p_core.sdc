@@ -1,8 +1,8 @@
 # =========================================================================
 # 1. TEMEL SAAT TANIMI
 # =========================================================================
-# 48 MHz için 20.833 ns periyot tanımlanır.
-create_clock -period 20.833 -name clk_i -waveform {0.000 10.416} [get_ports clk_i]
+# 50 MHz için 20.000 ns periyot tanımlanır.
+create_clock -period 20.000 -name clk_i -waveform {0.000 10.000} [get_ports clk_i]
 
 # =========================================================================
 # 2. CLOCK JITTER VE BELİRSİZLİK (0.5 ns)
@@ -36,4 +36,3 @@ set_output_delay -clock [get_clocks clk_i] 1.000 [get_ports -filter {DIRECTION =
 # =========================================================================
 # Reset sinyalinin zamanlaması analiz edilmesin.
 set_false_path -from [get_ports rst_ni]
-

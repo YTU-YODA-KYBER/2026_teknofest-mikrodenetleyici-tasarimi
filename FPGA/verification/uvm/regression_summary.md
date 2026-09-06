@@ -1,6 +1,8 @@
 # UVM Regresyon Sonuclari
 
 Kosum tarihi: **2026-09-05**  
+I2C yenileme kosumu: **2026-09-06** (12 test x 3 tohum, 36/36 gecti)
+
 Simulator: **Verilator 5.050**  |  UVM: **2020.3.1 (no-DPI)**  
 Blok basina tohum sayisi: **3**  |  Toplam sure: **0.5 dakika**
 
@@ -130,4 +132,3 @@ Blok basina tohum sayisi: **3**  |  Toplam sure: **0.5 dakika**
 | `yz_reset_mid_test` | GECTI | GECTI | GECTI | 0 | 1.3 |
 | `yz_csr_test` | GECTI | GECTI | GECTI | 0 | 0.8 |
 | `yz_stress_test` | GECTI | GECTI | GECTI | 0 | 0.7 |
-

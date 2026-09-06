@@ -67,6 +67,9 @@ module I2C_Master_testbench;
     int  toplam_basari    = 0;
     int  toplam_basarisiz = 0;
     int  test_num         = 0;
+    int  scl_period_checks = 0;
+    int  scl_period_errors = 0;
+    time last_scl_rise = 0;
     logic timed_out_flag = 1'b0;
 
     // Yazma testlerinde master'ın bus'a koyduğu baytları yakalamak için
@@ -77,7 +80,6 @@ module I2C_Master_testbench;
     wire I2C_SCL;
     assign I2C_SDA = sda ? 1'bz : 1'b0;   // open-drain emülasyonu
     pullup(I2C_SDA);
-    pullup(I2C_SCL);
 
     // -------------------------------------------------------------------------
     // DUT
@@ -99,11 +101,29 @@ module I2C_Master_testbench;
     i2c_bus_monitor #(.NAME("BUS")) mon (.scl(I2C_SCL), .sda(I2C_SDA), .rst_n(rst_n));
 
     // -------------------------------------------------------------------------
-    // Clock ~48 MHz
+    // Clock 50 MHz (FPGA sistem saati)
     // -------------------------------------------------------------------------
     initial begin
         clk_i = 0;
-        forever #10.4166 clk_i = ~clk_i;
+        forever #10 clk_i = ~clk_i;
+    end
+
+    // Ardışık SCL yükselen kenarları tam 2,5 us aralıklı olmalıdır (400 kHz).
+    // İlk kenar, START ile bölücünün devreye girişi olduğundan ölçüme alınmaz.
+    always @(posedge I2C_SCL) begin
+        if (rst_n && dut.freq_div_en) begin
+            if ((last_scl_rise != 0) && (($time - last_scl_rise) < 3000)) begin
+                scl_period_checks++;
+                if (($time - last_scl_rise) != 2500) begin
+                    scl_period_errors++;
+                    $error("I2C SCL periyodu %0t ns; 2500 ns bekleniyordu",
+                           $time - last_scl_rise);
+                end
+            end
+            last_scl_rise = $time;
+        end else begin
+            last_scl_rise = 0;
+        end
     end
 
     // =========================================================================
@@ -546,10 +566,13 @@ module I2C_Master_testbench;
 
         $display("Toplam basarili test sayisi: %d", toplam_basari);
         $display("Toplam basarisiz test sayisi:%d\n", toplam_basarisiz);
-        if(toplam_basari == 10)begin
+        $display("SCL 400 kHz periyot kontrolu: %0d olcum, %0d hata\n",
+                 scl_period_checks, scl_period_errors);
+        if ((toplam_basari == 10) && (scl_period_checks > 0) &&
+            (scl_period_errors == 0)) begin
             $display("TUM TESTLER BASARILI!\n");
         end else begin
-            $display("BAZI TESTLER BASARISIZ OLDU\n");
+            $fatal(1, "BAZI TESTLER BASARISIZ OLDU");
         end
         $display("----------------------------------------------------------------------");
         $display("----------------------------------------------------------------------");

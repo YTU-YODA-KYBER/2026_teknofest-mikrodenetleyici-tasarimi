@@ -19,10 +19,10 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test i2c_nack_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(450) @ 25420000: uvm_test_top [NACK] adreste NACK: transfer sessizce iptal edildi (DONE yok) -- belgelenen davranis
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(469) @ 73280000: uvm_test_top [NACK] veride NACK: transfer sessizce iptal edildi (DONE yok)
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 73470000: uvm_test_top.env.sb [SB] I2C scoreboard: yazma=9 okuma=39 kontrol=0 uyusmazlik=0 kotu_cevap=0
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/i2c_slave_pkg.sv(277) @ 73470000: uvm_test_top.env.slave [I2C_SLV] I2C slave: 2 transfer, 1 bayt
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(450) @ 27480000: uvm_test_top [NACK] adreste NACK: transfer sessizce iptal edildi (DONE yok) -- belgelenen davranis
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/i2c/i2c_test_lib.svh(469) @ 77400000: uvm_test_top [NACK] veride NACK: transfer sessizce iptal edildi (DONE yok)
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 77590000: uvm_test_top.env.sb [SB] I2C scoreboard: yazma=9 okuma=41 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/i2c_slave_pkg.sv(277) @ 77590000: uvm_test_top.env.slave [I2C_SLV] I2C slave: 2 transfer, 1 bayt
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -39,11 +39,11 @@ UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/i
 ----------------------------------------------------------------------
   AXI protokol ihlali : 0
   UVM_ERROR + FATAL   : 0
-  Scoreboard          : yazma=9 okuma=39 kontrol=0 uyusmazlik=0
+  Scoreboard          : yazma=9 okuma=41 kontrol=0 uyusmazlik=0
   SONUC               : GECTI
 ======================================================================
 
-UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 73470000: reporter [UVM/REPORT/SERVER] 
+UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 77590000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -63,7 +63,7 @@ UVM_FATAL :    0
 [UVM/RELNOTES]     1
 
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
-[AXI-CHK] I2C            | AW=9 W=9 B=9 AR=39 R=39 | ihlal=0 uyari=0
+[AXI-CHK] I2C            | AW=9 W=9 B=9 AR=41 R=41 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 73us; walltime 0.470 s; speed 156.457 us/s
-- Verilator: cpu 0.470 s on 1 threads; allocated 60 MB
+- Verilator: $finish at 78us; walltime 0.429 s; speed 180.700 us/s
+- Verilator: cpu 0.406 s on 1 threads; allocated 60 MB

@@ -62,5 +62,5 @@ UVM_FATAL :    0
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
 [AXI-CHK] I2C            | AW=68 W=68 B=68 AR=66 R=66 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 11us; walltime 0.462 s; speed 23.925 us/s
-- Verilator: cpu 0.462 s on 1 threads; allocated 63 MB
+- Verilator: $finish at 11us; walltime 0.354 s; speed 31.212 us/s
+- Verilator: cpu 0.352 s on 1 threads; allocated 63 MB

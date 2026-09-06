@@ -1820,27 +1820,24 @@ Frekans-bağımlılık yüzeyi baştan sona tarandı; sonuç:
 
 #### 21.1 I2C SCL bölücüsü — düzeltildi
 
-`I2C_Master_AXI4_Lite.sv:7` parametresi `CLK_FREQ_HZ = 48_000_000` ile gelir ve
-`HALF_PERIOD = CLK_FREQ_HZ/(2·400 kHz) − 1 = 59` türetilir. Ancak orijinal
-`Top_module.sv:874` bu parametreyi **override etmez**, yani SCL = f_sys/120:
-
-| | f_sys | SCL | Şartname §4.2 (400 kHz) |
-|---|---:|---:|---|
-| FPGA (mevcut hâl) | 50 MHz | 416,7 kHz | %+4 üzerinde |
-| ASIC, override **olmadan** | 28 MHz | **233,3 kHz** | %−42 — açık ihlal |
-| **ASIC, türetilmiş bölücü ile** | 28 MHz | **400,000 kHz (tam)** | ✔ sabit hedef |
-
-ASIC top yaması (`scripts/patch_rtl.py`) örneklemeyi
-`I2C_Master_AXI4_Lite #(.CLK_FREQ_HZ(28_000_000))` yapar. Değer **elle
-yazılmaz**, `i2c_clk_freq_hz()` tarafından `config.yaml`'daki `CLOCK_PERIOD`'dan
-türetilir. ASIC I2C kopyası genel durumda taban ve taban+1 sistem çevrimli
-yarı-periyotları bir kalan akümülatörüyle (Bresenham) dağıtır:
+Ortak `I2C_Master_AXI4_Lite.sv` varsayılan olarak FPGA'nın **50 MHz** sistem
+saatini kullanır. Tam sayı bölücüyle 400 kHz üretmek için gereken yarı-periyot
+62,5 çevrim olduğundan, blok taban ve taban+1 sistem çevrimli yarı-periyotları
+bir kalan akümülatörüyle dağıtır:
 
 ```
 HALF_BASE = floor(f / 800000)       HALF_REM = f mod 800000
 ```
 
-**28 MHz bu bölmeyi TAM SAYI yapar** ve seçilme gerekçelerinden biri budur:
+FPGA'da yarı-periyotlar sırayla 62 ve 63 çevrimdir; iki yarı-periyodun toplamı
+125 çevrim, yani **2,500 µs** olur ve SCL **tam 400,000 kHz** üretilir. Protokol
+FSM'inin ilerleme eşiği de sabit bir sayaç değerine değil, o anda etkin olan
+yarı-periyodun orta noktasına bağlıdır.
+
+ASIC top yaması (`scripts/patch_rtl.py`) örneklemeyi
+`I2C_Master_AXI4_Lite #(.CLK_FREQ_HZ(28_000_000))` yapar. Değer **elle
+yazılmaz**, `i2c_clk_freq_hz()` tarafından `config.yaml`'daki `CLOCK_PERIOD`'dan
+türetilir. **28 MHz bu bölmeyi tam sayı yapar**:
 
 ```
 28.000.000 / (2 × 400.000) = 35        HALF_BASE = 35,  HALF_REM = 0
@@ -1848,17 +1845,12 @@ HALF_BASE = floor(f / 800000)       HALF_REM = f mod 800000
 
 `HALF_REM == 0` olduğu için kesirli dağıtım dalı hiç tetiklenmez; her
 yarı-periyot tam 35 çevrimdir ve SCL **jitter'sız tam 400,000 kHz**'dir.
-Karşılaştırma: 25 MHz'de oran 31,25 (kesirli, 31/32 çevrimler 3:1 dağıtılır),
-30 MHz'de 37,5 (kesirli). Akümülatör mantığı RTL'de yine sentezlenir —
-netlist denetimiyle doğrulandı, sabit-katlanarak tamamen yok olmaz — ama
-davranışsal olarak atıldır. Kaynak RTL'de SCL
-sayacı `HALF_PERIOD` kullanırken protokol FSM'i sabit `freq_div_cnt == 29` ile
-ilerliyordu. 20 MHz'de sayaç 24'te sıfırlandığından FSM hiç ilerlemiyordu.
-ASIC kopyasında FSM eşiği her yarı-periyodun orta noktasına bağlandı; özgün
-48 MHz varsayılanında değer yine 29'dur ve FPGA RTL'si değişmez.
-Yönlendirilmiş yazma/okuma/NACK/bayrak testleri 20 MHz ve 25 MHz için
-10/10 geçmiştir. Beyan edilen 28 MHz'de bölme tam 35 çevrimdir, yani
-kesirli dağıtım devrede değildir ve jitter yoktur.
+I2C bölücü düzeltmesi artık ASIC'e özgü yamalı bir kopyada değil, FPGA ve
+ASIC'in kullandığı **ortak RTL'dedir**. Bu nedenle gereksiz
+`I2C_Master_AXI4_Lite_asic.sv` kopyası kaynak listesinden çıkarılmıştır; ASIC'e
+özgü tek fark, sistem saatinin üst modülde açıkça aktarılmasıdır. FPGA
+yönlendirilmiş testinde yazma/okuma/NACK/bayrak senaryoları 10/10 ve 309 SCL
+periyot ölçümü 309/309 geçmiştir; AXI4-Lite protokol ihlali yoktur.
 
 #### 21.2 Boot ROM'daki UART bölücüsü — ÇÖZÜLDÜ
 

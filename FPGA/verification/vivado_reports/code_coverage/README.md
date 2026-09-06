@@ -46,7 +46,8 @@ hepsi tek bir rapordur, klasör bölünmemelidir.
 ## Çevre birimleri
 
 Kaynak: `main_codes/testbench/Peripherals/` altındaki blok testbench'leri.
-Ölçüm tarihi: 2026-08-07.
+Ölçüm tarihi: 2026-08-07; I2C, saat bölücüsü düzeltmesinden sonra
+2026-09-06'da yeniden ölçüldü.
 
 Yüzdeler **yalnızca tasarım modülüne** aittir — testbench, AXI protokol
 kontrolcüsü ve `glbl` dahil değildir.
@@ -57,7 +58,7 @@ kontrolcüsü ve `glbl` dahil değildir.
 | Timer | `Timer_AXI4_Lite` | 91.30 | 78.12 | 87.50 | 11.11 | Geçti | 0 ihlal |
 | UART_GU | `UART_GU_AXI4_Lite` | 96.52 | 83.64 | 100.00 | 10.63 | Geçti | 0 ihlal |
 | UART_YZ | `UART_YZ_AXI4_Lite` | 95.04 | 82.14 | 100.00 | 10.63 | Geçti | 0 ihlal |
-| I2C | `I2C_Master_AXI4_Lite` | 96.02 | 77.78 | 92.50 | 8.37 | Geçti | 0 ihlal |
+| I2C | `I2C_Master_AXI4_Lite` | 96.22 | 78.08 | 92.86 | 6.99 | Geçti | 0 ihlal |
 | QSPI | `QSPI_Master_AXI4_Lite` | 92.86 | 80.42 | 91.67 | 27.57 | Geçti | 0 ihlal |
 
 ---

@@ -4,9 +4,8 @@
 
 module I2C_Master_AXI4_Lite#(
 
-parameter CLK_FREQ_HZ  = 48_000_000,
-parameter I2C_FREQ_HZ  = 400_000,
-parameter HALF_PERIOD  = (CLK_FREQ_HZ / (2 * I2C_FREQ_HZ)) - 1
+parameter CLK_FREQ_HZ  = 50_000_000,
+parameter I2C_FREQ_HZ  = 400_000
 )
 (
     // clock ve reset sinyalleri
@@ -65,6 +64,16 @@ parameter HALF_PERIOD  = (CLK_FREQ_HZ / (2 * I2C_FREQ_HZ)) - 1
 
     logic [ 6: 0] freq_div_cnt;
     logic         freq_div_en;
+    // CLK_FREQ_HZ / (2*I2C_FREQ_HZ) tam sayi degilse taban ve taban+1
+    // sistem-cevrimli yari-periyotlari kalan akumulatoru ile dagitilir.
+    // Boylece uzun donem SCL ortalamasi parametrede istenen frekansta kalir.
+    localparam integer HALF_DEN  = 2 * I2C_FREQ_HZ;
+    localparam integer HALF_BASE = CLK_FREQ_HZ / HALF_DEN;
+    localparam integer HALF_REM  = CLK_FREQ_HZ % HALF_DEN;
+    localparam integer HALF_FRAC_INIT =
+        (HALF_REM == 0) ? 0 : (HALF_DEN - HALF_REM);
+    logic [31:0] half_frac_acc;
+    logic [ 6:0] half_cycles_q;
     logic [ 3: 0] current_state;
     logic [ 7: 0] shift_byte;     // gönderilen/alınan bayt
     logic [ 2: 0] shift_cnt;      // 8 bit sayacı
@@ -105,18 +114,29 @@ parameter HALF_PERIOD  = (CLK_FREQ_HZ / (2 * I2C_FREQ_HZ)) - 1
         if(!rst_n)begin
             I2C_SCL      <= 1;
             freq_div_cnt <= 0;
+            half_frac_acc <= HALF_FRAC_INIT;
+            half_cycles_q <= HALF_BASE;
         end
         else begin
             if (freq_div_en) begin
-                if(freq_div_cnt == HALF_PERIOD)begin
+                if (freq_div_cnt == (half_cycles_q - 1)) begin
                     freq_div_cnt <= 0;
                     I2C_SCL      <= ~I2C_SCL;
+                    if ((half_frac_acc + HALF_REM) >= HALF_DEN) begin
+                        half_frac_acc <= half_frac_acc + HALF_REM - HALF_DEN;
+                        half_cycles_q <= HALF_BASE + 1;
+                    end else begin
+                        half_frac_acc <= half_frac_acc + HALF_REM;
+                        half_cycles_q <= HALF_BASE;
+                    end
                 end
                 else freq_div_cnt <= freq_div_cnt + 1;
             end
             else begin
-                freq_div_cnt <= 0;
-                I2C_SCL      <= 1;
+                freq_div_cnt  <= 0;
+                I2C_SCL       <= 1;
+                half_frac_acc <= HALF_FRAC_INIT;
+                half_cycles_q <= HALF_BASE;
             end
         end
     end
@@ -225,7 +245,7 @@ parameter HALF_PERIOD  = (CLK_FREQ_HZ / (2 * I2C_FREQ_HZ)) - 1
                     current_state <= S_TXBYTE;
                 end
 
-                else if (freq_div_cnt == 7'd29) begin
+                else if (freq_div_cnt == ((half_cycles_q - 1) / 2)) begin
                     case (current_state)
 
                         // ---------- BAYT GÖNDER (adres ya da yazma verisi) ----------
