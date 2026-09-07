@@ -1,20 +1,20 @@
 {
     "time": {
-        "cpu_time_user": "00:00:04.690",
-        "cpu_time_system": "00:00:00.550",
-        "runtime": "00:00:05.319",
+        "cpu_time_user": "00:00:04.950",
+        "cpu_time_system": "00:00:00.530",
+        "runtime": "00:00:05.522",
         "cpu_time_iowait": "00:00:00.000"
     },
     "peak_resources": {
-        "cpu_percent": 109.8,
+        "cpu_percent": 109.7,
         "memory_rss": "1GiB",
         "memory_vms": "1GiB",
         "threads": 1
     },
     "avg_resources": {
-        "cpu_percent": 94.93272727272725,
-        "memory_rss": "791MiB",
-        "memory_vms": "954MiB",
-        "threads": 0.9818181818181818
+        "cpu_percent": 95.75964912280698,
+        "memory_rss": "827MiB",
+        "memory_vms": "993MiB",
+        "threads": 0.9824561403508771
     }
 }

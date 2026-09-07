@@ -396,25 +396,6 @@
   {
    "pins": [
       [
-        "A",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ], [
-        "A",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ]
-   ]
-  },
-  {
-   "pins": [
-      [
         "A1",
         "A2",
         "B1",
@@ -589,44 +570,6 @@
   {
    "pins": [
       [
-        "A",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ], [
-        "A",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ]
-   ]
-  },
-  {
-   "pins": [
-      [
-        "A",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ], [
-        "A",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ]
-   ]
-  },
-  {
-   "pins": [
-      [
         "A1",
         "A2",
         "A3",
@@ -717,6 +660,25 @@
         "VPB",
         "VPWR",
         "Y"
+      ]
+   ]
+  },
+  {
+   "pins": [
+      [
+        "A",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ], [
+        "A",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
       ]
    ]
   },
@@ -1145,6 +1107,25 @@
   {
    "pins": [
       [
+        "A",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ], [
+        "A",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ]
+   ]
+  },
+  {
+   "pins": [
+      [
         "A1_N",
         "A2_N",
         "B1",
@@ -1370,6 +1351,25 @@
         "A3",
         "B1",
         "B2",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ]
+   ]
+  },
+  {
+   "pins": [
+      [
+        "A",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ], [
+        "A",
         "VGND",
         "VNB",
         "VPB",
@@ -2164,29 +2164,6 @@
   {
    "pins": [
       [
-        "A0",
-        "A1",
-        "S",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ], [
-        "A0",
-        "A1",
-        "S",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ]
-   ]
-  },
-  {
-   "pins": [
-      [
         "A",
         "B",
         "C",
@@ -2283,6 +2260,29 @@
         "VPB",
         "VPWR",
         "Y"
+      ]
+   ]
+  },
+  {
+   "pins": [
+      [
+        "A0",
+        "A1",
+        "S",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ], [
+        "A0",
+        "A1",
+        "S",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
       ]
    ]
   },
@@ -3519,31 +3519,6 @@
   {
    "pins": [
       [
-        "A1",
-        "A2",
-        "B1",
-        "C1",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ], [
-        "A1",
-        "A2",
-        "B1",
-        "C1",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ]
-   ]
-  },
-  {
-   "pins": [
-      [
         "A",
         "VGND",
         "VNB",
@@ -3676,6 +3651,31 @@
         "VPB",
         "VPWR",
         "Y"
+      ]
+   ]
+  },
+  {
+   "pins": [
+      [
+        "A1",
+        "A2",
+        "B1",
+        "C1",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ], [
+        "A1",
+        "A2",
+        "B1",
+        "C1",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
       ]
    ]
   },
@@ -4001,6 +4001,33 @@
       [
         "A1",
         "A2",
+        "A3",
+        "B1",
+        "B2",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ], [
+        "A1",
+        "A2",
+        "A3",
+        "B1",
+        "B2",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ]
+   ]
+  },
+  {
+   "pins": [
+      [
+        "A1",
+        "A2",
         "B1",
         "B2",
         "C1",
@@ -4015,6 +4042,31 @@
         "B1",
         "B2",
         "C1",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ]
+   ]
+  },
+  {
+   "pins": [
+      [
+        "A",
+        "B",
+        "C_N",
+        "D_N",
+        "VGND",
+        "VNB",
+        "VPB",
+        "VPWR",
+        "X"
+      ], [
+        "A",
+        "B",
+        "C_N",
+        "D_N",
         "VGND",
         "VNB",
         "VPB",
@@ -4124,31 +4176,6 @@
         "VPB",
         "VPWR",
         "Y"
-      ]
-   ]
-  },
-  {
-   "pins": [
-      [
-        "A",
-        "B",
-        "C_N",
-        "D_N",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ], [
-        "A",
-        "B",
-        "C_N",
-        "D_N",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
       ]
    ]
   },
@@ -4573,33 +4600,6 @@
         "VPB",
         "VPWR",
         "Y"
-      ]
-   ]
-  },
-  {
-   "pins": [
-      [
-        "A1",
-        "A2",
-        "A3",
-        "B1",
-        "B2",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
-      ], [
-        "A1",
-        "A2",
-        "A3",
-        "B1",
-        "B2",
-        "VGND",
-        "VNB",
-        "VPB",
-        "VPWR",
-        "X"
       ]
    ]
   },
@@ -4667,45 +4667,43 @@
          ["sky130_fd_sc_hd__tapvpwrvgnd_1", 1],
          ["sky130_fd_sc_hd__decap_3", 1],
          ["sky130_fd_sc_hd__fill_2", 1],
-         ["sky130_fd_sc_hd__or4_2", 510],
-         ["sky130_fd_sc_hd__buf_6", 9888],
-         ["sky130_fd_sc_hd__nor2_2", 4500],
-         ["sky130_fd_sc_hd__a31o_2", 1440],
-         ["sky130_fd_sc_hd__o21a_2", 1519],
+         ["sky130_fd_sc_hd__or4_2", 511],
+         ["sky130_fd_sc_hd__buf_6", 9817],
+         ["sky130_fd_sc_hd__nor2_2", 4497],
+         ["sky130_fd_sc_hd__a31o_2", 1442],
+         ["sky130_fd_sc_hd__o21a_2", 1517],
          ["sky130_fd_sc_hd__o21ai_2", 1431],
-         ["sky130_fd_sc_hd__buf_4", 15432],
-         ["sky130_fd_sc_hd__or2_2", 3287],
-         ["sky130_fd_sc_hd__nand2_2", 4315],
+         ["sky130_fd_sc_hd__buf_8", 6630],
+         ["sky130_fd_sc_hd__or2_2", 3289],
+         ["sky130_fd_sc_hd__nand2_2", 4314],
          ["sky130_fd_sc_hd__dfrtp_2", 4564],
-         ["sky130_fd_sc_hd__a21oi_2", 2167],
+         ["sky130_fd_sc_hd__a21oi_2", 2168],
          ["sky130_fd_sc_hd__dfxtp_2", 4491],
-         ["sky130_fd_sc_hd__buf_8", 6578],
-         ["sky130_fd_sc_hd__dlygate4sd3_1", 16374],
+         ["sky130_fd_sc_hd__dlygate4sd3_1", 16369],
          ["sky130_fd_sc_hd__o221a_2", 2121],
-         ["sky130_fd_sc_hd__buf_1", 2303],
+         ["sky130_fd_sc_hd__buf_1", 2293],
          ["sky130_fd_sc_hd__o31a_2", 486],
          ["sky130_fd_sc_hd__and2b_2", 736],
-         ["sky130_fd_sc_hd__nand2_8", 707],
-         ["sky130_fd_sc_hd__clkbuf_16", 422],
+         ["sky130_fd_sc_hd__nand2_8", 706],
+         ["sky130_fd_sc_hd__buf_12", 4155],
          ["sky130_fd_sc_hd__and3b_2", 182],
-         ["sky130_fd_sc_hd__clkbuf_8", 1605],
-         ["sky130_fd_sc_hd__buf_12", 4168],
-         ["sky130_fd_sc_hd__clkbuf_4", 4670],
+         ["sky130_fd_sc_hd__buf_4", 15412],
          ["sky130_fd_sc_hd__o32a_2", 489],
          ["sky130_fd_sc_hd__a21o_2", 2880],
          ["sky130_fd_sc_hd__a211o_2", 875],
          ["sky130_fd_sc_hd__xnor2_2", 2294],
-         ["sky130_fd_sc_hd__mux2_1", 7561],
+         ["sky130_fd_sc_hd__clkbuf_4", 4730],
+         ["sky130_fd_sc_hd__mux2_1", 7559],
          ["sky130_fd_sc_hd__a311o_2", 213],
-         ["sky130_fd_sc_hd__a22o_2", 2699],
-         ["sky130_fd_sc_hd__or3_2", 1196],
+         ["sky130_fd_sc_hd__a22o_2", 2698],
+         ["sky130_fd_sc_hd__or3_2", 1197],
          ["sky130_fd_sc_hd__inv_2", 1075],
          ["sky130_fd_sc_hd__a211oi_2", 156],
-         ["sky130_fd_sc_hd__a41o_2", 82],
+         ["sky130_fd_sc_hd__a41o_2", 83],
          ["sky130_fd_sc_hd__a2111o_2", 90],
-         ["sky130_fd_sc_hd__nor2_4", 904],
-         ["sky130_fd_sc_hd__and2_2", 2265],
-         ["sky130_fd_sc_hd__clkbuf_1", 604],
+         ["sky130_fd_sc_hd__nor2_4", 906],
+         ["sky130_fd_sc_hd__and2_2", 2266],
+         ["sky130_fd_sc_hd__clkbuf_1", 608],
          ["sky130_fd_sc_hd__nand2b_2", 461],
          ["sky130_fd_sc_hd__o31a_4", 28],
          ["sky130_fd_sc_hd__o211a_2", 1100],
@@ -4713,38 +4711,40 @@
          ["sky130_fd_sc_hd__xor2_2", 721],
          ["sky130_fd_sc_hd__nand3_2", 327],
          ["sky130_fd_sc_hd__o21bai_2", 133],
-         ["sky130_fd_sc_hd__o2bb2a_2", 341],
+         ["sky130_fd_sc_hd__clkbuf_8", 1592],
+         ["sky130_fd_sc_hd__o2bb2a_2", 342],
          ["sky130_fd_sc_hd__mux4_2", 525],
          ["sky130_fd_sc_hd__conb_1", 34],
          ["sky130_fd_sc_hd__o211ai_2", 107],
          ["sky130_fd_sc_hd__dfrtp_4", 176],
-         ["sky130_fd_sc_hd__and3_2", 1698],
+         ["sky130_fd_sc_hd__and3_2", 1699],
          ["sky130_fd_sc_hd__o21ba_2", 511],
-         ["sky130_fd_sc_hd__buf_2", 4963],
+         ["sky130_fd_sc_hd__buf_2", 4961],
          ["sky130_fd_sc_hd__nor3_2", 407],
-         ["sky130_fd_sc_hd__a32o_2", 249],
+         ["sky130_fd_sc_hd__a32o_2", 247],
+         ["sky130_fd_sc_hd__clkbuf_16", 422],
          ["sky130_fd_sc_hd__a221o_2", 1124],
-         ["sky130_fd_sc_hd__or2_4", 251],
+         ["sky130_fd_sc_hd__or2_4", 249],
          ["sky130_fd_sc_hd__xnor2_4", 11],
-         ["sky130_fd_sc_hd__clkbuf_2", 181],
+         ["sky130_fd_sc_hd__clkbuf_2", 186],
          ["sky130_fd_sc_hd__o41a_2", 57],
-         ["sky130_fd_sc_hd__mux2_2", 76],
+         ["sky130_fd_sc_hd__mux2_2", 80],
          ["sky130_fd_sc_hd__a21boi_2", 95],
          ["sky130_fd_sc_hd__or3b_2", 384],
          ["sky130_fd_sc_hd__a22oi_2", 294],
-         ["sky130_fd_sc_hd__nand2_4", 169],
+         ["sky130_fd_sc_hd__nand2_4", 171],
          ["sky130_fd_sc_hd__and4_2", 497],
          ["sky130_fd_sc_hd__a2bb2o_2", 313],
          ["sky130_fd_sc_hd__or4b_2", 105],
          ["sky130_fd_sc_hd__o2111a_2", 83],
          ["sky130_fd_sc_hd__mux2_8", 57],
-         ["sky130_fd_sc_hd__a21oi_4", 127],
+         ["sky130_fd_sc_hd__a21oi_4", 126],
          ["sky130_fd_sc_hd__a21bo_2", 274],
          ["sky130_fd_sc_hd__nand4_2", 44],
          ["sky130_fd_sc_hd__o221ai_2", 33],
          ["sky130_fd_sc_hd__a31oi_2", 63],
          ["sky130_fd_sc_hd__o21ai_4", 46],
-         ["sky130_fd_sc_hd__and3_4", 30],
+         ["sky130_fd_sc_hd__and3_4", 29],
          ["sky130_fd_sc_hd__o221ai_4", 6],
          ["sky130_fd_sc_hd__a21o_4", 18],
          ["sky130_fd_sc_hd__and4b_2", 75],
@@ -4755,29 +4755,29 @@
          ["sky130_fd_sc_hd__o2111ai_4", 2],
          ["sky130_fd_sc_hd__o31ai_4", 15],
          ["sky130_fd_sc_hd__dfstp_2", 54],
-         ["sky130_fd_sc_hd__o21a_4", 28],
-         ["sky130_fd_sc_hd__mux2_4", 54],
+         ["sky130_fd_sc_hd__o21a_4", 30],
          ["sky130_fd_sc_hd__nor4_2", 14],
          ["sky130_fd_sc_hd__a221oi_4", 20],
          ["sky130_fd_sc_hd__o22a_4", 19],
          ["sky130_fd_sc_hd__a211oi_4", 13],
+         ["sky130_fd_sc_hd__mux2_4", 52],
          ["sky130_fd_sc_hd__inv_8", 51],
-         ["sky130_fd_sc_hd__o211a_4", 31],
+         ["sky130_fd_sc_hd__o211a_4", 30],
          ["sky130_fd_sc_hd__o31ai_2", 81],
          ["sky130_fd_sc_hd__and4bb_2", 68],
-         ["sky130_fd_sc_hd__or3_4", 20],
+         ["sky130_fd_sc_hd__or3_4", 19],
          ["sky130_fd_sc_hd__o2bb2ai_2", 1],
          ["sky130_fd_sc_hd__nand3b_2", 24],
-         ["sky130_fd_sc_hd__nor2_1", 6],
+         ["sky130_fd_sc_hd__nor2_1", 7],
          ["sky130_fd_sc_hd__o22ai_4", 6],
-         ["sky130_fd_sc_hd__a31o_4", 38],
-         ["sky130_fd_sc_hd__or4bb_2", 17],
+         ["sky130_fd_sc_hd__a31o_4", 36],
+         ["sky130_fd_sc_hd__or4bb_2", 16],
          ["sky130_fd_sc_hd__clkinv_8", 33],
          ["sky130_fd_sc_hd__a2bb2oi_2", 1],
          ["sky130_fd_sc_hd__a32oi_2", 5],
          ["sky130_fd_sc_hd__a21boi_4", 5],
          ["sky130_fd_sc_hd__o22ai_2", 46],
-         ["sky130_fd_sc_hd__and2_4", 43],
+         ["sky130_fd_sc_hd__and2_4", 42],
          ["sky130_fd_sc_hd__clkinv_4", 22],
          ["sky130_fd_sc_hd__a2111oi_2", 10],
          ["sky130_fd_sc_hd__a221oi_2", 22],
@@ -4788,22 +4788,21 @@
          ["sky130_fd_sc_hd__and4b_4", 5],
          ["sky130_fd_sc_hd__a2111oi_4", 2],
          ["sky130_fd_sc_hd__and4_4", 8],
-         ["sky130_fd_sc_hd__or4_4", 25],
+         ["sky130_fd_sc_hd__or4_4", 24],
          ["sky130_fd_sc_hd__o2111ai_2", 23],
          ["sky130_fd_sc_hd__inv_12", 29],
          ["sky130_fd_sc_hd__clkinv_2", 35],
          ["sky130_fd_sc_hd__and2b_4", 10],
          ["sky130_fd_sc_hd__dfxtp_4", 4],
-         ["sky130_fd_sc_hd__o2bb2a_4", 13],
+         ["sky130_fd_sc_hd__o2bb2a_4", 12],
          ["sky130_fd_sc_hd__nand3_4", 3],
          ["sky130_fd_sc_hd__o32ai_2", 3],
-         ["sky130_fd_sc_hd__a22o_4", 14],
+         ["sky130_fd_sc_hd__a22o_4", 15],
          ["sky130_fd_sc_hd__o21ba_4", 5],
          ["sky130_sram_2kbyte_1rw1r_32x512_8", 14],
          ["sky130_fd_sc_hd__nand2b_4", 8],
          ["sky130_fd_sc_hd__o311a_4", 11],
          ["sky130_fd_sc_hd__a311oi_2", 11],
-         ["sky130_fd_sc_hd__o211a_1", 5],
          ["sky130_fd_sc_hd__bufinv_16", 23],
          ["sky130_fd_sc_hd__o32a_4", 10],
          ["sky130_fd_sc_hd__or4b_4", 11],
@@ -4811,6 +4810,7 @@
          ["sky130_fd_sc_hd__o211ai_4", 8],
          ["sky130_fd_sc_hd__nor3b_4", 2],
          ["sky130_fd_sc_hd__a211o_4", 11],
+         ["sky130_fd_sc_hd__o211a_1", 6],
          ["sky130_fd_sc_hd__and3b_4", 3],
          ["sky130_fd_sc_hd__a41oi_2", 2],
          ["sky130_fd_sc_hd__ebufn_8", 5],
@@ -4818,17 +4818,18 @@
          ["sky130_fd_sc_hd__nor4_4", 7],
          ["sky130_fd_sc_hd__clkinvlp_4", 12],
          ["sky130_fd_sc_hd__a311oi_4", 3],
-         ["sky130_fd_sc_hd__a41o_4", 2],
+         ["sky130_fd_sc_hd__a41o_4", 1],
          ["sky130_fd_sc_hd__nor4b_4", 2],
          ["sky130_fd_sc_hd__nor4b_2", 2],
          ["sky130_fd_sc_hd__a31oi_4", 8],
          ["sky130_fd_sc_hd__a2bb2o_4", 5],
+         ["sky130_fd_sc_hd__a32o_4", 4],
          ["sky130_fd_sc_hd__a221o_4", 14],
+         ["sky130_fd_sc_hd__or4bb_4", 6],
          ["sky130_fd_sc_hd__nand4_4", 3],
          ["sky130_fd_sc_hd__and4bb_4", 3],
          ["sky130_fd_sc_hd__o41a_4", 3],
          ["sky130_fd_sc_hd__o311ai_2", 2],
-         ["sky130_fd_sc_hd__or4bb_4", 5],
          ["sky130_fd_sc_hd__nand4b_4", 1],
          ["sky130_fd_sc_hd__a21bo_4", 5],
          ["sky130_fd_sc_hd__o311ai_4", 1],
@@ -4837,7 +4838,6 @@
          ["sky130_fd_sc_hd__o21bai_4", 1],
          ["sky130_fd_sc_hd__nor4_1", 1],
          ["sky130_fd_sc_hd__nand3b_4", 2],
-         ["sky130_fd_sc_hd__a32o_4", 2],
          ["sky130_fd_sc_hd__nand4_1", 1],
          ["sky130_fd_sc_hd__o31ai_1", 1 ]
        ], [
@@ -4848,45 +4848,43 @@
          ["sky130_fd_sc_hd__tapvpwrvgnd_1", 1 ],
          ["sky130_fd_sc_hd__decap_3", 1 ],
          ["sky130_fd_sc_hd__fill_2", 1 ],
-         ["sky130_fd_sc_hd__or4_2", 510 ],
-         ["sky130_fd_sc_hd__buf_6", 9888 ],
-         ["sky130_fd_sc_hd__nor2_2", 4500 ],
-         ["sky130_fd_sc_hd__a31o_2", 1440 ],
-         ["sky130_fd_sc_hd__o21a_2", 1519 ],
+         ["sky130_fd_sc_hd__or4_2", 511 ],
+         ["sky130_fd_sc_hd__buf_6", 9817 ],
+         ["sky130_fd_sc_hd__nor2_2", 4497 ],
+         ["sky130_fd_sc_hd__a31o_2", 1442 ],
+         ["sky130_fd_sc_hd__o21a_2", 1517 ],
          ["sky130_fd_sc_hd__o21ai_2", 1431 ],
-         ["sky130_fd_sc_hd__buf_4", 15432 ],
-         ["sky130_fd_sc_hd__or2_2", 3287 ],
-         ["sky130_fd_sc_hd__nand2_2", 4315 ],
+         ["sky130_fd_sc_hd__buf_8", 6630 ],
+         ["sky130_fd_sc_hd__or2_2", 3289 ],
+         ["sky130_fd_sc_hd__nand2_2", 4314 ],
          ["sky130_fd_sc_hd__dfrtp_2", 4564 ],
-         ["sky130_fd_sc_hd__a21oi_2", 2167 ],
+         ["sky130_fd_sc_hd__a21oi_2", 2168 ],
          ["sky130_fd_sc_hd__dfxtp_2", 4491 ],
-         ["sky130_fd_sc_hd__buf_8", 6578 ],
-         ["sky130_fd_sc_hd__dlygate4sd3_1", 16374 ],
+         ["sky130_fd_sc_hd__dlygate4sd3_1", 16369 ],
          ["sky130_fd_sc_hd__o221a_2", 2121 ],
-         ["sky130_fd_sc_hd__buf_1", 2303 ],
+         ["sky130_fd_sc_hd__buf_1", 2293 ],
          ["sky130_fd_sc_hd__o31a_2", 486 ],
          ["sky130_fd_sc_hd__and2b_2", 736 ],
-         ["sky130_fd_sc_hd__nand2_8", 707 ],
-         ["sky130_fd_sc_hd__clkbuf_16", 422 ],
+         ["sky130_fd_sc_hd__nand2_8", 706 ],
+         ["sky130_fd_sc_hd__buf_12", 4155 ],
          ["sky130_fd_sc_hd__and3b_2", 182 ],
-         ["sky130_fd_sc_hd__clkbuf_8", 1605 ],
-         ["sky130_fd_sc_hd__buf_12", 4168 ],
-         ["sky130_fd_sc_hd__clkbuf_4", 4670 ],
+         ["sky130_fd_sc_hd__buf_4", 15412 ],
          ["sky130_fd_sc_hd__o32a_2", 489 ],
          ["sky130_fd_sc_hd__a21o_2", 2880 ],
          ["sky130_fd_sc_hd__a211o_2", 875 ],
          ["sky130_fd_sc_hd__xnor2_2", 2294 ],
-         ["sky130_fd_sc_hd__mux2_1", 7561 ],
+         ["sky130_fd_sc_hd__clkbuf_4", 4730 ],
+         ["sky130_fd_sc_hd__mux2_1", 7559 ],
          ["sky130_fd_sc_hd__a311o_2", 213 ],
-         ["sky130_fd_sc_hd__a22o_2", 2699 ],
-         ["sky130_fd_sc_hd__or3_2", 1196 ],
+         ["sky130_fd_sc_hd__a22o_2", 2698 ],
+         ["sky130_fd_sc_hd__or3_2", 1197 ],
          ["sky130_fd_sc_hd__inv_2", 1075 ],
          ["sky130_fd_sc_hd__a211oi_2", 156 ],
-         ["sky130_fd_sc_hd__a41o_2", 82 ],
+         ["sky130_fd_sc_hd__a41o_2", 83 ],
          ["sky130_fd_sc_hd__a2111o_2", 90 ],
-         ["sky130_fd_sc_hd__nor2_4", 904 ],
-         ["sky130_fd_sc_hd__and2_2", 2265 ],
-         ["sky130_fd_sc_hd__clkbuf_1", 604 ],
+         ["sky130_fd_sc_hd__nor2_4", 906 ],
+         ["sky130_fd_sc_hd__and2_2", 2266 ],
+         ["sky130_fd_sc_hd__clkbuf_1", 608 ],
          ["sky130_fd_sc_hd__nand2b_2", 461 ],
          ["sky130_fd_sc_hd__o31a_4", 28 ],
          ["sky130_fd_sc_hd__o211a_2", 1100 ],
@@ -4894,38 +4892,40 @@
          ["sky130_fd_sc_hd__xor2_2", 721 ],
          ["sky130_fd_sc_hd__nand3_2", 327 ],
          ["sky130_fd_sc_hd__o21bai_2", 133 ],
-         ["sky130_fd_sc_hd__o2bb2a_2", 341 ],
+         ["sky130_fd_sc_hd__clkbuf_8", 1592 ],
+         ["sky130_fd_sc_hd__o2bb2a_2", 342 ],
          ["sky130_fd_sc_hd__mux4_2", 525 ],
          ["sky130_fd_sc_hd__conb_1", 34 ],
          ["sky130_fd_sc_hd__o211ai_2", 107 ],
          ["sky130_fd_sc_hd__dfrtp_4", 176 ],
-         ["sky130_fd_sc_hd__and3_2", 1698 ],
+         ["sky130_fd_sc_hd__and3_2", 1699 ],
          ["sky130_fd_sc_hd__o21ba_2", 511 ],
-         ["sky130_fd_sc_hd__buf_2", 4963 ],
+         ["sky130_fd_sc_hd__buf_2", 4961 ],
          ["sky130_fd_sc_hd__nor3_2", 407 ],
-         ["sky130_fd_sc_hd__a32o_2", 249 ],
+         ["sky130_fd_sc_hd__a32o_2", 247 ],
+         ["sky130_fd_sc_hd__clkbuf_16", 422 ],
          ["sky130_fd_sc_hd__a221o_2", 1124 ],
-         ["sky130_fd_sc_hd__or2_4", 251 ],
+         ["sky130_fd_sc_hd__or2_4", 249 ],
          ["sky130_fd_sc_hd__xnor2_4", 11 ],
-         ["sky130_fd_sc_hd__clkbuf_2", 181 ],
+         ["sky130_fd_sc_hd__clkbuf_2", 186 ],
          ["sky130_fd_sc_hd__o41a_2", 57 ],
-         ["sky130_fd_sc_hd__mux2_2", 76 ],
+         ["sky130_fd_sc_hd__mux2_2", 80 ],
          ["sky130_fd_sc_hd__a21boi_2", 95 ],
          ["sky130_fd_sc_hd__or3b_2", 384 ],
          ["sky130_fd_sc_hd__a22oi_2", 294 ],
-         ["sky130_fd_sc_hd__nand2_4", 169 ],
+         ["sky130_fd_sc_hd__nand2_4", 171 ],
          ["sky130_fd_sc_hd__and4_2", 497 ],
          ["sky130_fd_sc_hd__a2bb2o_2", 313 ],
          ["sky130_fd_sc_hd__or4b_2", 105 ],
          ["sky130_fd_sc_hd__o2111a_2", 83 ],
          ["sky130_fd_sc_hd__mux2_8", 57 ],
-         ["sky130_fd_sc_hd__a21oi_4", 127 ],
+         ["sky130_fd_sc_hd__a21oi_4", 126 ],
          ["sky130_fd_sc_hd__a21bo_2", 274 ],
          ["sky130_fd_sc_hd__nand4_2", 44 ],
          ["sky130_fd_sc_hd__o221ai_2", 33 ],
          ["sky130_fd_sc_hd__a31oi_2", 63 ],
          ["sky130_fd_sc_hd__o21ai_4", 46 ],
-         ["sky130_fd_sc_hd__and3_4", 30 ],
+         ["sky130_fd_sc_hd__and3_4", 29 ],
          ["sky130_fd_sc_hd__o221ai_4", 6 ],
          ["sky130_fd_sc_hd__a21o_4", 18 ],
          ["sky130_fd_sc_hd__and4b_2", 75 ],
@@ -4936,29 +4936,29 @@
          ["sky130_fd_sc_hd__o2111ai_4", 2 ],
          ["sky130_fd_sc_hd__o31ai_4", 15 ],
          ["sky130_fd_sc_hd__dfstp_2", 54 ],
-         ["sky130_fd_sc_hd__o21a_4", 28 ],
-         ["sky130_fd_sc_hd__mux2_4", 54 ],
+         ["sky130_fd_sc_hd__o21a_4", 30 ],
          ["sky130_fd_sc_hd__nor4_2", 14 ],
          ["sky130_fd_sc_hd__a221oi_4", 20 ],
          ["sky130_fd_sc_hd__o22a_4", 19 ],
          ["sky130_fd_sc_hd__a211oi_4", 13 ],
+         ["sky130_fd_sc_hd__mux2_4", 52 ],
          ["sky130_fd_sc_hd__inv_8", 51 ],
-         ["sky130_fd_sc_hd__o211a_4", 31 ],
+         ["sky130_fd_sc_hd__o211a_4", 30 ],
          ["sky130_fd_sc_hd__o31ai_2", 81 ],
          ["sky130_fd_sc_hd__and4bb_2", 68 ],
-         ["sky130_fd_sc_hd__or3_4", 20 ],
+         ["sky130_fd_sc_hd__or3_4", 19 ],
          ["sky130_fd_sc_hd__o2bb2ai_2", 1 ],
          ["sky130_fd_sc_hd__nand3b_2", 24 ],
-         ["sky130_fd_sc_hd__nor2_1", 6 ],
+         ["sky130_fd_sc_hd__nor2_1", 7 ],
          ["sky130_fd_sc_hd__o22ai_4", 6 ],
-         ["sky130_fd_sc_hd__a31o_4", 38 ],
-         ["sky130_fd_sc_hd__or4bb_2", 17 ],
+         ["sky130_fd_sc_hd__a31o_4", 36 ],
+         ["sky130_fd_sc_hd__or4bb_2", 16 ],
          ["sky130_fd_sc_hd__clkinv_8", 33 ],
          ["sky130_fd_sc_hd__a2bb2oi_2", 1 ],
          ["sky130_fd_sc_hd__a32oi_2", 5 ],
          ["sky130_fd_sc_hd__a21boi_4", 5 ],
          ["sky130_fd_sc_hd__o22ai_2", 46 ],
-         ["sky130_fd_sc_hd__and2_4", 43 ],
+         ["sky130_fd_sc_hd__and2_4", 42 ],
          ["sky130_fd_sc_hd__clkinv_4", 22 ],
          ["sky130_fd_sc_hd__a2111oi_2", 10 ],
          ["sky130_fd_sc_hd__a221oi_2", 22 ],
@@ -4969,22 +4969,21 @@
          ["sky130_fd_sc_hd__and4b_4", 5 ],
          ["sky130_fd_sc_hd__a2111oi_4", 2 ],
          ["sky130_fd_sc_hd__and4_4", 8 ],
-         ["sky130_fd_sc_hd__or4_4", 25 ],
+         ["sky130_fd_sc_hd__or4_4", 24 ],
          ["sky130_fd_sc_hd__o2111ai_2", 23 ],
          ["sky130_fd_sc_hd__inv_12", 29 ],
          ["sky130_fd_sc_hd__clkinv_2", 35 ],
          ["sky130_fd_sc_hd__and2b_4", 10 ],
          ["sky130_fd_sc_hd__dfxtp_4", 4 ],
-         ["sky130_fd_sc_hd__o2bb2a_4", 13 ],
+         ["sky130_fd_sc_hd__o2bb2a_4", 12 ],
          ["sky130_fd_sc_hd__nand3_4", 3 ],
          ["sky130_fd_sc_hd__o32ai_2", 3 ],
-         ["sky130_fd_sc_hd__a22o_4", 14 ],
+         ["sky130_fd_sc_hd__a22o_4", 15 ],
          ["sky130_fd_sc_hd__o21ba_4", 5 ],
          ["sky130_sram_2kbyte_1rw1r_32x512_8", 14 ],
          ["sky130_fd_sc_hd__nand2b_4", 8 ],
          ["sky130_fd_sc_hd__o311a_4", 11 ],
          ["sky130_fd_sc_hd__a311oi_2", 11 ],
-         ["sky130_fd_sc_hd__o211a_1", 5 ],
          ["sky130_fd_sc_hd__bufinv_16", 23 ],
          ["sky130_fd_sc_hd__o32a_4", 10 ],
          ["sky130_fd_sc_hd__or4b_4", 11 ],
@@ -4992,6 +4991,7 @@
          ["sky130_fd_sc_hd__o211ai_4", 8 ],
          ["sky130_fd_sc_hd__nor3b_4", 2 ],
          ["sky130_fd_sc_hd__a211o_4", 11 ],
+         ["sky130_fd_sc_hd__o211a_1", 6 ],
          ["sky130_fd_sc_hd__and3b_4", 3 ],
          ["sky130_fd_sc_hd__a41oi_2", 2 ],
          ["sky130_fd_sc_hd__ebufn_8", 5 ],
@@ -4999,17 +4999,18 @@
          ["sky130_fd_sc_hd__nor4_4", 7 ],
          ["sky130_fd_sc_hd__clkinvlp_4", 12 ],
          ["sky130_fd_sc_hd__a311oi_4", 3 ],
-         ["sky130_fd_sc_hd__a41o_4", 2 ],
+         ["sky130_fd_sc_hd__a41o_4", 1 ],
          ["sky130_fd_sc_hd__nor4b_4", 2 ],
          ["sky130_fd_sc_hd__nor4b_2", 2 ],
          ["sky130_fd_sc_hd__a31oi_4", 8 ],
          ["sky130_fd_sc_hd__a2bb2o_4", 5 ],
+         ["sky130_fd_sc_hd__a32o_4", 4 ],
          ["sky130_fd_sc_hd__a221o_4", 14 ],
+         ["sky130_fd_sc_hd__or4bb_4", 6 ],
          ["sky130_fd_sc_hd__nand4_4", 3 ],
          ["sky130_fd_sc_hd__and4bb_4", 3 ],
          ["sky130_fd_sc_hd__o41a_4", 3 ],
          ["sky130_fd_sc_hd__o311ai_2", 2 ],
-         ["sky130_fd_sc_hd__or4bb_4", 5 ],
          ["sky130_fd_sc_hd__nand4b_4", 1 ],
          ["sky130_fd_sc_hd__a21bo_4", 5 ],
          ["sky130_fd_sc_hd__o311ai_4", 1 ],
@@ -5018,14 +5019,13 @@
          ["sky130_fd_sc_hd__o21bai_4", 1 ],
          ["sky130_fd_sc_hd__nor4_1", 1 ],
          ["sky130_fd_sc_hd__nand3b_4", 2 ],
-         ["sky130_fd_sc_hd__a32o_4", 2 ],
          ["sky130_fd_sc_hd__nand4_1", 1 ],
          ["sky130_fd_sc_hd__o31ai_1", 1 ]
        ]
    ],
    "nets": [
-    138172,
-    138172
+    138159,
+    138159
    ],
    "badnets": [
    ],
@@ -5101,8 +5101,8 @@
         "catode[7]",
         "I2C_SCL",
         "QSPI_CS",
-        "UART_TX",
         "QSPI_SCLK",
+        "UART_TX",
         "GPIO_ODR[16]",
         "GPIO_ODR[17]",
         "GPIO_ODR[18]",
@@ -5196,8 +5196,8 @@
         "catode[7]",
         "I2C_SCL",
         "QSPI_CS",
-        "UART_TX",
         "QSPI_SCLK",
+        "UART_TX",
         "GPIO_ODR[16]",
         "GPIO_ODR[17]",
         "GPIO_ODR[18]",

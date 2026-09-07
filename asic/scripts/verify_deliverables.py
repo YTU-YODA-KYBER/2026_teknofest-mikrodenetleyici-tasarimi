@@ -273,7 +273,7 @@ def verify_provenance(delivery):
     # geri kalan her anahtar eskisi gibi ZORLANMAYA DEVAM EDER (kapi
     # zayiflamaz, yalnizca dogru beklentiye hizalanir).
     overlay_paths = (
-        ASIC / "experiments/grt_layer_met3_010.yaml",
+        ASIC / "experiments/grt_layer_met3_009.yaml",
         ASIC / "experiments/antenna_jumper.yaml",
     )
     try:

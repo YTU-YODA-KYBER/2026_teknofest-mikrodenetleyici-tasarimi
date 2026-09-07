@@ -277,15 +277,15 @@ Y                                          |Y
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__o21ai_2 and sky130_fd_sc_hd__o21ai_2 are equivalent.
 
-Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: A
-Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: X
+Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: A
+Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: X
 
 Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__buf_4          |Circuit 2: sky130_fd_sc_hd__buf_4          
+Circuit 1: sky130_fd_sc_hd__buf_8          |Circuit 2: sky130_fd_sc_hd__buf_8          
 -------------------------------------------|-------------------------------------------
 A                                          |A                                          
 VGND                                       |VGND                                       
@@ -295,7 +295,7 @@ VPWR                                       |VPWR
 X                                          |X                                          
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__buf_4 and sky130_fd_sc_hd__buf_4 are equivalent.
+Device classes sky130_fd_sc_hd__buf_8 and sky130_fd_sc_hd__buf_8 are equivalent.
 
 Cell sky130_fd_sc_hd__or2_2 (0) disconnected node: A
 Cell sky130_fd_sc_hd__or2_2 (0) disconnected node: B
@@ -410,26 +410,6 @@ Q                                          |Q
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__dfxtp_2 and sky130_fd_sc_hd__dfxtp_2 are equivalent.
-
-Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: A
-Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__buf_8 (0) disconnected node: X
-
-Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__buf_8          |Circuit 2: sky130_fd_sc_hd__buf_8          
--------------------------------------------|-------------------------------------------
-A                                          |A                                          
-VGND                                       |VGND                                       
-VNB                                        |VNB                                        
-VPB                                        |VPB                                        
-VPWR                                       |VPWR                                       
-X                                          |X                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__buf_8 and sky130_fd_sc_hd__buf_8 are equivalent.
 
 Cell sky130_fd_sc_hd__dlygate4sd3_1 (0) disconnected node: A
 Cell sky130_fd_sc_hd__dlygate4sd3_1 (0) disconnected node: VGND
@@ -569,15 +549,15 @@ Y                                          |Y
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__nand2_8 and sky130_fd_sc_hd__nand2_8 are equivalent.
 
-Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: A
-Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: X
+Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: A
+Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: X
 
 Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__clkbuf_16      |Circuit 2: sky130_fd_sc_hd__clkbuf_16      
+Circuit 1: sky130_fd_sc_hd__buf_12         |Circuit 2: sky130_fd_sc_hd__buf_12         
 -------------------------------------------|-------------------------------------------
 A                                          |A                                          
 VGND                                       |VGND                                       
@@ -587,7 +567,7 @@ VPWR                                       |VPWR
 X                                          |X                                          
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__clkbuf_16 and sky130_fd_sc_hd__clkbuf_16 are equivalent.
+Device classes sky130_fd_sc_hd__buf_12 and sky130_fd_sc_hd__buf_12 are equivalent.
 
 Cell sky130_fd_sc_hd__and3b_2 (0) disconnected node: A_N
 Cell sky130_fd_sc_hd__and3b_2 (0) disconnected node: B
@@ -613,15 +593,15 @@ X                                          |X
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__and3b_2 and sky130_fd_sc_hd__and3b_2 are equivalent.
 
-Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: A
-Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: X
+Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: A
+Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__buf_4 (0) disconnected node: X
 
 Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__clkbuf_8       |Circuit 2: sky130_fd_sc_hd__clkbuf_8       
+Circuit 1: sky130_fd_sc_hd__buf_4          |Circuit 2: sky130_fd_sc_hd__buf_4          
 -------------------------------------------|-------------------------------------------
 A                                          |A                                          
 VGND                                       |VGND                                       
@@ -631,47 +611,7 @@ VPWR                                       |VPWR
 X                                          |X                                          
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__clkbuf_8 and sky130_fd_sc_hd__clkbuf_8 are equivalent.
-
-Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: A
-Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__buf_12 (0) disconnected node: X
-
-Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__buf_12         |Circuit 2: sky130_fd_sc_hd__buf_12         
--------------------------------------------|-------------------------------------------
-A                                          |A                                          
-VGND                                       |VGND                                       
-VNB                                        |VNB                                        
-VPB                                        |VPB                                        
-VPWR                                       |VPWR                                       
-X                                          |X                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__buf_12 and sky130_fd_sc_hd__buf_12 are equivalent.
-
-Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: A
-Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: X
-
-Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__clkbuf_4       |Circuit 2: sky130_fd_sc_hd__clkbuf_4       
--------------------------------------------|-------------------------------------------
-A                                          |A                                          
-VGND                                       |VGND                                       
-VNB                                        |VNB                                        
-VPB                                        |VPB                                        
-VPWR                                       |VPWR                                       
-X                                          |X                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__clkbuf_4 and sky130_fd_sc_hd__clkbuf_4 are equivalent.
+Device classes sky130_fd_sc_hd__buf_4 and sky130_fd_sc_hd__buf_4 are equivalent.
 
 Cell sky130_fd_sc_hd__o32a_2 (0) disconnected node: A1
 Cell sky130_fd_sc_hd__o32a_2 (0) disconnected node: A2
@@ -772,6 +712,26 @@ Y                                          |Y
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__xnor2_2 and sky130_fd_sc_hd__xnor2_2 are equivalent.
+
+Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: A
+Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__clkbuf_4 (0) disconnected node: X
+
+Subcircuit pins:
+Circuit 1: sky130_fd_sc_hd__clkbuf_4       |Circuit 2: sky130_fd_sc_hd__clkbuf_4       
+-------------------------------------------|-------------------------------------------
+A                                          |A                                          
+VGND                                       |VGND                                       
+VNB                                        |VNB                                        
+VPB                                        |VPB                                        
+VPWR                                       |VPWR                                       
+X                                          |X                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_sc_hd__clkbuf_4 and sky130_fd_sc_hd__clkbuf_4 are equivalent.
 
 Cell sky130_fd_sc_hd__mux2_1 (0) disconnected node: A0
 Cell sky130_fd_sc_hd__mux2_1 (0) disconnected node: A1
@@ -1213,6 +1173,26 @@ Y                                          |Y
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__o21bai_2 and sky130_fd_sc_hd__o21bai_2 are equivalent.
 
+Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: A
+Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__clkbuf_8 (0) disconnected node: X
+
+Subcircuit pins:
+Circuit 1: sky130_fd_sc_hd__clkbuf_8       |Circuit 2: sky130_fd_sc_hd__clkbuf_8       
+-------------------------------------------|-------------------------------------------
+A                                          |A                                          
+VGND                                       |VGND                                       
+VNB                                        |VNB                                        
+VPB                                        |VPB                                        
+VPWR                                       |VPWR                                       
+X                                          |X                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_sc_hd__clkbuf_8 and sky130_fd_sc_hd__clkbuf_8 are equivalent.
+
 Cell sky130_fd_sc_hd__o2bb2a_2 (0) disconnected node: A1_N
 Cell sky130_fd_sc_hd__o2bb2a_2 (0) disconnected node: A2_N
 Cell sky130_fd_sc_hd__o2bb2a_2 (0) disconnected node: B1
@@ -1460,6 +1440,26 @@ X                                          |X
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__a32o_2 and sky130_fd_sc_hd__a32o_2 are equivalent.
+
+Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: A
+Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__clkbuf_16 (0) disconnected node: X
+
+Subcircuit pins:
+Circuit 1: sky130_fd_sc_hd__clkbuf_16      |Circuit 2: sky130_fd_sc_hd__clkbuf_16      
+-------------------------------------------|-------------------------------------------
+A                                          |A                                          
+VGND                                       |VGND                                       
+VNB                                        |VNB                                        
+VPB                                        |VPB                                        
+VPWR                                       |VPWR                                       
+X                                          |X                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_sc_hd__clkbuf_16 and sky130_fd_sc_hd__clkbuf_16 are equivalent.
 
 Cell sky130_fd_sc_hd__a221o_2 (0) disconnected node: A1
 Cell sky130_fd_sc_hd__a221o_2 (0) disconnected node: A2
@@ -2277,30 +2277,6 @@ X                                          |X
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__o21a_4 and sky130_fd_sc_hd__o21a_4 are equivalent.
 
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: A0
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: A1
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: S
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: X
-
-Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__mux2_4         |Circuit 2: sky130_fd_sc_hd__mux2_4         
--------------------------------------------|-------------------------------------------
-A0                                         |A0                                         
-A1                                         |A1                                         
-S                                          |S                                          
-VGND                                       |VGND                                       
-VNB                                        |VNB                                        
-VPB                                        |VPB                                        
-VPWR                                       |VPWR                                       
-X                                          |X                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__mux2_4 and sky130_fd_sc_hd__mux2_4 are equivalent.
-
 Cell sky130_fd_sc_hd__nor4_2 (0) disconnected node: A
 Cell sky130_fd_sc_hd__nor4_2 (0) disconnected node: B
 Cell sky130_fd_sc_hd__nor4_2 (0) disconnected node: C
@@ -2406,6 +2382,30 @@ Y                                          |Y
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__a211oi_4 and sky130_fd_sc_hd__a211oi_4 are equivalent.
+
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: A0
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: A1
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: S
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__mux2_4 (0) disconnected node: X
+
+Subcircuit pins:
+Circuit 1: sky130_fd_sc_hd__mux2_4         |Circuit 2: sky130_fd_sc_hd__mux2_4         
+-------------------------------------------|-------------------------------------------
+A0                                         |A0                                         
+A1                                         |A1                                         
+S                                          |S                                          
+VGND                                       |VGND                                       
+VNB                                        |VNB                                        
+VPB                                        |VPB                                        
+VPWR                                       |VPWR                                       
+X                                          |X                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_sc_hd__mux2_4 and sky130_fd_sc_hd__mux2_4 are equivalent.
 
 Cell sky130_fd_sc_hd__inv_8 (0) disconnected node: A
 Cell sky130_fd_sc_hd__inv_8 (0) disconnected node: VGND
@@ -3679,32 +3679,6 @@ Y                                          |Y
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__a311oi_2 and sky130_fd_sc_hd__a311oi_2 are equivalent.
 
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: A1
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: A2
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: B1
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: C1
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: X
-
-Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__o211a_1        |Circuit 2: sky130_fd_sc_hd__o211a_1        
--------------------------------------------|-------------------------------------------
-A1                                         |A1                                         
-A2                                         |A2                                         
-B1                                         |B1                                         
-C1                                         |C1                                         
-VGND                                       |VGND                                       
-VNB                                        |VNB                                        
-VPB                                        |VPB                                        
-VPWR                                       |VPWR                                       
-X                                          |X                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__o211a_1 and sky130_fd_sc_hd__o211a_1 are equivalent.
-
 Cell sky130_fd_sc_hd__bufinv_16 (0) disconnected node: A
 Cell sky130_fd_sc_hd__bufinv_16 (0) disconnected node: VGND
 Cell sky130_fd_sc_hd__bufinv_16 (0) disconnected node: VNB
@@ -3874,6 +3848,32 @@ X                                          |X
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__a211o_4 and sky130_fd_sc_hd__a211o_4 are equivalent.
+
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: A1
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: A2
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: B1
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: C1
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__o211a_1 (0) disconnected node: X
+
+Subcircuit pins:
+Circuit 1: sky130_fd_sc_hd__o211a_1        |Circuit 2: sky130_fd_sc_hd__o211a_1        
+-------------------------------------------|-------------------------------------------
+A1                                         |A1                                         
+A2                                         |A2                                         
+B1                                         |B1                                         
+C1                                         |C1                                         
+VGND                                       |VGND                                       
+VNB                                        |VNB                                        
+VPB                                        |VPB                                        
+VPWR                                       |VPWR                                       
+X                                          |X                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_sc_hd__o211a_1 and sky130_fd_sc_hd__o211a_1 are equivalent.
 
 Cell sky130_fd_sc_hd__and3b_4 (0) disconnected node: A_N
 Cell sky130_fd_sc_hd__and3b_4 (0) disconnected node: B
@@ -4179,6 +4179,34 @@ X                                          |X
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__a2bb2o_4 and sky130_fd_sc_hd__a2bb2o_4 are equivalent.
 
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: A1
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: A2
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: A3
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: B1
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: B2
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: X
+
+Subcircuit pins:
+Circuit 1: sky130_fd_sc_hd__a32o_4         |Circuit 2: sky130_fd_sc_hd__a32o_4         
+-------------------------------------------|-------------------------------------------
+A1                                         |A1                                         
+A2                                         |A2                                         
+A3                                         |A3                                         
+B1                                         |B1                                         
+B2                                         |B2                                         
+VGND                                       |VGND                                       
+VNB                                        |VNB                                        
+VPB                                        |VPB                                        
+VPWR                                       |VPWR                                       
+X                                          |X                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_sc_hd__a32o_4 and sky130_fd_sc_hd__a32o_4 are equivalent.
+
 Cell sky130_fd_sc_hd__a221o_4 (0) disconnected node: A1
 Cell sky130_fd_sc_hd__a221o_4 (0) disconnected node: A2
 Cell sky130_fd_sc_hd__a221o_4 (0) disconnected node: B1
@@ -4206,6 +4234,32 @@ X                                          |X
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__a221o_4 and sky130_fd_sc_hd__a221o_4 are equivalent.
+
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: A
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: B
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: C_N
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: D_N
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VGND
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VNB
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VPB
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VPWR
+Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: X
+
+Subcircuit pins:
+Circuit 1: sky130_fd_sc_hd__or4bb_4        |Circuit 2: sky130_fd_sc_hd__or4bb_4        
+-------------------------------------------|-------------------------------------------
+A                                          |A                                          
+B                                          |B                                          
+C_N                                        |C_N                                        
+D_N                                        |D_N                                        
+VGND                                       |VGND                                       
+VNB                                        |VNB                                        
+VPB                                        |VPB                                        
+VPWR                                       |VPWR                                       
+X                                          |X                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_sc_hd__or4bb_4 and sky130_fd_sc_hd__or4bb_4 are equivalent.
 
 Cell sky130_fd_sc_hd__nand4_4 (0) disconnected node: A
 Cell sky130_fd_sc_hd__nand4_4 (0) disconnected node: B
@@ -4314,32 +4368,6 @@ Y                                          |Y
 ---------------------------------------------------------------------------------------
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__o311ai_2 and sky130_fd_sc_hd__o311ai_2 are equivalent.
-
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: A
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: B
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: C_N
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: D_N
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__or4bb_4 (0) disconnected node: X
-
-Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__or4bb_4        |Circuit 2: sky130_fd_sc_hd__or4bb_4        
--------------------------------------------|-------------------------------------------
-A                                          |A                                          
-B                                          |B                                          
-C_N                                        |C_N                                        
-D_N                                        |D_N                                        
-VGND                                       |VGND                                       
-VNB                                        |VNB                                        
-VPB                                        |VPB                                        
-VPWR                                       |VPWR                                       
-X                                          |X                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__or4bb_4 and sky130_fd_sc_hd__or4bb_4 are equivalent.
 
 Cell sky130_fd_sc_hd__nand4b_4 (0) disconnected node: A_N
 Cell sky130_fd_sc_hd__nand4b_4 (0) disconnected node: B
@@ -4773,34 +4801,6 @@ Y                                          |Y
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__nand3b_4 and sky130_fd_sc_hd__nand3b_4 are equivalent.
 
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: A1
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: A2
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: A3
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: B1
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: B2
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VGND
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VNB
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VPB
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: VPWR
-Cell sky130_fd_sc_hd__a32o_4 (0) disconnected node: X
-
-Subcircuit pins:
-Circuit 1: sky130_fd_sc_hd__a32o_4         |Circuit 2: sky130_fd_sc_hd__a32o_4         
--------------------------------------------|-------------------------------------------
-A1                                         |A1                                         
-A2                                         |A2                                         
-A3                                         |A3                                         
-B1                                         |B1                                         
-B2                                         |B2                                         
-VGND                                       |VGND                                       
-VNB                                        |VNB                                        
-VPB                                        |VPB                                        
-VPWR                                       |VPWR                                       
-X                                          |X                                          
----------------------------------------------------------------------------------------
-Cell pin lists are equivalent.
-Device classes sky130_fd_sc_hd__a32o_4 and sky130_fd_sc_hd__a32o_4 are equivalent.
-
 Cell sky130_fd_sc_hd__nand4_1 (0) disconnected node: A
 Cell sky130_fd_sc_hd__nand4_1 (0) disconnected node: B
 Cell sky130_fd_sc_hd__nand4_1 (0) disconnected node: C
@@ -4853,57 +4853,55 @@ Y                                          |Y
 Cell pin lists are equivalent.
 Device classes sky130_fd_sc_hd__o31ai_1 and sky130_fd_sc_hd__o31ai_1 are equivalent.
 
-Class top_module (0):  Merged 1205844 parallel devices.
-Class top_module (1):  Merged 1205844 parallel devices.
+Class top_module (0):  Merged 1205892 parallel devices.
+Class top_module (1):  Merged 1205892 parallel devices.
 Subcircuit summary:
 Circuit 1: top_module                      |Circuit 2: top_module                      
 -------------------------------------------|-------------------------------------------
-sky130_fd_sc_hd__fill_8 (706186->1)        |sky130_fd_sc_hd__fill_8 (706186->1)        
-sky130_fd_sc_hd__fill_4 (149121->1)        |sky130_fd_sc_hd__fill_4 (149121->1)        
+sky130_fd_sc_hd__fill_8 (706227->1)        |sky130_fd_sc_hd__fill_8 (706227->1)        
+sky130_fd_sc_hd__fill_4 (149122->1)        |sky130_fd_sc_hd__fill_4 (149122->1)        
 sky130_fd_sc_hd__o22a_2 (2042)             |sky130_fd_sc_hd__o22a_2 (2042)             
-sky130_fd_sc_hd__fill_1 (40957->1)         |sky130_fd_sc_hd__fill_1 (40957->1)         
+sky130_fd_sc_hd__fill_1 (40989->1)         |sky130_fd_sc_hd__fill_1 (40989->1)         
 sky130_fd_sc_hd__tapvpwrvgnd_1 (145253->1) |sky130_fd_sc_hd__tapvpwrvgnd_1 (145253->1) 
-sky130_fd_sc_hd__decap_3 (127621->1)       |sky130_fd_sc_hd__decap_3 (127621->1)       
-sky130_fd_sc_hd__fill_2 (36712->1)         |sky130_fd_sc_hd__fill_2 (36712->1)         
-sky130_fd_sc_hd__or4_2 (510)               |sky130_fd_sc_hd__or4_2 (510)               
-sky130_fd_sc_hd__buf_6 (9888)              |sky130_fd_sc_hd__buf_6 (9888)              
-sky130_fd_sc_hd__nor2_2 (4500)             |sky130_fd_sc_hd__nor2_2 (4500)             
-sky130_fd_sc_hd__a31o_2 (1440)             |sky130_fd_sc_hd__a31o_2 (1440)             
-sky130_fd_sc_hd__o21a_2 (1519)             |sky130_fd_sc_hd__o21a_2 (1519)             
+sky130_fd_sc_hd__decap_3 (127504->1)       |sky130_fd_sc_hd__decap_3 (127504->1)       
+sky130_fd_sc_hd__fill_2 (36803->1)         |sky130_fd_sc_hd__fill_2 (36803->1)         
+sky130_fd_sc_hd__or4_2 (511)               |sky130_fd_sc_hd__or4_2 (511)               
+sky130_fd_sc_hd__buf_6 (9817)              |sky130_fd_sc_hd__buf_6 (9817)              
+sky130_fd_sc_hd__nor2_2 (4497)             |sky130_fd_sc_hd__nor2_2 (4497)             
+sky130_fd_sc_hd__a31o_2 (1442)             |sky130_fd_sc_hd__a31o_2 (1442)             
+sky130_fd_sc_hd__o21a_2 (1517)             |sky130_fd_sc_hd__o21a_2 (1517)             
 sky130_fd_sc_hd__o21ai_2 (1431)            |sky130_fd_sc_hd__o21ai_2 (1431)            
-sky130_fd_sc_hd__buf_4 (15432)             |sky130_fd_sc_hd__buf_4 (15432)             
-sky130_fd_sc_hd__or2_2 (3287)              |sky130_fd_sc_hd__or2_2 (3287)              
-sky130_fd_sc_hd__nand2_2 (4315)            |sky130_fd_sc_hd__nand2_2 (4315)            
+sky130_fd_sc_hd__buf_8 (6630)              |sky130_fd_sc_hd__buf_8 (6630)              
+sky130_fd_sc_hd__or2_2 (3289)              |sky130_fd_sc_hd__or2_2 (3289)              
+sky130_fd_sc_hd__nand2_2 (4314)            |sky130_fd_sc_hd__nand2_2 (4314)            
 sky130_fd_sc_hd__dfrtp_2 (4564)            |sky130_fd_sc_hd__dfrtp_2 (4564)            
-sky130_fd_sc_hd__a21oi_2 (2167)            |sky130_fd_sc_hd__a21oi_2 (2167)            
+sky130_fd_sc_hd__a21oi_2 (2168)            |sky130_fd_sc_hd__a21oi_2 (2168)            
 sky130_fd_sc_hd__dfxtp_2 (4491)            |sky130_fd_sc_hd__dfxtp_2 (4491)            
-sky130_fd_sc_hd__buf_8 (6578)              |sky130_fd_sc_hd__buf_8 (6578)              
-sky130_fd_sc_hd__dlygate4sd3_1 (16374)     |sky130_fd_sc_hd__dlygate4sd3_1 (16374)     
+sky130_fd_sc_hd__dlygate4sd3_1 (16369)     |sky130_fd_sc_hd__dlygate4sd3_1 (16369)     
 sky130_fd_sc_hd__o221a_2 (2121)            |sky130_fd_sc_hd__o221a_2 (2121)            
-sky130_fd_sc_hd__buf_1 (2303)              |sky130_fd_sc_hd__buf_1 (2303)              
+sky130_fd_sc_hd__buf_1 (2293)              |sky130_fd_sc_hd__buf_1 (2293)              
 sky130_fd_sc_hd__o31a_2 (486)              |sky130_fd_sc_hd__o31a_2 (486)              
 sky130_fd_sc_hd__and2b_2 (736)             |sky130_fd_sc_hd__and2b_2 (736)             
-sky130_fd_sc_hd__nand2_8 (707)             |sky130_fd_sc_hd__nand2_8 (707)             
-sky130_fd_sc_hd__clkbuf_16 (422)           |sky130_fd_sc_hd__clkbuf_16 (422)           
+sky130_fd_sc_hd__nand2_8 (706)             |sky130_fd_sc_hd__nand2_8 (706)             
+sky130_fd_sc_hd__buf_12 (4155)             |sky130_fd_sc_hd__buf_12 (4155)             
 sky130_fd_sc_hd__and3b_2 (182)             |sky130_fd_sc_hd__and3b_2 (182)             
-sky130_fd_sc_hd__clkbuf_8 (1605)           |sky130_fd_sc_hd__clkbuf_8 (1605)           
-sky130_fd_sc_hd__buf_12 (4168)             |sky130_fd_sc_hd__buf_12 (4168)             
-sky130_fd_sc_hd__clkbuf_4 (4670)           |sky130_fd_sc_hd__clkbuf_4 (4670)           
+sky130_fd_sc_hd__buf_4 (15412)             |sky130_fd_sc_hd__buf_4 (15412)             
 sky130_fd_sc_hd__o32a_2 (489)              |sky130_fd_sc_hd__o32a_2 (489)              
 sky130_fd_sc_hd__a21o_2 (2880)             |sky130_fd_sc_hd__a21o_2 (2880)             
 sky130_fd_sc_hd__a211o_2 (875)             |sky130_fd_sc_hd__a211o_2 (875)             
 sky130_fd_sc_hd__xnor2_2 (2294)            |sky130_fd_sc_hd__xnor2_2 (2294)            
-sky130_fd_sc_hd__mux2_1 (7561)             |sky130_fd_sc_hd__mux2_1 (7561)             
+sky130_fd_sc_hd__clkbuf_4 (4730)           |sky130_fd_sc_hd__clkbuf_4 (4730)           
+sky130_fd_sc_hd__mux2_1 (7559)             |sky130_fd_sc_hd__mux2_1 (7559)             
 sky130_fd_sc_hd__a311o_2 (213)             |sky130_fd_sc_hd__a311o_2 (213)             
-sky130_fd_sc_hd__a22o_2 (2699)             |sky130_fd_sc_hd__a22o_2 (2699)             
-sky130_fd_sc_hd__or3_2 (1196)              |sky130_fd_sc_hd__or3_2 (1196)              
+sky130_fd_sc_hd__a22o_2 (2698)             |sky130_fd_sc_hd__a22o_2 (2698)             
+sky130_fd_sc_hd__or3_2 (1197)              |sky130_fd_sc_hd__or3_2 (1197)              
 sky130_fd_sc_hd__inv_2 (1075)              |sky130_fd_sc_hd__inv_2 (1075)              
 sky130_fd_sc_hd__a211oi_2 (156)            |sky130_fd_sc_hd__a211oi_2 (156)            
-sky130_fd_sc_hd__a41o_2 (82)               |sky130_fd_sc_hd__a41o_2 (82)               
+sky130_fd_sc_hd__a41o_2 (83)               |sky130_fd_sc_hd__a41o_2 (83)               
 sky130_fd_sc_hd__a2111o_2 (90)             |sky130_fd_sc_hd__a2111o_2 (90)             
-sky130_fd_sc_hd__nor2_4 (904)              |sky130_fd_sc_hd__nor2_4 (904)              
-sky130_fd_sc_hd__and2_2 (2265)             |sky130_fd_sc_hd__and2_2 (2265)             
-sky130_fd_sc_hd__clkbuf_1 (604)            |sky130_fd_sc_hd__clkbuf_1 (604)            
+sky130_fd_sc_hd__nor2_4 (906)              |sky130_fd_sc_hd__nor2_4 (906)              
+sky130_fd_sc_hd__and2_2 (2266)             |sky130_fd_sc_hd__and2_2 (2266)             
+sky130_fd_sc_hd__clkbuf_1 (608)            |sky130_fd_sc_hd__clkbuf_1 (608)            
 sky130_fd_sc_hd__nand2b_2 (461)            |sky130_fd_sc_hd__nand2b_2 (461)            
 sky130_fd_sc_hd__o31a_4 (28)               |sky130_fd_sc_hd__o31a_4 (28)               
 sky130_fd_sc_hd__o211a_2 (1100)            |sky130_fd_sc_hd__o211a_2 (1100)            
@@ -4911,38 +4909,40 @@ sky130_fd_sc_hd__o311a_2 (321)             |sky130_fd_sc_hd__o311a_2 (321)
 sky130_fd_sc_hd__xor2_2 (721)              |sky130_fd_sc_hd__xor2_2 (721)              
 sky130_fd_sc_hd__nand3_2 (327)             |sky130_fd_sc_hd__nand3_2 (327)             
 sky130_fd_sc_hd__o21bai_2 (133)            |sky130_fd_sc_hd__o21bai_2 (133)            
-sky130_fd_sc_hd__o2bb2a_2 (341)            |sky130_fd_sc_hd__o2bb2a_2 (341)            
+sky130_fd_sc_hd__clkbuf_8 (1592)           |sky130_fd_sc_hd__clkbuf_8 (1592)           
+sky130_fd_sc_hd__o2bb2a_2 (342)            |sky130_fd_sc_hd__o2bb2a_2 (342)            
 sky130_fd_sc_hd__mux4_2 (525)              |sky130_fd_sc_hd__mux4_2 (525)              
 sky130_fd_sc_hd__conb_1 (34)               |sky130_fd_sc_hd__conb_1 (34)               
 sky130_fd_sc_hd__o211ai_2 (107)            |sky130_fd_sc_hd__o211ai_2 (107)            
 sky130_fd_sc_hd__dfrtp_4 (176)             |sky130_fd_sc_hd__dfrtp_4 (176)             
-sky130_fd_sc_hd__and3_2 (1698)             |sky130_fd_sc_hd__and3_2 (1698)             
+sky130_fd_sc_hd__and3_2 (1699)             |sky130_fd_sc_hd__and3_2 (1699)             
 sky130_fd_sc_hd__o21ba_2 (511)             |sky130_fd_sc_hd__o21ba_2 (511)             
-sky130_fd_sc_hd__buf_2 (4963)              |sky130_fd_sc_hd__buf_2 (4963)              
+sky130_fd_sc_hd__buf_2 (4961)              |sky130_fd_sc_hd__buf_2 (4961)              
 sky130_fd_sc_hd__nor3_2 (407)              |sky130_fd_sc_hd__nor3_2 (407)              
-sky130_fd_sc_hd__a32o_2 (249)              |sky130_fd_sc_hd__a32o_2 (249)              
+sky130_fd_sc_hd__a32o_2 (247)              |sky130_fd_sc_hd__a32o_2 (247)              
+sky130_fd_sc_hd__clkbuf_16 (422)           |sky130_fd_sc_hd__clkbuf_16 (422)           
 sky130_fd_sc_hd__a221o_2 (1124)            |sky130_fd_sc_hd__a221o_2 (1124)            
-sky130_fd_sc_hd__or2_4 (251)               |sky130_fd_sc_hd__or2_4 (251)               
+sky130_fd_sc_hd__or2_4 (249)               |sky130_fd_sc_hd__or2_4 (249)               
 sky130_fd_sc_hd__xnor2_4 (11)              |sky130_fd_sc_hd__xnor2_4 (11)              
-sky130_fd_sc_hd__clkbuf_2 (181)            |sky130_fd_sc_hd__clkbuf_2 (181)            
+sky130_fd_sc_hd__clkbuf_2 (186)            |sky130_fd_sc_hd__clkbuf_2 (186)            
 sky130_fd_sc_hd__o41a_2 (57)               |sky130_fd_sc_hd__o41a_2 (57)               
-sky130_fd_sc_hd__mux2_2 (76)               |sky130_fd_sc_hd__mux2_2 (76)               
+sky130_fd_sc_hd__mux2_2 (80)               |sky130_fd_sc_hd__mux2_2 (80)               
 sky130_fd_sc_hd__a21boi_2 (95)             |sky130_fd_sc_hd__a21boi_2 (95)             
 sky130_fd_sc_hd__or3b_2 (384)              |sky130_fd_sc_hd__or3b_2 (384)              
 sky130_fd_sc_hd__a22oi_2 (294)             |sky130_fd_sc_hd__a22oi_2 (294)             
-sky130_fd_sc_hd__nand2_4 (169)             |sky130_fd_sc_hd__nand2_4 (169)             
+sky130_fd_sc_hd__nand2_4 (171)             |sky130_fd_sc_hd__nand2_4 (171)             
 sky130_fd_sc_hd__and4_2 (497)              |sky130_fd_sc_hd__and4_2 (497)              
 sky130_fd_sc_hd__a2bb2o_2 (313)            |sky130_fd_sc_hd__a2bb2o_2 (313)            
 sky130_fd_sc_hd__or4b_2 (105)              |sky130_fd_sc_hd__or4b_2 (105)              
 sky130_fd_sc_hd__o2111a_2 (83)             |sky130_fd_sc_hd__o2111a_2 (83)             
 sky130_fd_sc_hd__mux2_8 (57)               |sky130_fd_sc_hd__mux2_8 (57)               
-sky130_fd_sc_hd__a21oi_4 (127)             |sky130_fd_sc_hd__a21oi_4 (127)             
+sky130_fd_sc_hd__a21oi_4 (126)             |sky130_fd_sc_hd__a21oi_4 (126)             
 sky130_fd_sc_hd__a21bo_2 (274)             |sky130_fd_sc_hd__a21bo_2 (274)             
 sky130_fd_sc_hd__nand4_2 (44)              |sky130_fd_sc_hd__nand4_2 (44)              
 sky130_fd_sc_hd__o221ai_2 (33)             |sky130_fd_sc_hd__o221ai_2 (33)             
 sky130_fd_sc_hd__a31oi_2 (63)              |sky130_fd_sc_hd__a31oi_2 (63)              
 sky130_fd_sc_hd__o21ai_4 (46)              |sky130_fd_sc_hd__o21ai_4 (46)              
-sky130_fd_sc_hd__and3_4 (30)               |sky130_fd_sc_hd__and3_4 (30)               
+sky130_fd_sc_hd__and3_4 (29)               |sky130_fd_sc_hd__and3_4 (29)               
 sky130_fd_sc_hd__o221ai_4 (6)              |sky130_fd_sc_hd__o221ai_4 (6)              
 sky130_fd_sc_hd__a21o_4 (18)               |sky130_fd_sc_hd__a21o_4 (18)               
 sky130_fd_sc_hd__and4b_2 (75)              |sky130_fd_sc_hd__and4b_2 (75)              
@@ -4953,29 +4953,29 @@ sky130_fd_sc_hd__xor2_4 (5)                |sky130_fd_sc_hd__xor2_4 (5)
 sky130_fd_sc_hd__o2111ai_4 (2)             |sky130_fd_sc_hd__o2111ai_4 (2)             
 sky130_fd_sc_hd__o31ai_4 (15)              |sky130_fd_sc_hd__o31ai_4 (15)              
 sky130_fd_sc_hd__dfstp_2 (54)              |sky130_fd_sc_hd__dfstp_2 (54)              
-sky130_fd_sc_hd__o21a_4 (28)               |sky130_fd_sc_hd__o21a_4 (28)               
-sky130_fd_sc_hd__mux2_4 (54)               |sky130_fd_sc_hd__mux2_4 (54)               
+sky130_fd_sc_hd__o21a_4 (30)               |sky130_fd_sc_hd__o21a_4 (30)               
 sky130_fd_sc_hd__nor4_2 (14)               |sky130_fd_sc_hd__nor4_2 (14)               
 sky130_fd_sc_hd__a221oi_4 (20)             |sky130_fd_sc_hd__a221oi_4 (20)             
 sky130_fd_sc_hd__o22a_4 (19)               |sky130_fd_sc_hd__o22a_4 (19)               
 sky130_fd_sc_hd__a211oi_4 (13)             |sky130_fd_sc_hd__a211oi_4 (13)             
+sky130_fd_sc_hd__mux2_4 (52)               |sky130_fd_sc_hd__mux2_4 (52)               
 sky130_fd_sc_hd__inv_8 (51)                |sky130_fd_sc_hd__inv_8 (51)                
-sky130_fd_sc_hd__o211a_4 (31)              |sky130_fd_sc_hd__o211a_4 (31)              
+sky130_fd_sc_hd__o211a_4 (30)              |sky130_fd_sc_hd__o211a_4 (30)              
 sky130_fd_sc_hd__o31ai_2 (81)              |sky130_fd_sc_hd__o31ai_2 (81)              
 sky130_fd_sc_hd__and4bb_2 (68)             |sky130_fd_sc_hd__and4bb_2 (68)             
-sky130_fd_sc_hd__or3_4 (20)                |sky130_fd_sc_hd__or3_4 (20)                
+sky130_fd_sc_hd__or3_4 (19)                |sky130_fd_sc_hd__or3_4 (19)                
 sky130_fd_sc_hd__o2bb2ai_2 (1)             |sky130_fd_sc_hd__o2bb2ai_2 (1)             
 sky130_fd_sc_hd__nand3b_2 (24)             |sky130_fd_sc_hd__nand3b_2 (24)             
-sky130_fd_sc_hd__nor2_1 (6)                |sky130_fd_sc_hd__nor2_1 (6)                
+sky130_fd_sc_hd__nor2_1 (7)                |sky130_fd_sc_hd__nor2_1 (7)                
 sky130_fd_sc_hd__o22ai_4 (6)               |sky130_fd_sc_hd__o22ai_4 (6)               
-sky130_fd_sc_hd__a31o_4 (38)               |sky130_fd_sc_hd__a31o_4 (38)               
-sky130_fd_sc_hd__or4bb_2 (17)              |sky130_fd_sc_hd__or4bb_2 (17)              
+sky130_fd_sc_hd__a31o_4 (36)               |sky130_fd_sc_hd__a31o_4 (36)               
+sky130_fd_sc_hd__or4bb_2 (16)              |sky130_fd_sc_hd__or4bb_2 (16)              
 sky130_fd_sc_hd__clkinv_8 (33)             |sky130_fd_sc_hd__clkinv_8 (33)             
 sky130_fd_sc_hd__a2bb2oi_2 (1)             |sky130_fd_sc_hd__a2bb2oi_2 (1)             
 sky130_fd_sc_hd__a32oi_2 (5)               |sky130_fd_sc_hd__a32oi_2 (5)               
 sky130_fd_sc_hd__a21boi_4 (5)              |sky130_fd_sc_hd__a21boi_4 (5)              
 sky130_fd_sc_hd__o22ai_2 (46)              |sky130_fd_sc_hd__o22ai_2 (46)              
-sky130_fd_sc_hd__and2_4 (43)               |sky130_fd_sc_hd__and2_4 (43)               
+sky130_fd_sc_hd__and2_4 (42)               |sky130_fd_sc_hd__and2_4 (42)               
 sky130_fd_sc_hd__clkinv_4 (22)             |sky130_fd_sc_hd__clkinv_4 (22)             
 sky130_fd_sc_hd__a2111oi_2 (10)            |sky130_fd_sc_hd__a2111oi_2 (10)            
 sky130_fd_sc_hd__a221oi_2 (22)             |sky130_fd_sc_hd__a221oi_2 (22)             
@@ -4986,22 +4986,21 @@ sky130_fd_sc_hd__inv_4 (33)                |sky130_fd_sc_hd__inv_4 (33)
 sky130_fd_sc_hd__and4b_4 (5)               |sky130_fd_sc_hd__and4b_4 (5)               
 sky130_fd_sc_hd__a2111oi_4 (2)             |sky130_fd_sc_hd__a2111oi_4 (2)             
 sky130_fd_sc_hd__and4_4 (8)                |sky130_fd_sc_hd__and4_4 (8)                
-sky130_fd_sc_hd__or4_4 (25)                |sky130_fd_sc_hd__or4_4 (25)                
+sky130_fd_sc_hd__or4_4 (24)                |sky130_fd_sc_hd__or4_4 (24)                
 sky130_fd_sc_hd__o2111ai_2 (23)            |sky130_fd_sc_hd__o2111ai_2 (23)            
 sky130_fd_sc_hd__inv_12 (29)               |sky130_fd_sc_hd__inv_12 (29)               
 sky130_fd_sc_hd__clkinv_2 (35)             |sky130_fd_sc_hd__clkinv_2 (35)             
 sky130_fd_sc_hd__and2b_4 (10)              |sky130_fd_sc_hd__and2b_4 (10)              
 sky130_fd_sc_hd__dfxtp_4 (4)               |sky130_fd_sc_hd__dfxtp_4 (4)               
-sky130_fd_sc_hd__o2bb2a_4 (13)             |sky130_fd_sc_hd__o2bb2a_4 (13)             
+sky130_fd_sc_hd__o2bb2a_4 (12)             |sky130_fd_sc_hd__o2bb2a_4 (12)             
 sky130_fd_sc_hd__nand3_4 (3)               |sky130_fd_sc_hd__nand3_4 (3)               
 sky130_fd_sc_hd__o32ai_2 (3)               |sky130_fd_sc_hd__o32ai_2 (3)               
-sky130_fd_sc_hd__a22o_4 (14)               |sky130_fd_sc_hd__a22o_4 (14)               
+sky130_fd_sc_hd__a22o_4 (15)               |sky130_fd_sc_hd__a22o_4 (15)               
 sky130_fd_sc_hd__o21ba_4 (5)               |sky130_fd_sc_hd__o21ba_4 (5)               
 sky130_sram_2kbyte_1rw1r_32x512_8 (14)     |sky130_sram_2kbyte_1rw1r_32x512_8 (14)     
 sky130_fd_sc_hd__nand2b_4 (8)              |sky130_fd_sc_hd__nand2b_4 (8)              
 sky130_fd_sc_hd__o311a_4 (11)              |sky130_fd_sc_hd__o311a_4 (11)              
 sky130_fd_sc_hd__a311oi_2 (11)             |sky130_fd_sc_hd__a311oi_2 (11)             
-sky130_fd_sc_hd__o211a_1 (5)               |sky130_fd_sc_hd__o211a_1 (5)               
 sky130_fd_sc_hd__bufinv_16 (23)            |sky130_fd_sc_hd__bufinv_16 (23)            
 sky130_fd_sc_hd__o32a_4 (10)               |sky130_fd_sc_hd__o32a_4 (10)               
 sky130_fd_sc_hd__or4b_4 (11)               |sky130_fd_sc_hd__or4b_4 (11)               
@@ -5009,6 +5008,7 @@ sky130_fd_sc_hd__inv_16 (12)               |sky130_fd_sc_hd__inv_16 (12)
 sky130_fd_sc_hd__o211ai_4 (8)              |sky130_fd_sc_hd__o211ai_4 (8)              
 sky130_fd_sc_hd__nor3b_4 (2)               |sky130_fd_sc_hd__nor3b_4 (2)               
 sky130_fd_sc_hd__a211o_4 (11)              |sky130_fd_sc_hd__a211o_4 (11)              
+sky130_fd_sc_hd__o211a_1 (6)               |sky130_fd_sc_hd__o211a_1 (6)               
 sky130_fd_sc_hd__and3b_4 (3)               |sky130_fd_sc_hd__and3b_4 (3)               
 sky130_fd_sc_hd__a41oi_2 (2)               |sky130_fd_sc_hd__a41oi_2 (2)               
 sky130_fd_sc_hd__ebufn_8 (5)               |sky130_fd_sc_hd__ebufn_8 (5)               
@@ -5016,17 +5016,18 @@ sky130_fd_sc_hd__nand3_1 (3)               |sky130_fd_sc_hd__nand3_1 (3)
 sky130_fd_sc_hd__nor4_4 (7)                |sky130_fd_sc_hd__nor4_4 (7)                
 sky130_fd_sc_hd__clkinvlp_4 (12)           |sky130_fd_sc_hd__clkinvlp_4 (12)           
 sky130_fd_sc_hd__a311oi_4 (3)              |sky130_fd_sc_hd__a311oi_4 (3)              
-sky130_fd_sc_hd__a41o_4 (2)                |sky130_fd_sc_hd__a41o_4 (2)                
+sky130_fd_sc_hd__a41o_4 (1)                |sky130_fd_sc_hd__a41o_4 (1)                
 sky130_fd_sc_hd__nor4b_4 (2)               |sky130_fd_sc_hd__nor4b_4 (2)               
 sky130_fd_sc_hd__nor4b_2 (2)               |sky130_fd_sc_hd__nor4b_2 (2)               
 sky130_fd_sc_hd__a31oi_4 (8)               |sky130_fd_sc_hd__a31oi_4 (8)               
 sky130_fd_sc_hd__a2bb2o_4 (5)              |sky130_fd_sc_hd__a2bb2o_4 (5)              
+sky130_fd_sc_hd__a32o_4 (4)                |sky130_fd_sc_hd__a32o_4 (4)                
 sky130_fd_sc_hd__a221o_4 (14)              |sky130_fd_sc_hd__a221o_4 (14)              
+sky130_fd_sc_hd__or4bb_4 (6)               |sky130_fd_sc_hd__or4bb_4 (6)               
 sky130_fd_sc_hd__nand4_4 (3)               |sky130_fd_sc_hd__nand4_4 (3)               
 sky130_fd_sc_hd__and4bb_4 (3)              |sky130_fd_sc_hd__and4bb_4 (3)              
 sky130_fd_sc_hd__o41a_4 (3)                |sky130_fd_sc_hd__o41a_4 (3)                
 sky130_fd_sc_hd__o311ai_2 (2)              |sky130_fd_sc_hd__o311ai_2 (2)              
-sky130_fd_sc_hd__or4bb_4 (5)               |sky130_fd_sc_hd__or4bb_4 (5)               
 sky130_fd_sc_hd__nand4b_4 (1)              |sky130_fd_sc_hd__nand4b_4 (1)              
 sky130_fd_sc_hd__a21bo_4 (5)               |sky130_fd_sc_hd__a21bo_4 (5)               
 sky130_fd_sc_hd__o311ai_4 (1)              |sky130_fd_sc_hd__o311ai_4 (1)              
@@ -5035,11 +5036,10 @@ sky130_sram_1kbyte_1rw1r_32x256_8 (1)      |sky130_sram_1kbyte_1rw1r_32x256_8 (1
 sky130_fd_sc_hd__o21bai_4 (1)              |sky130_fd_sc_hd__o21bai_4 (1)              
 sky130_fd_sc_hd__nor4_1 (1)                |sky130_fd_sc_hd__nor4_1 (1)                
 sky130_fd_sc_hd__nand3b_4 (2)              |sky130_fd_sc_hd__nand3b_4 (2)              
-sky130_fd_sc_hd__a32o_4 (2)                |sky130_fd_sc_hd__a32o_4 (2)                
 sky130_fd_sc_hd__nand4_1 (1)               |sky130_fd_sc_hd__nand4_1 (1)               
 sky130_fd_sc_hd__o31ai_1 (1)               |sky130_fd_sc_hd__o31ai_1 (1)               
-Number of devices: 137162                  |Number of devices: 137162                  
-Number of nets: 138172                     |Number of nets: 138172                     
+Number of devices: 137149                  |Number of devices: 137149                  
+Number of nets: 138159                     |Number of nets: 138159                     
 ---------------------------------------------------------------------------------------
 Resolving symmetries by property value.
 Resolving symmetries by pin name.
@@ -5116,8 +5116,8 @@ catode[6]                                  |catode[6]
 catode[7]                                  |catode[7]                                  
 I2C_SCL                                    |I2C_SCL                                    
 QSPI_CS                                    |QSPI_CS                                    
-UART_TX                                    |UART_TX                                    
 QSPI_SCLK                                  |QSPI_SCLK                                  
+UART_TX                                    |UART_TX                                    
 GPIO_ODR[16]                               |GPIO_ODR[16]                               
 GPIO_ODR[17]                               |GPIO_ODR[17]                               
 GPIO_ODR[18]                               |GPIO_ODR[18]                               

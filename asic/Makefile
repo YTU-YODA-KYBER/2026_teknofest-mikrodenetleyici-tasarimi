@@ -172,8 +172,9 @@ asic_sim: check_env prepare
 #        resizer sonrasi         :     0 jumper guide, 1.422 SAHIPSIZ bayrak
 #
 #    Ayrica met3 kaynak cezasi yalnizca ana GlobalRouting'den sonra
-#    uygulanmalidir. Guncel UART RTL'sinde %15 ana GRT'de 56 asimla durdu;
-#    %10 ise ayni faz-1 durumundan 0 asimla gecip tam signoff'u tamamladi.
+#    uygulanmalidir. Guncel I2C entegrasyonunun bit-ozdes sentez netlist'inde
+#    %10 post-GRT yeniden yollamasi 15 asimla durdu; %9 ayni faz-1 durumundan
+#    iki GRT'yi de 0 asimla gecip tam signoff'u tamamladi.
 #
 #    Cozum: faz 1 taban config ile STAMidPNR-2'ye kadar; faz 2 met3 overlay'i
 #    ile GlobalRouting'den ResizerTimingPostGRT'ye kadar; faz 3 ise jumper'i
@@ -208,12 +209,12 @@ asic_run: check_env prepare
 	    echo "      Aranan: $(RUN_DIR)/*-openroad-stamidpnr-2/state_out.json" >&2; \
 	    flow_rc=1; \
 	  else \
-	    echo "==> Faz 2/3: GlobalRouting -> ResizerTimingPostGRT (met3 %10 overlay)"; \
+	    echo "==> Faz 2/3: GlobalRouting -> ResizerTimingPostGRT (met3 %9 overlay)"; \
 	    echo "    baslangic durumu: $$sta2_dir/state_out.json"; \
 	    $(PY) $(SCRIPTS)/run_flow.py --tag $(RUN_TAG) \
 	          --from OpenROAD.GlobalRouting --to OpenROAD.ResizerTimingPostGRT \
 	          --config $(ASIC_DIR)/config.yaml \
-	          --config $(ASIC_DIR)/experiments/grt_layer_met3_010.yaml \
+	          --config $(ASIC_DIR)/experiments/grt_layer_met3_009.yaml \
 	          --initial-state "$$sta2_dir/state_out.json"; \
 	    flow_rc=$$?; \
 	  fi; \
@@ -225,12 +226,12 @@ asic_run: check_env prepare
 	    echo "      Aranan: $(RUN_DIR)/*-openroad-resizertimingpostgrt/state_out.json" >&2; \
 	    flow_rc=1; \
 	  else \
-	    echo "==> Faz 3/3: RepairAntennas'tan sona (met3 %10 + anten jumper overlay)"; \
+	    echo "==> Faz 3/3: RepairAntennas'tan sona (met3 %9 + anten jumper overlay)"; \
 	    echo "    baslangic durumu: $$rsz_dir/state_out.json"; \
 	    $(PY) $(SCRIPTS)/run_flow.py --tag $(RUN_TAG) \
 	          --from OpenROAD.RepairAntennas \
 	          --config $(ASIC_DIR)/config.yaml \
-	          --config $(ASIC_DIR)/experiments/grt_layer_met3_010.yaml \
+	          --config $(ASIC_DIR)/experiments/grt_layer_met3_009.yaml \
 	          --config $(ASIC_DIR)/experiments/antenna_jumper.yaml \
 	          --initial-state "$$rsz_dir/state_out.json"; \
 	    flow_rc=$$?; \

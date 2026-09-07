@@ -1,0 +1,9 @@
+# Tek-degiskenli resmi overlay: met3 kapasite rezervini %10'dan %9'a indirir.
+#
+# Guncel I2C kaynak entegrasyonunun sentez netlist'i onceki basarili teslim
+# kosumuyla bit-ozdestir. Buna ragmen yeni fiziksel kosumun post-GRT resizer
+# yeniden yollamasi met3'te 15 birim tasma ile durmustur. Bu tek degiskenli
+# ayar yalniz %1 ek met3 kapasitesi verir. Ayni faz-1 durumundan iki GRT de
+# 0 asimla, DRT/Magic/KLayout DRC 0/0/0, LVS/XOR 0/0 ve setup/hold 0/0 ile
+# tam signoff tamamlanmistir.
+GRT_LAYER_ADJUSTMENTS: [0, 0.3, 0.25, 0.09, 0, 0]

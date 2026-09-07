@@ -4,14 +4,23 @@
 #  Cikti: asic/checksums/SHA256SUMS   (sartname Bolum 6.3, Tablo 18)
 #
 #  Kapsam: asic/results/ ve asic/reports/ altindaki butun dosyalar ile
-#          asic/ kokundeki yapilandirma/otomasyon girdileri.
+#          asic/ kokundeki yapilandirma/otomasyon girdileri ve resmî akış
+#          overlay'lerini içeren experiments/ dizini.
 #  Yollar asic/ dizinine gorelidir; `sha256sum -c SHA256SUMS` ile dogrulanabilir.
 # ---------------------------------------------------------------------------
 import hashlib
 import pathlib
 
 ASIC = pathlib.Path(__file__).resolve().parent.parent
-ROOTS = ["results", "reports", "macros", "constraints", "environment", "scripts"]
+ROOTS = [
+    "results",
+    "reports",
+    "macros",
+    "constraints",
+    "environment",
+    "experiments",
+    "scripts",
+]
 FILES = ["config.yaml", "filelist.f", "Makefile", "README.md", "THIRD_PARTY.md"]
 
 

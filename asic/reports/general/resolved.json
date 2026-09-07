@@ -242,7 +242,6 @@
         "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/GPIO_AXI4_Lite_asic.sv",
         "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/Timer_AXI4_Lite_asic.sv",
         "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/QSPI_Master_AXI4_Lite_asic.sv",
-        "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/I2C_Master_AXI4_Lite_asic.sv",
         "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/UART_GU_AXI4_Lite_asic.sv",
         "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/UART_YZ_AXI4_Lite_asic.sv",
         "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/conv_accelerator_asic.v",
@@ -293,6 +292,7 @@
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv",
+        "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv",
         "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv",
         "/home/luxyxp/Documents/mainfiles/asic_rtl/patched/Top_module_asic.sv"
     ],
@@ -528,7 +528,7 @@
         0,
         0.3,
         0.25,
-        0.1,
+        0.09,
         0,
         0
     ],

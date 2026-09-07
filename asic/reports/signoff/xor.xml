@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <report-database>
- <description>XOR /usr/asic_flow/run/uart28_m3a010_final/59-magic-streamout/top_module.magic.gds vs. /usr/asic_flow/run/uart28_m3a010_final/60-klayout-streamout/top_module.klayout.gds</description>
+ <description>XOR /usr/asic_flow/run/i2c_20260907_final/59-magic-streamout/top_module.magic.gds vs. /usr/asic_flow/run/i2c_20260907_final/60-klayout-streamout/top_module.klayout.gds</description>
  <original-file/>
  <generator>drc: script='/nix/store/5jsqcdxd774ydqqjk8zkw3zk47dxbryb-python3-3.13.9-env/lib/python3.13/site-packages/librelane/scripts/klayout/xor.drc'</generator>
  <top-cell>top_module</top-cell>

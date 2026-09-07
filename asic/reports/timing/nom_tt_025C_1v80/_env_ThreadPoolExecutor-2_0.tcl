@@ -63,8 +63,8 @@ set ::env(DEDUPLICATE_CORNERS) 1
 set ::env(STA_MACRO_PRIORITIZE_NL) 1
 set ::env(STA_THREADS) 1
 set ::env(SIGNOFF_SDC_FILE) /home/luxyxp/Documents/mainfiles/asic/constraints/design.sdc
-set ::env(CURRENT_NL) /usr/asic_flow/run/uart28_m3a010_final/54-openroad-fillinsertion/top_module.nl.v
-set ::env(CURRENT_SPEF) "\"nom_*\" /usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/nom/top_module.nom.spef \"min_*\" /usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/min/top_module.min.spef \"max_*\" /usr/asic_flow/run/uart28_m3a010_final/56-openroad-rcx/max/top_module.max.spef"
-set ::env(CURRENT_ODB) /usr/asic_flow/run/uart28_m3a010_final/55-odb-cellfrequencytables/top_module.odb
-set ::env(SAVE_SDC) /usr/asic_flow/run/uart28_m3a010_final/57-openroad-stapostpnr/top_module.sdc
+set ::env(CURRENT_NL) /usr/asic_flow/run/i2c_20260907_final/54-openroad-fillinsertion/top_module.nl.v
+set ::env(CURRENT_SPEF) "\"nom_*\" /usr/asic_flow/run/i2c_20260907_final/56-openroad-rcx/nom/top_module.nom.spef \"min_*\" /usr/asic_flow/run/i2c_20260907_final/56-openroad-rcx/min/top_module.min.spef \"max_*\" /usr/asic_flow/run/i2c_20260907_final/56-openroad-rcx/max/top_module.max.spef"
+set ::env(CURRENT_ODB) /usr/asic_flow/run/i2c_20260907_final/55-odb-cellfrequencytables/top_module.odb
+set ::env(SAVE_SDC) /usr/asic_flow/run/i2c_20260907_final/57-openroad-stapostpnr/top_module.sdc
 set ::env(OPENLANE_SDC_IDEAL_CLOCKS) 0

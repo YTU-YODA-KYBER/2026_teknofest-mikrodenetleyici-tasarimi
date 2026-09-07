@@ -1,7 +1,7 @@
 # `experiments/` — tanısal yapılandırma katmanları
 
 Bu dizindeki dosyaların çoğu tanısaldır. İki istisna resmî üç-faz akışın
-parçasıdır: `grt_layer_met3_010.yaml` faz 2/3'te, `antenna_jumper.yaml` faz
+parçasıdır: `grt_layer_met3_009.yaml` faz 2/3'te, `antenna_jumper.yaml` faz
 3'te `make asic_run` tarafından uygulanır. Diğer dosyalar `config.yaml`
 üzerine elle bindirilen tek amaçlı **ölçüm** katmanlarıdır.
 
@@ -40,7 +40,7 @@ kötüleştiriyor.
 Bu yüzden `grt_target_sram_m1_keepout_*` ailesi ve `grt_adjustment` 0,05
 varyantı **geri alınmıştır**; nihai taban config `GRT_ADJUSTMENT: 0.10`,
 `[0, 0.3, 0.25, 0, 0, 0]`, `GRT_OVERFLOW_ITERS: 30`, keep-out yok kullanır.
-Resmî faz 2/3'te met3 girdisi `grt_layer_met3_010.yaml` ile %10 kısılır.
+Resmî faz 2/3'te met3 girdisi `grt_layer_met3_009.yaml` ile %9 kısılır.
 
 **Kural:** bir GRT ayarı, detaylı yollamadan geçtiği ölçülmeden ana config'e
 alınmaz.
@@ -59,7 +59,8 @@ overlay'in DRT sonucu **ölçülmemiştir**.
 
 | Overlay | İzole ettiği değişken | Ölçülen sonuç | Ana config'e alındı mı? |
 |---|---|---|---|
-| `grt_layer_met3_010.yaml` | Güncel UART RTL'sinde met3 kaynak cezası %15 → %10 | Aynı faz-1 durumunda ilk GRT aşımı **56 → 0**; resmî tam koşumda DRT/Magic/KLayout DRC **0/0/0**, LVS/XOR **0/0**, setup/hold ihlalli uç **0/0**, anten **1.066/1.137** | **Evet — faz 2/3 resmî overlay'i; tam signoff geçti** |
+| `grt_layer_met3_009.yaml` | Güncel I2C entegrasyonunda met3 kaynak cezası %10 → %9 | Bit-özdeş netlistte %10 post-GRT yeniden yollaması **15 aşımla durdu**; aynı faz-1 durumunda %9 iki GRT'yi **0/0 aşımla** geçti. Kontrollü adayda anten **1.054/1.114**; tek etiketli resmî koşumda DRT/Magic/KLayout DRC **0/0/0**, LVS/XOR **0/0**, setup/hold ihlalli uç **0/0**, anten **1.067/1.122** | **Evet — faz 2/3 resmî overlay'i; tam signoff geçti** |
+| `grt_layer_met3_010.yaml` | Güncel UART RTL'sinde met3 kaynak cezası %15 → %10 | Aynı faz-1 durumunda ilk GRT aşımı **56 → 0**; önceki resmî tam koşumda DRT/Magic/KLayout DRC **0/0/0**, LVS/XOR **0/0**, setup/hold ihlalli uç **0/0**, anten **1.066/1.137**; güncel yeniden koşumun post-GRT aşamasında **15 aşımla durdu** | Hayır — `%9` ile değiştirildi |
 | `grt_layer_met3_015.yaml` | Met3 kaynak cezası %10 etkin tabandan %15'e | Önceki RTL'de tam signoff anten **955/1.013 → 926/979**, DRC 0; güncel UART RTL'sinde ilk GRT **56 aşımla durdu** | Hayır — güncel RTL'de yollanamadığı için resmî akıştan çıkarıldı |
 | `grt_layer_met3_020.yaml` | Met3 kaynak cezası %20 | İlk GRT anteni iyileşti; post-GRT resizer yeniden yollaması met3'te **9 aşım** ile durdu | Hayır |
 | `antenna_jumper_margin20.yaml` | Jumper tarama marjı %5 -> %20 | 1.100 ek jumper'a rağmen signoff anten **955/1.013 -> 966/1.017** kötüleşti | Hayır |

@@ -11,10 +11,10 @@ Tasarım, şartname Bölüm 2 uyarınca **üst seviye bir ASIC bloğu** olarak
 teslim edilir: I/O pad ring, bond pad, ESD hücresi ve seal ring kapsam dışıdır;
 tasarımın bütün giriş/çıkışları nihai LEF ve DEF görünümlerinde makro pinleridir.
 
-> **Teslim durumu:** Son toplanan `uart28_m3a010_final` fiziksel sonucu güncel
-> UART RTL'ini temsil eder ve
+> **Teslim durumu:** Son toplanan `i2c_20260907_final` fiziksel sonucu güncel
+> I2C entegrasyonunu içeren RTL'i temsil eder ve
 > yollama/Magic/KLayout DRC, LVS, XOR, PDN ve dokuz köşede setup/hold
-> kontrollerini sıfır ihlalle geçmiştir; ancak **1.066 net / 1.137 pin anten
+> kontrollerini sıfır ihlalle geçmiştir; ancak **1.067 net / 1.122 pin anten
 > ihlali** vardır. Bu nedenle Final Çıktılar §2'de DRC, LVS, anten ve zamanlama
 > kontrollerinin birlikte sağlanması olarak tanımlanan **“üretime hazır” koşulu
 > tam karşılanmamaktadır**.
@@ -43,7 +43,7 @@ make asic_verify              # teslim paketini denetle
 | [`../asic_rtl/`](../asic_rtl/) | **ASIC'e özgü RTL** (bu klasörün dışında): SRAM makro sarmalayıcıları, mask ROM'lar, yamalı kopyalar | Kısmen elle, kısmen `scripts/gen_rom.py` + `scripts/patch_rtl.py` ile üretilir |
 | [`reports/`](reports/) | Şartname Bölüm 5'te istenen bütün raporlar | Akış çalıştıktan sonra `scripts/collect.py` toplar |
 | [`results/`](results/) | Şartname Bölüm 6'da istenen nihai çıktılar (GDSII, LEF, DEF, netlistler, SPEF…) | Aynı akıştan, `scripts/collect.py` toplar |
-| [`experiments/`](experiments/) | Fiziksel tasarım kararlarının dayandığı **tanısal yapılandırma katmanları**. İkisi (`grt_layer_met3_010.yaml`, `antenna_jumper.yaml`) resmî üç fazlı `make asic_run` zincirinin parçasıdır; geri kalanı araştırma kaydıdır | Elle yazıldı; her birinin izole ettiği değişken ve ölçülen sonuç [`experiments/README.md`](experiments/README.md)'de |
+| [`experiments/`](experiments/) | Fiziksel tasarım kararlarının dayandığı **tanısal yapılandırma katmanları**. İkisi (`grt_layer_met3_009.yaml`, `antenna_jumper.yaml`) resmî üç fazlı `make asic_run` zincirinin parçasıdır; geri kalanı araştırma kaydıdır | Elle yazıldı; her birinin izole ettiği değişken ve ölçülen sonuç [`experiments/README.md`](experiments/README.md)'de |
 | [`reports/synthesis/strateji_denemeleri.md`](reports/synthesis/strateji_denemeleri.md) | Sentez ve fiziksel tasarım denemelerinin ölçüm kaydı; hangi ayarın ne kadar etki ettiği | Elle yazıldı, sayılar akış loglarından |
 | [`reports/synthesis/deney_arsivi/`](reports/synthesis/deney_arsivi/) | 25 koşumun ham kanıtı: `resolved.json`, GRT/DRT log özetleri, `or_metrics_out.json`, DRC dökümü | Koşum dizinlerinden arşivlendi |
 | [`reports/timing/frekans_kalibrasyonu.md`](reports/timing/) | Beyan edilen saat frekansının **ölçüm** kaydı | `scripts/calibrate_clock.py` üretir |
@@ -80,7 +80,7 @@ birinin izole ettiği değişken ve ölçülen sonuç
 
 > **İSTİSNA — iki overlay resmî teslim akışının parçasıdır.** `make asic_run`
 > üç fazlıdır ve `config.yaml`'a ek olarak şu ikisini kullanır:
-> `experiments/grt_layer_met3_010.yaml` (faz 2 ve 3) ve
+> `experiments/grt_layer_met3_009.yaml` (faz 2 ve 3) ve
 > `experiments/antenna_jumper.yaml` (faz 3). Bunlar araştırma overlay'leri
 > arasından **ölçümle seçilip** resmî Makefile zincirine alınmıştır; gerekçeleri
 > madde 3 ve 8'dedir. `scripts/verify_deliverables.py` her ikisinin fiilen
@@ -252,13 +252,13 @@ dosyasındadır.
 | `RT_MAX_LAYER` | `met5` (PDK) | `met4` | SRAM makro LEF'i met1/met2'yi tek `RECT` ile (%99,5), met3'ü 61 `RECT` ile (%96,7) ve met4'ü 143 `RECT` ile (%97,8) kapatır; hiçbirinde kesintisiz geçiş yolu yoktur. met5 tamamen boştur ama oraya çıkmak `via4` gerektirir ve met4 makro üzerinde kapalıdır — yani met5'e ancak makro **dışından** girilebilir. Global router bu erişim kısıtını kaba ızgarada göremeyip gerçeklenemeyen yollar planlıyordu: met5 toplam talebin **%1,4**'ünü taşırken detaylı yollamadaki DRC ihlallerinin **~%67**'sini (6.056 kısa devre + 2.677 aralık) tek başına üretiyordu. Kontrollü deney: `RT_MAX_LAYER: met5` ile toplam aşım **94.692**, `met4` ile aynı veritabanında çok daha düşük. |
 | `RT_CLOCK_MIN_LAYER` | (okunmuyor) | `met2` | PDK `met3` tavsiye eder (`sky130A/libs.tech/openlane/config.tcl:158`) ama LibreLane 3.0.6'da bu değişken `pdk=True` **değildir**, yani PDK değeri okunmaz ve etkin değer `met1` kalır. Ölçüm: saat `met1` → GRT tur sayısı 2; `met3` → 8+ tur, GRT 9,5 saatte bitmedi (makrolar met3/met4'ün %97'sini kapattığı için 13 NDR'li saat neti garantili tıkanık bölgeden geçiyor); **`met2` uzlaşma noktasıdır** — en dolu katmanı saat ağacına kapatır, makroların kapattığı katmanlara da kilitlemez. |
 | `GRT_ADJUSTMENT` | `0.30` | `0.10` | Listedeki `0` değeri "ceza yok" **anlamına gelmez**: OpenROAD önce bu genel değeri bütün katmanlara uygular, sonra yalnızca sıfırdan farklı katman değerleri onu ezer. Genel değer %30'da kaldığı için boş duran met3/met4 de farkında olmadan %30 kısılıyordu. %10'a indirmek toplam aşımı 192.800 → 5.114 yaptı. **Daha da indirmek (%5) GERİ ALINDI** — aşağıdaki uyarıya bakın. |
-| `GRT_LAYER_ADJUSTMENTS` | `[0,0,0,0,0,0]` | `[0, 0.3, 0.25, 0, 0, 0]` → teslim akışında met3 fazından itibaren **`[0, 0.3, 0.25, 0.10, 0, 0]`** | Yük alt iki katmanda sıkışıyordu; met1/met2 kapasitesi ek olarak derate edilerek yollar boş duran üst katmanlara itilir. Güncel UART RTL'inde met3 %15 ilk GRT'de 56 aşımla durdu; %10 aynı durumdan sıfır aşımla geçip tam signoff'u tamamladı. |
+| `GRT_LAYER_ADJUSTMENTS` | `[0,0,0,0,0,0]` | `[0, 0.3, 0.25, 0, 0, 0]` → teslim akışında met3 fazından itibaren **`[0, 0.3, 0.25, 0.09, 0, 0]`** | Yük alt iki katmanda sıkışıyordu; met1/met2 kapasitesi ek olarak derate edilerek yollar boş duran üst katmanlara itilir. Güncel I2C entegrasyonunun bit-özdeş netlistinde %10 post-GRT yeniden yollaması 15 aşımla durdu; %9 aynı faz-1 durumundan iki GRT'yi de sıfır aşımla geçip tam signoff'u tamamladı. |
 | `GRT_OVERFLOW_ITERS` | `50` | **`30`** | Varsayılan 50, NDR kapatma döngüsünde bir GRT turunu saatlerce uzatıyordu. 20; i=8/i=20 maliyet fazlarını korur, i=35/i=50 fazlarını atlar. Bu değer sonradan **30**'a çıkarıldı (post-GRT onarım marjı sıfırlanınca artımlı GRT'ye tur payı bırakmak için; bkz. `config.yaml`). Nihai koşumun detaylı yollama sonucu **0 ihlaldir**; süre–aşım takası açıkça kabul edilmiştir. |
 | `ROUTING_OBSTRUCTIONS` | (yok) | **kullanılmadı** | Makro kenarlarına 10 µm met1 keep-out denendi. GRT aşımını düşürdü ama detaylı yollamayı kötüleştirdi (aşağıdaki uyarı). `scripts/gen_macro_keepout.py` korunmuştur; `make keepout MODE=on` ile geri açılabilir. |
 | `MAX_FANOUT_CONSTRAINT` | `10` (PDK) | `25` | Varsayılan, `repair_design`'ın 23.137 tampon eklemesine yol açıyordu (standart hücre alanının ~%17'si); her tampon ek net ve ek yollama talebi demektir. Ölçülen etki: aşım 133k → 73k, tampon 23.137 → 15.853. |
-| `DESIGN_REPAIR_MAX_SLEW_PCT` | `20` | `0` | `repair_design` varsayılan olarak kütüphane sınırının %20 **altına** kadar onarım yapar. Bu marj tek başına 4.144 nete 15.783 tampon eklettiriyordu. Marj sıfırlanınca onarım o aşamada görülen gerçek ihlallere iner; bu bir sign-off garantisi değildir. Nihai STA **830 max-slew** ve **21 max-cap** ihlali raporlamıştır. |
+| `DESIGN_REPAIR_MAX_SLEW_PCT` | `20` | `0` | `repair_design` varsayılan olarak kütüphane sınırının %20 **altına** kadar onarım yapar. Bu marj tek başına 4.144 nete 15.783 tampon eklettiriyordu. Marj sıfırlanınca onarım o aşamada görülen gerçek ihlallere iner; bu bir sign-off garantisi değildir. Nihai STA **818 max-slew** ve **21 max-cap** ihlali raporlamıştır. |
 | `DESIGN_REPAIR_MAX_CAP_PCT` | `20` | `0` | Aynı gerekçe. |
-| `PL_RESIZER_HOLD_SLACK_MARGIN` | `0.10` | `0.02` | Post-CTS ölçümünde 0,10 marj 6.783 hold tamponu, 0,02 hedefi ~911 tampon gerektiriyordu. Bu ölçümler 38 ns dönemine aittir ve **tarihseldir**. Nihai 28 MHz koşumunda dokuz köşede post-route hold ihlali ve TNS **0**, en kötü hold payı **+0,284925 ns**'dir. Eski değerler: hold WNS −1,751 ns, TNS −260,481 ns, 2.672 ihlalli uçtur. |
+| `PL_RESIZER_HOLD_SLACK_MARGIN` | `0.10` | `0.02` | Post-CTS ölçümünde 0,10 marj 6.783 hold tamponu, 0,02 hedefi ~911 tampon gerektiriyordu. Bu ölçümler 38 ns dönemine aittir ve **tarihseldir**. Nihai 28 MHz koşumunda dokuz köşede post-route hold ihlali ve TNS **0**, en kötü hold payı **+0,109632 ns**'dir. Eski değerler: hold WNS −1,751 ns, TNS −260,481 ns, 2.672 ihlalli uçtur. |
 | `PL_TARGET_DENSITY_PCT` | (dinamik) | `35` | Makro yoğun floorplan'da yerel yığılmayı dağıtmak için; `25` denendi ve daha kötü çıktı (aşım 258k). |
 | `SIGNAL_WIRE_RC_LAYERS` | (türetilir) | `[met1..met4]` | Boş bırakılırsa LibreLane listeyi `get_layers -constrained` ile türetir, ama o proc'ta `-constrained` bayrağı **üst sınırda ters çalışır** (`scripts/openroad/common/io.tcl`): met4'ten *sonra* eklemeye başlar ve **met5 listeye girer**. Ölçümle doğrulandı: sinyal RC 4,402703e-04 (met5 dâhil, %19 iyimser) → 5,247619e-04 (doğru). |
 | `CLOCK_WIRE_RC_LAYERS` | (türetilir) | `[met2, met3, met4]` | Saat ağacı met2'den başladığı için (`RT_CLOCK_MIN_LAYER`) RC tahminine met2 de girmelidir. Önceki `[met3, met4]` değeri saat direncini yaklaşık 2,57 kat iyimser alıyordu. |
@@ -553,7 +553,7 @@ hedef sisteme göre yeniden belirlenmesi gerekir.
 | Makro yerleşimi | Elle — [`constraints/macro_placement.cfg`](constraints/macro_placement.cfg), `MACRO_PLACEMENT_CFG` |
 | Makro çevresi keep-out | **kullanılmadı** (`ROUTING_OBSTRUCTIONS: null`) — denendi, detaylı yollamayı kötüleştirdi; aşağıdaki uyarıya bakın |
 | Clock tree synthesis | `OpenROAD.CTS`; `CTS_APPLY_NDR: half` varsayılanı korunur, obstruction-aware seçenek kullanılmaz ve saat netleri `CTS_CLK_MAX_WIRE_LENGTH: 600` ile bölünür |
-| Yollama katman payı | `GRT_ADJUSTMENT: 0.10`; `GRT_LAYER_ADJUSTMENTS` taban `[0, 0.3, 0.25, 0, 0, 0]`, teslim akışının met3 fazından itibaren `[0, 0.3, 0.25, 0.10, 0, 0]` |
+| Yollama katman payı | `GRT_ADJUSTMENT: 0.10`; `GRT_LAYER_ADJUSTMENTS` taban `[0, 0.3, 0.25, 0, 0, 0]`, teslim akışının met3 fazından itibaren `[0, 0.3, 0.25, 0.09, 0, 0]` |
 | Global routing iterasyonu | `GRT_OVERFLOW_ITERS: 30` |
 | Azami fan-out | `MAX_FANOUT_CONSTRAINT: 25` (PDK varsayılanı 10) |
 | Tasarım onarım marjı | `DESIGN_REPAIR_MAX_SLEW_PCT: 0`, `DESIGN_REPAIR_MAX_CAP_PCT: 0` |
@@ -843,9 +843,9 @@ sonucudur.
 | # | Konu | Durum | Sayı |
 |---:|---|---|---|
 | 1 | Yollama tıkanıklığı | Çözüldü | Faz-2 ilk GRT aşımı 0, DRT DRC 0 |
-| 2 | Hold marjı hızlı köşede | Kapandı | +0,28492 ns, ihlal 0 |
-| **3** | **Anten ihlalleri** | **Açık — kabul edildi** | **1.066 net / 1.137 pin** |
-| **4** | **Max slew / max capacitance** | **Açık — kabul edildi** | **830 / 21** |
+| 2 | Hold marjı hızlı köşede | Kapandı | +0,10963 ns, ihlal 0 |
+| **3** | **Anten ihlalleri** | **Açık — kabul edildi** | **1.067 net / 1.122 pin** |
+| **4** | **Max slew / max capacitance** | **Açık — kabul edildi** | **818 / 21** |
 | 5 | Zamanlama | Kapandı | 9 köşede setup/hold 0/0 |
 | 6 | Frekans seçimi | Ölçümle karar | 28 MHz |
 | **7** | **480 bağlantısız pin** | **Açık — kabul edildi** | **kritik 0** |
@@ -897,18 +897,19 @@ sıfırdır ve ihlalli uç yoktur. Ancak pay köşeye göre çok değişir:
 
 | Köşe grubu | En kötü hold slack |
 |---|---:|
-| `*_ss_100C_1v60` (yavaş) | +1,467 … +1,491 ns |
-| `*_tt_025C_1v80` (tipik) | +0,617 … +0,685 ns |
-| **`*_ff_n40C_1v95` (hızlı)** | **+0,285 … +0,356 ns** |
+| `*_ss_100C_1v60` (yavaş) | +0,918 … +1,032 ns |
+| `*_tt_025C_1v80` (tipik) | +0,314 … +0,382 ns |
+| **`*_ff_n40C_1v95` (hızlı)** | **+0,110 … +0,145 ns** |
 
-En kötü değer `max_ff_n40C_1v95` köşesinde **+0,285 ns**, yani 35,714 ns'lik
-periyodun **%0,80'i**. Bu bir **ihlal değildir**; kontrol geçmiştir.
+En kötü değer `max_ff_n40C_1v95` köşesinde **+0,110 ns**, yani 35,714 ns'lik
+periyodun **%0,31'i**. Bu bir **ihlal değildir**; kontrol geçmiştir.
 
 Bu pay koşumdan koşuma oynar ve izlenmesi gereken bir kalemdir. Ölçülen
 değerler: 25 MHz koşumunda (`final40c`) +0,057 ns, 30 MHz denemesinde
 (`run/final30`) +0,073 ns, tel bölmesiz 28 MHz koşumunda (`final28`)
-+0,086 ns, önceki teslim koşumunda (`ant28_m3a015_clean`) +0,071 ns ve güncel
-teslim koşumunda (`uart28_m3a010_final`) **+0,285 ns**. Yani hold payı
++0,086 ns, önceki teslim koşumlarında (`ant28_m3a015_clean`) +0,071 ns ve
+(`uart28_m3a010_final`) +0,285 ns; güncel teslim koşumunda
+(`i2c_20260907_final`) ise **+0,110 ns**. Yani hold payı
 frekans arttıkça daralmamış, aksine genişlemiştir — beklenen bir sonuçtur,
 çünkü hold aynı-kenar yollarına bakar ve periyottan bağımsızdır; değişim
 resizer'ın daha gevşek bir setup hedefiyle daha az agresif çalışmasından
@@ -948,7 +949,7 @@ koşumların çıktısıdır ve belirgin şekilde daha kötüdür.
 bir GDS bile üretmediği için bu tercih zorunluydu. Buna karşılık yollama DRC'si
 **0**'dır. Şartname Bölüm 7 ihlalin teslimi geçersiz kılmadığını söylüyor.
 
-**Nihai koşumda ölçülen anten ihlalleri: 1.066 net / 1.137 pin.**
+**Nihai koşumda ölçülen anten ihlalleri: 1.067 net / 1.122 pin.**
 (Oturum başında 2.904 net / 4.341 pindi. Azalmanın bir kısmı tel modeli
 düzeltmesi ve SRAM boru hattından kendiliğinden geldi; kalanı aşağıdaki
 jumper fazının ölçülen katkısıdır.)
@@ -964,9 +965,9 @@ resmî yoldur (tek fazlı bir koşum farklı anten sayıları verir):
 ```
 Faz 1:  başlangıç → OpenROAD.STAMidPNR-2 (taban katman ayarı)
 Faz 2:  OpenROAD.GlobalRouting → OpenROAD.ResizerTimingPostGRT
-        (+ experiments/grt_layer_met3_010.yaml)
+        (+ experiments/grt_layer_met3_009.yaml)
 Faz 3:  OpenROAD.RepairAntennas → sonuna kadar
-        (+ met3 %10 ve antenna_jumper overlay'leri, --overwrite VERİLMEZ)
+        (+ met3 %9 ve antenna_jumper overlay'leri, --overwrite VERİLMEZ)
 ```
 
 **Neden üç faz?** LibreLane Classic'in adım sırası sabittir
@@ -992,9 +993,10 @@ yalnızca ikinci kez koşup jumper'ları yeniden silmesini engeller. Faz 2/3'e
 dizinlerini silerdi.
 
 Met3 kaynak cezası baştan verilmez: `RepairDesignPostGPL` içindeki erken
-global routing'i de etkiler. Güncel UART RTL'inde %15, faz-2 ana GRT'yi 56
-aşım ile durdururken %10 aynı başlangıçtan sıfır aşımla geçmiştir. Bu nedenle
-faz 1 taban ayarı kullanır; ölçülmüş met3 overlay'i
+global routing'i de etkiler. Güncel I2C entegrasyonunun bit-özdeş sentez
+netlistinde %10 post-GRT yeniden yollaması 15 aşımla dururken %9 aynı faz-1
+durumundan iki GRT'yi de sıfır aşımla geçip tam signoff'u tamamlamıştır. Bu
+nedenle faz 1 taban ayarı kullanır; ölçülmüş met3 overlay'i
 yalnız faz 2 ve 3'te uygulanır.
 
 **Jumper'ın tek başına ölçülen kazancı:** anten 1.935 → 1.478 net (−%23,6),
@@ -1021,7 +1023,7 @@ tasarım görünümlerini üretmesi"*.
 | LVS (Netgen) | **0** ✔ |
 | XOR, illegal overlap, PDN | **0** ✔ |
 | Zamanlama (setup/hold, 9 köşe) | ihlal **0**, TNS **0** ✔ |
-| **Anten** | **1.066 net / 1.137 pin** ✘ |
+| **Anten** | **1.067 net / 1.122 pin** ✘ |
 
 Yani **anten kontrolü hariç** bütün üretilebilirlik kapıları temizdir; anten
 nedeniyle tanım tam olarak karşılanmamaktadır ve bu açıkça beyan edilir.
@@ -1056,7 +1058,7 @@ raporlanır.
 
 ### 4. Max slew / max capacitance ihlalleri
 
-Nihai koşumda `max_ss_100C_1v60` köşesinde **830 max-slew** ve **21 max-cap**
+Nihai koşumda `max_ss_100C_1v60` köşesinde **818 max-slew** ve **21 max-cap**
 ihlali kalmıştır. (Oturum başında 32.763 / 2.858 idi.)
 
 **Bunlar üretilebilirlik kuralı değildir.** DRC ve LVS gibi foundry kabul
@@ -1065,18 +1067,18 @@ hedefleridir** (`set_max_transition` / `set_max_capacitance`). İhlal eden bir
 çip üretilebilir; etkisi gürültü payının ve zamanlama modeli doğruluğunun
 azalmasıdır.
 
-**830 ihlal tek bir eşiğe ait değildir — iki ayrı sınıftır.** Her pin kendi
+**818 ihlal tek bir eşiğe ait değildir — iki ayrı sınıftır.** Her pin kendi
 kütüphanesindeki limite göre kontrol edilir:
 
 | Sınıf | Uygulanan limit | Kaynağı | İhlal |
 |---|---:|---|---:|
 | SRAM makrosu giriş pinleri | **0,04 ns** | makronun kendi Liberty'si | **328** |
-| Standart hücre pinleri | **0,75 ns** | PDK `sky130_fd_sc_hd/config.tcl:63` | **502** |
+| Standart hücre pinleri | **0,75 ns** | PDK `sky130_fd_sc_hd/config.tcl:63` | **490** |
 
 Nihai rapordaki **328 SRAM giriş pini** için uygulanan 0,04 ns sınırı takımın
 tanımladığı veya gevşettiği bir eşik değil, referans SKY130 SRAM Liberty
 görünümündeki `max_transition` değeridir. Ölçülen geçişler
-**0,248609–0,334776 ns** aralığındadır. PDK, SRAM Liberty/LEF/GDS görünümleri
+**0,248609–0,327987 ns** aralığındadır. PDK, SRAM Liberty/LEF/GDS görünümleri
 ve signoff eşiği değiştirilmemiş; 328 kaydın tamamı raporlarda görünür
 bırakılmıştır. Bu sayı bir waiver veya gizlenmiş kontrol değil, referans makro
 modelinin blok-seviyesi STA için çok sıkı transition sınırının açıkça
@@ -1311,7 +1313,8 @@ periyoda birebir doğrusaldır. `final30`'un 460 negatif yolunun tamamı tam
 | `run/final30` (30 MHz hedefiyle) | 33,333 ns | −2,0116 | 35,35 ns | 28,29 MHz |
 | `run/final30b` (30 MHz + tel bölme) | 33,333 ns | ≈ −2,42 | ≈ 35,75 ns | ≈ 27,97 MHz |
 | `final28` (tel bölmesiz) | 35,714 ns | +2,5223 | 33,19 ns | 30,13 MHz |
-| **`uart28_m3a010_final` (bu teslim)** | **35,714 ns** | **+2,4497** | **33,26 ns** | **30,06 MHz** |
+| `uart28_m3a010_final` (önceki teslim) | 35,714 ns | +2,4497 | 33,26 ns | 30,06 MHz |
+| **`i2c_20260907_final` (bu teslim)** | **35,714 ns** | **+2,3808** | **33,33 ns** | **30,00 MHz** |
 
 **Kritik gözlem:** 25 MHz hedefiyle koşulan `final40c`, 30 MHz hedefiyle
 koşulan `final30`'dan **2,42 ns daha hızlı** bir fiziksel gerçeklem üretmiştir.
@@ -1345,7 +1348,7 @@ tıkanıklık yaratır, yollanabilirlik sürücüsü hücreleri **+%217** şişi
 patlatır (taban +%42) ve net sonuç gevşek hedefle başlamaktan **daha yayvan**
 bir yerleşim olur.
 
-Bu teslim (`uart28_m3a010_final`) güncel RTL ile 28 MHz'i **+2,450 ns** payla
+Bu teslim (`i2c_20260907_final`) güncel RTL ile 28 MHz'i **+2,381 ns** payla
 kapatır.
 Anten, Final Çıktılar §2'nin açıkça saydığı DRC/LVS/anten/setup-hold kontrolleri
 arasında karşılanmayan kalemdir. Max-slew ve max-cap sonuçları da §4'te
@@ -1404,8 +1407,8 @@ oluşturmazlar; `critical` sayacının 0 olmasının sebebi budur.
 
 Bu bölüm önceki teslim koşumundaki (`run/ant28`) iki ayarın gerekçesini ve
 ölçülen sonucunu belgeler. Onu izleyen eski teslim met3=%15 kullanmış;
-güncel UART RTL'inde bu değer yollanamadığı için resmî akış met3=%10'a
-geçmiştir.
+güncel UART RTL'inde bu değer yollanamadığı için önce met3=%10'a geçilmiş;
+güncel I2C entegrasyonu koşumunda ise post-GRT marjı için met3=%9 seçilmiştir.
 
 **Kök neden.** Anten ihlali, bir kapıya bağlı **kesintisiz metal alanının**
 kapı alanına oranıdır. Ölçüm, ihlallerin uzun netlerde yoğunlaştığını gösterdi:
@@ -1495,7 +1498,7 @@ pini** `ANTENNAGATEAREA` bilgisi taşımaz. OpenROAD bu pinler için anten oran�
 hesaplayamaz ve dolayısıyla **ihlal raporlamaz**.
 
 **Bunun doğru okunuşu bir sınırdır, bir kazanç değildir.** Raporlanan
-1.066 net / 1.137 pin, yalnızca makro girişine giden netler bakımından **iyimser
+1.067 net / 1.122 pin, yalnızca makro girişine giden netler bakımından **iyimser
 olabilir**; kontrol kapsamı o netlerde eksiktir. Bu, "883 ek ihlal var"
 anlamına **gelmez** — hesaplanamayan bir büyüklüğün varlığı, ihlal olduğunu
 göstermez.
@@ -1568,7 +1571,7 @@ true → false`):
 3.042 diyot detaylı yollamayı belirgin zorlaştırıyor (başlangıç DRC 131.148,
 tabanın 2,5 katı) ve agresif yeniden yollama kazancın çoğunu geri üretiyor.
 Sonuç, o tarihteki teslim koşumunun **926 netinden kötüdür** (1.043) ve
-max-slew'i iki katına çıkarır. Güncel RTL'deki 1.066 değeriyle doğrudan
+max-slew'i iki katına çıkarır. Güncel RTL'deki 1.067 değeriyle doğrudan
 karşılaştırma tek değişkenli değildir. Diyot adayı kendi kontrollü tabanına
 karşı gösterdiği yollama/slew bedeli nedeniyle reddedilmiştir.
 
@@ -1954,28 +1957,28 @@ Aşağıdaki sayılar akışın ürettiği
 |---|---|
 | Die alanı | 15.120.000 µm² (15,120 mm²) |
 | Core alanı | 14.982.400 µm² (14,982 mm²) |
-| Standart hücre alanı | 1.669.650 µm² (1,670 mm²) |
+| Standart hücre alanı | 1.669.400 µm² (1,669 mm²) |
 | Makro alanı (15 SRAM) | 4.174.250 µm² (4,174 mm²) |
 | Toplam yerleşim alanı (hücre + makro) | 14.281.000 µm² (14,281 mm²) |
-| Core utilization | 0,3901 |
-| Toplam hücre sayısı | 1.343.006 |
+| Core utilization | 0,3900 |
+| Toplam hücre sayısı | 1.343.041 |
 | SRAM makrosu sayısı | 15 |
-| Toplam kablo uzunluğu | 10.445.368 µm (10,45 m) |
+| Toplam kablo uzunluğu | 10.443.330 µm (10,44 m) |
 
 ### Zamanlama (nihai post-PnR STA, parazitik çıkarım sonrası)
 
 | Corner | Setup WNS | Setup TNS | Hold WNS | Hold TNS |
 |---|---|---|---|---|
-| `nom_tt_025C_1v80` | 9,762 ns | 0 ns | 0,669 ns | 0 ns |
-| `nom_ss_100C_1v60` | 2,626 ns | 0 ns | 1,467 ns | 0 ns |
-| `nom_ff_n40C_1v95` | 12,328 ns | 0 ns | 0,316 ns | 0 ns |
-| `min_tt_025C_1v80` | 9,949 ns | 0 ns | 0,685 ns | 0 ns |
-| `min_ss_100C_1v60` | 3,023 ns | 0 ns | 1,491 ns | 0 ns |
-| `min_ff_n40C_1v95` | 12,477 ns | 0 ns | 0,356 ns | 0 ns |
-| `max_tt_025C_1v80` | 9,661 ns | 0 ns | 0,617 ns | 0 ns |
-| `max_ss_100C_1v60` | 2,450 ns | 0 ns | 1,478 ns | 0 ns |
-| `max_ff_n40C_1v95` | 12,236 ns | 0 ns | 0,285 ns | 0 ns |
-| **Tüm corner'lar (en kötü)** | 2,450 ns | 0 ns | 0,285 ns | 0 ns |
+| `nom_tt_025C_1v80` | 9,764 ns | 0 ns | 0,347 ns | 0 ns |
+| `nom_ss_100C_1v60` | 2,677 ns | 0 ns | 0,976 ns | 0 ns |
+| `nom_ff_n40C_1v95` | 12,320 ns | 0 ns | 0,126 ns | 0 ns |
+| `min_tt_025C_1v80` | 9,942 ns | 0 ns | 0,382 ns | 0 ns |
+| `min_ss_100C_1v60` | 3,061 ns | 0 ns | 1,032 ns | 0 ns |
+| `min_ff_n40C_1v95` | 12,464 ns | 0 ns | 0,145 ns | 0 ns |
+| `max_tt_025C_1v80` | 9,665 ns | 0 ns | 0,314 ns | 0 ns |
+| `max_ss_100C_1v60` | 2,381 ns | 0 ns | 0,918 ns | 0 ns |
+| `max_ff_n40C_1v95` | 12,229 ns | 0 ns | 0,110 ns | 0 ns |
+| **Tüm corner'lar (en kötü)** | 2,381 ns | 0 ns | 0,110 ns | 0 ns |
 
 ### Fiziksel signoff
 
@@ -1986,35 +1989,35 @@ Aşağıdaki sayılar akışın ürettiği
 | Netgen LVS | **0** |
 | LVS cihaz sayısı farkı | **0** |
 | LVS net sayısı farkı | **0** |
-| Anten ihlali (net) | **1066** |
-| Anten ihlali (pin) | **1137** |
+| Anten ihlali (net) | **1067** |
+| Anten ihlali (pin) | **1122** |
 | Yollama DRC | **0** |
 | Bağlantısız pin | **480** |
 | Kritik bağlantısız pin | **0** |
 | GDSII XOR farkı (Magic ↔ KLayout) | **0** |
 | Setup ihlali olan uç | **0** |
 | Hold ihlali olan uç | **0** |
-| Max slew ihlali | **830** |
+| Max slew ihlali | **818** |
 | Max cap ihlali | **21** |
 | Geçersiz örtüşme (illegal overlap) | **0** |
 | Güç dağıtım ağı ihlali | **0** |
 | Çıkarılan latch | **0** |
 | Lint hatası | **0** |
-| Lint uyarısı | **883** |
+| Lint uyarısı | **881** |
 | Sentez yapısal kontrol hatası | **0** |
 
 ### Güç (tahminî — açık switching activity girdisi kullanılmadı)
 
 | Corner | Internal | Switching | Leakage | Toplam |
 |---|---|---|---|---|
-| `nom_tt_025C_1v80` | 0,03591 W | 0,00518 W | 0,00025866 W | 0,04135 W |
-| `nom_ss_100C_1v60` | 0,03297 W | 0,00401 W | 0,00129873 W | 0,03828 W |
-| `nom_ff_n40C_1v95` | 0,03800 W | 0,00617 W | 0,00026079 W | 0,04442 W |
+| `nom_tt_025C_1v80` | 0,03591 W | 0,00519 W | 0,00025866 W | 0,04136 W |
+| `nom_ss_100C_1v60` | 0,03297 W | 0,00401 W | 0,00129853 W | 0,03828 W |
+| `nom_ff_n40C_1v95` | 0,03800 W | 0,00617 W | 0,00026079 W | 0,04443 W |
 | `min_tt_025C_1v80` | 0,03591 W | 0,00491 W | 0,00025866 W | 0,04108 W |
-| `min_ss_100C_1v60` | 0,03297 W | 0,00379 W | 0,00129873 W | 0,03806 W |
-| `min_ff_n40C_1v95` | 0,03799 W | 0,00585 W | 0,00026079 W | 0,04409 W |
+| `min_ss_100C_1v60` | 0,03297 W | 0,00380 W | 0,00129853 W | 0,03806 W |
+| `min_ff_n40C_1v95` | 0,03799 W | 0,00585 W | 0,00026079 W | 0,04410 W |
 | `max_tt_025C_1v80` | 0,03591 W | 0,00545 W | 0,00025866 W | 0,04162 W |
-| `max_ss_100C_1v60` | 0,03297 W | 0,00422 W | 0,00129873 W | 0,03849 W |
+| `max_ss_100C_1v60` | 0,03297 W | 0,00422 W | 0,00129853 W | 0,03849 W |
 | `max_ff_n40C_1v95` | 0,03801 W | 0,00648 W | 0,00026079 W | 0,04475 W |
 
 ### IR-drop (statik güç dağıtım ağı analizi)
@@ -2031,7 +2034,7 @@ Aşağıdaki sayılar akışın ürettiği
 
 ## Rapor ve çıktı konumları
 
-Bütün raporlar ve çıktılar aynı `uart28_m3a010_final` etiketi altında yürütülen
+Bütün raporlar ve çıktılar aynı `i2c_20260907_final` etiketi altında yürütülen
 **üç fazlı LibreLane checkpoint zincirinden** üretilmiştir; akış sonrasında
 elle düzenlenmemiştir.
 
@@ -2053,7 +2056,7 @@ Nihai GDSII dosyası `results/gds/top_module.gds`'tir ve **KLayout** tarafından
 üretilir; Magic'in ürettiği ikinci GDSII görünümü ile arasındaki geometrik fark
 [`reports/signoff/`](reports/signoff/) altındaki XOR raporundadır.
 
-LibreLane çalışma etiketi: **`uart28_m3a010_final`** (28 MHz teslim koşumu,
+LibreLane çalışma etiketi: **`i2c_20260907_final`** (28 MHz teslim koşumu,
 üç fazlı). Etiket ayrıca [`results/config/run_tag.txt`](results/config/run_tag.txt)
 dosyasında makinece okunabilir biçimde saklanır.
 

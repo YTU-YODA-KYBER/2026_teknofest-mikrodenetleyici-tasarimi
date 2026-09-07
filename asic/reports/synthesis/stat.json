@@ -1,6 +1,6 @@
 {
    "creator": "Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)",
-   "invocation": "stat -json -liberty /usr/asic_flow/run/uart28_m3a010_final/tmp/f52a1e34ce064ba394d40e3a4f93c9ee.lib ",
+   "invocation": "stat -json -liberty /usr/asic_flow/run/i2c_20260907_final/tmp/28467086f4ef43b4945d31a772d93db9.lib ",
    "modules": {
       "\\top_module": {
          "num_wires":         70141,
