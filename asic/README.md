@@ -588,10 +588,15 @@ kötü ölçülmüştür (`reports/synthesis/strateji_denemeleri.md`).
   **yatay** şeritlerdir; PDN'in met4 **dikey** şeritleri bunları dik keserek
   bağlanır. 90° döndürülürse ikisi paralel kalır ve makro güç bağlantısı
   güvenilmez hâle gelir.
-- **Banka yerleşimi 2×2 küme.** IMEM ve DMEM'in dörder bankası bitişik tutulur —
-  her belleğin 32-bit veri yolu, adresi ve bayt maskesi tek bir AXI
-  denetleyicisinde toplandığı için bankalar die'a yayılırsa bu yollar cipin
-  üstünden geçen bir tel yıldızına döner.
+- **Banka yerleşimi: halka (ring).** `gen_macro_placement.py --grid ring`
+  makroları die'ın çevresine dizer. IMEM'in dört bankası alt kenarda yan yanadır;
+  DMEM'in üç bankası sol kenarda, dördüncüsü (`g_2k[0]`) sağ-alt köşededir.
+  **Bilinen sınır:** her belleğin 32-bit veri yolu, adresi ve bayt maskesi tek
+  bir AXI denetleyicisinde toplandığı için, bankaların die'a yayılması o yolları
+  uzatır. Ölçülen etki: en kötü setup yolunda SRAM `dout` ile yakalama flop'u
+  arasında ~60 repeater vardır (yalnızca 2 gerçek mantık kapısı). Bankaları
+  mantıksal bellek başına kümelemek denenmemiştir; halka düzeni GRT taşması 0 /
+  DRT ihlali 0 ölçüsüyle seçilmiştir ve değiştirmek bu iki ölçütü riske atar.
 
 ### Tarihsel makro çevresi met1 keep-out deneyi — reddedildi
 
@@ -1002,8 +1007,8 @@ yalnız faz 2 ve 3'te uygulanır.
 **Jumper'ın tek başına ölçülen kazancı:** anten 1.935 → 1.478 net (−%23,6),
 2.364 → 1.883 pin (−%20,3). Buna **tel bölme** ve met3 yönlendirme eklenince
 (§8 ve §3) önceki RTL'deki teslim değeri **926 net / 979 pin** olmuştu. Güncel
-UART RTL'i ve met3 %10 ile yapılan bağımsız temiz teslim koşumu **1.066 net /
-1.137 pin** ölçmüştür. Eklenen diyot hücresi **0**
+RTL (iki fiziksel UART) ve met3 %9 ile yapılan bağımsız temiz teslim koşumu
+**979 net / 1.034 pin** ölçmüştür. Eklenen diyot hücresi **0**
 (`antenna_diodes_count: 0`), yollama DRC **0**,
 setup/hold değişmedi.
 
@@ -1267,9 +1272,10 @@ setup/hold ihlali sıfırdır.
 Hold ihlalleri **saati yavaşlatarak kurtarılamaz**; hold ihlali silikonda kalıcı
 arızadır. `PL_RESIZER_HOLD_SLACK_MARGIN: 0.02` ile post-CTS hold onarımı
 yapılır. `RUN_POST_GRT_RESIZER_TIMING` LibreLane varsayılanında kapalıdır
-(aracın kendi açıklamasında *"experimental, may hang"* notu vardır) ve bu akışta
-da kapalı bırakılmıştır — açılırsa her biri 2'şer tam GRT koşan bir adım devreye
-girer.
+(aracın kendi açıklamasında *"experimental, may hang"* notu vardır). Bu akışta
+**faz 2'de bilinçli olarak AÇIKTIR** (`config.yaml: RUN_POST_GRT_RESIZER_TIMING:
+true`); jumper'ları silmemesi için **faz 3 overlay'inde kapatılır**
+(`experiments/antenna_jumper.yaml`). Gerekçe §"Üç fazlı akış" bölümündedir.
 
 ### 6. Frekans seçimi: 30 MHz denendi ve düştü, 28 MHz ölçüyle seçildi
 
@@ -1314,7 +1320,16 @@ periyoda birebir doğrusaldır. `final30`'un 460 negatif yolunun tamamı tam
 | `run/final30b` (30 MHz + tel bölme) | 33,333 ns | ≈ −2,42 | ≈ 35,75 ns | ≈ 27,97 MHz |
 | `final28` (tel bölmesiz) | 35,714 ns | +2,5223 | 33,19 ns | 30,13 MHz |
 | `uart28_m3a010_final` (önceki teslim) | 35,714 ns | +2,4497 | 33,26 ns | 30,06 MHz |
-| **`i2c_20260907_final` (bu teslim)** | **35,714 ns** | **+2,3808** | **33,33 ns** | **30,00 MHz** |
+| **`rtl2gds_20260908_final` (bu teslim)** | **35,714 ns** | **+1,9960** ¹ | **32,75 ns** ¹ | **30,53 MHz** ¹ |
+
+¹ Bu teslimde raporlanan `max_ss` WS (**+1,996 ns**) **yarım çevrimli** bir
+yoldadır: başlangıç noktası SRAM'in `dout`u, Liberty'de `timing_type:
+falling_edge` olduğu için düşen kenarda tetiklenir ve yakalama yükselen
+kenardadır. Yarım çevrimli bir yolda periyodu ΔT kısaltmak pencereyi yalnızca
+ΔT/2 daraltır, dolayısıyla T₀ hesabı bu yoldan **yapılamaz**. Bağlayıcı olan en
+kötü **tam çevrimli** yoldur: `_127925_ → _121044_`, slack **+2,960 ns** →
+T₀ = 35,714 − 2,960 = **32,75 ns → 30,53 MHz**. Aynı yolun yarım çevrimli
+karşılığı 35,714 − 2×1,996 = 31,72 ns (31,5 MHz) verir, yani gevşek olan odur.
 
 **Kritik gözlem:** 25 MHz hedefiyle koşulan `final40c`, 30 MHz hedefiyle
 koşulan `final30`'dan **2,42 ns daha hızlı** bir fiziksel gerçeklem üretmiştir.
@@ -1957,28 +1972,28 @@ Aşağıdaki sayılar akışın ürettiği
 |---|---|
 | Die alanı | 15.120.000 µm² (15,120 mm²) |
 | Core alanı | 14.982.400 µm² (14,982 mm²) |
-| Standart hücre alanı | 1.669.400 µm² (1,669 mm²) |
+| Standart hücre alanı | 1.669.790 µm² (1,670 mm²) |
 | Makro alanı (15 SRAM) | 4.174.250 µm² (4,174 mm²) |
 | Toplam yerleşim alanı (hücre + makro) | 14.281.000 µm² (14,281 mm²) |
-| Core utilization | 0,3900 |
-| Toplam hücre sayısı | 1.343.041 |
+| Core utilization | 0,3901 |
+| Toplam hücre sayısı | 1.342.890 |
 | SRAM makrosu sayısı | 15 |
-| Toplam kablo uzunluğu | 10.443.330 µm (10,44 m) |
+| Toplam kablo uzunluğu | 10.265.434 µm (10,27 m) |
 
 ### Zamanlama (nihai post-PnR STA, parazitik çıkarım sonrası)
 
 | Corner | Setup WNS | Setup TNS | Hold WNS | Hold TNS |
 |---|---|---|---|---|
-| `nom_tt_025C_1v80` | 9,764 ns | 0 ns | 0,347 ns | 0 ns |
-| `nom_ss_100C_1v60` | 2,677 ns | 0 ns | 0,976 ns | 0 ns |
-| `nom_ff_n40C_1v95` | 12,320 ns | 0 ns | 0,126 ns | 0 ns |
-| `min_tt_025C_1v80` | 9,942 ns | 0 ns | 0,382 ns | 0 ns |
-| `min_ss_100C_1v60` | 3,061 ns | 0 ns | 1,032 ns | 0 ns |
-| `min_ff_n40C_1v95` | 12,464 ns | 0 ns | 0,145 ns | 0 ns |
-| `max_tt_025C_1v80` | 9,665 ns | 0 ns | 0,314 ns | 0 ns |
-| `max_ss_100C_1v60` | 2,381 ns | 0 ns | 0,918 ns | 0 ns |
-| `max_ff_n40C_1v95` | 12,229 ns | 0 ns | 0,110 ns | 0 ns |
-| **Tüm corner'lar (en kötü)** | 2,381 ns | 0 ns | 0,110 ns | 0 ns |
+| `nom_tt_025C_1v80` | 9,302 ns | 0 ns | 0,729 ns | 0 ns |
+| `nom_ss_100C_1v60` | 2,072 ns | 0 ns | 1,680 ns | 0 ns |
+| `nom_ff_n40C_1v95` | 11,986 ns | 0 ns | 0,402 ns | 0 ns |
+| `min_tt_025C_1v80` | 9,464 ns | 0 ns | 0,755 ns | 0 ns |
+| `min_ss_100C_1v60` | 2,372 ns | 0 ns | 1,686 ns | 0 ns |
+| `min_ff_n40C_1v95` | 12,121 ns | 0 ns | 0,403 ns | 0 ns |
+| `max_tt_025C_1v80` | 9,232 ns | 0 ns | 0,714 ns | 0 ns |
+| `max_ss_100C_1v60` | 1,996 ns | 0 ns | 1,683 ns | 0 ns |
+| `max_ff_n40C_1v95` | 11,904 ns | 0 ns | 0,390 ns | 0 ns |
+| **Tüm corner'lar (en kötü)** | 1,996 ns | 0 ns | 0,390 ns | 0 ns |
 
 ### Fiziksel signoff
 
@@ -1989,16 +2004,16 @@ Aşağıdaki sayılar akışın ürettiği
 | Netgen LVS | **0** |
 | LVS cihaz sayısı farkı | **0** |
 | LVS net sayısı farkı | **0** |
-| Anten ihlali (net) | **1067** |
-| Anten ihlali (pin) | **1122** |
+| Anten ihlali (net) | **979** |
+| Anten ihlali (pin) | **1034** |
 | Yollama DRC | **0** |
 | Bağlantısız pin | **480** |
 | Kritik bağlantısız pin | **0** |
 | GDSII XOR farkı (Magic ↔ KLayout) | **0** |
 | Setup ihlali olan uç | **0** |
 | Hold ihlali olan uç | **0** |
-| Max slew ihlali | **818** |
-| Max cap ihlali | **21** |
+| Max slew ihlali | **845** |
+| Max cap ihlali | **22** |
 | Geçersiz örtüşme (illegal overlap) | **0** |
 | Güç dağıtım ağı ihlali | **0** |
 | Çıkarılan latch | **0** |
@@ -2010,15 +2025,15 @@ Aşağıdaki sayılar akışın ürettiği
 
 | Corner | Internal | Switching | Leakage | Toplam |
 |---|---|---|---|---|
-| `nom_tt_025C_1v80` | 0,03591 W | 0,00519 W | 0,00025866 W | 0,04136 W |
-| `nom_ss_100C_1v60` | 0,03297 W | 0,00401 W | 0,00129853 W | 0,03828 W |
-| `nom_ff_n40C_1v95` | 0,03800 W | 0,00617 W | 0,00026079 W | 0,04443 W |
-| `min_tt_025C_1v80` | 0,03591 W | 0,00491 W | 0,00025866 W | 0,04108 W |
-| `min_ss_100C_1v60` | 0,03297 W | 0,00380 W | 0,00129853 W | 0,03806 W |
-| `min_ff_n40C_1v95` | 0,03799 W | 0,00585 W | 0,00026079 W | 0,04410 W |
-| `max_tt_025C_1v80` | 0,03591 W | 0,00545 W | 0,00025866 W | 0,04162 W |
-| `max_ss_100C_1v60` | 0,03297 W | 0,00422 W | 0,00129853 W | 0,03849 W |
-| `max_ff_n40C_1v95` | 0,03801 W | 0,00648 W | 0,00026079 W | 0,04475 W |
+| `nom_tt_025C_1v80` | 0,03604 W | 0,00530 W | 0,00025867 W | 0,04160 W |
+| `nom_ss_100C_1v60` | 0,03306 W | 0,00410 W | 0,00129676 W | 0,03845 W |
+| `nom_ff_n40C_1v95` | 0,03818 W | 0,00630 W | 0,00026077 W | 0,04474 W |
+| `min_tt_025C_1v80` | 0,03604 W | 0,00502 W | 0,00025867 W | 0,04132 W |
+| `min_ss_100C_1v60` | 0,03306 W | 0,00388 W | 0,00129676 W | 0,03824 W |
+| `min_ff_n40C_1v95` | 0,03816 W | 0,00598 W | 0,00026077 W | 0,04440 W |
+| `max_tt_025C_1v80` | 0,03604 W | 0,00557 W | 0,00025867 W | 0,04187 W |
+| `max_ss_100C_1v60` | 0,03306 W | 0,00431 W | 0,00129676 W | 0,03867 W |
+| `max_ff_n40C_1v95` | 0,03819 W | 0,00662 W | 0,00026077 W | 0,04507 W |
 
 ### IR-drop (statik güç dağıtım ağı analizi)
 

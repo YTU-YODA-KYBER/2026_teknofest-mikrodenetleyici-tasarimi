@@ -4,7 +4,12 @@ module yz_acclrtr_bram_axi_ctrl #(
     // RAM'ine kalan pay 9.904 bayttir (bkz. bram_yz_def.sv). Girdi her zaman
     // 1960 bayt oldugu icin fiilen ilk 1960 adres kullanilir.
     parameter ADDR_WIDTH = 14,
-    parameter DEPTH      = 9904
+    parameter DEPTH      = 9904,
+    // Cerceve senkronizasyon kurtarma esigi [saat cevrimi]. Hat bu kadar sure
+    // sessiz kalirsa yarim kalmis kayit atilir. 50 MHz'de 100.000 cevrim = 2 ms:
+    // bir bayt suresinden (1 Mbps'te 10 us) cok uzun, cerceveler arasi
+    // boslugundan (20 ms) cok kisa. Simulasyonda kisaltilabilsin diye parametre.
+    parameter int IDLE_LIMIT = 100_000
 )(
     input  logic clk_i,
     input  logic rst_n,
@@ -24,6 +29,7 @@ module yz_acclrtr_bram_axi_ctrl #(
     logic [ADDR_WIDTH-1:0]  waddr, raddr;
     logic [DATA_WIDTH-1:0]  rdata;
     logic [ADDR_WIDTH-1:0]  addr_cnt;
+    logic [$clog2(IDLE_LIMIT+1)-1:0] idle_cnt;
     logic                   load_pending;
 
     bram_yz #(
@@ -48,8 +54,13 @@ module yz_acclrtr_bram_axi_ctrl #(
     always_ff @(posedge clk_i or negedge rst_n) begin
         if (!rst_n) begin
             addr_cnt     <= '0;
+            idle_cnt     <= '0;
             load_pending <= 1'b0;
         end else begin
+            // --- Boşta kalma sayacı: hattan bayt geldikçe sıfırlanır ---
+            if (dma_valid_i)                idle_cnt <= '0;
+            else if (idle_cnt != IDLE_LIMIT) idle_cnt <= idle_cnt + 1'b1;
+
             // --- Yazma sayacı: her cycle SADECE bir atama, if/else ile ---
             if (dma_valid_i) begin
                 if (addr_cnt == ADDR_WIDTH'(1959)) begin
@@ -58,6 +69,12 @@ module yz_acclrtr_bram_axi_ctrl #(
                 end else begin
                     addr_cnt <= addr_cnt + 1'b1;
                 end
+            end
+            // Çerçeve ortasında hat sustuysa yarım kalan kaydı at ve başa dön.
+            // Böylece kesik ya da fazla baytlı bir çerçeve sayacı kalıcı
+            // olarak kaydıramaz; bir sonraki çerçeve yeniden hizalanır.
+            else if (idle_cnt == IDLE_LIMIT) begin
+                addr_cnt <= '0;
             end
 
             // --- CPU temizlerse indir (yazma olsun olmasın her zaman geçerli) ---

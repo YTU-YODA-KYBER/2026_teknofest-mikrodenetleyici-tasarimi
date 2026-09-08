@@ -8,13 +8,12 @@
 //    - AXI4-Lite yazma/okuma el sikismasi ve reset degerleri
 //    - GPIO_ODR / GPIO_IDR yazmac davranisi (EK-2 ister tablosu)
 //    - Salt-okunur (RO) adres korunmasi ve tanimsiz adres davranisi
-//    - dma_enable_o turetimi (GPIO_IDR[1])
 //    - 7-segment surucusu: anode one-cold garantisi, 13 mesaj tablosunun tum
 //      haneleri, animasyon deseni ve tarama sayaclarinin sarmasi
 //
 //  Not: Bu blok, sistemde 0x4001_0000 tabanina oturur; RTL adres kod cozmeyi
 //  yalnizca alt 4 bit uzerinden yaptigi icin testler hem ofset (0x0/0x4) hem
-//  de tam sistem adresi ile calistirilmistir (bkz. TEST 10).
+//  de tam sistem adresi ile calistirilmistir (bkz. TEST 9).
 // =========================================================================
 
 `include "axi4lite_bind_gpio.svh"
@@ -56,7 +55,6 @@ module GPIO_testbench;
     logic        rvalid;
 
     // Yardimci cikislar
-    logic        dma_enable_o;
     logic [ 7:0] catode;
     logic [ 7:0] anode;
 
@@ -90,7 +88,6 @@ module GPIO_testbench;
         .rresp(rresp),
         .rvalid(rvalid),
         .rready(rready),
-        .dma_enable_o(dma_enable_o),
         .catode(catode),
         .anode(anode)
     );
@@ -375,23 +372,7 @@ module GPIO_testbench;
         kontrol("Test 5b (GPIO_IDR degismedi)", 32'h0000_5A5A, read_data);
 
         // =====================================================================
-        // TEST 6: dma_enable_o turetimi
-        // RTL'de dma_enable_o dogrudan GPIO_IDR[1] bitinden kaydedilir
-        // (bir saat vurusu gecikmeli). Bu sinyal Top_module'de YZ veri akisi
-        // DMA'sini tetikledigi icin hem yukselen hem dusen kenari test edilir.
-        // =====================================================================
-        $display("\n--- TEST 6: dma_enable_o (GPIO_IDR[1]) ---");
-
-        GPIO_IDR = 32'h0000_0002;                  // bit1 = 1
-        #40;
-        kontrol("Test 6a (IDR[1]=1 -> dma_enable_o=1)", 32'd1, {31'd0, dma_enable_o});
-
-        GPIO_IDR = 32'h0000_0000;                  // bit1 = 0
-        #40;
-        kontrol("Test 6b (IDR[1]=0 -> dma_enable_o=0)", 32'd0, {31'd0, dma_enable_o});
-
-        // =====================================================================
-        // TEST 7: anode "one-cold" garantisi
+        // TEST 6: anode "one-cold" garantisi
         // 7-segment surucusunde anode sinyali her an tam olarak BIR adet '0'
         // icermelidir (aktif-dusuk secim). Iki hane ayni anda secilirse
         // ekranda hayalet (ghosting) olusur; hicbiri secilmezse ekran soner.
@@ -399,7 +380,7 @@ module GPIO_testbench;
         // kontrol ediyoruz. Ayrica surucunun gercekten tarama yaptigini
         // (anode_select'in ilerledigini) dogruluyoruz.
         // =====================================================================
-        $display("\n--- TEST 7: anode one-cold ve tarama (scan) kontrolu ---");
+        $display("\n--- TEST 6: anode one-cold ve tarama (scan) kontrolu ---");
 
         begin : test7_blok
             integer i;
@@ -421,45 +402,45 @@ module GPIO_testbench;
             end
 
             if (ihlal == 0) begin
-                $display("  [GECTI ] Test 7a basarili: 2000 vurus boyunca anode her zaman tek-'0' (one-cold)");
+                $display("  [GECTI ] Test 6a basarili: 2000 vurus boyunca anode her zaman tek-'0' (one-cold)");
                 toplam_basari = toplam_basari + 1;
             end else begin
-                $display("  [KALDI ] Test 7a BASARISIZ: %0d vuruşta anode one-cold degildi", ihlal);
+                $display("  [KALDI ] Test 6a BASARISIZ: %0d vuruşta anode one-cold degildi", ihlal);
                 toplam_basarisiz = toplam_basarisiz + 1;
             end
 
             if (sel_degisti) begin
-                $display("  [GECTI ] Test 7b basarili: anode_select ilerliyor (tarama calisiyor), son deger=%0d",
+                $display("  [GECTI ] Test 6b basarili: anode_select ilerliyor (tarama calisiyor), son deger=%0d",
                          dut.anode_select);
                 toplam_basari = toplam_basari + 1;
             end else begin
-                $display("  [KALDI ] Test 7b BASARISIZ: anode_select %0d degerinde takildi, tarama yok", ilk_sel);
+                $display("  [KALDI ] Test 6b BASARISIZ: anode_select %0d degerinde takildi, tarama yok", ilk_sel);
                 toplam_basarisiz = toplam_basarisiz + 1;
             end
         end
 
         // =====================================================================
-        // TEST 8: Ekran sonuk (blank) kosullari
+        // TEST 7: Ekran sonuk (blank) kosullari
         // RTL'de ekran yalnizca  (GPIO_IDR==1 && GPIO_ODR[2:0]!=0) || GPIO_IDR==2
         // kosulunda desen surer; disinda catode = 8'hFF (tum segmentler sonuk).
         // Iki sonuk senaryosunu test ediyoruz:
         //   8a) GPIO_IDR = 0            -> hicbir mod aktif degil
         //   8b) GPIO_IDR = 1, ODR[2:0]=0 -> mod aktif ama gosterilecek durum yok
         // =====================================================================
-        $display("\n--- TEST 8: Ekran sonuk (blank) kosullari ---");
+        $display("\n--- TEST 7: Ekran sonuk (blank) kosullari ---");
 
         GPIO_IDR = 32'h0000_0000;
         axi_write(32'h0000_0004, 32'h0000_0000);
         #200;
-        kontrol("Test 8a (IDR=0 -> catode sonuk)", 32'h0000_00FF, {24'h0, catode});
+        kontrol("Test 7a (IDR=0 -> catode sonuk)", 32'h0000_00FF, {24'h0, catode});
 
         GPIO_IDR = 32'h0000_0001;
         axi_write(32'h0000_0004, 32'h0000_0000);   // ODR[2:0] = 0
         #200;
-        kontrol("Test 8b (IDR=1, ODR=0 -> catode sonuk)", 32'h0000_00FF, {24'h0, catode});
+        kontrol("Test 7b (IDR=1, ODR=0 -> catode sonuk)", 32'h0000_00FF, {24'h0, catode});
 
         // =====================================================================
-        // TEST 9: 7-segment mesaj tablolarinin TAM taranmasi
+        // TEST 8: 7-segment mesaj tablolarinin TAM taranmasi
         // RTL'in mesaj blogu iki kolludur:
         //   GPIO_IDR[1:0] == 1  -> flasher/boot durumlari (ERASE, SNDING,
         //                          FINISH, ERROR, default=BOOT)
@@ -475,54 +456,54 @@ module GPIO_testbench;
         //
         // Hane 0 ve 1: IDR=1 kolunun tamaminda ve IDR=2'nin SNDING/INFRNC/
         // YZUART mesajlarinda case'de tanimli DEGILDIR -- o hanelerde catode
-        // animasyon blogundan gelen degerini korur (bkz. TEST 14). Bu yuzden
+        // animasyon blogundan gelen degerini korur (bkz. TEST 13). Bu yuzden
         // o tablolar hane 2'den baslar.
         // =====================================================================
-        $display("\n--- TEST 9: 7-segment mesaj tablolari (tam tarama) ---");
+        $display("\n--- TEST 8: 7-segment mesaj tablolari (tam tarama) ---");
 
         // ---- IDR = 1 kolu: flasher / boot durumlari ----
         //                                  hane:   0      1        2             3             4             5             6             7
-        mesaj_tara("Test 9a ERASE",    32'd1, 16'd1,  2, '{8'hFF, 8'hFF, 8'b1111_1111, 8'b1000_0110, 8'b1001_0010, 8'b1000_1000, 8'b1100_1110, 8'b1000_0110});
-        mesaj_tara("Test 9b SNDING",   32'd1, 16'd2,  2, '{8'hFF, 8'hFF, 8'b1001_0000, 8'b1100_1000, 8'b1111_1001, 8'b1010_0001, 8'b1100_1000, 8'b1001_0010});
-        mesaj_tara("Test 9c FINISH",   32'd1, 16'd3,  2, '{8'hFF, 8'hFF, 8'b1000_1001, 8'b1001_0010, 8'b1111_1001, 8'b1100_1000, 8'b1111_1001, 8'b1000_1110});
-        mesaj_tara("Test 9d ERROR",    32'd1, 16'd4,  2, '{8'hFF, 8'hFF, 8'b1111_1111, 8'b1100_1110, 8'b1100_0000, 8'b1100_1110, 8'b1100_1110, 8'b1000_0110});
-        mesaj_tara("Test 9e BOOT(def)",32'd1, 16'd5,  2, '{8'hFF, 8'hFF, 8'b1111_1111, 8'b1111_1111, 8'b1000_0111, 8'b1100_0000, 8'b1100_0000, 8'b1000_0011});
+        mesaj_tara("Test 8a ERASE",    32'd1, 16'd1,  2, '{8'hFF, 8'hFF, 8'b1111_1111, 8'b1000_0110, 8'b1001_0010, 8'b1000_1000, 8'b1100_1110, 8'b1000_0110});
+        mesaj_tara("Test 8b SNDING",   32'd1, 16'd2,  2, '{8'hFF, 8'hFF, 8'b1001_0000, 8'b1100_1000, 8'b1111_1001, 8'b1010_0001, 8'b1100_1000, 8'b1001_0010});
+        mesaj_tara("Test 8c FINISH",   32'd1, 16'd3,  2, '{8'hFF, 8'hFF, 8'b1000_1001, 8'b1001_0010, 8'b1111_1001, 8'b1100_1000, 8'b1111_1001, 8'b1000_1110});
+        mesaj_tara("Test 8d ERROR",    32'd1, 16'd4,  2, '{8'hFF, 8'hFF, 8'b1111_1111, 8'b1100_1110, 8'b1100_0000, 8'b1100_1110, 8'b1100_1110, 8'b1000_0110});
+        mesaj_tara("Test 8e BOOT(def)",32'd1, 16'd5,  2, '{8'hFF, 8'hFF, 8'b1111_1111, 8'b1111_1111, 8'b1000_0111, 8'b1100_0000, 8'b1100_0000, 8'b1000_0011});
 
         // ---- IDR = 2 kolu: YZ veri akisi ve siniflandirma sonuclari ----
-        mesaj_tara("Test 9f SNDING",   32'd2, 16'd5,  2, '{8'hFF, 8'hFF, 8'b1001_0000, 8'b1100_1000, 8'b1111_1001, 8'b1010_0001, 8'b1100_1000, 8'b1001_0010});
-        mesaj_tara("Test 9g INFRNC",   32'd2, 16'd6,  2, '{8'hFF, 8'hFF, 8'b1100_0110, 8'b1100_1000, 8'b1100_1110, 8'b1000_1110, 8'b1100_1000, 8'b1111_1001});
-        mesaj_tara("Test 9h EVET",     32'd2, 16'd7,  0, '{8'b1111_1111, 8'b1111_1111, 8'b1111_1111, 8'b1111_1111, 8'b1000_0111, 8'b1000_0110, 8'b1100_0001, 8'b1000_0110});
-        mesaj_tara("Test 9i HAYIR",    32'd2, 16'd8,  0, '{8'b1111_1111, 8'b1111_1111, 8'b1111_1111, 8'b1100_1110, 8'b1111_1001, 8'b1001_0001, 8'b1000_1000, 8'b1000_1001});
-        mesaj_tara("Test 9j SESSIZLK", 32'd2, 16'd9,  0, '{8'b1000_1010, 8'b1100_0111, 8'b1010_0100, 8'b1111_1001, 8'b1001_0010, 8'b1001_0010, 8'b1000_0110, 8'b1001_0010});
-        mesaj_tara("Test 9k BILINMYN", 32'd2, 16'd10, 0, '{8'b1100_1000, 8'b1001_0001, 8'b1110_1010, 8'b1100_1000, 8'b1111_1001, 8'b1100_0111, 8'b1111_1001, 8'b1000_0011});
-        mesaj_tara("Test 9l YZUART(def)",32'd2,16'd11,2, '{8'hFF, 8'hFF, 8'b1000_0111, 8'b1100_1110, 8'b1000_1000, 8'b1100_0001, 8'b1010_0100, 8'b1001_0001});
+        mesaj_tara("Test 8f SNDING",   32'd2, 16'd5,  2, '{8'hFF, 8'hFF, 8'b1001_0000, 8'b1100_1000, 8'b1111_1001, 8'b1010_0001, 8'b1100_1000, 8'b1001_0010});
+        mesaj_tara("Test 8g INFRNC",   32'd2, 16'd6,  2, '{8'hFF, 8'hFF, 8'b1100_0110, 8'b1100_1000, 8'b1100_1110, 8'b1000_1110, 8'b1100_1000, 8'b1111_1001});
+        mesaj_tara("Test 8h EVET",     32'd2, 16'd7,  0, '{8'b1111_1111, 8'b1111_1111, 8'b1111_1111, 8'b1111_1111, 8'b1000_0111, 8'b1000_0110, 8'b1100_0001, 8'b1000_0110});
+        mesaj_tara("Test 8i HAYIR",    32'd2, 16'd8,  0, '{8'b1111_1111, 8'b1111_1111, 8'b1111_1111, 8'b1100_1110, 8'b1111_1001, 8'b1001_0001, 8'b1000_1000, 8'b1000_1001});
+        mesaj_tara("Test 8j SESSIZLK", 32'd2, 16'd9,  0, '{8'b1000_1010, 8'b1100_0111, 8'b1010_0100, 8'b1111_1001, 8'b1001_0010, 8'b1001_0010, 8'b1000_0110, 8'b1001_0010});
+        mesaj_tara("Test 8k BILINMYN", 32'd2, 16'd10, 0, '{8'b1100_1000, 8'b1001_0001, 8'b1110_1010, 8'b1100_1000, 8'b1111_1001, 8'b1100_0111, 8'b1111_1001, 8'b1000_0011});
+        mesaj_tara("Test 8l YZUART(def)",32'd2,16'd11,2, '{8'hFF, 8'hFF, 8'b1000_0111, 8'b1100_1110, 8'b1000_1000, 8'b1100_0001, 8'b1010_0100, 8'b1001_0001});
 
         // =====================================================================
-        // TEST 10: Sistem adresi ile erisim (adres kod cozme)
+        // TEST 9: Sistem adresi ile erisim (adres kod cozme)
         // RTL adres kod cozmeyi yalnizca awaddr[3:0] / araddr[3:0] uzerinden
         // yapar; ust bitler interconnect tarafindan zaten ayiklanmistir.
         // Bu yuzden blogun sistemdeki gercek adresi olan 0x4001_0004 ile de
         // ayni davranisi gostermesi gerekir. Bu test, blok testbench'i ile
         // sistem seviyesi davranisi arasindaki kopukluğu kapatir.
         // =====================================================================
-        $display("\n--- TEST 10: Sistem adresi (0x4001_0004) ile erisim ---");
+        $display("\n--- TEST 9: Sistem adresi (0x4001_0004) ile erisim ---");
 
         GPIO_IDR = 32'h0000_0000;
         axi_write(32'h4001_0004, 32'h0000_BEEF);
         #40;
-        kontrol("Test 10a (sistem adresine yazma)", 32'h0000_BEEF, GPIO_ODR);
+        kontrol("Test 9a (sistem adresine yazma)", 32'h0000_BEEF, GPIO_ODR);
 
         axi_read(32'h4001_0004, read_data);
-        kontrol("Test 10b (sistem adresinden okuma)", 32'h0000_BEEF, read_data);
+        kontrol("Test 9b (sistem adresinden okuma)", 32'h0000_BEEF, read_data);
 
         // =====================================================================
-        // TEST 11: Arka arkaya (back-to-back) yazma
+        // TEST 10: Arka arkaya (back-to-back) yazma
         // AXI el sikismasinin ardisik islemlerde kilitlenmedigini ve her
         // yazmanin bir oncekinin uzerine dogru sekilde yazildigini gosterir.
         // Bir onceki islemin B kanali kapanmadan yenisi baslarsa FSM takilir;
         // bu test tam olarak o senaryoyu zorlar.
         // =====================================================================
-        $display("\n--- TEST 11: Arka arkaya yazma ---");
+        $display("\n--- TEST 10: Arka arkaya yazma ---");
 
         axi_write(32'h0000_0004, 32'h0000_0001);
         axi_write(32'h0000_0004, 32'h0000_0002);
@@ -532,7 +513,7 @@ module GPIO_testbench;
         kontrol("Test 11 (son yazilan deger gecerli)", 32'h0000_00A5, GPIO_ODR);
 
         // =====================================================================
-        // TEST 12: Tanimsiz adres davranisi
+        // TEST 11: Tanimsiz adres davranisi
         // GPIO'da yalnizca 0x00 ve 0x04 ofsetleri tanimlidir.
         // 12a) Tanimsiz bir adrese yazma GPIO_ODR'yi bozmamali.
         // 12b) Tanimsiz bir adresten okuma: RTL'deki okuma case'inde 'default'
@@ -540,14 +521,14 @@ module GPIO_testbench;
         //      degil bilincli bir tercihtir (AXI4-Lite SLVERR zorunlu degildir),
         //      ancak davranisin belgelenmesi icin BILGI olarak raporlanir.
         // =====================================================================
-        $display("\n--- TEST 12: Tanimsiz adres davranisi ---");
+        $display("\n--- TEST 11: Tanimsiz adres davranisi ---");
 
         axi_write(32'h0000_0008, 32'hDEAD_BEEF);   // tanimsiz ofset
         #40;
-        kontrol("Test 12a (tanimsiz adrese yazma ODR'yi bozmadi)", 32'h0000_00A5, GPIO_ODR);
+        kontrol("Test 11a (tanimsiz adrese yazma ODR'yi bozmadi)", 32'h0000_00A5, GPIO_ODR);
 
         axi_read(32'h0000_0008, read_data);
-        $display("  [BILGI ] Test 12b: tanimsiz adresten okuma -> rdata=0x%08h (case'de default yok, onceki deger korunur), bresp=%0d rresp=%0d",
+        $display("  [BILGI ] Test 11b: tanimsiz adresten okuma -> rdata=0x%08h (case'de default yok, onceki deger korunur), bresp=%0d rresp=%0d",
                  read_data, bresp, rresp);
 
         // =====================================================================
@@ -567,12 +548,12 @@ module GPIO_testbench;
         GPIO_IDR = 32'h0000_0000;
 
         // =====================================================================
-        // TEST 13: Calisma sirasinda reset
+        // TEST 12: Calisma sirasinda reset
         // Sistem "her bir komponentin kullaniminin ardindan bekleme haline
         // gecebilmeli" isterini destekleyen temel kontrol: reset uygulandiginda
         // GPIO_ODR sifirlanmali ve AXI kanallari yeniden idle duruma donmeli.
         // =====================================================================
-        $display("\n--- TEST 13: Calisma sirasinda reset ---");
+        $display("\n--- TEST 12: Calisma sirasinda reset ---");
 
         axi_write(32'h0000_0004, 32'h0000_FFFF);
         #40;
@@ -591,10 +572,10 @@ module GPIO_testbench;
         // Reset sonrasi blogun hala calistigini dogrula (olu kalmadi)
         axi_write(32'h0000_0004, 32'h0000_0055);
         #40;
-        kontrol("Test 13b (reset sonrasi tekrar yazilabiliyor)", 32'h0000_0055, GPIO_ODR);
+        kontrol("Test 12b (reset sonrasi tekrar yazilabiliyor)", 32'h0000_0055, GPIO_ODR);
 
         // =====================================================================
-        // TEST 14: Animasyon (bekleme) deseni kod cozme
+        // TEST 13: Animasyon (bekleme) deseni kod cozme
         // Ekranin ilk iki hanesi (anode_select 0 ve 1) mesaj tablolarindan
         // bagimsizdir: orada catode dogrudan anim_select'e gore surulur ve
         // kart uzerinde donen bir "bekleniyor" animasyonu olusturur.
@@ -605,34 +586,34 @@ module GPIO_testbench;
         // anim_select 4 bitlik bir sayac ama case yalnizca 0-7'yi ayirt eder;
         // 8 degerin tamamini (default dallari dahil) tariyoruz.
         // =====================================================================
-        $display("\n--- TEST 14: Animasyon deseni (anode_select 0 ve 1) ---");
+        $display("\n--- TEST 13: Animasyon deseni (anode_select 0 ve 1) ---");
 
         GPIO_IDR = 32'd1;
         axi_write(32'h0000_0004, 32'd1);       // ERASE: hane 0/1 tanimsiz
         #40;
 
         // Hane 0 -- anim 3 ve 4 case'de yok, default (sonuk) beklenir
-        anim_kontrol("Test 14a hane0 anim0", 3'd0, 4'd0, 8'b0111_0001);
-        anim_kontrol("Test 14b hane0 anim1", 3'd0, 4'd1, 8'b0111_0011);
-        anim_kontrol("Test 14c hane0 anim2", 3'd0, 4'd2, 8'b0111_0111);
-        anim_kontrol("Test 14d hane0 anim3", 3'd0, 4'd3, 8'b1111_1111);
-        anim_kontrol("Test 14e hane0 anim4", 3'd0, 4'd4, 8'b1111_1111);
-        anim_kontrol("Test 14f hane0 anim5", 3'd0, 4'd5, 8'b1111_1110);
-        anim_kontrol("Test 14g hane0 anim6", 3'd0, 4'd6, 8'b1111_1100);
-        anim_kontrol("Test 14h hane0 anim7", 3'd0, 4'd7, 8'b1111_1000);
+        anim_kontrol("Test 13a hane0 anim0", 3'd0, 4'd0, 8'b0111_0001);
+        anim_kontrol("Test 13b hane0 anim1", 3'd0, 4'd1, 8'b0111_0011);
+        anim_kontrol("Test 13c hane0 anim2", 3'd0, 4'd2, 8'b0111_0111);
+        anim_kontrol("Test 13d hane0 anim3", 3'd0, 4'd3, 8'b1111_1111);
+        anim_kontrol("Test 13e hane0 anim4", 3'd0, 4'd4, 8'b1111_1111);
+        anim_kontrol("Test 13f hane0 anim5", 3'd0, 4'd5, 8'b1111_1110);
+        anim_kontrol("Test 13g hane0 anim6", 3'd0, 4'd6, 8'b1111_1100);
+        anim_kontrol("Test 13h hane0 anim7", 3'd0, 4'd7, 8'b1111_1000);
 
         // Hane 1 -- anim 0 ve 7 case'de yok, default (sonuk) beklenir
-        anim_kontrol("Test 14i hane1 anim0", 3'd1, 4'd0, 8'b1111_1111);
-        anim_kontrol("Test 14j hane1 anim1", 3'd1, 4'd1, 8'b0111_0111);
-        anim_kontrol("Test 14k hane1 anim2", 3'd1, 4'd2, 8'b0110_0111);
-        anim_kontrol("Test 14l hane1 anim3", 3'd1, 4'd3, 8'b0100_0111);
-        anim_kontrol("Test 14m hane1 anim4", 3'd1, 4'd4, 8'b1100_1110);
-        anim_kontrol("Test 14n hane1 anim5", 3'd1, 4'd5, 8'b1101_1110);
-        anim_kontrol("Test 14o hane1 anim6", 3'd1, 4'd6, 8'b1111_1110);
-        anim_kontrol("Test 14p hane1 anim7", 3'd1, 4'd7, 8'b1111_1111);
+        anim_kontrol("Test 13i hane1 anim0", 3'd1, 4'd0, 8'b1111_1111);
+        anim_kontrol("Test 13j hane1 anim1", 3'd1, 4'd1, 8'b0111_0111);
+        anim_kontrol("Test 13k hane1 anim2", 3'd1, 4'd2, 8'b0110_0111);
+        anim_kontrol("Test 13l hane1 anim3", 3'd1, 4'd3, 8'b0100_0111);
+        anim_kontrol("Test 13m hane1 anim4", 3'd1, 4'd4, 8'b1100_1110);
+        anim_kontrol("Test 13n hane1 anim5", 3'd1, 4'd5, 8'b1101_1110);
+        anim_kontrol("Test 13o hane1 anim6", 3'd1, 4'd6, 8'b1111_1110);
+        anim_kontrol("Test 13p hane1 anim7", 3'd1, 4'd7, 8'b1111_1111);
 
         // =====================================================================
-        // TEST 15: Tarama sayaclarinin sarmasi (wrap)
+        // TEST 14: Tarama sayaclarinin sarmasi (wrap)
         // Iki sayac da 7'ye ulastiginda 0'a donmeli:
         //     if(anode_select == 7) anode_select <= 0;  else anode_select+1
         //     if(anim_select  == 7) anim_select  <= 0;  else anim_select +1
@@ -646,7 +627,7 @@ module GPIO_testbench;
         // (clk_div==0 aninda clk_div[10:0] de 0'dir) iki sarma da bu dongude
         // gerceklesir.
         // =====================================================================
-        $display("\n--- TEST 15: anode_select / anim_select sarma (wrap) ---");
+        $display("\n--- TEST 14: anode_select / anim_select sarma (wrap) ---");
 
         begin : test15_blok
             integer adim;
@@ -673,19 +654,19 @@ module GPIO_testbench;
             end
 
             if (anode_sardi) begin
-                $display("  [GECTI ] Test 15a basarili: anode_select 7 -> 0 sarmasi gozlendi");
+                $display("  [GECTI ] Test 14a basarili: anode_select 7 -> 0 sarmasi gozlendi");
                 toplam_basari = toplam_basari + 1;
             end else begin
-                $display("  [KALDI ] Test 15a BASARISIZ: anode_select sarmasi gozlenemedi (son deger=%0d)",
+                $display("  [KALDI ] Test 14a BASARISIZ: anode_select sarmasi gozlenemedi (son deger=%0d)",
                          dut.anode_select);
                 toplam_basarisiz = toplam_basarisiz + 1;
             end
 
             if (anim_sardi) begin
-                $display("  [GECTI ] Test 15b basarili: anim_select 7 -> 0 sarmasi gozlendi");
+                $display("  [GECTI ] Test 14b basarili: anim_select 7 -> 0 sarmasi gozlendi");
                 toplam_basari = toplam_basari + 1;
             end else begin
-                $display("  [KALDI ] Test 15b BASARISIZ: anim_select sarmasi gozlenemedi (son deger=%0d)",
+                $display("  [KALDI ] Test 14b BASARISIZ: anim_select sarmasi gozlenemedi (son deger=%0d)",
                          dut.anim_select);
                 toplam_basarisiz = toplam_basarisiz + 1;
             end

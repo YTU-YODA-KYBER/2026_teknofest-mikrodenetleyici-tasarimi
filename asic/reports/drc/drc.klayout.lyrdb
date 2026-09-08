@@ -2,7 +2,7 @@
 <report-database>
  <description>SKY130 DRC runset</description>
  <original-file/>
- <generator>drc: script='/usr/asic_flow/pdk/sky130A/libs.tech/klayout/drc/sky130A_mr.drc'</generator>
+ <generator>drc: script='/home/luxyxp/.ciel/sky130A/libs.tech/klayout/drc/sky130A_mr.drc'</generator>
  <top-cell>top_module</top-cell>
  <tags>
  </tags>

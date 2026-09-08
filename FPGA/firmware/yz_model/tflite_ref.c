@@ -230,8 +230,9 @@ void yz_ref_infer(const uint8_t *input, int8_t *scratch, yz_ref_result_t *r)
     depthwise_conv(input, scratch);
     fully_connected(scratch, r);
 
-    /* Softmax uygulanmaz: tek scale/zp ile monoton bir donusum oldugundan
-     * argmax'i degistiremez (argmax(softmax(out)) == argmax(out)). */
+    /* Bu baseline conv + FC hesap suresini olcer; softmax tek scale/zp ile
+     * monoton oldugu icin argmax'i degistirmez ve olcume katkisi yoktur.
+     * Uygulama yolunda softmax kesme servisinde uygulanir (main_app.c). */
     r->cls     = argmax_i8(r->out);
     r->cls_acc = argmax_i32(r->acc);
 }

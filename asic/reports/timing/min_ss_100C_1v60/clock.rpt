@@ -19,24 +19,24 @@ Clock clk_i
 rise -> rise
     min     max
 0.000000 0.000000 source latency
-4.283023         network latency conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/clk1
-        7.391731 network latency _129120_/CLK
+4.233628         network latency conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/clk1
+        7.005779 network latency _129540_/CLK
 ---------------
-4.283023 7.391731 latency
-        3.108708 skew
+4.233628 7.005779 latency
+        2.772151 skew
 
 fall -> fall
     min     max
 0.000000 0.000000 source latency
-4.159652         network latency conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/clk1
-        6.952188 network latency _129120_/CLK
+4.130739         network latency conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/clk1
+        6.651256 network latency _129540_/CLK
 ---------------
-4.159652 6.952188 latency
-        2.792536 skew
+4.130739 6.651256 latency
+        2.520517 skew
 
 
 
 ===========================================================================
 report_clock_min_period
 ============================================================================
-clk_i period_min = 31.64 fmax = 31.60
+clk_i period_min = 31.94 fmax = 31.31

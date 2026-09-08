@@ -1,31 +1,5 @@
-#-----------------------------------------------------------
-# xsim v2025.2 (64-bit)
-# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
-# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
-# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Sun Aug 23 19:01:49 2026
-# Process ID         : 504109
-# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/QSPI_Module/QSPI_Module.sim/sim_1/behav/xsim
-# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/QSPI_Master_tb_behav/xsim_script.tcl}
-# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/QSPI_Module/QSPI_Module.sim/sim_1/behav/xsim/simulate.log
-# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/QSPI_Module/QSPI_Module.sim/sim_1/behav/xsim/xsim.jou
-# Running On         : stradale
-# Platform           : Ubuntu
-# Operating System   : Ubuntu 26.04 LTS
-# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
-# CPU Frequency      : 1301.866 MHz
-# CPU Physical cores : 14
-# CPU Logical cores  : 20
-# Host memory        : 16473 MB
-# Swap memory        : 9130 MB
-# Total Virtual      : 25604 MB
-# Available Virtual  : 10222 MB
-#-----------------------------------------------------------
-source xsim.dir/QSPI_Master_tb_behav/xsim_script.tcl
-# xsim {QSPI_Master_tb_behav} -autoloadwcfg -tclbatch {QSPI_Master_tb.tcl} -key {Behavioral:sim_1:Functional:QSPI_Master_tb}
 Time resolution is 1 ps
 source QSPI_Master_tb.tcl
-## run all
 ==============================================
 ===INFO=== Model Configuration Info
 ===INFO=== Device Name: MT25QL256ABA8E0
@@ -286,6 +260,5 @@ TUM TESTLER BASARILI!
 
 [AXI-CHK]           QSPI | AW=9408 W=9408 B=9408 AR=118166 R=118166 | ihlal=0 uyari=0
 $finish called at time : 6339223682 ps : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/QSPI/QSPI_tb.sv" Line 751
-## quit
-INFO: xsimkernel Simulation Memory Usage: 367628 KB (Peak: 367628 KB), Simulation CPU Usage: 5050 ms
-INFO: [Common 17-206] Exiting xsim at Sun Aug 23 19:01:57 2026...
+INFO: xsimkernel Simulation Memory Usage: 370588 KB (Peak: 370588 KB), Simulation CPU Usage: 3560 ms
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 22:59:22 2026...

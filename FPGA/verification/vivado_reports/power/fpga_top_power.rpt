@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date             : Sun Sep  6 11:02:42 2026
+| Date             : Mon Sep  7 23:07:17 2026
 | Host             : stradale running 64-bit Ubuntu 26.04.1 LTS
 | Command          : report_power -file /home/luxyxp/Documents/mainfiles/FPGA/verification/vivado_reports/power/fpga_top_power.rpt
 | Design           : fpga_top
@@ -53,18 +53,18 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.008 |        5 |       --- |             --- |
-| Slice Logic              |     0.015 |    18736 |       --- |             --- |
-|   LUT as Logic           |     0.013 |     9744 |     63400 |           15.37 |
-|   CARRY4                 |     0.002 |     1140 |     15850 |            7.19 |
-|   Register               |    <0.001 |     4537 |    126800 |            3.58 |
-|   F7/F8 Muxes            |    <0.001 |      320 |     63400 |            0.50 |
+| Slice Logic              |     0.014 |    18833 |       --- |             --- |
+|   LUT as Logic           |     0.012 |     9816 |     63400 |           15.48 |
+|   CARRY4                 |     0.002 |     1145 |     15850 |            7.22 |
+|   Register               |    <0.001 |     4715 |    126800 |            3.72 |
+|   F7/F8 Muxes            |    <0.001 |      319 |     63400 |            0.50 |
 |   LUT as Distributed RAM |    <0.001 |       88 |     19000 |            0.46 |
-|   Others                 |     0.000 |       75 |       --- |             --- |
-| Signals                  |     0.013 |    14717 |       --- |             --- |
-| Block RAM                |     0.010 |       15 |       135 |           11.11 |
+|   Others                 |     0.000 |       76 |       --- |             --- |
+| Signals                  |     0.013 |    14774 |       --- |             --- |
+| Block RAM                |     0.011 |       15 |       135 |           11.11 |
 | MMCM                     |     0.106 |        1 |         6 |           16.67 |
 | DSPs                     |    <0.001 |        6 |       240 |            2.50 |
-| I/O                      |     0.002 |       61 |       210 |           29.05 |
+| I/O                      |     0.002 |       63 |       210 |           30.00 |
 | Static Power             |     0.098 |          |           |                 |
 | Total                    |     0.253 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.062 |       0.047 |      0.016 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.062 |       0.046 |      0.016 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.077 |       0.059 |      0.018 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.005 |       0.001 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -85,7 +85,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.001 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -151,16 +151,18 @@ Table of Contents
 |   clk_wizard_inst         |     0.106 |
 |     inst                  |     0.106 |
 |   soc_inst                |     0.047 |
-|     conv_accelerator_inst |     0.023 |
-|       u_conv_buf_ram      |     0.002 |
+|     conv_accelerator_inst |     0.020 |
+|       u_conv_buf_ram      |     0.001 |
 |       u_fc_weights_rom    |     0.002 |
 |       u_weights_rom       |     0.002 |
-|     cpu_inst              |     0.011 |
-|       CORE                |     0.011 |
+|     cpu_inst              |     0.013 |
+|       CORE                |     0.013 |
 |     data_bram_ctrl_inst   |     0.001 |
 |       data_ram            |     0.001 |
+|     instr_bram_ctrl_inst  |     0.001 |
+|       instr_ram           |     0.001 |
 |     qspi_master_inst      |     0.002 |
-|     timer_inst            |     0.002 |
+|     timer_inst            |     0.001 |
 |     yz_bram_ctrl_inst     |     0.005 |
 |       yz_ram              |     0.005 |
 +---------------------------+-----------+

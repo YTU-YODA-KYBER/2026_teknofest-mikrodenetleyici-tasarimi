@@ -5,7 +5,7 @@
 ## Ne yapıyor?
 
 1 saniyelik bir konusma kaydini (WAV), YZ hizlandiricisinin bekledigi 49x40 = 1960 baytlik ozellik (feature) haritasina cevirir ve 
-scripts/sound_outputs/<isim>.hex olarak yazar. Cikti dosyasi dogrudan `send_data.py audio <dosya-yolu>` ile karta gonderilebilir.
+scripts/sound_outputs/<isim>.hex olarak yazar. Cikti dosyasi dogrudan `send_data.py audio <dosya-yolu>` ile karta gonderilebilir (vektor stream portuna gider, sonuc core porttan okunur).
 
 Modelin eğitildiği **TFLite Micro "micro_speech" ön işleme hattının**
 (microfrontend) birebir Python portu:
@@ -121,6 +121,7 @@ klasöre görelidir. Projeler `FPGA/Vivado_projects/` altına, hedef kart
 | `Memory/create_Boot_ROM.tcl` | Boot ROM | — |
 | `Memory/create_Data_RAM.tcl` | Data RAM | — |
 | `Memory/create_Instruction_RAM.tcl` | Instruction RAM | — |
+| `Memory/create_YZ_RAM.tcl` | YZ girdi RAM'i + çerçeve senkronizasyon testbench'i | — |
 | `Peripherals/create_GPIO.tcl` | GPIO | — |
 | `Peripherals/create_Timer.tcl` | Timer | — |
 | `Peripherals/create_UART_GU.tcl` | UART (genel kullanım) | — |
@@ -173,7 +174,7 @@ python3 compare_rtl.py
 cd ../../firmware && make sim_bench
 #    Vivado Tcl: source scripts/project_gen/System_test/yz_bench_test.tcl
 
-# 4) DOĞRULUK — kart (SW1=1, SW0=0)
+# 4) DOĞRULUK — kart (SW0=0)
 make bench          # + aynı TCL ile sentez, bitstream, program device
 python3 ../scripts/yz_accuracy/run_accuracy.py --dataset dataset --board
 ```

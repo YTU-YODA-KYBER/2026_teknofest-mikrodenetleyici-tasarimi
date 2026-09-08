@@ -8,9 +8,13 @@ class yz_base_test extends axil_base_test;
     yz_env               yenv;
     virtual yz_accel_if  avif;
 
-    bit [31:0] tum_ofset[$] = '{32'h00, 32'h04, 32'h08};
-    bit [31:0] ro_ofset [$] = '{32'h04, 32'h08};
-    bit [31:0] hrt_ofset[$] = '{32'h0C, 32'h10, 32'h20};
+    bit [31:0] tum_ofset[$] = '{32'h00, 32'h04, 32'h08,
+                                32'h10, 32'h14, 32'h18, 32'h1C};
+    bit [31:0] ro_ofset [$] = '{32'h04, 32'h08,
+                                32'h10, 32'h14, 32'h18, 32'h1C};
+    //  0x0C: CTRL ile SCORE0 arasindaki bosluk. 0x20 ve 0x24: son SCORE'un
+    //  ustu. Ucu de okuma case'inin default daline duser -> 0 dondurmeli.
+    bit [31:0] hrt_ofset[$] = '{32'h0C, 32'h20, 32'h24};
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -32,12 +36,14 @@ class yz_base_test extends axil_base_test;
     // Hizlandirici tarafina komut gonder
     task automatic accel_op(yz_accel_pkg::yz_op_e op,
                             bit [7:0] deger = 8'h0,
-                            int unsigned cevrim = 1);
+                            int unsigned cevrim = 1,
+                            bit [127:0] skorlar = 128'h0);
         yz_accel_pkg::yz_accel_seq s;
         s = yz_accel_pkg::yz_accel_seq::type_id::create("a");
-        s.op     = op;
-        s.deger  = deger;
-        s.cevrim = cevrim;
+        s.op      = op;
+        s.deger   = deger;
+        s.skorlar = skorlar;
+        s.cevrim  = cevrim;
         s.start(yenv.accel.sqr);
     endtask
 endclass
@@ -247,6 +253,7 @@ class yz_csr_test extends yz_base_test;
         uvm_status_e   st;
         uvm_reg_data_t d;
         int unsigned   n0;
+        bit [31:0]     skor_bekle [4];
 
         phase.raise_objection(this);
         reset_bekle();
@@ -325,6 +332,34 @@ class yz_csr_test extends yz_base_test;
         if (d !== 32'h3)
             `uvm_error("RESULT", $sformatf(
                 "acc_out_wdata=0xFF icin YZ_RESULT 3 olmali (yalniz [1:0]), okunan 0x%08h", d))
+
+        //---- YZ_SCORE0..3: sinif ile AYNI cevrimde yakalanmali ----
+        //  Isaretli degerler bilerek secildi: 32 bitin tamami sizsin, isaret
+        //  uzatma ya da bit kaymasi olursa yakalansin.
+        skor_bekle = '{32'h0000_0001, 32'hFFFF_FFFF,
+                       32'h7FFF_FFFF, 32'h8000_0000};
+        accel_op(yz_accel_pkg::YZ_WRITE_RESULT, 8'h2, 1,
+                 {skor_bekle[3], skor_bekle[2], skor_bekle[1], skor_bekle[0]});
+        repeat (3) @(posedge vif.clk);
+        for (int k = 0; k < 4; k++) begin
+            yenv.yrm.YZ_SCORE[k].read(st, d);
+            if (d !== skor_bekle[k])
+                `uvm_error("SCORE", $sformatf(
+                    "YZ_SCORE%0d: yazilan 0x%08h, okunan 0x%08h",
+                    k, skor_bekle[k], d))
+        end
+        //  Sonraki yakalamada dordu de birlikte guncellenmeli (bayat kalmamali)
+        skor_bekle = '{32'h0000_0000, 32'h0000_0000,
+                       32'h0000_0000, 32'h0000_0000};
+        accel_op(yz_accel_pkg::YZ_WRITE_RESULT, 8'h0, 1, 128'h0);
+        repeat (3) @(posedge vif.clk);
+        for (int k = 0; k < 4; k++) begin
+            yenv.yrm.YZ_SCORE[k].read(st, d);
+            if (d !== skor_bekle[k])
+                `uvm_error("SCORE", $sformatf(
+                    "YZ_SCORE%0d bayat kaldi: okunan 0x%08h", k, d))
+        end
+        `uvm_info("SCORE", "dort skor da sinifla ayni cevrimde yakalandi", UVM_LOW)
 
         repeat (10) @(posedge vif.clk);
         phase.drop_objection(this);

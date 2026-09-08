@@ -1,21 +1,16 @@
 Time resolution is 1 ps
+source yz_bench_test.tcl
 
 ======================================================================
   YZ BENCH  --  hizlandirici  vs  yazilim gerceklemesi
   girdi: input_data_yes.hex   (beklenen sinif 2)
 ======================================================================
-WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
-WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
-
-======================================================================
-  YZ BENCH  --  hizlandirici  vs  yazilim gerceklemesi
-  girdi: input_data_yes.hex   (beklenen sinif 2)
-======================================================================
-WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
-WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
+[TB] t=451850000  genel UART hazir, UART_CPB=434
 [TB] YZ RAM DMA ile dolduruluyor (1960 bayt)...
 [TB] YZ RAM hazir, load_pending bekleniyor...
-[TB] t=1510730000  ACCEL DONE, sinif=2, cevrim=45517
+[TB] t=1510790000  ACCEL DONE, sinif=2, cevrim=45517
 [UART] YZ:2
 [UART] SW:2 HC:45540 SC:12608381
 
@@ -37,4 +32,6 @@ WARNING: 0ns : none of the conditions were true for unique case from File:/home/
 
 [GECTI] Hizlandirici yazilim gerceklemesinden 276.9 kat hizli.
 
-$finish called at time : 256368670 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_files/main_codes/testbench/System_Test/yz_bench_test.sv" Line 277
+$finish called at time : 256368670 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/System_Test/yz_bench_test.sv" Line 313
+INFO: xsimkernel Simulation Memory Usage: 300924 KB (Peak: 344796 KB), Simulation CPU Usage: 730100 ms
+INFO: [Common 17-206] Exiting Vivado at Tue Sep  8 09:12:35 2026...

@@ -6,8 +6,7 @@ kendisi burada değil, [`main_codes/testbench/uvm/`](../../main_codes/testbench/
 altındadır; bu klasör yalnızca kanıt tutar.
 
 Simülatör: **Verilator 5.050** · UVM: **2020.3.1 (no-DPI)** · Regresyon
-ölçümü: **2026-09-05** (I2C yenilemesi: **2026-09-06**) · Kapsam
-ölçümü: **2026-09-06**
+ölçümü: **2026-09-07** · Kapsam ölçümü: **2026-09-07**
 
 > **Başlangıç noktaları:** regresyon için [`regression_summary.md`](regression_summary.md),
 > kapsam için [`coverage/index.html`](coverage/index.html) ve
@@ -27,7 +26,7 @@ Simülatör: **Verilator 5.050** · UVM: **2020.3.1 (no-DPI)** · Regresyon
 | AXI protokol ihlali | **0** |
 | Uyarı (stall watchdog) | **0** |
 | Fonksiyonel kapsam | **35 / 35 ölçülebilir bin → %100** ¹ |
-| Satır kapsamı (tasarım) | **1298 / 1347 → %96,4** |
+| Satır kapsamı (tasarım) | **1301 / 1350 → %96,4** |
 | Toplam regresyon süresi | 0,5 dakika (8 paralel test; bloklar sıralı, derleme 4 iş) |
 
 ¹ İki bin (`slverr`, `decerr`) **erişilemez** olarak işaretlenmiştir ve paydadan

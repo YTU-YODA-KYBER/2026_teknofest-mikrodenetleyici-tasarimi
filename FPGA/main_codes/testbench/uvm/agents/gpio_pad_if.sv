@@ -4,7 +4,6 @@
 //  IDR    : 16 switch girisi -- testbench surer
 //  ODR    : LED / 7-segment degeri -- DUT surer
 //  anode / catode : 7-segment tarama cikislari -- DUT surer
-//  dma_enable_o   : GPIO_IDR[1]'in bir cevrim gecikmeli aynasi
 //=============================================================================
 `ifndef GPIO_PAD_IF_SV
 `define GPIO_PAD_IF_SV
@@ -13,7 +12,6 @@
 interface gpio_pad_if (input logic clk, input logic rst_n);
     logic [31:0] idr;         // TB -> DUT
     logic [31:0] odr;         // DUT -> TB
-    logic        dma_enable;  // DUT -> TB
     logic [ 7:0] anode;       // DUT -> TB
     logic [ 7:0] catode;      // DUT -> TB
 endinterface

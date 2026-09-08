@@ -1,10 +1,10 @@
 set ::env(STEP_ID) OpenROAD.STAPostPNR
-set ::env(TECH_LEF) /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
+set ::env(TECH_LEF) /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
 set ::env(MACRO_LEFS) "/home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_2kbyte_1rw1r_32x512_8/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
 set ::env(STD_CELL_LIBRARY) sky130_fd_sc_hd
 set ::env(VDD_PIN) VPWR
 set ::env(GND_PIN) VGND
-set ::env(TECH_LEFS) "\"nom_*\" /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef \"min_*\" /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__min.tlef \"max_*\" /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__max.tlef"
+set ::env(TECH_LEFS) "\"nom_*\" /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef \"min_*\" /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__min.tlef \"max_*\" /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__max.tlef"
 set ::env(PRIMARY_GDSII_STREAMOUT_TOOL) klayout
 set ::env(DEFAULT_CORNER) nom_tt_025C_1v80
 set ::env(STA_CORNERS) "nom_tt_025C_1v80 nom_ss_100C_1v60 nom_ff_n40C_1v95 min_tt_025C_1v80 min_ss_100C_1v60 min_ff_n40C_1v95 max_tt_025C_1v80 max_ss_100C_1v60 max_ff_n40C_1v95"
@@ -15,15 +15,15 @@ set ::env(SCL_POWER_PINS) "VPWR VPB"
 set ::env(TRISTATE_CELLS) "\"sky130_fd_sc_hd__ebuf*\""
 set ::env(FILL_CELLS) "sky130_fd_sc_hd__fill_8 sky130_fd_sc_hd__fill_4 sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_1"
 set ::env(DECAP_CELLS) sky130_fd_sc_hd__decap_3
-set ::env(LIB) "\"*_tt_025C_1v80\" /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib \"*_ss_100C_1v60\" /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib \"*_ff_n40C_1v95\" /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib"
-set ::env(CELL_LEFS) "/usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef"
-set ::env(CELL_GDS) /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/gds/sky130_fd_sc_hd.gds
-set ::env(CELL_VERILOG_MODELS) "/usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v"
-set ::env(CELL_BB_VERILOG_MODELS) "/usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd__blackbox.v /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd__blackbox_pp.v"
-set ::env(CELL_SPICE_MODELS) "/usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_20_12.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_40_12.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_60_12.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_80_12.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_12.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_2.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_4.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
-set ::env(CELL_CDLS) /usr/asic_flow/pdk/sky130A/libs.ref/sky130_fd_sc_hd/cdl/sky130_fd_sc_hd.cdl
-set ::env(SYNTH_EXCLUDED_CELL_FILE) /usr/asic_flow/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/no_synth.cells
-set ::env(PNR_EXCLUDED_CELL_FILE) /usr/asic_flow/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/drc_exclude.cells
+set ::env(LIB) "\"*_tt_025C_1v80\" /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib \"*_ss_100C_1v60\" /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib \"*_ff_n40C_1v95\" /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib"
+set ::env(CELL_LEFS) "/home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef"
+set ::env(CELL_GDS) /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/gds/sky130_fd_sc_hd.gds
+set ::env(CELL_VERILOG_MODELS) "/home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v"
+set ::env(CELL_BB_VERILOG_MODELS) "/home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd__blackbox.v /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd__blackbox_pp.v"
+set ::env(CELL_SPICE_MODELS) "/home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_20_12.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_40_12.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_60_12.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_80_12.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_12.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_2.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_4.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
+set ::env(CELL_CDLS) /home/luxyxp/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/cdl/sky130_fd_sc_hd.cdl
+set ::env(SYNTH_EXCLUDED_CELL_FILE) /home/luxyxp/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/no_synth.cells
+set ::env(PNR_EXCLUDED_CELL_FILE) /home/luxyxp/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/drc_exclude.cells
 set ::env(OUTPUT_CAP_LOAD) 33.442
 set ::env(MAX_FANOUT_CONSTRAINT) 25
 set ::env(MAX_TRANSITION_CONSTRAINT) 0.75
@@ -63,8 +63,8 @@ set ::env(DEDUPLICATE_CORNERS) 1
 set ::env(STA_MACRO_PRIORITIZE_NL) 1
 set ::env(STA_THREADS) 1
 set ::env(SIGNOFF_SDC_FILE) /home/luxyxp/Documents/mainfiles/asic/constraints/design.sdc
-set ::env(CURRENT_NL) /usr/asic_flow/run/i2c_20260907_final/54-openroad-fillinsertion/top_module.nl.v
-set ::env(CURRENT_SPEF) "\"nom_*\" /usr/asic_flow/run/i2c_20260907_final/56-openroad-rcx/nom/top_module.nom.spef \"min_*\" /usr/asic_flow/run/i2c_20260907_final/56-openroad-rcx/min/top_module.min.spef \"max_*\" /usr/asic_flow/run/i2c_20260907_final/56-openroad-rcx/max/top_module.max.spef"
-set ::env(CURRENT_ODB) /usr/asic_flow/run/i2c_20260907_final/55-odb-cellfrequencytables/top_module.odb
-set ::env(SAVE_SDC) /usr/asic_flow/run/i2c_20260907_final/57-openroad-stapostpnr/top_module.sdc
+set ::env(CURRENT_NL) /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/54-openroad-fillinsertion/top_module.nl.v
+set ::env(CURRENT_SPEF) "\"nom_*\" /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/56-openroad-rcx/nom/top_module.nom.spef \"min_*\" /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/56-openroad-rcx/min/top_module.min.spef \"max_*\" /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/56-openroad-rcx/max/top_module.max.spef"
+set ::env(CURRENT_ODB) /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/55-odb-cellfrequencytables/top_module.odb
+set ::env(SAVE_SDC) /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/57-openroad-stapostpnr/top_module.sdc
 set ::env(OPENLANE_SDC_IDEAL_CLOCKS) 0

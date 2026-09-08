@@ -57,6 +57,8 @@ module boot_test;
     // ---- UART ----
     logic UART_GU_rx = 1'b1;      // TB surer -> DUT
     logic UART_GU_tx;             // TB izler <- DUT
+    logic UART_YZ_rx = 1'b1;      // boot testinde kullanilmaz, bosta '1'
+    logic UART_YZ_tx;
 
     // ---- interrupt (kullanilmiyor) ----
     logic [31:0] interrupt_i = 32'd0;
@@ -88,7 +90,8 @@ module boot_test;
         .INIT_FILE_boot("sim_boot.hex")   // <-- makefile_outputs/sim_boot.hex olmali!
     ) dut (
         .clk_i (clk_i), .rst_ni (rst_ni),
-        .UART_RX (UART_GU_rx), .UART_TX (UART_GU_tx),
+        .UART_GU_RX(UART_GU_rx), .UART_GU_TX(UART_GU_tx),
+        .UART_YZ_RX(UART_YZ_rx), .UART_YZ_TX(UART_YZ_tx),
         .GPIO_IDR (GPIO_IDR), .GPIO_ODR (GPIO_ODR),
         .I2C_SCL (I2C_SCL), .I2C_SDA (I2C_SDA),
         .QSPI_SCLK (QSPI_SCLK), .QSPI_CS (QSPI_CS),

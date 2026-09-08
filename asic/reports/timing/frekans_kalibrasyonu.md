@@ -48,7 +48,16 @@ Secim: **kalan ihlal sifir olan en kucuk TEST EDILMIS periyot**.
 
 ## Sonuc
 
-Secilen: **38 ns = 26.32 MHz** (resizer sifir ihlale ulasti; baslangicta 297 ihlalli uc vardi). `config.yaml` icindeki `CLOCK_PERIOD` bu degere ayarlanmistir.
+Bu tablonun onerdigi deger **38 ns = 26.32 MHz** idi (resizer sifir ihlale
+ulasti; baslangicta 297 ihlalli uc vardi).
+
+> **DIKKAT -- teslimde kullanilan deger bu DEGILDIR.** `config.yaml` icindeki
+> `CLOCK_PERIOD` **35.714285714285715 ns (28 MHz)**'dir. Sebep: bu kalibrasyon
+> post-CTS tahmini parazitiklerle calisir ve BAGLAYICI degildir; bagimsiz tam
+> kosumlarla 28 MHz'in dokuz signoff kosesinde setup+hold ile kapandigi
+> DOGRULANMISTIR (bkz. asic/README.md, "Frekans secimi" bolumu). 30 MHz iki kez
+> tam kosumla denenmis ve ikisinde de signoff zamanlamasinda dusmustur; kosumdan
+> kosuma dagilim ~2,4 ns olculdugu icin 28 MHz secilmistir.
 
 **Test edilen periyotlar:** 25, 35, 36, 38, 40 ns. Aradaki degerler olculmedigi icin bu deger MUTLAK minimum degil, olculen aday kumesinin en kucugudur.
 

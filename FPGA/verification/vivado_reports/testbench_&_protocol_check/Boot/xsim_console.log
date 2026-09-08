@@ -1,31 +1,5 @@
-#-----------------------------------------------------------
-# xsim v2025.2 (64-bit)
-# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
-# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
-# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Sun Aug 23 19:15:50 2026
-# Process ID         : 507917
-# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/boot_system_test/boot_system_test.sim/sim_1/behav/xsim
-# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/boot_test_behav/xsim_script.tcl}
-# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/boot_system_test/boot_system_test.sim/sim_1/behav/xsim/simulate.log
-# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/boot_system_test/boot_system_test.sim/sim_1/behav/xsim/xsim.jou
-# Running On         : stradale
-# Platform           : Ubuntu
-# Operating System   : Ubuntu 26.04 LTS
-# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
-# CPU Frequency      : 2800.000 MHz
-# CPU Physical cores : 14
-# CPU Logical cores  : 20
-# Host memory        : 16473 MB
-# Swap memory        : 9130 MB
-# Total Virtual      : 25604 MB
-# Available Virtual  : 10691 MB
-#-----------------------------------------------------------
-source xsim.dir/boot_test_behav/xsim_script.tcl
-# xsim {boot_test_behav} -autoloadwcfg -tclbatch {boot_test.tcl} -key {Behavioral:sim_1:Functional:boot_test}
 Time resolution is 1 ps
 source boot_test.tcl
-## run all
 ==============================================
 ===INFO=== Model Configuration Info
 ===INFO=== Device Name: MT25QL256ABA8E0
@@ -214,8 +188,6 @@ WARNING: File sfdp.vmf referenced from process on /home/luxyxp/Documents/mainfil
 [AXI-CHK]           QSPI | AW=5418 W=5418 B=5418 AR=34232 R=34232 | ihlal=0 uyari=0
 [AXI-CHK] SPLITTER_S | FIN_02 BILGI: 1 okuma cevapsiz -- 2 reset ve outstanding limiti (2) ile aciklanabilir, protokol ihlali DEGIL
 [AXI-CHK]     SPLITTER_S | AW=0 W=0 B=0 AR=165118 R=165117 | ihlal=0 uyari=0
-$finish called at time : 10908390 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/System_Test/boot_test.sv" Line 216
-run: Time (s): cpu = 00:00:00.48 ; elapsed = 00:02:25 . Memory (MB): peak = 1456.258 ; gain = 8.004 ; free physical = 1580 ; free virtual = 10082
-## quit
-INFO: xsimkernel Simulation Memory Usage: 371896 KB (Peak: 371896 KB), Simulation CPU Usage: 146590 ms
-INFO: [Common 17-206] Exiting xsim at Sun Aug 23 19:18:19 2026...
+$finish called at time : 10908390 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/System_Test/boot_test.sv" Line 219
+INFO: xsimkernel Simulation Memory Usage: 375544 KB (Peak: 375544 KB), Simulation CPU Usage: 84270 ms
+INFO: [Common 17-206] Exiting Vivado at Tue Sep  8 09:14:25 2026...

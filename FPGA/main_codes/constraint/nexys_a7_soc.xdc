@@ -32,11 +32,23 @@ set_property -dict {PACKAGE_PIN T14 IOSTANDARD LVCMOS33} [get_ports {anode[5]}]
 set_property -dict {PACKAGE_PIN K2 IOSTANDARD LVCMOS33} [get_ports {anode[6]}]
 set_property -dict {PACKAGE_PIN U13 IOSTANDARD LVCMOS33} [get_ports {anode[7]}]
 
-## UART Portları
-set_property -dict {PACKAGE_PIN C4 IOSTANDARD LVCMOS33} [get_ports UART_RX]
-set_property -dict {PACKAGE_PIN D4 IOSTANDARD LVCMOS33} [get_ports UART_TX]
+## ---- Genel kullanim UART'i -> kart uzerindeki FT2232HQ USB-UART kanali ----
+## Demo test harness'inin "core UART" arayuzu budur: cikarim sonucu buradan cikar.
+set_property -dict {PACKAGE_PIN C4 IOSTANDARD LVCMOS33} [get_ports UART_GU_RX]
+set_property -dict {PACKAGE_PIN D4 IOSTANDARD LVCMOS33} [get_ports UART_GU_TX]
 
-set_property PULLUP true [get_ports UART_RX]
+set_property PULLUP true [get_ports UART_GU_RX]
+
+## ---- YZ veri akisi UART'i -> PMOD JC (Pmod USBUART, FT232R) ----
+## Demo test harness'inin "stream UART" arayuzu budur: 1960 baytlik vektor
+## buradan girer. Core UART'tan AYRI bir fiziksel port olmasi zorunludur.
+##   JC2 = F6 -> Pmod pin 2 (RXD): Pmod'un ALDIGI hat, FPGA'nin TX'i
+##   JC3 = J2 -> Pmod pin 3 (TXD): Pmod'un SURDUGU hat, FPGA'nin RX'i
+## Pmod'un 5 (GND) ve 6 (VCC) pinleri JC basligindan beslenir.
+set_property -dict {PACKAGE_PIN F6 IOSTANDARD LVCMOS33} [get_ports UART_YZ_TX]
+set_property -dict {PACKAGE_PIN J2 IOSTANDARD LVCMOS33} [get_ports UART_YZ_RX]
+
+set_property PULLUP true [get_ports UART_YZ_RX]
 
 ## ---- Switches → GPIO_IDR[15:0] ----
 set_property PACKAGE_PIN J15 [get_ports {GPIO_IDR_pins[0]}]

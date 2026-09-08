@@ -85,8 +85,10 @@ module spike_iss_test;
     logic [ 7:0] anode;
     logic [ 7:0] catode;
 
-    logic        UART_TX;
-    logic        UART_RX = 1'b1;    // bosta '1' (idle)
+    logic        UART_GU_TX;
+    logic        UART_GU_RX = 1'b1; // bosta '1' (idle)
+    logic        UART_YZ_TX;
+    logic        UART_YZ_RX = 1'b1; // bosta '1' (idle)
 
     logic        I2C_SCL;
     wire         I2C_SDA;
@@ -115,8 +117,10 @@ module spike_iss_test;
         .anode     (anode),
         .catode    (catode),
 
-        .UART_TX   (UART_TX),
-        .UART_RX   (UART_RX),
+        .UART_GU_TX(UART_GU_TX),
+        .UART_GU_RX(UART_GU_RX),
+        .UART_YZ_TX(UART_YZ_TX),
+        .UART_YZ_RX(UART_YZ_RX),
 
         .I2C_SCL   (I2C_SCL),
         .I2C_SDA   (I2C_SDA),

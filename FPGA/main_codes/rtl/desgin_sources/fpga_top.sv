@@ -8,8 +8,13 @@ module fpga_top #(
     input  logic sys_rst_btn,   // active LOW
     output logic sys_rst_out,   // flash mem için rst sinyali
 
-    input  logic UART_RX,
-    output logic UART_TX,
+    // Genel kullanim UART'i -> kart uzerindeki USB-UART koprusu
+    input  logic UART_GU_RX,
+    output logic UART_GU_TX,
+
+    // YZ veri akisi UART'i -> Pmod USB-UART koprusu (ayri fiziksel port)
+    input  logic UART_YZ_RX,
+    output logic UART_YZ_TX,
 
     input  logic [15:0] GPIO_IDR_pins,  // 16 switch (Basys3'te 32 pin yok)
     output logic [15:0] GPIO_ODR_pins,  // 16 LED
@@ -26,7 +31,7 @@ module fpga_top #(
     inout  logic QSPI_IO3
 );
 
-assign sys_rst_btn = sys_rst_out;
+assign sys_rst_out = sys_rst_btn;
 
 // ----------------------------------------------------------------
 // 1. CLOCK: 100 MHz → 50 MHz
@@ -81,8 +86,6 @@ assign GPIO_ODR_pins     = gpio_odr_internal[15:0]; // alt 16 bit LED'e
 // ----------------------------------------------------------------
 // 4. SOC
 // ----------------------------------------------------------------
-logic        uart_yz_tx_nc;            // çıkış, nowhere
-
 top_module #(
     .INIT_FILE_boot (INIT_FILE_boot),
     .ADDR_WIDTH_boot(ADDR_WIDTH_boot),
@@ -96,8 +99,10 @@ top_module #(
     .anode        (anode),
     .catode       (catode),
 
-    .UART_TX      (UART_TX),
-    .UART_RX      (UART_RX),
+    .UART_GU_TX   (UART_GU_TX),
+    .UART_GU_RX   (UART_GU_RX),
+    .UART_YZ_TX   (UART_YZ_TX),
+    .UART_YZ_RX   (UART_YZ_RX),
     .I2C_SCL      (I2C_SCL),
     .I2C_SDA      (I2C_SDA),
     .QSPI_SCLK    (QSPI_SCLK),

@@ -19,11 +19,11 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test timer_count_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(263) @ 4920000: uvm_test_top [CNT] yukari sayma: 200 cevrimde TIM_CNT=203
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(274) @ 6540000: uvm_test_top [CNT] asagi sayma: 50 cevrimde TIM_CNT=448 (ARE=500'den geri)
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(285) @ 11160000: uvm_test_top [PRE] prescaler=9: 200 cevrimde TIM_CNT=20
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(300) @ 15940000: uvm_test_top [EVN] ARE=3, 200 cevrim -> TIM_EVN=50
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 16290000: uvm_test_top.env.sb [SB] TIMER scoreboard: yazma=30 okuma=8 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(263) @ 4920000: uvm_test_top [CNT] yukari sayma: 200 cevrimde TIM_CNT=203
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(274) @ 6540000: uvm_test_top [CNT] asagi sayma: 50 cevrimde TIM_CNT=448 (ARE=500'den geri)
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(285) @ 11160000: uvm_test_top [PRE] prescaler=9: 200 cevrimde TIM_CNT=20
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/timer/timer_test_lib.svh(300) @ 15940000: uvm_test_top [EVN] ARE=3, 200 cevrim -> TIM_EVN=50
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 16290000: uvm_test_top.env.sb [SB] TIMER scoreboard: yazma=30 okuma=8 kontrol=0 uyusmazlik=0 kotu_cevap=0
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -67,5 +67,5 @@ UVM_FATAL :    0
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
 [AXI-CHK] TIMER          | AW=30 W=30 B=30 AR=8 R=8 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 16us; walltime 0.423 s; speed 38.499 us/s
-- Verilator: cpu 0.423 s on 1 threads; allocated 56 MB
+- Verilator: $finish at 16us; walltime 0.351 s; speed 46.365 us/s
+- Verilator: cpu 0.349 s on 1 threads; allocated 56 MB

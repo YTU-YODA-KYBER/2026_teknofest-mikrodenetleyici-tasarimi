@@ -5,10 +5,10 @@ Clock Skew (Hold)
 ======================= min_ss_100C_1v60 Corner ===================================
 
 Clock clk_i
-4.159652 source latency conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/clk1 v
--7.391731 target latency _129120_/CLK ^
+4.349754 source latency data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/clk1 v
+-6.854515 target latency _128151_/CLK ^
 -0.250000 clock uncertainty
--0.089900 CRPR
+-0.084731 CRPR
 --------------
--3.571978 hold skew
+-2.839491 hold skew
 

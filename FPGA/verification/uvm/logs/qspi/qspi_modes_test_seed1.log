@@ -19,15 +19,15 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test qspi_modes_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(509) @ 9260000: uvm_test_top [CCR] QSPI_CCR geri okundu: 0x0903436b
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(529) @ 18380000: uvm_test_top [QOR] x4 okuma dogru: 0xa0a1a2a3
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(549) @ 28560000: uvm_test_top [DOR] x2 okuma dogru: 0xa0a1a2a3
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(564) @ 36620000: uvm_test_top [QPP] x4 yazma: adres 0x040000, flash'in gordugu '{'h88, 'h77, 'h66, 'h55}
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(573) @ 53160000: uvm_test_top [UZUN] 8 baytlik okuma, ilk kelime: 0xa0a1a2a3
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(575) @ 53240000: uvm_test_top [UZUN] 8 baytlik okuma, ikinci kelime: 0xa4a5a6a7
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(583) @ 64480000: uvm_test_top [ADR32] 32-bit adres modunda transfer tamamlandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/qspi_flash_pkg.sv(280) @ 64850000: uvm_test_top.env.flash [QSPI_FLASH] QSPI flash: 6 komut isledi, bellekte 28 bayt
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 64850000: uvm_test_top.env.sb [SB] QSPI scoreboard: yazma=27 okuma=68 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(509) @ 9260000: uvm_test_top [CCR] QSPI_CCR geri okundu: 0x0903436b
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(529) @ 18380000: uvm_test_top [QOR] x4 okuma dogru: 0xa0a1a2a3
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(549) @ 28560000: uvm_test_top [DOR] x2 okuma dogru: 0xa0a1a2a3
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(564) @ 36620000: uvm_test_top [QPP] x4 yazma: adres 0x040000, flash'in gordugu '{'h88, 'h77, 'h66, 'h55}
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(573) @ 53160000: uvm_test_top [UZUN] 8 baytlik okuma, ilk kelime: 0xa0a1a2a3
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(575) @ 53240000: uvm_test_top [UZUN] 8 baytlik okuma, ikinci kelime: 0xa4a5a6a7
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(583) @ 64480000: uvm_test_top [ADR32] 32-bit adres modunda transfer tamamlandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/qspi_flash_pkg.sv(280) @ 64850000: uvm_test_top.env.flash [QSPI_FLASH] QSPI flash: 6 komut isledi, bellekte 28 bayt
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 64850000: uvm_test_top.env.sb [SB] QSPI scoreboard: yazma=27 okuma=68 kontrol=0 uyusmazlik=0 kotu_cevap=0
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -75,5 +75,5 @@ UVM_FATAL :    0
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
 [AXI-CHK] QSPI           | AW=27 W=27 B=27 AR=68 R=68 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 65us; walltime 0.594 s; speed 109.157 us/s
-- Verilator: cpu 0.480 s on 1 threads; allocated 62 MB
+- Verilator: $finish at 65us; walltime 0.477 s; speed 135.960 us/s
+- Verilator: cpu 0.477 s on 1 threads; allocated 62 MB

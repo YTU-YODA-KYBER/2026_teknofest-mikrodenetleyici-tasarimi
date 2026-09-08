@@ -1,1 +1,1 @@
-genhtml /usr/Verilator_uvm/build/coverage/tasarim.info -o /home/luxyxp/Documents/mainfiles/FPGA/verification/uvm/coverage --title 'YODA KYBER -- UVM satir kapsami' --prefix /home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources --legend --quiet
+genhtml /usr/Verilator_uvm/build/coverage/tasarim.info -o /home/luxyxp/Documents/mainfiles_yedek/FPGA/verification/uvm/coverage --title 'YODA KYBER -- UVM satir kapsami' --prefix /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/rtl/desgin_sources --legend --quiet

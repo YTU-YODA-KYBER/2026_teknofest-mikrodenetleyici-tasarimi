@@ -1,31 +1,5 @@
-#-----------------------------------------------------------
-# xsim v2025.2 (64-bit)
-# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
-# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
-# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Sun Aug 23 18:59:29 2026
-# Process ID         : 500811
-# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Timer_Module/Timer_Module.sim/sim_1/behav/xsim
-# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/Timer_testbench_behav/xsim_script.tcl}
-# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Timer_Module/Timer_Module.sim/sim_1/behav/xsim/simulate.log
-# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Timer_Module/Timer_Module.sim/sim_1/behav/xsim/xsim.jou
-# Running On         : stradale
-# Platform           : Ubuntu
-# Operating System   : Ubuntu 26.04 LTS
-# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
-# CPU Frequency      : 2900.000 MHz
-# CPU Physical cores : 14
-# CPU Logical cores  : 20
-# Host memory        : 16473 MB
-# Swap memory        : 9130 MB
-# Total Virtual      : 25604 MB
-# Available Virtual  : 10822 MB
-#-----------------------------------------------------------
-source xsim.dir/Timer_testbench_behav/xsim_script.tcl
-# xsim {Timer_testbench_behav} -autoloadwcfg -tclbatch {Timer_testbench.tcl} -key {Behavioral:sim_1:Functional:Timer_testbench}
 Time resolution is 1 ps
 source Timer_testbench.tcl
-## run all
 --- TEST 1: TIM_PRE_m = 0 | Hedef = 1453 Basliyor ---
   [GECTI ] Test 1 basarili: TIM_ARE=1453'e ulasildi, TIM_EVN=1
 --- TEST 2: TIM_PRE_m = 0 | Hedef = 0(Geriye sayma) Basliyor ---
@@ -66,6 +40,5 @@ TUM TESTLER BASARILI!
 
 [AXI-CHK]          TIMER | AW=30 W=30 B=30 AR=5 R=5 | ihlal=0 uyari=0
 $finish called at time : 50140 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/Timer/Timer_tb.sv" Line 377
-## quit
-INFO: xsimkernel Simulation Memory Usage: 284264 KB (Peak: 341536 KB), Simulation CPU Usage: 1280 ms
-INFO: [Common 17-206] Exiting xsim at Sun Aug 23 18:59:33 2026...
+INFO: xsimkernel Simulation Memory Usage: 284264 KB (Peak: 341536 KB), Simulation CPU Usage: 840 ms
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 22:58:23 2026...

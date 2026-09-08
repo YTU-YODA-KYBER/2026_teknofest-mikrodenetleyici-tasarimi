@@ -104,11 +104,16 @@ BOOT_SRCS = boot.S main_boot.c
 BOOT_LD   = linker.ld                 # Boot ROM (0x00000000)
 
 APP_SRCS  = boot.S main_app.c
+#  Softmax sabitleri ve exp tablosu .tflite'tan uretilir; yeniden uretilince
+#  uygulama da yeniden derlensin diye bagimlilik olarak listelenir.
+APP_HDRS  = soc.h yz_model/yz_softmax.h
 APP_LD    = linker_app.ld             # INSTRRAM (0x10000000) -> flash/DMA yolu
-#  Ayni uygulamayi Boot ROM'dan kosturmak icin BOOT_LD (0x00000000) kullanilir.
-#  Boylece flash + flasher + DMA zincirine hic girmeden app denenebilir; RTL'de
-#  $readmemh eklemek ya da boot_addr'i degistirmek gerekmez.
-APP_BOOTROM_LD = $(BOOT_LD)
+#  Ayni uygulamayi Boot ROM'dan kosturmak icin ayri bir script kullanilir
+#  (0x00000000, 4KB). Boylece flash + flasher + DMA zincirine hic girmeden app
+#  denenebilir; RTL'de $readmemh eklemek ya da boot_addr'i degistirmek gerekmez.
+#  Ana projenin 1KB'lik boot ROM'u (linker.ld) bundan ETKILENMEZ; simulasyon
+#  ve ASIC sim varyantlarini kullanan testbench'ler ADDR_WIDTH_boot'u 10'a ezer.
+APP_BOOTROM_LD = linker_app_bootrom.ld
 
 CIRCLE_SRCS = boot.S circle.c
 CIRCLE_LD   = linker_app.ld           # INSTRRAM (0x10000000)
@@ -131,7 +136,11 @@ BENCH_FLAGS = -O2 -Iyz_model
 .PHONY: all boot sim_boot app sim_app app_bootrom circle echo bench sim_bench \
         flash_vmf sim_flash_vmf size disasm_boot disasm_app clean
 
-all: boot app
+#  `all` yalnizca karta giden ikiliyi degil, SIMULASYON varyantlarini da
+#  uretir. Sebebi olculdu: sim_bench.hex / sim_boot.hex `all` disinda
+#  kaldigi icin sistem testleri aylarca BAYAT firmware kosmus, RTL
+#  degisiklikleri simulasyona hic yansimamisti.
+all: boot app sim_boot sim_app app_bootrom bench sim_bench
 
 $(OUT_DIR):
 	mkdir -p $@
@@ -206,7 +215,7 @@ $(OUT_DIR)/asic_sim_boot.hex: $(OUT_DIR)/asic_sim_boot.elf
 
 asic_sim_app: EXTRA_FLAGS = -DSIMULATION -DSYS_CLK_HZ=$(ASIC_CLK_HZ)UL
 asic_sim_app: $(OUT_DIR)/asic_sim_app.hex
-$(OUT_DIR)/asic_sim_app.elf: $(APP_SRCS) $(APP_BOOTROM_LD) Makefile | $(OUT_DIR)
+$(OUT_DIR)/asic_sim_app.elf: $(APP_SRCS) $(APP_HDRS) $(APP_BOOTROM_LD) Makefile | $(OUT_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -T $(APP_BOOTROM_LD) $(APP_SRCS) -o $@
 $(OUT_DIR)/asic_sim_app.hex: $(OUT_DIR)/asic_sim_app.elf
 	$(OBJCOPY) -O verilog --verilog-data-width=4 $< $@
@@ -215,7 +224,7 @@ $(OUT_DIR)/asic_sim_app.hex: $(OUT_DIR)/asic_sim_app.elf
 
 asic_app: EXTRA_FLAGS = -DSYS_CLK_HZ=$(ASIC_CLK_HZ)UL
 asic_app: $(OUT_DIR)/asic_app.hex
-$(OUT_DIR)/asic_app.elf: $(APP_SRCS) $(APP_LD) Makefile | $(OUT_DIR)
+$(OUT_DIR)/asic_app.elf: $(APP_SRCS) $(APP_HDRS) $(APP_LD) Makefile | $(OUT_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -T $(APP_LD) $(APP_SRCS) -o $@
 $(OUT_DIR)/asic_app.hex: $(OUT_DIR)/asic_app.elf
 	$(OBJCOPY) -O verilog --verilog-data-width=4 --change-addresses -$(APP_BASE) $< $@
@@ -227,7 +236,7 @@ $(OUT_DIR)/asic_app.hex: $(OUT_DIR)/asic_app.elf
 # =====================================================================
 # --- HW: app.hex (send_data.py / hex2vmf girdisi) + app.bin (harici programlayici) ---
 app: $(OUT_DIR)/app.hex $(OUT_DIR)/app.bin
-$(OUT_DIR)/app.elf: $(APP_SRCS) $(APP_LD) Makefile | $(OUT_DIR)
+$(OUT_DIR)/app.elf: $(APP_SRCS) $(APP_HDRS) $(APP_LD) Makefile | $(OUT_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -T $(APP_LD) $(APP_SRCS) -o $@
 $(OUT_DIR)/app.hex: $(OUT_DIR)/app.elf
 	$(OBJCOPY) -O verilog --verilog-data-width=4 --change-addresses -$(APP_BASE) $< $@
@@ -245,7 +254,7 @@ $(OUT_DIR)/app.bin: $(OUT_DIR)/app.elf
 #  ai_accel_test.sv bu dosyayi INIT_FILE_boot("sim_app.hex") ile ister.
 sim_app: EXTRA_FLAGS = -DSIMULATION
 sim_app: $(OUT_DIR)/sim_app.hex
-$(OUT_DIR)/sim_app.elf: $(APP_SRCS) $(APP_BOOTROM_LD) Makefile | $(OUT_DIR)
+$(OUT_DIR)/sim_app.elf: $(APP_SRCS) $(APP_HDRS) $(APP_BOOTROM_LD) Makefile | $(OUT_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -T $(APP_BOOTROM_LD) $(APP_SRCS) -o $@
 $(OUT_DIR)/sim_app.hex: $(OUT_DIR)/sim_app.elf
 	$(OBJCOPY) -O verilog --verilog-data-width=4 $< $@
@@ -256,7 +265,7 @@ $(OUT_DIR)/sim_app.hex: $(OUT_DIR)/sim_app.elf
 #  Kullanimi: make app_bootrom  ->  vivado -source scripts/App_Bootrom_Project.tcl
 #  TCL, fpga_top'un INIT_FILE_boot generic'ini "app_bootrom.hex" yapar.
 app_bootrom: $(OUT_DIR)/app_bootrom.hex
-$(OUT_DIR)/app_bootrom.elf: $(APP_SRCS) $(APP_BOOTROM_LD) Makefile | $(OUT_DIR)
+$(OUT_DIR)/app_bootrom.elf: $(APP_SRCS) $(APP_HDRS) $(APP_BOOTROM_LD) Makefile | $(OUT_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -T $(APP_BOOTROM_LD) $(APP_SRCS) -o $@
 $(OUT_DIR)/app_bootrom.hex: $(OUT_DIR)/app_bootrom.elf
 	$(OBJCOPY) -O verilog --verilog-data-width=4 $< $@

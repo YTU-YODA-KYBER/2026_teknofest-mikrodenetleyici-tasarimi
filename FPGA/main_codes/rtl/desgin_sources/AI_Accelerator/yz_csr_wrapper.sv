@@ -14,11 +14,13 @@ module yz_csr_wrapper (
     input  logic       acc_done,        // Çıkarım bittiğinde pulse olur
     input  logic       acc_out_wen,     // "Çıkarım sonucu geçerli" mesajı için pulse olur. Bu 1 olduğu zaman satır 40 yapılır
     input  logic [7:0] acc_out_wdata,   // Güncel çıkarım sonucunu tutar
+    input  logic [127:0] acc_fc_scores, // FC katmanının 4 ham 32-bit akümülatörü
     input  logic       load_done_irq,   // YZ bellleğine yazma işleminin bittiğini CPU'ya bildirmek için kullanılan interrupt sinyali
     output logic       load_clear,      // "cpu_clear_i"ye bağlı, işlemci "load_done_irq" sinyalini gördükten sonra bu sinyal aracılığı ile irq sinyalini temizler
     output logic       infer_irq        // -> irq_i[17]
 );
     logic [1:0] result_reg;             // "acc_out_wen" olduğu zaman "acc_out_wdata"daki çıkarım sonucunuu tutar.
+    logic [127:0] score_reg;            // Aynı anda yakalanan 4 ham FC skoru (0x10..0x1C'den okunur)
     logic       infer_pending;          // infer_irq sinyalinin 1 olması için ve CPU tarafından gördükten sonra 0'a çekilmesi olayı için kullanılır
 
     assign YZ_bresp = 2'b00;
@@ -30,14 +32,18 @@ module yz_csr_wrapper (
             YZ_awready <= 1; YZ_wready <= 1; YZ_bvalid <= 0;
             YZ_arready <= 1; YZ_rvalid <= 0; YZ_rdata <= 0;
             acc_start <= 0; load_clear <= 0;
-            result_reg <= 0; infer_pending <= 0;
+            result_reg <= 0; score_reg <= 0; infer_pending <= 0;
         end else begin
             // (1) start ve clear'lar HER cycle 0'a düşer -> otomatik 1-cycle pulse
             acc_start  <= 0;
             load_clear <= 0;
 
-            // (2) sonucu yakala: hızlandırıcı yazdığı an
-            if (acc_out_wen) result_reg <= acc_out_wdata[1:0];
+            // (2) sonucu yakala: hızlandırıcı yazdığı an. Sınıf ile ham skorlar
+            //     aynı cycle'da alınır, böylece ikisi hep aynı çıkarıma aittir.
+            if (acc_out_wen) begin
+                result_reg <= acc_out_wdata[1:0];
+                score_reg  <= acc_fc_scores;
+            end
 
             // (3) done pulse'unu latch'le -> seviye interrupt
             if (acc_done)          infer_pending <= 1;
@@ -65,6 +71,11 @@ module yz_csr_wrapper (
                 case (YZ_araddr[7:0])
                     8'h04: YZ_rdata <= {29'h0, infer_pending, load_done_irq, acc_busy};
                     8'h08: YZ_rdata <= {30'h0, result_reg};
+                    // SCORE0..SCORE3: sınıf sırasına göre ham FC akümülatörleri
+                    8'h10: YZ_rdata <= score_reg[ 31:  0];
+                    8'h14: YZ_rdata <= score_reg[ 63: 32];
+                    8'h18: YZ_rdata <= score_reg[ 95: 64];
+                    8'h1C: YZ_rdata <= score_reg[127: 96];
                     default: YZ_rdata <= 32'h0;
                 endcase
             end else if (YZ_rvalid && YZ_rready) begin

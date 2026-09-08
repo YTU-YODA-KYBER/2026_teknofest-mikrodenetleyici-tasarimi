@@ -527,7 +527,7 @@ PATCHES = [
         ),
         subs=[
             (
-                "\n\n);\n\n    logic UART_GU_RX;",
+                "\n\n);\n\n    //  INSTRUCTION AR PORTLARI",
                 "\n\n);\n\n"
                 "    // ASIC reset synchronizer: async assert, iki-kademeli sync deassert.\n"
                 "    // ASYNC_REG/keep, iki flopun optimizasyonda birlestirilmesini onler.\n"
@@ -538,7 +538,7 @@ PATCHES = [
                 "        else         rst_sync_q <= {rst_sync_q[0], 1'b1};\n"
                 "    end\n"
                 "    assign rst_sys_ni = rst_sync_q[1];\n\n"
-                "    logic UART_GU_RX;",
+                "    //  INSTRUCTION AR PORTLARI",
             ),
             (".rst_n(rst_ni)", ".rst_n(rst_sys_ni)", 12),
             (".rst_ni(rst_ni)", ".rst_ni(rst_sys_ni)", 2),

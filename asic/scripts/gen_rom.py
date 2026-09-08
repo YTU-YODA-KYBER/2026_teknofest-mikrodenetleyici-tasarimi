@@ -189,9 +189,16 @@ MANIFEST = [
 ]
 
 
-def render(kind: str, hexpath: pathlib.Path, orig: str):
-    """Uretilecek dosya metnini DISKE YAZMADAN dondurur."""
-    k = KINDS[kind]
+def render(kind: str, hexpath: pathlib.Path, orig: str, depth: int = 0):
+    """Uretilecek dosya metnini DISKE YAZMADAN dondurur.
+
+    `depth` verilirse ROM derinligi ezilir. Silikona giden ROM'lar icin
+    KULLANILMAZ (alan bagli); yalnizca simulasyon ROM'lari icindir:
+    uygulamayi boot ROM'dan kosturan senaryolarda imaj 1KB'i asar.
+    """
+    k = dict(KINDS[kind])
+    if depth:
+        k["depth"] = depth
     if not hexpath.is_file():
         sys.exit(f"HATA: hex dosyasi yok: {hexpath}")
     words, nib = read_hex(hexpath, k["width"], k["depth"])
@@ -212,6 +219,9 @@ def main():
     ap.add_argument("--hex", type=pathlib.Path)
     ap.add_argument("--out", type=pathlib.Path)
     ap.add_argument("--orig", default="(orijinal RTL)")
+    ap.add_argument("--depth", type=int, default=0,
+                    help="ROM derinligini ez (yalnizca simulasyon ROM'lari; "
+                         "silikona giden ROM'larda kullanilmaz)")
     ap.add_argument("--all", action="store_true",
                     help="MANIFEST'teki butun ROM'lari isle")
     ap.add_argument("--check", action="store_true",
@@ -224,11 +234,13 @@ def main():
     else:
         if not (a.kind and a.hex and a.out):
             sys.exit("HATA: --all verilmediyse --kind, --hex ve --out zorunludur")
-        jobs = [dict(kind=a.kind, hex=a.hex, out=a.out, orig=a.orig)]
+        jobs = [dict(kind=a.kind, hex=a.hex, out=a.out, orig=a.orig,
+                     depth=a.depth)]
 
     stale = []
     for j in jobs:
-        text, words, k = render(j["kind"], j["hex"], j["orig"])
+        text, words, k = render(j["kind"], j["hex"], j["orig"],
+                                j.get("depth", 0))
         out = j["out"]
         if a.check:
             if not out.is_file():

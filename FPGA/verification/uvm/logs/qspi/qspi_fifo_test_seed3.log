@@ -19,13 +19,13 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test qspi_fifo_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(305) @ 460000: uvm_test_top [FIFO] bos RX FIFO okumasi hata kodu 1 uretti
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(314) @ 5980000: uvm_test_top [FIFO] 64 kelime sonrasi TXFULL dogru
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(321) @ 6140000: uvm_test_top [FIFO] dolu TX FIFO'ya yazma hata kodu 2 uretti
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(329) @ 6540000: uvm_test_top [FIFO] TXFLUSH FIFO'yu bosalti
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(336) @ 6620000: uvm_test_top [FCR] QSPI_FCR bir cevrim sonra kendini sifirladi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/qspi_flash_pkg.sv(280) @ 6810000: uvm_test_top.env.flash [QSPI_FLASH] QSPI flash: 0 komut isledi, bellekte 0 bayt
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 6810000: uvm_test_top.env.sb [SB] QSPI scoreboard: yazma=70 okuma=6 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(305) @ 460000: uvm_test_top [FIFO] bos RX FIFO okumasi hata kodu 1 uretti
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(314) @ 5980000: uvm_test_top [FIFO] 64 kelime sonrasi TXFULL dogru
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(321) @ 6140000: uvm_test_top [FIFO] dolu TX FIFO'ya yazma hata kodu 2 uretti
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(329) @ 6540000: uvm_test_top [FIFO] TXFLUSH FIFO'yu bosalti
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/qspi/qspi_test_lib.svh(336) @ 6620000: uvm_test_top [FCR] QSPI_FCR bir cevrim sonra kendini sifirladi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/qspi_flash_pkg.sv(280) @ 6810000: uvm_test_top.env.flash [QSPI_FLASH] QSPI flash: 0 komut isledi, bellekte 0 bayt
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 6810000: uvm_test_top.env.sb [SB] QSPI scoreboard: yazma=70 okuma=6 kontrol=0 uyusmazlik=0 kotu_cevap=0
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -69,5 +69,5 @@ UVM_FATAL :    0
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
 [AXI-CHK] QSPI           | AW=70 W=70 B=70 AR=6 R=6 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 7us; walltime 0.472 s; speed 14.414 us/s
-- Verilator: cpu 0.472 s on 1 threads; allocated 61 MB
+- Verilator: $finish at 7us; walltime 0.431 s; speed 15.815 us/s
+- Verilator: cpu 0.431 s on 1 threads; allocated 62 MB

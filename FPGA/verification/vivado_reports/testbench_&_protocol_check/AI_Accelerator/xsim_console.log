@@ -1,39 +1,14 @@
-#-----------------------------------------------------------
-# xsim v2025.2 (64-bit)
-# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
-# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
-# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Sun Aug 23 19:02:20 2026
-# Process ID         : 504788
-# Current directory  : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/ai_accel_system_test/ai_accel_system_test.sim/sim_1/behav/xsim
-# Command line       : xsim -log simulate.log -mode tcl -source {xsim.dir/ai_accel_test_behav/xsim_script.tcl}
-# Log file           : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/ai_accel_system_test/ai_accel_system_test.sim/sim_1/behav/xsim/simulate.log
-# Journal file       : /home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/ai_accel_system_test/ai_accel_system_test.sim/sim_1/behav/xsim/xsim.jou
-# Running On         : stradale
-# Platform           : Ubuntu
-# Operating System   : Ubuntu 26.04 LTS
-# Processor Detail   : 12th Gen Intel(R) Core(TM) i7-12700H
-# CPU Frequency      : 3100.000 MHz
-# CPU Physical cores : 14
-# CPU Logical cores  : 20
-# Host memory        : 16473 MB
-# Swap memory        : 9130 MB
-# Total Virtual      : 25604 MB
-# Available Virtual  : 10736 MB
-#-----------------------------------------------------------
-source xsim.dir/ai_accel_test_behav/xsim_script.tcl
-# xsim {ai_accel_test_behav} -autoloadwcfg -tclbatch {ai_accel_test.tcl} -key {Behavioral:sim_1:Functional:ai_accel_test}
 Time resolution is 1 ps
 source ai_accel_test.tcl
-## run all
 ======================================================================
    YZ HIZLANDIRICI SISTEM SEVIYESI TESTI
    Sartname madde 5.2-3 ve 5.2-4 (zorunlu)
-   Saat: 50 MHz  |  UART: 434 clk/bit (115200 baud)
+   Saat: 50 MHz  |  YZ UART: 50 clk/bit (1 Mbps)  |  genel UART: 434 clk/bit (115200)
 ======================================================================
 WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
 WARNING: 0ns : none of the conditions were true for unique case from File:/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_load_store_unit.sv:419
-[TB] t=1770000  CPU boot tamam, UART_YZ_CPB=434
+[TB] t=1710000  CPU boot tamam, UART_YZ_CPB=50
+[TB] UYARI: UART_GU_CPB=0, testbench 434 clk/bit cozuyor -- baud uyusmuyor.
 
 ======================================================================
  TEST 1/3 : EVET   (input_data_yes.hex)
@@ -42,12 +17,15 @@ WARNING: 0ns : none of the conditions were true for unique case from File:/home/
 [TB]   500/1960 bayt
 [TB]   1000/1960 bayt
 [TB]   1500/1960 bayt
-[P2] t=170121570000  LOAD_DONE (addr_cnt=0)
-[P3] t=170123210000  ACCEL START
+[P2] t=19600770000  LOAD_DONE (addr_cnt=0)
 [TB] Gonderim tamam, cikarim bekleniyor...
-[P4] t=171033550000  ACCEL DONE, sinif=2
-[P5] t=171033550000  INFER_IRQ -> CPU
+[P3] t=19602570000  ACCEL START
+[GU] t=20038170000  "YZ:B"
+[P4] t=20512910000  ACCEL DONE, sinif=2
+[P5] t=20512910000  INFER_IRQ -> CPU
+[GU] t=22616130000  "YZ:2 S=-125;-70;46;-107"
 [P6] FC_SCORES: [0]=-58032 [1]=21583 [2]=48674 [3]=-4777
+[P7] PC'ye giden satir: "YZ:2 S=-125;-70;46;-107"
 [PERF] EVET: cikarim gecikmesi = 45517 cevrim  |  @50 MHz = 910.3 us  |  1098.5 cikarim/s
 [GECTI] EVET: sinif=2, GPIO_ODR=7, 45517 cevrim
 
@@ -58,12 +36,15 @@ WARNING: 0ns : none of the conditions were true for unique case from File:/home/
 [TB]   500/1960 bayt
 [TB]   1000/1960 bayt
 [TB]   1500/1960 bayt
-[P2] t=341157350000  LOAD_DONE (addr_cnt=0)
-[P3] t=341159030000  ACCEL START
+[P2] t=42215190000  LOAD_DONE (addr_cnt=0)
 [TB] Gonderim tamam, cikarim bekleniyor...
-[P4] t=342069370000  ACCEL DONE, sinif=3
-[P5] t=342069370000  INFER_IRQ -> CPU
+[P3] t=42217010000  ACCEL START
+[GU] t=42649570000  "YZ:B"
+[P4] t=43127350000  ACCEL DONE, sinif=3
+[P5] t=43127350000  INFER_IRQ -> CPU
+[GU] t=45227530000  "YZ:3 S=-113;-61;-61;-22"
 [P6] FC_SCORES: [0]=-30588 [1]=7509 [2]=7419 [3]=18543
+[P7] PC'ye giden satir: "YZ:3 S=-113;-61;-61;-22"
 [PERF] HAYIR: cikarim gecikmesi = 45517 cevrim  |  @50 MHz = 910.3 us  |  1098.5 cikarim/s
 [GECTI] HAYIR: sinif=3, GPIO_ODR=8, 45517 cevrim
 
@@ -74,20 +55,49 @@ WARNING: 0ns : none of the conditions were true for unique case from File:/home/
 [TB]   500/1960 bayt
 [TB]   1000/1960 bayt
 [TB]   1500/1960 bayt
-[P2] t=512193170000  LOAD_DONE (addr_cnt=0)
-[P3] t=512194850000  ACCEL START
+[P2] t=64826590000  LOAD_DONE (addr_cnt=0)
 [TB] Gonderim tamam, cikarim bekleniyor...
-[P4] t=513105190000  ACCEL DONE, sinif=0
-[P5] t=513105190000  INFER_IRQ -> CPU
+[P3] t=64828470000  ACCEL START
+[GU] t=65260970000  "YZ:B"
+[P4] t=65738810000  ACCEL DONE, sinif=0
+[P5] t=65738810000  INFER_IRQ -> CPU
+[GU] t=67752130000  "YZ:0 S=-64;-64;-64;-64"
 [P6] FC_SCORES: [0]=427 [1]=-518 [2]=-94 [3]=186
+[P7] PC'ye giden satir: "YZ:0 S=-64;-64;-64;-64"
 [PERF] SESSIZLIK: cikarim gecikmesi = 45517 cevrim  |  @50 MHz = 910.3 us  |  1098.5 cikarim/s
 [GECTI] SESSIZLIK: sinif=0, GPIO_ODR=9, 45517 cevrim
 
 ======================================================================
+ RESENKRONIZASYON : kesik cerceve (1896 bayt) sonrasi kurtarma
+======================================================================
+[TB] 1896 bayt gonderiliyor (cerceve bilerek yarim birakiliyor)...
+[TB] addr_cnt=1896 -- sayac beklendigi gibi ortada kaldi
+[GECTI] addr_cnt sifirlandi; simdi tam bir cerceve kosuluyor
+
+======================================================================
+ TEST 1/3 : EVET   (input_data_yes.hex)
+======================================================================
+[TB] 1960 bayt gonderiliyor...
+[TB]   500/1960 bayt
+[TB]   1000/1960 bayt
+[TB]   1500/1960 bayt
+[P2] t=109311170000  LOAD_DONE (addr_cnt=0)
+[TB] Gonderim tamam, cikarim bekleniyor...
+[P3] t=109313030000  ACCEL START
+[GU] t=109745970000  "YZ:B"
+[P4] t=110223370000  ACCEL DONE, sinif=2
+[P5] t=110223370000  INFER_IRQ -> CPU
+[GU] t=112323930000  "YZ:2 S=-125;-70;46;-107"
+[P6] FC_SCORES: [0]=-58032 [1]=21583 [2]=48674 [3]=-4777
+[P7] PC'ye giden satir: "YZ:2 S=-125;-70;46;-107"
+[PERF] EVET: cikarim gecikmesi = 45517 cevrim  |  @50 MHz = 910.3 us  |  1098.5 cikarim/s
+[GECTI] EVET: sinif=2, GPIO_ODR=7, 45517 cevrim
+
+======================================================================
    YZ HIZLANDIRICI TEST OZETI
 ======================================================================
-   Gecen : 3 / 3
-   Kalan : 0 / 3
+   Gecen : 4 / 4
+   Kalan : 0 / 4
    Ortalama cikarim gecikmesi: 45517 cevrim
 ======================================================================
 
@@ -101,31 +111,25 @@ WARNING: 0ns : none of the conditions were true for unique case from File:/home/
 ======================================================================
 
 [TB] >>> YZ HIZLANDIRICI TESTI: BASARILI <<<
-[AXI-CHK]       YZ_ACCEL | AW=5 W=5 B=5 AR=3 R=3 | ihlal=0 uyari=0
-[AXI-CHK] BOOTROM_CPU | FIN_02 BILGI: 1 okuma cevapsiz -- 1 reset ve outstanding limiti (1) ile aciklanabilir, protokol ihlali DEGIL
-[AXI-CHK]    BOOTROM_CPU | AW=0 W=0 B=0 AR=8551805 R=8551804 | ihlal=0 uyari=0
-[AXI-CHK]    BOOTROM_ICN | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
+[AXI-CHK]       YZ_ACCEL | AW=8 W=8 B=8 AR=16 R=16 | ihlal=0 uyari=0
+[AXI-CHK]    BOOTROM_CPU | AW=0 W=0 B=0 AR=1871922 R=1871922 | ihlal=0 uyari=0
+[AXI-CHK]    BOOTROM_ICN | AW=0 W=0 B=0 AR=16 R=16 | ihlal=0 uyari=0
 [AXI-CHK]      INSTR_RAM | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
 [AXI-CHK]      INSTR_RAM | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
-[AXI-CHK]       DATA_RAM | AW=108 W=108 B=108 AR=90 R=90 | ihlal=0 uyari=0
-[AXI-CHK] CPU_INSTR_M | FIN_02 BILGI: 1 okuma cevapsiz -- 1 reset ve outstanding limiti (2) ile aciklanabilir, protokol ihlali DEGIL
-[AXI-CHK]    CPU_INSTR_M | AW=0 W=0 B=0 AR=8551805 R=8551804 | ihlal=0 uyari=0
-[AXI-CHK]     CPU_DATA_M | AW=198 W=198 B=198 AR=9085 R=9085 | ihlal=0 uyari=0
-[AXI-CHK]         ICN_S0 | AW=198 W=198 B=198 AR=9085 R=9085 | ihlal=0 uyari=0
+[AXI-CHK]       DATA_RAM | AW=240 W=240 B=240 AR=264 R=264 | ihlal=0 uyari=0
+[AXI-CHK]    CPU_INSTR_M | AW=0 W=0 B=0 AR=1871922 R=1871922 | ihlal=0 uyari=0
+[AXI-CHK]     CPU_DATA_M | AW=605 W=605 B=605 AR=41510 R=41510 | ihlal=0 uyari=0
+[AXI-CHK]         ICN_S0 | AW=605 W=605 B=605 AR=41510 R=41510 | ihlal=0 uyari=0
 [AXI-CHK]          TIMER | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
 [AXI-CHK]          TIMER | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
-[AXI-CHK]        UART_GU | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
-[AXI-CHK]        UART_GU | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
-[AXI-CHK]        UART_YZ | AW=79 W=79 B=79 AR=8992 R=8992 | ihlal=0 uyari=0
+[AXI-CHK]        UART_GU | AW=347 W=347 B=347 AR=41214 R=41214 | ihlal=0 uyari=0
+[AXI-CHK]        UART_YZ | AW=2 W=2 B=2 AR=0 R=0 | ihlal=0 uyari=0
 [AXI-CHK]            I2C | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
 [AXI-CHK]            I2C | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
-[AXI-CHK]           GPIO | AW=6 W=6 B=6 AR=0 R=0 | ihlal=0 uyari=0
+[AXI-CHK]           GPIO | AW=8 W=8 B=8 AR=0 R=0 | ihlal=0 uyari=0
 [AXI-CHK]           QSPI | *** TRAFIK YOK -- bu arayuz HIC test edilmedi ***
 [AXI-CHK]           QSPI | AW=0 W=0 B=0 AR=0 R=0 | ihlal=0 uyari=0
-[AXI-CHK] SPLITTER_S | FIN_02 BILGI: 1 okuma cevapsiz -- 1 reset ve outstanding limiti (2) ile aciklanabilir, protokol ihlali DEGIL
-[AXI-CHK]     SPLITTER_S | AW=0 W=0 B=0 AR=8551805 R=8551804 | ihlal=0 uyari=0
-$finish called at time : 513111190 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/System_Test/ai_accel_test.sv" Line 397
-run: Time (s): cpu = 00:00:11 ; elapsed = 01:05:49 . Memory (MB): peak = 1448.254 ; gain = 0.000 ; free physical = 2722 ; free virtual = 10785
-## quit
-INFO: xsimkernel Simulation Memory Usage: 301784 KB (Peak: 346368 KB), Simulation CPU Usage: 3949220 ms
-INFO: [Common 17-206] Exiting xsim at Sun Aug 23 20:08:13 2026...
+[AXI-CHK]     SPLITTER_S | AW=0 W=0 B=0 AR=1871922 R=1871922 | ihlal=0 uyari=0
+$finish called at time : 112325930 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/System_Test/ai_accel_test.sv" Line 570
+INFO: xsimkernel Simulation Memory Usage: 302524 KB (Peak: 346392 KB), Simulation CPU Usage: 662380 ms
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 22:57:27 2026...

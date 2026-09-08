@@ -118,7 +118,7 @@ typedef union {
     uint32_t all;
     struct {
         uint32_t SW0  : 1;   /* [0] 1 = flasher modu, 0 = flash'tan boot */
-        uint32_t SW1  : 1;   /* [1] 1 = YZ-UART modu (uart_mux secimi)   */
+        uint32_t SW1  : 1;   /* [1] 1 = 7-segment YZ mesajlarini gosterir */
         uint32_t SW   : 14;  /* [15:2] kalan switch'ler                  */
         uint32_t rsvd : 16;  /* [31:16] donanimda yok                    */
     } bit;
@@ -134,8 +134,9 @@ typedef struct {
 /* =====================================================================
  *  UART  (genel kullanim 0x40040000, YZ veri akisi 0x40050000)
  *  Iki cevre birimi register bazinda birebir aynidir; UART_YZ ek olarak
- *  aldigi bayti DMA ile YZ bellegine yazar. Ikisi de ayni fiziksel pine
- *  baglidir, uart_mux SW1 ile birini secer.
+ *  aldigi bayti DMA ile YZ bellegine yazar. Her birinin kendi fiziksel pin
+ *  cifti vardir: UART_GU kart uzerindeki USB-UART koprusune, UART_YZ ise
+ *  Pmod USB-UART koprusune baglidir (bkz. nexys_a7_soc.xdc).
  *
  *  baud = SYS_CLK_HZ / UART_CPB.  TX bit suresi dogrudan CPB'dir; RX tarafi
  *  CPB[19:4]'u 16x oversampling limiti olarak kullanir.
@@ -156,6 +157,9 @@ typedef struct {
  * Ikisi de UART'in +/-%2 toleransinin cok icindedir. */
 #define UART_CPB_FOR(baud)  (((SYS_CLK_HZ) + (baud) / 2u) / (baud))
 #define UART_CPB_115200     UART_CPB_FOR(115200u)
+/* Sartname Bolum 4.2.2/3: UART 1 Mbps'i ve en az iki farkli baud'u
+ * desteklemelidir. 50 MHz'de CPB = 50, 25 MHz'de CPB = 25. */
+#define UART_CPB_1M         UART_CPB_FOR(1000000u)
 
 typedef union {
     uint32_t all;
@@ -351,6 +355,10 @@ typedef struct {
     volatile YZ_CTRL_t   YZ_CTRL;    /* 0x00 WO kontrol (pulse'lar)  */
     volatile YZ_STATUS_t YZ_STATUS;  /* 0x04 RO durum                */
     volatile YZ_RESULT_t YZ_RESULT;  /* 0x08 RO cikarim sonucu       */
+    uint32_t             rsvd0C;     /* 0x0C --                      */
+    /* 0x10..0x1C RO: FC katmaninin 4 ham int32 akumulatoru, YZ_RESULT ile
+     * ayni cevrimde yakalanir. Softmax'a girdi olurlar (bkz. yz_softmax.h). */
+    volatile int32_t     YZ_SCORE[4];
 } YzAccel_t;
 
 #define YzAccel  ((YzAccel_t *) 0x40060000UL)
@@ -381,6 +389,7 @@ _Static_assert(offsetof(Uart_t,  UART_CFG)  == 0x10, "UART harita hatasi");
 _Static_assert(offsetof(I2c_t,   I2C_CLR)   == 0x14, "I2C harita hatasi");
 _Static_assert(offsetof(Qspi_t,  QSPI_DMA)  == 0x14, "QSPI harita hatasi");
 _Static_assert(offsetof(YzAccel_t, YZ_RESULT) == 0x08, "YZ harita hatasi");
+_Static_assert(offsetof(YzAccel_t, YZ_SCORE)  == 0x10, "YZ skor harita hatasi");
 _Static_assert(sizeof(UART_CFG_t) == 4, "union boyutu 32-bit olmali");
 
 #endif /* SOC_H */

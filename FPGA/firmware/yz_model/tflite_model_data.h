@@ -9,7 +9,7 @@
  *            depth_multiplier 8, fused ReLU)
  *         -> 25x20x8 int8
  *         -> FullyConnected (4000 -> 4) -> int8
- *         -> Softmax (argmax'i degistirmez, uygulanmaz)
+ *         -> Softmax (bkz. yz_softmax.h; CPU uygular)
  *
  *  Carpanlar TFLite'in QuantizeMultiplier'i ile uretilmistir:
  *      M = mult * 2^(shift-31),   mult in [2^30, 2^31)

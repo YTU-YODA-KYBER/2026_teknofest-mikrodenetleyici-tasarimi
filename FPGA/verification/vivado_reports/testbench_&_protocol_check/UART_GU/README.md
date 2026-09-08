@@ -73,9 +73,10 @@ Register haritası: `0x00` `UART_CPB` (baud böleni), `0x04` `UART_STP`,
   `UART_CPB = 434` (50 MHz / 434 = 115200) kullanılır.
 - **Stop biti alanı 0 / 2 / 3 olarak sürülür.** `UART_STP` 2 bitliktir ve
   sırasıyla 1 / 1,5 / 2 stop bitine karşılık gelir; üç senaryo da kapsanmıştır.
-- **Bu blok genel amaçlı UART'tır.** Kart üzerinde fiziksel TX pinini
-  `UART_mux.sv` seçer (`GPIO_IDR[1:0]` = 1 → genel UART, 2 → UART_YZ); RX ise
-  mux değil fan-out'tur — genel UART her modda dinler.
+- **Bu blok genel amaçlı UART'tır.** Kart üzerinde kendi fiziksel pin çiftine
+  sahiptir (Nexys A7'de kart üstündeki FT2232 kanalı); demo test harness'inin
+  "core UART" arayüzü budur ve çıkarım sonucu buradan çıkar. YZ veri akışı
+  UART'ı ayrı bir fiziksel porttur.
 - **`UART_CPB = 0` tuzağı bu testbench'te tetiklenmez.** Bölen sıfırken TX
   FSM'i hiç başlamaz (belgelenmiş kısıt, kusur değil); o yolu UVM
   `uart_gu_cpb_zero_test` kapsar ([`../../../uvm/`](../../../uvm/)).

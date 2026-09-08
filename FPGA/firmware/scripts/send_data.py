@@ -2,24 +2,31 @@
 # =====================================================================
 #  send_data.py — Karta UART uzerinden veri gonderme araci (iki mod)
 #
+#  KART IKI AYRI SERI PORT SUNAR:
+#    core   UART_GU -> kart uzerindeki USB-UART koprusu.  Bootloader'in
+#                      flasher'i buradan veri alir, uygulama sonucu buradan
+#                      basar. 115200 8N1.
+#    stream UART_YZ -> Pmod USB-UART koprusu.  Yalnizca 1960 baytlik ses
+#                      oznitelik vektorunu tasir; baytlar donanimda DMA ile
+#                      YZ bellegine yazilir. 1 Mbps 8N1.
+#
 #  1) APP modu   : makefile_outputs/app.hex'i Boot ROM'daki FLASHER'a gonderir,
 #                  flasher da veriyi QSPI flash'a yazip checksum ile dogrular.
+#                  CORE portu kullanilir.
 #                  Protokol (main_boot.c: flasher()):
 #                     PC -> 4 bayt LENGTH (MSB-first)
 #                     PC -> 256 baytlik chunk,  kart -> 0x06 (ACK),  ... tekrar
 #                  ON KOSUL: SW0=1 + CPU RESET (7-segment'te "boot" yazmali).
 #                  SONUC   : 7-segment/LED  3 = checksum OK, 4 = checksum HATA.
 #
-#  2) AUDIO modu : sound_samples/ altindaki 1960 baytlik ses verisini UART_YZ'ye
-#                  gonderir; kart veriyi YZ bellegine yazip cikarim yapar,
-#                  sonucu 7-segment'e basar (7=evet, 8=hayir, 9=sessizlik) VE
-#                  ayni sonucu UART_YZ TX'ten geri gonderir. Script bu cevabi
-#                  bekleyip ekrana yazar.
+#  2) AUDIO modu : 1960 baytlik ses verisini STREAM portuna yazar, cevabi
+#                  CORE portundan okur. Kart ayni sonucu 7-segment'e de basar
+#                  (7=evet, 8=hayir, 9=sessizlik, 10=bilinmeyen).
 #                  Cerceve (main_app.c: yz_report()):
-#                     "YZ:B\n"        -> veri yuklendi, cikarim basladi
-#                     "YZ:<0-3>\n"    -> cikarim bitti, sinif indeksi
-#                  ON KOSUL: app flash'a yazilmis + SW0=0 ile boot edilmis,
-#                            ardindan SW1=1 (YZ-UART modu).
+#                     "YZ:B\n"                       -> cikarim basladi
+#                     "YZ:<0-3> S=<s0>;<s1>;<s2>;<s3>\n" -> sinif + softmax
+#                                                        skorlari (int8)
+#                  ON KOSUL: app flash'a yazilmis ve SW0=0 ile boot edilmis.
 #
 #  Kullanim:
 #      python3 send_data.py app                # ../makefile_outputs/app.hex
@@ -28,7 +35,8 @@
 #      python3 send_data.py sessizlik
 #      python3 send_data.py app   <dosya>      # kisayol yerine acik dosya yolu
 #      python3 send_data.py audio <dosya>
-#      python3 send_data.py app --port /dev/ttyUSB0 --baud 115200
+#      python3 send_data.py app --core-port /dev/ttyUSB0
+#      python3 send_data.py yes --stream-port /dev/ttyUSB1 --core-port /dev/ttyUSB0
 #      python3 send_data.py yes --no-wait      # sonucu bekleme, sadece gonder
 #
 #  Kisayollar script'in kendi konumuna gore cozulur; hangi klasorden
@@ -37,6 +45,7 @@
 #  Onceden:  pip install pyserial   (ya da: sudo apt install python3-serial)
 # =====================================================================
 import argparse
+import re
 import sys
 import time
 from pathlib import Path
@@ -44,8 +53,12 @@ from pathlib import Path
 import serial
 
 # --- AYARLAR: kendi sistemine gore duzenle ---
-PORT = "/dev/ttyUSB1"     # ls /dev/ttyUSB* ile buldugun UART portu
-BAUD = 115200             # UART / UART_YZ RTL'indeki baud ile ESLESMELI!
+#  ls /dev/ttyUSB*  ile iki portu bul. Baud degerleri firmware'in yazdigi
+#  UART_CPB ile ESLESMELI (main_app.c: uart_init).
+CORE_PORT   = "/dev/ttyUSB0"   # UART_GU  -- kart uzerindeki USB-UART
+STREAM_PORT = "/dev/ttyUSB1"   # UART_YZ  -- Pmod USB-UART
+CORE_BAUD   = 115200
+STREAM_BAUD = 1000000
 
 # --- Protokol sabitleri (main_boot.c ile ayni olmali) ---
 CHUNK     = 256           # flasher'in PP chunk boyutu
@@ -56,6 +69,8 @@ AUDIO_LEN = 1960          # YZ bellegine yazilan ses verisi uzunlugu [bayt]
 # --- YZ cevap protokolu (main_app.c: yz_report()) ---
 YZ_PREFIX  = "YZ:"        # her cerceve bu on ek ile baslar
 YZ_BUSY    = "YZ:B"       # veri yuklendi, cikarim basladi
+#  "YZ:<sinif> S=<s0>;<s1>;<s2>;<s3>"  -- skor bolumu opsiyoneldir
+YZ_RESULT_RE = re.compile(r"^YZ:([0-3])(?:\s+S=([-0-9;]+))?$")
 RESULT_TMO = 5.0          # cikarim sonucu icin toplam bekleme suresi [s]
 POLL_TMO   = 0.1          # tek okuma cagrisinin bloklanma suresi [s]
 
@@ -123,48 +138,73 @@ def read_line(ser, deadline):
     return None
 
 
+def parse_result(line):
+    """'YZ:<sinif> S=<s0>;..' satirini (sinif, [skorlar]) olarak coz.
+
+    Skor bolumu yoksa liste bos doner. Satir sonuc cercevesi degilse None.
+    """
+    m = YZ_RESULT_RE.match(line)
+    if not m:
+        return None
+    scores = [int(x) for x in m[2].split(";")] if m[2] else []
+    return int(m[1]), scores
+
+
 def wait_result(ser):
-    """Karttan 'YZ:<sinif>' cercevesini bekle. Sinif indeksini dondurur."""
+    """Karttan sonuc cercevesini bekle. (sinif, [skorlar]) dondurur."""
     deadline = time.monotonic() + RESULT_TMO
     while True:
         line = read_line(ser, deadline)
         if line is None:
             sys.exit(
                 f"\nHATA: karttan sonuc gelmedi ({RESULT_TMO} s beklendi).\n"
-                f"  - SW1=1 (YZ-UART modu) ve SW0=0 mi? TX pini uart_mux'ta\n"
-                f"    ancak GPIO_IDR[1:0]==2 iken UART_YZ'ye baglanir.\n"
                 f"  - Uygulama flash'tan boot edildi mi (7-segment'te 6/INFRNC)?\n"
-                f"  - Port ({ser.port}) ve baud ({ser.baudrate}) dogru mu?"
+                f"  - Ses verisi STREAM portuna, sonuc CORE portundan okunur;\n"
+                f"    iki port karistirilmis olabilir.\n"
+                f"  - Core portu ({ser.port}) ve baud ({ser.baudrate}) dogru mu?"
             )
         if line == YZ_BUSY:
             print("  kart: veri yuklendi, cikarim basladi")
             continue
-        if line.startswith(YZ_PREFIX) and line[len(YZ_PREFIX):].isdigit():
-            return int(line[len(YZ_PREFIX):])
+        got = parse_result(line)
+        if got is not None:
+            return got
         print(f"  (yoksayildi: {line!r})")   # gurultu / yarim cerceve
 
 
-def send_audio(path, port, baud, wait=True):
-    data = read_audio_hex(path)
-    ser = open_port(port, baud, timeout=POLL_TMO)
-    ser.reset_input_buffer()   # onceki calistirmadan kalan baytlari at
-    ser.reset_output_buffer()
-    ser.write(data)
-    ser.flush()               # OS buffer'i bosalt
-    print(f"OK: {len(data)} bayt gonderildi -> {port} @ {baud} 8N1")
+def send_audio(path, stream_port, core_port, stream_baud, core_baud, wait=True):
+    """Vektoru STREAM portuna yazar, sonucu CORE portundan okur.
 
-    if not wait:
-        time.sleep(0.3)       # son baytlar FTDI'dan fiziksel olarak ciksin
-        ser.close()
+    Iki port ayri fiziksel arayuzdur; core once acilir ki gonderim sirasinda
+    gelen "YZ:B" satiri kacmasin.
+    """
+    data = read_audio_hex(path)
+
+    core = open_port(core_port, core_baud, timeout=POLL_TMO) if wait else None
+    if core is not None:
+        core.reset_input_buffer()   # onceki calistirmadan kalan baytlari at
+
+    stream = open_port(stream_port, stream_baud, timeout=POLL_TMO)
+    stream.reset_output_buffer()
+    stream.write(data)
+    stream.flush()                  # OS buffer'i bosalt
+    stream.close()
+    print(f"OK: {len(data)} bayt gonderildi -> {stream_port} @ {stream_baud} 8N1")
+
+    if core is None:
+        time.sleep(0.3)             # son baytlar FTDI'dan fiziksel olarak ciksin
         print("Sonuc 7-segment'te: 7=evet, 8=hayir, 9=sessizlik, 10=bilinmeyen")
         return
 
     try:
-        cls = wait_result(ser)
+        cls, scores = wait_result(core)
     finally:
-        ser.close()
+        core.close()
 
     print(f"SONUC: sinif {cls} -> {CLASS_NAMES.get(cls, 'TANIMSIZ')}")
+    if scores:
+        print("Softmax skorlari (int8, sessizlik/bilinmeyen/evet/hayir): "
+              + ", ".join(str(x) for x in scores))
     print("7-segment karsiligi: 7=evet, 8=hayir, 9=sessizlik, 10=bilinmeyen")
 
 
@@ -203,6 +243,7 @@ def read_verilog_hex(path):
 
 
 def send_app(path, port, baud):
+    """Uygulamayi CORE portu uzerinden bootloader'in flasher'ina gonderir."""
     data  = read_verilog_hex(path)
     total = len(data)
     print(f"{path} -> {total} bayt, {(total + CHUNK - 1) // CHUNK} chunk")
@@ -255,19 +296,26 @@ def main():
     ap.add_argument("dosya", nargs="?",
                     help="Acik dosya yolu (verilmezse kisayola gore secilir; "
                          "'audio' hedefinde zorunlu)")
-    ap.add_argument("--port", default=PORT, help=f"UART portu (varsayilan: {PORT})")
-    ap.add_argument("--baud", type=int, default=BAUD,
-                    help=f"baud hizi (varsayilan: {BAUD})")
+    ap.add_argument("--core-port", default=CORE_PORT,
+                    help=f"UART_GU portu: flasher ve sonuc satiri "
+                         f"(varsayilan: {CORE_PORT})")
+    ap.add_argument("--stream-port", default=STREAM_PORT,
+                    help=f"UART_YZ portu: 1960 baytlik ses vektoru "
+                         f"(varsayilan: {STREAM_PORT})")
+    ap.add_argument("--core-baud", type=int, default=CORE_BAUD,
+                    help=f"core baud hizi (varsayilan: {CORE_BAUD})")
+    ap.add_argument("--stream-baud", type=int, default=STREAM_BAUD,
+                    help=f"stream baud hizi (varsayilan: {STREAM_BAUD})")
     ap.add_argument("--no-wait", action="store_true",
-                    help="ses gonderdikten sonra karttan gelen sonucu bekleme "
-                         "(eski davranis; sadece 7-segment'e bakilir)")
+                    help="ses gonderdikten sonra karttan gelen sonucu bekleme; "
+                         "yalnizca 7-segment'e bakilir")
     args = ap.parse_args()
 
     if args.hedef == "app":
         path = Path(args.dosya) if args.dosya else APP_HEX
         if not path.is_file():
             sys.exit(f"HATA: {path} yok. Once 'make app' calistir.")
-        send_app(path, args.port, args.baud)
+        send_app(path, args.core_port, args.core_baud)
     else:
         if args.hedef == "audio":
             if not args.dosya:
@@ -278,7 +326,8 @@ def main():
             path = Path(args.dosya) if args.dosya else AUDIO_HEX[args.hedef]
         if not path.is_file():
             sys.exit(f"HATA: {path} yok.")
-        send_audio(path, args.port, args.baud, wait=not args.no_wait)
+        send_audio(path, args.stream_port, args.core_port,
+                   args.stream_baud, args.core_baud, wait=not args.no_wait)
 
 
 if __name__ == "__main__":

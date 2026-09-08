@@ -18,26 +18,29 @@ Temelde kartın 2 aşaması vardır: `main_boot.c` ve `main_app.c`
 	**SW0 = 1:** İşlemci UART modülünü kullanarak bilgisayardan `send_data.py` scripti (`firmware/scripts` klasöründe detaylı açıklama mevcut) ile gönderilen .hex kodlarını QSPI modülünü kullanarak bağlı olan flash memory'e yazar. Bu sayede uygulama kodları kolay bir şekilde flash memory'e atılmış olur.
 
 - **Uygulama kodu(main_app.c)**
-	İşlemci ayağa kalktıktan sonra buradaki asıl yürütmesi gereken komutları yürütür. Burada karta tasarımı çerçevesinde istenilen işlemler yaptırılabilir. Default olarak YZ hızlandırıcının çalışması için gerekli kodlar eklenmiştir. `SW1` pinine göre AI moduna girmektedir.
-	
-	**SW1 = 1 ise:**
-	Kart bilgisayardan `send_data.py` kullanarak ses dosyası gönderilmesini bekler, dosya geldikten sonra interrupt oluşturarak çıkarım işlemini başlatır, çıkarım bittikten sonra tekrar bir interrupt oluşturur ve çıkarım sonucunu hem kart üzerindeki `7-segment ekrana` basar hem de `UART_YZ` üzerinden bilgisayara geri gönderir. `send_data.py` bu cevabı bekleyip terminale yazar.
-	
-	**UART cevap çerçevesi** (`main_app.c: yz_report()`) — 5 baytlık ASCII satır:
-	
+	İşlemci ayağa kalktıktan sonra buradaki asıl yürütmesi gereken komutları yürütür. Burada karta tasarımı çerçevesinde istenilen işlemler yaptırılabilir. Default olarak YZ hızlandırıcının çalışması için gerekli kodlar eklenmiştir.
+
+	Kart **stream UART'ından** (`UART_YZ`, Pmod USB-UART köprüsü) 1960 baytlık ses özniteliği bekler. Baytlar donanımda DMA ile YZ belleğine yazılır; 1960. baytta bir interrupt oluşur ve çıkarım başlar. Çıkarım bitince ikinci bir interrupt oluşur; kesme servisi sonucu hem kart üzerindeki `7-segment ekrana` basar hem de **core UART'ından** (`UART_GU`, kart üzerindeki USB-UART köprüsü) bilgisayara gönderir. `send_data.py` bu cevabı bekleyip terminale yazar.
+
+	İki UART **ayrı fiziksel porttur** ve farklı hızlarda koşar: stream 1 Mbps, core 115200 (şartname Bölüm 4.2.2/3'ün istediği çok-baud desteği).
+
+	**UART cevap çerçevesi** (`main_app.c: yz_report()`) — core UART'tan çıkan ASCII satırlar:
+
 	| Çerçeve | Anlamı | Nerede üretilir |
 	|---|---|---|
 	| `YZ:B\n` | Ses verisi YZ belleğine yüklendi, çıkarım başladı | `load_done_isr()` |
-	| `YZ:0\n` … `YZ:3\n` | Çıkarım bitti, `YZ_RESULT.CLASS` (0=sessizlik, 1=bilinmeyen, 2=evet, 3=hayır) | `infer_done_isr()` |
-	
-	> Sonuç **genel UART'tan** gönderilir (şartname Bölüm 4.2.2 madde 5). `UART_mux.sv` (modül adı `uart_mux`) fiziksel TX pinini artık **her modda** `UART_GU_TX`'ten sürer; eskiden `GPIO_IDR[1:0]`'a göre 2:1 mux vardı ve YZ modunda pin `UART_YZ_TX`'e bağlandığı için genel UART'a yazılan bayt karttan çıkmıyordu. YZ arayüzü tek yönlüdür (host → çip), `UART_YZ`'nin göndereceği bir şey yoktur; RX tarafı değişmemiştir.
+	| `YZ:<sınıf> S=<s0>;<s1>;<s2>;<s3>\n` | Çıkarım bitti: sınıf (0=sessizlik, 1=bilinmeyen, 2=evet, 3=hayır) ve dört sınıfın softmax skoru (int8, aynı sıra) | `infer_done_isr()` |
+
+	> Sonuç **genel UART'tan** gönderilir (şartname Bölüm 4.2.2 madde 5); `UART_YZ` tek yönlü giriş arayüzüdür.
+	>
+	> Softmax (şartname EK-1 madde 4) kesme servisinde uygulanır: hızlandırıcı FC katmanının ham int32 akümülatörlerini `YZ_SCORE0..3` yazmaçlarında bırakır, ISR bunları int8'e requantize edip `yz_model/yz_softmax.h`'teki exp tablosuyla softmax'a çevirir. Sabitler ve tablo `.tflite`'tan üretilir.
 
 - **Doğrulama uygulaması(yz_bench.c)**
 	Yarışma şartnamesinin iki maddesini ölçen ayrı bir programdır; ana akışın parçası **değildir**, yalnızca kanıt üretmek için çalıştırılır. `main_app.c`'nin yerine geçer (ikisi aynı anda kartta olmaz).
 
 	Aynı 1960 baytlık ses verisini **hem hızlandırıcıya hem de CPU'da koşan TFLite yazılım gerçeklemesine** verir, ikisinin sınıfını ve çevrim sayısını ölçüp UART'tan geri gönderir. Böylece *hızlanma* ve *doğruluk* tek koşumda çıkar.
 
-	İki tarafın aynı veriyi görmesini `UART_mux.sv` (modül adı `uart_mux`) sağlar: RX bir mux değil **fan-out**'tur, genel UART her modda dinler. Yani PC tek gönderim yapar, baytlar hem DMA üzerinden YZ RAM'e hem de genel UART üzerinden CPU'ya ulaşır. (YZ RAM'in CPU portu olmadığı için başka yolu yoktur.)
+	Hızlandırıcı girdisini stream UART'tan (DMA ile YZ RAM'e), CPU'daki yazılım gerçeklemesi ise core UART'tan alır. YZ RAM'in CPU portu olmadığı için başka yolu yoktur; bu yüzden `run_accuracy.py` aynı 1960 baytı **iki porta da** yazar ve iki taraf garantili aynı örneği işler.
 
 	`main_app.c`'nin aksine **tamamen yoklamalıdır (polling), kesme kullanmaz** — ölçülen şey çevrim sayısı olduğu için ölçüm penceresine kesme gecikmesi karışmasın diye.
 
@@ -91,7 +94,7 @@ Temelde kartın 2 aşaması vardır: `main_boot.c` ve `main_app.c`
 		1- `make bench` ile ilgili hex kodunu oluştur.
 		2- Aynı `project_gen/System_test/yz_bench_test.tcl` scriptini çalıştır.
 		3- `Generate bitstream` ile bitstream dosyasını oluştur ve `program device` ile karta yükle.
-		4- `SW1=1`, `SW0=0` yap, sonra etiketli ses kümeni gönder:
+		4- `SW0=0` yap (7-segment'te YZ mesajlarını görmek için `SW1=1`), sonra etiketli ses kümeni gönder:
 		`python3 ../scripts/yz_accuracy/run_accuracy.py --dataset dataset --board`
 		Detaylar ve veri kümesinin nasıl hazırlanacağı: `scripts/yz_accuracy/README.md`.
 
@@ -171,16 +174,23 @@ Bunun dışında `soc.h` içinde `SYS_CLK_HZ` (50 MHz, `clk_wiz_0` çıkışı) 
    sg dialout -c "python3 scripts/send_data.py no"
    ```
    Tek seferlik alternatif (kart çıkarılıp takılınca sıfırlanır): `sudo chmod 666 /dev/ttyUSB1`.
-3. **Doğru portu bul.** `ls /dev/ttyUSB*` — FTDI iki port açar (genelde `ttyUSB0` JTAG, `ttyUSB1` UART). Farklıysa `--port` ile ver.
+3. **İki portu da bul.** Tasarımın iki ayrı fiziksel UART'ı vardır:
+
+   | Port | Kaynak | Baud | Ne taşır |
+   |---|---|---|---|
+   | **core** (`UART_GU`) | kart üzerindeki FT2232 kanalı | 115200 | flasher verisi + `YZ:` sonuç satırları |
+   | **stream** (`UART_YZ`) | Pmod JC'ye takılı Pmod USBUART | 1 Mbps | 1960 baytlık ses özniteliği |
+
+   `ls /dev/ttyUSB*` ile ikisini listele. Hangisinin hangisi olduğundan emin değilsen Pmod'u çıkarıp listeyi tekrar al: kaybolan port stream'dir. Varsayılanlardan farklıysa `--core-port` / `--stream-port` ile ver.
 
 | Komut | Ne yapar |
 |---|---|
 | `python3 scripts/send_data.py app` | `makefile_outputs/app.hex`'i Boot ROM'daki flasher'a gönderir → QSPI flash. Ön koşul: `SW0=1` + reset. |
-| `python3 scripts/send_data.py yes` \| `no` \| `sessizlik` | `sound_samples/input_data_X.hex` ses verisini YZ'ye gönderir, ardından karttan gelen `YZ:<sınıf>` cevabını bekleyip sonucu yazar. Ön koşul: uygulama flash'tan boot edilmiş + `SW1=1`. |
+| `python3 scripts/send_data.py yes` \| `no` \| `sessizlik` | `sound_samples/input_data_X.hex` ses verisini **stream** porta gönderir, ardından **core** porttan gelen `YZ:<sınıf> S=...` cevabını bekleyip sınıfı ve softmax skorlarını yazar. Ön koşul: uygulama flash'tan boot edilmiş. |
 | `python3 scripts/send_data.py app <dosya>` | Kısayol yerine kendi hex dosyanı gönderir. |
 | `python3 scripts/send_data.py audio <dosya>` | Kendi 1960 baytlık ses dosyanı gönderir. |
 | `... --no-wait` | Ses gönderdikten sonra karttan cevap bekleme (eski davranış; sadece 7-segment'e bakılır). |
-| `... --port /dev/ttyUSB0 --baud 115200` | Port/baud'u komut satırından ezmek için (her komutla birlikte kullanılabilir). |
+| `... --core-port /dev/ttyUSB0 --stream-port /dev/ttyUSB1` | Port adlarını komut satırından ezmek için (her komutla birlikte kullanılabilir; `--core-baud` / `--stream-baud` de vardır). |
 
 > `app` modunda script, kartın her 256 baytlık bloktan sonra gönderdiği ACK'i bekler; ACK gelmezse "SW0=1 + reset yapıldı mı?" uyarısıyla durur. Bu akış kontrolü olmadan kart veri taşması yaşar.
 

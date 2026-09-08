@@ -33,7 +33,8 @@ typedef struct {
     int8_t  out[YZ_REF_N_CLASS];
 
     /* TFLite'in cevabi: argmax(out).
-     * Softmax monoton oldugu icin argmax(softmax(out)) ile aynidir. */
+     * Softmax monoton oldugu icin argmax(softmax(out)) ile aynidir; softmax
+     * uygulama yolunda kesme servisinde hesaplanir (bkz. yz_softmax.h). */
     uint8_t cls;
 
     /* Hizlandiricinin kurali: argmax(acc). Normalde cls ile aynidir;

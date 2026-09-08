@@ -7,7 +7,7 @@
   **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
   **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
   **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-  **** Start of session at: Sun Sep  6 10:58:17 2026
+  **** Start of session at: Mon Sep  7 23:02:49 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 
@@ -19,22 +19,21 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 240817
+INFO: [Synth 8-7075] Helper process launched with PID 60500
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2210.027 ; gain = 480.766 ; free physical = 428 ; free virtual = 16899
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2210.621 ; gain = 479.680 ; free physical = 6153 ; free virtual = 18597
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'fpga_top' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/fpga_top.sv:2]
-WARNING: [Synth 8-6104] Input port 'sys_rst_btn' has an internal driver [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/fpga_top.sv:29]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [/home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Main_MCU_Project/Main_MCU_Project.runs/synth_1/.Xil/Vivado-240769-stradale/realtime/clk_wiz_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Main_MCU_Project/Main_MCU_Project.runs/synth_1/.Xil/Vivado-240769-stradale/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [/home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Main_MCU_Project/Main_MCU_Project.runs/synth_1/.Xil/Vivado-60464-stradale/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Main_MCU_Project/Main_MCU_Project.runs/synth_1/.Xil/Vivado-60464-stradale/realtime/clk_wiz_0_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'top_module' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:1]
 	Parameter ADDR_WIDTH_boot bound to: 8 - type: integer 
 	Parameter INIT_FILE_boot bound to: boot.hex - type: string 
 	Parameter ADDR_WIDTH_data bound to: 11 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'conv_accelerator' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:52]
 	Parameter RAM_ADDR_W bound to: 14 - type: integer 
-INFO: [Synth 8-3876] $readmem data file 'biases.hex' is read successfully [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:160]
-INFO: [Synth 8-3876] $readmem data file 'fc_biases.hex' is read successfully [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:161]
+INFO: [Synth 8-3876] $readmem data file 'biases.hex' is read successfully [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:166]
+INFO: [Synth 8-3876] $readmem data file 'fc_biases.hex' is read successfully [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:167]
 INFO: [Synth 8-6157] synthesizing module 'weights_rom_p8' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/weights_rom_p8.v:23]
 INFO: [Synth 8-3876] $readmem data file 'weights_p8.hex' is read successfully [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/weights_rom_p8.v:32]
 INFO: [Synth 8-6155] done synthesizing module 'weights_rom_p8' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/weights_rom_p8.v:23]
@@ -44,10 +43,10 @@ INFO: [Synth 8-6155] done synthesizing module 'fc_weights_rom_p4' (0#1) [/home/l
 INFO: [Synth 8-6157] synthesizing module 'conv_buf_ram' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_buf_ram.v:8]
 INFO: [Synth 8-6155] done synthesizing module 'conv_buf_ram' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_buf_ram.v:8]
 INFO: [Synth 8-6155] done synthesizing module 'conv_accelerator' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:52]
-WARNING: [Synth 8-7071] port 'out_ram_addr' of module 'conv_accelerator' is unconnected for instance 'conv_accelerator_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:349]
-WARNING: [Synth 8-7023] instance 'conv_accelerator_inst' of module 'conv_accelerator' has 10 connections declared, but only 9 given [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:349]
+WARNING: [Synth 8-7071] port 'out_ram_addr' of module 'conv_accelerator' is unconnected for instance 'conv_accelerator_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:355]
+WARNING: [Synth 8-7023] instance 'conv_accelerator_inst' of module 'conv_accelerator' has 11 connections declared, but only 10 given [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:355]
 INFO: [Synth 8-6157] synthesizing module 'yz_csr_wrapper' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv:1]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv:49]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv:55]
 INFO: [Synth 8-6155] done synthesizing module 'yz_csr_wrapper' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/yz_csr_wrapper.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'boot_rom_axi_ctrl' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Memory/Boot_ROM_AXI4-Lite_Wrapper/boot_bram_axi_ctrl.sv:1]
 	Parameter DATA_WIDTH bound to: 32 - type: integer 
@@ -311,23 +310,21 @@ INFO: [Synth 8-6157] synthesizing module 'fifo_v3__parameterized0' [/home/luxyxp
 INFO: [Synth 8-6155] done synthesizing module 'fifo_v3__parameterized0' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/vendor/pulp_platform_common_cells/include/common_cells/src/fifo_v3.sv:13]
 INFO: [Synth 8-6155] done synthesizing module 'obi_to_axi' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/openhw_obi_to_axi/obi_to_axi.sv:9]
 INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_obi_to_axi_wrapper' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:6]
-WARNING: [Synth 8-7071] port 'axi_instr_arprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:506]
-WARNING: [Synth 8-7071] port 'axi_instr_awprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:506]
-WARNING: [Synth 8-7071] port 'axi_instr_wstrb' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:506]
-WARNING: [Synth 8-7071] port 'axi_data_arprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:506]
-WARNING: [Synth 8-7071] port 'axi_data_awprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:506]
-WARNING: [Synth 8-7023] instance 'cpu_inst' of module 'cv32e40p_obi_to_axi_wrapper' has 43 connections declared, but only 38 given [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:506]
+WARNING: [Synth 8-7071] port 'axi_instr_arprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:514]
+WARNING: [Synth 8-7071] port 'axi_instr_awprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:514]
+WARNING: [Synth 8-7071] port 'axi_instr_wstrb' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:514]
+WARNING: [Synth 8-7071] port 'axi_data_arprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:514]
+WARNING: [Synth 8-7071] port 'axi_data_awprot' of module 'cv32e40p_obi_to_axi_wrapper' is unconnected for instance 'cpu_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:514]
+WARNING: [Synth 8-7023] instance 'cpu_inst' of module 'cv32e40p_obi_to_axi_wrapper' has 43 connections declared, but only 38 given [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:514]
 INFO: [Synth 8-6157] synthesizing module 'AXI4_Interconnect' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv:1]
 INFO: [Synth 8-6155] done synthesizing module 'AXI4_Interconnect' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv:1]
-WARNING: [Synth 8-7071] port 'axi_m8_araddr' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:562]
-WARNING: [Synth 8-7071] port 'axi_m8_arvalid' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:562]
-WARNING: [Synth 8-7071] port 'axi_m8_rready' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:562]
-WARNING: [Synth 8-7023] instance 'interconnect_inst' of module 'AXI4_Interconnect' has 172 connections declared, but only 169 given [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:562]
+WARNING: [Synth 8-7071] port 'axi_m8_araddr' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:570]
+WARNING: [Synth 8-7071] port 'axi_m8_arvalid' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:570]
+WARNING: [Synth 8-7071] port 'axi_m8_rready' of module 'AXI4_Interconnect' is unconnected for instance 'interconnect_inst' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:570]
+WARNING: [Synth 8-7023] instance 'interconnect_inst' of module 'AXI4_Interconnect' has 172 connections declared, but only 169 given [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:570]
 INFO: [Synth 8-6157] synthesizing module 'Timer_AXI4_Lite' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv:1]
 INFO: [Synth 8-226] default block is never used [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv:142]
 INFO: [Synth 8-6155] done synthesizing module 'Timer_AXI4_Lite' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/Timer/Timer_AXI4_Lite.sv:1]
-INFO: [Synth 8-6157] synthesizing module 'uart_mux' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv:1]
-INFO: [Synth 8-6155] done synthesizing module 'uart_mux' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'UART_GU_AXI4_Lite' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:1]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:171]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/UART_GU/UART_GU_AXI4-Lite.sv:190]
@@ -345,17 +342,17 @@ INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/
 INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:353]
 INFO: [Synth 8-6155] done synthesizing module 'I2C_Master_AXI4_Lite' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:5]
 INFO: [Synth 8-6157] synthesizing module 'GPIO_AXI4_Lite' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:1]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:95]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:147]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:177]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:188]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:199]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:210]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:220]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:235]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:246]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:306]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:173]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:93]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:138]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:168]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:179]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:190]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:201]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:211]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:226]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:237]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:297]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:164]
 INFO: [Synth 8-6155] done synthesizing module 'GPIO_AXI4_Lite' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:1]
 INFO: [Synth 8-6157] synthesizing module 'QSPI_Master_AXI4_Lite' [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:30]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:405]
@@ -369,12 +366,12 @@ INFO: [Synth 8-6157] synthesizing module 'Instr_Splitter' [/home/luxyxp/Document
 INFO: [Synth 8-6155] done synthesizing module 'Instr_Splitter' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv:1]
 INFO: [Synth 8-6155] done synthesizing module 'top_module' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Top_Module/Top_module.sv:1]
 INFO: [Synth 8-6155] done synthesizing module 'fpga_top' (0#1) [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/fpga_top.sv:2]
-WARNING: [Synth 8-6014] Unused sequential element max_val_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:457]
-WARNING: [Synth 8-6014] Unused sequential element best_class_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:457]
-WARNING: [Synth 8-7137] Register fc_scores_reg[0] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:452]
-WARNING: [Synth 8-7137] Register fc_scores_reg[1] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:452]
-WARNING: [Synth 8-7137] Register fc_scores_reg[2] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:452]
-WARNING: [Synth 8-7137] Register fc_scores_reg[3] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:452]
+WARNING: [Synth 8-6014] Unused sequential element max_val_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:463]
+WARNING: [Synth 8-6014] Unused sequential element best_class_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:463]
+WARNING: [Synth 8-7137] Register fc_scores_reg[0] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:159]
+WARNING: [Synth 8-7137] Register fc_scores_reg[1] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:159]
+WARNING: [Synth 8-7137] Register fc_scores_reg[2] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:159]
+WARNING: [Synth 8-7137] Register fc_scores_reg[3] in module conv_accelerator has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v:159]
 WARNING: [Synth 8-6014] Unused sequential element p_elw_busy_q_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_sleep_unit.sv:141]
 WARNING: [Synth 8-3936] Found unconnected internal register 'mcountinhibit_n_reg' and it is trimmed from '32' to '4' bits. [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1395]
 WARNING: [Synth 8-3936] Found unconnected internal register 'mhpmevent_n_reg[3]' and it is trimmed from '32' to '16' bits. [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/cv32e40p_rtl/cv32e40p_cs_registers.sv:1396]
@@ -389,10 +386,8 @@ WARNING: [Synth 8-3848] Net axi_instr_wdata in module/entity cv32e40p_obi_to_axi
 WARNING: [Synth 8-3848] Net axi_instr_wvalid in module/entity cv32e40p_obi_to_axi_wrapper does not have driver. [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:46]
 WARNING: [Synth 8-3848] Net axi_instr_bready in module/entity cv32e40p_obi_to_axi_wrapper does not have driver. [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/CPU/bizim_kodlar/cv32e40p_obi_to_axi_wrapper.sv:50]
 WARNING: [Synth 8-6014] Unused sequential element r_w_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv:161]
-WARNING: [Synth 8-6014] Unused sequential element mode_select_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:128]
-WARNING: [Synth 8-7137] Register dma_enable_o_reg in module GPIO_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:106]
+WARNING: [Synth 8-6014] Unused sequential element mode_select_reg was removed.  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv:119]
 WARNING: [Synth 8-7137] Register fifo_rx_wdata_reg in module QSPI_Master_AXI4_Lite has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/Peripherals/QSPI/QSPI_Master_AXI4_Lite.sv:546]
-WARNING: [Synth 8-3848] Net sys_rst_out in module/entity fpga_top does not have driver. [/home/luxyxp/Documents/mainfiles/FPGA/main_codes/rtl/desgin_sources/fpga_top.sv:9]
 WARNING: [Synth 8-7129] Port awaddr[31] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
 WARNING: [Synth 8-7129] Port awaddr[30] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
 WARNING: [Synth 8-7129] Port awaddr[29] in module QSPI_Master_AXI4_Lite is either unconnected or has no load
@@ -495,18 +490,18 @@ WARNING: [Synth 8-7129] Port araddr[25] in module GPIO_AXI4_Lite is either uncon
 WARNING: [Synth 8-7129] Port araddr[24] in module GPIO_AXI4_Lite is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2395.965 ; gain = 666.703 ; free physical = 254 ; free virtual = 16728
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2396.559 ; gain = 665.617 ; free physical = 5977 ; free virtual = 18424
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2395.965 ; gain = 666.703 ; free physical = 254 ; free virtual = 16728
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2402.496 ; gain = 671.555 ; free physical = 5976 ; free virtual = 18423
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2395.965 ; gain = 666.703 ; free physical = 254 ; free virtual = 16728
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2402.496 ; gain = 671.555 ; free physical = 5976 ; free virtual = 18423
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2402.934 ; gain = 0.000 ; free physical = 263 ; free virtual = 16737
+Netlist sorting complete. Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2405.465 ; gain = 0.000 ; free physical = 5976 ; free virtual = 18423
 INFO: [Netlist 29-17] Analyzing 5 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -522,27 +517,27 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/fpga_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2505.398 ; gain = 0.000 ; free physical = 261 ; free virtual = 16736
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2500.234 ; gain = 0.000 ; free physical = 5983 ; free virtual = 18431
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 5 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 5 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2505.434 ; gain = 0.000 ; free physical = 261 ; free virtual = 16736
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2500.270 ; gain = 0.000 ; free physical = 5983 ; free virtual = 18431
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2505.434 ; gain = 776.172 ; free physical = 365 ; free virtual = 16841
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2500.270 ; gain = 769.328 ; free physical = 6005 ; free virtual = 18453
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2513.402 ; gain = 784.141 ; free physical = 365 ; free virtual = 16840
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2508.238 ; gain = 777.297 ; free physical = 6004 ; free virtual = 18452
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2513.402 ; gain = 784.141 ; free physical = 365 ; free virtual = 16840
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 2508.238 ; gain = 777.297 ; free physical = 6004 ; free virtual = 18452
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'conv_accelerator'
 INFO: [Synth 8-802] inferred FSM for state register 'rstate_reg' in module 'data_bram_axi_ctrl'
@@ -655,7 +650,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'rx_state_reg' using encodi
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'sequential' in module 'I2C_Master_AXI4_Lite'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2513.402 ; gain = 784.141 ; free physical = 358 ; free virtual = 16836
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2508.238 ; gain = 777.297 ; free physical = 6009 ; free virtual = 18461
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -687,6 +682,7 @@ Detailed RTL Component Info :
 	   2 Input      4 Bit         XORs := 1     
 	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
+	              128 Bit    Registers := 1     
 	               64 Bit    Registers := 5     
 	               56 Bit    Registers := 8     
 	               32 Bit    Registers := 121   
@@ -705,7 +701,7 @@ Detailed RTL Component Info :
 	                4 Bit    Registers := 11    
 	                3 Bit    Registers := 16    
 	                2 Bit    Registers := 58    
-	                1 Bit    Registers := 184   
+	                1 Bit    Registers := 183   
 +---Multipliers : 
 	              17x32  Multipliers := 8     
 	              32x32  Multipliers := 1     
@@ -724,7 +720,7 @@ Detailed RTL Component Info :
 	   6 Input   32 Bit        Muxes := 5     
 	   4 Input   32 Bit        Muxes := 30    
 	  11 Input   32 Bit        Muxes := 3     
-	   3 Input   32 Bit        Muxes := 12    
+	   3 Input   32 Bit        Muxes := 11    
 	   8 Input   32 Bit        Muxes := 1     
 	  32 Input   32 Bit        Muxes := 1     
 	   2 Input   31 Bit        Muxes := 1     
@@ -733,6 +729,7 @@ Detailed RTL Component Info :
 	   2 Input   17 Bit        Muxes := 2     
 	   2 Input   16 Bit        Muxes := 2     
 	   3 Input   16 Bit        Muxes := 1     
+	   2 Input   14 Bit        Muxes := 1     
 	  10 Input   12 Bit        Muxes := 1     
 	   2 Input   12 Bit        Muxes := 1     
 	   2 Input   11 Bit        Muxes := 1     
@@ -832,7 +829,7 @@ WARNING: [Synth 8-3332] Sequential element (FSM_onehot_debug_fsm_cs_reg[2]) is u
 WARNING: [Synth 8-3332] Sequential element (FSM_onehot_debug_fsm_cs_reg[1]) is unused and will be removed from module cv32e40p_controller.
 WARNING: [Synth 8-3332] Sequential element (FSM_onehot_debug_fsm_cs_reg[0]) is unused and will be removed from module cv32e40p_controller.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:28 ; elapsed = 00:01:29 . Memory (MB): peak = 2625.551 ; gain = 896.289 ; free physical = 259 ; free virtual = 16665
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:33 ; elapsed = 00:01:34 . Memory (MB): peak = 2774.449 ; gain = 1043.508 ; free physical = 5752 ; free virtual = 18203
 ---------------------------------------------------------------------------------
  Sort Area is top_module__GCB2 mult_i/int_result0_8 : 0 0 : 3101 5754 : Used 1 time 0
  Sort Area is top_module__GCB2 mult_i/int_result0_8 : 0 1 : 2653 5754 : Used 1 time 0
@@ -852,9 +849,9 @@ Block RAM: Preliminary Mapping Report (see note below)
 |Module Name                      | RTL Object                           | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
 +---------------------------------+--------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 |\soc_inst/conv_accelerator_inst  | u_conv_buf_ram/mem_reg               | 3 K x 8(READ_FIRST)    | W |   | 3 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
-|fpga_top                         | yz_bram_ctrl_inst/yz_ram/ram_reg     | 9 K x 8(READ_FIRST)    | W |   | 9 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 4      | 
+|soc_insti_3/instr_bram_ctrl_inst | instr_ram/ram_reg                    | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
 |fpga_top                         | data_bram_ctrl_inst/data_ram/ram_reg | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
-|soc_insti_4/instr_bram_ctrl_inst | instr_ram/ram_reg                    | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
+|fpga_top                         | yz_bram_ctrl_inst/yz_ram/ram_reg     | 9 K x 8(READ_FIRST)    | W |   | 9 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 4      | 
 +---------------------------------+--------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
@@ -893,13 +890,13 @@ Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-565] redefining clock 'sys_clk'
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:34 ; elapsed = 00:01:34 . Memory (MB): peak = 2660.551 ; gain = 931.289 ; free physical = 322 ; free virtual = 16611
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:38 ; elapsed = 00:01:39 . Memory (MB): peak = 2774.449 ; gain = 1043.508 ; free physical = 5752 ; free virtual = 18203
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:37 ; elapsed = 00:01:38 . Memory (MB): peak = 2718.598 ; gain = 989.336 ; free physical = 247 ; free virtual = 16537
+Finished Timing Optimization : Time (s): cpu = 00:01:42 ; elapsed = 00:01:43 . Memory (MB): peak = 2774.449 ; gain = 1043.508 ; free physical = 5758 ; free virtual = 18210
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -910,9 +907,9 @@ Block RAM: Final Mapping Report
 |Module Name                      | RTL Object                           | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
 +---------------------------------+--------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 |\soc_inst/conv_accelerator_inst  | u_conv_buf_ram/mem_reg               | 3 K x 8(READ_FIRST)    | W |   | 3 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
-|fpga_top                         | yz_bram_ctrl_inst/yz_ram/ram_reg     | 9 K x 8(READ_FIRST)    | W |   | 9 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 4      | 
+|soc_insti_3/instr_bram_ctrl_inst | instr_ram/ram_reg                    | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
 |fpga_top                         | data_bram_ctrl_inst/data_ram/ram_reg | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
-|soc_insti_4/instr_bram_ctrl_inst | instr_ram/ram_reg                    | 2 K x 32(READ_FIRST)   | W |   | 2 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 2      | 
+|fpga_top                         | yz_bram_ctrl_inst/yz_ram/ram_reg     | 9 K x 8(READ_FIRST)    | W |   | 9 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 4      | 
 +---------------------------------+--------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 
@@ -937,20 +934,20 @@ INFO: [Synth 8-7052] The timing for the instance soc_inst/conv_accelerator_inst/
 INFO: [Synth 8-7052] The timing for the instance soc_inst/conv_accelerator_inst/u_fc_weights_rom/dout_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance soc_inst/conv_accelerator_inst/u_fc_weights_rom/dout_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance soc_inst/conv_accelerator_inst/u_conv_buf_ram/mem_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_b_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_b_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance soc_inst/yz_bram_ctrl_inst/yz_ram/ram_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/data_bram_ctrl_inst/data_ram/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/instr_bram_ctrl_inst/instr_ram/ram_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_a_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_b_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
-INFO: [Synth 8-7052] The timing for the instance soc_inst/boot_rom_ctrl_inst/boot_rom/rdata_b_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:41 ; elapsed = 00:01:41 . Memory (MB): peak = 2842.598 ; gain = 1113.336 ; free physical = 221 ; free virtual = 16408
+Finished Technology Mapping : Time (s): cpu = 00:01:45 ; elapsed = 00:01:46 . Memory (MB): peak = 2842.449 ; gain = 1111.508 ; free physical = 5689 ; free virtual = 18140
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -968,37 +965,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:43 ; elapsed = 00:01:44 . Memory (MB): peak = 2854.504 ; gain = 1125.242 ; free physical = 228 ; free virtual = 16415
+Finished IO Insertion : Time (s): cpu = 00:01:48 ; elapsed = 00:01:49 . Memory (MB): peak = 2861.262 ; gain = 1130.320 ; free physical = 5688 ; free virtual = 18140
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:43 ; elapsed = 00:01:44 . Memory (MB): peak = 2854.504 ; gain = 1125.242 ; free physical = 228 ; free virtual = 16415
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:48 ; elapsed = 00:01:49 . Memory (MB): peak = 2861.262 ; gain = 1130.320 ; free physical = 5688 ; free virtual = 18140
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:45 ; elapsed = 00:01:45 . Memory (MB): peak = 2854.504 ; gain = 1125.242 ; free physical = 233 ; free virtual = 16421
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:49 ; elapsed = 00:01:50 . Memory (MB): peak = 2861.262 ; gain = 1130.320 ; free physical = 5681 ; free virtual = 18132
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:45 ; elapsed = 00:01:45 . Memory (MB): peak = 2854.504 ; gain = 1125.242 ; free physical = 233 ; free virtual = 16421
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:49 ; elapsed = 00:01:50 . Memory (MB): peak = 2861.262 ; gain = 1130.320 ; free physical = 5681 ; free virtual = 18132
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:45 ; elapsed = 00:01:46 . Memory (MB): peak = 2870.348 ; gain = 1141.086 ; free physical = 225 ; free virtual = 16413
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:49 ; elapsed = 00:01:50 . Memory (MB): peak = 2875.137 ; gain = 1144.195 ; free physical = 5681 ; free virtual = 18132
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:45 ; elapsed = 00:01:46 . Memory (MB): peak = 2870.348 ; gain = 1141.086 ; free physical = 225 ; free virtual = 16413
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:49 ; elapsed = 00:01:50 . Memory (MB): peak = 2875.137 ; gain = 1144.195 ; free physical = 5681 ; free virtual = 18132
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1029,51 +1026,51 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |clk_wiz  |     1|
-|2     |CARRY4   |  1140|
+|2     |CARRY4   |  1145|
 |3     |DSP48E1  |     6|
 |6     |LUT1     |   539|
-|7     |LUT2     |  2685|
-|8     |LUT3     |  2575|
-|9     |LUT4     |  1611|
-|10    |LUT5     |  1471|
-|11    |LUT6     |  3679|
-|12    |MUXF7    |   320|
+|7     |LUT2     |  2528|
+|8     |LUT3     |  2461|
+|9     |LUT4     |  1711|
+|10    |LUT5     |  1541|
+|11    |LUT6     |  3700|
+|12    |MUXF7    |   319|
 |13    |RAM64M   |    22|
 |14    |RAMB18E1 |     2|
 |15    |RAMB36E1 |    14|
-|24    |FDCE     |  4285|
-|25    |FDPE     |    55|
-|26    |FDRE     |   178|
-|27    |IBUF     |    18|
+|24    |FDCE     |  4463|
+|25    |FDPE     |    56|
+|26    |FDRE     |   177|
+|27    |IBUF     |    19|
 |28    |IOBUF    |     5|
-|29    |OBUF     |    37|
+|29    |OBUF     |    38|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:45 ; elapsed = 00:01:46 . Memory (MB): peak = 2870.348 ; gain = 1141.086 ; free physical = 225 ; free virtual = 16413
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:49 ; elapsed = 00:01:50 . Memory (MB): peak = 2875.137 ; gain = 1144.195 ; free physical = 5681 ; free virtual = 18132
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 4 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 2870.348 ; gain = 1031.617 ; free physical = 225 ; free virtual = 16413
-Synthesis Optimization Complete : Time (s): cpu = 00:01:45 ; elapsed = 00:01:46 . Memory (MB): peak = 2870.355 ; gain = 1141.086 ; free physical = 225 ; free virtual = 16413
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:47 ; elapsed = 00:01:48 . Memory (MB): peak = 2875.137 ; gain = 1046.422 ; free physical = 5681 ; free virtual = 18132
+Synthesis Optimization Complete : Time (s): cpu = 00:01:49 ; elapsed = 00:01:50 . Memory (MB): peak = 2875.145 ; gain = 1144.195 ; free physical = 5681 ; free virtual = 18132
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.1 . Memory (MB): peak = 2870.355 ; gain = 0.000 ; free physical = 387 ; free virtual = 16574
-INFO: [Netlist 29-17] Analyzing 1509 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.1 . Memory (MB): peak = 2881.074 ; gain = 0.000 ; free physical = 5844 ; free virtual = 18295
+INFO: [Netlist 29-17] Analyzing 1513 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2894.359 ; gain = 0.000 ; free physical = 399 ; free virtual = 16587
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2915.992 ; gain = 0.000 ; free physical = 5827 ; free virtual = 18279
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 27 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 5 instances
   RAM64M => RAM64M (RAMD64E(x4)): 22 instances
 
-Synth Design complete | Checksum: 8e433ac1
+Synth Design complete | Checksum: 36dc71db
 INFO: [Common 17-83] Releasing license: Synthesis
-260 Infos, 142 Warnings, 0 Critical Warnings and 0 Errors encountered.
+258 Infos, 139 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:52 ; elapsed = 00:01:51 . Memory (MB): peak = 2894.395 ; gain = 1298.453 ; free physical = 399 ; free virtual = 16587
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2220.932; main = 2008.728; forked = 278.608
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3846.684; main = 2894.363; forked = 1004.082
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2918.371 ; gain = 0.000 ; free physical = 397 ; free virtual = 16587
+synth_design: Time (s): cpu = 00:01:57 ; elapsed = 00:01:56 . Memory (MB): peak = 2916.027 ; gain = 1323.344 ; free physical = 5827 ; free virtual = 18278
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2153.904; main = 2034.132; forked = 279.910
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3778.535; main = 2915.996; forked = 1004.082
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2940.004 ; gain = 0.000 ; free physical = 5826 ; free virtual = 18280
 INFO: [Common 17-1381] The checkpoint '/home/luxyxp/Documents/mainfiles/FPGA/Vivado_projects/Main_MCU_Project/Main_MCU_Project.runs/synth_1/fpga_top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file fpga_top_utilization_synth.rpt -pb fpga_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Sep  6 11:00:12 2026...
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 23:04:49 2026...

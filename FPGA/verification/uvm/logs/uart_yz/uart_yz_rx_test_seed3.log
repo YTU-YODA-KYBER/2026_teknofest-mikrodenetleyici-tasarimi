@@ -19,9 +19,9 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test uart_yz_rx_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/uart_pkg.sv(265) @ 61530000: uvm_test_top.env.dma.mon [DMA_MON] DMA yan bandi: 0 darbe
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 61530000: uvm_test_top.env.sb [SB] UART_YZ scoreboard: yazma=6 okuma=10 kontrol=0 uyusmazlik=0 kotu_cevap=0
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/uart_pkg.sv(147) @ 61530000: uvm_test_top.env.serial.mon [UART_MON] seri monitor: 0 cerceve cozuldu, 0 cerceve hatasi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/uart_pkg.sv(265) @ 61530000: uvm_test_top.env.dma.mon [DMA_MON] DMA yan bandi: 0 darbe
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 61530000: uvm_test_top.env.sb [SB] UART_YZ scoreboard: yazma=6 okuma=10 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/uart_pkg.sv(147) @ 61530000: uvm_test_top.env.serial.mon [UART_MON] seri monitor: 0 cerceve cozuldu, 0 cerceve hatasi
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -64,5 +64,5 @@ UVM_FATAL :    0
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
 [AXI-CHK] UART_YZ        | AW=6 W=6 B=6 AR=10 R=10 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 62us; walltime 0.717 s; speed 85.769 us/s
-- Verilator: cpu 0.646 s on 1 threads; allocated 63 MB
+- Verilator: $finish at 62us; walltime 0.474 s; speed 129.879 us/s
+- Verilator: cpu 0.474 s on 1 threads; allocated 63 MB

@@ -3,7 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/AI_Accelerator/conv_accelerator.v
-//  SHA256 : bf803d6ec801137f46f4fd8514e77d4d49b7a8259763c6afefef0f7822287cea
+//  SHA256 : 9b1fb88b2d4481cda5b9c682037eaf40690a3aa6e6d338a122fd3906a7315afe
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
@@ -102,7 +102,11 @@ module conv_accelerator #(
     input  wire [7:0]        ram_rdata,   // YZ RAM'den UINT8 (= feature + 128, offset-binary)
     output reg  [12:0]       out_ram_addr,
     output reg               out_ram_wen,
-    output reg signed [7:0]  out_ram_wdata
+    output reg signed [7:0]  out_ram_wdata,
+    // FC katmaninin ham 32-bit akumulatorleri, sinif sirasina gore paketli
+    // (sessizlik, bilinmeyen, evet, hayir). CPU bunlari requantize edip
+    // softmax uygular; bkz. firmware/main_app.c.
+    output wire [127:0]      fc_scores_o
 );
 
     localparam INPUT_H  = 49;
@@ -185,6 +189,8 @@ module conv_accelerator #(
     reg signed [31:0] biases    [0:N_CH-1];
     reg signed [31:0] fc_biases [0:N_CLASS-1];
     reg signed [31:0] fc_scores [0:N_CLASS-1];   // <-- testbench hiyerarsik olarak okur
+
+    assign fc_scores_o = {fc_scores[3], fc_scores[2], fc_scores[1], fc_scores[0]};
 
     integer i;
     initial begin

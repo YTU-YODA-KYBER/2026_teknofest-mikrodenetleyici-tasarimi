@@ -48,7 +48,15 @@ ROOT = HERE.parent.parent
 ACCEL = ROOT / "main_codes/rtl/desgin_sources/AI_Accelerator"
 RTL = ACCEL / "conv_accelerator.v"
 OUT_H_FILE = ROOT / "firmware/yz_model/tflite_model_data.h"
+OUT_SM_FILE = ROOT / "firmware/yz_model/yz_softmax.h"
 TFLITE = ROOT.parent / "tflite_files/micro_speech_quantized.tflite"
+
+# Softmax exp tablosunun uzunlugu. Indeks max(q) - q_i, iki int8 arasindaki
+# fark oldugu icin 0..255 araligindadir; ancak exp(-S*d) bu olcekte d=129'da
+# sifira yuvarlanir, yani ustundeki girdiler tamamen sifirdir. Tablo o noktada
+# kesilir ve buyuk farklar cihazda sifir kabul edilir -- 8 KB'lik komut RAM'inde
+# yarim kilobayt bosa gitmesin diye. Uzunluk uretimde dogrulanir.
+SOFTMAX_LUT_LEN = 132
 
 
 # ---------------------------------------------------------------------
@@ -135,6 +143,7 @@ class ModelData:
 
         dw = m.op("DEPTHWISE_CONV_2D")
         fc = m.op("FULLY_CONNECTED")
+        sm = m.op("SOFTMAX")
 
         t_in   = m.tensors[dw.inputs[0]]
         t_w    = m.tensors[dw.inputs[1]]
@@ -143,6 +152,7 @@ class ModelData:
         t_fw   = m.tensors[fc.inputs[1]]
         t_fb   = m.tensors[fc.inputs[2]]
         t_out  = m.tensors[fc.outputs[0]]
+        t_sm   = m.tensors[sm.outputs[0]]
 
         # --- geometri ---
         _, self.in_h, self.in_w, in_ch = t_in.shape
@@ -197,6 +207,13 @@ class ModelData:
 
         self.fc_real = s_relu * t_fw.scale[0] / t_out.scale[0]
         self.fc_mult, self.fc_shift = quantize_multiplier(self.fc_real)
+
+        # --- softmax ---
+        # Girdisi FC'nin int8 cikisi (scale fc_out_scale, zp fc_out_zp),
+        # cikisi modelin son tensoru (scale 1/256, zp -128).
+        self.fc_out_scale = t_out.scale[0]
+        self.sm_out_scale = t_sm.scale[0]
+        self.sm_out_zp = t_sm.zero_point[0]
 
         # --- aktivasyon sinirlari ---
         # Fused ReLU, nicemlenmis alanda 0.0'in karsiligina (zero-point)
@@ -310,7 +327,7 @@ def emit(md):
  *            depth_multiplier {m.depth_mult}, fused ReLU)
  *         -> {m.out_h}x{m.out_w}x{m.n_ch} int8
  *         -> FullyConnected ({m.fc_in} -> {m.n_class}) -> int8
- *         -> Softmax (argmax'i degistirmez, uygulanmaz)
+ *         -> Softmax (bkz. yz_softmax.h; CPU uygular)
  *
  *  Carpanlar TFLite'in QuantizeMultiplier'i ile uretilmistir:
  *      M = mult * 2^(shift-31),   mult in [2^30, 2^31)
@@ -385,6 +402,71 @@ def emit(md):
     return "\n".join(parts)
 
 
+# ---------------------------------------------------------------------
+#  yz_softmax.h  --  uygulamanin ihtiyac duydugu kucuk altkume
+# ---------------------------------------------------------------------
+#  main_app.c tflite_model_data.h'i icermez: oradaki agirlik dizileri
+#  20 KB tutar ve 8 KB'lik komut RAM'ine sigmaz. Uygulamanin gerektigi
+#  tek sey FC requant sabitleri ile exp tablosudur.
+def emit_softmax(m):
+    lut = []
+    for d in range(SOFTMAX_LUT_LEN):
+        lut.append(int(round(65535.0 * math.exp(-m.fc_out_scale * d))))
+
+    # Kesme noktasinin gercekten sifirin icinde kaldigini dogrula: son girdi
+    # sifir degilse tablo erken kesilmis demektir ve softmax bozulur.
+    if lut[-1] != 0:
+        sys.exit(f"HATA: exp tablosu {SOFTMAX_LUT_LEN} girdide sifirlanmadi "
+                 f"(son deger {lut[-1]}); SOFTMAX_LUT_LEN buyutulmeli")
+
+    return f"""\
+/* =====================================================================
+ *  yz_softmax.h  --  URETILMIS DOSYA, ELLE DUZENLEME
+ *
+ *  Uretici : scripts/yz_tflite/gen_tflite_data.py
+ *  Kaynak  : tflite_files/micro_speech_quantized.tflite
+ *
+ *  Modelin Softmax katmani (sartname EK-1 madde 4) CPU'da uygulanir:
+ *  hizlandirici FC'nin ham int32 akumulatorlerini YZ_SCORE0..3
+ *  yazmaclarinda birakir, kesme servisi bunlari once int8'e requantize
+ *  eder, sonra buradaki tablo ile softmax'a cevirir.
+ *
+ *      q_i    = clamp(MultiplyByQuantizedMultiplier(acc_i, MULT, SHIFT)
+ *                     + FC_OUT_ZP, -128, 127)
+ *      e_i    = (d = max_j(q_j) - q_i) < LUT_LEN ? EXP_LUT[d] : 0
+ *      p_i    = e_i / sum(e)                        (0..1)
+ *      skor_i = round(p_i / OUT_SCALE) + OUT_ZP     (int8, tel uzerindeki bicim)
+ *
+ *  EXP_LUT[d] = round(65535 * exp(-{m.fc_out_scale!r} * d)).
+ *  d = max(q) - q_i teorik olarak 0..255'tir, ama exp bu olcekte
+ *  d = {SOFTMAX_LUT_LEN - 1}'de sifira iner; tablo orada kesilir ve daha buyuk
+ *  farklar sifir kabul edilir. Kayan nokta yalnizca bu tabloyu uretirken
+ *  kullanilir; cihazda tamsayi aritmetigi yeter.
+ * ===================================================================== */
+
+#ifndef YZ_SOFTMAX_H
+#define YZ_SOFTMAX_H
+
+#include <stdint.h>
+
+#define YZ_N_CLASS          {m.n_class}
+
+/* FC cikisini int8'e sikistiran requant sabitleri */
+#define YZ_FC_MULT          ({m.fc_mult})
+#define YZ_FC_SHIFT         ({m.fc_shift})
+#define YZ_FC_OUT_ZP        ({m.fc_out_zp})
+
+/* Softmax cikis tensorunun nicemlemesi */
+#define YZ_SM_OUT_SCALE_INV ({int(round(1.0 / m.sm_out_scale))})
+#define YZ_SM_OUT_ZP        ({m.sm_out_zp})
+
+#define YZ_EXP_LUT_LEN      {SOFTMAX_LUT_LEN}
+
+{c_array("yz_exp_lut", "uint16_t", lut, 8)}
+#endif /* YZ_SOFTMAX_H */
+"""
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--model", default=str(TFLITE), help=".tflite yolu")
@@ -406,9 +488,10 @@ def main():
         return 0
 
     OUT_H_FILE.write_text(emit(md))
+    OUT_SM_FILE.write_text(emit_softmax(md))
     print(f"\nSONUC: tum kontroller tamam.")
-    print(f"  yazildi: {OUT_H_FILE.relative_to(ROOT)} "
-          f"({OUT_H_FILE.stat().st_size // 1024} KB)")
+    for f in (OUT_H_FILE, OUT_SM_FILE):
+        print(f"  yazildi: {f.relative_to(ROOT)} ({f.stat().st_size // 1024} KB)")
     return 0
 
 

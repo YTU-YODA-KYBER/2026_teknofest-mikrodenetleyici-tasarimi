@@ -1,4 +1,5 @@
 Time resolution is 1 ps
+source I2C_Master_testbench.tcl
 ====================================================
   I2C Master AXI4-Lite - Dogrulayici Test Senaryolari
 ====================================================
@@ -131,4 +132,5 @@ TUM TESTLER BASARILI!
 
 [AXI-CHK]            I2C | AW=54 W=54 B=54 AR=13223 R=13223 | ihlal=0 uyari=0
 $finish called at time : 1066510 ns : File "/home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/Peripherals/I2C/I2C_tb.sv" Line 587
-INFO: xsimkernel Simulation Memory Usage: 293232 KB (Peak: 341652 KB), Simulation CPU Usage: 970 ms
+INFO: xsimkernel Simulation Memory Usage: 293112 KB (Peak: 341672 KB), Simulation CPU Usage: 1030 ms
+INFO: [Common 17-206] Exiting Vivado at Mon Sep  7 22:59:02 2026...

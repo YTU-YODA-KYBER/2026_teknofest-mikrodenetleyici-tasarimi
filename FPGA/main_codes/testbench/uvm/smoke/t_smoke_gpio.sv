@@ -40,7 +40,6 @@ module t_smoke_gpio;
 
     logic [31:0] gpio_idr = 32'h0000_0000;
     logic [31:0] gpio_odr;
-    logic        dma_enable_o;
     logic [ 7:0] catode, anode;
 
     GPIO_AXI4_Lite dut (
@@ -64,7 +63,6 @@ module t_smoke_gpio;
         .rdata        (axil.rdata),
         .rresp        (axil.rresp),
         .rvalid       (axil.rvalid),
-        .dma_enable_o (dma_enable_o),
         .catode       (catode),
         .anode        (anode)
     );

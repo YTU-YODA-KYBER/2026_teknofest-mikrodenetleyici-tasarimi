@@ -16,10 +16,10 @@
  *  AYNI ORNEGI NASIL GORUYORLAR
  *  ----------------------------
  *  YZ RAM'in CPU portu yok; hizlandirici veriyi yalnizca UART_YZ -> DMA
- *  yolundan alir. Bu yuzden uart_mux.sv'de genel UART'in RX'i HER MODDA
- *  acik birakildi: PC tek gonderim yapar, ayni baytlar hem DMA'ya (YZ
- *  RAM) hem de CPU'ya (genel UART) ulasir. Iki taraf garantili ayni
- *  ornegi isler.
+ *  yolundan alir. CPU ise kendi girdisini genel UART'tan okur. Iki UART
+ *  ayri fiziksel port oldugu icin PC ayni 1960 bayti IKI PORTA da yazar
+ *  (run_accuracy.py bunu yapar); boylece iki taraf garantili ayni ornegi
+ *  isler.
  *
  *  NEDEN KESME YOK
  *  ---------------
@@ -28,14 +28,14 @@
  *  tek parca ve gozle takip edilebilir olmasi, ISR'lara dagilmasindan
  *  daha degerli. Olcum penceresine kesme gecikmesi de karismaz.
  *
- *  RAPOR CERCEVESI (UART_YZ TX)
- *  ----------------------------
- *      YZ:<sinif>\n                             <- send_data.py bunu bekler
- *      SW:<sinif> HC:<cevrim> SC:<cevrim>\n     <- ek satir, eski akis
- *                                                  bu satiri yok sayar
+ *  RAPOR CERCEVESI (genel UART TX)
+ *  -------------------------------
+ *      YZ:<sinif>\n                             <- hizlandiricinin cevabi
+ *      SW:<sinif> HC:<cevrim> SC:<cevrim>\n     <- yazilim + iki tarafin
+ *                                                  cevrim sayisi
  *
- *  KART KULLANIMI:  SW1 = 1, SW0 = 0  (GPIO_IDR[1:0] == 2)
- *      TX pini uart_mux'ta ancak bu kombinasyonda UART_YZ'ye baglanir.
+ *  KART KULLANIMI:  SW0 = 0 (flash'tan boot). 7-segment'te YZ mesajlarini
+ *      gormek icin SW1 = 1.
  * ===================================================================== */
 
 #include "soc.h"
@@ -70,8 +70,9 @@ static inline uint32_t mcycle(void)
 /* =====================================================================
  *  UART
  *
- *  RX genel UART'tan (Uart), TX UART_YZ'den (UartAI) -- ikisi ayri
- *  cevre birimi, ikisinin de baud boleni kurulmali.
+ *  Yazilim yolunun girdisi de raporu da genel UART'tan (Uart) gecer.
+ *  UART_YZ (UartAI) hizlandiriciyi DMA ile besler; RX'i dogru ornekleyebilmesi
+ *  icin onun da baud boleni kurulmali.
  * ===================================================================== */
 static void uart_init(void)
 {
@@ -95,8 +96,8 @@ static uint8_t gu_getc(void)
 #endif
 
 /* Genel UART'tan bir bayt gonder.
- * uart_mux.sv artik fiziksel TX pinini HER MODDA genel UART'tan surer
- * (sartname Bolum 4.2.2 madde 5); UART_YZ tek yonlu giris arayuzudur. */
+ * Sonuc satirlari sartname Bolum 4.2.2 madde 5 geregi genel UART'tan cikar;
+ * UART_YZ hizlandiriciyi besleyen tek yonlu giris arayuzudur. */
 static void yz_putc(uint8_t b)
 {
     Uart->UART_TDR             = b;

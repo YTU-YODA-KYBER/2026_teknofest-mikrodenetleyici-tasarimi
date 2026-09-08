@@ -27,16 +27,25 @@ module yz_bench_test;
     localparam string INPUT_HEX = "input_data_yes.hex";
     localparam int    EXP_CLASS = 2;          // yes
 
-    localparam int DMA_EN_BIT      = 1;               // SW1
-    localparam int GLOBAL_TIMEOUT  = 2_000_000_000;   // ns
+    //  Gecen bir kosum ~256 ms'de biter (hizlandirici 0,9 ms + yazilim
+    //  gerceklemesi 252 ms + rapor). 400 ms bunun %56 ustunde pay birakir.
+    //  DAHA BUYUK SECMEYIN: Vivado'nun urettigi sim script'i `add_wave /`
+    //  ile butun tasarimi kaydeder ve dalga veritabani sim-saniyesi basina
+    //  ~6 GB buyur; takilan bir kosum diski doldurur.
+    localparam int GLOBAL_TIMEOUT  = 400_000_000;   // ns
 
     // =================================================================
     //  2) SINYALLER
     // =================================================================
     logic        clk_i    = 1'b0;
     logic        rst_ni   = 1'b0;
-    logic        UART_RX  = 1'b1;      // idle-high, hic kullanilmiyor
-    logic        UART_TX;
+    //  Girdi DMA arayuzunden zorlanir, yazilim tarafi sim_input.h'ten okur;
+    //  bu yuzden iki UART'in da RX hatti bos kalir. Rapor satirlari genel
+    //  UART'in TX'inden cozulur.
+    logic        UART_GU_RX = 1'b1;    // idle-high
+    logic        UART_GU_TX;
+    logic        UART_YZ_RX = 1'b1;    // idle-high
+    logic        UART_YZ_TX;
     logic [31:0] GPIO_IDR = 32'h0;
     logic [31:0] GPIO_ODR;
     logic [ 7:0] anode, catode;
@@ -63,7 +72,8 @@ module yz_bench_test;
         .clk_i    (clk_i),     .rst_ni  (rst_ni),
         .GPIO_IDR (GPIO_IDR),  .GPIO_ODR(GPIO_ODR),
         .anode    (anode),     .catode  (catode),
-        .UART_TX  (UART_TX),   .UART_RX (UART_RX),
+        .UART_GU_TX(UART_GU_TX), .UART_GU_RX(UART_GU_RX),
+        .UART_YZ_TX(UART_YZ_TX), .UART_YZ_RX(UART_YZ_RX),
         .I2C_SCL  (I2C_SCL),   .I2C_SDA (I2C_SDA),
         .QSPI_SCLK(QSPI_SCLK), .QSPI_CS (QSPI_CS),
         .QSPI_IO0 (QSPI_IO0),  .QSPI_IO1(QSPI_IO1),
@@ -142,16 +152,16 @@ module yz_bench_test;
     endtask
 
     // =================================================================
-    //  6) UART_TX'I COZ  (uygulamanin rapor cercevesi)
+    //  6) GENEL UART TX'INI COZ  (uygulamanin rapor cercevesi)
     // =================================================================
     task automatic uart_recv_byte(output logic [7:0] b);
         int i;
         begin
-            wait (UART_TX === 1'b1);
-            @(negedge UART_TX);                          // start biti
+            wait (UART_GU_TX === 1'b1);
+            @(negedge UART_GU_TX);                       // start biti
             repeat (CLKS_PER_BIT + CLKS_PER_BIT/2) @(posedge clk_i);
             for (i = 0; i < 8; i++) begin                // LSB once
-                b[i] = UART_TX;
+                b[i] = UART_GU_TX;
                 repeat (CLKS_PER_BIT) @(posedge clk_i);
             end
         end
@@ -193,9 +203,29 @@ module yz_bench_test;
         repeat (50) @(posedge clk_i);
         rst_ni = 1'b1;
 
-        // ---- uart_mux'u YZ tarafina al (TX pini UART_YZ'ye baglansin) ----
-        GPIO_IDR[DMA_EN_BIT] = 1'b1;
         repeat (100) @(posedge clk_i);
+
+        //  Firmware'in genel UART bolucusunu kurmasini bekle.
+        //  UART_CPB = 0 iken TX durum makinesi HIC baslamaz: yz_putc
+        //  icindeki "while (!TXDONE)" sonsuza kadar doner, hat bosta 1
+        //  kalir ve testbench hicbir sey goremez. Bu kontrol olmadan
+        //  belirti yalnizca global zaman asimi olarak gorunur.
+        fork
+            begin : wait_uart_ready
+                wait (dut.uart_gu_inst.UART_CPB != 0);
+                $display("[TB] t=%0t  genel UART hazir, UART_CPB=%0d",
+                         $time, dut.uart_gu_inst.UART_CPB);
+            end
+            begin : wait_uart_timeout
+                #(20_000_000);   // 20 ms; firmware bunu boot'ta kurar
+                $fatal(1, "[TB] Firmware genel UART'in UART_CPB'sini kurmadi (0). Boot ROM'da dogru hex var mi? (make sim_bench)");
+            end
+        join_any
+        disable fork;
+
+        if (dut.uart_gu_inst.UART_CPB != CLKS_PER_BIT)
+            $display("[TB] UYARI: UART_GU_CPB=%0d, testbench %0d clk/bit cozuyor -- baud uyusmuyor.",
+                     dut.uart_gu_inst.UART_CPB, CLKS_PER_BIT);
 
         load_yz_ram();
 
@@ -216,8 +246,8 @@ module yz_bench_test;
             if (n_lines > 8) begin
                 $display("[KALDI] %0d satir okundu ama YZ:/SW: cozulemedi.",
                          n_lines);
-                $display("        Baud boleni (UART_CPB=434) ve GPIO_IDR[1:0]==2");
-                $display("        kontrol edilmeli.");
+                $display("        Genel UART'in baud boleni (UART_CPB=%0d) kontrol edilmeli.",
+                         CLKS_PER_BIT);
                 $fatal(1);
             end
         end
@@ -288,6 +318,9 @@ module yz_bench_test;
         #(GLOBAL_TIMEOUT);
         $display("[KALDI] GLOBAL ZAMAN ASIMI -- rapor satirlari gelmedi.");
         $display("        GPIO_ODR=%0d, accel_done=%0b", GPIO_ODR[15:0], accel_finished);
+        $display("        UART_GU: CPB=%0d CFG=0x%08h TDR=0x%02h tx=%b",
+                 dut.uart_gu_inst.UART_CPB, dut.uart_gu_inst.UART_CFG,
+                 dut.uart_gu_inst.UART_TDR, UART_GU_TX);
         $fatal(1);
     end
 

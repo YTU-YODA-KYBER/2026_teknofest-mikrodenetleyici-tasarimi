@@ -3,7 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/Peripherals/GPIO/GPIO_AXI4_Lite.sv
-//  SHA256 : 95f9e76f6235e44b921070c1a9335a4627ca71916d587048f7d5c3de4d699174
+//  SHA256 : 71af3348408d436a5bf800c28811e76780abed4b35f68dbbc95718e0fa9032bb
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
@@ -50,8 +50,6 @@ module GPIO_AXI4_Lite(
     output logic [31:0] rdata,
     output logic [ 1:0] rresp,
     output logic        rvalid,
-
-    output logic        dma_enable_o,
 
     output logic [ 7:0] catode,
     output logic [ 7:0] anode
@@ -115,13 +113,6 @@ module GPIO_AXI4_Lite(
             else if (rvalid && rready) begin
                 arready <= 1;
                 rvalid  <= 0;
-            end
-
-            if(GPIO_IDR[1] == 1'b1)begin
-                dma_enable_o <= 1'b1;
-            end
-            else begin
-                dma_enable_o <= 1'b0;
             end
 
         end

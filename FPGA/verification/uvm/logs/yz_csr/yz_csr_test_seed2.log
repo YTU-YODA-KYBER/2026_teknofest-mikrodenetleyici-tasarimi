@@ -19,11 +19,12 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test yz_csr_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(263) @ 410000: uvm_test_top [CTRL] YZ_CTRL[0] -> acc_start darbesi dogru
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(274) @ 670000: uvm_test_top [CTRL] YZ_CTRL[1] -> load_clear darbesi dogru
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(319) @ 2260000: uvm_test_top [RESULT] dort sinifin dordu de YZ_RESULT'ta dogru yakalandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/yz_accel_pkg.sv(160) @ 2650000: uvm_test_top.env.accel.mon [YZ_MON] hizlandirici arayuzu: acc_start=1 load_clear=1 darbe, 0 genislik ihlali
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 2650000: uvm_test_top.env.sb [SB] YZ_CSR scoreboard: yazma=3 okuma=9 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(270) @ 410000: uvm_test_top [CTRL] YZ_CTRL[0] -> acc_start darbesi dogru
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(281) @ 670000: uvm_test_top [CTRL] YZ_CTRL[1] -> load_clear darbesi dogru
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(326) @ 2260000: uvm_test_top [RESULT] dort sinifin dordu de YZ_RESULT'ta dogru yakalandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/yz_csr/yz_test_lib.svh(362) @ 3340000: uvm_test_top [SCORE] dort skor da sinifla ayni cevrimde yakalandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/yz_accel_pkg.sv(165) @ 3530000: uvm_test_top.env.accel.mon [YZ_MON] hizlandirici arayuzu: acc_start=1 load_clear=1 darbe, 0 genislik ihlali
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 3530000: uvm_test_top.env.sb [SB] YZ_CSR scoreboard: yazma=3 okuma=17 kontrol=0 uyusmazlik=0 kotu_cevap=0
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -40,15 +41,15 @@ UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/a
 ----------------------------------------------------------------------
   AXI protokol ihlali : 0
   UVM_ERROR + FATAL   : 0
-  Scoreboard          : yazma=3 okuma=9 kontrol=0 uyusmazlik=0
+  Scoreboard          : yazma=3 okuma=17 kontrol=0 uyusmazlik=0
   SONUC               : GECTI
 ======================================================================
 
-UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 2650000: reporter [UVM/REPORT/SERVER] 
+UVM_INFO t/uvm/src/base/uvm_report_server.svh(1009) @ 3530000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
-UVM_INFO :    9
+UVM_INFO :   10
 UVM_WARNING :    2
 UVM_ERROR :    0
 UVM_FATAL :    0
@@ -60,12 +61,13 @@ UVM_FATAL :    0
 [RESULT]     1
 [RNTST]     1
 [SB]     1
+[SCORE]     1
 [UVM/COMP/NAMECHECK]     1
 [UVM/RELNOTES]     1
 [YZ_MON]     1
 
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
-[AXI-CHK] YZ_ACCEL       | AW=3 W=3 B=3 AR=9 R=9 | ihlal=0 uyari=0
+[AXI-CHK] YZ_ACCEL       | AW=3 W=3 B=3 AR=17 R=17 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 3us; walltime 0.451 s; speed 5.871 us/s
-- Verilator: cpu 0.451 s on 1 threads; allocated 59 MB
+- Verilator: $finish at 4us; walltime 0.414 s; speed 8.517 us/s
+- Verilator: cpu 0.414 s on 1 threads; allocated 59 MB

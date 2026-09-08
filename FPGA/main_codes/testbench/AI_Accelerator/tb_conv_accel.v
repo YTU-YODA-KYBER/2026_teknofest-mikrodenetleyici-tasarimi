@@ -70,10 +70,16 @@ module tb_conv_accel;
             $display("HATA: +INPUT=<hex> verilmedi"); $finish;
         end
 
-        for (k = 0; k < (1<<RAM_ADDR_W); k = k + 1) ram[k] = 8'h00;
+        //  Girdi bolgesi 'x' ile doldurulur ki eksik/kisa dosya YAKALANSIN.
+        //  0 ile doldurulursa okunamayan dosya sifir vektor gibi gorunur ve
+        //  hizlandirici hicbir uyari vermeden "sessizlik" uretir.
+        for (k = 0; k < (1<<RAM_ADDR_W); k = k + 1)
+            ram[k] = (k < N_BYTES) ? 8'hxx : 8'h00;
         $readmemh(infile, ram, 0, N_BYTES-1);
-        if (ram[0] === 8'hxx) begin
-            $display("HATA: %0s okunamadi", infile); $finish;
+        if (ram[0] === 8'hxx || ram[N_BYTES-1] === 8'hxx) begin
+            $display("HATA: %0s okunamadi ya da %0d bayttan kisa",
+                     infile, N_BYTES);
+            $finish;
         end
 
         repeat (5) @(posedge clk);

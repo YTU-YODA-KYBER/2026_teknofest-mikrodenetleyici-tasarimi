@@ -29,10 +29,11 @@ I2C, QSPI) ve yapay zekâ hızlandırıcısını kullanarak işini yapar.
 
 - **CV32E40P RISC-V çekirdeği** (RV32IMC + Zicsr/Zifencei), opsiyonel FPU varyantı
 - **Bellekler:** Boot ROM, Instruction RAM, Data RAM, YZ RAM (hepsi AXI4-Lite sarmalı)
-- **Çevre birimleri:** GPIO, Timer, I2C Master, QSPI Master, iki UART
-  (genel kullanım + YZ veri akışı)
+- **Çevre birimleri:** GPIO, Timer, I2C Master, QSPI Master, iki UART — genel kullanım (115200, sonuç çıkışı) ve
+  YZ veri akışı (1 Mbps, 1960 baytlık çıkarım vektörü)
 - **Yapay zekâ hızlandırıcısı:** TFlite micro speech modelinin RTL gerçeklemesi. Konvolüsyon + tam bağlı katmanlarla anahtar
-  kelime tanıma (sessizlik / bilinmeyen / evet / hayır)
+  kelime tanıma (sessizlik / bilinmeyen / evet / hayır). Softmax katmanı kesme
+  servisinde uygulanır; sonuç satırı sınıfla birlikte dört sınıf skorunu da taşır
 - **İki boot modu:** **1.** Boot ROM'daki bootloader → QSPI flash'tan uygulamayı
   Instruction RAM'e yükler → çalıştırır. **2.** UART üzerinden bilgisayardan aldığı verileri QSPI modülü ile harici flash belleğe yazar.
 - **Kapsamlı doğrulama:** Her çevre birimi, hızlandırıcı ve genel MCU için testbench'ler,
@@ -150,9 +151,9 @@ Uygulamayı flash'a yazma ve YZ'ye ses gönderme adımları
 
 | Doğrulama | Sonuç |
 |---|---|
-| Sentez + implementasyon | hatasız, 14575/14575 net yollandı |
-| Zamanlama (50 MHz) | WNS **+0,564 ns**, 0 ihlal |
-| Kaynak kullanımı | LUT %15,76 · FF %3,56 · BRAM %14,07 · DSP %2,50 |
+| Sentez + implementasyon | hatasız, 14781/14781 net yollandı |
+| Zamanlama (50 MHz) | WNS **+0,609 ns**, WHS +0,037 ns, 0 ihlal |
+| Kaynak kullanımı | LUT %15,62 · FF %3,72 · BRAM %11,11 · DSP %2,50 |
 | Kod kapsamı | 6 çevre birimi + YZ hızlandırıcı, statement %91–100 |
 | AXI4-Lite protokol kontrolü | 15 arayüz, **0 ihlal** |
 | YZ hızlanma | **276,9×** (yazılım gerçeklemesine kıyasla) |

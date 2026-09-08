@@ -3,7 +3,7 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/Top_Module/Top_module.sv
-//  SHA256 : fc2867a39d2cf0086265006ecfe389266a360e1317da810833069ef5a4235e0b
+//  SHA256 : 7c04a203cf9cb1f398971abb775bc61dc67d3ece1187306205deb1d58683035a
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
@@ -70,8 +70,15 @@ module top_module #(
     output logic [ 7:0] anode,
     output logic [ 7:0] catode,
 
-    output logic UART_TX,
-    input  logic UART_RX,
+    // Genel kullanim UART'i: CPU kesme servisinin cikarim sonucunu bastigi
+    // arayuz (sartname Bolum 4.2.2 madde 5).
+    output logic UART_GU_TX,
+    input  logic UART_GU_RX,
+
+    // YZ veri akisi UART'i: host'un 1960 baytlik ses oznitelik vektorunu
+    // gonderdigi arayuz. Baytlar DMA ile dogrudan YZ RAM'e yazilir.
+    output logic UART_YZ_TX,
+    input  logic UART_YZ_RX,
 
     output logic I2C_SCL,
     inout  logic I2C_SDA,
@@ -96,12 +103,6 @@ module top_module #(
         else         rst_sync_q <= {rst_sync_q[0], 1'b1};
     end
     assign rst_sys_ni = rst_sync_q[1];
-
-    logic UART_GU_RX;
-    logic UART_GU_TX;
-
-    logic UART_YZ_RX;
-    logic UART_YZ_TX;
 
     //  INSTRUCTION AR PORTLARI
     logic [31:0] cpu_instr_araddr;
@@ -365,7 +366,11 @@ module top_module #(
 
     logic        yz_dma_valid;
     logic [ 7:0] yz_dma_data;
+
+    // YZ UART'i kendine ait fiziksel porttur; o hattan gelen her bayt tanim
+    // geregi cikarim verisidir, bu yuzden DMA daima aciktir.
     logic        yz_dma_enable;
+    assign       yz_dma_enable = 1'b1;
 
     logic [31:0] axi_data_bram_awaddr;
     logic        axi_data_bram_awvalid;
@@ -392,6 +397,7 @@ module top_module #(
     logic       acc_done;        // Çıkarım bittiğinde pulse olur
     logic       acc_out_wen;     // "Çıkarım sonucu geçerli" mesajı için pulse olur. Bu 1 olduğu zaman satır 40 yapılır
     logic [7:0] acc_out_wdata;   // Güncel çıkarım sonucunu tutar
+    logic [127:0] acc_fc_scores; // FC katmanının 4 ham 32-bit akümülatörü
     logic       load_done_irq;   // YZ bellleğine yazma işleminin bittiğini CPU'ya bildirmek için kullanılan interrupt sinyali
     logic       load_clear;      // "cpu_clear_i"ye bağlı, işlemci "load_done_irq" sinyalini gördükten sonra bu sinyal aracılığı ile irq sinyalini temizler
     logic       infer_irq;       // -> irq_i[17]
@@ -417,7 +423,8 @@ conv_accelerator #(
     .ram_addr (yz_bram_raddr),
     .ram_rdata(yz_bram_rdata),
     .out_ram_wen  (acc_out_wen),
-    .out_ram_wdata(acc_out_wdata)
+    .out_ram_wdata(acc_out_wdata),
+    .fc_scores_o  (acc_fc_scores)
 );
 
 yz_csr_wrapper yz_csr_wrapper_inst (
@@ -446,6 +453,7 @@ yz_csr_wrapper yz_csr_wrapper_inst (
     .acc_done(acc_done),
     .acc_out_wen(acc_out_wen),
     .acc_out_wdata(acc_out_wdata),
+    .acc_fc_scores(acc_fc_scores),
     .load_done_irq(load_done_irq),
     .load_clear(load_clear),
     .infer_irq(infer_irq)
@@ -891,21 +899,6 @@ Timer_AXI4_Lite timer_inst(
     .rvalid (TIMER_rvalid)
 );
 
-uart_mux uart_mux(
-
-    .GPIO_IDR  (GPIO_IDR),
-
-    .UART_TX   (UART_TX),
-    .UART_RX   (UART_RX),
-
-    .UART_GU_TX(UART_GU_TX),
-    .UART_GU_RX(UART_GU_RX),
-
-    .UART_YZ_TX(UART_YZ_TX),
-    .UART_YZ_RX(UART_YZ_RX)
-);
-
-
 UART_GU_AXI4_Lite uart_gu_inst(
     .clk(clk_i),
     .rst_n(rst_sys_ni),
@@ -1015,9 +1008,7 @@ GPIO_AXI4_Lite gpio_inst(
     .GPIO_ODR(GPIO_ODR),
 
     .anode (anode),
-    .catode(catode),
-
-    .dma_enable_o(yz_dma_enable)
+    .catode(catode)
 );
 
 QSPI_Master_AXI4_Lite qspi_master_inst(

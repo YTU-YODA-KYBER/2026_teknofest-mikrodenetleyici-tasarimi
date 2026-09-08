@@ -114,7 +114,6 @@
 # --- Ara baglanti ---
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv
-../FPGA/main_codes/rtl/desgin_sources/Interconnect/UART_mux/UART_mux.sv
 
 # --- Cevre birimleri ---
 ../FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv

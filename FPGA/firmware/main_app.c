@@ -3,12 +3,13 @@
  *  main() kurulumları yapar, sonra for(;;) ile durur.
  *  İş mantığı kesme-güdümlüdür; ISR'lar içine yazılır.
  *
- *  Akış: UART -> (HW DMA) -> YZ bellek -> load_done IRQ -> hızlandırıcı
+ *  Akış: UART_YZ -> (HW DMA) -> YZ bellek -> load_done IRQ -> hızlandırıcı
  *        start -> infer_done IRQ -> sonucu GPIO_ODR'ye yaz -> 7-segment
- *        + aynı sonucu UART_YZ TX'ten PC'ye ASCII olarak gönder.
+ *        + sınıfı ve softmax skorlarını genel UART'tan PC'ye gönder.
  * ===================================================================== */
 
 #include "soc.h"
+#include "yz_model/yz_softmax.h"
 
 /* Register tanımları soc.h'tadır (YzAccel, UartAI, Gpio);
  * register'lara yazılan değerler burada doğrudan sayı olarak verilir. */
@@ -16,13 +17,6 @@
 /* --- GENEL UART üzerinden tek bayt gönder (blocking) ---
  *  Şartname Bölüm 4.2.2 madde 5: "CPU kesme servisi (ISR) ile sonucu alıp
  *  GENEL UART üzerinden yazdıracaktır."
- *
- *  Eskiden UartAI (UART_YZ) kullanılıyordu, çünkü uart_mux.sv fiziksel TX
- *  pinini GPIO_IDR[1:0]'a göre sürüyordu ve YZ modunda pin UART_YZ'ye
- *  bağlıydı -> genel UART'a yazılan bayt karttan hiç çıkmıyordu.
- *  uart_mux.sv artık TX'i HER MODDA genel UART'tan sürüyor (gerekçesi o
- *  dosyada); YZ arayüzü zaten tek yönlüdür, UART_YZ'nin göndereceği bir şey
- *  yoktur. Bu yüzden sonuç artık şartnamenin istediği yoldan çıkıyor.
  *
  *  Protokol (UART RTL'i): TDR'ye bayt yaz -> CFG.TXSTART=1 ile başlat ->
  *  HW stop bit'te TXSTART'ı 0, TXDONE'ı 1 yapar -> TXDONE'ı SW temizler.
@@ -36,16 +30,107 @@ static void yz_putc(uint8_t b)
     Uart->UART_CFG.bit.TXDONE  = 0;
 }
 
-/* Sonuç çerçevesi: 'Y' 'Z' ':' <karakter> '\n'  (5 bayt, ~434 us @115200)
+/* İşaretli ondalık sayı bas (-128..127 aralığı yeter) */
+static void yz_puti(int32_t v)
+{
+    uint32_t m;
+
+    if (v < 0) { yz_putc('-'); m = (uint32_t)(-v); }
+    else       {               m = (uint32_t)v;    }
+
+    if (m >= 100u) yz_putc((uint8_t)('0' + m / 100u));
+    if (m >=  10u) yz_putc((uint8_t)('0' + (m / 10u) % 10u));
+    yz_putc((uint8_t)('0' + m % 10u));
+}
+
+/* =====================================================================
+ *  Softmax (şartname EK-1 madde 4)
+ *
+ *  Hızlandırıcı FC katmanının ham int32 akümülatörlerini YZ_SCORE[0..3]'te
+ *  bırakır. TFLite bu akümülatörleri önce int8'e requantize eder, sonra
+ *  softmax uygular; iki adımı da burada tekrarlıyoruz. Sabitler ve exp
+ *  tablosu .tflite'tan üretilir (yz_model/yz_softmax.h).
+ * ===================================================================== */
+
+/* gemmlowp SaturatingRoundingDoublingHighMul: (a*b) >> 31, yuvarlamalı */
+static int32_t sat_round_dbl_high_mul(int32_t a, int32_t b)
+{
+    int64_t ab  = (int64_t)a * (int64_t)b;
+    int32_t nudge = (ab >= 0) ? (1 << 30) : (1 - (1 << 30));
+    int32_t r = (int32_t)((ab + nudge) / (1LL << 31));
+    /* Tek taşma durumu: -2^31 * -2^31 */
+    return (a == INT32_MIN && b == INT32_MIN) ? INT32_MAX : r;
+}
+
+/* gemmlowp RoundingDivideByPOT: en yakına yuvarlayan 2^exp bölmesi */
+static int32_t round_div_by_pot(int32_t x, int exp)
+{
+    const int32_t mask      = (1 << exp) - 1;
+    const int32_t remainder = x & mask;
+    const int32_t threshold = (mask >> 1) + ((x < 0) ? 1 : 0);
+    return (x >> exp) + ((remainder > threshold) ? 1 : 0);
+}
+
+/* Bu modelde FC çarpanının kaydırması negatif, yani requant tek yönlü sağa
+ * kaydırmadır. Model değişip shift pozitife dönerse sola kaydırma dalı da
+ * gerekir; sessizce yanlış sonuç üretmemesi için derlemede yakalanır. */
+_Static_assert(YZ_FC_SHIFT < 0, "FC shift pozitif: sola kaydirma dali eksik");
+
+/* acc[0..3] -> softmax'ın int8 çıkışı (tel üzerindeki biçim) */
+static void yz_softmax(const int32_t *acc, int32_t *out)
+{
+    int32_t  q[YZ_N_CLASS], qmax = -128;
+    uint32_t e[YZ_N_CLASS], sum = 0;
+    int i;
+
+    /* 1) FC akümülatörünü modelin int8 çıkış tensörüne sıkıştır */
+    for (i = 0; i < YZ_N_CLASS; ++i) {
+        int32_t v = round_div_by_pot(
+                        sat_round_dbl_high_mul(acc[i], YZ_FC_MULT),
+                        -YZ_FC_SHIFT) + YZ_FC_OUT_ZP;
+        if (v < -128) v = -128;
+        if (v >  127) v =  127;
+        q[i] = v;
+        if (v > qmax) qmax = v;
+    }
+
+    /* 2) exp(S*(q_i - qmax)) tabloya bakılarak. Fark 0..255 olabilir; tablo
+     *    exp'in sıfıra indiği noktada kesildiği için üstü sıfır sayılır. */
+    for (i = 0; i < YZ_N_CLASS; ++i) {
+        int32_t d = qmax - q[i];
+        e[i] = (d < YZ_EXP_LUT_LEN) ? yz_exp_lut[d] : 0u;
+        sum += e[i];
+    }
+
+    /* 3) Normalize et ve softmax çıkışının nicemlemesine çevir */
+    for (i = 0; i < YZ_N_CLASS; ++i) {
+        uint32_t p = (e[i] * YZ_SM_OUT_SCALE_INV + sum / 2u) / sum;
+        if (p > (uint32_t)(YZ_SM_OUT_SCALE_INV - 1))
+            p = (uint32_t)(YZ_SM_OUT_SCALE_INV - 1);
+        out[i] = (int32_t)p + YZ_SM_OUT_ZP;
+    }
+}
+
+/* Sonuç çerçevesi:  "YZ:<sinif> S=<s0>;<s1>;<s2>;<s3>\n"
  *  Karakterler doğrudan immediate olarak verilir; string literal kullanılsaydı
  *  .rodata'dan (INSTRRAM) veri okuması gerekirdi, bu yol gereksiz yere
  *  instruction fetch ile aynı slave'e yük bindirir. */
-static void yz_report(uint8_t tag)
+static void yz_report(uint8_t tag, const int32_t *scores)
 {
+    int i;
     yz_putc('Y');
     yz_putc('Z');
     yz_putc(':');
     yz_putc(tag);
+    if (scores) {
+        yz_putc(' ');
+        yz_putc('S');
+        yz_putc('=');
+        for (i = 0; i < YZ_N_CLASS; ++i) {
+            if (i) yz_putc(';');
+            yz_puti(scores[i]);
+        }
+    }
     yz_putc('\n');
 }
 
@@ -64,12 +149,27 @@ static void load_done_isr(void)
      * hızlandırıcı çalışırken UART'ı sürüyoruz, çıkarımı geciktirmiyoruz.
      * Bu sırada infer_done gelirse MIE=0 olduğu için pending kalır ve
      * mret'ten hemen sonra servis edilir -> kesme kaybolmaz. */
-    yz_report('B');                   /* Busy / inference started */
+    yz_report('B', 0);                /* Busy / inference started */
 }
 
 static void infer_done_isr(void)
 {
-    uint32_t cls = YzAccel->YZ_RESULT.bit.CLASS;
+    int32_t  acc[YZ_N_CLASS], scores[YZ_N_CLASS];
+    uint32_t cls = 0;
+    int i;
+
+    /* Ham FC skorlarını oku ve softmax'ı uygula */
+    for (i = 0; i < YZ_N_CLASS; ++i)
+        acc[i] = YzAccel->YZ_SCORE[i];
+    yz_softmax(acc, scores);
+
+    /* Modelin cevabı softmax çıkışının argmax'ıdır ve eşitlikte ilk sınıf
+     * kazanır. Hızlandırıcının YZ_RESULT'taki kendi argmax'ı ham int32
+     * akümülatörler üzerindendir; requantization iki akümülatörü aynı int8
+     * değerine indirdiğinde ikisi ayrışabilir. Referans model bu durumda
+     * ilk sınıfı seçtiği için sınıf buradan türetilir. */
+    for (i = 1; i < YZ_N_CLASS; ++i)
+        if (scores[i] > scores[cls]) cls = (uint32_t)i;
 
     /* Sınıfı 7-segment değerine çevir ve GPIO_ODR'ye yaz */
     switch (cls) {
@@ -80,8 +180,9 @@ static void infer_done_isr(void)
         default: break;
     }
 
-    /* Aynı sonucu PC'ye gönder: "YZ:0".."YZ:3" (soc.h'taki sınıf sırası) */
-    yz_report((uint8_t)('0' + cls));
+    /* Sınıf + dört skor PC'ye: "YZ:2 S=-128;-128;127;-128"
+     * (sınıf sırası soc.h'taki gibi: sessizlik, bilinmeyen, evet, hayır) */
+    yz_report((uint8_t)('0' + cls), scores);
 
     /* infer IRQ'yu temizle (en sonda) */
     YzAccel->YZ_CTRL.all = 0x4u;      /* [2] INFER_CLEAR */
@@ -112,20 +213,20 @@ static void irq_init(void)
 }
 
 /* --- UART'ları konfigüre et (bir kere, boot'ta) ---
- *  UART_YZ (UartAI): host'un gönderdiği ses özniteliğini ALIR. Bu olmadan RX
- *  reset default'unda kalır ve veriyi hiç doğru örnekleyemez -> DMA'ya
- *  hiçbir zaman doğru bayt gitmez.
+ *  UART_YZ (UartAI): host'un gönderdiği ses özniteliğini ALIR. 1960 baytlık
+ *  vektör her çıkarımda tel üzerinden geçtiği için hızlı taraf budur;
+ *  şartnamenin istediği 1 Mbps burada kullanılır (170 ms -> 19,6 ms).
  *
- *  Genel UART (Uart): çıkarım sonucunu GÖNDERİR (bkz. yz_putc). Eskiden
- *  yalnız UART_YZ konfigüre ediliyordu; TX genel UART'a taşındığı için
- *  onun bölücüsü de kurulmak zorunda, aksi halde sonuç çerçevesi reset
- *  default baud'unda çıkar ve host okuyamaz. */
+ *  Genel UART (Uart): çıkarım sonucunu GÖNDERİR (bkz. yz_putc). Çerçeve
+ *  birkaç on bayt olduğu için 115200 yeterlidir. İki farklı baud'un aynı
+ *  anda kullanılması şartname Bölüm 4.2.2/3'ün istediği çok-baud desteğini
+ *  de gösterir. */
 static void uart_init(void)
 {
-    UartAI->UART_CPB     = UART_CPB_115200;  /* SYS_CLK_HZ'den turetilir (send_data.py ile aynı baud) */
+    UartAI->UART_CPB     = UART_CPB_1M;      /* YZ veri akisi: 1 Mbps */
     UartAI->UART_STP.all = 0;     /* 1 stop bit (RX bu alanı kullanmıyor ama netlik icin) */
 
-    Uart->UART_CPB       = UART_CPB_115200;  /* sonuç çerçevesi aynı baud'da çıksın */
+    Uart->UART_CPB       = UART_CPB_115200;  /* sonuç çerçevesi */
     Uart->UART_STP.all   = 0;     /* 1 stop bit */
 }
 

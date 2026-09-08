@@ -1,7 +1,7 @@
 * Antenna
 Failed 𐄂
-Pin violations: 1122
-Net violations: 1067
+Pin violations: 1034
+Net violations: 979
 Check the report directory of OpenROAD.CheckAntennas.
 
 * LVS

@@ -61,7 +61,6 @@ module tb_gpio;
         .rdata        (axil.rdata),
         .rresp        (axil.rresp),
         .rvalid       (axil.rvalid),
-        .dma_enable_o (pad.dma_enable),
         .catode       (pad.catode),
         .anode        (pad.anode)
     );

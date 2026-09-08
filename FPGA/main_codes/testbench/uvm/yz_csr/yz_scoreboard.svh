@@ -1,7 +1,7 @@
 //=============================================================================
 //  yz_scoreboard.svh  --  YZ CSR referans modeli
 //
-//  Uc register de donanim tarafindan surulur ya da saklanmaz; bu yuzden
+//  Register'larin hepsi donanim tarafindan surulur ya da saklanmaz; bu yuzden
 //  golge register dosyasiyla kontrol edilebilecek bir sey YOKTUR. Kontrol
 //  yz_csr_test icinde, hizlandirici arayuzunun surulen degerleriyle
 //  STATUS/RESULT okumalari karsilastirilarak yapilir.
@@ -20,7 +20,9 @@ class yz_scoreboard extends axil_scoreboard;
     endfunction
 
     virtual function bit is_mapped(bit [31:0] off);
-        return (off[7:0] inside {8'h00, 8'h04, 8'h08});
+        //  0x00 CTRL, 0x04 STATUS, 0x08 RESULT, 0x10..0x1C SCORE0..3
+        return (off[7:0] inside {8'h00, 8'h04, 8'h08,
+                                 8'h10, 8'h14, 8'h18, 8'h1C});
     endfunction
 
     virtual function bit is_writable(bit [31:0] off);

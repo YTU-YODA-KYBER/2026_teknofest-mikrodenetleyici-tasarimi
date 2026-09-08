@@ -19,9 +19,9 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test gpio_unmapped_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(160) @ 380000: uvm_test_top [UNMAP] haritasiz ofset 0x08 bayat deger dondurdu (0x00005a5a) -- belgelenen davranis
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/gpio_pad_pkg.sv(175) @ 650000: uvm_test_top.env.pad.mon [PAD] GPIO pad monitoru: 28 ornek | PAD_01=0 PAD_02=0 PAD_03=0
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 650000: uvm_test_top.env.sb [SB] GPIO scoreboard: yazma=2 okuma=2 kontrol=1 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(160) @ 380000: uvm_test_top [UNMAP] haritasiz ofset 0x08 bayat deger dondurdu (0x00005a5a) -- belgelenen davranis
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/gpio_pad_pkg.sv(161) @ 650000: uvm_test_top.env.pad.mon [PAD] GPIO pad monitoru: 28 ornek | PAD_01=0 PAD_03=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 650000: uvm_test_top.env.sb [SB] GPIO scoreboard: yazma=2 okuma=2 kontrol=1 uyusmazlik=0 kotu_cevap=0
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -64,5 +64,5 @@ UVM_FATAL :    0
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
 [AXI-CHK] GPIO           | AW=2 W=2 B=2 AR=2 R=2 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 650ns; walltime 0.381 s; speed 1.704 us/s
-- Verilator: cpu 0.379 s on 1 threads; allocated 59 MB
+- Verilator: $finish at 650ns; walltime 0.388 s; speed 1.674 us/s
+- Verilator: cpu 0.388 s on 1 threads; allocated 59 MB

@@ -19,21 +19,21 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test gpio_display_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 333110000: uvm_test_top [EKRAN] IDR=1 ODR=1 -> ERASE tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 666070000: uvm_test_top [EKRAN] IDR=1 ODR=2 -> SNDING tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 999030000: uvm_test_top [EKRAN] IDR=1 ODR=3 -> FINISH tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 1331990000: uvm_test_top [EKRAN] IDR=1 ODR=4 -> ERROR tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 1664950000: uvm_test_top [EKRAN] IDR=1 ODR=5 -> BOOT (default) tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 1997910000: uvm_test_top [EKRAN] IDR=2 ODR=5 -> SNDING tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 2330870000: uvm_test_top [EKRAN] IDR=2 ODR=6 -> INFRNC tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 2663830000: uvm_test_top [EKRAN] IDR=2 ODR=7 -> EVET tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 2996790000: uvm_test_top [EKRAN] IDR=2 ODR=8 -> HAYIR tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 3329750000: uvm_test_top [EKRAN] IDR=2 ODR=9 -> SESSIZLK tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 3662710000: uvm_test_top [EKRAN] IDR=2 ODR=10 -> BILINMYN tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 3995670000: uvm_test_top [EKRAN] IDR=2 ODR=11 -> YZUART (default) tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 4328630000: uvm_test_top [EKRAN] IDR=0 ODR=0 -> sonuk tarandi
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/gpio_pad_pkg.sv(175) @ 4328830000: uvm_test_top.env.pad.mon [PAD] GPIO pad monitoru: 216437 ornek | PAD_01=0 PAD_02=0 PAD_03=0
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 4328830000: uvm_test_top.env.sb [SB] GPIO scoreboard: yazma=13 okuma=0 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 333110000: uvm_test_top [EKRAN] IDR=1 ODR=1 -> ERASE tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 666070000: uvm_test_top [EKRAN] IDR=1 ODR=2 -> SNDING tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 999030000: uvm_test_top [EKRAN] IDR=1 ODR=3 -> FINISH tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 1331990000: uvm_test_top [EKRAN] IDR=1 ODR=4 -> ERROR tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 1664950000: uvm_test_top [EKRAN] IDR=1 ODR=5 -> BOOT (default) tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 1997910000: uvm_test_top [EKRAN] IDR=2 ODR=5 -> SNDING tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 2330870000: uvm_test_top [EKRAN] IDR=2 ODR=6 -> INFRNC tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 2663830000: uvm_test_top [EKRAN] IDR=2 ODR=7 -> EVET tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 2996790000: uvm_test_top [EKRAN] IDR=2 ODR=8 -> HAYIR tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 3329750000: uvm_test_top [EKRAN] IDR=2 ODR=9 -> SESSIZLK tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 3662710000: uvm_test_top [EKRAN] IDR=2 ODR=10 -> BILINMYN tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 3995670000: uvm_test_top [EKRAN] IDR=2 ODR=11 -> YZUART (default) tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/gpio/gpio_test_lib.svh(361) @ 4328630000: uvm_test_top [EKRAN] IDR=0 ODR=0 -> sonuk tarandi
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/gpio_pad_pkg.sv(161) @ 4328830000: uvm_test_top.env.pad.mon [PAD] GPIO pad monitoru: 216437 ornek | PAD_01=0 PAD_03=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 4328830000: uvm_test_top.env.sb [SB] GPIO scoreboard: yazma=13 okuma=0 kontrol=0 uyusmazlik=0 kotu_cevap=0
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -76,5 +76,5 @@ UVM_FATAL :    0
 - /usr/Verilator_uvm/uvm/uvm_pkg_all_v2020_3_1_nodpi.svh:20118: Verilog $finish
 [AXI-CHK] GPIO           | AW=13 W=13 B=13 AR=0 R=0 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 4ms; walltime 2.998 s; speed 1.444 ms/s
-- Verilator: cpu 2.998 s on 1 threads; allocated 59 MB
+- Verilator: $finish at 4ms; walltime 2.689 s; speed 1.610 ms/s
+- Verilator: cpu 2.689 s on 1 threads; allocated 59 MB

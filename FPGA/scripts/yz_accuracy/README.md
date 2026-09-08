@@ -8,8 +8,9 @@ doğruluk oranlarını karşılaştırır.
 ```bash
 cd scripts/yz_accuracy
 
-# 1) asıl ölçüm: kart bağlı, yz_bench bitstream'i yüklü, SW1=1 SW0=0
-python3 run_accuracy.py --dataset dataset --board --port /dev/ttyUSB1
+# 1) asıl ölçüm: kart bağlı, yz_bench bitstream'i yüklü, SW0=0
+python3 run_accuracy.py --dataset dataset --board \
+        --core-port /dev/ttyUSB0 --stream-port /dev/ttyUSB1
 
 # 2) çapraz kontrol: aynı modeli host'ta koştur (kart gerekmez)
 python3 run_accuracy.py --dataset dataset --host
@@ -70,15 +71,18 @@ fark → geçer. Örnek-başı uyum daha güçlü bir metrik olduğu için ayrı
 
 ---
 
-## Tek gönderim, iki sonuç
+## İki porta gönderim, iki sonuç
 
 YZ RAM'in CPU portu yok — hızlandırıcı veriyi yalnızca UART_YZ → DMA yolundan
-alır. Yazılımın **aynı** 1960 baytı görebilmesi için `UART_mux.sv`'de genel
-UART'ın RX'i her modda açık bırakıldı. Böylece PC tek gönderim yapar:
+alır, CPU'daki yazılım gerçeklemesi ise girdisini genel UART'tan okur. İki UART
+ayrı fiziksel port olduğu için `run_accuracy.py` **aynı** 1960 baytı ikisine de
+yazar; böylece iki taraf garantili aynı örneği işler:
 
 ```
-send_data.py ──► UART_RX pini ──┬──► UART_YZ ──► DMA ──► YZ RAM ──► hızlandırıcı
-                                └──► genel UART ──► CPU ──► tflite_ref
+run_accuracy.py ──┬──► stream port ──► UART_YZ ──► DMA ──► YZ RAM ──► hızlandırıcı
+                  └──► core port   ──► genel UART ──► CPU ──► tflite_ref
+                                                       │
+                       YZ: / SW: satırları  ◄───────────┘
 ```
 
 `yz_bench.c` iki satır döner:

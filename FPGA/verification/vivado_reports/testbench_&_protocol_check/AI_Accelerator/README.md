@@ -33,10 +33,10 @@ Simülasyon süresi: **513,111 ms** (gerçek zamanda 1 sa 06 dk)
 
 | Ölçüm | Sonuç |
 |---|---|
-| Senaryo | 3 (evet · hayır · sessizlik) |
-| Senaryo başına geçme/kalma kapısı | 4 (zaman aşımı · sınıf · `GPIO_ODR` · FC skorları) |
-| Geçen kapı | **12 / 12** |
-| Geçen | **3 / 3** |
+| Senaryo | 3 (evet · hayır · sessizlik) + çerçeve resenkronizasyonu |
+| Senaryo başına geçme/kalma kapısı | 6 (zaman aşımı · sınıf · sonuç satırı · `GPIO_ODR` · FC skorları · softmax skorları) |
+| Geçen kapı | **24 / 24** |
+| Geçen | **4 / 4** (üç sınıf + kurtarma sonrası tekrar) |
 | Kalan | 0 |
 | FC skor karşılaştırması | **açık** (`CHECK_SCORES=1`), 12 skorun 12'si bit-exact |
 | Çıkarım gecikmesi | **45.517 çevrim** (üç senaryoda da aynı) |
@@ -90,12 +90,14 @@ için log'dan:
 
 | İşaret | Şartname EK-1 iş akışındaki karşılığı |
 |---|---|
-| Boot + `UART_YZ_CPB=434` | *"SoC çekirdeği … UART'ın ve YZ hızlandırıcının CSR'larına konfigürasyonları yazmalıdır"* |
+| Boot + `UART_YZ_CPB=50` | *"SoC çekirdeği … UART'ın ve YZ hızlandırıcının CSR'larına konfigürasyonları yazmalıdır"* |
 | `[TB] … bayt gonderiliyor` | *"UART-stream çevre birimi çıkarım yapılacak veriyi iletecek"* |
 | `[P2] LOAD_DONE` | *"…ve bu veri istenilen hızlandırıcı bellek adresine yazılacaktır"* |
 | `[P3]` → `[P4]` | *"Modelin veri girişi YZ hızlandırıcısı tarafından alınacak"*, çıkarım |
 | `[P5] INFER_IRQ -> CPU` | *"Çıkarım tamamlandıktan sonra SoC çekirdeği bir kesme sinyali ile bilgilendirilecektir"* |
-| `GPIO_ODR` + `YZ:<sınıf>` | *"Son olarak çekirdek, kendi UART arayüzü üzerinden çıkarım sonucunu yazacaktır"* |
+| `GPIO_ODR` + `[P7] YZ:<sınıf> S=…` | *"Son olarak çekirdek, kendi UART arayüzü üzerinden çıkarım sonucunu yazacaktır"* — testbench genel UART'ın TX pinini çözer, yani PC'nin gerçekten gördüğü baytı kontrol eder |
+| `[P7]` skorları | EK-1 madde 4 (Softmax): kesme servisi FC akümülatörlerini requantize edip softmax'a çevirir; dört skor da satıra yazılır |
+| `RESENKRONIZASYON` bloğu | Kesik çerçeve sonrası girdi RAM'i sayacının boşta kalma eşiğinde sıfırlandığı ve sonraki çerçevenin doğru sınıflandığı doğrulanır |
 
 ---
 
@@ -172,6 +174,7 @@ Arayüz başına gözlenen trafik:
   regresyon koruması için doğrudur, ama "RTL eğitilmiş modelle aynı mı?"
   sorusunu ayrı bir araç cevaplar:
   [`../../../ai_accel_reports/compare_rtl.log`](../../../ai_accel_reports/compare_rtl.log).
-- **Koşum uzundur (≈1 saat).** Üç kez 1960 baytın 115200 baud'da gerçek
-  zamanlamayla sürülmesi tek başına 510 ms simülasyon zamanı demektir; çıkarımın
-  kendisi bunun yanında ihmal edilebilir (3 × 910 µs).
+- **Koşum süresi.** Dört kez 1960 baytın 1 Mbps'te gerçek zamanlamayla
+  sürülmesi 78 ms simülasyon zamanı, çerçeve senkronizasyon testindeki boşta
+  bekleme 3 ms daha ekler; çıkarımın kendisi bunun yanında ihmal edilebilir
+  (4 × 910 µs). Duvar süresi ~10 dakikadır.

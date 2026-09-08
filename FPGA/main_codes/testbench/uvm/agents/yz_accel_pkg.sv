@@ -28,12 +28,15 @@ package yz_accel_pkg;
     class yz_accel_item extends uvm_sequence_item;
         rand yz_op_e      op;
         rand bit [7:0]    deger;
+        //  YZ_WRITE_RESULT ile birlikte surulen ham FC skorlari: {S3,S2,S1,S0}
+        rand bit [127:0]  skorlar;
         rand int unsigned cevrim;
 
         `uvm_object_utils_begin(yz_accel_item)
             `uvm_field_enum(yz_op_e, op, UVM_ALL_ON)
-            `uvm_field_int(deger,  UVM_ALL_ON | UVM_HEX)
-            `uvm_field_int(cevrim, UVM_ALL_ON | UVM_DEC)
+            `uvm_field_int(deger,   UVM_ALL_ON | UVM_HEX)
+            `uvm_field_int(skorlar, UVM_ALL_ON | UVM_HEX)
+            `uvm_field_int(cevrim,  UVM_ALL_ON | UVM_DEC)
         `uvm_object_utils_end
 
         constraint c { cevrim inside {[1:20]}; }
@@ -64,6 +67,7 @@ package yz_accel_pkg;
             vif.acc_done      <= 1'b0;
             vif.acc_out_wen   <= 1'b0;
             vif.acc_out_wdata <= 8'h0;
+            vif.acc_fc_scores <= 128'h0;
             vif.load_done_irq <= 1'b0;
 
             forever begin
@@ -85,6 +89,7 @@ package yz_accel_pkg;
                     YZ_WRITE_RESULT: begin
                         @(negedge vif.clk);
                         vif.acc_out_wdata <= req.deger;
+                        vif.acc_fc_scores <= req.skorlar;
                         vif.acc_out_wen   <= 1'b1;
                         @(posedge vif.clk);
                         @(negedge vif.clk);
@@ -194,6 +199,7 @@ package yz_accel_pkg;
 
         rand yz_op_e      op;
         rand bit [7:0]    deger;
+        rand bit [127:0]  skorlar;
         rand int unsigned cevrim;
 
         function new(string name = "yz_accel_seq"); super.new(name); endfunction
@@ -202,9 +208,10 @@ package yz_accel_pkg;
             yz_accel_item it;
             it = yz_accel_item::type_id::create("it");
             start_item(it);
-            it.op     = op;
-            it.deger  = deger;
-            it.cevrim = cevrim;
+            it.op      = op;
+            it.deger   = deger;
+            it.skorlar = skorlar;
+            it.cevrim  = cevrim;
             finish_item(it);
         endtask
     endclass

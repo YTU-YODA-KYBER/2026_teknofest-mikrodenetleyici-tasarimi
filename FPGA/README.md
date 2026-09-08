@@ -37,7 +37,7 @@ MCU'nun **ana RTL kodları** ve onları doğrulayan testbench'ler.
 | Alt klasör | İçerik |
 |---|---|
 | `rtl/desgin_sources/CPU/` | CV32E40P RISC-V çekirdeği + OBI↔AXI köprüsü |
-| `rtl/desgin_sources/Interconnect/` | AXI4 ara bağlantı, komut (instruction) ayırıcı, UART mux |
+| `rtl/desgin_sources/Interconnect/` | AXI4 ara bağlantı, komut (instruction) ayırıcı |
 | `rtl/desgin_sources/Memory/` | Boot ROM, Instruction RAM, Data RAM, YZ RAM — AXI4-Lite sarmalayıcıları + `BRAM_defines/` |
 | `rtl/desgin_sources/Peripherals/` | GPIO, Timer, I2C Master, QSPI Master, UART (genel + YZ akışı) |
 | `rtl/desgin_sources/AI_Accelerator/` | YZ hızlandırıcı: konvolüsyon/FC katmanları, ağırlık-bias hex'leri, `yz_csr_wrapper.sv` |

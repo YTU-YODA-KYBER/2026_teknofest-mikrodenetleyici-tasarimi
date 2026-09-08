@@ -65,7 +65,7 @@ reference kernel'lerinin portudur; sabitleri doğrudan
 `micro_speech_quantized.tflite`'tan çıkarılır.
 
 ```bash
-# doğruluk — kart üzerinde (SW1=1, SW0=0)
+# doğruluk — kart üzerinde (SW0=0)
 cd firmware && make bench            # + yz_bench_test.tcl ile bitstream
 python3 ../scripts/yz_accuracy/run_accuracy.py --dataset dataset --board \
         --outdir ../verification/ai_accel_reports

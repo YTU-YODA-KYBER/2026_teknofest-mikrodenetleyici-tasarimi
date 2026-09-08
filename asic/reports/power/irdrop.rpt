@@ -1,26 +1,26 @@
-+ analyze_power_grid -net VPWR -voltage_file /usr/asic_flow/run/i2c_20260907_final/58-openroad-irdropreport/net-VPWR.csv
++ analyze_power_grid -net VPWR -voltage_file /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/58-openroad-irdropreport/net-VPWR.csv
 [INFO PSM-0040] All shapes on net VPWR are connected.
 ########## IR report #################
 Net              : VPWR
 Corner           : nom_tt_025C_1v80
-Total power      : 4.14e-02 W
+Total power      : 4.16e-02 W
 Supply voltage   : 1.80e+00 V
 Worstcase voltage: 1.80e+00 V
 Average voltage  : 1.80e+00 V
-Average IR drop  : 4.15e-06 V
+Average IR drop  : 4.21e-06 V
 Worstcase IR drop: 5.31e-04 V
 Percentage drop  : 0.03 %
 ######################################
-+ analyze_power_grid -net VGND -voltage_file /usr/asic_flow/run/i2c_20260907_final/58-openroad-irdropreport/net-VGND.csv
++ analyze_power_grid -net VGND -voltage_file /home/luxyxp/Documents/mainfiles/asic/run/rtl2gds/58-openroad-irdropreport/net-VGND.csv
 [INFO PSM-0040] All shapes on net VGND are connected.
 ########## IR report #################
 Net              : VGND
 Corner           : nom_tt_025C_1v80
-Total power      : 4.14e-02 W
+Total power      : 4.16e-02 W
 Supply voltage   : 0.00e+00 V
 Worstcase voltage: 5.32e-04 V
-Average voltage  : 4.13e-06 V
-Average IR drop  : 4.13e-06 V
+Average voltage  : 4.20e-06 V
+Average IR drop  : 4.20e-06 V
 Worstcase IR drop: 5.32e-04 V
 Percentage drop  : 0.03 %
 ######################################

@@ -89,7 +89,7 @@ arayüzüdür.
 
 | Test | Kapsadığı |
 |---|---|
-| `yz_csr_test` | `YZ_CTRL[0]` → tam 1 çevrimlik `acc_start` darbesi; `YZ_CTRL[1]` → `load_clear` darbesi; `YZ_STATUS` bit dizilimi (`{infer_pending, load_done_irq, acc_busy}`); `acc_done` → `infer_pending` + `infer_irq`; `YZ_CTRL[2]` ile temizleme; `acc_out_wen` ile dört sınıfın `YZ_RESULT`'a doğru yakalanması ve üst bitlerin sızmaması |
+| `yz_csr_test` | `YZ_CTRL[0]` → tam 1 çevrimlik `acc_start` darbesi; `YZ_CTRL[1]` → `load_clear` darbesi; `YZ_STATUS` bit dizilimi (`{infer_pending, load_done_irq, acc_busy}`); `acc_done` → `infer_pending` + `infer_irq`; `YZ_CTRL[2]` ile temizleme; `acc_out_wen` ile dört sınıfın `YZ_RESULT`'a doğru yakalanması ve üst bitlerin sızmaması; `YZ_SCORE0..3` (`0x10`–`0x1C`) ham FC akümülatörlerinin sınıfla **aynı çevrimde** yakalanması, 32 bitin tamamının sızması (işaret uzatma/bit kayması yakalanır) ve sonraki yakalamada bayat kalmaması |
 
 ---
 

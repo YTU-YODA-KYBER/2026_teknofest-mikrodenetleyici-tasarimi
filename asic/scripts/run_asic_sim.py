@@ -218,10 +218,15 @@ def main():
         # Boot ROM icerigini simulasyon firmware'i ile degistir
         if t.get("boot_hex"):
             gen = w / "boot_rom_sim.sv"
+            #  Simulasyon ROM'u 4KB'dir: "uygulamayi boot ROM'dan kostur"
+            #  senaryosunda imaj (softmax exp tablosuyla birlikte) 1KB'i asar.
+            #  Silikona giden boot ROM buradan ETKILENMEZ; o gen_rom.py --all
+            #  ile varsayilan 256 kelime derinliginde uretilir.
             subprocess.run([sys.executable, str(ASIC / "scripts/gen_rom.py"),
                             "--kind", "boot_rom",
                             "--hex", str(FW / t["boot_hex"]),
                             "--out", str(gen),
+                            "--depth", "1024",
                             "--orig", "Memory/BRAM_defines/boot_rom_def.sv"],
                            check=True, stdout=subprocess.DEVNULL)
             rtl = [gen if p.name == "boot_rom_asic.sv" else p for p in rtl]
@@ -245,35 +250,48 @@ def main():
     # Burada AYNI formul config.yaml'daki CLOCK_PERIOD'dan yeniden hesaplanir,
     # boylece periyot degistiginde testbench ile firmware ayrisamaz.
     #   50 ns -> 20 MHz -> 174     40 ns -> 25 MHz -> 217
-    expected_cpb = uart_cpb_from_config()
+    #  Iki UART farkli hizda kosar: YZ veri akisi 1 Mbps, genel UART 115200.
+    #  Ikisinin de bolucusu ayni formulden turetilir.
+    expected_yz_cpb = uart_cpb_from_config(1000000)
+    expected_gu_cpb = uart_cpb_from_config(115200)
 
     extra = list(t["extra"])
     fast_uart = a.test == "yz" and not a.real_uart
     if fast_uart:
         src = TB / "System_Test/ai_accel_test.sv"
         text = src.read_text()
-        text, n_cpb = re.subn(
-            r"localparam int\s+CLKS_PER_BIT\s*=\s*\d+\s*;",
-            "localparam int  CLKS_PER_BIT = 16; // ASIC_SIM hizli UART",
+        text, n_yz = re.subn(
+            r"localparam int\s+YZ_CLKS_PER_BIT\s*=\s*\d+\s*;",
+            "localparam int  YZ_CLKS_PER_BIT = 16; // ASIC_SIM hizli UART",
             text,
             count=1,
         )
-        anchor = "        if (dut.uart_yz_inst.UART_CPB != CLKS_PER_BIT)\n"
+        text, n_gu = re.subn(
+            r"localparam int\s+GU_CLKS_PER_BIT\s*=\s*\d+\s*;",
+            "localparam int  GU_CLKS_PER_BIT = 16; // ASIC_SIM hizli UART",
+            text,
+            count=1,
+        )
+        anchor = "        if (dut.uart_yz_inst.UART_CPB != YZ_CLKS_PER_BIT)\n"
         injection = (
-            f"        if (dut.uart_yz_inst.UART_CPB != {expected_cpb})\n"
-            f"            $fatal(1, \"[TB] Firmware UART_YZ_CPB=%0d kurdu; beklenen gercek deger {expected_cpb}\",\n"
+            f"        if (dut.uart_yz_inst.UART_CPB != {expected_yz_cpb})\n"
+            f"            $fatal(1, \"[TB] Firmware UART_YZ_CPB=%0d kurdu; beklenen gercek deger {expected_yz_cpb}\",\n"
             "                   dut.uart_yz_inst.UART_CPB);\n"
-            f"        $display(\"[TB] ASIC_SIM: UART {expected_cpb} -> %0d clk/bit hizlandiriliyor\",\n"
-            "                 CLKS_PER_BIT);\n"
-            "        dut.uart_yz_inst.UART_CPB = CLKS_PER_BIT;\n\n"
+            f"        if (dut.uart_gu_inst.UART_CPB != {expected_gu_cpb})\n"
+            f"            $fatal(1, \"[TB] Firmware UART_GU_CPB=%0d kurdu; beklenen gercek deger {expected_gu_cpb}\",\n"
+            "                   dut.uart_gu_inst.UART_CPB);\n"
+            f"        $display(\"[TB] ASIC_SIM: UART_YZ {expected_yz_cpb} / UART_GU {expected_gu_cpb} -> %0d clk/bit hizlandiriliyor\",\n"
+            "                 YZ_CLKS_PER_BIT);\n"
+            "        dut.uart_yz_inst.UART_CPB = YZ_CLKS_PER_BIT;\n"
+            "        dut.uart_gu_inst.UART_CPB = GU_CLKS_PER_BIT;\n\n"
             + anchor
         )
-        if n_cpb != 1 or text.count(anchor) != 1:
+        if n_yz != 1 or n_gu != 1 or text.count(anchor) != 1:
             sys.exit("HATA: ai_accel_test.sv hizli-UART donusum kalibi eslesmedi")
         text = text.replace(anchor, injection, 1)
         text = text.replace(
-            "UART: %0d clk/bit (115200 baud)",
-            "UART: %0d clk/bit (ASIC_SIM hizli mod)",
+            "YZ UART: %0d clk/bit (1 Mbps)  |  genel UART: %0d clk/bit (115200)",
+            "YZ UART: %0d clk/bit  |  genel UART: %0d clk/bit (ASIC_SIM hizli mod)",
             1,
         )
         fast_tb = w / "ai_accel_test_fast_uart.sv"
@@ -293,7 +311,7 @@ def main():
         btext = bsrc.read_text()
         btext, n_b = re.subn(
             r"(localparam int\s+CPB\s*=\s*)\d+(\s*;)",
-            rf"\g<1>{expected_cpb}\g<2>",
+            rf"\g<1>{expected_gu_cpb}\g<2>",
             btext,
             count=1,
         )
@@ -302,7 +320,7 @@ def main():
         btb = w / "boot_test_asic_cpb.sv"
         btb.write_text(btext)
         extra = [btb if p == bsrc else p for p in extra]
-        print(f"    boot TB UART bolucusu {expected_cpb} clk/bit'e hizalandi "
+        print(f"    boot TB UART bolucusu {expected_gu_cpb} clk/bit'e hizalandi "
               f"(config.yaml CLOCK_PERIOD'dan turetildi)")
 
     inc_args = []

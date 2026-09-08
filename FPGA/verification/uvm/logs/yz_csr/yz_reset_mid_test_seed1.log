@@ -19,8 +19,8 @@ UVM_INFO t/uvm/src/base/uvm_root.svh(552) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_
 UVM_INFO @ 0: reporter [RNTST] Running test yz_reset_mid_test...
 UVM_INFO t/uvm/src/base/uvm_traversal.svh(345) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
 UVM_WARNING t/uvm/src/base/uvm_traversal.svh(314) @ 0: reporter [NO_VISIT_CHECK] Because UVM_REGEX_NO_DPI is defined, no uvm component name constraints will be checked
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/agents/yz_accel_pkg.sv(160) @ 4570000: uvm_test_top.env.accel.mon [YZ_MON] hizlandirici arayuzu: acc_start=4 load_clear=5 darbe, 0 genislik ihlali
-UVM_INFO /home/luxyxp/Documents/mainfiles/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 4570000: uvm_test_top.env.sb [SB] YZ_CSR scoreboard: yazma=8 okuma=23 kontrol=0 uyusmazlik=0 kotu_cevap=0
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/agents/yz_accel_pkg.sv(165) @ 4570000: uvm_test_top.env.accel.mon [YZ_MON] hizlandirici arayuzu: acc_start=4 load_clear=5 darbe, 0 genislik ihlali
+UVM_INFO /home/luxyxp/Documents/mainfiles_yedek/FPGA/main_codes/testbench/uvm/common/axil_scoreboard.svh(103) @ 4570000: uvm_test_top.env.sb [SB] YZ_CSR scoreboard: yazma=8 okuma=23 kontrol=0 uyusmazlik=0 kotu_cevap=0
 
 ======================================================================
             AXI4-LITE PROTOKOL KONTROL OZETI
@@ -63,5 +63,5 @@ UVM_FATAL :    0
 [AXI-CHK] YZ_ACCEL | FIN_02 BILGI: 1 okuma cevapsiz -- 2 reset ve outstanding limiti (1) ile aciklanabilir, protokol ihlali DEGIL
 [AXI-CHK] YZ_ACCEL       | AW=8 W=8 B=8 AR=24 R=23 | ihlal=0 uyari=0
 - S i m u l a t i o n   R e p o r t: Verilator 5.050 2026-07-01
-- Verilator: $finish at 5us; walltime 1.063 s; speed 4.299 us/s
-- Verilator: cpu 0.480 s on 1 threads; allocated 58 MB
+- Verilator: $finish at 5us; walltime 0.892 s; speed 5.122 us/s
+- Verilator: cpu 0.403 s on 1 threads; allocated 59 MB

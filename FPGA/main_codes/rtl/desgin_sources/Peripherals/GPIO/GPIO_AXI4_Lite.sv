@@ -34,8 +34,6 @@ module GPIO_AXI4_Lite(
     output logic [ 1:0] rresp,
     output logic        rvalid,
 
-    output logic        dma_enable_o,
-
     output logic [ 7:0] catode,
     output logic [ 7:0] anode
 );
@@ -100,13 +98,6 @@ module GPIO_AXI4_Lite(
             else if (rvalid && rready) begin
                 arready <= 1;
                 rvalid  <= 0;
-            end
-
-            if(GPIO_IDR[1] == 1'b1)begin
-                dma_enable_o <= 1'b1;
-            end
-            else begin
-                dma_enable_o <= 1'b0;
             end
 
         end

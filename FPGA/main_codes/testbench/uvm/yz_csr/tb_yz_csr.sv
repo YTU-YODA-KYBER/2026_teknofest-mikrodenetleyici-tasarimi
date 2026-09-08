@@ -58,6 +58,7 @@ module tb_yz_csr;
         .acc_done      (acc.acc_done),
         .acc_out_wen   (acc.acc_out_wen),
         .acc_out_wdata (acc.acc_out_wdata),
+        .acc_fc_scores (acc.acc_fc_scores),
         .load_done_irq (acc.load_done_irq),
         .load_clear    (acc.load_clear),
         .infer_irq     (acc.infer_irq)

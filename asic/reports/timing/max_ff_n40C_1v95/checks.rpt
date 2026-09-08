@@ -4,8 +4,8 @@ report_checks -unconstrained
 ===========================================================================
 ======================= max_ff_n40C_1v95 Corner ===================================
 
-Startpoint: _129115_ (rising edge-triggered flip-flop clocked by clk_i)
-Endpoint: _128963_ (recovery check against rising-edge clock clk_i)
+Startpoint: _129540_ (rising edge-triggered flip-flop clocked by clk_i)
+Endpoint: _128154_ (recovery check against rising-edge clock clk_i)
 Path Group: asynchronous
 Path Type: max
 
@@ -13,243 +13,252 @@ Fanout         Cap        Slew       Delay        Time   Description
 ---------------------------------------------------------------------------------------------
                                   0.000000    0.000000   clock clk_i (rise edge)
                                   0.000000    0.000000   clock source latency
-     1    0.045554    0.048519    0.038068    0.038068 ^ clk_i (in)
+     1    0.043831    0.047353    0.036632    0.036632 ^ clk_i (in)
                                                          clk_i (net)
-                      0.050138    0.000000    0.038068 ^ wire30560/A (sky130_fd_sc_hd__buf_12)
-     1    0.082989    0.077425    0.100163    0.138231 ^ wire30560/X (sky130_fd_sc_hd__buf_12)
-                                                         net30560 (net)
-                      0.089837    0.024525    0.162756 ^ wire30559/A (sky130_fd_sc_hd__buf_12)
-     1    0.078036    0.074817    0.112504    0.275260 ^ wire30559/X (sky130_fd_sc_hd__buf_12)
-                                                         net30559 (net)
-                      0.078651    0.013916    0.289176 ^ wire30558/A (sky130_fd_sc_hd__buf_12)
-     2    0.103512    0.095828    0.118609    0.407784 ^ wire30558/X (sky130_fd_sc_hd__buf_12)
-                                                         net30558 (net)
-                      0.107153    0.026493    0.434277 ^ wire30557/A (sky130_fd_sc_hd__buf_12)
-     1    0.051264    0.053333    0.098749    0.533026 ^ wire30557/X (sky130_fd_sc_hd__buf_12)
-                                                         net30557 (net)
-                      0.055695    0.009137    0.542163 ^ wire30556/A (sky130_fd_sc_hd__buf_12)
-     1    0.069315    0.067331    0.101874    0.644036 ^ wire30556/X (sky130_fd_sc_hd__buf_12)
-                                                         net30556 (net)
-                      0.070938    0.012804    0.656840 ^ wire30555/A (sky130_fd_sc_hd__buf_12)
-     1    0.074959    0.072181    0.107486    0.764326 ^ wire30555/X (sky130_fd_sc_hd__buf_12)
-                                                         net30555 (net)
-                      0.076598    0.014636    0.778962 ^ clkbuf_regs_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
-     1    0.009671    0.024930    0.094417    0.873379 ^ clkbuf_regs_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.048728    0.000000    0.036632 ^ wire30895/A (sky130_fd_sc_hd__buf_12)
+     1    0.080892    0.075536    0.098922    0.135554 ^ wire30895/X (sky130_fd_sc_hd__buf_12)
+                                                         net30895 (net)
+                      0.088051    0.024300    0.159854 ^ wire30894/A (sky130_fd_sc_hd__buf_12)
+     1    0.058910    0.058994    0.100117    0.259971 ^ wire30894/X (sky130_fd_sc_hd__buf_12)
+                                                         net30894 (net)
+                      0.063350    0.012943    0.272913 ^ wire30893/A (sky130_fd_sc_hd__buf_12)
+     2    0.087617    0.082145    0.109716    0.382629 ^ wire30893/X (sky130_fd_sc_hd__buf_12)
+                                                         net30893 (net)
+                      0.090818    0.021584    0.404213 ^ wire30892/A (sky130_fd_sc_hd__buf_8)
+     1    0.046629    0.064386    0.102313    0.506526 ^ wire30892/X (sky130_fd_sc_hd__buf_8)
+                                                         net30892 (net)
+                      0.066047    0.008554    0.515080 ^ wire30891/A (sky130_fd_sc_hd__buf_12)
+     1    0.097786    0.090003    0.114384    0.629465 ^ wire30891/X (sky130_fd_sc_hd__buf_12)
+                                                         net30891 (net)
+                      0.101508    0.025801    0.655265 ^ wire30890/A (sky130_fd_sc_hd__buf_12)
+     1    0.126968    0.115227    0.136187    0.791452 ^ wire30890/X (sky130_fd_sc_hd__buf_12)
+                                                         net30890 (net)
+                      0.124615    0.026826    0.818279 ^ clkbuf_regs_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
+     1    0.008396    0.025233    0.106623    0.924901 ^ clkbuf_regs_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
                                                          clk_i_regs (net)
-                      0.024937    0.000843    0.874221 ^ clkbuf_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
-     2    0.119811    0.104479    0.141681    1.015902 ^ clkbuf_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.025238    0.000683    0.925584 ^ clkbuf_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
+     2    0.161725    0.134778    0.162468    1.088052 ^ clkbuf_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
                                                          clknet_0_clk_i_regs (net)
-                      0.105570    0.008980    1.024882 ^ clkbuf_1_1_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.128716    0.171973    0.207784    1.232666 ^ clkbuf_1_1_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_1_1_0_clk_i_regs (net)
-                      0.173701    0.014570    1.247235 ^ clkbuf_1_1_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.126722    0.169792    0.218592    1.465827 ^ clkbuf_1_1_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_1_1_1_clk_i_regs (net)
-                      0.171507    0.014425    1.480252 ^ clkbuf_2_3_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.070468    0.099976    0.170528    1.650780 ^ clkbuf_2_3_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_2_3_0_clk_i_regs (net)
-                      0.100952    0.008307    1.659087 ^ clkbuf_2_3_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.109631    0.148121    0.188134    1.847221 ^ clkbuf_2_3_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_2_3_1_clk_i_regs (net)
-                      0.151069    0.017473    1.864694 ^ clkbuf_3_6_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.076440    0.106937    0.172599    2.037293 ^ clkbuf_3_6_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_3_6_0_clk_i_regs (net)
-                      0.108574    0.011075    2.048368 ^ clkbuf_4_13_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.125859    0.168980    0.198996    2.247364 ^ clkbuf_4_13_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_4_13_0_clk_i_regs (net)
-                      0.174008    0.024218    2.271582 ^ clkbuf_5_26_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.066026    0.095212    0.166112    2.437694 ^ clkbuf_5_26_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_5_26_0_clk_i_regs (net)
-                      0.096356    0.008740    2.446434 ^ clkbuf_6_53__f_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
-     5    0.138960    0.117108    0.164540    2.610974 ^ clkbuf_6_53__f_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
-                                                         clknet_6_53__leaf_clk_i_regs (net)
-                      0.127772    0.028672    2.639646 ^ clkbuf_leaf_118_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     3    0.025420    0.044667    0.125176    2.764822 ^ clkbuf_leaf_118_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_leaf_118_clk_i_regs (net)
-                      0.044669    0.000399    2.765221 ^ _129115_/CLK (sky130_fd_sc_hd__dfrtp_4)
-     2    0.048938    0.118848    0.331643    3.096865 ^ _129115_/Q (sky130_fd_sc_hd__dfrtp_4)
+                      0.136469    0.012639    1.100691 ^ clkbuf_1_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.070985    0.100053    0.155046    1.255737 ^ clkbuf_1_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_1_0_0_clk_i_regs (net)
+                      0.112163    0.027614    1.283351 ^ clkbuf_1_0_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.085243    0.118638    0.170214    1.453565 ^ clkbuf_1_0_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_1_0_1_clk_i_regs (net)
+                      0.120423    0.012242    1.465806 ^ clkbuf_2_1_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.079414    0.111727    0.163442    1.629249 ^ clkbuf_2_1_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_2_1_0_clk_i_regs (net)
+                      0.116794    0.019548    1.648797 ^ clkbuf_2_1_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.094843    0.129091    0.181911    1.830708 ^ clkbuf_2_1_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_2_1_1_clk_i_regs (net)
+                      0.130477    0.011256    1.841964 ^ clkbuf_3_3_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.113041    0.152072    0.201220    2.043184 ^ clkbuf_3_3_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_3_3_0_clk_i_regs (net)
+                      0.153190    0.011058    2.054242 ^ clkbuf_4_6_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     4    0.166973    0.220556    0.245906    2.300148 ^ clkbuf_4_6_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_4_6_0_clk_i_regs (net)
+                      0.224679    0.025294    2.325442 ^ clkbuf_6_24_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.062129    0.091408    0.169141    2.494583 ^ clkbuf_6_24_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_6_24_0_clk_i_regs (net)
+                      0.094127    0.013019    2.507602 ^ wire30934/A (sky130_fd_sc_hd__buf_12)
+     3    0.094375    0.087252    0.113696    2.621298 ^ wire30934/X (sky130_fd_sc_hd__buf_12)
+                                                         net30934 (net)
+                      0.103686    0.030355    2.651653 ^ wire30933/A (sky130_fd_sc_hd__buf_12)
+     5    0.099427    0.091762    0.120564    2.772218 ^ wire30933/X (sky130_fd_sc_hd__buf_12)
+                                                         net30933 (net)
+                      0.104546    0.027665    2.799883 ^ wire30932/A (sky130_fd_sc_hd__buf_12)
+     2    0.143973    0.111023    0.114099    2.913982 ^ wire30932/X (sky130_fd_sc_hd__buf_12)
+                                                         net30932 (net)
+                      0.209640    0.093939    3.007921 ^ clkbuf_leaf_148_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     3    0.016573    0.037857    0.127357    3.135278 ^ clkbuf_leaf_148_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_leaf_148_clk_i_regs (net)
+                      0.037876    0.000803    3.136081 ^ _129540_/CLK (sky130_fd_sc_hd__dfrtp_2)
+     1    0.012467    0.056722    0.249115    3.385195 ^ _129540_/Q (sky130_fd_sc_hd__dfrtp_2)
                                                          rst_sync_q[1] (net)
-                      0.120775    0.012642    3.109507 ^ wire49331/A (sky130_fd_sc_hd__buf_4)
-     1    0.035796    0.080495    0.131822    3.241329 ^ wire49331/X (sky130_fd_sc_hd__buf_4)
-                                                         net49331 (net)
-                      0.081731    0.008316    3.249645 ^ wire49330/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.022529    0.059366    0.127292    3.376937 ^ wire49330/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net49330 (net)
-                      0.059676    0.003541    3.380478 ^ wire49329/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.042180    0.064505    0.118148    3.498627 ^ wire49329/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         net49329 (net)
-                      0.066691    0.009745    3.508372 ^ wire49328/A (sky130_fd_sc_hd__buf_4)
-     1    0.030614    0.069487    0.113807    3.622179 ^ wire49328/X (sky130_fd_sc_hd__buf_4)
-                                                         net49328 (net)
-                      0.069824    0.004070    3.626249 ^ wire25716/A (sky130_fd_sc_hd__buf_12)
-     1    0.018009    0.027664    0.075688    3.701937 ^ wire25716/X (sky130_fd_sc_hd__buf_12)
-                                                         net25716 (net)
-                      0.027832    0.002433    3.704370 ^ wire48923/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.017023    0.048267    0.102133    3.806503 ^ wire48923/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net48923 (net)
-                      0.048411    0.002213    3.808716 ^ wire48922/A (sky130_fd_sc_hd__buf_4)
-     1    0.029990    0.068012    0.108013    3.916729 ^ wire48922/X (sky130_fd_sc_hd__buf_4)
-                                                         net48922 (net)
-                      0.068735    0.005835    3.922564 ^ wire48921/A (sky130_fd_sc_hd__buf_6)
-     1    0.036124    0.060465    0.096912    4.019475 ^ wire48921/X (sky130_fd_sc_hd__buf_6)
-                                                         net48921 (net)
-                      0.061940    0.007759    4.027234 ^ wire25715/A (sky130_fd_sc_hd__buf_12)
-     2    0.016259    0.026326    0.072803    4.100037 ^ wire25715/X (sky130_fd_sc_hd__buf_12)
-                                                         net25715 (net)
-                      0.026375    0.001694    4.101731 ^ wire48403/A (sky130_fd_sc_hd__buf_6)
-     1    0.038619    0.063858    0.089758    4.191490 ^ wire48403/X (sky130_fd_sc_hd__buf_6)
-                                                         net48403 (net)
-                      0.065017    0.007144    4.198633 ^ wire48402/A (sky130_fd_sc_hd__buf_4)
-     2    0.037645    0.083287    0.121978    4.320611 ^ wire48402/X (sky130_fd_sc_hd__buf_4)
-                                                         net48402 (net)
-                      0.083598    0.004370    4.324981 ^ max_length48401/A (sky130_fd_sc_hd__buf_6)
-     1    0.040733    0.067384    0.103287    4.428267 ^ max_length48401/X (sky130_fd_sc_hd__buf_6)
-                                                         net48401 (net)
-                      0.069028    0.008713    4.436981 ^ fanout25418/A (sky130_fd_sc_hd__buf_1)
-     2    0.012126    0.110857    0.117370    4.554351 ^ fanout25418/X (sky130_fd_sc_hd__buf_1)
-                                                         net25418 (net)
-                      0.110869    0.001002    4.555353 ^ wire25438/A (sky130_fd_sc_hd__buf_4)
-     2    0.036993    0.082325    0.132059    4.687412 ^ wire25438/X (sky130_fd_sc_hd__buf_4)
-                                                         net25438 (net)
-                      0.083186    0.007054    4.694467 ^ wire25437/A (sky130_fd_sc_hd__buf_4)
-     2    0.031072    0.070475    0.117570    4.812037 ^ wire25437/X (sky130_fd_sc_hd__buf_4)
-                                                         net25437 (net)
-                      0.071048    0.005324    4.817361 ^ wire25433/A (sky130_fd_sc_hd__buf_4)
-     1    0.027769    0.063850    0.110539    4.927900 ^ wire25433/X (sky130_fd_sc_hd__buf_4)
-                                                         net25433 (net)
-                      0.064250    0.004222    4.932122 ^ wire25432/A (sky130_fd_sc_hd__buf_4)
-     2    0.027758    0.063815    0.109396    5.041518 ^ wire25432/X (sky130_fd_sc_hd__buf_4)
-                                                         net25432 (net)
-                      0.064137    0.003790    5.045308 ^ wire25431/A (sky130_fd_sc_hd__buf_4)
-     1    0.028137    0.064529    0.109517    5.154824 ^ wire25431/X (sky130_fd_sc_hd__buf_4)
-                                                         net25431 (net)
-                      0.065025    0.004728    5.159552 ^ wire25430/A (sky130_fd_sc_hd__buf_4)
-     2    0.030827    0.069867    0.113431    5.272983 ^ wire25430/X (sky130_fd_sc_hd__buf_4)
-                                                         net25430 (net)
-                      0.070263    0.004418    5.277401 ^ fanout25248/A (sky130_fd_sc_hd__buf_1)
-     3    0.013683    0.124097    0.127242    5.404643 ^ fanout25248/X (sky130_fd_sc_hd__buf_1)
-                                                         net25248 (net)
-                      0.124099    0.000404    5.405047 ^ load_slew25254/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.025972    0.067016    0.144877    5.549924 ^ load_slew25254/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net25254 (net)
-                      0.067417    0.004305    5.554229 ^ wire25253/A (sky130_fd_sc_hd__buf_4)
-     1    0.030387    0.069081    0.114379    5.668608 ^ wire25253/X (sky130_fd_sc_hd__buf_4)
-                                                         net25253 (net)
-                      0.069221    0.002624    5.671232 ^ fanout25156/A (sky130_fd_sc_hd__buf_1)
-     2    0.007962    0.075484    0.091868    5.763100 ^ fanout25156/X (sky130_fd_sc_hd__buf_1)
-                                                         net25156 (net)
-                      0.075489    0.000520    5.763619 ^ wire25162/A (sky130_fd_sc_hd__buf_4)
-     3    0.042682    0.093944    0.130972    5.894591 ^ wire25162/X (sky130_fd_sc_hd__buf_4)
-                                                         net25162 (net)
-                      0.094291    0.004912    5.899503 ^ load_slew25161/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.028939    0.073152    0.141349    6.040853 ^ load_slew25161/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net25161 (net)
-                      0.073343    0.002801    6.043654 ^ wire25160/A (sky130_fd_sc_hd__buf_4)
-     4    0.042475    0.093062    0.131902    6.175555 ^ wire25160/X (sky130_fd_sc_hd__buf_4)
-                                                         net25160 (net)
-                      0.093511    0.005482    6.181037 ^ wire25157/A (sky130_fd_sc_hd__buf_4)
-     4    0.043452    0.095040    0.137478    6.318516 ^ wire25157/X (sky130_fd_sc_hd__buf_4)
-                                                         net25157 (net)
-                      0.095863    0.007442    6.325957 ^ fanout25070/A (sky130_fd_sc_hd__buf_1)
-     3    0.032629    0.285404    0.244970    6.570927 ^ fanout25070/X (sky130_fd_sc_hd__buf_1)
-                                                         net25070 (net)
-                      0.285430    0.002385    6.573312 ^ fanout25049/A (sky130_fd_sc_hd__buf_1)
-     2    0.009840    0.091742    0.105372    6.678684 ^ fanout25049/X (sky130_fd_sc_hd__buf_1)
-                                                         net25049 (net)
-                      0.091748    0.000624    6.679308 ^ fanout25044/A (sky130_fd_sc_hd__buf_1)
-     7    0.033554    0.293407    0.249970    6.929278 ^ fanout25044/X (sky130_fd_sc_hd__buf_1)
-                                                         net25044 (net)
-                      0.293420    0.001771    6.931049 ^ load_slew25048/A (sky130_fd_sc_hd__clkbuf_2)
-     5    0.027831    0.120792    0.172684    7.103733 ^ load_slew25048/X (sky130_fd_sc_hd__clkbuf_2)
-                                                         net25048 (net)
-                      0.120871    0.002633    7.106366 ^ load_slew25045/A (sky130_fd_sc_hd__clkbuf_4)
-     5    0.031165    0.078040    0.152564    7.258930 ^ load_slew25045/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net25045 (net)
-                      0.078245    0.002954    7.261884 ^ fanout25039/A (sky130_fd_sc_hd__buf_1)
-     3    0.011601    0.106370    0.114929    7.376812 ^ fanout25039/X (sky130_fd_sc_hd__buf_1)
-                                                         net25039 (net)
-                      0.106376    0.000659    7.377472 ^ load_slew25042/A (sky130_fd_sc_hd__clkbuf_4)
-     7    0.038578    0.093864    0.159937    7.537409 ^ load_slew25042/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net25042 (net)
-                      0.094036    0.002936    7.540346 ^ load_slew25041/A (sky130_fd_sc_hd__buf_2)
-     6    0.028871    0.109262    0.145878    7.686224 ^ load_slew25041/X (sky130_fd_sc_hd__buf_2)
-                                                         net25041 (net)
-                      0.109358    0.002786    7.689010 ^ load_slew25040/A (sky130_fd_sc_hd__clkbuf_4)
-     7    0.036417    0.089264    0.156597    7.845607 ^ load_slew25040/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net25040 (net)
-                      0.089562    0.004372    7.849978 ^ _128963_/RESET_B (sky130_fd_sc_hd__dfrtp_4)
-                                              7.849978   data arrival time
+                      0.056748    0.001189    3.386384 ^ wire26011/A (sky130_fd_sc_hd__clkbuf_16)
+     1    0.027824    0.036928    0.099905    3.486289 ^ wire26011/X (sky130_fd_sc_hd__clkbuf_16)
+                                                         net26011 (net)
+                      0.038520    0.006096    3.492385 ^ wire47235/A (sky130_fd_sc_hd__buf_4)
+     1    0.042287    0.092845    0.121941    3.614326 ^ wire47235/X (sky130_fd_sc_hd__buf_4)
+                                                         net47235 (net)
+                      0.093795    0.007885    3.622211 ^ wire47234/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.023551    0.061620    0.132363    3.754575 ^ wire47234/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net47234 (net)
+                      0.061979    0.003892    3.758466 ^ wire47233/A (sky130_fd_sc_hd__buf_6)
+     1    0.034673    0.058461    0.093819    3.852285 ^ wire47233/X (sky130_fd_sc_hd__buf_6)
+                                                         net47233 (net)
+                      0.060068    0.007973    3.860258 ^ wire47232/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.021930    0.057967    0.120379    3.980638 ^ wire47232/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net47232 (net)
+                      0.058102    0.002307    3.982945 ^ fanout25977/A (sky130_fd_sc_hd__buf_1)
+     2    0.012022    0.109960    0.116016    4.098961 ^ fanout25977/X (sky130_fd_sc_hd__buf_1)
+                                                         net25977 (net)
+                      0.109970    0.000908    4.099869 ^ wire26010/A (sky130_fd_sc_hd__buf_4)
+     2    0.026349    0.061443    0.117601    4.217469 ^ wire26010/X (sky130_fd_sc_hd__buf_4)
+                                                         net26010 (net)
+                      0.061946    0.004622    4.222091 ^ wire26008/A (sky130_fd_sc_hd__buf_4)
+     2    0.026648    0.061554    0.106841    4.328932 ^ wire26008/X (sky130_fd_sc_hd__buf_4)
+                                                         net26008 (net)
+                      0.062055    0.004631    4.333563 ^ wire26004/A (sky130_fd_sc_hd__buf_4)
+     2    0.030086    0.068326    0.111338    4.444901 ^ wire26004/X (sky130_fd_sc_hd__buf_4)
+                                                         net26004 (net)
+                      0.068968    0.005537    4.450438 ^ wire26003/A (sky130_fd_sc_hd__buf_4)
+     1    0.023190    0.054813    0.103965    4.554404 ^ wire26003/X (sky130_fd_sc_hd__buf_4)
+                                                         net26003 (net)
+                      0.055172    0.003679    4.558083 ^ wire26002/A (sky130_fd_sc_hd__buf_4)
+     1    0.028055    0.064239    0.107055    4.665138 ^ wire26002/X (sky130_fd_sc_hd__buf_4)
+                                                         net26002 (net)
+                      0.064817    0.005083    4.670221 ^ wire26001/A (sky130_fd_sc_hd__buf_4)
+     1    0.035636    0.079819    0.118500    4.788722 ^ wire26001/X (sky130_fd_sc_hd__buf_4)
+                                                         net26001 (net)
+                      0.080957    0.007955    4.796677 ^ wire26000/A (sky130_fd_sc_hd__buf_4)
+     1    0.036931    0.081952    0.124669    4.921346 ^ wire26000/X (sky130_fd_sc_hd__buf_4)
+                                                         net26000 (net)
+                      0.082935    0.007516    4.928862 ^ wire25999/A (sky130_fd_sc_hd__buf_4)
+     2    0.040873    0.089791    0.130599    5.059461 ^ wire25999/X (sky130_fd_sc_hd__buf_4)
+                                                         net25999 (net)
+                      0.090828    0.008098    5.067559 ^ wire25998/A (sky130_fd_sc_hd__buf_4)
+     1    0.038308    0.084780    0.128967    5.196526 ^ wire25998/X (sky130_fd_sc_hd__buf_4)
+                                                         net25998 (net)
+                      0.085669    0.007287    5.203812 ^ wire25997/A (sky130_fd_sc_hd__buf_4)
+     2    0.024781    0.058147    0.109930    5.313742 ^ wire25997/X (sky130_fd_sc_hd__buf_4)
+                                                         net25997 (net)
+                      0.058487    0.003700    5.317442 ^ wire25992/A (sky130_fd_sc_hd__buf_4)
+     1    0.028424    0.065041    0.108550    5.425992 ^ wire25992/X (sky130_fd_sc_hd__buf_4)
+                                                         net25992 (net)
+                      0.065522    0.004678    5.430670 ^ wire25991/A (sky130_fd_sc_hd__buf_4)
+     1    0.031373    0.070944    0.114105    5.544775 ^ wire25991/X (sky130_fd_sc_hd__buf_4)
+                                                         net25991 (net)
+                      0.071516    0.005339    5.550113 ^ wire25990/A (sky130_fd_sc_hd__buf_4)
+     1    0.031736    0.071787    0.117157    5.667270 ^ wire25990/X (sky130_fd_sc_hd__buf_4)
+                                                         net25990 (net)
+                      0.071936    0.002761    5.670032 ^ wire25989/A (sky130_fd_sc_hd__buf_4)
+     2    0.036424    0.080958    0.122216    5.792247 ^ wire25989/X (sky130_fd_sc_hd__buf_4)
+                                                         net25989 (net)
+                      0.081357    0.004826    5.797073 ^ fanout25236/A (sky130_fd_sc_hd__clkbuf_1)
+     8    0.037529    0.327556    0.273738    6.070812 ^ fanout25236/X (sky130_fd_sc_hd__clkbuf_1)
+                                                         net25236 (net)
+                      0.327593    0.003058    6.073870 ^ load_slew25241/A (sky130_fd_sc_hd__clkbuf_4)
+     7    0.035966    0.092043    0.191777    6.265647 ^ load_slew25241/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25241 (net)
+                      0.092189    0.002530    6.268177 ^ load_slew25240/A (sky130_fd_sc_hd__clkbuf_4)
+     6    0.031878    0.079470    0.145062    6.413239 ^ load_slew25240/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25240 (net)
+                      0.079709    0.003665    6.416904 ^ wire25239/A (sky130_fd_sc_hd__buf_4)
+     1    0.029947    0.068244    0.115399    6.532303 ^ wire25239/X (sky130_fd_sc_hd__buf_4)
+                                                         net25239 (net)
+                      0.068770    0.005016    6.537319 ^ wire25238/A (sky130_fd_sc_hd__buf_4)
+     1    0.031441    0.071086    0.114852    6.652171 ^ wire25238/X (sky130_fd_sc_hd__buf_4)
+                                                         net25238 (net)
+                      0.071708    0.005567    6.657738 ^ fanout25142/A (sky130_fd_sc_hd__clkbuf_1)
+     1    0.004255    0.044384    0.069236    6.726974 ^ fanout25142/X (sky130_fd_sc_hd__clkbuf_1)
+                                                         net25142 (net)
+                      0.044385    0.000288    6.727262 ^ wire40246/A (sky130_fd_sc_hd__buf_4)
+     6    0.040425    0.089194    0.120910    6.848172 ^ wire40246/X (sky130_fd_sc_hd__buf_4)
+                                                         net40246 (net)
+                      0.090062    0.007394    6.855565 ^ wire25146/A (sky130_fd_sc_hd__clkbuf_4)
+     7    0.040310    0.097555    0.156777    7.012342 ^ wire25146/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25146 (net)
+                      0.098096    0.006124    7.018466 ^ load_slew25145/A (sky130_fd_sc_hd__buf_4)
+     2    0.033133    0.074710    0.124353    7.142819 ^ load_slew25145/X (sky130_fd_sc_hd__buf_4)
+                                                         net25145 (net)
+                      0.075185    0.005000    7.147820 ^ wire25144/A (sky130_fd_sc_hd__buf_4)
+     4    0.034173    0.076610    0.120632    7.268452 ^ wire25144/X (sky130_fd_sc_hd__buf_4)
+                                                         net25144 (net)
+                      0.077030    0.004778    7.273230 ^ fanout25103/A (sky130_fd_sc_hd__buf_1)
+     4    0.020601    0.183212    0.169738    7.442968 ^ fanout25103/X (sky130_fd_sc_hd__buf_1)
+                                                         net25103 (net)
+                      0.183233    0.001698    7.444666 ^ wire25105/A (sky130_fd_sc_hd__clkbuf_4)
+     7    0.038269    0.094297    0.174273    7.618939 ^ wire25105/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25105 (net)
+                      0.094359    0.002091    7.621030 ^ load_slew25104/A (sky130_fd_sc_hd__clkbuf_4)
+     4    0.034961    0.086072    0.149878    7.770908 ^ load_slew25104/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25104 (net)
+                      0.086457    0.004847    7.775755 ^ fanout25092/A (sky130_fd_sc_hd__buf_1)
+     1    0.002555    0.030857    0.059734    7.835490 ^ fanout25092/X (sky130_fd_sc_hd__buf_1)
+                                                         net25092 (net)
+                      0.030858    0.000194    7.835683 ^ wire25096/A (sky130_fd_sc_hd__clkbuf_4)
+     7    0.038295    0.093012    0.136659    7.972342 ^ wire25096/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25096 (net)
+                      0.093170    0.003265    7.975607 ^ load_slew25095/A (sky130_fd_sc_hd__clkbuf_4)
+     6    0.033266    0.082410    0.147708    8.123315 ^ load_slew25095/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25095 (net)
+                      0.082567    0.002591    8.125905 ^ wire25094/A (sky130_fd_sc_hd__clkbuf_4)
+     7    0.035536    0.086907    0.148793    8.274698 ^ wire25094/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net25094 (net)
+                      0.086979    0.001499    8.276197 ^ wire25093/A (sky130_fd_sc_hd__buf_2)
+     8    0.040792    0.151563    0.173969    8.450167 ^ wire25093/X (sky130_fd_sc_hd__buf_2)
+                                                         net25093 (net)
+                      0.151714    0.004146    8.454313 ^ _128154_/RESET_B (sky130_fd_sc_hd__dfrtp_4)
+                                              8.454313   data arrival time
 
                                  35.714283   35.714283   clock clk_i (rise edge)
                                   0.000000   35.714283   clock source latency
-     1    0.045554    0.048519    0.034444   35.748726 ^ clk_i (in)
+     1    0.043831    0.047353    0.033143   35.747429 ^ clk_i (in)
                                                          clk_i (net)
-                      0.050138    0.000000   35.748726 ^ wire30560/A (sky130_fd_sc_hd__buf_12)
-     1    0.082989    0.077425    0.090623   35.839352 ^ wire30560/X (sky130_fd_sc_hd__buf_12)
-                                                         net30560 (net)
-                      0.089837    0.022190   35.861542 ^ wire30559/A (sky130_fd_sc_hd__buf_12)
-     1    0.078036    0.074817    0.101789   35.963329 ^ wire30559/X (sky130_fd_sc_hd__buf_12)
-                                                         net30559 (net)
-                      0.078651    0.012591   35.975922 ^ wire30558/A (sky130_fd_sc_hd__buf_12)
-     2    0.103512    0.095828    0.107313   36.083233 ^ wire30558/X (sky130_fd_sc_hd__buf_12)
-                                                         net30558 (net)
-                      0.107153    0.023967   36.107201 ^ wire30557/A (sky130_fd_sc_hd__buf_12)
-     1    0.051264    0.053333    0.089347   36.196548 ^ wire30557/X (sky130_fd_sc_hd__buf_12)
-                                                         net30557 (net)
-                      0.055695    0.008264   36.204811 ^ wire30556/A (sky130_fd_sc_hd__buf_12)
-     1    0.069315    0.067331    0.092172   36.296982 ^ wire30556/X (sky130_fd_sc_hd__buf_12)
-                                                         net30556 (net)
-                      0.070938    0.011585   36.308567 ^ wire30555/A (sky130_fd_sc_hd__buf_12)
-     1    0.074959    0.072181    0.097248   36.405815 ^ wire30555/X (sky130_fd_sc_hd__buf_12)
-                                                         net30555 (net)
-                      0.076598    0.013245   36.419060 ^ clkbuf_regs_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
-     1    0.009671    0.024930    0.085421   36.504482 ^ clkbuf_regs_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.048728    0.000000   35.747429 ^ wire30895/A (sky130_fd_sc_hd__buf_12)
+     1    0.080892    0.075536    0.089500   35.836926 ^ wire30895/X (sky130_fd_sc_hd__buf_12)
+                                                         net30895 (net)
+                      0.088051    0.021988   35.858913 ^ wire30894/A (sky130_fd_sc_hd__buf_12)
+     1    0.058910    0.058994    0.090580   35.949493 ^ wire30894/X (sky130_fd_sc_hd__buf_12)
+                                                         net30894 (net)
+                      0.063350    0.011710   35.961205 ^ wire30893/A (sky130_fd_sc_hd__buf_12)
+     2    0.087617    0.082145    0.099266   36.060471 ^ wire30893/X (sky130_fd_sc_hd__buf_12)
+                                                         net30893 (net)
+                      0.090818    0.019529   36.080002 ^ wire30892/A (sky130_fd_sc_hd__buf_8)
+     1    0.046629    0.064386    0.092570   36.172569 ^ wire30892/X (sky130_fd_sc_hd__buf_8)
+                                                         net30892 (net)
+                      0.066047    0.007738   36.180309 ^ wire30891/A (sky130_fd_sc_hd__buf_12)
+     1    0.097786    0.090003    0.103491   36.283798 ^ wire30891/X (sky130_fd_sc_hd__buf_12)
+                                                         net30891 (net)
+                      0.101508    0.023345   36.307144 ^ wire30890/A (sky130_fd_sc_hd__buf_12)
+     1    0.126968    0.115227    0.123215   36.430359 ^ wire30890/X (sky130_fd_sc_hd__buf_12)
+                                                         net30890 (net)
+                      0.124615    0.024272   36.454632 ^ clkbuf_regs_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
+     1    0.008396    0.025233    0.096470   36.551102 ^ clkbuf_regs_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
                                                          clk_i_regs (net)
-                      0.024937    0.000764   36.505245 ^ clkbuf_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
-     2    0.119811    0.104479    0.128189   36.633434 ^ clkbuf_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.025238    0.000618   36.551720 ^ clkbuf_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
+     2    0.161725    0.134778    0.146994   36.698711 ^ clkbuf_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
                                                          clknet_0_clk_i_regs (net)
-                      0.105359    0.007322   36.640759 ^ clkbuf_1_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.074953    0.105728    0.137742   36.778500 ^ clkbuf_1_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                      0.136469    0.011436   36.710148 ^ clkbuf_1_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.070985    0.100053    0.140279   36.850430 ^ clkbuf_1_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
                                                          clknet_1_0_0_clk_i_regs (net)
-                      0.115542    0.023441   36.801941 ^ clkbuf_1_0_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.102673    0.139533    0.163730   36.965672 ^ clkbuf_1_0_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                      0.112163    0.024983   36.875412 ^ clkbuf_1_0_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.085243    0.118638    0.154003   37.029415 ^ clkbuf_1_0_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
                                                          clknet_1_0_1_clk_i_regs (net)
-                      0.144139    0.018971   36.984642 ^ clkbuf_2_1_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.097278    0.132800    0.168114   37.152756 ^ clkbuf_2_1_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_2_1_0_clk_i_regs (net)
-                      0.136034    0.015607   37.168365 ^ clkbuf_2_1_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.119405    0.160064    0.188489   37.356853 ^ clkbuf_2_1_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_2_1_1_clk_i_regs (net)
-                      0.161085    0.009820   37.366673 ^ clkbuf_3_3_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.111258    0.149852    0.186223   37.552895 ^ clkbuf_3_3_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_3_3_0_clk_i_regs (net)
-                      0.150811    0.009187   37.562084 ^ clkbuf_4_7_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.077387    0.108178    0.157826   37.719910 ^ clkbuf_4_7_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_4_7_0_clk_i_regs (net)
-                      0.108530    0.004786   37.724693 ^ clkbuf_5_14_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.077222    0.107572    0.150113   37.874805 ^ clkbuf_5_14_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_5_14_0_clk_i_regs (net)
-                      0.108465    0.007482   37.882290 ^ clkbuf_6_28__f_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
-     8    0.121358    0.106857    0.142936   38.025227 ^ clkbuf_6_28__f_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
-                                                         clknet_6_28__leaf_clk_i_regs (net)
-                      0.109988    0.013653   38.038879 ^ clkbuf_leaf_57_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-    17    0.065519    0.093156    0.141675   38.180553 ^ clkbuf_leaf_57_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_leaf_57_clk_i_regs (net)
-                      0.093216    0.001862   38.182415 ^ _128963_/CLK (sky130_fd_sc_hd__dfrtp_4)
-                                 -0.250000   37.932415   clock uncertainty
-                                  0.096752   38.029163   clock reconvergence pessimism
-                                  0.122360   38.151524   library recovery time
-                                             38.151524   data required time
+                      0.120576    0.011521   37.040936 ^ clkbuf_2_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.099645    0.135166    0.169493   37.210426 ^ clkbuf_2_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_2_0_0_clk_i_regs (net)
+                      0.136609    0.010644   37.221073 ^ clkbuf_2_0_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.123318    0.165117    0.189655   37.410725 ^ clkbuf_2_0_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_2_0_1_clk_i_regs (net)
+                      0.168251    0.017192   37.427917 ^ clkbuf_3_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.131578    0.175576    0.202981   37.630898 ^ clkbuf_3_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_3_0_0_clk_i_regs (net)
+                      0.176459    0.009610   37.640511 ^ clkbuf_4_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     4    0.162041    0.214129    0.227381   37.867889 ^ clkbuf_4_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_4_0_0_clk_i_regs (net)
+                      0.215142    0.011418   37.879307 ^ clkbuf_6_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+    16    0.224311    0.293439    0.277470   38.156780 ^ clkbuf_6_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_6_0_0_clk_i_regs (net)
+                      0.298011    0.027871   38.184650 ^ clkbuf_leaf_2_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+    12    0.065148    0.094942    0.168445   38.353096 ^ clkbuf_leaf_2_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_leaf_2_clk_i_regs (net)
+                      0.095132    0.002863   38.355957 ^ _128154_/CLK (sky130_fd_sc_hd__dfrtp_4)
+                                 -0.250000   38.105957   clock uncertainty
+                                  0.138435   38.244392   clock reconvergence pessimism
+                                  0.103212   38.347607   library recovery time
+                                             38.347607   data required time
 ---------------------------------------------------------------------------------------------
-                                             38.151524   data required time
-                                             -7.849978   data arrival time
+                                             38.347607   data required time
+                                             -8.454313   data arrival time
 ---------------------------------------------------------------------------------------------
-                                             30.301544   slack (MET)
+                                             29.893293   slack (MET)
 
 
 Startpoint: data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram
             (falling edge-triggered flip-flop clocked by clk_i)
-Endpoint: _127885_ (rising edge-triggered flip-flop clocked by clk_i)
+Endpoint: _128149_ (rising edge-triggered flip-flop clocked by clk_i)
 Path Group: clk_i
 Path Type: max
 
@@ -257,256 +266,265 @@ Fanout         Cap        Slew       Delay        Time   Description
 ---------------------------------------------------------------------------------------------
                                  17.857141   17.857141   clock clk_i (fall edge)
                                   0.000000   17.857141   clock source latency
-     1    0.044667    0.036724    0.032125   17.889267 v clk_i (in)
+     1    0.042944    0.036098    0.030983   17.888124 v clk_i (in)
                                                          clk_i (net)
-                      0.038461    0.000000   17.889267 v wire30560/A (sky130_fd_sc_hd__buf_12)
-     1    0.082102    0.038181    0.102903   17.992170 v wire30560/X (sky130_fd_sc_hd__buf_12)
-                                                         net30560 (net)
-                      0.058997    0.022720   18.014889 v wire30559/A (sky130_fd_sc_hd__buf_12)
-     1    0.077149    0.039651    0.116035   18.130924 v wire30559/X (sky130_fd_sc_hd__buf_12)
-                                                         net30559 (net)
-                      0.046227    0.013102   18.144028 v wire30558/A (sky130_fd_sc_hd__buf_12)
-     2    0.101662    0.047097    0.110559   18.254585 v wire30558/X (sky130_fd_sc_hd__buf_12)
-                                                         net30558 (net)
-                      0.057097    0.016390   18.270977 v delaybuf_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
-     1    0.047564    0.038197    0.126002   18.396978 v delaybuf_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.037517    0.000000   17.888124 v wire30895/A (sky130_fd_sc_hd__buf_12)
+     1    0.080005    0.037138    0.102046   17.990171 v wire30895/X (sky130_fd_sc_hd__buf_12)
+                                                         net30895 (net)
+                      0.058068    0.022482   18.012653 v wire30894/A (sky130_fd_sc_hd__buf_12)
+     1    0.058023    0.032660    0.109059   18.121712 v wire30894/X (sky130_fd_sc_hd__buf_12)
+                                                         net30894 (net)
+                      0.039861    0.012214   18.133926 v wire30893/A (sky130_fd_sc_hd__buf_12)
+     2    0.085987    0.041418    0.106896   18.240822 v wire30893/X (sky130_fd_sc_hd__buf_12)
+                                                         net30893 (net)
+                      0.049568    0.013941   18.254763 v delaybuf_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
+     1    0.046736    0.037901    0.123068   18.377831 v delaybuf_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
                                                          delaynet_0_clk_i (net)
-                      0.041459    0.008884   18.405863 v wire30601/A (sky130_fd_sc_hd__buf_8)
-     1    0.046662    0.037658    0.102023   18.507885 v wire30601/X (sky130_fd_sc_hd__buf_8)
-                                                         net30601 (net)
-                      0.039224    0.006342   18.514227 v wire30600/A (sky130_fd_sc_hd__buf_12)
-     1    0.071165    0.037064    0.103583   18.617809 v wire30600/X (sky130_fd_sc_hd__buf_12)
-                                                         net30600 (net)
-                      0.047918    0.016016   18.633825 v wire30599/A (sky130_fd_sc_hd__buf_12)
-     1    0.101436    0.047573    0.115653   18.749479 v wire30599/X (sky130_fd_sc_hd__buf_12)
-                                                         net30599 (net)
-                      0.058249    0.018204   18.767683 v clkbuf_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
-     2    0.141213    0.076019    0.161984   18.929667 v clkbuf_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.040076    0.007347   18.385178 v wire30945/A (sky130_fd_sc_hd__buf_8)
+     1    0.046172    0.037761    0.100373   18.485552 v wire30945/X (sky130_fd_sc_hd__buf_8)
+                                                         net30945 (net)
+                      0.039870    0.007306   18.492857 v wire30944/A (sky130_fd_sc_hd__buf_12)
+     1    0.083692    0.041739    0.107450   18.600307 v wire30944/X (sky130_fd_sc_hd__buf_12)
+                                                         net30944 (net)
+                      0.051551    0.016303   18.616611 v wire30943/A (sky130_fd_sc_hd__buf_12)
+     1    0.098390    0.046563    0.116570   18.733181 v wire30943/X (sky130_fd_sc_hd__buf_12)
+                                                         net30943 (net)
+                      0.057219    0.018012   18.751194 v clkbuf_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
+     2    0.136978    0.074233    0.159831   18.911024 v clkbuf_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
                                                          clknet_0_clk_i (net)
-                      0.078181    0.010530   18.940197 v clkbuf_1_1_0_clk_i/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.120211    0.095079    0.174943   19.115141 v clkbuf_1_1_0_clk_i/X (sky130_fd_sc_hd__clkbuf_8)
+                      0.076586    0.010834   18.921858 v clkbuf_1_1_0_clk_i/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.114902    0.090078    0.159385   19.081244 v clkbuf_1_1_0_clk_i/X (sky130_fd_sc_hd__clkbuf_8)
                                                          clknet_1_1_0_clk_i (net)
-                      0.100317    0.018291   19.133430 v clkbuf_1_1_1_clk_i/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.090345    0.074493    0.173086   19.306519 v clkbuf_1_1_1_clk_i/X (sky130_fd_sc_hd__clkbuf_8)
+                      0.114015    0.037366   19.118610 v clkbuf_1_1_1_clk_i/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.089555    0.073963    0.179005   19.297615 v clkbuf_1_1_1_clk_i/X (sky130_fd_sc_hd__clkbuf_8)
                                                          clknet_1_1_1_clk_i (net)
-                      0.076105    0.009097   19.315615 v wire30595/A (sky130_fd_sc_hd__buf_12)
-     2    0.095280    0.046202    0.128400   19.444016 v wire30595/X (sky130_fd_sc_hd__buf_12)
-                                                         net30595 (net)
-                      0.051292    0.012468   19.456484 v wire30593/A (sky130_fd_sc_hd__buf_12)
-     2    0.094634    0.046036    0.116318   19.572802 v wire30593/X (sky130_fd_sc_hd__buf_12)
-                                                         net30593 (net)
-                      0.049154    0.009537   19.582338 v max_length30592/A (sky130_fd_sc_hd__buf_12)
-     1    0.059245    0.031477    0.103444   19.685783 v max_length30592/X (sky130_fd_sc_hd__buf_12)
-                                                         net30592 (net)
-                      0.046500    0.018254   19.704037 v wire30591/A (sky130_fd_sc_hd__buf_8)
-     1    0.065654    0.043526    0.110790   19.814825 v wire30591/X (sky130_fd_sc_hd__buf_8)
-                                                         net30591 (net)
-                      0.047028    0.009944   19.824770 v wire30590/A (sky130_fd_sc_hd__buf_12)
-     1    0.073973    0.034511    0.106093   19.930862 v wire30590/X (sky130_fd_sc_hd__buf_12)
-                                                         net30590 (net)
-                      0.060641    0.026176   19.957039 v clkbuf_leaf_5_clk_i/A (sky130_fd_sc_hd__clkbuf_8)
-     3    0.084027    0.074301    0.150308   20.107347 v clkbuf_leaf_5_clk_i/X (sky130_fd_sc_hd__clkbuf_8)
+                      0.075647    0.009258   19.306873 v wire30930/A (sky130_fd_sc_hd__buf_12)
+     2    0.099641    0.047713    0.129171   19.436045 v wire30930/X (sky130_fd_sc_hd__buf_12)
+                                                         net30930 (net)
+                      0.052800    0.012653   19.448698 v wire30928/A (sky130_fd_sc_hd__buf_12)
+     2    0.109859    0.051375    0.119101   19.567799 v wire30928/X (sky130_fd_sc_hd__buf_12)
+                                                         net30928 (net)
+                      0.055246    0.011164   19.578962 v max_length30927/A (sky130_fd_sc_hd__buf_12)
+     1    0.051347    0.030532    0.106027   19.684990 v max_length30927/X (sky130_fd_sc_hd__buf_12)
+                                                         net30927 (net)
+                      0.038975    0.014047   19.699038 v wire30926/A (sky130_fd_sc_hd__buf_8)
+     1    0.056955    0.036851    0.100124   19.799162 v wire30926/X (sky130_fd_sc_hd__buf_8)
+                                                         net30926 (net)
+                      0.050391    0.017826   19.816988 v wire30925/A (sky130_fd_sc_hd__buf_12)
+     1    0.074112    0.034388    0.107393   19.924381 v wire30925/X (sky130_fd_sc_hd__buf_12)
+                                                         net30925 (net)
+                      0.061270    0.026567   19.950949 v clkbuf_leaf_5_clk_i/A (sky130_fd_sc_hd__clkbuf_8)
+     3    0.083736    0.074093    0.150434   20.101383 v clkbuf_leaf_5_clk_i/X (sky130_fd_sc_hd__clkbuf_8)
                                                          clknet_leaf_5_clk_i (net)
-                      0.102416    0.011344   20.118690 v data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
-     1    0.019518    0.011720    0.507654   20.626347 v data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/dout1[0] (sky130_sram_2kbyte_1rw1r_32x512_8)
-                                                         data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.rdata[0] (net)
-                      0.008790    0.002057   20.628403 v wire23973/A (sky130_fd_sc_hd__buf_2)
-     1    0.020554    0.042931    0.095641   20.724043 v wire23973/X (sky130_fd_sc_hd__buf_2)
-                                                         net23973 (net)
-                      0.043181    0.002741   20.726784 v wire23972/A (sky130_fd_sc_hd__buf_2)
-     1    0.013890    0.033975    0.100574   20.827358 v wire23972/X (sky130_fd_sc_hd__buf_2)
-                                                         net23972 (net)
-                      0.034079    0.001700   20.829058 v wire23971/A (sky130_fd_sc_hd__buf_2)
-     1    0.015689    0.035918    0.099497   20.928555 v wire23971/X (sky130_fd_sc_hd__buf_2)
-                                                         net23971 (net)
-                      0.036128    0.002080   20.930635 v wire23970/A (sky130_fd_sc_hd__buf_2)
-     1    0.017664    0.038764    0.102771   21.033407 v wire23970/X (sky130_fd_sc_hd__buf_2)
-                                                         net23970 (net)
-                      0.039007    0.002363   21.035769 v wire23969/A (sky130_fd_sc_hd__buf_4)
-     1    0.021418    0.033362    0.109269   21.145039 v wire23969/X (sky130_fd_sc_hd__buf_4)
-                                                         net23969 (net)
-                      0.033916    0.002901   21.147940 v wire23968/A (sky130_fd_sc_hd__buf_4)
-     1    0.015316    0.029245    0.100711   21.248650 v wire23968/X (sky130_fd_sc_hd__buf_4)
-                                                         net23968 (net)
-                      0.029385    0.001810   21.250460 v wire23967/A (sky130_fd_sc_hd__buf_2)
-     1    0.016971    0.037728    0.099233   21.349693 v wire23967/X (sky130_fd_sc_hd__buf_2)
-                                                         net23967 (net)
-                      0.037937    0.002123   21.351814 v wire23966/A (sky130_fd_sc_hd__buf_2)
-     1    0.017774    0.038918    0.103670   21.455484 v wire23966/X (sky130_fd_sc_hd__buf_2)
-                                                         net23966 (net)
-                      0.039173    0.002423   21.457909 v wire23965/A (sky130_fd_sc_hd__buf_2)
-     1    0.017629    0.038673    0.104182   21.562090 v wire23965/X (sky130_fd_sc_hd__buf_2)
-                                                         net23965 (net)
-                      0.038876    0.002151   21.564241 v wire23964/A (sky130_fd_sc_hd__buf_4)
-     1    0.019891    0.032310    0.107708   21.671947 v wire23964/X (sky130_fd_sc_hd__buf_4)
-                                                         net23964 (net)
-                      0.032735    0.002933   21.674881 v wire23963/A (sky130_fd_sc_hd__buf_4)
-     1    0.018457    0.032137    0.103615   21.778496 v wire23963/X (sky130_fd_sc_hd__buf_4)
-                                                         net23963 (net)
-                      0.032396    0.002307   21.780804 v wire23962/A (sky130_fd_sc_hd__buf_2)
-     1    0.018553    0.040042    0.102359   21.883163 v wire23962/X (sky130_fd_sc_hd__buf_2)
-                                                         net23962 (net)
-                      0.040302    0.002496   21.885658 v wire23961/A (sky130_fd_sc_hd__buf_4)
-     1    0.016509    0.030568    0.104716   21.990376 v wire23961/X (sky130_fd_sc_hd__buf_4)
-                                                         net23961 (net)
-                      0.030743    0.002061   21.992435 v wire23960/A (sky130_fd_sc_hd__buf_2)
-     1    0.018989    0.040673    0.102267   22.094702 v wire23960/X (sky130_fd_sc_hd__buf_2)
-                                                         net23960 (net)
-                      0.040905    0.002387   22.097090 v wire23959/A (sky130_fd_sc_hd__buf_4)
-     1    0.014600    0.028378    0.103055   22.200144 v wire23959/X (sky130_fd_sc_hd__buf_4)
-                                                         net23959 (net)
-                      0.028489    0.001597   22.201742 v wire23958/A (sky130_fd_sc_hd__buf_2)
-     1    0.021271    0.043984    0.104265   22.306007 v wire23958/X (sky130_fd_sc_hd__buf_2)
-                                                         net23958 (net)
-                      0.044267    0.002769   22.308777 v wire23957/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.020809    0.040593    0.119371   22.428146 v wire23957/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net23957 (net)
-                      0.040846    0.002386   22.430532 v wire23956/A (sky130_fd_sc_hd__buf_2)
-     1    0.019742    0.041745    0.107525   22.538057 v wire23956/X (sky130_fd_sc_hd__buf_2)
-                                                         net23956 (net)
-                      0.041979    0.002439   22.540497 v wire23955/A (sky130_fd_sc_hd__buf_2)
-     1    0.022241    0.045471    0.111021   22.651516 v wire23955/X (sky130_fd_sc_hd__buf_2)
-                                                         net23955 (net)
-                      0.045794    0.003219   22.654736 v wire23954/A (sky130_fd_sc_hd__buf_4)
-     1    0.022851    0.034454    0.113410   22.768145 v wire23954/X (sky130_fd_sc_hd__buf_4)
-                                                         net23954 (net)
-                      0.034967    0.002904   22.771049 v wire23953/A (sky130_fd_sc_hd__buf_4)
-     1    0.019755    0.032185    0.106306   22.877356 v wire23953/X (sky130_fd_sc_hd__buf_4)
-                                                         net23953 (net)
-                      0.032462    0.002274   22.879629 v wire23952/A (sky130_fd_sc_hd__buf_2)
-     1    0.019195    0.040915    0.103446   22.983076 v wire23952/X (sky130_fd_sc_hd__buf_2)
-                                                         net23952 (net)
-                      0.041112    0.002176   22.985252 v wire23951/A (sky130_fd_sc_hd__buf_2)
-     1    0.024300    0.048119    0.113827   23.099079 v wire23951/X (sky130_fd_sc_hd__buf_2)
-                                                         net23951 (net)
-                      0.048259    0.002007   23.101086 v wire23950/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.027662    0.048891    0.128166   23.229252 v wire23950/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net23950 (net)
-                      0.049262    0.003357   23.232609 v wire23949/A (sky130_fd_sc_hd__buf_4)
-     1    0.024059    0.035618    0.115326   23.347937 v wire23949/X (sky130_fd_sc_hd__buf_4)
-                                                         net23949 (net)
-                      0.036277    0.003915   23.351851 v wire23948/A (sky130_fd_sc_hd__buf_4)
-     1    0.023404    0.035025    0.109162   23.461014 v wire23948/X (sky130_fd_sc_hd__buf_4)
-                                                         net23948 (net)
-                      0.035756    0.004075   23.465088 v wire23947/A (sky130_fd_sc_hd__buf_4)
-     1    0.023134    0.034784    0.109056   23.574144 v wire23947/X (sky130_fd_sc_hd__buf_4)
-                                                         net23947 (net)
-                      0.035278    0.003356   23.577499 v wire23946/A (sky130_fd_sc_hd__buf_2)
-     1    0.020899    0.043467    0.106557   23.684055 v wire23946/X (sky130_fd_sc_hd__buf_2)
-                                                         net23946 (net)
-                      0.043747    0.002753   23.686810 v wire23945/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.023789    0.044141    0.122308   23.809116 v wire23945/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net23945 (net)
-                      0.044430    0.002718   23.811834 v wire23944/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.017846    0.037517    0.115968   23.927803 v wire23944/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net23944 (net)
-                      0.037588    0.001496   23.929298 v wire23943/A (sky130_fd_sc_hd__clkbuf_4)
-     1    0.021186    0.041030    0.116891   24.046190 v wire23943/X (sky130_fd_sc_hd__clkbuf_4)
-                                                         net23943 (net)
-                      0.041316    0.002569   24.048758 v wire23942/A (sky130_fd_sc_hd__buf_2)
-     1    0.019959    0.042174    0.107535   24.156294 v wire23942/X (sky130_fd_sc_hd__buf_2)
-                                                         net23942 (net)
-                      0.042496    0.002906   24.159201 v wire23941/A (sky130_fd_sc_hd__buf_2)
-     1    0.021195    0.043922    0.109889   24.269089 v wire23941/X (sky130_fd_sc_hd__buf_2)
-                                                         net23941 (net)
-                      0.044187    0.002702   24.271791 v wire23940/A (sky130_fd_sc_hd__buf_4)
-     1    0.022761    0.034471    0.112438   24.384228 v wire23940/X (sky130_fd_sc_hd__buf_4)
-                                                         net23940 (net)
-                      0.035003    0.003118   24.387346 v wire23939/A (sky130_fd_sc_hd__buf_4)
-     1    0.018272    0.032497    0.104190   24.491537 v wire23939/X (sky130_fd_sc_hd__buf_4)
-                                                         net23939 (net)
-                      0.032828    0.002670   24.494207 v wire23938/A (sky130_fd_sc_hd__buf_4)
-     1    0.018423    0.032157    0.103622   24.597828 v wire23938/X (sky130_fd_sc_hd__buf_4)
-                                                         net23938 (net)
-                      0.032442    0.002398   24.600227 v wire23937/A (sky130_fd_sc_hd__buf_4)
-     1    0.016058    0.030027    0.100846   24.701073 v wire23937/X (sky130_fd_sc_hd__buf_4)
-                                                         net23937 (net)
-                      0.030275    0.002155   24.703226 v _115053_/A0 (sky130_fd_sc_hd__mux4_2)
-     1    0.026677    0.106193    0.330450   25.033678 v _115053_/X (sky130_fd_sc_hd__mux4_2)
-                                                         _055811_ (net)
-                      0.106366    0.003956   25.037634 v wire16036/A (sky130_fd_sc_hd__buf_8)
-     1    0.030685    0.029577    0.122267   25.159901 v wire16036/X (sky130_fd_sc_hd__buf_8)
-                                                         net16036 (net)
-                      0.030759    0.004796   25.164696 v wire33281/A (sky130_fd_sc_hd__buf_4)
-     1    0.030689    0.040995    0.111319   25.276014 v wire33281/X (sky130_fd_sc_hd__buf_4)
-                                                         net33281 (net)
-                      0.042397    0.006157   25.282171 v wire16035/A (sky130_fd_sc_hd__buf_8)
-     1    0.037489    0.033041    0.096536   25.378708 v wire16035/X (sky130_fd_sc_hd__buf_8)
-                                                         net16035 (net)
-                      0.035734    0.007628   25.386335 v wire33054/A (sky130_fd_sc_hd__buf_4)
-     1    0.035048    0.044484    0.117057   25.503391 v wire33054/X (sky130_fd_sc_hd__buf_4)
-                                                         net33054 (net)
-                      0.045561    0.005718   25.509109 v _115054_/A1 (sky130_fd_sc_hd__mux2_1)
-     1    0.002260    0.035988    0.154371   25.663481 v _115054_/X (sky130_fd_sc_hd__mux2_1)
-                                                         _007668_ (net)
-                      0.035988    0.000172   25.663652 v _127885_/D (sky130_fd_sc_hd__dfrtp_2)
-                                             25.663652   data arrival time
+                      0.102124    0.011305   20.112688 v data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+     1    0.010873    0.007120    0.456273   20.568960 v data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/dout1[17] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                         data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.rdata[17] (net)
+                      0.005340    0.000702   20.569662 v wire23912/A (sky130_fd_sc_hd__buf_2)
+     1    0.014704    0.034385    0.087018   20.656681 v wire23912/X (sky130_fd_sc_hd__buf_2)
+                                                         net23912 (net)
+                      0.034569    0.001874   20.658554 v wire23911/A (sky130_fd_sc_hd__buf_2)
+     1    0.018054    0.039339    0.102572   20.761127 v wire23911/X (sky130_fd_sc_hd__buf_2)
+                                                         net23911 (net)
+                      0.039596    0.002458   20.763586 v wire23910/A (sky130_fd_sc_hd__buf_4)
+     1    0.020942    0.033062    0.109170   20.872755 v wire23910/X (sky130_fd_sc_hd__buf_4)
+                                                         net23910 (net)
+                      0.033572    0.002874   20.875629 v wire23909/A (sky130_fd_sc_hd__buf_2)
+     1    0.019003    0.040707    0.103430   20.979059 v wire23909/X (sky130_fd_sc_hd__buf_2)
+                                                         net23909 (net)
+                      0.040936    0.002375   20.981434 v wire23908/A (sky130_fd_sc_hd__buf_2)
+     1    0.019440    0.041393    0.106795   21.088228 v wire23908/X (sky130_fd_sc_hd__buf_2)
+                                                         net23908 (net)
+                      0.041721    0.002894   21.091122 v wire23907/A (sky130_fd_sc_hd__buf_4)
+     1    0.015730    0.029441    0.104853   21.195976 v wire23907/X (sky130_fd_sc_hd__buf_4)
+                                                         net23907 (net)
+                      0.029506    0.001265   21.197241 v wire23906/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.020298    0.040053    0.112118   21.309359 v wire23906/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23906 (net)
+                      0.040423    0.002951   21.312309 v wire23905/A (sky130_fd_sc_hd__buf_2)
+     1    0.022635    0.045896    0.111360   21.423668 v wire23905/X (sky130_fd_sc_hd__buf_2)
+                                                         net23905 (net)
+                      0.045986    0.001869   21.425537 v wire23904/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.019608    0.039227    0.118494   21.544031 v wire23904/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23904 (net)
+                      0.039632    0.003048   21.547079 v wire23903/A (sky130_fd_sc_hd__buf_4)
+     1    0.022653    0.034349    0.110800   21.657879 v wire23903/X (sky130_fd_sc_hd__buf_4)
+                                                         net23903 (net)
+                      0.034578    0.002057   21.659937 v wire23902/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.023170    0.043435    0.117501   21.777437 v wire23902/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23902 (net)
+                      0.043812    0.003123   21.780560 v wire23901/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.023664    0.044016    0.122213   21.902773 v wire23901/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23901 (net)
+                      0.044205    0.002183   21.904957 v wire23900/A (sky130_fd_sc_hd__buf_4)
+     1    0.020077    0.032488    0.110392   22.015348 v wire23900/X (sky130_fd_sc_hd__buf_4)
+                                                         net23900 (net)
+                      0.032900    0.002753   22.018103 v wire23899/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.021909    0.041908    0.115710   22.133812 v wire23899/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23899 (net)
+                      0.042017    0.001915   22.135727 v wire23898/A (sky130_fd_sc_hd__buf_4)
+     1    0.024066    0.035594    0.111873   22.247601 v wire23898/X (sky130_fd_sc_hd__buf_4)
+                                                         net23898 (net)
+                      0.036615    0.004871   22.252470 v wire23897/A (sky130_fd_sc_hd__buf_4)
+     1    0.019597    0.032097    0.107011   22.359482 v wire23897/X (sky130_fd_sc_hd__buf_4)
+                                                         net23897 (net)
+                      0.032244    0.001974   22.361456 v wire23896/A (sky130_fd_sc_hd__buf_4)
+     1    0.022319    0.033867    0.106890   22.468346 v wire23896/X (sky130_fd_sc_hd__buf_4)
+                                                         net23896 (net)
+                      0.034684    0.003485   22.471830 v wire23895/A (sky130_fd_sc_hd__buf_4)
+     1    0.019966    0.032319    0.105862   22.577694 v wire23895/X (sky130_fd_sc_hd__buf_4)
+                                                         net23895 (net)
+                      0.032895    0.003487   22.581181 v wire23894/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.026556    0.047506    0.120531   22.701712 v wire23894/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23894 (net)
+                      0.047741    0.002581   22.704292 v wire23893/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.022123    0.042162    0.122187   22.826479 v wire23893/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23893 (net)
+                      0.042484    0.002807   22.829287 v wire23892/A (sky130_fd_sc_hd__buf_2)
+     1    0.022095    0.045192    0.111166   22.940453 v wire23892/X (sky130_fd_sc_hd__buf_2)
+                                                         net23892 (net)
+                      0.045468    0.002776   22.943228 v wire23891/A (sky130_fd_sc_hd__buf_4)
+     1    0.022688    0.034464    0.113051   23.056280 v wire23891/X (sky130_fd_sc_hd__buf_4)
+                                                         net23891 (net)
+                      0.034855    0.002753   23.059032 v wire23890/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.020083    0.039796    0.114239   23.173271 v wire23890/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23890 (net)
+                      0.040145    0.002853   23.176125 v wire23889/A (sky130_fd_sc_hd__buf_2)
+     1    0.021575    0.044473    0.109395   23.285521 v wire23889/X (sky130_fd_sc_hd__buf_2)
+                                                         net23889 (net)
+                      0.044788    0.002981   23.288500 v wire23888/A (sky130_fd_sc_hd__buf_4)
+     1    0.022468    0.034061    0.112246   23.400747 v wire23888/X (sky130_fd_sc_hd__buf_4)
+                                                         net23888 (net)
+                      0.035031    0.003830   23.404577 v wire23887/A (sky130_fd_sc_hd__buf_2)
+     1    0.021167    0.043568    0.107242   23.511820 v wire23887/X (sky130_fd_sc_hd__buf_2)
+                                                         net23887 (net)
+                      0.043643    0.001661   23.513479 v wire23886/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.027043    0.048092    0.125732   23.639212 v wire23886/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23886 (net)
+                      0.048308    0.002480   23.641691 v wire23885/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.023491    0.043868    0.123606   23.765299 v wire23885/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23885 (net)
+                      0.044257    0.003221   23.768518 v wire23884/A (sky130_fd_sc_hd__buf_4)
+     1    0.026119    0.036998    0.115284   23.883802 v wire23884/X (sky130_fd_sc_hd__buf_4)
+                                                         net23884 (net)
+                      0.037252    0.002316   23.886118 v wire23883/A (sky130_fd_sc_hd__buf_4)
+     1    0.023607    0.035109    0.110147   23.996265 v wire23883/X (sky130_fd_sc_hd__buf_4)
+                                                         net23883 (net)
+                      0.035624    0.003451   23.999716 v wire23882/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.025761    0.046543    0.120885   24.120602 v wire23882/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23882 (net)
+                      0.046762    0.002457   24.123058 v wire23881/A (sky130_fd_sc_hd__buf_4)
+     1    0.023030    0.034721    0.113749   24.236807 v wire23881/X (sky130_fd_sc_hd__buf_4)
+                                                         net23881 (net)
+                      0.035236    0.003178   24.239985 v wire23880/A (sky130_fd_sc_hd__buf_4)
+     1    0.020990    0.033054    0.107363   24.347347 v wire23880/X (sky130_fd_sc_hd__buf_4)
+                                                         net23880 (net)
+                      0.033558    0.002860   24.350208 v wire23879/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.030277    0.052360    0.123435   24.473644 v wire23879/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net23879 (net)
+                      0.053224    0.005594   24.479237 v wire23878/A (sky130_fd_sc_hd__buf_2)
+     1    0.020873    0.043318    0.114390   24.593628 v wire23878/X (sky130_fd_sc_hd__buf_2)
+                                                         net23878 (net)
+                      0.043476    0.001974   24.595600 v wire23877/A (sky130_fd_sc_hd__buf_2)
+     1    0.017868    0.038826    0.106523   24.702124 v wire23877/X (sky130_fd_sc_hd__buf_2)
+                                                         net23877 (net)
+                      0.038903    0.001576   24.703699 v wire23876/A (sky130_fd_sc_hd__buf_2)
+     1    0.020908    0.043540    0.107820   24.811520 v wire23876/X (sky130_fd_sc_hd__buf_2)
+                                                         net23876 (net)
+                      0.043849    0.002897   24.814417 v _115099_/A0 (sky130_fd_sc_hd__mux4_2)
+     1    0.011534    0.078480    0.295289   25.109705 v _115099_/X (sky130_fd_sc_hd__mux4_2)
+                                                         _055893_ (net)
+                      0.078493    0.001050   25.110756 v wire16151/A (sky130_fd_sc_hd__buf_8)
+     1    0.039683    0.034769    0.112417   25.223171 v wire16151/X (sky130_fd_sc_hd__buf_8)
+                                                         net16151 (net)
+                      0.038206    0.008734   25.231907 v wire34102/A (sky130_fd_sc_hd__buf_4)
+     1    0.044836    0.053625    0.122689   25.354595 v wire34102/X (sky130_fd_sc_hd__buf_4)
+                                                         net34102 (net)
+                      0.056283    0.009772   25.364367 v wire16150/A (sky130_fd_sc_hd__buf_8)
+     1    0.030317    0.028547    0.100799   25.465166 v wire16150/X (sky130_fd_sc_hd__buf_8)
+                                                         net16150 (net)
+                      0.029324    0.003846   25.469013 v wire33769/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.037456    0.041116    0.111251   25.580263 v wire33769/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         net33769 (net)
+                      0.042650    0.006478   25.586742 v wire16149/A (sky130_fd_sc_hd__buf_8)
+     1    0.042153    0.034915    0.100828   25.687571 v wire16149/X (sky130_fd_sc_hd__buf_8)
+                                                         net16149 (net)
+                      0.035491    0.003684   25.691254 v wire33514/A (sky130_fd_sc_hd__buf_6)
+     1    0.049731    0.041804    0.102776   25.794031 v wire33514/X (sky130_fd_sc_hd__buf_6)
+                                                         net33514 (net)
+                      0.042923    0.005670   25.799702 v wire16148/A (sky130_fd_sc_hd__buf_8)
+     1    0.050344    0.036309    0.104395   25.904095 v wire16148/X (sky130_fd_sc_hd__buf_8)
+                                                         net16148 (net)
+                      0.038013    0.006301   25.910397 v wire33291/A (sky130_fd_sc_hd__clkbuf_4)
+     1    0.028401    0.050001    0.123716   26.034113 v wire33291/X (sky130_fd_sc_hd__clkbuf_4)
+                                                         net33291 (net)
+                      0.050661    0.004780   26.038893 v _115100_/A1 (sky130_fd_sc_hd__mux2_1)
+     1    0.002304    0.035965    0.156136   26.195028 v _115100_/X (sky130_fd_sc_hd__mux2_1)
+                                                         _007681_ (net)
+                      0.035965    0.000176   26.195206 v _128149_/D (sky130_fd_sc_hd__dfrtp_2)
+                                             26.195206   data arrival time
 
                                  35.714283   35.714283   clock clk_i (rise edge)
                                   0.000000   35.714283   clock source latency
-     1    0.045554    0.048519    0.034444   35.748726 ^ clk_i (in)
+     1    0.043831    0.047353    0.033143   35.747429 ^ clk_i (in)
                                                          clk_i (net)
-                      0.050138    0.000000   35.748726 ^ wire30560/A (sky130_fd_sc_hd__buf_12)
-     1    0.082989    0.077425    0.090623   35.839352 ^ wire30560/X (sky130_fd_sc_hd__buf_12)
-                                                         net30560 (net)
-                      0.089837    0.022190   35.861542 ^ wire30559/A (sky130_fd_sc_hd__buf_12)
-     1    0.078036    0.074817    0.101789   35.963329 ^ wire30559/X (sky130_fd_sc_hd__buf_12)
-                                                         net30559 (net)
-                      0.078651    0.012591   35.975922 ^ wire30558/A (sky130_fd_sc_hd__buf_12)
-     2    0.103512    0.095828    0.107313   36.083233 ^ wire30558/X (sky130_fd_sc_hd__buf_12)
-                                                         net30558 (net)
-                      0.107153    0.023967   36.107201 ^ wire30557/A (sky130_fd_sc_hd__buf_12)
-     1    0.051264    0.053333    0.089347   36.196548 ^ wire30557/X (sky130_fd_sc_hd__buf_12)
-                                                         net30557 (net)
-                      0.055695    0.008264   36.204811 ^ wire30556/A (sky130_fd_sc_hd__buf_12)
-     1    0.069315    0.067331    0.092172   36.296982 ^ wire30556/X (sky130_fd_sc_hd__buf_12)
-                                                         net30556 (net)
-                      0.070938    0.011585   36.308567 ^ wire30555/A (sky130_fd_sc_hd__buf_12)
-     1    0.074959    0.072181    0.097248   36.405815 ^ wire30555/X (sky130_fd_sc_hd__buf_12)
-                                                         net30555 (net)
-                      0.076598    0.013245   36.419060 ^ clkbuf_regs_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
-     1    0.009671    0.024930    0.085421   36.504482 ^ clkbuf_regs_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.048728    0.000000   35.747429 ^ wire30895/A (sky130_fd_sc_hd__buf_12)
+     1    0.080892    0.075536    0.089500   35.836926 ^ wire30895/X (sky130_fd_sc_hd__buf_12)
+                                                         net30895 (net)
+                      0.088051    0.021988   35.858913 ^ wire30894/A (sky130_fd_sc_hd__buf_12)
+     1    0.058910    0.058994    0.090580   35.949493 ^ wire30894/X (sky130_fd_sc_hd__buf_12)
+                                                         net30894 (net)
+                      0.063350    0.011710   35.961205 ^ wire30893/A (sky130_fd_sc_hd__buf_12)
+     2    0.087617    0.082145    0.099266   36.060471 ^ wire30893/X (sky130_fd_sc_hd__buf_12)
+                                                         net30893 (net)
+                      0.090818    0.019529   36.080002 ^ wire30892/A (sky130_fd_sc_hd__buf_8)
+     1    0.046629    0.064386    0.092570   36.172569 ^ wire30892/X (sky130_fd_sc_hd__buf_8)
+                                                         net30892 (net)
+                      0.066047    0.007738   36.180309 ^ wire30891/A (sky130_fd_sc_hd__buf_12)
+     1    0.097786    0.090003    0.103491   36.283798 ^ wire30891/X (sky130_fd_sc_hd__buf_12)
+                                                         net30891 (net)
+                      0.101508    0.023345   36.307144 ^ wire30890/A (sky130_fd_sc_hd__buf_12)
+     1    0.126968    0.115227    0.123215   36.430359 ^ wire30890/X (sky130_fd_sc_hd__buf_12)
+                                                         net30890 (net)
+                      0.124615    0.024272   36.454632 ^ clkbuf_regs_0_clk_i/A (sky130_fd_sc_hd__clkbuf_16)
+     1    0.008396    0.025233    0.096470   36.551102 ^ clkbuf_regs_0_clk_i/X (sky130_fd_sc_hd__clkbuf_16)
                                                          clk_i_regs (net)
-                      0.024937    0.000764   36.505245 ^ clkbuf_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
-     2    0.119811    0.104479    0.128189   36.633434 ^ clkbuf_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
+                      0.025238    0.000618   36.551720 ^ clkbuf_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
+     2    0.161725    0.134778    0.146994   36.698711 ^ clkbuf_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
                                                          clknet_0_clk_i_regs (net)
-                      0.105359    0.007322   36.640759 ^ clkbuf_1_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.074953    0.105728    0.137742   36.778500 ^ clkbuf_1_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                      0.136469    0.011436   36.710148 ^ clkbuf_1_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.070985    0.100053    0.140279   36.850430 ^ clkbuf_1_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
                                                          clknet_1_0_0_clk_i_regs (net)
-                      0.115542    0.023441   36.801941 ^ clkbuf_1_0_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.102673    0.139533    0.163730   36.965672 ^ clkbuf_1_0_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                      0.112163    0.024983   36.875412 ^ clkbuf_1_0_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.085243    0.118638    0.154003   37.029415 ^ clkbuf_1_0_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
                                                          clknet_1_0_1_clk_i_regs (net)
-                      0.144139    0.018971   36.984642 ^ clkbuf_2_1_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     1    0.097278    0.132800    0.168114   37.152756 ^ clkbuf_2_1_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_2_1_0_clk_i_regs (net)
-                      0.136034    0.015607   37.168365 ^ clkbuf_2_1_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.119405    0.160064    0.188489   37.356853 ^ clkbuf_2_1_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_2_1_1_clk_i_regs (net)
-                      0.161372    0.011067   37.367920 ^ clkbuf_3_2_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.086016    0.119742    0.163894   37.531815 ^ clkbuf_3_2_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_3_2_0_clk_i_regs (net)
-                      0.121578    0.011259   37.543072 ^ clkbuf_4_4_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.072936    0.102270    0.149260   37.692333 ^ clkbuf_4_4_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_4_4_0_clk_i_regs (net)
-                      0.102607    0.004572   37.696903 ^ clkbuf_5_9_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-     2    0.074555    0.104260    0.145853   37.842758 ^ clkbuf_5_9_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_5_9_0_clk_i_regs (net)
-                      0.105237    0.007699   37.850456 ^ clkbuf_6_18__f_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_16)
-    10    0.133880    0.113122    0.156604   38.007061 ^ clkbuf_6_18__f_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_16)
-                                                         clknet_6_18__leaf_clk_i_regs (net)
-                      0.113944    0.007319   38.014378 ^ clkbuf_leaf_556_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
-    17    0.078477    0.109145    0.152525   38.166904 ^ clkbuf_leaf_556_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
-                                                         clknet_leaf_556_clk_i_regs (net)
-                      0.109588    0.005372   38.172276 ^ _127885_/CLK (sky130_fd_sc_hd__dfrtp_2)
-                                 -0.250000   37.922276   clock uncertainty
-                                  0.037852   37.960129   clock reconvergence pessimism
-                                 -0.067619   37.892506   library setup time
-                                             37.892506   data required time
+                      0.120576    0.011521   37.040936 ^ clkbuf_2_0_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     1    0.099645    0.135166    0.169493   37.210426 ^ clkbuf_2_0_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_2_0_0_clk_i_regs (net)
+                      0.136609    0.010644   37.221073 ^ clkbuf_2_0_1_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.123318    0.165117    0.189655   37.410725 ^ clkbuf_2_0_1_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_2_0_1_clk_i_regs (net)
+                      0.165983    0.009287   37.420013 ^ clkbuf_3_1_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     2    0.154516    0.205145    0.212658   37.632671 ^ clkbuf_3_1_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_3_1_0_clk_i_regs (net)
+                      0.209071    0.021565   37.654236 ^ clkbuf_4_2_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+     4    0.155666    0.206563    0.225100   37.879337 ^ clkbuf_4_2_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_4_2_0_clk_i_regs (net)
+                      0.208144    0.013920   37.893257 ^ clkbuf_6_9_0_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+    15    0.225662    0.295021    0.277925   38.171181 ^ clkbuf_6_9_0_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_6_9_0_clk_i_regs (net)
+                      0.300259    0.029836   38.201015 ^ clkbuf_leaf_534_clk_i_regs/A (sky130_fd_sc_hd__clkbuf_8)
+    20    0.073342    0.105331    0.172971   38.373989 ^ clkbuf_leaf_534_clk_i_regs/X (sky130_fd_sc_hd__clkbuf_8)
+                                                         clknet_leaf_534_clk_i_regs (net)
+                      0.106055    0.006676   38.380665 ^ _128149_/CLK (sky130_fd_sc_hd__dfrtp_2)
+                                 -0.250000   38.130661   clock uncertainty
+                                  0.036441   38.167103   clock reconvergence pessimism
+                                 -0.067951   38.099152   library setup time
+                                             38.099152   data required time
 ---------------------------------------------------------------------------------------------
-                                             37.892506   data required time
-                                            -25.663652   data arrival time
+                                             38.099152   data required time
+                                            -26.195206   data arrival time
 ---------------------------------------------------------------------------------------------
-                                             12.228853   slack (MET)
+                                             11.903949   slack (MET)
 
 
 
@@ -528,498 +546,492 @@ max slew
 
 Pin                                        Limit        Slew       Slack
 ------------------------------------------------------------------------
-QSPI_IO3                                0.750000    1.080232   -0.330232 (VIOLATED)
-QSPI_IO0                                0.750000    1.070360   -0.320360 (VIOLATED)
-QSPI_IO2                                0.750000    1.055234   -0.305234 (VIOLATED)
-hold30721/A                             0.750000    1.042968   -0.292968 (VIOLATED)
-load_slew30512/A                        0.750000    1.036777   -0.286777 (VIOLATED)
-_129789_/Z                              0.750000    0.941217   -0.191217 (VIOLATED)
-load_slew30514/A                        0.750000    0.935917   -0.185917 (VIOLATED)
-_129792_/Z                              0.750000    0.930339   -0.180339 (VIOLATED)
-_129790_/Z                              0.750000    0.927513   -0.177513 (VIOLATED)
-QSPI_IO1                                0.750000    0.873273   -0.123273 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[5]    0.040000    0.151352   -0.111352 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.145101   -0.105101 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.143424   -0.103424 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[0]    0.040000    0.143072   -0.103072 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[6]    0.040000    0.141093   -0.101093 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.140620   -0.100620 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[4]    0.040000    0.139714   -0.099714 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[7]    0.040000    0.139686   -0.099686 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.139278   -0.099278 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[3]    0.040000    0.138817   -0.098817 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.138500   -0.098500 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[0]    0.040000    0.138328   -0.098328 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[5]    0.040000    0.137812   -0.097812 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[2]    0.040000    0.136531   -0.096531 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.136528   -0.096528 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[8]    0.040000    0.136447   -0.096447 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.136059   -0.096059 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.135977   -0.095977 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[1]    0.040000    0.135948   -0.095948 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.135477   -0.095477 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.134700   -0.094700 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[8]    0.040000    0.134487   -0.094487 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[8]    0.040000    0.134332   -0.094332 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.134132   -0.094132 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.133827   -0.093827 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.133524   -0.093524 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[1]    0.040000    0.133469   -0.093469 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.133462   -0.093462 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.132896   -0.092896 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.132745   -0.092745 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[0]    0.040000    0.132511   -0.092511 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.132230   -0.092230 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[7]    0.040000    0.132177   -0.092177 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.131976   -0.091976 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[0]    0.040000    0.131798   -0.091798 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[5]    0.040000    0.131711   -0.091711 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[0]    0.040000    0.131466   -0.091466 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.131461   -0.091461 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.131300   -0.091300 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.131140   -0.091140 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.130796   -0.090796 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.130725   -0.090725 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.130443   -0.090443 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[3]    0.040000    0.130425   -0.090425 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.130274   -0.090274 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.130216   -0.090216 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.129893   -0.089893 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.129684   -0.089684 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[6]    0.040000    0.129517   -0.089517 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[0]    0.040000    0.129491   -0.089491 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[8]    0.040000    0.129417   -0.089417 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.129369   -0.089369 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.129242   -0.089242 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[3]    0.040000    0.129232   -0.089232 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[7]    0.040000    0.129115   -0.089115 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[5]    0.040000    0.129068   -0.089068 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[7]    0.040000    0.129018   -0.089018 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.128952   -0.088952 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.128799   -0.088799 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[8]    0.040000    0.128355   -0.088355 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[8]    0.040000    0.128269   -0.088269 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.128251   -0.088251 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[0]    0.040000    0.128098   -0.088098 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.128084   -0.088084 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.127876   -0.087876 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[8]    0.040000    0.127799   -0.087799 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[1]    0.040000    0.127775   -0.087775 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.127640   -0.087640 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[6]    0.040000    0.127627   -0.087627 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.127591   -0.087591 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[2]    0.040000    0.127318   -0.087318 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[3]    0.040000    0.127316   -0.087316 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.127242   -0.087242 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[8]    0.040000    0.127194   -0.087194 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[7]    0.040000    0.127123   -0.087123 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[3]    0.040000    0.127042   -0.087042 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[4]    0.040000    0.126957   -0.086957 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.126945   -0.086945 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[1]    0.040000    0.126872   -0.086872 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[7]    0.040000    0.126821   -0.086821 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.126719   -0.086719 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.126706   -0.086706 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[3]    0.040000    0.126673   -0.086673 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[0]    0.040000    0.126650   -0.086650 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[8]    0.040000    0.126585   -0.086585 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.126464   -0.086464 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[7]    0.040000    0.126428   -0.086428 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.126367   -0.086367 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.126344   -0.086344 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.126236   -0.086236 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[0]    0.040000    0.126068   -0.086068 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.126065   -0.086065 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[7]    0.040000    0.126005   -0.086005 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[0]    0.040000    0.125989   -0.085989 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[1]    0.040000    0.125987   -0.085987 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[4]    0.040000    0.125958   -0.085958 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.125855   -0.085855 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.125723   -0.085723 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.125618   -0.085618 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[3]    0.040000    0.125586   -0.085586 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[2]    0.040000    0.125498   -0.085498 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.125300   -0.085300 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[3]    0.040000    0.125154   -0.085154 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.125018   -0.085018 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.124909   -0.084909 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.124899   -0.084899 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[0]    0.040000    0.124835   -0.084835 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[0]    0.040000    0.124833   -0.084833 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.124825   -0.084825 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.124814   -0.084814 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[2]    0.040000    0.124687   -0.084687 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.124667   -0.084667 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[0]    0.040000    0.124650   -0.084650 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[6]    0.040000    0.124636   -0.084636 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.124592   -0.084592 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[1]    0.040000    0.124569   -0.084569 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.124273   -0.084273 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.124265   -0.084265 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.124259   -0.084259 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.124233   -0.084233 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.124195   -0.084195 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.124095   -0.084095 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.124065   -0.084065 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.124030   -0.084030 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.124029   -0.084029 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.123854   -0.083854 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[4]    0.040000    0.123835   -0.083835 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.123762   -0.083762 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.123717   -0.083717 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[2]    0.040000    0.123704   -0.083704 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[3]    0.040000    0.123428   -0.083428 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.123377   -0.083377 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.123337   -0.083337 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.123332   -0.083332 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[2]    0.040000    0.123277   -0.083277 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.123215   -0.083215 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[1]    0.040000    0.123079   -0.083079 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.123026   -0.083026 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.123008   -0.083008 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[2]    0.040000    0.123004   -0.083004 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.122955   -0.082955 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[1]    0.040000    0.122809   -0.082809 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.122808   -0.082808 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[3]    0.040000    0.122764   -0.082764 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[1]    0.040000    0.122753   -0.082753 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[6]    0.040000    0.122750   -0.082750 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.122592   -0.082592 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.122517   -0.082517 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[2]    0.040000    0.122374   -0.082374 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.122374   -0.082374 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.122359   -0.082359 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.122350   -0.082350 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.122331   -0.082331 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.122171   -0.082171 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.122036   -0.082036 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[5]    0.040000    0.122028   -0.082028 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[1]    0.040000    0.122012   -0.082012 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[6]    0.040000    0.121986   -0.081986 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.121975   -0.081975 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.121942   -0.081942 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[4]    0.040000    0.121814   -0.081814 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.121813   -0.081813 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[0]    0.040000    0.121727   -0.081727 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[2]    0.040000    0.121612   -0.081612 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.121507   -0.081507 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[2]    0.040000    0.121480   -0.081480 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.121478   -0.081478 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[1]    0.040000    0.121364   -0.081364 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.121351   -0.081351 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[0]    0.040000    0.121272   -0.081272 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[1]    0.040000    0.121269   -0.081269 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[7]    0.040000    0.121049   -0.081049 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[3]    0.040000    0.121011   -0.081011 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[6]    0.040000    0.120968   -0.080968 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[4]    0.040000    0.120917   -0.080917 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[8]    0.040000    0.120836   -0.080836 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.120750   -0.080750 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.120666   -0.080666 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[3]    0.040000    0.120658   -0.080658 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.120588   -0.080588 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.120565   -0.080565 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.120548   -0.080548 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[4]    0.040000    0.120509   -0.080509 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.120492   -0.080492 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[6]    0.040000    0.120428   -0.080428 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.120401   -0.080401 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.120383   -0.080383 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[0]    0.040000    0.120328   -0.080328 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[4]    0.040000    0.120281   -0.080281 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.120280   -0.080280 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[3]    0.040000    0.120268   -0.080268 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.120180   -0.080180 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.120080   -0.080080 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[5]    0.040000    0.120054   -0.080054 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[4]    0.040000    0.120052   -0.080052 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[2]    0.040000    0.119972   -0.079972 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[6]    0.040000    0.119920   -0.079920 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[6]    0.040000    0.119906   -0.079906 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[4]    0.040000    0.119846   -0.079846 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[8]    0.040000    0.119778   -0.079778 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.119774   -0.079774 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.119692   -0.079692 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.119648   -0.079648 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[5]    0.040000    0.119611   -0.079611 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[3]    0.040000    0.119596   -0.079596 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[8]    0.040000    0.119588   -0.079588 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[4]    0.040000    0.119561   -0.079561 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.119507   -0.079507 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.119427   -0.079427 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.119392   -0.079392 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[8]    0.040000    0.119358   -0.079358 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[7]    0.040000    0.119272   -0.079272 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.119211   -0.079211 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[2]    0.040000    0.119201   -0.079201 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[4]    0.040000    0.119165   -0.079165 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[1]    0.040000    0.119132   -0.079132 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[8]    0.040000    0.119010   -0.079010 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[2]    0.040000    0.118958   -0.078958 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.118950   -0.078950 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.118929   -0.078929 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.118904   -0.078904 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[1]    0.040000    0.118874   -0.078874 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.118867   -0.078867 (VIOLATED)
+I2C_SDA                                 0.750000    1.056677   -0.306677 (VIOLATED)
+hold31031/A                             0.750000    0.938008   -0.188008 (VIOLATED)
+_130213_/Z                              0.750000    0.922254   -0.172254 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[8]    0.040000    0.148379   -0.108379 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[5]    0.040000    0.148048   -0.108048 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[7]    0.040000    0.146604   -0.106604 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[5]    0.040000    0.146299   -0.106299 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[7]    0.040000    0.144376   -0.104376 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[6]    0.040000    0.144262   -0.104262 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[1]    0.040000    0.142441   -0.102441 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[7]    0.040000    0.141745   -0.101745 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[7]    0.040000    0.141716   -0.101716 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[4]    0.040000    0.141463   -0.101463 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[6]    0.040000    0.141366   -0.101366 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[5]    0.040000    0.141243   -0.101243 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[4]    0.040000    0.140933   -0.100933 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.140562   -0.100562 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[4]    0.040000    0.140545   -0.100545 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.140207   -0.100207 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[0]    0.040000    0.140151   -0.100151 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.138712   -0.098712 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.138242   -0.098242 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.137648   -0.097648 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.137522   -0.097522 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[1]    0.040000    0.137519   -0.097519 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.137376   -0.097376 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[6]    0.040000    0.136992   -0.096992 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.136874   -0.096874 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.136689   -0.096689 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.135932   -0.095932 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[0]    0.040000    0.135809   -0.095809 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.135783   -0.095783 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.135656   -0.095656 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[1]    0.040000    0.135239   -0.095239 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.134892   -0.094892 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.134812   -0.094812 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[1]    0.040000    0.134684   -0.094684 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.134532   -0.094532 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.133769   -0.093769 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[7]    0.040000    0.133522   -0.093522 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.133377   -0.093377 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.133047   -0.093047 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[0]    0.040000    0.132843   -0.092843 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[0]    0.040000    0.132572   -0.092572 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.132142   -0.092142 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[2]    0.040000    0.132121   -0.092121 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[5]    0.040000    0.132112   -0.092112 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.132031   -0.092031 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.131745   -0.091745 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[5]    0.040000    0.131710   -0.091710 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[2]    0.040000    0.131615   -0.091615 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[8]    0.040000    0.131326   -0.091326 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[8]    0.040000    0.131320   -0.091320 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[2]    0.040000    0.131170   -0.091170 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[4]    0.040000    0.131031   -0.091031 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[3]    0.040000    0.130646   -0.090646 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[6]    0.040000    0.130624   -0.090624 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[8]    0.040000    0.130585   -0.090585 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.130527   -0.090527 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[2]    0.040000    0.130502   -0.090502 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.130478   -0.090478 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[3]    0.040000    0.130456   -0.090456 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[3]    0.040000    0.130362   -0.090362 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[3]    0.040000    0.130314   -0.090314 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.130282   -0.090282 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.130006   -0.090006 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.129793   -0.089793 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.129754   -0.089754 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.129612   -0.089612 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[8]    0.040000    0.129537   -0.089537 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[6]    0.040000    0.129477   -0.089477 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.129449   -0.089449 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[3]    0.040000    0.129324   -0.089324 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[1]    0.040000    0.129258   -0.089258 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[6]    0.040000    0.129232   -0.089232 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[1]    0.040000    0.129211   -0.089211 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[6]    0.040000    0.129159   -0.089159 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.129017   -0.089017 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[0]    0.040000    0.129016   -0.089016 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[7]    0.040000    0.128917   -0.088917 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[1]    0.040000    0.128911   -0.088911 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[8]    0.040000    0.128775   -0.088775 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[0]    0.040000    0.128454   -0.088454 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[2]    0.040000    0.128389   -0.088389 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.128338   -0.088338 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.128261   -0.088261 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[1]    0.040000    0.128222   -0.088222 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[3]    0.040000    0.128154   -0.088154 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[3]    0.040000    0.128062   -0.088062 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.127992   -0.087992 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[8]    0.040000    0.127956   -0.087956 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[0]    0.040000    0.127859   -0.087859 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[1]    0.040000    0.127801   -0.087801 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.127571   -0.087571 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[7]    0.040000    0.127539   -0.087539 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.127435   -0.087435 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[3]    0.040000    0.127314   -0.087314 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[3]    0.040000    0.127216   -0.087216 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[0]    0.040000    0.127099   -0.087099 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.127084   -0.087084 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.127047   -0.087047 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.127016   -0.087016 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[3]    0.040000    0.126969   -0.086969 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[0]    0.040000    0.126967   -0.086967 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.126868   -0.086868 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[7]    0.040000    0.126834   -0.086834 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[2]    0.040000    0.126822   -0.086822 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[8]    0.040000    0.126542   -0.086542 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[0]    0.040000    0.126415   -0.086415 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/wmask0[0]    0.040000    0.126386   -0.086386 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.126306   -0.086306 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[4]    0.040000    0.126182   -0.086182 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.126109   -0.086109 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[7]    0.040000    0.126057   -0.086057 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[2]    0.040000    0.125958   -0.085958 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.125924   -0.085924 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[0]    0.040000    0.125785   -0.085785 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.125599   -0.085599 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.125578   -0.085578 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[1]    0.040000    0.125570   -0.085570 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[7]    0.040000    0.125436   -0.085436 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[4]    0.040000    0.125356   -0.085356 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.125248   -0.085248 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[8]    0.040000    0.125179   -0.085179 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[8]    0.040000    0.125164   -0.085164 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.125131   -0.085131 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.125127   -0.085127 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[7]    0.040000    0.125000   -0.085000 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[1]    0.040000    0.124814   -0.084814 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[8]    0.040000    0.124778   -0.084778 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[2]    0.040000    0.124652   -0.084652 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[3]    0.040000    0.124484   -0.084484 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.124460   -0.084460 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[0]    0.040000    0.124094   -0.084094 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.124062   -0.084062 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.124004   -0.084004 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[0]    0.040000    0.124004   -0.084004 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.123982   -0.083982 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.123950   -0.083950 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.123928   -0.083928 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.123911   -0.083911 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.123829   -0.083829 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[4]    0.040000    0.123823   -0.083823 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[0]    0.040000    0.123765   -0.083765 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.123713   -0.083713 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[1]    0.040000    0.123655   -0.083655 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.123635   -0.083635 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.123592   -0.083592 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.123517   -0.083517 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.123489   -0.083489 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[8]    0.040000    0.123450   -0.083450 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[2]    0.040000    0.123307   -0.083307 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[1]    0.040000    0.123182   -0.083182 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.123152   -0.083152 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[2]    0.040000    0.123119   -0.083119 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.123110   -0.083110 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.123090   -0.083090 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.123075   -0.083075 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[5]    0.040000    0.123058   -0.083058 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[7]    0.040000    0.122992   -0.082992 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[3]    0.040000    0.122977   -0.082977 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.122969   -0.082969 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[5]    0.040000    0.122927   -0.082927 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.122908   -0.082908 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[1]    0.040000    0.122640   -0.082640 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[0]    0.040000    0.122627   -0.082627 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[3]    0.040000    0.122614   -0.082614 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[7]    0.040000    0.122598   -0.082598 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[2]    0.040000    0.122511   -0.082511 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[0]    0.040000    0.122456   -0.082456 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[2]    0.040000    0.122246   -0.082246 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.122208   -0.082208 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.122200   -0.082200 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.121999   -0.081999 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[3]    0.040000    0.121927   -0.081927 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.121790   -0.081790 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[2]    0.040000    0.121755   -0.081755 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.121565   -0.081565 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.121534   -0.081534 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.121528   -0.081528 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[0]    0.040000    0.121482   -0.081482 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[1]    0.040000    0.121482   -0.081482 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.121316   -0.081316 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.121297   -0.081297 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[0]    0.040000    0.121216   -0.081216 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[0]    0.040000    0.121167   -0.081167 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[4]    0.040000    0.121075   -0.081075 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.121068   -0.081068 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[3]    0.040000    0.121062   -0.081062 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.121057   -0.081057 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[6]    0.040000    0.121034   -0.081034 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[8]    0.040000    0.121024   -0.081024 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[4]    0.040000    0.121020   -0.081020 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[8]    0.040000    0.121001   -0.081001 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.120987   -0.080987 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.120986   -0.080986 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.120975   -0.080975 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[1]    0.040000    0.120938   -0.080938 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.120931   -0.080931 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[0]    0.040000    0.120917   -0.080917 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[1]    0.040000    0.120898   -0.080898 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.120869   -0.080869 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[1]    0.040000    0.120821   -0.080821 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[4]    0.040000    0.120803   -0.080803 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.120591   -0.080591 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.120510   -0.080510 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.120359   -0.080359 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[3]    0.040000    0.120188   -0.080188 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.120086   -0.080086 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.119983   -0.079983 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[8]    0.040000    0.119983   -0.079983 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.119901   -0.079901 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/wmask0[0]    0.040000    0.119883   -0.079883 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.119878   -0.079878 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.119770   -0.079770 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.119741   -0.079741 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[5]    0.040000    0.119678   -0.079678 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/wmask0[2]    0.040000    0.119635   -0.079635 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[4]    0.040000    0.119566   -0.079566 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.119540   -0.079540 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.119521   -0.079521 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.119506   -0.079506 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.119501   -0.079501 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.119443   -0.079443 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[2]    0.040000    0.119434   -0.079434 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.119396   -0.079396 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.119393   -0.079393 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[1]    0.040000    0.119363   -0.079363 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.119209   -0.079209 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[2]    0.040000    0.119202   -0.079202 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.119186   -0.079186 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[6]    0.040000    0.119132   -0.079132 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[6]    0.040000    0.119132   -0.079132 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.119056   -0.079056 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[3]    0.040000    0.119015   -0.079015 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[2]    0.040000    0.118965   -0.078965 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[6]    0.040000    0.118964   -0.078964 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.118955   -0.078955 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[5]    0.040000    0.118942   -0.078942 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[5]    0.040000    0.118942   -0.078942 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[7]    0.040000    0.118806   -0.078806 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[1]    0.040000    0.118804   -0.078804 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[6]    0.040000    0.118798   -0.078798 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.118785   -0.078785 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[0]    0.040000    0.118721   -0.078721 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[4]    0.040000    0.118716   -0.078716 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[6]    0.040000    0.118806   -0.078806 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[4]    0.040000    0.118790   -0.078790 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.118765   -0.078765 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[4]    0.040000    0.118699   -0.078699 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.118671   -0.078671 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[4]    0.040000    0.118635   -0.078635 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[8]    0.040000    0.118586   -0.078586 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.118579   -0.078579 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.118575   -0.078575 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[3]    0.040000    0.118525   -0.078525 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.118481   -0.078481 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[2]    0.040000    0.118475   -0.078475 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[2]    0.040000    0.118469   -0.078469 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[4]    0.040000    0.118356   -0.078356 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.118343   -0.078343 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[3]    0.040000    0.118303   -0.078303 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.118269   -0.078269 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.118215   -0.078215 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[1]    0.040000    0.118162   -0.078162 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[4]    0.040000    0.118127   -0.078127 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[2]    0.040000    0.118040   -0.078040 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.118027   -0.078027 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.117998   -0.077998 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.117927   -0.077927 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.117919   -0.077919 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[5]    0.040000    0.117899   -0.077899 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[0]    0.040000    0.117866   -0.077866 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.117843   -0.077843 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.117811   -0.077811 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.117788   -0.077788 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[2]    0.040000    0.117785   -0.077785 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.117769   -0.077769 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[2]    0.040000    0.117731   -0.077731 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[5]    0.040000    0.117722   -0.077722 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[6]    0.040000    0.117710   -0.077710 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[1]    0.040000    0.117683   -0.077683 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.117654   -0.077654 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[0]    0.040000    0.117654   -0.077654 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[0]    0.040000    0.117652   -0.077652 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[5]    0.040000    0.117631   -0.077631 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.117627   -0.077627 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[3]    0.040000    0.117583   -0.077583 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.117537   -0.077537 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[5]    0.040000    0.117411   -0.077411 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[4]    0.040000    0.117409   -0.077409 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[3]    0.040000    0.117398   -0.077398 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.117382   -0.077382 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[1]    0.040000    0.117377   -0.077377 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.117305   -0.077305 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[7]    0.040000    0.117236   -0.077236 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.117230   -0.077230 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[5]    0.040000    0.117227   -0.077227 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.117188   -0.077188 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[8]    0.040000    0.117183   -0.077183 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.117153   -0.077153 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[8]    0.040000    0.117121   -0.077121 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[3]    0.040000    0.117023   -0.077023 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[1]    0.040000    0.117000   -0.077000 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[3]    0.040000    0.116927   -0.076927 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[3]    0.040000    0.116875   -0.076875 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.116868   -0.076868 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[3]    0.040000    0.116866   -0.076866 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[2]    0.040000    0.116704   -0.076704 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[6]    0.040000    0.116702   -0.076702 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[6]    0.040000    0.116560   -0.076560 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[2]    0.040000    0.116523   -0.076523 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[2]    0.040000    0.116486   -0.076486 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[0]    0.040000    0.116468   -0.076468 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[1]    0.040000    0.116457   -0.076457 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[2]    0.040000    0.116449   -0.076449 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[2]    0.040000    0.116447   -0.076447 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[8]    0.040000    0.118615   -0.078615 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[3]    0.040000    0.118575   -0.078575 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[3]    0.040000    0.118560   -0.078560 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[4]    0.040000    0.118454   -0.078454 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[4]    0.040000    0.118398   -0.078398 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.118374   -0.078374 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[4]    0.040000    0.118307   -0.078307 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[6]    0.040000    0.118269   -0.078269 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[1]    0.040000    0.118255   -0.078255 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[5]    0.040000    0.118233   -0.078233 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[3]    0.040000    0.118195   -0.078195 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[8]    0.040000    0.118137   -0.078137 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[8]    0.040000    0.118109   -0.078109 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr1[2]    0.040000    0.118109   -0.078109 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[6]    0.040000    0.118071   -0.078071 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[2]    0.040000    0.118016   -0.078016 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[2]    0.040000    0.117970   -0.077970 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.117934   -0.077934 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[1]    0.040000    0.117924   -0.077924 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[2]    0.040000    0.117735   -0.077735 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[6]    0.040000    0.117733   -0.077733 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[6]    0.040000    0.117730   -0.077730 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[4]    0.040000    0.117704   -0.077704 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[1]    0.040000    0.117681   -0.077681 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[6]    0.040000    0.117666   -0.077666 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.117637   -0.077637 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[8]    0.040000    0.117527   -0.077527 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[5]    0.040000    0.117499   -0.077499 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.117473   -0.077473 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.117470   -0.077470 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[4]    0.040000    0.117412   -0.077412 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[5]    0.040000    0.117408   -0.077408 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr0[3]    0.040000    0.117396   -0.077396 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.117388   -0.077388 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/addr0[2]    0.040000    0.117353   -0.077353 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.117333   -0.077333 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[5]    0.040000    0.117296   -0.077296 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr1[3]    0.040000    0.117267   -0.077267 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[5]    0.040000    0.117131   -0.077131 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.117094   -0.077094 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[7]    0.040000    0.117061   -0.077061 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.117048   -0.077048 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[3]    0.040000    0.117012   -0.077012 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[8]    0.040000    0.117009   -0.077009 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[4]    0.040000    0.116979   -0.076979 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[6]    0.040000    0.116918   -0.076918 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[4]    0.040000    0.116885   -0.076885 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.116869   -0.076869 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.116833   -0.076833 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/wmask0[1]    0.040000    0.116787   -0.076787 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[2]    0.040000    0.116767   -0.076767 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[1]    0.040000    0.116753   -0.076753 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.116667   -0.076667 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.116612   -0.076612 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[5]    0.040000    0.116488   -0.076488 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.116446   -0.076446 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[3]    0.040000    0.116441   -0.076441 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[3]    0.040000    0.116401   -0.076401 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[7]    0.040000    0.116394   -0.076394 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[0]    0.040000    0.116389   -0.076389 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[5]    0.040000    0.116380   -0.076380 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/wmask0[3]    0.040000    0.116349   -0.076349 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[3]    0.040000    0.116338   -0.076338 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.116308   -0.076308 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.116212   -0.076212 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram/wmask0[2]    0.040000    0.116206   -0.076206 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[4]    0.040000    0.116181   -0.076181 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.116378   -0.076378 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[2]    0.040000    0.116372   -0.076372 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/wmask0[1]    0.040000    0.116362   -0.076362 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[7]    0.040000    0.116310   -0.076310 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[2]    0.040000    0.116292   -0.076292 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[0]    0.040000    0.116222   -0.076222 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[3]    0.040000    0.116132   -0.076132 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[1]    0.040000    0.116110   -0.076110 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[3]    0.040000    0.116066   -0.076066 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr1[0]    0.040000    0.116029   -0.076029 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.116006   -0.076006 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[8]    0.040000    0.115984   -0.075984 (VIOLATED)
+conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.115973   -0.075973 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.115972   -0.075972 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.115965   -0.075965 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.115946   -0.075946 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[8]    0.040000    0.115904   -0.075904 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[3]    0.040000    0.115892   -0.075892 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr0[5]    0.040000    0.115821   -0.075821 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[3]    0.040000    0.115812   -0.075812 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[8]    0.040000    0.115718   -0.075718 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.115717   -0.075717 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.115715   -0.075715 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.115469   -0.075469 (VIOLATED)
-conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.115384   -0.075384 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.115362   -0.075362 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.115862   -0.075862 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[3]    0.040000    0.115719   -0.075719 (VIOLATED)
+data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.115718   -0.075718 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.115685   -0.075685 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/addr1[1]    0.040000    0.115360   -0.075360 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/addr1[2]    0.040000    0.115359   -0.075359 (VIOLATED)
 yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr1[2]    0.040000    0.115234   -0.075234 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram/addr0[7]    0.040000    0.115205   -0.075205 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/wmask0[2]    0.040000    0.115177   -0.075177 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram/addr0[7]    0.040000    0.115134   -0.075134 (VIOLATED)
-instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.115067   -0.075067 (VIOLATED)
-data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/addr0[7]    0.040000    0.114820   -0.074820 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.114256   -0.074256 (VIOLATED)
-hold30719/A                             0.750000    0.784750   -0.034750 (VIOLATED)
-_129791_/Z                              0.750000    0.757829   -0.007829 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[0]    0.040000    0.115094   -0.075094 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/addr0[5]    0.040000    0.114937   -0.074937 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram/addr1[2]    0.040000    0.114928   -0.074928 (VIOLATED)
+instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[0].u_cell.u_sram/addr1[2]    0.040000    0.114365   -0.074365 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram/addr0[5]    0.040000    0.114286   -0.074286 (VIOLATED)
+QSPI_IO3                                0.750000    0.820554   -0.070554 (VIOLATED)
+QSPI_IO1                                0.750000    0.752501   -0.002501 (VIOLATED)
 
 max capacitance
 
 Pin                                        Limit         Cap       Slack
 ------------------------------------------------------------------------
-QSPI_IO3                                0.200000    0.319708   -0.119708 (VIOLATED)
-_129789_/Z                              0.200000    0.319708   -0.119708 (VIOLATED)
-QSPI_IO0                                0.200000    0.316358   -0.116358 (VIOLATED)
-_129792_/Z                              0.200000    0.316358   -0.116358 (VIOLATED)
-QSPI_IO2                                0.200000    0.315623   -0.115623 (VIOLATED)
-_129790_/Z                              0.200000    0.315623   -0.115623 (VIOLATED)
-QSPI_IO1                                0.200000    0.257481   -0.057481 (VIOLATED)
-_129791_/Z                              0.200000    0.257481   -0.057481 (VIOLATED)
-wire10533/X                             0.200000    0.245076   -0.045076 (VIOLATED)
-clkbuf_6_1__f_clk_i_regs/X              0.200000    0.235623   -0.035623 (VIOLATED)
-clkbuf_6_0__f_clk_i_regs/X              0.200000    0.223151   -0.023151 (VIOLATED)
-clkbuf_6_36__f_clk_i_regs/X             0.200000    0.222694   -0.022694 (VIOLATED)
-clkbuf_6_14__f_clk_i_regs/X             0.200000    0.213879   -0.013879 (VIOLATED)
-clkbuf_6_15__f_clk_i_regs/X             0.200000    0.212289   -0.012289 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[2].u_cell.u_sram/dout1[24]    0.027560    0.035486   -0.007926 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/dout1[21]    0.027560    0.035307   -0.007747 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/dout1[11]    0.027560    0.033290   -0.005730 (VIOLATED)
-yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/dout1[23]    0.027560    0.033267   -0.005707 (VIOLATED)
-max_length30598/X                       0.200000    0.202610   -0.002610 (VIOLATED)
-clkbuf_6_4__f_clk_i_regs/X              0.200000    0.200936   -0.000936 (VIOLATED)
-clkbuf_6_37__f_clk_i_regs/X             0.200000    0.200120   -0.000120 (VIOLATED)
+clkbuf_6_16_0_clk_i_regs/X              0.200000    0.371068   -0.171068 (VIOLATED)
+I2C_SDA                                 0.200000    0.313057   -0.113057 (VIOLATED)
+_130213_/Z                              0.200000    0.313057   -0.113057 (VIOLATED)
+clkbuf_6_13_0_clk_i_regs/X              0.200000    0.308844   -0.108844 (VIOLATED)
+clkbuf_6_15_0_clk_i_regs/X              0.200000    0.302053   -0.102053 (VIOLATED)
+clkbuf_6_3_0_clk_i_regs/X               0.200000    0.271191   -0.071191 (VIOLATED)
+clkbuf_6_36_0_clk_i_regs/X              0.200000    0.260443   -0.060443 (VIOLATED)
+clkbuf_6_12_0_clk_i_regs/X              0.200000    0.258104   -0.058104 (VIOLATED)
+QSPI_IO3                                0.200000    0.243266   -0.043266 (VIOLATED)
+_130214_/Z                              0.200000    0.243266   -0.043266 (VIOLATED)
+clkbuf_6_1_0_clk_i_regs/X               0.200000    0.240470   -0.040470 (VIOLATED)
+clkbuf_6_9_0_clk_i_regs/X               0.200000    0.225662   -0.025662 (VIOLATED)
+clkbuf_6_0_0_clk_i_regs/X               0.200000    0.224311   -0.024311 (VIOLATED)
+QSPI_IO1                                0.200000    0.223076   -0.023076 (VIOLATED)
+_130216_/Z                              0.200000    0.223076   -0.023076 (VIOLATED)
+clkbuf_6_2_0_clk_i_regs/X               0.200000    0.221744   -0.021744 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/dout1[3]    0.027560    0.047465   -0.019905 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[3].u_cell.u_sram/dout1[0]    0.027560    0.036948   -0.009388 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/dout1[31]    0.027560    0.034361   -0.006801 (VIOLATED)
+clkbuf_6_19_0_clk_i_regs/X              0.200000    0.206370   -0.006370 (VIOLATED)
+clkbuf_6_14_0_clk_i_regs/X              0.200000    0.205142   -0.005142 (VIOLATED)
+yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram/dout1[30]    0.027560    0.027685   -0.000125 (VIOLATED)
 
 
 
 ===========================================================================
 report_parasitic_annotation -report_unannotated
 ============================================================================
-Found 872 unannotated drivers.
- _120461__30553/LO
- _129114__30554/LO
- _129788__30522/HI
+Found 945 unannotated drivers.
+ _120712__30888/LO
+ _129539__30889/LO
+ _130213__30857/HI
  clkload0/Y
  clkload1/Y
  clkload10/Y
  clkload100/Y
- clkload101/X
- clkload102/X
- clkload103/X
+ clkload101/Y
+ clkload102/Y
+ clkload103/Y
  clkload104/Y
  clkload105/X
- clkload106/X
- clkload107/X
- clkload108/X
+ clkload106/Y
+ clkload107/Y
+ clkload108/Y
  clkload109/X
  clkload11/Y
  clkload110/X
- clkload111/Y
- clkload112/X
+ clkload111/X
+ clkload112/Y
  clkload113/X
  clkload114/Y
  clkload115/Y
- clkload116/Y
- clkload117/Y
- clkload118/Y
- clkload119/Y
+ clkload116/X
+ clkload117/X
+ clkload118/X
+ clkload119/X
  clkload12/Y
- clkload120/Y
- clkload121/Y
+ clkload120/X
+ clkload121/X
  clkload122/Y
- clkload123/Y
- clkload124/X
- clkload125/Y
+ clkload123/X
+ clkload124/Y
+ clkload125/X
  clkload126/Y
  clkload127/Y
- clkload128/X
- clkload129/X
+ clkload128/Y
+ clkload129/Y
  clkload13/Y
  clkload130/Y
- clkload131/Y
- clkload132/Y
- clkload133/Y
+ clkload131/X
+ clkload132/X
+ clkload133/X
  clkload134/X
- clkload135/X
- clkload136/X
- clkload137/X
- clkload138/Y
+ clkload135/Y
+ clkload136/Y
+ clkload137/Y
+ clkload138/X
  clkload139/Y
- clkload14/X
+ clkload14/Y
  clkload140/Y
  clkload141/Y
  clkload142/Y
- clkload143/X
- clkload144/X
- clkload145/Y
+ clkload143/Y
+ clkload144/Y
+ clkload145/X
  clkload146/Y
- clkload147/Y
+ clkload147/X
  clkload148/Y
  clkload149/Y
  clkload15/Y
  clkload150/Y
- clkload151/X
+ clkload151/Y
  clkload152/Y
  clkload153/Y
  clkload154/Y
- clkload155/X
+ clkload155/Y
  clkload156/Y
- clkload157/X
+ clkload157/Y
  clkload158/Y
  clkload159/X
  clkload16/Y
- clkload160/Y
+ clkload160/X
  clkload161/Y
  clkload162/Y
- clkload163/Y
- clkload164/Y
+ clkload163/X
+ clkload164/X
  clkload165/Y
  clkload166/Y
- clkload167/Y
- clkload168/X
+ clkload167/X
+ clkload168/Y
  clkload169/Y
  clkload17/Y
  clkload170/Y
  clkload171/X
  clkload172/Y
- clkload173/Y
- clkload174/X
+ clkload173/X
+ clkload174/Y
  clkload175/Y
- clkload176/X
- clkload177/X
- clkload178/Y
- clkload179/X
+ clkload176/Y
+ clkload177/Y
+ clkload178/X
+ clkload179/Y
  clkload18/Y
  clkload180/Y
- clkload181/X
+ clkload181/Y
  clkload182/Y
  clkload183/Y
  clkload184/Y
- clkload185/Y
+ clkload185/X
  clkload186/X
  clkload187/Y
- clkload188/X
- clkload189/Y
+ clkload188/Y
+ clkload189/X
  clkload19/Y
  clkload190/Y
- clkload191/Y
+ clkload191/X
  clkload192/Y
  clkload193/Y
- clkload194/Y
+ clkload194/X
  clkload195/Y
- clkload196/X
- clkload197/X
- clkload198/X
- clkload199/X
+ clkload196/Y
+ clkload197/Y
+ clkload198/Y
+ clkload199/Y
  clkload2/Y
  clkload20/Y
  clkload200/X
- clkload201/Y
+ clkload201/X
  clkload202/X
  clkload203/X
  clkload204/X
@@ -1027,162 +1039,162 @@ Found 872 unannotated drivers.
  clkload206/Y
  clkload207/Y
  clkload208/Y
- clkload209/Y
+ clkload209/X
  clkload21/Y
  clkload210/X
- clkload211/Y
- clkload212/X
- clkload213/Y
- clkload214/Y
+ clkload211/X
+ clkload212/Y
+ clkload213/X
+ clkload214/X
  clkload215/X
  clkload216/Y
- clkload217/Y
+ clkload217/X
  clkload218/Y
- clkload219/Y
- clkload22/Y
- clkload220/Y
- clkload221/X
- clkload222/Y
+ clkload219/X
+ clkload22/X
+ clkload220/X
+ clkload221/Y
+ clkload222/X
  clkload223/Y
- clkload224/Y
- clkload225/Y
+ clkload224/X
+ clkload225/X
  clkload226/Y
  clkload227/Y
- clkload228/Y
- clkload229/Y
+ clkload228/X
+ clkload229/X
  clkload23/Y
- clkload230/Y
+ clkload230/X
  clkload231/Y
  clkload232/Y
- clkload233/Y
+ clkload233/X
  clkload234/Y
- clkload235/Y
+ clkload235/X
  clkload236/Y
  clkload237/Y
  clkload238/Y
  clkload239/Y
  clkload24/Y
  clkload240/Y
- clkload241/Y
+ clkload241/X
  clkload242/Y
  clkload243/Y
- clkload244/X
+ clkload244/Y
  clkload245/Y
  clkload246/Y
  clkload247/Y
  clkload248/Y
- clkload249/Y
+ clkload249/X
  clkload25/Y
  clkload250/Y
  clkload251/X
  clkload252/Y
- clkload253/Y
- clkload254/Y
+ clkload253/X
+ clkload254/X
  clkload255/X
- clkload256/Y
+ clkload256/X
  clkload257/X
- clkload258/Y
- clkload259/Y
- clkload26/X
- clkload260/Y
- clkload261/Y
- clkload262/Y
- clkload263/Y
+ clkload258/X
+ clkload259/X
+ clkload26/Y
+ clkload260/X
+ clkload261/X
+ clkload262/X
+ clkload263/X
  clkload264/Y
  clkload265/Y
  clkload266/X
  clkload267/X
- clkload268/Y
- clkload269/Y
- clkload27/X
- clkload270/Y
+ clkload268/X
+ clkload269/X
+ clkload27/Y
+ clkload270/X
  clkload271/Y
- clkload272/X
+ clkload272/Y
  clkload273/Y
  clkload274/Y
  clkload275/Y
- clkload276/Y
+ clkload276/X
  clkload277/Y
- clkload278/Y
- clkload279/Y
- clkload28/X
- clkload280/Y
- clkload281/Y
- clkload282/Y
- clkload283/Y
- clkload284/Y
- clkload285/Y
- clkload286/Y
- clkload287/Y
- clkload288/Y
- clkload289/Y
+ clkload278/X
+ clkload279/X
+ clkload28/Y
+ clkload280/X
+ clkload281/X
+ clkload282/X
+ clkload283/X
+ clkload284/X
+ clkload285/X
+ clkload286/X
+ clkload287/X
+ clkload288/X
+ clkload289/X
  clkload29/X
  clkload290/Y
- clkload291/Y
- clkload292/Y
- clkload293/Y
- clkload294/Y
- clkload295/Y
+ clkload291/X
+ clkload292/X
+ clkload293/X
+ clkload294/X
+ clkload295/X
  clkload296/Y
  clkload297/Y
  clkload298/Y
- clkload299/Y
+ clkload299/X
  clkload3/Y
- clkload30/Y
+ clkload30/X
  clkload300/Y
  clkload301/Y
  clkload302/Y
  clkload303/Y
  clkload304/Y
  clkload305/Y
- clkload306/X
+ clkload306/Y
  clkload307/Y
- clkload308/Y
+ clkload308/X
  clkload309/Y
  clkload31/Y
- clkload310/Y
- clkload311/Y
- clkload312/Y
+ clkload310/X
+ clkload311/X
+ clkload312/X
  clkload313/Y
  clkload314/Y
- clkload315/Y
- clkload316/Y
- clkload317/Y
- clkload318/Y
+ clkload315/X
+ clkload316/X
+ clkload317/X
+ clkload318/X
  clkload319/Y
- clkload32/Y
+ clkload32/X
  clkload320/Y
  clkload321/Y
- clkload322/Y
- clkload323/Y
+ clkload322/X
+ clkload323/X
  clkload324/Y
- clkload325/X
+ clkload325/Y
  clkload326/Y
  clkload327/X
  clkload328/Y
  clkload329/Y
- clkload33/X
+ clkload33/Y
  clkload330/Y
  clkload331/Y
  clkload332/Y
- clkload333/X
+ clkload333/Y
  clkload334/Y
  clkload335/Y
  clkload336/Y
  clkload337/Y
  clkload338/Y
  clkload339/Y
- clkload34/X
+ clkload34/Y
  clkload340/Y
- clkload341/X
+ clkload341/Y
  clkload342/Y
  clkload343/Y
- clkload344/Y
+ clkload344/X
  clkload345/Y
- clkload346/Y
+ clkload346/X
  clkload347/Y
  clkload348/Y
- clkload349/Y
+ clkload349/X
  clkload35/Y
  clkload350/Y
  clkload351/Y
@@ -1190,78 +1202,151 @@ Found 872 unannotated drivers.
  clkload353/Y
  clkload354/Y
  clkload355/Y
- clkload356/Y
+ clkload356/X
  clkload357/Y
+ clkload358/X
+ clkload359/Y
  clkload36/X
- clkload37/X
+ clkload360/Y
+ clkload361/Y
+ clkload362/Y
+ clkload363/Y
+ clkload364/Y
+ clkload365/X
+ clkload366/Y
+ clkload367/Y
+ clkload368/X
+ clkload369/X
+ clkload37/Y
+ clkload370/Y
+ clkload371/Y
+ clkload372/Y
+ clkload373/X
+ clkload374/Y
+ clkload375/Y
+ clkload376/Y
+ clkload377/Y
+ clkload378/Y
+ clkload379/X
  clkload38/Y
- clkload39/X
+ clkload380/Y
+ clkload381/X
+ clkload382/Y
+ clkload383/Y
+ clkload384/X
+ clkload385/Y
+ clkload386/Y
+ clkload387/Y
+ clkload388/Y
+ clkload389/Y
+ clkload39/Y
+ clkload390/Y
+ clkload391/Y
+ clkload392/Y
+ clkload393/Y
+ clkload394/Y
+ clkload395/Y
+ clkload396/Y
+ clkload397/Y
+ clkload398/Y
+ clkload399/Y
  clkload4/Y
- clkload40/X
- clkload41/X
- clkload42/X
+ clkload40/Y
+ clkload400/X
+ clkload401/X
+ clkload402/Y
+ clkload403/Y
+ clkload404/Y
+ clkload405/X
+ clkload406/Y
+ clkload407/Y
+ clkload408/X
+ clkload409/Y
+ clkload41/Y
+ clkload410/Y
+ clkload411/Y
+ clkload412/Y
+ clkload413/X
+ clkload414/X
+ clkload415/Y
+ clkload416/Y
+ clkload417/X
+ clkload418/X
+ clkload419/X
+ clkload42/Y
+ clkload420/Y
+ clkload421/Y
+ clkload422/Y
+ clkload423/X
+ clkload424/X
+ clkload425/X
+ clkload426/X
+ clkload427/X
+ clkload428/X
+ clkload429/Y
  clkload43/Y
+ clkload430/X
  clkload44/Y
- clkload45/X
+ clkload45/Y
  clkload46/Y
- clkload47/X
- clkload48/X
- clkload49/X
+ clkload47/Y
+ clkload48/Y
+ clkload49/Y
  clkload5/Y
- clkload50/X
- clkload51/X
- clkload52/X
- clkload53/X
- clkload54/X
- clkload55/X
+ clkload50/Y
+ clkload51/Y
+ clkload52/Y
+ clkload53/Y
+ clkload54/Y
+ clkload55/Y
  clkload56/X
  clkload57/X
- clkload58/X
- clkload59/X
+ clkload58/Y
+ clkload59/Y
  clkload6/Y
  clkload60/Y
- clkload61/Y
- clkload62/X
- clkload63/X
- clkload64/X
- clkload65/Y
+ clkload61/X
+ clkload62/Y
+ clkload63/Y
+ clkload64/Y
+ clkload65/X
  clkload66/Y
  clkload67/Y
  clkload68/Y
  clkload69/Y
  clkload7/Y
  clkload70/Y
- clkload71/X
- clkload72/X
- clkload73/X
- clkload74/X
- clkload75/X
- clkload76/Y
+ clkload71/Y
+ clkload72/Y
+ clkload73/Y
+ clkload74/Y
+ clkload75/Y
+ clkload76/X
  clkload77/X
- clkload78/X
- clkload79/X
- clkload8/X
- clkload80/X
+ clkload78/Y
+ clkload79/Y
+ clkload8/Y
+ clkload80/Y
  clkload81/Y
- clkload82/X
- clkload83/X
+ clkload82/Y
+ clkload83/Y
  clkload84/X
  clkload85/X
- clkload86/X
+ clkload86/Y
  clkload87/Y
- clkload88/Y
+ clkload88/X
  clkload89/Y
  clkload9/Y
- clkload90/X
+ clkload90/Y
  clkload91/Y
- clkload92/X
+ clkload92/Y
  clkload93/Y
  clkload94/Y
  clkload95/Y
  clkload96/Y
  clkload97/Y
  clkload98/Y
- clkload99/Y
+ clkload99/X
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[0]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[10]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[11]
@@ -1294,7 +1379,7 @@ Found 872 unannotated drivers.
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[7]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[8]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[9]
- conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram_30523/HI
+ conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram_30858/HI
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[0]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[10]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[11]
@@ -1327,7 +1412,7 @@ Found 872 unannotated drivers.
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[7]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[8]
  conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[9]
- conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram_30524/HI
+ conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram_30859/HI
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[0]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[10]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[11]
@@ -1360,7 +1445,7 @@ Found 872 unannotated drivers.
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[7]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[8]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[9]
- data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram_30525/HI
+ data_bram_ctrl_inst.data_ram.u_mem.g_2k\[0\].u_cell.u_sram_30860/HI
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[0]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[10]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[11]
@@ -1393,7 +1478,7 @@ Found 872 unannotated drivers.
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[7]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[8]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[9]
- data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram_30526/HI
+ data_bram_ctrl_inst.data_ram.u_mem.g_2k\[1\].u_cell.u_sram_30861/HI
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[0]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[10]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[11]
@@ -1426,7 +1511,7 @@ Found 872 unannotated drivers.
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[7]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[8]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[9]
- data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram_30527/HI
+ data_bram_ctrl_inst.data_ram.u_mem.g_2k\[2\].u_cell.u_sram_30862/HI
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[0]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[10]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[11]
@@ -1459,7 +1544,7 @@ Found 872 unannotated drivers.
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[7]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[8]
  data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[9]
- data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram_30528/HI
+ data_bram_ctrl_inst.data_ram.u_mem.g_2k\[3\].u_cell.u_sram_30863/HI
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[0]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[10]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[11]
@@ -1492,7 +1577,7 @@ Found 872 unannotated drivers.
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[7]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[8]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram/dout0[9]
- instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram_30529/HI
+ instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[0\].u_cell.u_sram_30864/HI
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[0]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[10]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[11]
@@ -1525,7 +1610,7 @@ Found 872 unannotated drivers.
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[7]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[8]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram/dout0[9]
- instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram_30530/HI
+ instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[1\].u_cell.u_sram_30865/HI
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[0]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[10]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[11]
@@ -1558,7 +1643,7 @@ Found 872 unannotated drivers.
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[7]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[8]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram/dout0[9]
- instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram_30531/HI
+ instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[2\].u_cell.u_sram_30866/HI
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[0]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[10]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[11]
@@ -1591,23 +1676,23 @@ Found 872 unannotated drivers.
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[7]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[8]
  instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram/dout0[9]
- instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram_30532/HI
+ instr_bram_ctrl_inst.instr_ram.u_mem.g_2k\[3\].u_cell.u_sram_30867/HI
  top_module/HI
- top_module_30538/HI
- top_module_30539/HI
- top_module_30540/HI
- top_module_30541/HI
- top_module_30542/HI
- top_module_30543/HI
- top_module_30544/HI
- top_module_30545/HI
- top_module_30546/HI
- top_module_30547/HI
- top_module_30548/HI
- top_module_30549/HI
- top_module_30550/HI
- top_module_30551/HI
- top_module_30552/HI
+ top_module_30873/HI
+ top_module_30874/HI
+ top_module_30875/HI
+ top_module_30876/HI
+ top_module_30877/HI
+ top_module_30878/HI
+ top_module_30879/HI
+ top_module_30880/HI
+ top_module_30881/HI
+ top_module_30882/HI
+ top_module_30883/HI
+ top_module_30884/HI
+ top_module_30885/HI
+ top_module_30886/HI
+ top_module_30887/HI
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/dout0[0]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/dout0[10]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/dout0[11]
@@ -1640,7 +1725,7 @@ Found 872 unannotated drivers.
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/dout0[7]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/dout0[8]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram/dout0[9]
- yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram_30533/HI
+ yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_1k.u_cell.u_sram_30868/HI
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[0]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[10]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[11]
@@ -1673,7 +1758,7 @@ Found 872 unannotated drivers.
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[7]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[8]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram/dout0[9]
- yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram_30534/HI
+ yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[0\].u_cell.u_sram_30869/HI
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[0]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[10]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[11]
@@ -1706,7 +1791,7 @@ Found 872 unannotated drivers.
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[7]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[8]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram/dout0[9]
- yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram_30535/HI
+ yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[1\].u_cell.u_sram_30870/HI
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram/dout0[0]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram/dout0[10]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram/dout0[11]
@@ -1739,7 +1824,7 @@ Found 872 unannotated drivers.
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram/dout0[7]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram/dout0[8]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram/dout0[9]
- yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram_30536/HI
+ yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[2\].u_cell.u_sram_30871/HI
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram/dout0[0]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram/dout0[10]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram/dout0[11]
@@ -1772,13 +1857,13 @@ Found 872 unannotated drivers.
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram/dout0[7]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram/dout0[8]
  yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram/dout0[9]
- yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram_30537/HI
+ yz_bram_ctrl_inst.yz_ram.u_mem.u_mem.g_2k\[3\].u_cell.u_sram_30872/HI
 Found 0 partially unannotated drivers.
 
 ===========================================================================
-max slew violation count 340
+max slew violation count 333
 max fanout violation count 0
-max cap violation count 21
+max cap violation count 22
 ============================================================================
 
 ===========================================================================

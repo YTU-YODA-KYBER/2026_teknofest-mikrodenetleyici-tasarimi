@@ -278,7 +278,7 @@ class gpio_stress_test extends gpio_base_test;
 endclass
 
 
-//---- 8) GPIO'ya ozgu: ODR ust yarisi ve dma_enable aynasi -------------------
+//---- 8) GPIO'ya ozgu: ODR ust yarisi, IDR gecirgenligi ve gosterim ---------
 class gpio_pad_test extends gpio_base_test;
     `uvm_component_utils(gpio_pad_test)
     function new(string name, uvm_component parent); super.new(name, parent); endfunction
@@ -297,7 +297,7 @@ class gpio_pad_test extends gpio_base_test;
         if (d !== 32'h0000_1234)
             `uvm_error("ODR", $sformatf("ODR[31:16] sifir bagli olmali, okunan 0x%08h", d))
 
-        // IDR gecirgenligi + dma_enable aynasi (pad monitoru PAD_02'yi kontrol eder)
+        // IDR gecirgenligi (pad monitoru ayrica anode/catode kurallarini denetler)
         for (int i = 0; i < 4; i++) begin
             sw = 32'h0 | (i & 32'h3);
             switch_kur(sw, 6);

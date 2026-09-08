@@ -24,8 +24,9 @@
 #      YZ:<sinif>                        <- hizlandirici
 #      SW:<sinif> HC:<cevrim> SC:<cevrim> <- yazilim + iki tarafin cevrimi
 #
-#  uart_mux.sv'de genel UART'in RX'i her modda acik oldugu icin tek
-#  gonderim iki yolu birden besler; iki taraf garantili AYNI ornegi isler.
+#  Hizlandirici girdisini STREAM portundan (UART_YZ -> DMA), CPU'daki
+#  yazilim gerceklemesi ise CORE portundan (UART_GU) alir. Bu yuzden ayni
+#  1960 bayt iki porta da yazilir; iki taraf garantili AYNI ornegi isler.
 #
 #  VERI KUMESI DUZENI
 #  ------------------
@@ -46,8 +47,9 @@
 #
 #  KULLANIM
 #  --------
-#    # 1) ASIL KOSU: kart bagli, yz_bench bitstream'i yuklu, SW1=1 SW0=0
-#    python3 run_accuracy.py --dataset dataset --board --port /dev/ttyUSB1
+#    # 1) ASIL KOSU: kart bagli, yz_bench bitstream'i yuklu, SW0=0
+#    python3 run_accuracy.py --dataset dataset --board \
+#            --core-port /dev/ttyUSB0 --stream-port /dev/ttyUSB1
 #
 #    # 2) CAPRAZ KONTROL: ayni modeli host'ta kostur (kart gerekmez).
 #    #    Kartin SW sutunuyla %100 ayni cikmali -- tam sayi aritmetigi.
@@ -203,26 +205,35 @@ def load_send_data():
     return mod
 
 
-def run_board(items, out_csv, port, baud, settle):
+def run_board(items, out_csv, core_port, stream_port, core_baud, stream_baud,
+              settle):
     """Her ornegi karta gonderip 'YZ:' ve 'SW:' satirlarini toplar.
+
+    Vektor iki porta birden yazilir: STREAM hizlandiriciyi (DMA), CORE ise
+    CPU'daki yazilim gerceklemesini besler. Sonuc satirlarinin ikisi de CORE
+    portundan okunur.
 
     send_data.py'nin send_audio()'su her cagride portu acip kapatir ve
     hatada sys.exit eder -- 300 orneklik bir kosu icin uygun degil. Bu
-    yuzden portu bir kez acip yardimci fonksiyonlarini (read_audio_hex,
-    read_line) yeniden kullaniyoruz; hata durumunda kosu durmaz, ornek
-    'cevapsiz' isaretlenip devam edilir.
+    yuzden portlar bir kez acilip yardimci fonksiyonlari (read_audio_hex,
+    read_line, parse_result) yeniden kullanilir; hata durumunda kosu durmaz,
+    ornek 'cevapsiz' isaretlenip devam edilir.
     """
     sd = load_send_data()
-    ser = sd.open_port(port, baud, timeout=sd.POLL_TMO)
-    print(f"kart kosusu: {len(items)} ornek -> {port} @ {baud}")
+    ser = sd.open_port(core_port, core_baud, timeout=sd.POLL_TMO)
+    stream = sd.open_port(stream_port, stream_baud, timeout=sd.POLL_TMO)
+    print(f"kart kosusu: {len(items)} ornek -> stream {stream_port} @ "
+          f"{stream_baud}, core {core_port} @ {core_baud}")
 
     results, fails = [], 0
     try:
         for i, (path, label) in enumerate(items, 1):
             data = sd.read_audio_hex(path)
             ser.reset_input_buffer()
-            ser.reset_output_buffer()
-            ser.write(data)
+            stream.reset_output_buffer()
+            stream.write(data)      # hizlandirici yolu (DMA)
+            stream.flush()
+            ser.write(data)         # yazilim gerceklemesi yolu (CPU)
             ser.flush()
 
             hw = sw = hc = sc = None
@@ -233,8 +244,9 @@ def run_board(items, out_csv, port, baud, settle):
                     break
                 if line == sd.YZ_BUSY:
                     continue
-                if line.startswith(sd.YZ_PREFIX) and line[len(sd.YZ_PREFIX):].isdigit():
-                    hw = int(line[len(sd.YZ_PREFIX):])
+                got = sd.parse_result(line)
+                if got is not None:
+                    hw = got[0]
                     continue
                 m = SW_LINE_RE.match(line)
                 if m:
@@ -251,11 +263,12 @@ def run_board(items, out_csv, port, baud, settle):
             time.sleep(settle)     # UART hatti bir sonraki cerceve icin dinginlessin
     finally:
         ser.close()
+        stream.close()
 
     if fails:
         print(f"  uyari: {fails} ornekte cevap eksik geldi.")
         print(f"    - yz_bench bitstream'i yuklu mu?")
-        print(f"    - SW1=1 ve SW0=0 mi? (GPIO_IDR[1:0] == 2, TX pini UART_YZ'de)")
+        print(f"    - core ve stream portlari dogru mu, karistirilmis olabilir mi?")
 
     with open(out_csv, "w", newline="") as f:
         w = csv.writer(f)
@@ -418,8 +431,15 @@ def main():
                     help="ayni modeli host'ta kostur (capraz kontrol)")
     ap.add_argument("--report", action="store_true",
                     help="kosturma, mevcut results_*.csv dosyalarindan rapor uret")
-    ap.add_argument("--port", default="/dev/ttyUSB1", help="UART portu")
-    ap.add_argument("--baud", type=int, default=115200, help="UART baud")
+    ap.add_argument("--core-port", default="/dev/ttyUSB0",
+                    help="UART_GU portu: yazilim yolu girdisi + sonuc satirlari")
+    ap.add_argument("--stream-port", default="/dev/ttyUSB1",
+                    help="UART_YZ portu: hizlandirici girdisi")
+    ap.add_argument("--core-baud", type=int, default=115200,
+                    help="core UART baud")
+    ap.add_argument("--stream-baud", type=int, default=115200,
+                    help="stream UART baud (yz_bench her iki UART'i da "
+                         "115200'e kurar; bkz. yz_bench.c)")
     ap.add_argument("--settle", type=float, default=0.05,
                     help="kart kosusunda ornekler arasi bekleme (s)")
     ap.add_argument("--outdir", default=str(HERE), help="results_*.csv nereye yazilsin")
@@ -445,7 +465,8 @@ def main():
                   "yaniltabilir. Sinif basi 50-100 hedefle.")
 
         if args.board:
-            run_board(items, board_csv, args.port, args.baud, args.settle)
+            run_board(items, board_csv, args.core_port, args.stream_port,
+                      args.core_baud, args.stream_baud, args.settle)
         if args.host:
             run_host(items, host_csv)
 

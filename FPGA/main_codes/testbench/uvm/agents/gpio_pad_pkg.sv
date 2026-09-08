@@ -4,12 +4,11 @@
 //  YTU YODA KYBER  |  TEKNOFEST 2026
 //
 //  Aktif taraf: switch'leri (GPIO_IDR) surer.
-//  Pasif taraf: ODR / anode / catode / dma_enable'i izler, YAPISAL
-//  degismezleri kontrol eder ve degerleri scoreboard'a yayinlar.
+//  Pasif taraf: ODR / anode / catode'u izler, YAPISAL degismezleri
+//  kontrol eder ve degerleri scoreboard'a yayinlar.
 //
 //  Kontrol edilen yapisal kurallar (RTL'den cikarildi):
 //    PAD_01  anode her zaman "one-cold" olmalidir (tam bir bit 0)
-//    PAD_02  dma_enable_o, GPIO_IDR[1]'in bir cevrim gecikmeli aynasidir
 //    PAD_03  gosterim kosulu saglanmiyorsa catode 8'hFF (sonuk) olmalidir
 //            kosul: (IDR == 1 && ODR[2:0] != 0) || IDR == 2
 //=============================================================================
@@ -29,14 +28,12 @@ package gpio_pad_pkg;
 
         // Monitorun doldurdugu alanlar
         bit [31:0] odr;
-        bit        dma_enable;
         bit [ 7:0] anode;
         bit [ 7:0] catode;
 
         `uvm_object_utils_begin(gpio_pad_item)
             `uvm_field_int(idr,        UVM_ALL_ON | UVM_HEX)
             `uvm_field_int(odr,        UVM_ALL_ON | UVM_HEX)
-            `uvm_field_int(dma_enable, UVM_ALL_ON)
             `uvm_field_int(anode,      UVM_ALL_ON | UVM_BIN)
             `uvm_field_int(catode,     UVM_ALL_ON | UVM_BIN)
             `uvm_field_int(tut_cevrim, UVM_ALL_ON | UVM_DEC)
@@ -88,7 +85,6 @@ package gpio_pad_pkg;
         uvm_analysis_port #(gpio_pad_item) ap;
 
         int unsigned n_pad01 = 0;   // anode one-cold ihlali
-        int unsigned n_pad02 = 0;   // dma_enable aynasi ihlali
         int unsigned n_pad03 = 0;   // sonuk ekran ihlali
         int unsigned n_ornek = 0;
 
@@ -128,15 +124,6 @@ package gpio_pad_pkg;
                             "anode one-cold degil: %b", vif.anode))
                 end
 
-                // PAD_02 -- dma_enable, IDR[1]'in bir cevrim gecikmeli aynasi
-                if (!ilk && (vif.dma_enable !== idr_gec[1])) begin
-                    n_pad02++;
-                    if (n_pad02 <= 5)
-                        `uvm_error("PAD_02", $sformatf(
-                            "dma_enable=%0b beklenen=%0b (IDR[1] bir onceki cevrim)",
-                            vif.dma_enable, idr_gec[1]))
-                end
-
                 // PAD_03 -- gosterim kosulu saglanmiyorsa ekran sonuk olmali
                 if (!ilk && !goster_gec && (vif.catode !== 8'hFF)) begin
                     n_pad03++;
@@ -154,7 +141,6 @@ package gpio_pad_pkg;
                     it            = gpio_pad_item::type_id::create("pad");
                     it.idr        = vif.idr;
                     it.odr        = vif.odr;
-                    it.dma_enable = vif.dma_enable;
                     it.anode      = vif.anode;
                     it.catode     = vif.catode;
                     ap.write(it);
@@ -171,8 +157,8 @@ package gpio_pad_pkg;
 
         function void report_phase(uvm_phase phase);
             `uvm_info("PAD", $sformatf(
-                "GPIO pad monitoru: %0d ornek | PAD_01=%0d PAD_02=%0d PAD_03=%0d",
-                n_ornek, n_pad01, n_pad02, n_pad03), UVM_LOW)
+                "GPIO pad monitoru: %0d ornek | PAD_01=%0d PAD_03=%0d",
+                n_ornek, n_pad01, n_pad03), UVM_LOW)
         endfunction
     endclass
 

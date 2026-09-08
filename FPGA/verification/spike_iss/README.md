@@ -84,7 +84,7 @@ aynısı.
 | `test_program/test.c` · `boot.S` · `linker.ld` | Koşturulan program ve bellek haritası |
 | `test_program/test.hex` | `objcopy -O verilog` çıktısı — testbench'in INSTRRAM'e yüklediği dosya |
 | `test_program/test.disasm` | Programın disassembly'si; iz satırlarını kaynağa bağlamak için |
-| `test_program/run_spike.sh` · `cmp_try.py` | Spike'ı koşturan ve izleri karşılaştıran araçlar |
+| `test_program/run_spike.sh` · `cmp_trace.py` | Spike'ı koşturan ve izleri karşılaştıran araçlar |
 
 > `run_spike.sh` günlük kullanımdaki hâliyle kopyalanmıştır ve
 > `--instructions=100` ile koşar. Buradaki `spike.log` aynı komutla, tek
@@ -124,7 +124,7 @@ vivado -mode batch -source scripts/project_gen/SpikeISS/spike_test.tcl
 #       trace_core_00000000.log
 
 # 4) Karşılaştır
-python3 cmp_try.py trace_core_00000000.log spike.log
+python3 cmp_trace.py trace_core_00000000.log spike.log
 ```
 
 Testbench programı INSTRRAM'e kendisi yükler (`bram_instr`'da `INIT_FILE`
@@ -134,7 +134,7 @@ için — ve program sonsuz döngüye girdiğinde (`while(1)` → `j .`, aynı P
 
 **Spike'a `--instructions=193` verilmesinin sebebi budur:** RTL sonsuz döngüde
 durduğu için 193 komutta kalıyor, Spike ise sınır konmazsa sonsuza kadar koşar.
-İki izin uzunluğunu eşitlemek karşılaştırmayı kolaylaştırır; `cmp_try.py`
+İki izin uzunluğunu eşitlemek karşılaştırmayı kolaylaştırır; `cmp_trace.py`
 farklı uzunlukları da tolere eder, ortak ilk *n* komutu karşılaştırır.
 
 Araçlar: **Spike 1.1.1-dev**, **riscv-none-elf-gcc 15.2.0**,
@@ -148,13 +148,13 @@ Araçlar: **Spike 1.1.1-dev**, **riscv-none-elf-gcc 15.2.0**,
   okunan **ham 16-bit** RVC kodlamasını basar (`0xa001`), CV32E40P tracer'ı ise
   ID stage'e giren **genişletilmiş 32-bit** eşdeğeri basar (`0x0000006f`) —
   tracer'ın `.instr` portu compressed decoder'dan *sonraki* sinyale bağlıdır.
-  İkisi de doğrudur, farklı katmanlardır. `cmp_try.py` bu satırlarda kodlamayı
+  İkisi de doğrudur, farklı katmanlardır. `cmp_trace.py` bu satırlarda kodlamayı
   atlar (alt iki bit `11` değilse komut 16-bit'tir), **PC ve register
   yazmalarını yine karşılaştırır**. 193 komutun 90'ı bu durumdadır; kalan
   103'ünde kodlama birebir eşleşmiştir.
 
 - **Tracer değerleri `0x` öneki olmadan basar** (`x2=20002000`), Spike önekli
-  basar. `cmp_try.py`'nin RTL regex'i bu yüzden öneki isteğe bağlı tutar.
+  basar. `cmp_trace.py`'nin RTL regex'i bu yüzden öneki isteğe bağlı tutar.
 
 - **`x0`'a yazmalar yok sayılır.** Register donanımsal olarak sıfırdır; iki
   aracın bu yazmayı loglama biçimi farklıdır, sahte fark üretmemesi için

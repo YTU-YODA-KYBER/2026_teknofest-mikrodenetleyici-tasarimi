@@ -1,0 +1,44 @@
+======================================================================
+   YZ GIRDI RAM KONTROLCUSU -- CERCEVE SENKRONIZASYON TESTI
+   IDLE_LIMIT = 200 cevrim
+======================================================================
+
+--- TEST 1: tam cerceve (1960 bayt) ---
+  [GECTI] 1a IRQ kalkti
+  [GECTI] 1b sayac basa dondu
+  [GECTI] 1c RAM[0]
+  [GECTI] 1d RAM[1959]
+
+--- TEST 2: kesme temizleme ---
+  [GECTI] 2a IRQ hala yuksek
+  [GECTI] 2b cpu_clear sonrasi IRQ dustu
+
+--- TEST 3: kesik cerceve (1896 bayt) ---
+  [GECTI] 3a sayac ortada kaldi
+  [GECTI] 3b IRQ kalkmadi
+  [GECTI] 3c bosta kalma sonrasi sayac sifirlandi
+  [GECTI] 3d IRQ hala dusuk
+
+--- TEST 4: kesik cerceve sonrasi kurtarma ---
+  [GECTI] 4a IRQ kalkti
+  [GECTI] 4b sayac basa dondu
+  [GECTI] 4c RAM[0] yeni cerceveden
+  [GECTI] 4d RAM[1959] yeni cerceveden
+
+--- TEST 5: fazladan bayt (1960 + 32) ---
+  [GECTI] 5a tam cerceve IRQ kaldirdi
+  [GECTI] 5b artik baytlar sayaci ilerletti
+  [GECTI] 5c bosta kalma sonrasi sayac sifirlandi
+  [GECTI] 5d sonraki cerceve IRQ kaldirdi
+  [GECTI] 5e RAM[0] hizali
+
+--- TEST 6: esik altinda duraklama cerceveyi bozmamali ---
+  [GECTI] 6a sayac korundu
+  [GECTI] 6b cerceve tamamlandi, IRQ kalkti
+  [GECTI] 6c sayac basa dondu
+
+======================================================================
+   OZET: 22 gecti, 0 kaldi
+======================================================================
+[TB] >>> CERCEVE SENKRONIZASYON TESTI: BASARILI <<<
+testbench/Memory/yz_bram_ctrl_tb.sv:252: $finish called at 241015000 (1ps)

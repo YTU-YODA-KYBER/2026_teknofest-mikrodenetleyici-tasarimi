@@ -7,11 +7,24 @@ create_clock -period 10.000 -name sys_clk [get_ports sys_clk]
 set_property PACKAGE_PIN T18 [get_ports sys_rst_btn]
 set_property IOSTANDARD LVCMOS33 [get_ports sys_rst_btn]
 
-## USB-UART (FT2232HQ üzerinden PC ile konuşur)
-set_property PACKAGE_PIN B18 [get_ports UART_GU_rx]
-set_property PACKAGE_PIN A18 [get_ports UART_GU_tx]
-set_property IOSTANDARD LVCMOS33 [get_ports UART_GU_rx]
-set_property IOSTANDARD LVCMOS33 [get_ports UART_GU_tx]
+## Genel kullanım UART'ı (FT2232HQ üzerinden PC ile konuşur)
+## Demo test harness'inin "core UART" arayüzü budur.
+set_property PACKAGE_PIN B18 [get_ports UART_GU_RX]
+set_property PACKAGE_PIN A18 [get_ports UART_GU_TX]
+set_property IOSTANDARD LVCMOS33 [get_ports UART_GU_RX]
+set_property IOSTANDARD LVCMOS33 [get_ports UART_GU_TX]
+set_property PULLUP true [get_ports UART_GU_RX]
+
+## YZ veri akışı UART'ı → PMOD JC (Pmod USBUART, FT232R)
+## Demo test harness'inin "stream UART" arayüzü budur; core UART'tan ayrı
+## fiziksel port olmak zorundadır.
+##   JC2 = M18 → Pmod pin 2 (RXD): Pmod'un aldığı hat, FPGA'nın TX'i
+##   JC3 = N17 → Pmod pin 3 (TXD): Pmod'un sürdüğü hat, FPGA'nın RX'i
+set_property PACKAGE_PIN M18 [get_ports UART_YZ_TX]
+set_property PACKAGE_PIN N17 [get_ports UART_YZ_RX]
+set_property IOSTANDARD LVCMOS33 [get_ports UART_YZ_TX]
+set_property IOSTANDARD LVCMOS33 [get_ports UART_YZ_RX]
+set_property PULLUP true [get_ports UART_YZ_RX]
 
 ## Switches → GPIO_IDR [15:0]
 set_property PACKAGE_PIN V17 [get_ports {GPIO_IDR_pins[0]}]
