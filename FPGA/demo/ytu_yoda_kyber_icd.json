@@ -6,7 +6,7 @@
   },
   "stream": {
     "port": {
-      "port": "/dev/ttyUSB1",
+      "port": "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AU05XH47-if00-port0",
       "baudrate": 1000000,
       "bytesize": 8,
       "parity": "N",
@@ -43,7 +43,7 @@
   },
   "core": {
     "port": {
-      "port": "/dev/ttyUSB0",
+      "port": "/dev/serial/by-id/usb-Digilent_Digilent_USB_Device_210292BF69A9-if01-port0",
       "baudrate": 115200,
       "bytesize": 8,
       "parity": "N",

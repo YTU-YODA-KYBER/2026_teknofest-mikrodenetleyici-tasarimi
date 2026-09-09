@@ -52,11 +52,16 @@ from pathlib import Path
 
 import serial
 
-# --- AYARLAR: kendi sistemine gore duzenle ---
-#  ls /dev/ttyUSB*  ile iki portu bul. Baud degerleri firmware'in yazdigi
-#  UART_CPB ile ESLESMELI (main_app.c: uart_init).
-CORE_PORT   = "/dev/ttyUSB0"   # UART_GU  -- kart uzerindeki USB-UART
-STREAM_PORT = "/dev/ttyUSB1"   # UART_YZ  -- Pmod USB-UART
+# --- AYARLAR ---
+#  Portlar /dev/serial/by-id altindan otomatik bulunur: ttyUSB numaralari
+#  takma sirasina gore degistigi icin guvenilmez. Eslesme bulunamazsa
+#  asagidaki varsayilanlara dusulur; --core-port / --stream-port ile ezilir.
+#  Baud degerleri firmware'in yazdigi UART_CPB ile ESLESMELI
+#  (main_app.c: uart_init).
+CORE_ID_MATCH   = ("Digilent", "if01")  # UART_GU  -- kart uzerindeki FT2232 kanal B
+STREAM_ID_MATCH = ("FT232R",)           # UART_YZ  -- Pmod USBUART (FT232R)
+CORE_PORT   = "/dev/ttyUSB0"   # by-id bulunamazsa
+STREAM_PORT = "/dev/ttyUSB1"   # by-id bulunamazsa
 CORE_BAUD   = 115200
 STREAM_BAUD = 1000000
 
@@ -86,6 +91,16 @@ AUDIO_HEX = {
     "no":        FW_DIR / "sound_samples" / "input_data_no.hex",
     "sessizlik": FW_DIR / "sound_samples" / "input_data_sessizlik.hex",
 }
+
+
+def find_port(patterns, fallback):
+    """/dev/serial/by-id altinda butun pattern'leri iceren ilk portu dondur."""
+    byid = Path("/dev/serial/by-id")
+    if byid.is_dir():
+        for link in sorted(byid.iterdir()):
+            if all(pat in link.name for pat in patterns):
+                return str(link)
+    return fallback
 
 
 def open_port(port, baud, timeout=ACK_TMO):
@@ -296,12 +311,12 @@ def main():
     ap.add_argument("dosya", nargs="?",
                     help="Acik dosya yolu (verilmezse kisayola gore secilir; "
                          "'audio' hedefinde zorunlu)")
-    ap.add_argument("--core-port", default=CORE_PORT,
-                    help=f"UART_GU portu: flasher ve sonuc satiri "
-                         f"(varsayilan: {CORE_PORT})")
-    ap.add_argument("--stream-port", default=STREAM_PORT,
-                    help=f"UART_YZ portu: 1960 baytlik ses vektoru "
-                         f"(varsayilan: {STREAM_PORT})")
+    ap.add_argument("--core-port", default=None,
+                    help="UART_GU portu: flasher ve sonuc satiri "
+                         "(varsayilan: by-id ile otomatik bulunur)")
+    ap.add_argument("--stream-port", default=None,
+                    help="UART_YZ portu: 1960 baytlik ses vektoru "
+                         "(varsayilan: by-id ile otomatik bulunur)")
     ap.add_argument("--core-baud", type=int, default=CORE_BAUD,
                     help=f"core baud hizi (varsayilan: {CORE_BAUD})")
     ap.add_argument("--stream-baud", type=int, default=STREAM_BAUD,
@@ -310,6 +325,12 @@ def main():
                     help="ses gonderdikten sonra karttan gelen sonucu bekleme; "
                          "yalnizca 7-segment'e bakilir")
     args = ap.parse_args()
+
+    args.core_port   = args.core_port   or find_port(CORE_ID_MATCH, CORE_PORT)
+    args.stream_port = args.stream_port or find_port(STREAM_ID_MATCH, STREAM_PORT)
+    print(f"core  (UART_GU): {args.core_port} @ {args.core_baud}")
+    if args.hedef != "app":
+        print(f"stream(UART_YZ): {args.stream_port} @ {args.stream_baud}")
 
     if args.hedef == "app":
         path = Path(args.dosya) if args.dosya else APP_HEX

@@ -431,10 +431,12 @@ def main():
                     help="ayni modeli host'ta kostur (capraz kontrol)")
     ap.add_argument("--report", action="store_true",
                     help="kosturma, mevcut results_*.csv dosyalarindan rapor uret")
-    ap.add_argument("--core-port", default="/dev/ttyUSB0",
-                    help="UART_GU portu: yazilim yolu girdisi + sonuc satirlari")
-    ap.add_argument("--stream-port", default="/dev/ttyUSB1",
-                    help="UART_YZ portu: hizlandirici girdisi")
+    ap.add_argument("--core-port", default=None,
+                    help="UART_GU portu: yazilim yolu girdisi + sonuc satirlari "
+                         "(varsayilan: by-id ile otomatik bulunur)")
+    ap.add_argument("--stream-port", default=None,
+                    help="UART_YZ portu: hizlandirici girdisi "
+                         "(varsayilan: by-id ile otomatik bulunur)")
     ap.add_argument("--core-baud", type=int, default=115200,
                     help="core UART baud")
     ap.add_argument("--stream-baud", type=int, default=115200,
@@ -444,6 +446,11 @@ def main():
                     help="kart kosusunda ornekler arasi bekleme (s)")
     ap.add_argument("--outdir", default=str(HERE), help="results_*.csv nereye yazilsin")
     args = ap.parse_args()
+
+    if args.core_port is None or args.stream_port is None:
+        _sd = load_send_data()
+        args.core_port   = args.core_port   or _sd.find_port(_sd.CORE_ID_MATCH, _sd.CORE_PORT)
+        args.stream_port = args.stream_port or _sd.find_port(_sd.STREAM_ID_MATCH, _sd.STREAM_PORT)
 
     if not (args.board or args.host or args.report):
         ap.error("en az birini ver: --board / --host / --report")
