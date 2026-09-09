@@ -139,9 +139,14 @@ def main():
     A( "  make asic_clean     # asic/run/ altini temizle")
     A("")
 
-    out = ASIC / "environment" / "versions.txt"
-    out.write_text("\n".join(lines))
-    print(f"{out} yazildi ({len(lines)} satir)")
+    metin = "\n".join(lines)
+    # Sartname bu dosyayi iki yerde listeler: Tablo 8 asic/environment/,
+    # Tablo 9 genel akis raporlari arasinda. Ikisine de yazilir.
+    for out in (ASIC / "environment" / "versions.txt",
+                ASIC / "reports" / "general" / "versions.txt"):
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(metin)
+        print(f"{out} yazildi ({len(lines)} satir)")
 
 
 if __name__ == "__main__":
