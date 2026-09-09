@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date             : Mon Sep  7 23:07:17 2026
+| Date             : Wed Sep  9 13:40:07 2026
 | Host             : stradale running 64-bit Ubuntu 26.04.1 LTS
 | Command          : report_power -file /home/luxyxp/Documents/mainfiles/FPGA/verification/vivado_reports/power/fpga_top_power.rpt
 | Design           : fpga_top
@@ -33,7 +33,7 @@ Table of Contents
 | Total On-Chip Power (W)  | 0.253        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.155        |
+| Dynamic (W)              | 0.154        |
 | Device Static (W)        | 0.098        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 83.8         |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.008 |        5 |       --- |             --- |
-| Slice Logic              |     0.014 |    18833 |       --- |             --- |
-|   LUT as Logic           |     0.012 |     9816 |     63400 |           15.48 |
+| Slice Logic              |     0.014 |    18931 |       --- |             --- |
+|   LUT as Logic           |     0.012 |     9862 |     63400 |           15.56 |
 |   CARRY4                 |     0.002 |     1145 |     15850 |            7.22 |
-|   Register               |    <0.001 |     4715 |    126800 |            3.72 |
-|   F7/F8 Muxes            |    <0.001 |      319 |     63400 |            0.50 |
+|   Register               |    <0.001 |     4723 |    126800 |            3.72 |
+|   F7/F8 Muxes            |    <0.001 |      314 |     63400 |            0.50 |
 |   LUT as Distributed RAM |    <0.001 |       88 |     19000 |            0.46 |
-|   Others                 |     0.000 |       76 |       --- |             --- |
-| Signals                  |     0.013 |    14774 |       --- |             --- |
-| Block RAM                |     0.011 |       15 |       135 |           11.11 |
+|   Others                 |     0.000 |       78 |       --- |             --- |
+| Signals                  |     0.013 |    14894 |       --- |             --- |
+| Block RAM                |     0.012 |       15 |       135 |           11.11 |
 | MMCM                     |     0.106 |        1 |         6 |           16.67 |
 | DSPs                     |    <0.001 |        6 |       240 |            2.50 |
 | I/O                      |     0.002 |       63 |       210 |           30.00 |
@@ -147,20 +147,20 @@ Table of Contents
 +---------------------------+-----------+
 | Name                      | Power (W) |
 +---------------------------+-----------+
-| fpga_top                  |     0.155 |
+| fpga_top                  |     0.154 |
 |   clk_wizard_inst         |     0.106 |
 |     inst                  |     0.106 |
 |   soc_inst                |     0.047 |
-|     conv_accelerator_inst |     0.020 |
+|     boot_rom_ctrl_inst    |     0.002 |
+|       boot_rom            |     0.002 |
+|     conv_accelerator_inst |     0.019 |
 |       u_conv_buf_ram      |     0.001 |
 |       u_fc_weights_rom    |     0.002 |
 |       u_weights_rom       |     0.002 |
-|     cpu_inst              |     0.013 |
-|       CORE                |     0.013 |
-|     data_bram_ctrl_inst   |     0.001 |
-|       data_ram            |     0.001 |
-|     instr_bram_ctrl_inst  |     0.001 |
-|       instr_ram           |     0.001 |
+|     cpu_inst              |     0.012 |
+|       CORE                |     0.012 |
+|     data_bram_ctrl_inst   |     0.002 |
+|       data_ram            |     0.002 |
 |     qspi_master_inst      |     0.002 |
 |     timer_inst            |     0.001 |
 |     yz_bram_ctrl_inst     |     0.005 |

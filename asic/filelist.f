@@ -57,7 +57,6 @@
 
 # --- ASIC teknoloji sarmalayicisi (FPGA akisinda YOKTUR) ---
 ../asic_rtl/tech/xilinx_iobuf_stub.sv
-../asic_rtl/tech/axi_read_arbiter2.sv
 
 # --- ASIC degisken bellekleri: SKY130 SRAM makro sarmalayicilari ---
 ../asic_rtl/mem/sram32_cell.sv
@@ -114,6 +113,7 @@
 # --- Ara baglanti ---
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/Instruction_Splitter/Instruction_Splitter.sv
 ../FPGA/main_codes/rtl/desgin_sources/Interconnect/Interconnect/AXI4_Interconnect.sv
+../FPGA/main_codes/rtl/desgin_sources/Interconnect/axi_read_arbiter2.sv
 
 # --- Cevre birimleri ---
 ../FPGA/main_codes/rtl/desgin_sources/Peripherals/I2C/I2C_Master_AXI4_Lite.sv

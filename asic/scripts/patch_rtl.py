@@ -504,26 +504,14 @@ PATCHES = [
         src="Top_Module/Top_module.sv",
         dst="Top_module_asic.sv",
         why=(
-            "UC DUZELTME.\n"
-            "//\n"
-            "//  1) RESET DAGITIMI SILIKON-GUVENLI HALE GETIRILDI.\n"
+            "RESET DAGITIMI SILIKON-GUVENLI HALE GETIRILDI.\n"
             "//    Harici rst_ni daha once 4.662 fana dogrudan gidiyor; pre-PnR\n"
             "//    STA'da TT 75 ns / SS 106 ns slew ve -111 ns recovery slack\n"
             "//    uretiyordu. Blanket false-path bu gercek problemi gizliyordu.\n"
             "//    Iki floplu synchronizer dis reseti yalniz iki async reset pinine\n"
             "//    baglar: assert yine asenkron, deassert iki clk_i kenariyla\n"
             "//    senkrondur. Butun ic bloklar rst_sys_ni kullanir; ic reset agaci\n"
-            "//    normal zamanlama/DRC onarimiyla bufferlanabilir.\n"
-            "//\n"
-            "//  2) DATA YOLUNDAN INSTRUCTION RAM OKUMASI TAMAMLANDI.\n"
-            "//    Interconnect 0x1000_0000..0x1000_FFFF read adreslerini M8'e\n"
-            "//    decode ediyordu, ancak M8 AR/R portlari top seviyesinde bagli\n"
-            "//    degildi; bu adrese CPU load yapinca ARREADY sonsuza kadar 0\n"
-            "//    kaliyordu. Uygulama linker script'i .rodata'yi ve .data load\n"
-            "//    imajini tam bu IMEM bolgesine koydugu icin yol gercekten gerekir.\n"
-            "//    Instruction fetch ve data read, tek SRAM read denetleyicisine\n"
-            "//    iki-master AXI read arbitriyle baglandi; data read onceligi\n"
-            "//    instruction prefetch'in data load'u ac birakmasini onler."
+            "//    normal zamanlama/DRC onarimiyla bufferlanabilir."
         ),
         subs=[
             (
@@ -541,7 +529,7 @@ PATCHES = [
                 "    //  INSTRUCTION AR PORTLARI",
             ),
             (".rst_n(rst_ni)", ".rst_n(rst_sys_ni)", 12),
-            (".rst_ni(rst_ni)", ".rst_ni(rst_sys_ni)", 2),
+            (".rst_ni(rst_ni)", ".rst_ni(rst_sys_ni)", 3),
             # --- Ortak I2C RTL'ine ASIC sistem saati aktarilir ---
             # Gerekce ve formul icin
             # i2c_clk_freq_hz() basligina bakin.
@@ -549,88 +537,6 @@ PATCHES = [
                 "I2C_Master_AXI4_Lite i2c_master_inst(",
                 f"I2C_Master_AXI4_Lite #(.CLK_FREQ_HZ({_I2C_CLK_HZ})) "
                 f"i2c_master_inst(",
-            ),
-            (
-                "    logic        axi_instr_bram_rready;\n"
-                "    logic [31:0] axi_instr_bram_awaddr;",
-                "    logic        axi_instr_bram_rready;\n\n"
-                "    // CPU data portunun IMEM read kanali (interconnect M8).\n"
-                "    logic [31:0] axi_instr_data_araddr;\n"
-                "    logic        axi_instr_data_arvalid;\n"
-                "    logic        axi_instr_data_arready;\n"
-                "    logic [31:0] axi_instr_data_rdata;\n"
-                "    logic [ 1:0] axi_instr_data_rresp;\n"
-                "    logic        axi_instr_data_rvalid;\n"
-                "    logic        axi_instr_data_rready;\n\n"
-                "    // Iki read masterindan Instruction RAM denetleyicisine giden kanal.\n"
-                "    logic [31:0] axi_instr_mem_araddr;\n"
-                "    logic        axi_instr_mem_arvalid;\n"
-                "    logic        axi_instr_mem_arready;\n"
-                "    logic [31:0] axi_instr_mem_rdata;\n"
-                "    logic [ 1:0] axi_instr_mem_rresp;\n"
-                "    logic        axi_instr_mem_rvalid;\n"
-                "    logic        axi_instr_mem_rready;\n\n"
-                "    logic [31:0] axi_instr_bram_awaddr;",
-            ),
-            (
-                "instr_bram_axi_ctrl #(\n",
-                "// Instruction fetch ve data load tek IMEM AXI read portunu paylasir.\n"
-                "axi_read_arbiter2 instr_read_arbiter_inst (\n"
-                "    .clk_i(clk_i), .rst_ni(rst_sys_ni),\n"
-                "    .m0_araddr(axi_instr_bram_araddr),\n"
-                "    .m0_arvalid(axi_instr_bram_arvalid),\n"
-                "    .m0_arready(axi_instr_bram_arready),\n"
-                "    .m0_rdata(axi_instr_bram_rdata),\n"
-                "    .m0_rresp(axi_instr_bram_rresp),\n"
-                "    .m0_rvalid(axi_instr_bram_rvalid),\n"
-                "    .m0_rready(axi_instr_bram_rready),\n"
-                "    .m1_araddr(axi_instr_data_araddr),\n"
-                "    .m1_arvalid(axi_instr_data_arvalid),\n"
-                "    .m1_arready(axi_instr_data_arready),\n"
-                "    .m1_rdata(axi_instr_data_rdata),\n"
-                "    .m1_rresp(axi_instr_data_rresp),\n"
-                "    .m1_rvalid(axi_instr_data_rvalid),\n"
-                "    .m1_rready(axi_instr_data_rready),\n"
-                "    .s_araddr(axi_instr_mem_araddr),\n"
-                "    .s_arvalid(axi_instr_mem_arvalid),\n"
-                "    .s_arready(axi_instr_mem_arready),\n"
-                "    .s_rdata(axi_instr_mem_rdata),\n"
-                "    .s_rresp(axi_instr_mem_rresp),\n"
-                "    .s_rvalid(axi_instr_mem_rvalid),\n"
-                "    .s_rready(axi_instr_mem_rready)\n"
-                ");\n\n"
-                "instr_bram_axi_ctrl #(\n",
-            ),
-            (
-                "    .axi_instr_bram_araddr (axi_instr_bram_araddr),\n"
-                "    .axi_instr_bram_arvalid(axi_instr_bram_arvalid),\n"
-                "    .axi_instr_bram_arready(axi_instr_bram_arready),\n\n"
-                "    .axi_instr_bram_rdata  (axi_instr_bram_rdata),\n"
-                "    .axi_instr_bram_rresp  (axi_instr_bram_rresp),\n"
-                "    .axi_instr_bram_rvalid (axi_instr_bram_rvalid),\n"
-                "    .axi_instr_bram_rready (axi_instr_bram_rready),",
-                "    .axi_instr_bram_araddr (axi_instr_mem_araddr),\n"
-                "    .axi_instr_bram_arvalid(axi_instr_mem_arvalid),\n"
-                "    .axi_instr_bram_arready(axi_instr_mem_arready),\n\n"
-                "    .axi_instr_bram_rdata  (axi_instr_mem_rdata),\n"
-                "    .axi_instr_bram_rresp  (axi_instr_mem_rresp),\n"
-                "    .axi_instr_bram_rvalid (axi_instr_mem_rvalid),\n"
-                "    .axi_instr_bram_rready (axi_instr_mem_rready),",
-            ),
-            (
-                "    .axi_m8_bready (axi_instr_bram_bready),\n"
-                "    .axi_m8_arready(0),\n"
-                "    .axi_m8_rdata  (0),\n"
-                "    .axi_m8_rresp  (0),\n"
-                "    .axi_m8_rvalid (0),",
-                "    .axi_m8_bready (axi_instr_bram_bready),\n"
-                "    .axi_m8_araddr (axi_instr_data_araddr),\n"
-                "    .axi_m8_arvalid(axi_instr_data_arvalid),\n"
-                "    .axi_m8_arready(axi_instr_data_arready),\n"
-                "    .axi_m8_rdata  (axi_instr_data_rdata),\n"
-                "    .axi_m8_rresp  (axi_instr_data_rresp),\n"
-                "    .axi_m8_rvalid (axi_instr_data_rvalid),\n"
-                "    .axi_m8_rready (axi_instr_data_rready),",
             ),
         ],
     ),

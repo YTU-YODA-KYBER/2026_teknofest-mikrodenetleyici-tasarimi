@@ -87,7 +87,7 @@ ASIC_PATCHED = [
     "patched/UART_YZ_AXI4_Lite_asic.sv",
     "patched/conv_accelerator_asic.v",
 ]
-ASIC_TECH = ["tech/xilinx_iobuf_stub.sv", "tech/axi_read_arbiter2.sv"]
+ASIC_TECH = ["tech/xilinx_iobuf_stub.sv"]
 ASIC_MEM = ["mem/sram32_cell.sv", "mem/sram32_cell_1k.sv",
             "mem/sram32_bank.sv", "mem/sram8_bank.sv",
             "mem/bram_instr_asic.sv", "mem/bram_data_asic.sv",

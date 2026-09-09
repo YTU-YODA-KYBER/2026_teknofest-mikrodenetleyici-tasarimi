@@ -1,11 +1,9 @@
 // ---------------------------------------------------------------------------
 //  axi_read_arbiter2 -- iki AXI4-Lite read masterini tek slave'e baglar.
 //
-//  Bu tasarimda Instruction RAM'in tek AXI read portunu hem CPU instruction
-//  fetch yolu hem de CPU data yolu kullanir. Data yolu onceliklidir: instruction
-//  prefetch ARVALID'i uzun sure yuksek kalabildigi icin ters oncelik bir load'u
-//  ac birakabilirdi. CPU yeni data islemleri icin instruction ilerlemesine
-//  ihtiyac duydugundan bu secim instruction yolunda kalici starvation yaratmaz.
+//  Instruction RAM'in tek AXI read portunu CPU instruction fetch yolu (m0) ile
+//  CPU data yolu (m1) paylasir. Iki istek ayni cevrimde gelirse grant sirayla
+//  verilir; boylece iki master de kalici olarak ac kalmaz.
 //
 //  Bir AR handshake'inden R handshake'ine kadar grant kayitli tutulur. Boylece
 //  slave RVALID'i beklerken diger master'in sinyalleri degisse bile cevap yanlis
@@ -54,15 +52,9 @@ module axi_read_arbiter2 (
     logic [31:0] araddr_q;
     logic select_m1;
 
-    // IDLE'da iki istek ayni anda gelirse SIRAYLA (round-robin) verilir.
-    //
-    // Onceki surum `select_m1 = m1_arvalid` ile KATI ONCELIK uyguluyordu:
-    // m1 (data load) surekli valid tutarsa m0 (instruction fetch) hic grant
-    // alamazdi. Pratikte CV32E40P'de kalici aclik beklenmiyor (yeni data
-    // islemleri icin buyruk ilerlemesi gerekir) ama bu, RTL'de zorlanmayan
-    // bir varsayimdi. Son grant'in kaydi ile aclik YAPISAL olarak imkansiz
-    // hale getirilir; tek bir istek varken davranis degismez, dolayisiyla
-    // performans maliyeti yoktur.
+    // Grant secimi. Tek istek varsa dogrudan o master alir; iki istek ayni
+    // cevrimde gelirse son grant kimdeyse digerine verilir (round-robin),
+    // boylece aclik yapisal olarak imkansizdir.
     //   m1 tek       -> m1
     //   m0 tek       -> m0
     //   ikisi birden -> son grant kimdeyse digeri

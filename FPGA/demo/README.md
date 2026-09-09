@@ -120,4 +120,33 @@ parçasıdır: hızlandırıcının ham int32 argmax'ı 155/156 verir. Aradaki t
 int8 değerine iner; referans model eşitlikte ilk sınıfı seçer, ham int32
 karşılaştırması ise seçmez.
 
-Kart üzerindeki gerçek koşum bu tabloyu doğrulamak içindir.
+---
+
+## Kart üzerindeki koşum sonucu
+
+Nexys A7-100T üzerinde, demo aracının kendisiyle koşulmuş ölçüm.
+Çıktılar: [`results/YTU_YODA_KYBER_20260909_134338/`](results/YTU_YODA_KYBER_20260909_134338/)
+
+| Ölçüm | Sonuç |
+|---|---|
+| Golden sınıf uyumu | **156 / 156 (%100,00)** |
+| Uyuşmazlık / zaman aşımı | 0 / 0 |
+| Golden skor hata oranı (MAE) | **%0,0050** |
+| En büyük tek skor hatası | %0,78 |
+| Donanım doğruluğu / yazılım doğruluğu | %72,44 / %72,44 |
+| Çerçeve süresi (medyan) | 21,7 ms |
+| Hızlanma (252,2 ms yazılım referansına göre) | **56,7×** |
+| Sağlamlık senaryoları | **10 / 10 geçti** (1 opsiyonel atlandı) |
+
+Skor hata oranı simülasyonda ölçülen %0,0050 değeriyle birebir aynıdır.
+
+`peripheral_interleave` senaryosu opsiyoneldir ve atlanır: ICD'de
+`hooks.interleave_core_hex` tanımlı değildir, çünkü uygulama core UART'ı
+yalnızca sonuç göndermek için kullanır, komut kabul etmez.
+
+### Senkronizasyon kurtarma ispatı
+
+`truncated_frame` (1896 bayt) ve `oversized_frame` (1960+32 bayt) senaryoları
+geçtikten **sonra**, kart resetlenmeden 156 örneklik manifest yeniden koşuldu:
+golden uyumu yine **%100, 0 uyuşmazlık**. Kesik veya fazla baytlı bir çerçeve
+adres sayacında kalıcı kayma bırakmaz.

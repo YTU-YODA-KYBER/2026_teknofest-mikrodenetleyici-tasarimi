@@ -151,9 +151,9 @@ Uygulamayı flash'a yazma ve YZ'ye ses gönderme adımları
 
 | Doğrulama | Sonuç |
 |---|---|
-| Sentez + implementasyon | hatasız, 14781/14781 net yollandı |
-| Zamanlama (50 MHz) | WNS **+0,609 ns**, WHS +0,037 ns, 0 ihlal |
-| Kaynak kullanımı | LUT %15,62 · FF %3,72 · BRAM %11,11 · DSP %2,50 |
+| Sentez + implementasyon | hatasız, 14901/14901 net yollandı |
+| Zamanlama (50 MHz) | WNS **+0,174 ns**, WHS +0,037 ns, 0 ihlal |
+| Kaynak kullanımı | LUT %15,69 · FF %3,72 · BRAM %11,11 · DSP %2,50 |
 | Kod kapsamı | 6 çevre birimi + YZ hızlandırıcı, statement %91–100 |
 | AXI4-Lite protokol kontrolü | 15 arayüz, **0 ihlal** |
 | YZ hızlanma | **276,9×** (yazılım gerçeklemesine kıyasla) |

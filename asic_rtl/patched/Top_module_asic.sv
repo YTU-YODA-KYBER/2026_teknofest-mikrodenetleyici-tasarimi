@@ -3,14 +3,12 @@
 //
 //  Ureten : asic/scripts/patch_rtl.py
 //  Kaynak : main_codes/rtl/desgin_sources/Top_Module/Top_module.sv
-//  SHA256 : 7c04a203cf9cb1f398971abb775bc61dc67d3ece1187306205deb1d58683035a
+//  SHA256 : 42070623b3838d1fbdec95a4941b04932c94549e8240da282db7bc7c0c215d2d
 //
 //  Orijinal dosyaya DOKUNULMAMISTIR. ASIC akisi (asic/filelist.f) orijinalin
 //  yerine bu kopyayi kullanir; FPGA/Vivado akisi orijinali kullanmaya devam eder.
 //
-//  YAPILAN DEGISIKLIK: UC DUZELTME.
-//
-//  1) RESET DAGITIMI SILIKON-GUVENLI HALE GETIRILDI.
+//  YAPILAN DEGISIKLIK: RESET DAGITIMI SILIKON-GUVENLI HALE GETIRILDI.
 //    Harici rst_ni daha once 4.662 fana dogrudan gidiyor; pre-PnR
 //    STA'da TT 75 ns / SS 106 ns slew ve -111 ns recovery slack
 //    uretiyordu. Blanket false-path bu gercek problemi gizliyordu.
@@ -18,16 +16,6 @@
 //    baglar: assert yine asenkron, deassert iki clk_i kenariyla
 //    senkrondur. Butun ic bloklar rst_sys_ni kullanir; ic reset agaci
 //    normal zamanlama/DRC onarimiyla bufferlanabilir.
-//
-//  2) DATA YOLUNDAN INSTRUCTION RAM OKUMASI TAMAMLANDI.
-//    Interconnect 0x1000_0000..0x1000_FFFF read adreslerini M8'e
-//    decode ediyordu, ancak M8 AR/R portlari top seviyesinde bagli
-//    degildi; bu adrese CPU load yapinca ARREADY sonsuza kadar 0
-//    kaliyordu. Uygulama linker script'i .rodata'yi ve .data load
-//    imajini tam bu IMEM bolgesine koydugu icin yol gercekten gerekir.
-//    Instruction fetch ve data read, tek SRAM read denetleyicisine
-//    iki-master AXI read arbitriyle baglandi; data read onceligi
-//    instruction prefetch'in data load'u ac birakmasini onler.
 // ===========================================================================
 
 module top_module #(

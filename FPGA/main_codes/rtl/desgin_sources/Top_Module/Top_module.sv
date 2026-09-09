@@ -288,6 +288,25 @@ module top_module #(
     logic [ 1:0] axi_instr_bram_rresp;
     logic        axi_instr_bram_rvalid;
     logic        axi_instr_bram_rready;
+
+    // CPU data portunun IMEM read kanali (interconnect M8).
+    logic [31:0] axi_instr_data_araddr;
+    logic        axi_instr_data_arvalid;
+    logic        axi_instr_data_arready;
+    logic [31:0] axi_instr_data_rdata;
+    logic [ 1:0] axi_instr_data_rresp;
+    logic        axi_instr_data_rvalid;
+    logic        axi_instr_data_rready;
+
+    // Iki read masterindan Instruction RAM denetleyicisine giden kanal.
+    logic [31:0] axi_instr_mem_araddr;
+    logic        axi_instr_mem_arvalid;
+    logic        axi_instr_mem_arready;
+    logic [31:0] axi_instr_mem_rdata;
+    logic [ 1:0] axi_instr_mem_rresp;
+    logic        axi_instr_mem_rvalid;
+    logic        axi_instr_mem_rready;
+
     logic [31:0] axi_instr_bram_awaddr;
     logic        axi_instr_bram_awvalid;
     logic        axi_instr_bram_awready;
@@ -423,6 +442,32 @@ boot_rom_axi_ctrl #(
     .axi_boot_rom_interconnect_rready (axi_boot_rom_interconnect_rready)
 );
 
+// Instruction fetch ve data load tek IMEM AXI read portunu paylasir.
+axi_read_arbiter2 instr_read_arbiter_inst (
+    .clk_i(clk_i), .rst_ni(rst_ni),
+    .m0_araddr(axi_instr_bram_araddr),
+    .m0_arvalid(axi_instr_bram_arvalid),
+    .m0_arready(axi_instr_bram_arready),
+    .m0_rdata(axi_instr_bram_rdata),
+    .m0_rresp(axi_instr_bram_rresp),
+    .m0_rvalid(axi_instr_bram_rvalid),
+    .m0_rready(axi_instr_bram_rready),
+    .m1_araddr(axi_instr_data_araddr),
+    .m1_arvalid(axi_instr_data_arvalid),
+    .m1_arready(axi_instr_data_arready),
+    .m1_rdata(axi_instr_data_rdata),
+    .m1_rresp(axi_instr_data_rresp),
+    .m1_rvalid(axi_instr_data_rvalid),
+    .m1_rready(axi_instr_data_rready),
+    .s_araddr(axi_instr_mem_araddr),
+    .s_arvalid(axi_instr_mem_arvalid),
+    .s_arready(axi_instr_mem_arready),
+    .s_rdata(axi_instr_mem_rdata),
+    .s_rresp(axi_instr_mem_rresp),
+    .s_rvalid(axi_instr_mem_rvalid),
+    .s_rready(axi_instr_mem_rready)
+);
+
 instr_bram_axi_ctrl #(
     .DATA_WIDTH(DATA_WIDTH_instr),
     .ADDR_WIDTH(ADDR_WIDTH_instr)
@@ -430,14 +475,14 @@ instr_bram_axi_ctrl #(
     .clk_i(clk_i),
     .rst_n(rst_ni),
 
-    .axi_instr_bram_araddr (axi_instr_bram_araddr),
-    .axi_instr_bram_arvalid(axi_instr_bram_arvalid),
-    .axi_instr_bram_arready(axi_instr_bram_arready),
+    .axi_instr_bram_araddr (axi_instr_mem_araddr),
+    .axi_instr_bram_arvalid(axi_instr_mem_arvalid),
+    .axi_instr_bram_arready(axi_instr_mem_arready),
 
-    .axi_instr_bram_rdata  (axi_instr_bram_rdata),
-    .axi_instr_bram_rresp  (axi_instr_bram_rresp),
-    .axi_instr_bram_rvalid (axi_instr_bram_rvalid),
-    .axi_instr_bram_rready (axi_instr_bram_rready),
+    .axi_instr_bram_rdata  (axi_instr_mem_rdata),
+    .axi_instr_bram_rresp  (axi_instr_mem_rresp),
+    .axi_instr_bram_rvalid (axi_instr_mem_rvalid),
+    .axi_instr_bram_rready (axi_instr_mem_rready),
 
     .axi_instr_bram_awaddr (axi_instr_bram_awaddr),
     .axi_instr_bram_awvalid(axi_instr_bram_awvalid),
@@ -767,10 +812,13 @@ AXI4_Interconnect interconnect_inst(
     .axi_m8_bresp  (axi_instr_bram_bresp),
     .axi_m8_bvalid (axi_instr_bram_bvalid),
     .axi_m8_bready (axi_instr_bram_bready),
-    .axi_m8_arready(0),
-    .axi_m8_rdata  (0),
-    .axi_m8_rresp  (0),
-    .axi_m8_rvalid (0),
+    .axi_m8_araddr (axi_instr_data_araddr),
+    .axi_m8_arvalid(axi_instr_data_arvalid),
+    .axi_m8_arready(axi_instr_data_arready),
+    .axi_m8_rdata  (axi_instr_data_rdata),
+    .axi_m8_rresp  (axi_instr_data_rresp),
+    .axi_m8_rvalid (axi_instr_data_rvalid),
+    .axi_m8_rready (axi_instr_data_rready),
 
     // ==============================================================
     // MASTER 9: BOOT RAM PORTLARI (AXI4-Lite) - Base: 0x0000_0000

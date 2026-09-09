@@ -22,6 +22,7 @@
 /Full_MCU_Project.gen/
 
 *.log
+!FPGA/demo/results/**/transcript.log
 !asic/reports/**/*.log
 !FPGA/verification/**/*.log
 
