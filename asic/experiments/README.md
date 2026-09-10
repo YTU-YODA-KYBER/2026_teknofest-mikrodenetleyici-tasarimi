@@ -120,3 +120,95 @@ overlay'in DRT sonucu **ölçülmemiştir**.
 > edildi. Resmî faz 3 yalnız **jumper** onarımını açar; diyot eklemez. İhlaller
 > hem azaltılır hem gerçek değerleriyle **ölçülüp raporlanır**. Diğer
 > `antenna_*` overlay'leri kontrollü tanı ve reddedilmiş deney kanıtıdır.
+
+---
+
+## 2026-09-10 tarihli ölçümler
+
+### `macro_placement_banked.yaml` — **ÖLÇÜLDÜ, REDDEDİLDİ**
+
+Doğrulanmış macro-ring'in **koordinatlarını birebir** koruyup yalnız banka
+atamasını değiştirir: alt sıra `instr[0] + data[0..3]` (data dört banka bitişik),
+sol sütun `instr[1..3]`. Gerekçe: teslim yerleşiminde data RAM'in bankaları
+5.340 µm Manhattan mesafesine yayılmıştı ve en kötü setup yolu SRAM `dout1[17]`
+çıkışından bank-mux'a **36 seri tampon (3.627 µm, 11,853 ns)** ödüyordu.
+
+Tam üç fazlı koşum (`run/fp_banked`), teslim koşumuyla nihai-nihai karşılaştırma:
+
+| metrik | teslim | fp_banked | |
+|---|---:|---:|---|
+| setup WS (`max_ss_100C_1v60`) | +1,9960 | **+1,1826** | −0,813 ns (−%40,7) |
+| hold WS (`max_ff_n40C_1v95`) | +0,3899 | **+0,0938** | −0,296 ns (−%75,9) |
+| anten net / pin | 979 / 1.034 | 1.059 / 1.122 | +%8,2 / +%8,5 |
+| max_slew | 845 | 887 | +42 |
+| max_cap | 22 | 26 | +4 |
+| toplam tel | 10,265 M µm | 9,899 M µm | −%3,6 |
+| **en uzun net** | 1.742,26 µm | **1.403,90 µm** | **−%19,4** |
+| onarım tamponu | 65.850 | 63.482 | −%3,6 |
+| DRC / LVS / XOR / PDN | 0 | 0 | değişmedi |
+
+**Tel hedefine ulaştı, zamanlamayı bozdu.** Kök neden: hesap banka–banka
+mesafesi üzerinden yapılmıştı, oysa belirleyici olan banka–**tüketici**
+mesafesidir. Instruction RAM alt sıradan sol sütuna taşınınca instruction
+fetch yolu uzadı; `max_ss` köşesindeki 2.000 yolun **942'si**
+`cpu_inst.CORE.core_i.id_stage_i.decoder_i` altındaki derin mantık ailesindedir
+ve o aile instruction RAM'den beslenir. Data RAM'de kazanılan, decoder'da
+kaybedildi.
+
+**Sonuç:** halka yerleşimindeki mevcut atama yerel bir optimumdur. Overlay ve
+`--grid ring-banked` üreteci, yeniden üretilebilirlik için korunur; ana config'e
+**alınmaz**.
+
+### Ölçülen tampon kaynağı — `repair_design` logları
+
+`run/fp_banked` adım logları, tampon patlamasının nereden geldiğini kesinleştirir:
+
+| adım | komut | bulgular | eklenen |
+|---|---|---|---|
+| 32 post-GPL | `repair_design -max_wire_length 0 -slew_margin 0 -cap_margin 0` | 4.812 slew, 871 fanout, 2.440 cap | **28.862 tampon / 5.176 net** |
+| 41 post-GRT | `repair_design -max_wire_length 250 -slew_margin 0 -cap_margin 0` | 1.496 slew, 1.730 cap, 9.204 uzun tel | 17.570 tampon / 10.171 net |
+
+En büyük kaynak post-GPL adımıdır ve orada **uzunluk onarımı zaten kapalıdır**
+(`-max_wire_length 0`). Yani tamponların kütlesi `GRT_DESIGN_REPAIR_MAX_WIRE_LENGTH`
+değil, **yerleştirme aşamasındaki 4.812 slew + 2.440 cap ihlali** kaynaklıdır.
+SRAM'in kendi Liberty sınırlarına (330 addr/wmask pini, 0,04 ns) bağlı olan
+kısım bunun küçük bir azınlığıdır.
+
+### Yeni overlay'ler — henüz ölçülmedi
+
+| Overlay | Ne işe yarar |
+|---|---|
+| `rsz_dont_touch_clock_root.yaml` | `RSZ_DONT_TOUCH_RX: "^clk_i$"`. Post-GRT `repair_design`, `clk_i` kaynak netini sıradan net gibi görüp bölüyor ve CTS kökünden önce altı `wire*` tamponu ekliyor (~2 ns insertion, skew kaynağı). Regex ankorludur: `clkbuf_*` instance adlarını ve `clknet_*` CTS netlerini kapsamaz. Arşivdeki 100+ koşumun hepsinde `RSZ_DONT_TOUCH_RX = "$^"` olduğu için bu kaldıraç hiç denenmemiştir. |
+| `postgrt_hold_margin_020.yaml` | `GRT_RESIZER_HOLD_SLACK_MARGIN: 0,45 → 0,20`. Netlistte 16.844 hold hücresi vardır (16.686'sı `dlygate4sd3_1`); `metrics.json`'daki `hold_buffer = 350` yalnız son resizer çağrısının sayacıdır. Arşiv 0,45→0,05 için −12.448 hücre ama 28 hold ihlali ölçmüştür; **0,10–0,40 aralığı hiç ölçülmemiştir**. Saat skew'ini düşüren deneylerden SONRA koşulmalıdır. |
+
+### `rsz_dont_touch_clock_root.yaml` — **ÖLÇÜLDÜ, ETKİSİZ (yanlış aşamayı hedefliyor)**
+
+`RSZ_DONT_TOUCH_RX: "^clk_i$"` ile post-GRT `repair_design`'ın `clk_i` kaynak
+netini bölmesini engellemeyi hedefledi. Tam üç fazlı koşum (`run/clk_dtc`):
+
+| metrik | teslim | clk_dtc |
+|---|---:|---:|
+| setup WS (`max_ss_100C_1v60`) | +1,9960 | +2,0206 |
+| hold WS (`max_ff_n40C_1v95`) | +0,3899 | +0,3914 |
+| max_slew / max_cap | 845 / 22 | 841 / 23 |
+| anten net / pin | 979 / 1.034 | 984 / 1.039 |
+| std hücre / onarım tamponu | 282.317 / 65.850 | 282.317 / 65.850 |
+| DRC / LVS / XOR / PDN | 0 | 0 |
+
+Overlay **uygulandı** (`resolved.json`: `RSZ_DONT_TOUCH_RX = '^clk_i$'`; adım 24,
+28, 32, 37, 41, 43'ün her birinde "1 net matched don't touch"). Buna rağmen
+saat kökündeki `wire30895/94/93` ve `wire30945/44/43` tamponları yerinde kaldı.
+
+**Kök neden:** o tekrarlayıcıları `repair_design` değil **CTS** üretiyor.
+`librelane/scripts/openroad/cts.tcl:96` → `repair_clock_nets -max_wire_length
+$CTS_CLK_MAX_WIRE_LENGTH`. `set_dont_touch_objects` yalnız `repair_design.tcl`,
+`rsz_timing_postcts.tcl`, `repair_design_postgrt.tcl`, `gpl.tcl` ve
+`rsz_timing_postgrt.tcl` içinde çağrılır; **`cts.tcl` bu listede yoktur**.
+clk_dtc'nin CTS adımı: "Found 17 long wires. Inserted 56 buffers in 17 nets."
+
+**Sonuç:** ana config'e alınmaz. Saat kökü tekrarlayıcılarının gerçek kaldıracı
+`CTS_CLK_MAX_WIRE_LENGTH`'tir; o da `config.yaml`'da ölçülmüş bir takastır
+(0/otomatik = 2936 µm → 2 uzun tel/4 tampon; 600 → 12 uzun tel/48 tampon).
+600 değeri, 6.326 µm'lik `clknet_1_0_1_clk_i` netinin 2,32 ns slew'ini
+(kütüphanenin 1,5 ns `default_max_transition` değerinin de üstünde, yani STA'nın
+ekstrapole ettiği bölge) kapatmak için bilinçli seçilmiştir.

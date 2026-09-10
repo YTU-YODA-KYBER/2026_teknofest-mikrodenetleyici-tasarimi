@@ -1,0 +1,38 @@
+meta:
+  version: 2
+
+# ---------------------------------------------------------------------------
+#  POST-GRT HOLD MARJI 0,45 -> 0,20
+#
+#  SORUN
+#    Netlistte 16.844 hold hucresi var, 16.686'si `dlygate4sd3_1` --
+#    tasarimin EN KALABALIK mantik hucresi tipi (`buf_4`: 15.514).
+#    Alani ~0,375 mm², yani timing_repair_buffer alaninin %57'si.
+#    Karsiligi yalnizca hold WS +0,390 ns.
+#
+#    DIKKAT: metrics.json'daki `design__instance__count__hold_buffer = 350`
+#    YANILTICIDIR; o yalnizca SON resizer cagrisinin sayacidir.
+#
+#  ARSIVDE OLCULEN SUPURME (strateji_denemeleri.md:1096-1116)
+#      marj  | hold WS  | ihlalli uc | std hucre
+#      0,45  | +0,0570  |     0      | 264.845
+#      0,08  | -0,0222  |     9      | 253.705
+#      0,06  | -0,0172  |     8      |    -
+#      0,05  | -0,0636  |    28      | 252.397
+#    0,45 -> 0,05 = -12.448 hucre (-%4,7): arsivdeki EN BUYUK alan kaldiraci.
+#    ANCAK 0,10-0,40 ARALIGI HIC OLCULMEDI (belge bunu acikca not ediyor).
+#
+#  NEDEN 0,20 VE NEDEN SIRA ONEMLI
+#    Hold baskisinin kaynagi saat skew'idir (hold skew -1,278 ns, ss
+#    kosesinde -3,349). Skew'i dusuren iki degisiklik once kosulmali:
+#      1. experiments/macro_placement_banked.yaml  (makro saat pinleri
+#         yakinlasir; en uzun net clknet_1_0_1_clk_i = 6.326 um idi)
+#      2. experiments/rsz_dont_touch_clock_root.yaml (saat kokunden
+#         ~2 ns insertion kalkar)
+#    Bu ikisi olculmeden marji indirmek, arsivin 0,05 sonucunu
+#    (28 ihlalli uc) tekrar uretme riski tasir.
+#
+#  BEKLENEN: ~-8.000 hold hucresi, ~0,18 mm² alan.
+#  DOGRULAMA DURUMU: HENUZ KOSULMADI. Yukaridaki iki deneyden SONRA kosulacak.
+# ---------------------------------------------------------------------------
+GRT_RESIZER_HOLD_SLACK_MARGIN: 0.20

@@ -1,0 +1,30 @@
+{
+  "phase": "pilot",
+  "macro": "sky130_sram_1kbyte_1rw1r_32x256_8",
+  "grid": "3x3",
+  "corners": [
+    [
+      "TT",
+      1.8,
+      25
+    ]
+  ],
+  "openram_version": "v1.2.48",
+  "openram_commit": "b6a6f12642df6b84facc24a77f9a6f67a0d62dab",
+  "nixpkgs_revision": "b3aad468604d3e488d627c0b43984eb60e75e782",
+  "pdk_version": "8afc8346a57fe1ab7934ba5a6056ea8b43078e71",
+  "source_spice": "macros/sky130_sram_1kbyte_1rw1r_32x256_8/spice/sky130_sram_1kbyte_1rw1r_32x256_8.spice",
+  "trim_netlist": true,
+  "parallel_corners": 1,
+  "sim_threads_per_corner": 4,
+  "started_utc": "2026-09-10T16:09:35.903391+00:00",
+  "finished_utc": "2026-09-10T16:29:00.747223+00:00",
+  "pilot_comparisons": [],
+  "failures": [
+    {
+      "corner": "TT_1p8V_25C",
+      "returncode": 1,
+      "log": "reports/sram_characterization/logs/pilot_3x3/TT_1p8V_25C.log"
+    }
+  ]
+}

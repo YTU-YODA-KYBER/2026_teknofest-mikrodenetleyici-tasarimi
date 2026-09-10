@@ -1,0 +1,212 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: * delay stimulus for period of 4.0n load=27.56ff slew=0.04ns
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+Doing analysis at TEMP = 25.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Operating point simulation skipped by 'uic',
+  now using transient initial conditions.
+
+No. of Data Rows : 1995
+
+  Measurements for Transient Analysis
+
+
+Error: measure  delay_lh0  trig(TRIG) : out of interval
+ .meas tran delay_lh0 trig v(clk0) val=0.9 fall=1 td=52.0n targ v(dout0_31) val=0.9 rise=1 td=52.0n failed!
+
+
+Error: measure  delay_hl0  trig(TARG) : out of interval
+ .meas tran delay_hl0 trig v(clk0) val=0.9 fall=1 td=20.0n targ v(dout0_31) val=0.9 fall=1 td=20.0n failed!
+
+
+Error: measure  slew_lh0  trig(TRIG) : out of interval
+ .meas tran slew_lh0 trig v(dout0_31) val=0.18000000000000002 rise=1 td=52.0n targ v(dout0_31) val=1.62 rise=1 td=52.0n failed!
+
+
+Error: measure  slew_hl0  trig(TRIG) : out of interval
+ .meas tran slew_hl0 trig v(dout0_31) val=1.62 fall=1 td=20.0n targ v(dout0_31) val=0.18000000000000002 fall=1 td=20.0n failed!
+
+
+Error: measure  v_bl_read_one0  find(AT) : out of interval
+ .meas tran v_bl_read_one0 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.bl_0_63) at=57.0n failed!
+
+
+Error: measure  v_br_read_one0  find(AT) : out of interval
+ .meas tran v_br_read_one0 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.br_0_63) at=57.0n failed!
+
+
+Error: measure  v_delay_lh0  find(AT) : out of interval
+ .meas tran v_delay_lh0 find v(dout0_31) at=57.0n failed!
+
+
+Error: measure  v_q_a11111111_b31_read_one0  find(AT) : out of interval
+ .meas tran v_q_a11111111_b31_read_one0 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xbitcell_array.xbitcell_array.xbit_r127_c63.q) at=57.0n failed!
+
+
+Error: measure  v_qbar_a11111111_b31_read_one0  find(AT) : out of interval
+ .meas tran v_qbar_a11111111_b31_read_one0 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xbitcell_array.xbitcell_array.xbit_r127_c63.q_bar) at=57.0n failed!
+
+
+Error: measure  v_q_a11111111_b31_write_one0  find(AT) : out of interval
+ .meas tran v_q_a11111111_b31_write_one0 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xbitcell_array.xbitcell_array.xbit_r127_c63.q) at=37.0n failed!
+
+
+Error: measure  v_qbar_a11111111_b31_write_one0  find(AT) : out of interval
+ .meas tran v_qbar_a11111111_b31_write_one0 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xbitcell_array.xbitcell_array.xbit_r127_c63.q_bar) at=37.0n failed!
+
+
+Error: measure  diag_din31  find(AT) : out of interval
+ .meas tran diag_din31 find v(din0_31) at=37.0n failed!
+
+
+Error: measure  diag_bank_din31  find(AT) : out of interval
+ .meas tran diag_bank_din31 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.bank_din0[31]) at=37.0n failed!
+
+
+Error: measure  diag_wmask3  find(AT) : out of interval
+ .meas tran diag_wmask3 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.bank_wmask0[3]) at=37.0n failed!
+
+
+Error: measure  diag_wen  find(AT) : out of interval
+ .meas tran diag_wen find v(xsky130_sram_1kbyte_1rw1r_32x256_8.w_en0) at=37.0n failed!
+
+
+Error: measure  diag_wl_en  find(AT) : out of interval
+ .meas tran diag_wl_en find v(xsky130_sram_1kbyte_1rw1r_32x256_8.wl_en0) at=37.0n failed!
+
+
+Error: measure  diag_col_sel0  find(AT) : out of interval
+ .meas tran diag_col_sel0 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.sel0_0) at=37.0n failed!
+
+
+Error: measure  diag_col_sel1  find(AT) : out of interval
+ .meas tran diag_col_sel1 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.sel0_1) at=37.0n failed!
+
+
+Error: measure  diag_wdrv_sel3  find(AT) : out of interval
+ .meas tran diag_wdrv_sel3 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xport_data0.wdriver_sel_3) at=37.0n failed!
+
+
+Error: measure  diag_bl_out31  find(AT) : out of interval
+ .meas tran diag_bl_out31 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xport_data0.bl_out_31) at=37.0n failed!
+
+
+Error: measure  diag_br_out31  find(AT) : out of interval
+ .meas tran diag_br_out31 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xport_data0.br_out_31) at=37.0n failed!
+
+
+Error: measure  diag_wl127  find(AT) : out of interval
+ .meas tran diag_wl127 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.wl_0_127) at=37.0n failed!
+
+
+Error: measure  diag_bl63  find(AT) : out of interval
+ .meas tran diag_bl63 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.bl_0_63) at=37.0n failed!
+
+
+Error: measure  diag_br63  find(AT) : out of interval
+ .meas tran diag_br63 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.br_0_63) at=37.0n failed!
+
+
+Error: measure  diag_q62  find(AT) : out of interval
+ .meas tran diag_q62 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xbitcell_array.xbitcell_array.xbit_r127_c62.q) at=37.0n failed!
+
+
+Error: measure  diag_qbar62  find(AT) : out of interval
+ .meas tran diag_qbar62 find v(xsky130_sram_1kbyte_1rw1r_32x256_8.xbank0.xbitcell_array.xbitcell_array.xbit_r127_c62.q_bar) at=37.0n failed!
+
+read1_power0        =  0.000000e+00 from=  5.200000e-08 to=  3.600000e-08
+read0_power0        =  2.954444e-03 from=  2.000000e-08 to=  2.400200e-08
+disabled_read1_power0=  0.000000e+00 from=  4.400000e-08 to=  3.600000e-08
+disabled_read0_power0=  2.149090e-03 from=  2.400000e-08 to=  2.800200e-08
+v_bl_read_zero0     =  -3.590592e-02
+v_br_read_zero0     =  1.070757e+00
+v_delay_hl0         =  0.000000e+00
+delay_sen0          =  1.158949e-09 targ=  2.317895e-08 trig=  2.202000e-08
+v_q_a11111111_b31_read_zero0=  2.161839e-05
+v_qbar_a11111111_b31_read_zero0=  1.798926e+00
+write1_power0       =  2.372008e-03 from=  3.200000e-08 to=  3.600000e-08
+write0_power0       =  3.029805e-03 from=  8.000000e-09 to=  1.200200e-08
+disabled_write1_power0=  0.000000e+00 from=  3.600000e-08 to=  3.600000e-08
+disabled_write0_power0=  2.155749e-03 from=  1.200000e-08 to=  1.600075e-08
+v_q_a11111111_b31_write_zero0=  2.217938e-05
+v_qbar_a11111111_b31_write_zero0=  1.798909e+00
+diag_q62_after_zero =  1.797514e+00
+diag_qbar62_after_zero=  7.383145e-05
+active33_wen        =  -6.143000e-07
+active33_wl_en      =  3.750322e-07
+active33_wdrv_sel3  =  1.352604e-07
+active33_sel0       =  -3.233946e-05
+active33_sel1       =  1.799862e+00
+active33_wl127      =  -4.476314e-06
+active33_blout31    =  -3.315010e-02
+active33_brout31    =  1.075891e+00
+active33_bl63       =  -3.315034e-02
+active33_br63       =  1.077310e+00
+active33_q63        =  1.802358e-07
+active33_qbar63     =  1.799999e+00
+active35_wen        =  -3.893609e-06
+active35_wl_en      =  1.799823e+00
+active35_wdrv_sel3  =  3.649337e-07
+active35_sel0       =  1.977595e-03
+active35_sel1       =  1.840275e+00
+active35_wl127      =  1.644818e+00
+active35_blout31    =  1.027937e-02
+active35_brout31    =  1.093444e+00
+active35_bl63       =  1.051467e-02
+active35_br63       =  1.103610e+00
+active35_q63        =  4.667018e-03
+active35_qbar63     =  1.821051e+00
+
+Total elapsed time (seconds) = 335.855 
+Total DRAM available = 15710.680 MB.
+DRAM currently available = 5061.852 MB.
+Maximum ngspice program size =  806.402 MB.
+Current ngspice program size =  771.121 MB.
+
+Shared ngspice pages =   11.016 MB.
+Text (code) pages =    6.516 MB.
+Stack = 0 bytes.
+Library pages =  784.414 MB.
+
+Number of lines in the deck = 901520
+Netlist loading time = 37.3841
+Subckt and Param expansion time = 192.315
+Netlist parsing time = 168.588
+
+Nominal temperature = 27
+Operating temperature = 25
+Total iterations = 6161
+Transient iterations = 6161
+Circuit Equations = 21656
+Circuit original non-zeroes = 131435
+Circuit fill-in non-zeroes = 15594
+Circuit total non-zeroes = 0
+Transient timepoints = 2049
+Accepted timepoints = 1996
+Rejected timepoints = 53
+Total analysis time (seconds) = 106.154
+Matrix load time = 55.9669
+Matrix synchronize time = 0
+Matrix reorder time = 2.72089
+Matrix factor time = 19.4638
+Matrix solve time = 6.1533
+Transient analysis time = 105.336
+Transient load time = 55.9549
+Transient sync time = 0
+Transient factor time = 19.4638
+Transient solve time = 6.1533
+Transient trunc time = 8.73727
+Transient iterations for the last time point = 0
+AC analysis time = 0
+AC load time = 0
+AC sync time = 0
+AC factor time = 0
+AC solve time = 0
+

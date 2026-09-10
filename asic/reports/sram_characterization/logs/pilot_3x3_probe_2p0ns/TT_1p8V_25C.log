@@ -1,0 +1,47 @@
+COMMAND: nix shell --impure --expr let pkgs = (builtins.getFlake "github:NixOS/nixpkgs/b3aad468604d3e488d627c0b43984eb60e75e782").legacyPackages.x86_64-linux; in [ pkgs.ngspice (pkgs.python3.withPackages (ps: with ps; [ numpy scipy scikit-learn ])) ] --command python3 /home/luxyxp/Documents/mainfiles/asic/scripts/openram_existing_sram_char.py -s ngspice -m 4 -k /home/luxyxp/Documents/mainfiles/asic/reports/sram_characterization/configs/pilot_3x3_probe_2p0ns/TT_1p8V_25C.py /home/luxyxp/Documents/mainfiles/asic/macros/sky130_sram_1kbyte_1rw1r_32x256_8/spice/sky130_sram_1kbyte_1rw1r_32x256_8.spice
+OPENRAM_COMMIT: b6a6f12642df6b84facc24a77f9a6f67a0d62dab
+PDK_VERSION: 8afc8346a57fe1ab7934ba5a6056ea8b43078e71
+WARNING: file globals.py: line 168: Failed to find coverage installation. This can be installed with pip3 install coverage
+|==============================================================================|
+|=========                      OpenRAM v1.2.48                       =========|
+|=========                                                            =========|
+|=========               VLSI Design and Automation Lab               =========|
+|=========        Computer Science and Engineering Department         =========|
+|=========            University of California Santa Cruz             =========|
+|=========                                                            =========|
+|=========          Usage help: openram-user-group@ucsc.edu           =========|
+|=========        Development help: openram-dev-group@ucsc.edu        =========|
+|=========                See LICENSE for license info                =========|
+|==============================================================================|
+LIB: Characterizing existing SRAM (trimmed timing + full leakage)... 
+Traceback (most recent call last):
+  File "/home/luxyxp/Documents/mainfiles/asic/scripts/openram_existing_sram_char.py", line 457, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/luxyxp/Documents/mainfiles/asic/scripts/openram_existing_sram_char.py", line 448, in main
+    lib(out_dir=OPTS.output_path, sram=sram, sp_file=str(spice_file), use_model=False)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/openram-char.uPnbHR/OpenRAM/compiler/characterizer/lib.py", line 46, in __init__
+    self.characterize_corners()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/tmp/openram-char.uPnbHR/OpenRAM/compiler/characterizer/lib.py", line 164, in characterize_corners
+    self.characterize()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/tmp/openram-char.uPnbHR/OpenRAM/compiler/characterizer/lib.py", line 176, in characterize
+    self.compute_delay()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/tmp/openram-char.uPnbHR/OpenRAM/compiler/characterizer/lib.py", line 656, in compute_delay
+    char_results = self.d.analyze(probe_address, probe_data, self.load_slews)
+  File "/tmp/openram-char.uPnbHR/OpenRAM/compiler/characterizer/delay.py", line 1309, in analyze
+    feasible_delays = self.find_feasible_period()
+  File "/tmp/openram-char.uPnbHR/OpenRAM/compiler/characterizer/delay.py", line 786, in find_feasible_period
+    feasible_delays[self.read_ports[0]] = self.find_feasible_period_one_port(self.read_ports[0])
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/openram-char.uPnbHR/OpenRAM/compiler/characterizer/delay.py", line 752, in find_feasible_period_one_port
+    (success, results)=self.run_delay_simulation()
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/luxyxp/Documents/mainfiles/asic/scripts/openram_existing_sram_char.py", line 200, in guarded
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: diagnostic feasibility-only simulation failed at 2 ns; stopping before period search/table generation

@@ -109,6 +109,52 @@ RING_PLACEMENT = [
     ("conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[0].u_cell.u_sram", 3436.90, 1050.00),
     ("conv_accelerator_inst.u_conv_buf_ram.u_mem.u_mem.g_2k[1].u_cell.u_sram", 3436.90, 1950.00),
 ]
+
+# --- ring-banked: AYNI KOORDINATLAR, BANKALAR YENIDEN ATANMIS -------------
+#  SORUN (olculdu, reports/timing/max_ss_100C_1v60/max.rpt):
+#    Dogrulanmis halkada data RAM'in dort bankasi BITISIK DEGIL:
+#    g_2k[0] sag-altta (3284,80), g_2k[1..3] sol kenarda (x=80).
+#    En uzak iki banka arasi Manhattan mesafesi 5.340 um. Dort bankanin
+#    32 bitlik cikislari ortadaki tek bir mux4_2'de bulusmak zorunda; en kotu
+#    setup yolu tam olarak bunu odiyor: SRAM dout1[17]'den mux'a 3.627 um
+#    tel ve 36 seri tampon = 11,853 ns (yolun %71'i).
+#
+#  DEGISIKLIK: koordinat listesi AYNEN korunur; yalnizca hangi ORNEGIN hangi
+#  slota gittigi degisir. Alt satir data RAM'e, sol sutun instruction RAM'e
+#  verilir. Geometri, halo, PDN ve makro yonu (hepsi N) degismedigi icin
+#  dogrulanmis halkanin fiziksel ozellikleri korunur.
+#
+#  BEKLENEN (hesaplandi, HENUZ KOSULMADI):
+#    data RAM en uzak banka mesafesi 5.340 -> 2.289 um  (-%57)
+#    instr RAM                       2.289 -> 2.288 um  (degismedi)
+#
+#  Yalnizca 2 KB makrolar yer degistirir; 1 KB makro (farkli boyutta) kendi
+#  slotunda kalir. Asagidaki uretici bunu dogrular.
+RING_BANKED_SWAP = {
+    # slot indeksi -> o slota atanacak ornek
+    1: "data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram",
+    2: "data_bram_ctrl_inst.data_ram.u_mem.g_2k[1].u_cell.u_sram",
+    3: "data_bram_ctrl_inst.data_ram.u_mem.g_2k[2].u_cell.u_sram",
+    4: "data_bram_ctrl_inst.data_ram.u_mem.g_2k[3].u_cell.u_sram",
+    5: "instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[1].u_cell.u_sram",
+    6: "instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[2].u_cell.u_sram",
+    7: "instr_bram_ctrl_inst.instr_ram.u_mem.g_2k[3].u_cell.u_sram",
+}
+
+
+def ring_banked_placement():
+    """RING_PLACEMENT'in koordinatlarini AYNEN kullanir, ornekleri permute eder."""
+    out = []
+    for idx, (inst, x, y) in enumerate(RING_PLACEMENT):
+        new_inst = RING_BANKED_SWAP.get(idx, inst)
+        if macro_size(new_inst) != macro_size(inst):
+            sys.exit(f"HATA: slot {idx} boyut uyumsuz: {inst} -> {new_inst}")
+        out.append((new_inst, x, y))
+    if sorted(i for i, _, _ in out) != sorted(i for i, _, _ in RING_PLACEMENT):
+        sys.exit("HATA: ring-banked permutasyonu ornek kumesini degistirdi")
+    if [(x, y) for _, x, y in out] != [(x, y) for _, x, y in RING_PLACEMENT]:
+        sys.exit("HATA: ring-banked koordinatlari degistirdi")
+    return out
 # --- Parametrik macro-ring ------------------------------------------------
 #  RING_PLACEMENT yukaridaki 4200x3600 icin DOGRULANMIS mutlak koordinat
 #  listesidir ve DEGISTIRILMEZ: iki bagimsiz DRT dali onunla sifir ihlale
@@ -271,8 +317,11 @@ def main():
     ap = argparse.ArgumentParser()
     dw, dh = die_from_config()
     ap.add_argument("--netlist", required=True, type=pathlib.Path)
-    ap.add_argument("--grid", choices=("ring", "4x4", "3x5"), default="ring",
-                    help="makro yerlesimi; varsayilan DRC-temiz cevre halkasi")
+    ap.add_argument("--grid", choices=("ring", "ring-banked", "4x4", "3x5"),
+                    default="ring",
+                    help="makro yerlesimi; varsayilan DRC-temiz cevre halkasi. "
+                         "ring-banked ayni koordinatlari kullanir ama ayni "
+                         "bellegin bankalarini bitisik yapar")
     ap.add_argument("--die-width", type=float, default=dw)
     ap.add_argument("--die-height", type=float, default=dh)
     ap.add_argument("--col-gap", type=float, default=None,
@@ -284,8 +333,11 @@ def main():
     a = ap.parse_args()
 
     # Izgaraya gore harita + varsayilan kanal genislikleri
-    if a.grid == "ring":
+    if a.grid in ("ring", "ring-banked"):
         PLACE, NC, NR = RING_PLACEMENT, None, None
+        col_gap = row_gap = None
+    elif a.grid == "ring-banked":
+        PLACE, NC, NR = ring_banked_placement(), None, None
         col_gap = row_gap = None
     elif a.grid == "3x5":
         PLACE, NC, NR = PLACEMENT_3X5, NCOL_3X5, NROW_3X5
@@ -307,9 +359,18 @@ def main():
         sys.exit(f"HATA: netlist ile beklenen makro listesi uyusmuyor\n"
                  f"  eksik: {missing}\n  fazla: {extra}")
 
-    if a.grid == "ring":
-        PLACE = ring_placement(a.die_width, a.die_height)
-        validated = (a.die_width, a.die_height) == (4200.0, 3600.0)
+    if a.grid in ("ring", "ring-banked"):
+        if a.grid == "ring-banked":
+            if (a.die_width, a.die_height) != (4200.0, 3600.0):
+                sys.exit("HATA: ring-banked yalniz dogrulanmis 4200x3600 "
+                         "koordinat listesi icin tanimlidir")
+            PLACE = ring_banked_placement()
+            # Koordinatlar dogrulanmis halkanin AYNISI, ama banka atamasi
+            # farkli oldugu icin bu varyant henuz DRT'den GECMEMISTIR.
+            validated = False
+        else:
+            PLACE = ring_placement(a.die_width, a.die_height)
+            validated = (a.die_width, a.die_height) == (4200.0, 3600.0)
         for inst, x, y in PLACE:
             w, h = macro_size(inst)
             if x < 0 or y < 0 or x + w > a.die_width or y + h > a.die_height:
@@ -322,11 +383,11 @@ def main():
         lines = [
             "# ------------------------------------------------------------------",
             "#  SKY130 SRAM macro-ring yerlesimi -- OTOMATIK URETILMIS",
-            "#  Ureten: asic/scripts/gen_macro_placement.py --grid ring",
+            f"#  Ureten: asic/scripts/gen_macro_placement.py --grid {a.grid}",
             f"#  Die: {a.die_width} x {a.die_height} um; yon: tum makrolar N",
             ("#  Olcum: GRT tasmasi 0, DRT ihlali 0, PDN grid ihlali 0."
              if validated else
-             "#  DIKKAT: bu die icin yerlesim TURETILMISTIR, henuz DRT'den"),
+             "#  DIKKAT: bu yerlesim varyanti henuz DRT'den"),
             ("# ------------------------------------------------------------------"
              if validated else
              "#  gecirilmemistir. Kabul icin OpenROAD.DetailedRouting kosulmalidir."),

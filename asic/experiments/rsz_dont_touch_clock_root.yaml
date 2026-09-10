@@ -1,0 +1,53 @@
+meta:
+  version: 2
+
+# ---------------------------------------------------------------------------
+#  SAAT KOKUNU repair_design'DAN KORU
+#
+#  SORUN (olculdu: reports/timing/max_ss_100C_1v60/max.rpt ve checks.rpt)
+#    `clk_i` portu ile CTS kok tamponlari arasina repair_design ALTI adet
+#    `wire*` tamponu sokmus:
+#        clk_i (in) -> wire30895 -> wire30894 -> wire30893
+#                   -> wire30892 -> wire30891 -> wire30890
+#                   -> clkbuf_regs_0_clk_i/A
+#    ve ayni `clk_i` netinin ikinci dalinda `wire30945..30925` +
+#    `max_length30927`. Bunlar CTS'in urunu DEGIL; post-GRT design repair
+#    saat kaynak netini SIRADAN BIR NET gibi gorup boluyor.
+#
+#    Olculen bedel (max_ss_100C_1v60):
+#      launch insertion (clk_i -> SRAM clk1)      5,530 ns
+#        bunun repair tamponu kismi               3,544 ns  (%64)
+#      capture insertion (clk_i -> _128149_/CLK)  6,691 ns
+#      setup skew +1,166 / hold skew -1,278 ns (ss kosesinde -3,349)
+#
+#    Iki saat agaci (`clk_i` 9 yaprak = makro saat pinleri, `clk_i_regs`
+#    584 yaprak = floplar) farkli derinlikte oldugu icin bu insertion
+#    dogrudan SKEW'e, skew de HOLD baskisina, o da 16.686 `dlygate4sd3_1`
+#    gecikme hucresine donusuyor.
+#
+#  DEGISIKLIK
+#    RSZ_DONT_TOUCH_RX ile YALNIZ `clk_i` kaynak netini dont-touch yap.
+#    Regex net adlarina VE instance adlarina uygulanir
+#    (librelane/scripts/openroad/common/resizer.tcl:14-33), bu yuzden
+#    `^clk_i$` ANKORLU secildi: `clkbuf_0_clk_i` gibi instance adlarini
+#    VE `clknet_*` gibi CTS netlerini KAPSAMAZ. Tek degisken.
+#
+#  ARSIV DURUMU
+#    deney_arsivi'ndeki 100+ kosumun HEPSINDE RSZ_DONT_TOUCH_RX = "$^"
+#    (hicbir seyle eslesmez) ve RSZ_DONT_TOUCH_LIST = null. Yani bu
+#    kaldirac HIC DENENMEDI.
+#
+#  BEKLENEN
+#    + saat kokunde ~2 ns insertion gider, skew duser
+#    - `clk_i` neti bolunmedigi icin o net uzerinde slew ihlali cikabilir
+#
+#  KOSUMDAN SONRA MUTLAKA BAK
+#    1. `clk_i` pininin slew'i (checks.rpt, limit 0,75) -- kotulestiyse
+#       dont-touch yerine CTS kokunu porta yaklastirmak denenmeli
+#    2. clock__skew__worst_setup / worst_hold
+#    3. `dlygate4sd3_1` sayisi (hold baskisi gercekten dustu mu)
+#    4. timing__setup__ws ve timing__hold__ws
+#
+#  DOGRULAMA DURUMU: HENUZ KOSULMADI.
+# ---------------------------------------------------------------------------
+RSZ_DONT_TOUCH_RX: "^clk_i$"

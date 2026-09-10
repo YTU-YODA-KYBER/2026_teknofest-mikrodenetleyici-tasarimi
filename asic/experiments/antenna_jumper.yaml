@@ -2,9 +2,9 @@ meta:
   version: 2
 
 # ---------------------------------------------------------------------------
-#  ANTEN JUMPER OVERLAY -- YALNIZ IKI FAZLI KOSUMUN 2. FAZINDA KULLANILIR
+#  ANTEN JUMPER OVERLAY -- YALNIZ UC FAZLI KOSUMUN 3. FAZINDA KULLANILIR
 #
-#  NEDEN IKI FAZ?
+#  NEDEN AYRI FAZ?
 #    LibreLane Classic'in adim sirasi sabittir (flows/classic.py:79-87):
 #        GlobalRouting -> CheckAntennas -> RepairAntennas
 #        -> ResizerTimingPostGRT -> DetailedRouting
@@ -21,7 +21,9 @@ meta:
 #    etmekle saglanir; flow.py:594-646 sira numaralarini surdurur ve faz 1'in
 #    dizinlerini EZMEZ (`--overwrite` VERILMEZ).
 #
-#  OLCULEN SONUC (run/jumper_sta40, tam signoff):
+#  OLCULEN SONUC -- ESKI KOSUM (run/jumper_sta40, 40 ns periyot):
+#  [Teslim edilen 28 MHz kosumunun nihai degeri 979 net / 1.034 pin ve
+#   0 yollama DRC'dir; bkz. reports/general/metrics.json.]
 #    anten 1.935 -> 1.474 net (-%23,8), 2.364 -> 1.870 pin (-%20,9)
 #    yollama DRC 0, Magic DRC 0, KLayout DRC 0, LVS 0, XOR 0, PDN 0
 #    setup +6,3149 -> +6,4294 (IYILESTI), hold +0,0570 -> +0,0576
