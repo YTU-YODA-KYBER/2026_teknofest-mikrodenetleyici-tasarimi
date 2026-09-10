@@ -1,0 +1,71 @@
+{
+  "harness_version": "1.0.1",
+  "primary_metric": "golden_agreement_pct",
+  "team": "YTU YODA KYBER",
+  "team_id": "4997474",
+  "timestamp": "2026-09-10T22:03:55+03:00",
+  "config_file": "/home/luxyxp/Documents/mainfiles/FPGA/demo/ytu_yoda_kyber_icd.json",
+  "config_sha256": "b186d9f5bd887e63de28401dc5a5b50e6ca6e20713ae3287a50549c8c1ce905e",
+  "total_samples": 156,
+  "answered": 156,
+  "timeouts": 0,
+  "with_golden_ref": 156,
+  "golden_agreement_pct": 100.0,
+  "golden_agreement_strict_pct": 100.0,
+  "mismatch_count": 0,
+  "ref_timeout_count": 0,
+  "accuracy_info_hw_pct": 72.43589743589743,
+  "accuracy_info_sw_pct": 72.43589743589743,
+  "score_comparison_samples": 156,
+  "score_error_mean_pct": 0.005008012820512821,
+  "score_error_max_pct": 0.78125,
+  "latency_ms": {
+    "n": 156,
+    "min": 2.8095340021536686,
+    "median": 3.065285003685858,
+    "p95": 4.655661499782582,
+    "max": 4.830965001019649
+  },
+  "tx_ms_median": 8.412013001361629,
+  "speedup_ratio": 82.27619934092314,
+  "software_reference_ms": 252.2,
+  "robustness_passed": 10,
+  "robustness_total": 10,
+  "robustness_skipped": 1,
+  "confusion_matrix": {
+    "silence": {
+      "silence": 6,
+      "unknown": 0,
+      "yes": 0,
+      "no": 0,
+      "TIMEOUT": 0
+    },
+    "unknown": {
+      "silence": 0,
+      "unknown": 16,
+      "yes": 0,
+      "no": 0,
+      "TIMEOUT": 0
+    },
+    "yes": {
+      "silence": 0,
+      "unknown": 0,
+      "yes": 50,
+      "no": 0,
+      "TIMEOUT": 0
+    },
+    "no": {
+      "silence": 0,
+      "unknown": 0,
+      "yes": 0,
+      "no": 84,
+      "TIMEOUT": 0
+    }
+  },
+  "meta": {
+    "seed": 1337,
+    "dataset": "/home/luxyxp/Documents/mainfiles/FPGA/demo/demo_program_tr/public_dataset/manifest.csv",
+    "dataset_size": 156,
+    "dry_run": false
+  }
+}

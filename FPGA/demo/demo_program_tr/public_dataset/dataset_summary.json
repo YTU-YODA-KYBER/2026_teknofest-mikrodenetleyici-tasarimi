@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "source_dir": "downloaded",
+  "count": 156,
+  "seed": 13,
+  "encoding": "int8",
+  "align": "loudest",
+  "label_mode": "folder",
+  "class_counts": {
+    "yes": 50,
+    "unknown": 50,
+    "no": 50,
+    "silence": 6
+  },
+  "golden_backend": "tensorflow",
+  "golden_accuracy_pct": 72.44,
+  "golden_confusion": {
+    "silence": {
+      "silence": 6,
+      "unknown": 0,
+      "yes": 0,
+      "no": 0
+    },
+    "unknown": {
+      "silence": 0,
+      "unknown": 12,
+      "yes": 0,
+      "no": 38
+    },
+    "yes": {
+      "silence": 0,
+      "unknown": 1,
+      "yes": 49,
+      "no": 0
+    },
+    "no": {
+      "silence": 0,
+      "unknown": 3,
+      "yes": 1,
+      "no": 46
+    }
+  }
+}

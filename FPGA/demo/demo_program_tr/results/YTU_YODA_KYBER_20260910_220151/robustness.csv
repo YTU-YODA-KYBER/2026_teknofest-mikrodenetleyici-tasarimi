@@ -1,0 +1,12 @@
+scenario,result,detail
+silence_zeros,PASS,"cikti=no, gecikme=8.1 ms, sonraki gecerli cerceve yanitladi"
+silence_dither,PASS,"cikti=no, gecikme=8.0 ms, sonraki gecerli cerceve yanitladi"
+saturate_max,PASS,"cikti=unknown, gecikme=9.0 ms, sonraki gecerli cerceve yanitladi"
+saturate_min,PASS,"cikti=silence, gecikme=9.1 ms, sonraki gecerli cerceve yanitladi"
+alternating,PASS,"cikti=silence, gecikme=9.0 ms, sonraki gecerli cerceve yanitladi"
+back_to_back,PASS,araliksiz 5 cerceveden 5 tanesi yanitlandi
+truncated_frame,PASS,kesik cerceve sonrasi kurtarma basarili (cikti=no)
+oversized_frame,PASS,fazladan bayt sonrasi kurtarma basarili (cikti=no)
+peripheral_interleave,SKIP,ATLANDI (opsiyonel): hooks.interleave_core_hex tanimlanmamis; cevre birimi araya girme testi uygulanmadi.
+determinism,PASS,10 tekrarda 1 farkli sonuc; gecikme jitter=1.15 ms
+recovery_after_idle,PASS,3 s bosta bekledikten sonra yanit verdi (no)

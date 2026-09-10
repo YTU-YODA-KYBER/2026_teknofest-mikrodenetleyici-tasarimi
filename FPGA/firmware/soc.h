@@ -160,6 +160,7 @@ typedef struct {
 /* Sartname Bolum 4.2.2/3: UART 1 Mbps'i ve en az iki farkli baud'u
  * desteklemelidir. 50 MHz'de CPB = 50, 25 MHz'de CPB = 25. */
 #define UART_CPB_1M         UART_CPB_FOR(1000000u)
+#define UART_CPB_3M         UART_CPB_FOR(3000000u)
 
 typedef union {
     uint32_t all;

@@ -1,0 +1,111 @@
+{
+  "team": {
+    "name": "YTU YODA KYBER",
+    "id": "4997474",
+    "notes": "CV32E40P tabanli SoC + TFLite Micro Speech RTL hizlandirici. Nexys A7-100T @50 MHz. Stream UART = Pmod JC uzerindeki Pmod USBUART (FT232R), CPB=50 -> 1 Mbps. Core UART = kart uzerindeki FT2232 kanali, CPB=434 -> 115200. Sonuc cercevesi: 'YZ:B' (yukleme bitti, cikarim basladi; ignore_regex ile elenir) ve 'YZ:<0-3> S=<s0>;<s1>;<s2>;<s3>' (sinif + softmax cikisinin int8 skorlari, sira: sessizlik;bilinmeyen;evet;hayir). Payload kodlamasi uint8_offset128: hizlandirici girdi zero-point'ini -128 kabul edip RAM'den okudugu bayti dogrudan (q+128) olarak kullanir (conv_accelerator.v), yani tel uzerindeki bayt = q + 128."
+  },
+  "stream": {
+    "port": {
+      "port": "/dev/ttyUSB0",
+      "baudrate": 1000000,
+      "bytesize": 8,
+      "parity": "N",
+      "stopbits": 1.0,
+      "rtscts": false,
+      "dsrdtr": false,
+      "xonxoff": false,
+      "write_timeout_s": 5.0,
+      "read_timeout_s": 0.05,
+      "dtr": false,
+      "rts": false,
+      "open_settle_ms": 100,
+      "flush_input_on_open": true
+    },
+    "framing": {
+      "preamble_hex": "",
+      "index_field_size": 0,
+      "length_field_size": 0,
+      "length_counts": "payload",
+      "endian": "little",
+      "checksum": "none",
+      "checksum_covers": "payload",
+      "trailer_hex": "",
+      "chunk_size": 0,
+      "inter_chunk_delay_ms": 0.0,
+      "inter_frame_delay_ms": 2.0,
+      "drain_after_write": true
+    },
+    "payload": {
+      "length": 1960,
+      "encoding": "uint8_offset128",
+      "pad_value": -128
+    }
+  },
+  "core": {
+    "port": {
+      "port": "/dev/ttyUSB2",
+      "baudrate": 3000000,
+      "bytesize": 8,
+      "parity": "N",
+      "stopbits": 1.0,
+      "rtscts": false,
+      "dsrdtr": false,
+      "xonxoff": false,
+      "read_timeout_s": 0.05,
+      "write_timeout_s": 5.0,
+      "dtr": false,
+      "rts": false,
+      "open_settle_ms": 100,
+      "flush_input_on_open": true
+    },
+    "result": {
+      "mode": "regex_line",
+      "line_terminator": "\n",
+      "encoding": "ascii",
+      "regex": "^YZ:(?P<label>[0-3]) S=(?P<scores>[-0-9;]+)$",
+      "json_label_key": "label",
+      "json_scores_key": "scores",
+      "csv_label_index": 0,
+      "csv_scores_start": 1,
+      "binary_preamble_hex": "",
+      "binary_label_size": 1,
+      "binary_score_count": 0,
+      "binary_score_size": 1,
+      "binary_score_signed": true,
+      "binary_endian": "little",
+      "label_map": {
+        "0": "silence",
+        "1": "unknown",
+        "2": "yes",
+        "3": "no"
+      },
+      "classes": [
+        "silence",
+        "unknown",
+        "yes",
+        "no"
+      ],
+      "timeout_ms": 5000,
+      "ignore_regex": "^YZ:B"
+    }
+  },
+  "hooks": {
+    "boot_banner_regex": "",
+    "boot_timeout_ms": 10000,
+    "boot_trigger_core_hex": "",
+    "core_init_hex": "",
+    "stream_init_hex": "",
+    "pre_frame_core_hex": "",
+    "interleave_core_hex": "",
+    "interleave_expect_regex": "",
+    "reset_hex": ""
+  },
+  "run": {
+    "warmup_frames": 1,
+    "retries_per_sample": 1,
+    "inter_sample_delay_ms": 0.0,
+    "stop_on_consecutive_timeouts": 10,
+    "software_reference_ms": 252.2,
+    "speedup_threshold": 0.0
+  }
+}

@@ -223,10 +223,10 @@ static void irq_init(void)
  *  de gösterir. */
 static void uart_init(void)
 {
-    UartAI->UART_CPB     = UART_CPB_1M;      /* YZ veri akisi: 1 Mbps */
+    UartAI->UART_CPB     = UART_CPB_3M;      /* YZ veri akisi: 3 Mbps */
     UartAI->UART_STP.all = 0;     /* 1 stop bit (RX bu alanı kullanmıyor ama netlik icin) */
 
-    Uart->UART_CPB       = UART_CPB_115200;  /* sonuç çerçevesi */
+    Uart->UART_CPB       = UART_CPB_1M;  /* sonuç çerçevesi */
     Uart->UART_STP.all   = 0;     /* 1 stop bit */
 }
 

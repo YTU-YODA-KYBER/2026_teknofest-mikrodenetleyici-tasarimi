@@ -11,6 +11,9 @@
 *.bit
 !FPGA/bitstream_files/fpga_top.bit
 *.bin
+# Demo giris vektorleri Vivado artefakti degil, demonun VERISIDIR; onlarsiz
+# demo kosmaz (sartname Bolum 3.2.3 / Demo Puani).
+!FPGA/demo/**/public_dataset/**/*.bin
 
 # Simulasyon ve sentez calisma klasorleri (kodu tut, uretileni tutma)
 .Xil/
@@ -22,7 +25,7 @@
 /Full_MCU_Project.gen/
 
 *.log
-!FPGA/demo/results/**/transcript.log
+!FPGA/demo/**/results/**/transcript.log
 !asic/reports/**/*.log
 !FPGA/verification/**/*.log
 
