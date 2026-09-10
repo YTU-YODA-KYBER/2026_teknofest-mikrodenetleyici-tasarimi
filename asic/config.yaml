@@ -528,6 +528,9 @@ PL_RESIZER_HOLD_SLACK_MARGIN: 0.02
 # setup guvenlik marji ve 0,45 ns hold hedefi; GRT/DRT=0, dokuz-kose RCX
 # setup WNS +2,100 ns / hold WNS +0,192 ns ve sifir zamanlama ucu verdi.
 # 31.350 timing tamponuna ragmen std-cell dolulugu %11,91'dir.
+# NOT: bu rakamlar O DENEYE aittir. TESLIM EDILEN kosumda deger
+# 65.850 timing tamponu ve std-cell dolulugu %15,45'tir
+# (reports/general/metrics.json).
 RUN_POST_GRT_DESIGN_REPAIR: true
 GRT_DESIGN_REPAIR_RUN_GRT: true
 # --- UZUNLUK TABANLI TAMPONLAMA: ANTEN KALDIRACI (olculdu 2026-09-03) -----
@@ -603,7 +606,18 @@ GRT_RESIZER_ALLOW_SETUP_VIOS: false
 GRT_RESIZER_FIX_HOLD_FIRST: false
 GRT_RESIZER_RUN_GRT: true
 
-# --- Anten onarimi KAPALI (olculdu) ------------------------------------
+# --- Anten onarimi: TABAN deger kapali, FAZ 3'TE ACILIR ------------------
+#
+# !! BU BOLUMU OKURKEN DIKKAT !!
+# Asagidaki `RUN_ANTENNA_REPAIR: false` bu dosyanin TABAN degeridir ve
+# TESLIM EDILEN KOSUMU TARIF ETMEZ. `make asic_run` uc fazlidir; ucuncu faz
+# `experiments/antenna_jumper.yaml` overlay'iyle bu degeri `true` yapar
+# (jumper-only, GRT_ANTENNA_REPAIR_ITERS: 1). Teslim edilen kosumun gercek
+# degeri `results/config/resolved.json` icinde `RUN_ANTENNA_REPAIR: true`
+# olarak gorulebilir.
+#
+# Asagidaki olcumler, anten onarimi TEK FAZLI akista ResizerTimingPostGRT'den
+# ONCE kostugu zamana aittir. O sirali dizilimde:
 # ANTEN ONARIMI, DETAYLI YOLLAMAYI YAKINSAMAZ HALE GETIRIYOR.
 #
 # Bir donem "tikaniklik cozuldugu icin artik acilabilir" diye acilmisti; acilan
@@ -625,8 +639,15 @@ GRT_RESIZER_RUN_GRT: true
 #
 # BEDELI ACIKCA KABUL EDILDI: anten ihlalleri onarilmaz. Olculen degerler --
 # onarim acikken 3.676 net / 5.489 pin -> 22 net / 30 pin'e iniyordu; tarihsel
-# kapali `drtfix_a` kosumunda 3.676 / 5.489 ve 24 DRC kaliyordu. Nihai
+# kapali `drtfix_a` kosumunda 3.676 / 5.489 ve 24 DRC kaliyordu. Tek fazli
 # `rtl2gds` sonucu 3.181 net / 4.874 pin ve 14 yollama DRC ihlalidir.
+#
+# TESLIM EDILEN UC FAZLI KOSUMUN SONUCU BU DEGILDIR. Jumper'i resizer'in
+# CIKTISI uzerinde ekleyen faz 3 ile olculen nihai deger
+# (reports/general/metrics.json):
+#     anten 979 net / 1.034 pin  --  yollama DRC 0
+# Yani uc fazli dizilim hem anteni ~%69 dusurdu hem DRC'yi sifirladi;
+# asagida anlatilan "iki kotuluk arasinda secim" ARTIK GECERLI DEGILDIR.
 # Sartname Bolum 7 ihlalin teslimi gecersiz kilmadigini soyluyor; iki kotuluk
 # arasinda YOLLAMA DRC'si secildi, cunku yakinsamayan bir DRT kullanilabilir bir
 # GDS bile uretmiyor.
@@ -638,6 +659,7 @@ GRT_RESIZER_RUN_GRT: true
 # Port diyotlari yalniz 36 port netini duzeltir, asil kutle (3.676) icin
 # RepairAntennas gerekir; yani kazanci kucuk, maliyeti bir artimli GRT. Bu
 # yuzden olculmedi.
+# TABAN deger. Faz 3 bunu `true`ya cevirir (experiments/antenna_jumper.yaml).
 RUN_ANTENNA_REPAIR: false
 DIODE_ON_PORTS: "none"
 
