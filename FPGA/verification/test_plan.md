@@ -27,6 +27,9 @@ Doğrulama aşağıdaki koşullar birlikte sağlandığında tamamlanmış kabul
    kritik bağlantısız pin ve setup/hold ihlal sayıları sıfır olmalı; zorunlu
    dosya kapısı eksiksiz geçmelidir. Sıfır olmayan diğer kalite ölçümleri
    saklanmalı ve gerçek değerleriyle raporlanmalıdır.
+9. Kod kapsamı ve fonksiyonel kapsam metrikleri toplanmalı ve raporlanmalıdır;
+   AXI4-Lite işlem uzayında erişilebilir bin'lerin tamamı dolmalı, erişilemez
+   bin'ler gerekçesiyle birlikte raporlanmalıdır.
 
 ## Doğrulama matrisi
 
@@ -38,6 +41,8 @@ Doğrulama aşağıdaki koşullar birlikte sağlandığında tamamlanmış kabul
 | Blok/directed | Altı çevre birimi, self-checking XSim testbench'leri | Bütün kontroller geçer | **Geçti:** [`vivado_reports/testbench_&_protocol_check/`](vivado_reports/testbench_&_protocol_check/) |
 | Çerçeve senkronizasyonu | YZ girdi RAM sayacının kesik/fazla çerçeve sonrası toparlanması; eşik altında bozulmaması | Altı senaryonun tamamı geçer; kurtarmadan sonraki çerçeve hizalı | **Geçti:** 22/22; [`frame_sync/`](frame_sync/) |
 | Protokol | 15 AXI4-Lite arayüzünde 40 SVA kuralı | Etkin trafikte 0 ihlal | **Geçti:** 0 ihlal; [`vivado_reports/testbench_&_protocol_check/`](vivado_reports/testbench_&_protocol_check/) |
+| Code coverage | XSim'de statement, branch, condition, toggle; UVM tarafında Verilator/gcov ile satır kapsamı | Metrikler toplanır ve raporlanır; blok bazında dökümü saklanır | **Geçti:** XSim statement %91–100; UVM satır %96,4 (1298/1347); [`vivado_reports/code_coverage/`](vivado_reports/code_coverage/) · [`uvm/coverage/`](uvm/coverage/) |
+| Functional coverage | AXI4-Lite işlem uzayı covergroup'u: yön, register ofseti, cevap kodu, işlemler arası boşluk, veri deseni ve yön × ofset çaprazı | Erişilebilir bin'lerde %100; erişilemez bin'ler gerekçesiyle raporlanır | **Geçti:** 35/35 bin (%100); `SLVERR`/`DECERR` erişilemez olarak gerekçelendirildi; [`uvm/coverage/functional.md`](uvm/coverage/functional.md) |
 | Sistem/boot | Flasher → QSPI flash → Boot ROM → DMA → Instruction RAM → uygulama | Beş kilometre taşı ve self-checking sonuç geçer | **Geçti:** [`.../Boot/`](vivado_reports/testbench_&_protocol_check/Boot/) |
 | Sistem/YZ | Stream UART → hızlandırıcı → kesme → CPU (requant + softmax + argmax) → core UART sonuç satırı | Üç sınıf doğru; PC'ye giden satır ve softmax skorları doğrulanır; kesik çerçeve sonrası kurtarma çalışır | **Geçti:** 4/4, 24/24 kapı; [`.../AI_Accelerator/`](vivado_reports/testbench_&_protocol_check/AI_Accelerator/) |
 | YZ kalite | 156 kart örneği, RTL/model karşılaştırması, çevrim ölçümü, bellek bütçesi | Doğruluk farkı ≤ %10; hızlanma > 1; bellek ≤ 30 kB | **Geçti:** 0,00 puan fark, 276,9×, 30,00 kB; [`ai_accel_reports/`](ai_accel_reports/) |
