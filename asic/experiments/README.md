@@ -120,3 +120,47 @@ overlay'in DRT sonucu **ölçülmemiştir**.
 > edildi. Resmî faz 3 yalnız **jumper** onarımını açar; diyot eklemez. İhlaller
 > hem azaltılır hem gerçek değerleriyle **ölçülüp raporlanır**. Diğer
 > `antenna_*` overlay'leri kontrollü tanı ve reddedilmiş deney kanıtıdır.
+
+## Dizinde bulunup yukarıdaki tablolarda anılmayan overlay'ler
+
+Aşağıdakiler `experiments/` altında mevcuttur; açıklamalar dosyaların kendi
+başlık yorumlarından alınmıştır. Ölçüm kayıtları
+[`../reports/synthesis/strateji_denemeleri.md`](../reports/synthesis/strateji_denemeleri.md)
+ve `../reports/synthesis/deney_arsivi/` altındadır. **Hiçbiri ana config'in
+parçası değildir**; tekrar üretilebilirlik ve reddedilmiş deney kanıtı olarak
+korunurlar.
+
+| Overlay | Ne işe yarar |
+|---|---|
+| `antenna_drt_jumper_only_i1.yaml` | `final40c`'nin DRT-temiz post-GRT durumunda yalnız katman-atlatan (jumper) anten onarımı; diyot yok. |
+| `antenna_grt_jumper_only_i1.yaml` | GRT tabanlı saf-jumper karşılaştırması; `RUN_HEURISTIC_DIODE_INSERTION: false`. |
+| `antenna_jumper_diode.yaml` | Adım 44'te jumper + diyot birlikte (`GRT_ANTENNA_REPAIR_JUMPER_ONLY: false`). Ölçülmüş ve reddedilmiş diyot zincirinin bir kolu. |
+| `cts_delay_balance_only.yaml` | Tek değişkenli CTS kontrolü: `CTS_DELAY_BUFFER_DERATE_PCT: 100`, `CTS_BALANCE_LEVELS: false`. |
+| `cts_macro_reg_balance.yaml` | SRAM saat pinleri ile standart-hücre register saat pinlerini seviye dengeleme (`CTS_BALANCE_LEVELS: true`). |
+| `die_4200x2600.yaml` | Die 4200×3600 → 4200×2600 (15,12 → 10,92 mm², −%27,8) denemesi; kendi makro yerleşimiyle. |
+| `fill_all_sizes.yaml` | Filler ailesinin büyük hücrelerini (`fill_8`…) önce kullanan `FILL_CELLS` sırası. |
+| `gplprobe_2600_d35.yaml` | GPL yakınsama probu: die 4200×2600, `PL_TARGET_DENSITY_PCT` 35. |
+| `gplprobe_2800_d35.yaml` | GPL yakınsama probu: die 4200×2800, yoğunluk 35. |
+| `gplprobe_2800_d50.yaml` | GPL yakınsama probu: die 4200×2800, yoğunluk 50. |
+| `gplprobe_3000_d35.yaml` | GPL yakınsama probu: die 4200×3000, yoğunluk 35. |
+| `gpl_timing_driven.yaml` | Yalnız fiziksel tanı: `PL_TIMING_DRIVEN: true`, diğer her şey sabit. |
+| `magic_lef_gds.yaml` | `Magic.WriteLEF`'in ~12 GiB bellek tüketimini `MAGIC_LEF_WRITE_USE_GDS: true` ile düşürme denemesi. |
+| `opt3_data0_local_30mhz.yaml` | 30 MHz hedefli; kritik data-BRAM bank0'ı `rdata` mandallarına yaklaştıran bağlantısal makro yerleşimi (`constraints/macro_placement_data0_local.cfg`). |
+| `opt3_gpl_timing_driven_30mhz.yaml` | 30 MHz hedefli kontrollü `PL_TIMING_DRIVEN: true` denemesi (sonuçsuz kalan eski dalın tekrarı). |
+| `opt3_postgrt_hold_margin005.yaml` | OPT3 alan/hold taraması kolu: setup marjı 10 ns sabit, hold marjı 0,05 ns. **Ölçüldü:** −12.448 hücre ama 28 hold ihlali → reddedildi. |
+| `opt3_postgrt_hold_margin006.yaml` | Aynı taramanın 0,06 ns kolu. **Ölçüldü:** 8 hold ihlali → reddedildi. |
+| `opt3_postgrt_hold_margin008.yaml` | Aynı taramanın 0,08 ns kolu. **Ölçüldü:** 9 hold ihlali → reddedildi. 0,10–0,40 aralığı ölçülmemiştir. |
+| `opt3_postroute_sta30mhz.yaml` | Aynı yollanmış veritabanı üzerinde tam-sayı 30.000.000 Hz STA taraması. |
+| `opt3_postroute_sta36.yaml` | Aynı yollanmış veritabanı üzerinde 36 ns STA taraması. |
+| `opt3_synth_booth_area0.yaml` | `SYNTH_MUL_BOOTH: true` ile mapped sentez alan taraması; kritik yol kazancı varsayılmaz. |
+| `postgrt_setup_margin2_rc.yaml` | `LAYERS_RC` devreye girdikten sonra setup onarım marjı 2 ns kolu. |
+| `postgrt_setup_margin5_rc.yaml` | `LAYERS_RC` devreye girdikten sonra setup onarım marjı 5 ns kolu. |
+| `postroute_sta38.yaml` | Post-route periyot taraması, 38 ns (aynı veritabanı/parazitikler). |
+| `postroute_sta42.yaml` | Post-route periyot taraması, 42 ns. |
+| `postroute_sta44.yaml` | Post-route periyot taraması, 44 ns. |
+| `rc_repair_nomargin.yaml` | `LAYERS_RC` sonrası post-GRT onarım marjlarını (`GRT_DESIGN_REPAIR_MAX_SLEW/CAP_PCT`) 0'a geri alma; ana config'e taşınan değer. |
+| `synth_delay0.yaml` | Sentez strateji probu `DELAY 0` — **reddedildi** (`construct_abc_script.py` `choice2` adımını atlar; ABC gecikmesi +%20,5). |
+| `synth_delay2.yaml` | Sentez strateji probu `DELAY 2` — **reddedildi** (ABC +%3,8). |
+| `synth_delay4.yaml` | Sentez strateji probu `DELAY 4` — **tam akışta reddedildi.** ABC'de −%51 görünse de hücre +%27,8, GRT yollama talebi +%83,1 ve `[ERROR GRT-0116]` ile akış düştü (`run/final28`). Dosyanın başlık yorumu "kabul → config.yaml'a taşındı" der; bu **eskidir**, `config.yaml` `AREA 0`'da kalmıştır (bkz. `config.yaml` sentez bölümü). |
+| `synth_mfs3.yaml` | Sentez-only A/B: `SYNTH_ABC_USE_MFS3: true`. |
+| `synth_sizing.yaml` | Sentez-only A/B: `SYNTH_SIZING: true`. |

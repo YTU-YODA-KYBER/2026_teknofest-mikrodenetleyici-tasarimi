@@ -1153,39 +1153,42 @@ Liberty'si `dout0`/`dout1` çıkışları için `timing_type : falling_edge` tan
 `posedge` kullandığı için SRAM'den çıkan veri, yükselen kenarda yakalanana
 kadar **T/2** süresi bulur, T değil.
 
-> **GÜNCELLEME (2026-09-03) — bu tavan ARTIK BAĞLAYICI DEĞİLDİR.** Konvolüsyon
-> yoluna `scripts/patch_rtl.py` ile SRAM çıkış kayıt kademesi eklendikten
-> sonra yarım çevrimli yollar rahatladı. 28 MHz signoff koşumunda
-> `max_ss_100C_1v60` köşesindeki **negatif slack'li yol sayısı sıfırdır**;
-> ayrıca 30 MHz denemesinde (`run/final30`) ölçülen 460 negatif yolun
-> **hiçbiri yarım çevrimli değildi** — hepsi tam çevrimliydi. Yani frekans
-> tavanını artık SRAM okuma yolları belirlemiyor.
+> **GÜNCELLEME (2026-09-13) — teslim edilen 28 MHz koşumunun ölçülmüş
+> kritik yolu.** Aşağıdaki değerler nihai (RCX sonrası) signoff raporundan,
+> `reports/timing/max_ss_100C_1v60/max.rpt`, okunmuştur. Bu belgenin önceki
+> sürümündeki "tavan artık bağlayıcı değildir" ifadesi bu ölçümle
+> **geçersizdir** ve kaldırılmıştır.
 >
-> Taze koşumda en kötü yol tam çevrimlidir ve şudur:
-> `id_stage_i.decoder_i.instr_rdata_i[18]` → **register-file okuma mux'ı** →
-> forwarding → `alu_operand_a_ex[3]`. Yani ID kademesinde komut yazmacından
-> rs1 adresi çözülüp 32 girişli yazmaç dosyası okuma mux'ından geçen yoldur.
-> Bu, CV32E40P mimarisinin gerçek tek-çevrim yoludur.
+> `scripts/patch_rtl.py`, SRAM çıkış kayıt kademesini **yalnız konvolüsyon /
+> FC yoluna** (`conv_accelerator_asic.v`: `rd_q`, `wd_q`, `v_s2d`) ekler;
+> `data_bram_ctrl` ve `instr_bram_ctrl` yollarına eklemez. Bu yüzden
+> hızlandırıcının SRAM yolu tam çevrime dönmüşken **CPU veri belleğinin okuma
+> yolu hâlâ yarım çevrimlidir** ve teslim koşumunda en kötü yol odur:
 >
-> Aynı yolun ayrıştırılmış maliyeti (30 MHz denemesi, 83 kademe): **44 kademe
-> gerçek mantık (23,618 ns), 39 kademe resizer tamponu (9,521 ns)** — yani
-> gecikmenin %29'u sentezin ürettiği mantık değil, fiziksel onarım tamponudur.
-> Bu, tasarımın **tel-baskın** olduğunu gösterir ve sentez tarafındaki
-> kaldıraçların neden işe yaramadığını açıklar (bkz. §6).
+> | | |
+> |---|---|
+> | Başlangıç | `data_bram_ctrl_inst.data_ram.u_mem.g_2k[0].u_cell.u_sram/dout1[17]` (falling edge) |
+> | Bitiş | `_128149_` (rising edge) |
+> | Setup slack (`max_ss_100C_1v60`) | **+1,996 ns** |
+> | Bileşim | SRAM `clk1→dout1` 0,456 ns · **37 seri onarım tamponu 11,853 ns** · `mux4_2` (banka seçimi) 1,173 ns · 6 tampon 2,436 ns · `mux2_1` 0,690 ns |
 >
-> Bu tavan bağımsız denetimde yeniden doğrulanmıştır: güncel koşumda ilk 20
-> setup yolunun 15'i YZ SRAM bankasından başlayıp konvolüsyon hızlandırıcısının
-> çarpan girişinde bitmektedir
-> (bağımsız iç denetim; ölçüm kaydı
-> [`reports/synthesis/strateji_denemeleri.md`](reports/synthesis/strateji_denemeleri.md)).
+> Yolun 16,61 ns'lik veri gecikmesinin **%86'sı onarım tamponu (14,29 ns),
+> %14'ü mantık (2,32 ns)**tır. Raporlanan 2.000 yolun en kötü 32'si bu
+> bellekten başlar; YZ girdi SRAM'inden başlayan en kötü yol +5,304 ns'dir.
 >
-> Makro değiştirilemez, fakat tavan **RTL tarafında** kaldırılabilir: SRAM
-> çıkışı (`ram_rdata`) kendi ağırlık kelimesiyle birlikte bir kademe
-> registerlanırsa yol yarım çevrimden tam çevrime döner. Maliyeti yaklaşık
-> 72 flip-flop (~1.700 µm²) ve boru hattı bir kademe uzadığı için çıkarım başına
-> +500 çevrimdir (46.018 → ~46.518, %1,09). Bu değişiklik **yapılmamıştır**;
-> kaynak RTL'ye dokunduğu ve YZ'nin bit-exact referansını kaydırdığı için
-> ayrıca değerlendirilmektedir.
+> Tam-çevrimli yolların en kötüsü +2,960 ns'dir ve ayrı bir ailedir: 2.000
+> yolun **942'si** `cpu_inst.CORE.core_i.id_stage_i.decoder_i` altındaki komut
+> çözücüden geçer; en derin yol 40 mantık kademesi / 25,0 ns'dir (fanout
+> ort. 2,5, giriş slew ort. 0,185 ns — gecikme yükten değil kademe sayısından
+> gelir). Şartname 4.2.2.1 çekirdeğin 4 aşamalı boru hattını şart koştuğu için
+> bu aileye kademe eklenemez; buradaki tavan RTL'de değil sentez
+> derinliğindedir.
+>
+> Tarihsel not: 30 MHz denemesinde (`run/final30`, 460 negatif yol) en kötü
+> yol `id_stage_i.decoder_i.instr_rdata_i[18]` → yazmaç dosyası okuma mux'ı
+> → `alu_operand_a_ex[3]` şeklinde tam çevrimliydi; 83 kademesinin 39'u
+> (9,521 ns) resizer tamponuydu. O ölçüm bu belgenin önceki sürümünde "taze
+> koşum" olarak anılmıştı; **teslim edilen 28 MHz koşumuna ait değildir.**
 
 > **GÜNCEL DEĞER: `CLOCK_PERIOD: 35.714285714285715` ns = 28 MHz.** Aşağıdaki 38 ns
 > kalibrasyonu ve onu izleyen doğrulama tabloları, macro-ring yerleşimine ve
@@ -1195,8 +1198,8 @@ kadar **T/2** süresi bulur, T değil.
 
 #### Tarihsel periyot seçimi (40 ns) ve gerekçesi
 
-SRAM'in yarım çevrimlik okuma yolu (yukarıda anlatılan `falling_edge` yayı)
-**RTL tarafında kaldırıldı**: `scripts/patch_rtl.py` ASIC kopyasına bir kayıt
+SRAM'in **konvolüsyon yolundaki** yarım çevrimlik okuma yolu (yukarıda anlatılan
+`falling_edge` yayı) **RTL tarafında kaldırıldı**: `scripts/patch_rtl.py` ASIC kopyasına bir kayıt
 kademesi ekler, böylece SRAM çıkışı ile çarpan arasındaki yol yarım çevrimden
 tam çevrime döner (maliyeti 112 flip-flop ve çıkarım başına +501 çevrim,
 46.018 → 46.519, %1,09). Bu değişiklikten sonra 50 ns'de setup slack
